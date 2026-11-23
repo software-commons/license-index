@@ -15,7 +15,7 @@ from unittest.mock import Mock, patch
 from tools.records import DataError
 from tools.review_gate import (
     ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, Reviewer, create_check, launch_review, load_issuer, main,
-    load_reviewer, require_queue_rules, review_result, run, verify_issued_check,
+    load_reviewer, protected_path, require_queue_rules, review_result, run, verify_issued_check,
 )
 from tools.review_snapshot import PullSnapshot
 
@@ -58,6 +58,8 @@ def active_queue_rules():
         }},
         {"type": "required_status_checks", "parameters": {
             "required_status_checks": [*checks, {"context": CHECK_NAME, "integration_id": 123}],
+            "strict_required_status_checks_policy": True,
+            "do_not_enforce_on_create": False,
         }},
     ]
 
@@ -175,6 +177,14 @@ class ReviewGateTests(unittest.TestCase):
             rules[3]["parameters"][key] = value
             github._get_json.return_value = rules
             with self.subTest(key=key), self.assertRaisesRegex(DataError, "single-entry"):
+                require_queue_rules(github, 123)
+        for key, value in (("strict_required_status_checks_policy", False),
+                           ("strict_required_status_checks_policy", 1), ("do_not_enforce_on_create", True),
+                           ("do_not_enforce_on_create", None)):
+            rules = active_queue_rules()
+            rules[-1]["parameters"][key] = value
+            github._get_json.return_value = rules
+            with self.subTest(key=key, value=value), self.assertRaisesRegex(DataError, "enforce strict checks"):
                 require_queue_rules(github, 123)
         github._get_json.return_value = [row for row in active_queue_rules() if row["type"] != "merge_queue"]
         with self.assertRaisesRegex(DataError, "mandatory merge queue"):
@@ -363,6 +373,18 @@ class ReviewGateTests(unittest.TestCase):
                 self.assertEqual(load_issuer(config, rehearsal=True), (root, codex, "fixture", None, reviewer))
                 with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
                     load_issuer(config)
+
+    @unittest.skipUnless(os.name == "posix", "issuer deployment requires POSIX permissions")
+    def test_protected_storage_rejects_shared_write_on_an_ancestor(self):
+        with TemporaryDirectory() as directory:
+            shared = Path(directory).resolve() / "parent"
+            shared.mkdir(mode=0o700)
+            private = shared / "issuer-audit"
+            private.mkdir(mode=0o700)
+            protected_path(private, directory=True)
+            shared.chmod(0o777)
+            with self.assertRaisesRegex(DataError, "trusted ancestor directories"):
+                protected_path(private, directory=True)
 
     @unittest.skipUnless(os.name == "posix", "issuer deployment requires POSIX permissions")
     def test_protected_reviewer_cannot_reuse_the_issuer_identity(self):

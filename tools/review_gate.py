@@ -200,12 +200,15 @@ def require_queue_rules(github, app_id):
         checks = parameters.get("required_status_checks") if isinstance(parameters, dict) else None
         require(isinstance(checks, list) and all(isinstance(check, dict) for check in checks),
                 "GitHub did not return a complete required status check rule")
+        strict = (parameters.get("strict_required_status_checks_policy") is True
+                  and parameters.get("do_not_enforce_on_create") is False)
         for check in checks:
             name = check.get("context")
             if name in bindings:
-                bindings[name].append(check.get("integration_id"))
+                integration = check.get("integration_id")
+                bindings[name].append(integration if strict and type(integration) is int else None)
     require(all(bindings[name] == [source] for name, source in expected.items()),
-            "required review and CI contexts must each bind their exact integration")
+            "required review and CI contexts must each bind their exact integration and enforce strict checks")
 
 
 def create_check(snapshot, app_id, token, decision, publisher, verify_fresh, *, admission=False):
@@ -335,12 +338,23 @@ def share_reviewer_inputs(input_dir, gid):
     input_dir.chmod(0o750)
 
 
+def trusted_parents(path):
+    owners = {0, os.geteuid()}
+    for parent in path.parents:
+        content = parent.lstat()
+        sticky_root = content.st_uid == 0 and content.st_mode & stat.S_ISVTX
+        require(stat.S_ISDIR(content.st_mode) and content.st_uid in owners
+                and (not content.st_mode & 0o022 or sticky_root),
+                "protected issuer paths require trusted ancestor directories")
+
+
 def protected_path(path, *, directory):
     require(path.is_absolute() and path.resolve() == path, "issuer paths must be absolute without symlinks")
     content = path.lstat()
     require((stat.S_ISDIR(content.st_mode) if directory else stat.S_ISREG(content.st_mode))
             and content.st_uid == os.geteuid() and not content.st_mode & 0o077,
             "issuer storage must be private and owned by the issuer account")
+    trusted_parents(path)
     require(not any((parent / ".git").exists() for parent in (path, *path.parents)),
             "issuer configuration and state must be outside Git working trees")
 
@@ -351,11 +365,7 @@ def trusted_executable(path):
     executable = path.lstat()
     require(stat.S_ISREG(executable.st_mode) and executable.st_uid in owners and not executable.st_mode & 0o6022,
             "pinned Codex must be a trusted regular file without privilege or shared write bits")
-    for parent in path.parents:
-        content = parent.lstat()
-        require(content.st_uid in owners and (not content.st_mode & 0o022
-                or (content.st_uid == 0 and content.st_mode & stat.S_ISVTX)),
-                "pinned Codex parent directories must prevent reviewer replacement")
+    trusted_parents(path)
 
 
 def load_issuer(path, *, rehearsal=False):
