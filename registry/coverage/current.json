@@ -1,0 +1,49 @@
+{
+  "assessment": {
+    "authentic_text": {
+      "bundled_publisher_text_files": 5,
+      "bundled_publisher_text_identities": 7,
+      "spdx_header_references": 94,
+      "spdx_matching_template_references": 826,
+      "spdx_text_references": 826
+    },
+    "catalog": {
+      "accepted_entities": 0,
+      "beyond_spdx_dispositions": {
+        "non-license": 1,
+        "unresolved": 11
+      },
+      "beyond_spdx_leads": 12,
+      "spdx_deprecated_exceptions": 1,
+      "spdx_deprecated_licenses": 32,
+      "spdx_deprecated_with_replacement_guidance": 30,
+      "spdx_exceptions": 86,
+      "spdx_historical_only": 0,
+      "spdx_licenses": 740
+    },
+    "installation": {
+      "offline": [
+        "Apache-2.0",
+        "GPL-2.0-only",
+        "GPL-3.0-only"
+      ],
+      "requires_verified_spdx_input": [
+        "MIT"
+      ]
+    },
+    "qualification": {
+      "independently_verified_claims": 0,
+      "status": "development"
+    },
+    "research": {
+      "provisional_explanations": 26,
+      "spdx_without_provisional_explanation": 800
+    },
+    "scope": "SPDX discovery and publisher leads"
+  },
+  "cutoff": "2026-11-22",
+  "method": "Reconcile exact upstream list manifests and per-ID artifact checksums. Count discovery, packaged text, safe installation, provisional research, and selected SCES claims separately.",
+  "schema_version": "1.0.0",
+  "snapshot": "registry/coverage/snapshots/2026-11-22-spdx-3.29.0.json",
+  "source_manifest": "research/sources/spdx-3.29.0.json"
+}

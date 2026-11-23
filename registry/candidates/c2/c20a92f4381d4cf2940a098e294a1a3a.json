@@ -1,0 +1,13 @@
+{
+  "id": "c20a92f4381d4cf2940a098e294a1a3a",
+  "disposition": "unresolved",
+  "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://polyformproject.org/licenses/free-trial/1.0.0",
+    "name": "PolyForm Free Trial License 1.0.0",
+    "identifier": "PolyForm Project Free Trial 1.0.0",
+    "revision": "1.0.0"
+  },
+  "history": []
+}

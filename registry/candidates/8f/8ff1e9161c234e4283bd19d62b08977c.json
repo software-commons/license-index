@@ -1,0 +1,12 @@
+{
+  "id": "8ff1e9161c234e4283bd19d62b08977c",
+  "disposition": "unresolved",
+  "reason": "Microsoft distinguishes the product agreement from the MIT source-code license. Pin an applicable product release and platform variant, reconcile external identities, and review capture and publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://code.visualstudio.com/license",
+    "name": "Microsoft Visual Studio Code product terms",
+    "identifier": "Microsoft Visual Studio Code product terms"
+  },
+  "history": []
+}

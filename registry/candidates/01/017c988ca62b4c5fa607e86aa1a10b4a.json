@@ -1,0 +1,13 @@
+{
+  "id": "017c988ca62b4c5fa607e86aa1a10b4a",
+  "disposition": "unresolved",
+  "reason": "Publisher text identifies a distinct MIT future-license variant. Complete matching-equivalence checks against the pinned SPDX population, acquire immutable text, and review publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://github.com/keygen-sh/fcl.dev/blob/master/FCL-1.0-MIT.md",
+    "name": "Fair Core License 1.0, MIT future license",
+    "identifier": "Keygen FCL-1.0-MIT",
+    "revision": "1.0"
+  },
+  "history": []
+}

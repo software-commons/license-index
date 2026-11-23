@@ -1,0 +1,13 @@
+{
+  "id": "4013dad1ba30417e9448cedd6e2d7d70",
+  "disposition": "unresolved",
+  "reason": "Publisher text identifies a distinct Apache License 2.0 future-license variant. Complete matching-equivalence checks against the pinned SPDX population, acquire immutable text, and review publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://github.com/keygen-sh/fcl.dev/blob/master/FCL-1.0-ALv2.md",
+    "name": "Fair Core License 1.0, Apache License 2.0 future license",
+    "identifier": "Keygen FCL-1.0-ALv2",
+    "revision": "1.0"
+  },
+  "history": []
+}

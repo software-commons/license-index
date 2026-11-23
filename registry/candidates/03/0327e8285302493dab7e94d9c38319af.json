@@ -1,0 +1,13 @@
+{
+  "id": "0327e8285302493dab7e94d9c38319af",
+  "disposition": "unresolved",
+  "reason": "Track this separately from Visual Studio Code. Confirm the document applies to the exact product edition or distribution and review publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://visualstudio.microsoft.com/license-terms/vs2022-ga-community/",
+    "name": "Microsoft Visual Studio Community 2022",
+    "identifier": "Microsoft Visual Studio Community 2022 GA",
+    "revision": "2022 GA"
+  },
+  "history": []
+}

@@ -1,0 +1,13 @@
+{
+  "id": "3abe731ce3a64bf2a76daa448dccf266",
+  "disposition": "unresolved",
+  "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://polyformproject.org/licenses/countdown/1.0.0",
+    "name": "PolyForm Countdown License 1.0.0",
+    "identifier": "PolyForm Project Countdown 1.0.0",
+    "revision": "1.0.0"
+  },
+  "history": []
+}

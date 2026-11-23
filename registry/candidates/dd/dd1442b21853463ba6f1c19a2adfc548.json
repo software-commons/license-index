@@ -1,0 +1,13 @@
+{
+  "id": "dd1442b21853463ba6f1c19a2adfc548",
+  "disposition": "unresolved",
+  "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://polyformproject.org/licenses/internal-use/1.0.0",
+    "name": "PolyForm Internal Use License 1.0.0",
+    "identifier": "PolyForm Project Internal Use 1.0.0",
+    "revision": "1.0.0"
+  },
+  "history": []
+}
