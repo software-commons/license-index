@@ -1,0 +1,12 @@
+# Evidence, enforcement, and canonical publication controls
+/.github/ @TheCyberLocal
+/.gitattributes @TheCyberLocal
+/AGENTS.md @TheCyberLocal
+/docs/PUBLICATION.md @TheCyberLocal
+/sces/adoption.json @TheCyberLocal
+/sces/publication.json @TheCyberLocal
+/sces/releases/ @TheCyberLocal
+/sces/advisories/ @TheCyberLocal
+/tools/ @TheCyberLocal
+/schemas/domain/ @TheCyberLocal
+/research/sources/ @TheCyberLocal

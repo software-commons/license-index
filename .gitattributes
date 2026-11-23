@@ -1,0 +1,3 @@
+* text=auto eol=lf
+sces/** -text
+legal-texts/** -text
