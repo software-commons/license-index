@@ -22,6 +22,7 @@
     "exception-relationship": {"scope_dimensions": ["edition", "base-license", "revision"], "categories": ["documented", "normative"], "targeted_review": true},
     "identifier-deprecation": {"scope_dimensions": ["authority", "upstream-release"], "categories": ["documented", "historical"], "targeted_review": false},
     "official-classification": {"scope_dimensions": ["classifying-authority", "edition", "revision"], "categories": ["documented", "historical"], "targeted_review": false},
-    "historical-relationship": {"scope_dimensions": ["authority", "revision"], "categories": ["documented", "historical", "derived"], "targeted_review": true}
+    "historical-relationship": {"scope_dimensions": ["authority", "revision"], "categories": ["documented", "historical", "derived"], "targeted_review": true},
+    "cross-index-relationship": {"scope_dimensions": ["owning-revision", "target-revision"], "categories": ["documented", "derived"], "targeted_review": true}
   }
 }

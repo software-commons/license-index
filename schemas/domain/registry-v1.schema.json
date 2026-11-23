@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/software-commons/license-index/schemas/domain/registry-v1.schema.json",
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$"},
+    "text": {"type": "string", "minLength": 1},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "https": {"type": "string", "pattern": "^https://[^/ ]+"},
+    "path": {"type": "string", "pattern": "^[A-Za-z0-9_.+/-]+$"},
+    "descriptor": {
+      "type": "object",
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "encoding": {"const": "UTF-8"},
+        "line_endings": {"enum": ["LF", "CRLF", "mixed", "none"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["kind", "id", "revision"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"const": "claim"},
+        "id": {"$ref": "#/$defs/text"},
+        "revision": {"type": "integer", "minimum": 1}
+      }
+    },
+    "origin": {
+      "type": "object",
+      "required": ["kind", "source", "identifier", "name"],
+      "properties": {
+        "kind": {"enum": ["spdx", "publisher"]},
+        "name": {"$ref": "#/$defs/text"},
+        "identifier": {"$ref": "#/$defs/text"},
+        "source": {"$ref": "#/$defs/text"}
+      },
+      "if": {"properties": {"kind": {"const": "spdx"}}},
+      "then": {
+        "required": ["release", "list_kind", "metadata", "deprecated", "artifacts"],
+        "properties": {
+          "source": {"$ref": "#/$defs/commit"},
+          "release": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "list_kind": {"enum": ["license", "exception"]},
+          "deprecated": {"type": "boolean"},
+          "removed": {"type": "boolean"},
+          "metadata": {"type": "object"},
+          "artifacts": {
+            "type": "object",
+            "required": ["detail"],
+            "additionalProperties": {"$ref": "#/$defs/descriptor"}
+          }
+        }
+      },
+      "else": {"properties": {"source": {"$ref": "#/$defs/https"}}}
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["id", "disposition", "reason", "origin", "history"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "disposition": {"enum": ["unresolved", "excluded", "existing-spdx", "accepted", "alias", "distinct-edition", "exception", "non-license", "duplicate", "historical"]},
+        "reason": {"$ref": "#/$defs/text"},
+        "origin": {"$ref": "#/$defs/origin"},
+        "history": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "required": ["id", "kind", "name", "state", "identity_claim", "aliases", "crosswalks", "relations"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["license", "exception", "related-instrument", "family"]},
+        "name": {"$ref": "#/$defs/text"},
+        "state": {"enum": ["active", "historical", "retired"]},
+        "identity_claim": {"$ref": "#/$defs/claim"},
+        "aliases": {
+          "type": "array",
+          "items": {"type": "object", "required": ["name", "claim"], "additionalProperties": false,
+            "properties": {"name": {"$ref": "#/$defs/text"}, "claim": {"$ref": "#/$defs/claim"}}}
+        },
+        "crosswalks": {
+          "type": "array",
+          "items": {"type": "object", "required": ["origin", "revision", "key", "claim"], "additionalProperties": false,
+            "properties": {"origin": {"$ref": "#/$defs/text"}, "revision": {"$ref": "#/$defs/text"},
+              "key": {"$ref": "#/$defs/text"}, "claim": {"$ref": "#/$defs/claim"}}}
+        },
+        "relations": {
+          "type": "array",
+          "items": {"type": "object", "required": ["type", "target", "claim"], "additionalProperties": false,
+            "properties": {
+              "type": {"$ref": "#/$defs/text"},
+              "target": {"type": "object", "required": ["id"], "additionalProperties": false,
+                "dependentRequired": {"index": ["revision"], "revision": ["index"]},
+                "properties": {"id": {"$ref": "#/$defs/text"}, "index": {"$ref": "#/$defs/text"},
+                  "revision": {"$ref": "#/$defs/text"}}},
+              "claim": {"$ref": "#/$defs/claim"}
+            }}
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "cutoff", "source_manifest", "snapshot", "method", "assessment"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "cutoff": {"type": "string", "format": "date"},
+        "source_manifest": {"$ref": "#/$defs/path"},
+        "snapshot": {"$ref": "#/$defs/path"},
+        "method": {"$ref": "#/$defs/text"},
+        "assessment": {
+          "type": "object",
+          "required": ["scope", "catalog", "authentic_text", "installation", "research", "qualification"]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["release", "data_commit", "xml_commit", "archive", "population", "manifests"],
+      "properties": {
+        "release": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "data_commit": {"$ref": "#/$defs/commit"},
+        "xml_commit": {"$ref": "#/$defs/commit"},
+        "archive": {
+          "type": "object",
+          "required": ["url", "sha256", "bytes"],
+          "properties": {"url": {"$ref": "#/$defs/https"}, "sha256": {"$ref": "#/$defs/sha256"},
+            "bytes": {"type": "integer", "minimum": 1}}
+        },
+        "population": {
+          "type": "object",
+          "required": ["licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions"],
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "manifests": {
+          "type": "object",
+          "required": ["licenses", "exceptions"],
+          "additionalProperties": {"$ref": "#/$defs/descriptor"}
+        }
+      }
+    },
+    "export": {
+      "type": "object",
+      "required": ["dataset", "schema_version", "software_version", "status", "coverage", "source", "candidates", "provisional_profiles"],
+      "properties": {
+        "dataset": {"const": "software-commons/license-index"},
+        "schema_version": {"const": "1.0.0"},
+        "software_version": {"$ref": "#/$defs/text"},
+        "status": {"const": "development-discovery"},
+        "coverage": {"$ref": "#/$defs/coverage"},
+        "source": {"$ref": "#/$defs/source"},
+        "candidates": {"type": "array", "items": {
+          "type": "object", "required": ["record", "catalog_status", "legal_interpretation_qualification"],
+          "properties": {"record": {"$ref": "#/$defs/candidate"}, "catalog_status": {"const": "discovery"},
+            "legal_interpretation_qualification": {"const": "unqualified"}}
+        }},
+        "provisional_profiles": {"type": "object"}
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
 * text=auto eol=lf
 sces/** -text
-legal-texts/** -text
+legal-texts/** -text -whitespace
+LICENSE -text -whitespace
