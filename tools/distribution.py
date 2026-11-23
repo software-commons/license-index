@@ -2,14 +2,18 @@
 
 from __future__ import annotations
 
+from functools import cache
+from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
+from urllib.request import Request, build_opener
 from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
 from .qualification import _blob_hash, _exact_file, _git, _git_blobs, check_history, qualified
 from .records import (
-    DATA_COMMIT, HEX_256, VERSION, Catalog, checked_bytes, decode, encode, is_removed, local_path, read, require,
+    DATA_COMMIT, HEX_256, VERSION, Catalog, NoRedirects, checked_bytes, decode, encode, is_removed, local_path, read,
+    require,
 )
 
 COVERAGE = "registry/coverage/current.json"
@@ -20,6 +24,26 @@ PROFILES = "research/campaigns/profiles.json"
 QUALIFICATION_SCOPE = "development-discovery"
 DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
                     "inapplicable", "explicit-absence"}
+CC_RIGHTS = ("https://raw.githubusercontent.com/creativecommons/cc-legal-tools-data/"
+             "91780e140892982eb3e0d530591ccbbca0d4690d/README.md")
+POLYFORM_RIGHTS = ("https://raw.githubusercontent.com/polyformproject/polyform-licenses/"
+                   "a2316cfa35d3947fdc5af4bcc1f321662bfd79d8/LICENSE.md")
+RIGHTS_DOCUMENTS = {CC_RIGHTS: "cc-rights-exact.md", POLYFORM_RIGHTS: "polyform-rights-exact.md"}
+RIGHTS_BY_IDENTIFIER = {
+    **dict.fromkeys(("CC-BY-NC-4.0", "CC-BY-NC-ND-4.0", "CC-BY-NC-SA-4.0",
+                     "CC-BY-ND-4.0", "CC-BY-SA-4.0"), CC_RIGHTS),
+    **dict.fromkeys(("PolyForm-Noncommercial-1.0.0", "PolyForm-Small-Business-1.0.0"), POLYFORM_RIGHTS),
+}
+RIGHTS_MAX_BYTES = 64 * 1024
+BUNDLE_SUPPORT = {
+    "LICENSE", "README.md", "license-index", "license-index.cmd", COVERAGE,
+    "docs/CLI.md", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md", "docs/MAINTENANCE.md",
+    "docs/PROFILE_QUALIFICATION.md", "docs/PUBLICATION.md", "docs/RESEARCH_STATUS.md", "docs/SCOPE.md",
+    "research/sources/predecessor-assessment.md", "schemas/domain/registry-v1.schema.json",
+    "tools/__init__.py", "tools/distribution.py", "tools/index.py", "tools/li_install.py",
+    "tools/qualification.py", "tools/reconcile.py", "tools/records.py", "tools/review_plan.py",
+    "tools/schema_check.py", "tools/spdx_replay.py",
+}
 
 
 def descriptor(value):
@@ -52,7 +76,23 @@ def validate_source(catalog, source):
                 f"SPDX identity drift: {origin['identifier']}")
 
 
-def validate_texts(catalog, read_bytes=None):
+def read_rights_document(url, *, root=None):
+    require(url in RIGHTS_DOCUMENTS, "unapproved publisher rights locator")
+    if root is not None:
+        path = local_path(root, RIGHTS_DOCUMENTS[url])
+        require(path.is_file() and path.resolve() == path, f"missing or linked rights document: {path}")
+        with path.open("rb") as body:
+            data = body.read(RIGHTS_MAX_BYTES + 1)
+    else:
+        request = Request(url, headers={"User-Agent": "software-commons-license-index"}, method="GET")
+        with build_opener(NoRedirects()).open(request, timeout=20) as body:
+            require(body.status == 200 and body.geturl() == url, "unexpected publisher rights response")
+            data = body.read(RIGHTS_MAX_BYTES + 1)
+    require(0 < len(data) <= RIGHTS_MAX_BYTES, "publisher rights document has invalid size")
+    return data
+
+
+def validate_texts(catalog, read_bytes=None, *, rights_reader=None):
     for identifier, package in catalog.packaged.items():
         row = catalog.resolve(identifier)
         origin = row["origin"]
@@ -64,8 +104,16 @@ def validate_texts(catalog, read_bytes=None):
         content.decode("utf-8")
         require(package["source"].startswith("https://") and package["rights"].startswith("https://"),
                 f"missing publication provenance for {identifier}")
-        if "rights_sha256" in package:
-            require(HEX_256.fullmatch(package["rights_sha256"]), f"invalid rights digest for {identifier}")
+        expected_url = RIGHTS_BY_IDENTIFIER.get(identifier)
+        if expected_url is not None or "rights_sha256" in package:
+            url = package["rights"]
+            require(url in RIGHTS_DOCUMENTS and (expected_url is None or url == expected_url),
+                    f"unapproved publisher rights locator for {identifier}")
+            digest = package.get("rights_sha256")
+            require(isinstance(digest, str) and HEX_256.fullmatch(digest), f"invalid rights digest for {identifier}")
+            if rights_reader is not None:
+                require(sha256(rights_reader(url)).hexdigest() == digest,
+                        f"publisher rights SHA-256 mismatch for {identifier}")
         recipe = package.get("install")
         require(recipe in {None, "unchanged", LGPL_V3_SUPPLEMENT}, f"unexpected bundle treatment: {identifier}")
         if recipe:
@@ -99,11 +147,11 @@ def validate_profiles(catalog):
                         f"invalid evidence locator for {identifier}")
 
 
-def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_archive=False):
+def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
     saved = read(catalog.root / COVERAGE)
     source = read(local_path(catalog.root, saved["source_manifest"]))
     validate_source(catalog, source)
-    validate_texts(catalog)
+    validate_texts(catalog, rights_reader=rights_reader)
     validate_profiles(catalog)
     require(encode(saved["assessment"]) == encode(catalog.coverage()),
             "discovery coverage snapshot differs from the live ledger")
@@ -116,6 +164,7 @@ def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_arch
             replay(catalog, source, spdx_archive, base)
         else:
             replay_download(catalog, source, base)
+    return saved
 
 
 class _HistoricalCatalog(Catalog):
@@ -151,7 +200,7 @@ def _read_git_blobs(root, paths, cache):
     return {path: cache[oid] for path, oid in paths.items()}
 
 
-def validate_incoming_snapshots(root, base):
+def validate_incoming_snapshots(root, base, *, rights_reader=None):
     head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
     prior = _git_blobs(root, base, SNAPSHOTS)
     _git(root, "merge-base", "--is-ancestor", base, head)
@@ -188,7 +237,7 @@ def validate_incoming_snapshots(root, base):
             texts = _git_blobs(root, commit, "legal-texts", "LICENSE")
             require(text_paths <= texts.keys(), f"{name}: publisher text missing from historical Git tree {commit}")
             historical_texts = _read_git_blobs(root, {path: texts[path] for path in text_paths}, cache)
-            validate_texts(historic, historical_texts.__getitem__)
+            validate_texts(historic, historical_texts.__getitem__, rights_reader=rights_reader)
             validate_profiles(historic)
             expected = historic.coverage()
             installation = expected["installation"]
@@ -204,12 +253,15 @@ def validate_incoming_snapshots(root, base):
     require(not pending, f"coverage snapshots lack a matching historical current ledger: {', '.join(sorted(pending))}")
 
 
-def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False):
-    validate_discovery(catalog, base=base, spdx_archive=spdx_archive, fetch_spdx_archive=fetch_spdx_archive)
+def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
+    if rights_reader is not None:
+        rights_reader = cache(rights_reader)
+    validate_discovery(catalog, base=base, spdx_archive=spdx_archive, fetch_spdx_archive=fetch_spdx_archive,
+                       rights_reader=rights_reader)
     result = qualified(catalog, policy, base=base)
     if base:
         check_history(catalog, base)
-        validate_incoming_snapshots(catalog.root, base)
+        validate_incoming_snapshots(catalog.root, base, rights_reader=rights_reader)
     return result
 
 
@@ -234,27 +286,31 @@ def archive_entry(archive, name, data):
     archive.writestr(info, data, compress_type=ZIP_STORED)
 
 
+def _bundle_path(root, value, folder, suffixes):
+    target = local_path(root, value)
+    require(value.startswith(f"{folder}/") and target.suffix in suffixes
+            and target.relative_to(root).as_posix() == value, f"invalid bundle path: {value}")
+    return value
+
+
 def bundle(catalog, output):
-    validate_discovery(catalog)
-    files = {"LICENSE", "README.md", "license-index", "license-index.cmd", COVERAGE}
-    for folder, pattern in (
-        ("registry/candidates", "*.json"), ("registry/coverage/snapshots", "*.json"),
-        ("research/sources", "*"), ("docs", "*.md"), ("tools", "*.py"),
-        ("legal-texts", "*"), ("schemas/domain", "*.json"),
-    ):
-        files.update(path.relative_to(catalog.root).as_posix()
-                     for path in (catalog.root / folder).rglob(pattern) if path.is_file())
+    coverage = validate_discovery(catalog)
+    root = catalog.root
+    files = BUNDLE_SUPPORT | {
+        _bundle_path(root, coverage["source_manifest"], SOURCES, {".json"}),
+        _bundle_path(root, coverage["snapshot"], SNAPSHOTS, {".json"}),
+        *(f"registry/candidates/{identity[:2]}/{identity}.json" for identity in catalog.candidates),
+    }
+    if catalog.packaged:
+        files.add(PACKAGED_TEXTS)
+        files.update(_bundle_path(root, row["path"], "legal-texts", {".txt", ".md"})
+                     for row in catalog.packaged.values() if row["path"] != "LICENSE")
     if catalog.profiles:
-        files.add("research/campaigns/profiles.json")
-    files.difference_update({"tools/audit_claims.py", "tools/audit_receipts.py", "tools/capture_source.py",
-                             "tools/public_source_mcp.py", "tools/release_download.py",
-                             "tools/review_commission.py",
-                             "tools/review_gate.py", "tools/review_queue.py", "tools/review_snapshot.py",
-                             "tools/stage_release.py", "tools/verify_release.py"})
+        files.add(PROFILES)
     data = BytesIO()
     with ZipFile(data, "w") as archive:
         archive_entry(archive, "catalog.json", encode(discovery_export(catalog)))
         for name in sorted(files):
-            archive_entry(archive, name, local_path(catalog.root, name).read_bytes())
+            archive_entry(archive, name, _exact_file(local_path(root, name)))
     write_license(Path(output), data.getvalue())
     return {"output": str(output), "software_version": VERSION, "status": QUALIFICATION_SCOPE}

@@ -23,7 +23,7 @@ from .records import DataError, NoRedirects, decode, encode, require
 from .review_evidence import capture_selected_evidence
 from .review_protection import commissioning_policy, observed_approval
 from .review_queue import capture_queue_observation
-from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_diff, token_is_target_only
+from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_control_paths, capture_diff, token_is_target_only
 
 CHECK_NAME = "Software Commons / Codex technical review"
 ACTIONS_APP_ID = 15368
@@ -313,10 +313,15 @@ def run(args, github, *, token_input=None, publisher=write_check):
     with TemporaryDirectory(prefix="git-", dir=state) as directory:
         checkout = Path(directory)
         tree, diff = capture_diff(snapshot, checkout, **capture_options)
+        controls = capture_control_paths(checkout, snapshot)
         evidence = capture_selected_evidence(checkout, snapshot.merge, REPOSITORY)
+    control_required = bool(controls) and args.app_id is not None and BASE_REF == "main"
+    authorized = getattr(args, "authorized_control_merge", None)
     binding = {**asdict(snapshot), "repository": REPOSITORY, "base_ref": BASE_REF,
                "tree": tree, "diff_sha256": sha256(diff).hexdigest(),
-               "phase": "queue-admission" if admission else "queue-merge" if observation else "pull-inspection"}
+               "phase": "queue-admission" if admission else "queue-merge" if observation else "pull-inspection",
+               "protected_paths": controls,
+               "protected_control_authorization": {"required": control_required, "authorized_merge": authorized}}
     if observation:
         binding.update(test_merge=pull.merge, queue_ci=observation)
     if approval is not None:
@@ -328,6 +333,8 @@ def run(args, github, *, token_input=None, publisher=write_check):
     save(audit / "review.diff", diff)
     if args.mode == "inspect":
         return {"audit": str(audit), "binding": binding, "status": "inspection-only"}
+    require(not control_required or authorized == snapshot.merge,
+            "protected control changes require separate authorization for the exact candidate")
     token = secrets.token_hex(32)
     verdict_schema = VERDICT_SCHEMA
     if evidence:
@@ -442,7 +449,7 @@ def load_issuer(path, *, rehearsal=False):
     protected_path(path, directory=False)
     settings = decode(path.read_bytes())
     expected_keys = RUNTIME_KEYS if rehearsal else RUNTIME_KEYS | {"app_id", "commissioning_phase"}
-    optional_keys = set() if rehearsal else {"authorized_cutover_ruleset"}
+    optional_keys = set() if rehearsal else {"authorized_cutover_ruleset", "authorized_control_merge"}
     require(isinstance(settings, dict) and expected_keys <= settings.keys() <= expected_keys | optional_keys
             and isinstance(settings["model"], str) and settings["model"].strip(),
             "invalid protected issuer configuration")
@@ -452,6 +459,10 @@ def load_issuer(path, *, rehearsal=False):
     policy = None if rehearsal else commissioning_policy(
         REPOSITORY, BASE_REF, settings["commissioning_phase"], settings.get("authorized_cutover_ruleset"),
     )
+    authorized = settings.get("authorized_control_merge")
+    require(authorized is None or
+            (BASE_REF == "main" and isinstance(authorized, str) and re.fullmatch(r"[0-9a-f]{40}", authorized)),
+            "invalid protected control authorization")
     audit = Path(settings["audit_dir"])
     protected_path(audit, directory=True)
     reviewer = load_reviewer(settings)
@@ -460,7 +471,7 @@ def load_issuer(path, *, rehearsal=False):
     with codex.open("rb") as executable:
         require(file_digest(executable, "sha256").hexdigest() == settings["codex_sha256"],
                 "Codex executable differs from the protected issuer pin")
-    return audit, codex, settings["model"], app_id, reviewer, policy
+    return audit, codex, settings["model"], app_id, reviewer, policy, authorized
 
 
 def load_reviewer(settings):
@@ -497,13 +508,16 @@ def main(argv=None):
     args.app_id = None
     args.reviewer = None
     args.commissioning_policy = None
+    args.authorized_control_merge = None
     try:
         config_path = args.issuer_config or args.rehearsal_config
         if config_path:
             if args.mode != "review" or args.state_dir or args.codex or args.model:
                 parser.error("protected configuration is exclusive to review and supplies all deployment options")
             (args.state_dir, args.codex, args.model, args.app_id, args.reviewer,
-             args.commissioning_policy) = load_issuer(config_path, rehearsal=args.rehearsal_config is not None)
+             args.commissioning_policy, args.authorized_control_merge) = load_issuer(
+                config_path, rehearsal=args.rehearsal_config is not None,
+            )
         else:
             if not args.state_dir:
                 parser.error("local inspection or review needs --state-dir")

@@ -303,37 +303,45 @@ def check_assessment(run, review):
     assessment = run["assessments"].get(review["claim_sha256"])
     require(assessment is not None and assessment["conclusion"] == review["conclusion"],
             "Codex final assessment differs from the recorded claim or conclusion")
-    if not run["structured"]:
-        return
-
-    require(assessment.get("reasoning") == review["reasoning"]
-            and assessment.get("limitations") == review["limitations"],
+    structured = run["structured"]
+    require(all(field in review and assessment.get(field) == review[field]
+                for field in ("reasoning", "limitations") if structured or field in assessment),
             "Codex claim reasoning or limitations differ from the recorded assessment")
-    dependencies = assessment["dependencies"]
-    require(isinstance(dependencies, list) and dependencies, "Codex dependency assessments are incomplete")
-    native = {}
-    for dependency in dependencies:
-        identifier = dependency.get("id") if isinstance(dependency, dict) else None
-        require(isinstance(identifier, str) and identifier and identifier not in native,
-                "Codex dependency assessments are incomplete or ambiguous")
-        native[identifier] = dependency
 
     rows = review["assessments"]
     recorded = {row["dependency"]["id"]: row for row in rows}
     require(len(recorded) == len(rows), "recorded dependency assessments have ambiguous IDs")
-    require(native.keys() == recorded.keys(), "Codex dependency assessments differ from the recorded dependencies")
-    for identifier, dependency in recorded.items():
-        findings = native[identifier]
-        checks = findings.get("checks")
-        require(isinstance(checks, dict) and checks.keys() == CHECKS and checks == dependency["checks"]
-                and findings.get("outcome") == dependency["outcome"]
-                and findings.get("reasoning") == dependency["reasoning"],
-                "Codex dependency outcome, reasoning or checks differ from the recorded assessment")
+    if structured or "assessments" in assessment:
+        dependencies = assessment["dependencies" if structured else "assessments"]
+        identifier_field = "id" if structured else "dependency_id"
+        require(isinstance(dependencies, list) and dependencies, "Codex dependency assessments are incomplete")
+        native = {}
+        for dependency in dependencies:
+            identifier = dependency.get(identifier_field) if isinstance(dependency, dict) else None
+            require(isinstance(identifier, str) and identifier and identifier not in native,
+                    "Codex dependency assessments are incomplete or ambiguous")
+            native[identifier] = dependency
+        require(native.keys() == recorded.keys(), "Codex dependency assessments differ from the recorded dependencies")
+        for identifier, dependency in recorded.items():
+            findings = native[identifier]
+            checks = findings.get("checks")
+            require(isinstance(checks, dict) and checks.keys() == CHECKS and checks == dependency["checks"]
+                    and findings.get("outcome") == dependency["outcome"]
+                    and findings.get("reasoning") == dependency["reasoning"],
+                    "Codex dependency outcome, reasoning or checks differ from the recorded assessment")
+    if "checks" in assessment:
+        checks = assessment["checks"]
+        require(isinstance(checks, dict) and checks.keys() == CHECKS and recorded
+                and all(row["checks"] == checks for row in recorded.values()),
+                "Codex claim-level checks differ from the recorded dependency checks")
 
+    # Research output without a recorded SCES challenge has no corresponding challenge to match.
     if review["phase"] == "independent-review" or "challenge" in review:
         challenge = review.get("challenge")
-        require(challenge is not None and assessment.get("challenge_method") == challenge["method"]
-                and assessment.get("challenge_result") == challenge["results"],
+        require(all(challenge is not None and recorded_field in challenge
+                    and assessment.get(native_field) == challenge[recorded_field]
+                    for native_field, recorded_field in (("challenge_method", "method"), ("challenge_result", "results"))
+                    if structured or native_field in assessment),
                 "Codex challenge method or results differ from the recorded assessment")
 
 

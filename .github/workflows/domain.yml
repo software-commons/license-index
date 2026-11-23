@@ -53,7 +53,7 @@ jobs:
           python-version: "3.12"
       - name: Install pinned evidence-policy dependencies
         run: python -I -m pip install --disable-pip-version-check -r policy/tools/sces/requirements.txt
-      - name: Validate schema, SPDX replay, frozen history and active qualification
+      - name: Validate schema, SPDX replay, publisher rights, frozen history and active qualification
         working-directory: index
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
@@ -64,7 +64,7 @@ jobs:
           if [[ -n "$BASE_SHA" && "$BASE_SHA" != 0000000000000000000000000000000000000000 ]]; then
             args+=(--base "$BASE_SHA")
           fi
-          python -B -m tools.index validate --policy ../policy --fetch-spdx-archive "${args[@]}"
+          python -B -m tools.index validate --policy ../policy --fetch-spdx-archive --fetch-rights "${args[@]}"
 
           if [[ ${#args[@]} -eq 0 ]]; then
             exit 0

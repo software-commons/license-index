@@ -23,6 +23,12 @@ _API_URL = "https://api.github.com"
 _SHA = re.compile(r"[0-9a-f]{40}")
 _API_TIMEOUT = 20
 _GIT_TIMEOUT = 90
+CONTROL_PATHS = (
+    ".github", ".gitattributes", "AGENTS.md", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md",
+    "docs/PUBLICATION.md", "legal-texts", "license-index", "license-index.cmd", "research/review",
+    "research/reviews", "research/sources", "research/tools", "schemas", "sces/adoption.json",
+    "sces/advisories", "sces/publication.json", "sces/releases", "tests", "tools",
+)
 
 
 class SnapshotError(ValueError):
@@ -242,3 +248,10 @@ def capture_diff(snapshot, directory: Path, *, queue_ref=None, linear_head=False
     if not diff:
         raise SnapshotError("The GitHub test merge makes no changes relative to its base")
     return tree, diff
+
+
+def capture_control_paths(directory, snapshot):
+    """Read governance-sensitive additions, edits and deletions from the captured merge."""
+    changes = _git(directory, "diff", "--name-only", "-z", "--no-renames",
+                   snapshot.base, snapshot.merge, "--", *CONTROL_PATHS, limit=65536)
+    return [path.decode("utf-8", errors="backslashreplace") for path in changes.rstrip(b"\x00").split(b"\x00") if path]

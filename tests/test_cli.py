@@ -258,6 +258,8 @@ class ToolTests(unittest.TestCase):
                 self.assertNotIn("tools/stage_release.py", package.namelist())
                 self.assertNotIn("tools/verify_release.py", package.namelist())
                 self.assertNotIn("tools/release_download.py", package.namelist())
+                self.assertNotIn("tools/review_evidence.py", package.namelist())
+                self.assertNotIn("tools/review_protection.py", package.namelist())
                 manifest = json.loads(package.read("legal-texts/manifest.json"))
                 for identifier in ("CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0",
                                    "CC-BY-NC-SA-4.0", "CC-BY-NC-ND-4.0"):
@@ -277,6 +279,16 @@ class ToolTests(unittest.TestCase):
                                 self.assertEqual(manifest[identifier]["install"], "unchanged")
                                 self.assertEqual(manifest[identifier]["sha256"], hashlib.sha256(expected).hexdigest())
                 package.extractall(unpacked)
+            for name in ("research/sources/private/backup.md", "research/sources/unselected.json",
+                         "legal-texts/.private", "legal-texts/backup.txt", "tools/local_draft.py", "docs/draft.md",
+                         "registry/coverage/snapshots/unselected.json"):
+                path = unpacked / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("Synthetic file outside the distribution inventory", encoding="utf-8")
+            repacked = folder / "repacked.zip"
+            result = command("bundle", repacked, root=unpacked)
+            self.assertEqual(result.returncode, 0, result.stderr.decode())
+            self.assertEqual(archive.read_bytes(), repacked.read_bytes())
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())
             exception = "GCC-exception-3.1"

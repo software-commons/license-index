@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from functools import partial
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -69,6 +70,9 @@ def parser():
             archive.add_argument("--spdx-archive", type=Path, help="replay the pinned SPDX archive from a local file")
             archive.add_argument("--fetch-spdx-archive", action="store_true",
                                  help="retrieve and replay the pinned SPDX archive")
+            rights = sub.add_mutually_exclusive_group()
+            rights.add_argument("--rights-root", type=Path, help="verify publisher rights bytes from a local directory")
+            rights.add_argument("--fetch-rights", action="store_true", help="verify pinned publisher rights over HTTPS")
         if command == "export":
             sub.add_argument("--qualified", action="store_true", help="require a current SCES-qualified selection")
         if command == "bundle":
@@ -196,7 +200,7 @@ def execute(catalog, args):
             return build_admission_plan(catalog, args.identifiers), None
         return build_plan(catalog, args.identifiers), None
     if command in {"validate", "export", "bundle"}:
-        from .distribution import bundle, discovery_export, validate, validate_discovery
+        from .distribution import bundle, discovery_export, read_rights_document, validate, validate_discovery
         if command == "bundle":
             return bundle(catalog, args.output), None
         if command == "export" and not args.qualified:
@@ -206,9 +210,15 @@ def execute(catalog, args):
                 validate(catalog, policy=args.policy)
             return discovery_export(catalog), None
         if command == "validate":
+            rights_reader = None
+            if args.rights_root is not None or args.fetch_rights:
+                rights_dir = args.rights_root.resolve() if args.rights_root is not None else None
+                rights_reader = partial(read_rights_document, root=rights_dir)
             report, claims = validate(catalog, args.base, args.policy, spdx_archive=args.spdx_archive,
-                                      fetch_spdx_archive=args.fetch_spdx_archive)
-            return {"valid": True, "qualification": report, "coverage": catalog.coverage(claims)}, "Valid registry"
+                                      fetch_spdx_archive=args.fetch_spdx_archive, rights_reader=rights_reader)
+            rights_status = "verified" if rights_reader is not None else "references-only"
+            return {"valid": True, "qualification": report, "coverage": catalog.coverage(claims),
+                    "publisher_rights": rights_status}, f"Valid registry (publisher rights: {rights_status})"
         report, claims = validate(catalog, policy=args.policy)
         require(report, "no active SCES-qualified release")
         return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}, None

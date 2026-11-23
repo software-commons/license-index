@@ -70,6 +70,11 @@ class ReceiptAuditTests(unittest.TestCase):
             path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
         verification = {
             "phase": phase, "conclusion": "supported", "claim_sha256": CLAIM_DIGEST,
+            "reasoning": "Claim reasoning.", "limitations": ["Exact edition only."],
+            "assessments": [{"dependency": {"kind": "dependency", "id": "fixture", "revision": 1},
+                             "outcome": "supports", "reasoning": "Clause applies.",
+                             "checks": dict.fromkeys(CHECK_NAMES, "pass")}],
+            "challenge": {"method": "Compare editions.", "results": "Claim holds for this edition.", "targeted": True},
             "run": {"execution": thread, "model": "fixture", "harness": "codex-cli fixture",
                     "started": STARTED, "completed": COMPLETED},
             "acquisitions": [{"capture": capture, "locator": LOCATOR, "retrieved_at": RETRIEVED}],
@@ -142,6 +147,8 @@ class ReceiptAuditTests(unittest.TestCase):
                 claim.update(challenge_method="Check another edition.", challenge_result="Another edition differs.")
                 recorded["challenge"] = {"method": claim["challenge_method"], "results": claim["challenge_result"],
                                          "targeted": True}
+            else:
+                recorded.pop("challenge", None)
             message = {"claims": [claim]}
             self.write_final_assessment(paths, message)
             messages.append(message)
@@ -156,11 +163,22 @@ class ReceiptAuditTests(unittest.TestCase):
 
     def test_preserves_archived_batched_assessments_with_claim_level_checks(self):
         legacy = {"claim_sha256": CLAIM_DIGEST, "conclusion": "supported", "reasoning": "Claim reasoning.",
-                  "limitations": ["Exact edition only."], "challenge_method": "Compare other editions.",
+                  "limitations": ["Exact edition only."], "challenge_method": "Compare editions.",
                   "challenge_result": "Claim holds for this edition.", "checks": dict.fromkeys(CHECK_NAMES, "pass")}
         self.write_final_assessment(self.first, {"claims": [legacy]})
         self.write_final_assessment(self.second, {"claims": [legacy]})
         self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+        review = self.registry["claims"][0]["recorded_reviews"][1]
+        for changed, expected in (
+            ({"reasoning": "A different rationale."}, "claim reasoning or limitations"),
+            ({"limitations": ["A different limitation."]}, "claim reasoning or limitations"),
+            ({"assessments": [{**review["assessments"][0], "checks": dict.fromkeys(CHECK_NAMES, "fail")}]},
+             "claim-level checks"),
+            ({"challenge": {**review["challenge"], "results": "A different result."}}, "challenge method or results"),
+        ):
+            with self.subTest(fields=tuple(changed)), patch.dict(review, changed):
+                with self.assertRaisesRegex(DataError, expected):
+                    audit_receipts(self.registry, [self.first, self.second])
 
     def test_preserves_archived_flat_assessments_with_dependency_checks(self):
         legacy = {"claim_sha256": CLAIM_DIGEST, "conclusion": "supported", "reasoning": "Claim reasoning.",
@@ -169,7 +187,19 @@ class ReceiptAuditTests(unittest.TestCase):
                        "checks": dict.fromkeys(CHECK_NAMES, "pass")}
                   ]}
         self.write_final_assessment(self.first, legacy)
+        research = self.registry["claims"][0]["recorded_reviews"][0]
+        research.pop("challenge")
         self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+        recorded = research["assessments"][0]
+        for changed, expected in (
+            ({"dependency": {**recorded["dependency"], "id": "other"}}, "differ from the recorded dependencies"),
+            ({"outcome": "opposes"}, "dependency outcome, reasoning or checks"),
+            ({"reasoning": "Another conclusion."}, "dependency outcome, reasoning or checks"),
+            ({"checks": dict.fromkeys(CHECK_NAMES, "fail")}, "dependency outcome, reasoning or checks"),
+        ):
+            with self.subTest(fields=tuple(changed)), patch.dict(recorded, changed):
+                with self.assertRaisesRegex(DataError, expected):
+                    audit_receipts(self.registry, [self.first, self.second])
 
     def test_compares_structured_claim_reasoning_limitations_and_independent_challenge(self):
         _, original = self.use_structured_assessments()
