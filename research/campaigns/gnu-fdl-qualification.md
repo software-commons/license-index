@@ -1,0 +1,14 @@
+# GNU Free Documentation License qualification
+
+Independent Codex executions supported the identity of editions 1.1, 1.2, and 1.3, the opening verbatim-copy permission for each exact publisher document, and two SPDX 3.29.0 crosswalks per edition. The ordinary `-only` identifier leaves Invariant Sections and both kinds of Cover Text unspecified. The `-no-invariants-only` identifier specifies that all three features are absent. Use the ListedLicense identifier fields for canonical spelling. The SPDX prose notes list some suffixes in a different order. [GNU FDL 1.1](https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt) · [GNU FDL 1.2](https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt) · [GNU FDL 1.3](https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt) · [SPDX 3.29.0 primary source](https://github.com/spdx/license-list-data/tree/31ba1a50e5397e00a304dbadc76531740e89ee48/SPDXv3/v3jsonld)
+
+The publisher’s permission covers verbatim copies of the license document. A particular work’s authorized grant and notices determine the actual edition choice, Invariant Sections, and required Cover Texts. The Addendum gives an example notice. All 18 supported FDL identifiers were exercised offline and produced exact publisher bytes for the selected edition. The CLI preserved existing files, rejected substitutions, and created no files in dry runs.
+
+The terms review verified the GNU FDL 1.3 Opaque-copy rule and the §9 cessation-based reinstatement provisions. Five additional statements have superseded first revisions. Their successor revisions clarify Cover Text overflow, the first-notice cure route, and the scope of proxy designation. Those exact successor revisions await their own verification. Historical assessments and acquisition records remain in the original terms bundle.
+
+| Scope | Source and verification receipts |
+| --- | --- |
+| GNU FDL 1.1 documentary and copying evidence | [Research](../../sces/artifacts/gnu-fdl-v1-1-public-campaign/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-v1-1-public-campaign/independent-review-receipts.jsonl) |
+| GNU FDL 1.2 documentary and copying evidence | [Research](../../sces/artifacts/gnu-fdl-v1-2-public-campaign/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-v1-2-public-campaign/independent-review-receipts.jsonl) |
+| GNU FDL 1.3 documentary and copying evidence | [Research](../../sces/artifacts/gnu-fdl-v1-3-public-campaign/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-v1-3-public-campaign/independent-review-receipts.jsonl) |
+| Terms and prior revisions | [Research](../../sces/artifacts/gnu-fdl-terms-qualification/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-terms-qualification/independent-review-receipts.jsonl) |
