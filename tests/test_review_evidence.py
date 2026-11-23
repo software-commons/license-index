@@ -64,9 +64,13 @@ def fixture(*, reused_execution_for=None):
             execution = f"{name}-research" if name == reused_execution_for else run
             identity = ref("verification", run)
             trace_path = f"sces/artifacts/{run}.jsonl"
-            inputs[trace_path] = b'{"fixture":"inert trace"}\n'
-            row = record(identity, claim=claim, phase=phase, conclusion="supported", run={
-                "execution": execution, "completed": "2026-10-01T00:00:00Z",
+            inputs[trace_path] = _canonical({"fixture": run})
+            start = "00:00:00" if phase == "research" else "00:01:00"
+            end = "00:01:00" if phase == "research" else "00:02:00"
+            claim_digest = digest(inputs[f"sces/records/claim/{name}--1.json"])
+            row = record(identity, claim=claim, claim_sha256=claim_digest, phase=phase, conclusion="supported",
+                         acquisitions=[{"capture": run}], run={
+                "execution": execution, "started": f"2026-10-01T{start}Z", "completed": f"2026-10-01T{end}Z",
                 "trace": {"path": trace_path, "sha256": digest(inputs[trace_path])},
             })
             summaries.append({"record": identity, "phase": phase, "execution": execution,
@@ -195,6 +199,8 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         candidate = self.commit(make_publication(frozen, previous_report=link), "select evidence with exact predecessor")
         staged = capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
         self.assertEqual(staged[path], previous)
+        claims_path = "sces/releases/previous-release/claims.json"
+        self.assertEqual(staged[claims_path], direct[claims_path])
         with self.assertRaisesRegex(DataError, "base"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
 
@@ -273,6 +279,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=base),
                          {"base:sces/publication.json": publication[SELECTION],
                           "sces/adoption.json": inputs["sces/adoption.json"],
+                          RELEASE + "claims.json": publication[RELEASE + "claims.json"],
                           path: report, advice_path: _canonical(advice)})
         with self.assertRaisesRegex(DataError, "requires the exact verified pull-request base"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
@@ -414,6 +421,82 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "no unique successor tip"):
             capture_selected_evidence(self.root, candidate, REPOSITORY, base=ambiguous)
 
+    def test_another_datasets_advised_archive_cannot_hide_replaced_claims_bytes(self):
+        inputs, make_publication = fixture()
+        source = self.commit(inputs, "freeze evidence")
+        publication = make_publication(source)
+        archive = make_publication(source, release="corrupt", dataset="different-index")
+        del archive[SELECTION]
+        path = "sces/releases/corrupt/qualification.json"
+        payload = "sces/releases/corrupt/claims.json"
+        archive[payload] = _canonical([])
+        advisory = _canonical({"report": {"path": path, "sha256": digest(archive[path])},
+                               "affected": [ref("claim", "selected")], "reason": "Synthetic withdrawal",
+                               "recorded": "2026-10-01T00:00:00Z"})
+        base = self.commit({**archive, "sces/advisories/corrupt.json": advisory}, "seed malformed protected archive")
+        candidate = self.commit(publication, "try a separate dataset bootstrap without a lineage pointer")
+        with self.assertRaisesRegex(DataError, "archived claims payload does not match the exact qualification artifact"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+    def test_pairs_reject_changed_claim_digest_shared_traces_and_shared_capture(self):
+        baseline = self.commit({"sces/artifacts/fixture.txt": b"fixture\n"}, "prepare independent fixtures")
+        for name, field, message in (
+            ("selected", "claim_sha256", "does not bind the exact claim revision bytes"),
+            ("premise", "claim_sha256", "does not bind the exact claim revision bytes"),
+            ("premise", "trace-path", "require distinct trace paths and digests"),
+            ("premise", "trace-sha", "require distinct trace paths and digests"),
+            ("premise", "capture", "share an acquisition capture"),
+        ):
+            with self.subTest(name=name, field=field):
+                _git(self.root, "switch", "--quiet", "--detach", baseline)
+                inputs, make_publication = fixture()
+                path = f"sces/records/verification/{name}-review--1.json"
+                row = decode(inputs[path])
+                research = decode(inputs[f"sces/records/verification/{name}-research--1.json"])
+                if field == "claim_sha256":
+                    row[field] = "f" * 64
+                elif field == "capture":
+                    row["acquisitions"] = research["acquisitions"]
+                else:
+                    descriptor = "path" if field == "trace-path" else "sha256"
+                    row["run"]["trace"][descriptor] = research["run"]["trace"][descriptor]
+                inputs[path] = _canonical(row)
+                base = self.commit(inputs, "freeze invalid verification records")
+                publication = make_publication(base)
+                candidate = self.commit(publication, "attempt to qualify the invalid verification pair")
+                with self.assertRaisesRegex(DataError, message):
+                    capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+    def test_latest_research_cannot_be_paired_with_a_review_that_started_earlier(self):
+        inputs, make_publication = fixture()
+        research_path = "sces/records/verification/premise-research--1.json"
+        later_path = "sces/records/verification/premise-research--2.json"
+        disposition = "sces/records/disposition/premise-disposition--1.json"
+        later = decode(inputs[research_path])
+        later["revision"] = 2
+        later["run"].update(execution="later-premise-research", completed="2026-10-01T00:01:30Z")
+        earlier_trace = later["run"]["trace"]["path"]
+        later_trace = "sces/artifacts/later-premise-research.jsonl"
+        inputs[later_trace] = _canonical({"fixture": "later-premise-research"})
+        later["run"]["trace"] = {"path": later_trace, "sha256": digest(inputs[later_trace])}
+        later["acquisitions"] = [{"capture": "later-premise-research"}]
+        inputs[later_path] = _canonical(later)
+        later_reference = {**ref("verification", "premise-research"), "revision": 2}
+        inputs[disposition] = _canonical({**decode(inputs[disposition]), "research": later_reference})
+        base = self.commit(inputs, "freeze newer research beside the previous review")
+        publication = make_publication(base)
+        report_path = RELEASE + "qualification.json"
+        report = decode(publication[report_path])
+        active_inputs = {path: digest(blob) for path, blob in inputs.items() if path not in {research_path, earlier_trace}}
+        report["inputs_sha256"] = digest(_canonical(active_inputs))
+        for summary in report["verifications"]:
+            if summary["record"]["id"] == later["id"]:
+                summary.update(record=later_reference, execution=later["run"]["execution"],
+                               record_sha256=digest(inputs[later_path]))
+        candidate = self.commit({**publication, report_path: _canonical(report)}, "try the independently stale verification pair")
+        with self.assertRaisesRegex(DataError, "independent review started before the latest research execution completed"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
     def test_predecessor_introduced_in_frozen_history_cannot_replace_verified_base(self):
         inputs, make_publication = fixture()
         base = self.commit(inputs, "verified base without a predecessor")
@@ -460,9 +543,10 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
     def test_same_membership_cannot_change_frozen_record_bytes(self):
         inputs, make_publication = fixture()
         frozen = self.commit(inputs, "freeze selected evidence")
-        inputs[CLAIM] = b"\n" + inputs[CLAIM]
+        path = "sces/records/dependency/selected-premise--1.json"
+        inputs[path] = b"\n" + inputs[path]
         candidate = self.commit({**inputs, **make_publication(frozen)}, "change only the selected record bytes")
-        with self.assertRaisesRegex(DataError, f"differs from its frozen source commit: {CLAIM}"):
+        with self.assertRaisesRegex(DataError, f"differs from its frozen source commit: {path}"):
             capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
 
     def test_frozen_source_commit_cannot_be_a_tree_object(self):

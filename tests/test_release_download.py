@@ -57,6 +57,7 @@ class PublicReleaseTests(unittest.TestCase):
         self.assertEqual(metadata, {
             "repository": REPOSITORY, "repository_id": REPOSITORY_ID, "commit": self.commit, "tag": self.tag,
             "asset_id": 123, "asset_url": self.asset_url, "release_id": 53, "release_url": self.release_url,
+            "published_at": self.release["published_at"],
             "notes_sha256": self.notes_digest,
         })
         self.download.assert_called_once_with(self.asset_url, len(self.archive))
@@ -120,6 +121,15 @@ class PublicReleaseTests(unittest.TestCase):
     def test_rejects_replaced_archive_even_when_metadata_looks_correct(self):
         self.download.return_value = b"X" + self.archive[1:]
         with self.assertRaisesRegex(DataError, "archive bytes differ"):
+            self.fetch()
+
+    def test_does_not_return_a_publication_timestamp_changed_during_download(self):
+        def change_publication_time(*_args):
+            self.release["published_at"] = "2026-01-03T03:04:05Z"
+            return self.archive
+
+        self.download.side_effect = change_publication_time
+        with self.assertRaisesRegex(DataError, "changed during verification"):
             self.fetch()
 
     def test_rejects_replaced_asset_or_tag_during_download(self):

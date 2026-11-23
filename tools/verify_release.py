@@ -71,6 +71,15 @@ def checked_bytes(content, expected, label):
     return content
 
 
+def parse_utc_timestamp(value, label):
+    try:
+        timestamp = datetime.fromisoformat(value)
+    except (TypeError, ValueError) as error:
+        raise DataError(f"invalid {label} timestamp") from error
+    require(timestamp.utcoffset() == timedelta(0), f"{label} timestamp must be in UTC")
+    return timestamp
+
+
 def load_authorization(raw, expected_digest):
     require(isinstance(raw, bytes) and match(HEX_256, expected_digest)
             and sha256(raw).hexdigest() == expected_digest,
@@ -83,11 +92,7 @@ def load_authorization(raw, expected_digest):
             and _valid_tag(decision["tag"]), "invalid owner authorization record")
     for field in ("principal", "approved_at", "data_license", "scope"):
         require(isinstance(decision[field], str) and decision[field].strip(), f"missing authorization {field}")
-    try:
-        approved = datetime.fromisoformat(decision["approved_at"])
-    except ValueError as error:
-        raise DataError("invalid authorization timestamp") from error
-    require(approved.utcoffset() == timedelta(0), "authorization timestamp must be in UTC")
+    parse_utc_timestamp(decision["approved_at"], "authorization")
     notes = decision["notes"]
     require(isinstance(notes, dict) and notes.keys() == {"name", "body"}
             and all(isinstance(value, str) and value.strip() for value in notes.values()),
@@ -156,6 +161,10 @@ def verify(raw_request, request_digest=None, *, archive_path=None, tag=None, not
         require(match(HEX_256, notes_digest), "supply the independently recorded release title and body SHA-256")
         content, public = fetch_public_archive(GitHub(), tag, request["publication_candidate_commit"],
                                                archive, notes_sha256=notes_digest)
+        if decision is not None:
+            published = parse_utc_timestamp(public.get("published_at"), "GitHub publication")
+            approved = parse_utc_timestamp(decision["approved_at"], "authorization")
+            require(published >= approved, "GitHub release was published before the recorded owner approval")
     else:
         require(notes_digest is None and archive_path.is_file(), "supply a local regular ZIP file")
         require(archive_path.stat().st_size == archive["bytes"],

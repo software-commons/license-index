@@ -236,7 +236,23 @@ def _registry(blobs):
     return records, edges, reviews, dispositions, conflicts_by_claim
 
 
-def _active_reviews(selected, records, edges, reviews, dispositions):
+def _check_review_pair(claim_digest, research, review):
+    require(research["claim_sha256"] == review["claim_sha256"] == claim_digest,
+            "SCES verification pair does not bind the exact claim revision bytes")
+    first, second = research["run"], review["run"]
+    executions = (first["execution"], second["execution"])
+    require(all(isinstance(value, str) and value and value == value.strip() for value in executions)
+            and executions[0] != executions[1], "selected SCES claim requires distinct nonempty research and review executions")
+    require(_timestamp(first["completed"], "verification") <= _timestamp(second["started"], "verification"),
+            "SCES independent review started before the latest research execution completed")
+    first_trace, second_trace = first["trace"], second["trace"]
+    require(first_trace["path"] != second_trace["path"] and first_trace["sha256"] != second_trace["sha256"],
+            "SCES research and independent review require distinct trace paths and digests")
+    require({row["capture"] for row in research["acquisitions"]}.isdisjoint(row["capture"] for row in review["acquisitions"]),
+            "SCES research and independent review share an acquisition capture")
+
+
+def _active_reviews(selected, records, edges, reviews, dispositions, blobs):
     active = {}
     pending = list(selected)
     while pending:
@@ -255,9 +271,8 @@ def _active_reviews(selected, records, edges, reviews, dispositions):
                          or records[candidates[-2]]["run"]["completed"] != records[chosen]["run"]["completed"]),
                     "selected SCES claim lacks current independent verification")
             current.append(chosen)
-        research, review = (records[key]["run"]["execution"] for key in current)
-        require(all(isinstance(value, str) and value and value == value.strip() for value in (research, review))
-                and research != review, "selected SCES claim requires distinct nonempty research and review executions")
+        research, review = (records[key] for key in current)
+        _check_review_pair(_digest(blobs[_record_path(identity)]), research, review)
         active[identity] = current
         for dependency in edges[identity]:
             row = records[dependency]
@@ -301,7 +316,7 @@ def _closure(selected, records, edges, active, dispositions, conflicts):
 
 def _selected_registry(selected, blobs):
     records, edges, reviews, dispositions, conflicts = _registry(blobs)
-    active = _active_reviews(selected, records, edges, reviews, dispositions)
+    active = _active_reviews(selected, records, edges, reviews, dispositions, blobs)
     used, artifacts = _closure(selected, records, edges, active, dispositions, conflicts)
     return records, edges, active, used, artifacts
 
@@ -328,9 +343,9 @@ def _bind_base_qualification(report, selection, selection_bytes):
             "SCES prior qualification does not bind the exact verified base selection and dataset")
 
 
-def _withdrawal_timestamp(recorded):
+def _timestamp(recorded, context):
     require(re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", recorded),
-            "invalid SCES withdrawal advisory timestamp")
+            f"invalid SCES {context} timestamp")
     return datetime.strptime(recorded, "%Y-%m-%dT%H:%M:%S%z")
 
 
@@ -362,10 +377,20 @@ def _archived_report_path(advisory_path):
     return slug, f"sces/releases/{slug}/qualification.json"
 
 
+def _claims_path(report_path):
+    return report_path.removesuffix("qualification.json") + "claims.json"
+
+
+def _check_archived_claims(report, report_path, blobs):
+    path = _claims_path(report_path)
+    require(path in blobs and report["artifacts"] == [{"path": path, "sha256": _digest(blobs[path])}],
+            "SCES archived claims payload does not match the exact qualification artifact descriptor")
+
+
 def _check_withdrawal(advisory, report_path, report_bytes, report):
     require(advisory["report"] == {"path": report_path, "sha256": _digest(report_bytes)},
             "SCES withdrawal advisory does not bind the exact verified base qualification")
-    require(_withdrawal_timestamp(advisory["recorded"]) <= datetime.now(timezone.utc),
+    require(_timestamp(advisory["recorded"], "withdrawal advisory") <= datetime.now(timezone.utc),
             "SCES withdrawal advisory timestamp is in the future")
     affected = [_key(reference, "claim") for reference in advisory["affected"]]
     require(affected and len(set(affected)) == len(affected)
@@ -393,10 +418,11 @@ def _new_withdrawals(directory, commit, selection_tree, base_selection_tree, inh
     reports = {}
     for advisory in new:
         slug, path = _archived_report_path(advisory)
-        require(path in inherited, "SCES new withdrawal advisory must identify an inherited qualified release")
+        require(path in inherited and _claims_path(path) in inherited,
+                "SCES new withdrawal advisory must identify an inherited qualified release")
         reports[advisory] = (slug, path)
     adoption_paths = _inventory(directory, commit, _ADOPTION)
-    ordered = [_ADOPTION, *new, *(path for _, path in reports.values())]
+    ordered = [_ADOPTION, *new, *(artifact for _, path in reports.values() for artifact in (path, _claims_path(path)))]
     staged = _blobs(directory, {**candidate, **adoption_paths}, ordered,
                     limit=_MAX_EVIDENCE - len(base_bytes or b""))
     adoption = decode(staged[_ADOPTION])
@@ -407,6 +433,7 @@ def _new_withdrawals(directory, commit, selection_tree, base_selection_tree, inh
         report_bytes = staged[report_path]
         report = decode(report_bytes)
         _qualification_identity(report, slug)
+        _check_archived_claims(report, report_path, staged)
         _check_withdrawal(decode(staged[advisory]), report_path, report_bytes, report)
         if base_selection is not None and slug == base_selection["release"]:
             _bind_base_qualification(report, base_selection, base_bytes)
@@ -418,11 +445,10 @@ def _withdrawn_predecessor(directory, inherited, selection):
     """Follow exact qualification parent links; advisory timestamps do not order releases."""
     release_paths = {path for path in inherited if path.startswith("sces/releases/")}
     report_paths = sorted(path for path in release_paths if path.endswith("/qualification.json"))
-    expected_paths = {artifact for path in report_paths
-                      for artifact in (path, path.removesuffix("qualification.json") + "claims.json")}
+    expected_paths = {artifact for path in report_paths for artifact in (path, _claims_path(path))}
     require(release_paths == expected_paths, "SCES inactive base contains an incomplete archived release bundle")
-    reports = _blobs(directory, inherited, report_paths, limit=_MAX_EVIDENCE)
-    archived = {path: decode(blob) for path, blob in reports.items()}
+    release_blobs = _blobs(directory, inherited, sorted(release_paths), limit=_MAX_EVIDENCE)
+    archived = {path: decode(release_blobs[path]) for path in report_paths}
     advisory_paths = {}
     for path, report in archived.items():
         advisory_path = f"sces/advisories/{report['release']}.json"
@@ -432,11 +458,12 @@ def _withdrawn_predecessor(directory, inherited, selection):
         require(isinstance(report["dataset"], str) and _SLUG.fullmatch(report["dataset"]),
                 "invalid protected SCES qualification dataset")
         require(advisory_path in inherited, "SCES inactive base contains a qualification without its withdrawal advisory")
+        _check_archived_claims(report, path, release_blobs)
         advisory_paths[path] = advisory_path
     advisories = _blobs(directory, inherited, sorted(advisory_paths.values()),
-                       limit=_MAX_EVIDENCE - sum(map(len, reports.values())))
+                       limit=_MAX_EVIDENCE - sum(map(len, release_blobs.values())))
     for path, advisory_path in advisory_paths.items():
-        _check_withdrawal(decode(advisories[advisory_path]), path, reports[path], archived[path])
+        _check_withdrawal(decode(advisories[advisory_path]), path, release_blobs[path], archived[path])
     rows = {path: report for path, report in archived.items() if report["dataset"] == selection["dataset"]}
     if not rows:
         require("previous_report" not in selection,
@@ -448,7 +475,7 @@ def _withdrawn_predecessor(directory, inherited, selection):
         if "previous_report" not in report:
             continue
         parent = previous["path"]
-        require(parent in rows and previous == {"path": parent, "sha256": _digest(reports[parent])},
+        require(parent in rows and previous == {"path": parent, "sha256": _digest(release_blobs[parent])},
                 "SCES withdrawn qualification lineage has a broken predecessor")
         parents[path] = parent
     tips = rows.keys() - set(parents.values())
@@ -461,12 +488,13 @@ def _withdrawn_predecessor(directory, inherited, selection):
         seen.add(cursor)
         cursor = parents.get(cursor)
     require(seen == rows.keys(), "SCES withdrawn qualification lineage is disconnected or cyclic")
-    expected = {"path": tip, "sha256": _digest(reports[tip])}
+    expected = {"path": tip, "sha256": _digest(release_blobs[tip])}
     require(selection.get("previous_report") == expected,
             "SCES reactivation must identify the verified dataset's latest withdrawn qualification report")
     require(tip != f"sces/releases/{selection['release']}/qualification.json", "invalid SCES previous report path")
     advisory_path = advisory_paths[tip]
-    return {tip: reports[tip], advisory_path: advisories[advisory_path]}
+    claims = _claims_path(tip)
+    return {tip: release_blobs[tip], claims: release_blobs[claims], advisory_path: advisories[advisory_path]}
 
 
 def _previous_report(directory, paths, base, base_selection_tree, inherited, selection, selection_bytes):
@@ -492,13 +520,14 @@ def _previous_report(directory, paths, base, base_selection_tree, inherited, sel
     match = re.fullmatch(r"sces/releases/([a-z][a-z0-9-]*)/qualification\.json", path)
     require(match is not None and _SLUG.fullmatch(match[1]) and match[1] != selection["release"],
             "invalid SCES previous report path")
-    base_paths = _inventory(directory, base, path)
-    require(path in paths and base_paths.get(path) == paths[path],
+    claims = _claims_path(path)
+    require(all(artifact in paths and inherited.get(artifact) == paths[artifact] for artifact in (path, claims)),
             "SCES previous report path or blob differs from the verified pull-request base")
-    history = _blobs(directory, paths, [path], limit=_MAX_EVIDENCE)
+    history = _blobs(directory, paths, [path, claims], limit=_MAX_EVIDENCE)
     require(_digest(history[path]) == predecessor["sha256"], "SCES previous report digest mismatch")
     report = decode(history[path])
     _qualification_identity(report, match[1])
+    _check_archived_claims(report, path, history)
     require(report["dataset"] == selection["dataset"], "SCES previous report names a different dataset")
     if selection["release"] != base_slug:
         _bind_base_qualification(report, base_selection, base_bytes)

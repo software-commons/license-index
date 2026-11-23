@@ -151,11 +151,33 @@ class VerifyReleaseTests(unittest.TestCase):
         self.assertEqual(offline["authorization_record"]["sha256"], receipt_digest)
         self.assertEqual(offline["authorization_record"]["principal"], decision["principal"])
         with patch("tools.verify_release.fetch_public_archive",
-                   return_value=(self.zip_path.read_bytes(), {"release_url": "fixture"})) as fetch:
+                   return_value=(self.zip_path.read_bytes(),
+                                 {"release_url": "fixture", "published_at": decision["approved_at"]})) as fetch:
             public = verify(raw, **options)
         self.assertEqual(public["authorization_record"], offline["authorization_record"])
         self.assertEqual(fetch.call_args.args[1:3], (decision["tag"], decision["publication_commit"]))
         self.assertEqual(fetch.call_args.kwargs["notes_sha256"], describe(encode(decision["notes"]))["sha256"])
+
+    def test_public_release_cannot_precede_its_recorded_approval(self):
+        raw = self.pack()
+        receipt = encode(self.authorization(raw))
+        options = {"authorization": receipt, "authorization_digest": describe(receipt)["sha256"]}
+        archive = self.zip_path.read_bytes()
+        for timestamp, message in (
+            ("2026-11-23T07:59:59Z", "before the recorded owner approval"),
+            ("2026-11-23T08:00:00", "GitHub publication timestamp must be in UTC"),
+            ("2026-11-23T08:01:00+01:00", "GitHub publication timestamp must be in UTC"),
+            ("2026-02-30T08:00:00Z", "invalid GitHub publication timestamp"),
+            (None, "invalid GitHub publication timestamp"),
+        ):
+            with self.subTest(timestamp=timestamp), patch("tools.verify_release.fetch_public_archive",
+                    return_value=(archive, {"published_at": timestamp})):
+                with self.assertRaisesRegex(DataError, message):
+                    verify(raw, **options)
+
+        timestamp = "2026-11-23T08:00:00.100000+00:00"
+        with patch("tools.verify_release.fetch_public_archive", return_value=(archive, {"published_at": timestamp})):
+            self.assertEqual(verify(raw, **options)["public_release"]["published_at"], timestamp)
 
     def test_cli_reads_the_authorization_and_pins_the_local_archive(self):
         raw = self.pack()

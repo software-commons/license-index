@@ -128,11 +128,12 @@ def _public_identity(github, tag, expected_commit, descriptor, notes_sha256):
         "commit": expected_commit,
         "release_id": release_id,
         "release_url": release_url,
+        "published_at": published_at,
         "asset_id": asset_id,
         "asset_url": asset_url,
         "notes_sha256": notes_sha256,
     }
-    return metadata, (tag_objects, published_at, digest)
+    return metadata, (tag_objects, digest)
 
 
 def _redirect(url, location):
