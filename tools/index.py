@@ -151,14 +151,17 @@ def comparison(catalog, identifiers):
             "compare requires at least two distinct catalog entries")
     dimensions = {"copyright_grant", "patent_grant", "trademark", "notices", "modification",
                   "source_availability", "reciprocity", "warranty", "termination", "exceptions"}
-    profiles = [catalog.profile(row) or {} for row in rows]
-    for item in profiles:
-        dimensions.update(item["dimensions"])
+    profile_dimensions = []
+    for row in rows:
+        profile = catalog.profile(row)
+        recorded = {} if profile is None else profile["dimensions"]
+        dimensions.update(recorded)
+        profile_dimensions.append(recorded)
     unknown = {"state": "unresolved", "text": "No assessment recorded for this dimension.", "sources": []}
     records = [
         {"identifier": row["origin"]["identifier"],
-         "dimensions": {key: item.get("dimensions", {}).get(key, unknown) for key in sorted(dimensions)}}
-        for row, item in zip(rows, profiles)
+         "dimensions": {key: recorded.get(key, unknown) for key in sorted(dimensions)}}
+        for row, recorded in zip(rows, profile_dimensions)
     ]
     return {"status": "provisional", "records": records}
 

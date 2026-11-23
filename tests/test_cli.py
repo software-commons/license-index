@@ -143,6 +143,19 @@ class ToolTests(unittest.TestCase):
         self.assertTrue(sources["research_citations"])
         self.assertIn("sha256", sources["origin"]["artifacts"]["text"])
 
+    def test_comparison_treats_unprofiled_entries_as_unresolved(self):
+        compared = self.json_output("compare", "GFDL-1.1-only", "GFDL-1.3-invariants-or-later")
+        self.assertEqual(compared["status"], "provisional")
+        profiled, unprofiled = compared["records"]
+        profiled_dimensions = profiled["dimensions"]
+        unprofiled_dimensions = unprofiled["dimensions"]
+        self.assertEqual(unprofiled["identifier"], "GFDL-1.3-invariants-or-later")
+        self.assertEqual(profiled_dimensions.keys(), unprofiled_dimensions.keys())
+        self.assertTrue(profiled_dimensions["format_classification"]["sources"])
+        for dimension in unprofiled_dimensions.values():
+            self.assertEqual(dimension["state"], "unresolved")
+            self.assertEqual(dimension["sources"], [])
+
     def test_development_export_is_deterministic_and_qualified_export_fails_closed(self):
         first = command("export")
         second = command("export")
