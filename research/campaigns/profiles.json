@@ -2625,7 +2625,7 @@
       },
       "source_availability": {
         "state": "condition",
-        "text": "Section 4.6 requires an offer to recipients when the licensee Publicly Uses a Derivative Database or a Produced Work from it. Offer a machine-readable copy of the complete Derivative Database or a file covering all alterations or their method, including added Contents. Internet distribution must be free of charge. Physical distribution may cost up to a reasonable production cost.",
+        "text": "Section 4.6 requires an offer to recipients when the licensee Publicly Uses a Derivative Database or a Produced Work from it. Offer a machine-readable copy of the complete Derivative Database or a file covering all alterations or their method, including added Contents. The offered copy or file must be free online. Physical distribution of that material may cost up to a reasonable production cost.",
         "sources": [
           {
             "url": "https://opendatacommons.org/licenses/odbl/1-0/",
@@ -2637,7 +2637,7 @@
     "scenarios": [
       {
         "situation": "Publishing a static map from a derivative database",
-        "text": "Assume a licensee publishes a qualifying Produced Work to an audience outside the licensee's control and provides only the map. Where the map comes from a Derivative Database, assess the output notice, underlying database terms, and offer to recipients under §§4.3, 4.4 and 4.6. A map rendered directly from the original Database still has the §4.3 notice condition. Creating the map alone leaves the source database's derivative status unchanged under §4.5(b).",
+        "text": "Assume a licensee publishes a qualifying Produced Work to an audience outside the licensee's control and provides only the map. Where the map comes from a Derivative Database, assess the output notice, underlying database terms, and offer to recipients under §§4.3, 4.4 and 4.6. A map rendered directly from the original Database still has the §4.3 notice condition. Under §4.5(b), creating the map alone leaves the source database's derivative status unchanged for purposes of §4.4.",
         "sources": [
           {
             "url": "https://opendatacommons.org/licenses/odbl/1-0/",
