@@ -1,0 +1,21 @@
+# Codex review governance decision
+
+**Status: Conditional owner authorization. Current GitHub approval controls are active.**
+
+The Software Commons owner authorized a Codex-only review process conditional on a compliant enforced replacement. The owner excluded adding collaborators or creating a second GitHub account. Software Commons will retain mandatory pull requests, the pinned SCES check, the registry check and its three-platform test jobs. Default-branch deletion, force-push and unauthorized bypass stay prohibited. Publication requires a separate exact-artifact authorization.
+
+## Enforced replacement
+
+Use an organization-controlled required workflow or a dedicated, authenticated GitHub App whose issuer posts the designated verification check. Its verifier and credentials must be outside the target pull request's trust boundary. A GitHub App would be limited to this repository, have no bypass access or merge authority, and be the expected source of the new ruleset check. Give it the GitHub check and commit-status permissions required for that role, with no repository code or administration write access. Its issuer must verify the repository, pull request, exact head and base commits, review execution, retained audit evidence and disposition. A changed head or target requires a fresh determination. Code in the pull request must have no access to the issuer's key or to a way to generate the same check.
+
+The reviewer inspects changes to evidence policy, Actions callers, validation code, acceptance and source mappings, publication controls and security boundaries. Record the immutable diff, the actual separate Codex execution and material findings. Verify any SCES research and independent review separately where required. A failed check, stale record or missing trace blocks issuance. The reviewer records a judgment on the exact reviewed change. Scientific approval and release authorization require their own decisions.
+
+Verify the authenticated source of the successful check and exercise missing, stale, and wrong-source cases before replacing the current review rule. Exercise both a changed head and an unchanged head after a change to the base SHA or target branch. Bind the check to a GitHub merge-group commit or enforce and test an equivalent base-bound mechanism that rejects the stale result. A check name supplied by GitHub Actions alone cannot distinguish a review job under pull-request control from the intended trusted gate. Review the repository and ruleset after the change and verify that branch protection rejects each unapproved revision.
+
+## Current deployment
+
+Software Commons uses GitHub Free. Its repository ruleset can require authenticated status checks. GitHub organization rulesets require an eligible organization plan. License Index has no installed dedicated review App or separately controlled review-key issuer. The current ruleset therefore still requires an eligible non-author approval and CODEOWNERS review where applicable. [License Index ruleset](https://github.com/software-commons/license-index/rules/27875276), [organization rulesets](https://docs.github.com/en/organizations/managing-organization-settings/creating-rulesets-for-repositories-in-your-organization), [authenticated status checks](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets#require-status-checks-to-pass-before-merging).
+
+## Release authorization
+
+An authorized operator checks the evidence custody, exact source commit, selected claim revisions, mapped outputs, scope, and artifact digests. Record the approving principal and decision separately from the technical check. Bind that decision to the protected release change and verify the exact published bytes. Follow [publication control](PUBLICATION.md) and [profile qualification](PROFILE_QUALIFICATION.md).

@@ -14,7 +14,11 @@ The repository keeps evidence and domain gate configuration, review requirements
 
 [The repository ruleset](https://github.com/software-commons/license-index/rules/27875276) targets the default branch. It requires a pull request, the GitHub Actions checks **Evidence / SCES validation** and **Registry validation**, and review of CODEOWNERS paths. It blocks non-fast-forward updates and deletion and has no bypass actor. The domain check requires passing platform jobs on Windows, Ubuntu and macOS. Changes to evidence controls and sources require an authorized reviewer who can review the author’s pull request.
 
+The current ruleset requires one eligible approving review. The [Codex review governance decision](GOVERNANCE_REVIEW.md) records the conditions for replacing GitHub approval with an authenticated independent review check. [Profile qualification](PROFILE_QUALIFICATION.md) defines claim-by-claim verification for the provisional research.
+
 The local qualified export assembles the exact SCES claims and the entity records from the frozen source commit. The validator compares the name, kind and state against the identity claim and verifies the exact claim, predicate, and applicable revision for each alias, external identity and relationship. Any public consumer artifact must be mapped and approved in its release decision, including its exact SHA-256. The development JSON and ZIP carry their discovery status and are excluded from canonical publication.
+
+Use `license-index coverage --policy PATH` to check the pinned policy and any active release. It reports zero selected claims if the registry has no active release. `license-index export --qualified --policy PATH` requires an active, validated release. The default discovery view and offline ZIP use the discovery snapshot and can be built without the policy checkout.
 
 Research-only notes and candidate catalogs carry provisional status. Empty registries and incomplete qualification provide no release. Follow SCES advisory and supersession procedures if an existing release loses active status.
 
