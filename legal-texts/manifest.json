@@ -577,9 +577,10 @@
     "source": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt"
   },
   "LGPL-3.0-only": {
-    "application": "GNU LGPL version 3 incorporates GPL version 3. Include both publisher texts and state the authorized version choice in a separate project notice. GNU convention uses COPYING and COPYING.LESSER.",
+    "application": "This writes the unchanged GNU LGPL version 3 supplement after checking the existing GNU GPL version 3 text. Include both documents. State LGPL version 3 only in a separate authorized project notice.",
     "bytes": 7652,
     "encoding": "UTF-8",
+    "install": "lgpl-v3-supplement",
     "line_endings": "LF",
     "path": "legal-texts/lgpl-3.0.txt",
     "representation": "publisher plain text supplement",
@@ -590,9 +591,10 @@
     "source": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-3.0.txt"
   },
   "LGPL-3.0-or-later": {
-    "application": "GNU LGPL version 3 incorporates GPL version 3. Include both publisher texts and state the authorized version choice in a separate project notice. GNU convention uses COPYING and COPYING.LESSER.",
+    "application": "This writes the unchanged GNU LGPL version 3 supplement after checking the existing GNU GPL version 3 text. Include both documents. State LGPL version 3 or any later version in a separate authorized project notice.",
     "bytes": 7652,
     "encoding": "UTF-8",
+    "install": "lgpl-v3-supplement",
     "line_endings": "LF",
     "path": "legal-texts/lgpl-3.0.txt",
     "representation": "publisher plain text supplement",

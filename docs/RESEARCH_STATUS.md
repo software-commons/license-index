@@ -6,7 +6,7 @@ Cutoff 2026-11-23. The [SPDX source manifest](../research/sources/spdx-3.29.0.js
 | --- | --- |
 | Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license and one deprecated exception identifiers. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside the SPDX import. |
 | Text coverage | Forty-five identifiers map to twenty-three offline publisher texts. The discovery ledger also records 826 pinned generated SPDX text references, 826 distinct matching-template references, and 93 nonblank header references. |
-| Installation support | Forty-two identifiers have offline unchanged-copy recipes. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
+| Installation support | Forty-two identifiers have ordinary offline unchanged-copy recipes. Two additional LGPLv3 identifiers verify an existing exact GPLv3 companion before writing the supplement offline. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
 | Explanatory research depth | 40 provisional profiles with 192 dimensions and 52 scenarios, covering 35 current license identifiers, four exception identifiers and one deprecated license identifier. See [educational research](../research/campaigns/educational-research.md) for limitations and disconfirming questions. |
 | Legal interpretation qualification | Zero selected independently verified claims, zero accepted canonical entities, and no active SCES publication. |
 

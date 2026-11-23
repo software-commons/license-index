@@ -2,6 +2,7 @@
 sces/** -text
 sces/artifacts/cc-by-4.0/legalcode-en.txt -whitespace
 sces/artifacts/gcc-runtime-exception-31/copying-runtime.txt -whitespace
+sces/artifacts/gnu-lgpl-v3/lgpl-3.0.txt -whitespace
 sces/artifacts/polyform-nc-100/license.md -whitespace
 legal-texts/** -text -whitespace
 LICENSE -text -whitespace

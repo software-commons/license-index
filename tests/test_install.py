@@ -5,7 +5,7 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from tools.li_install import InstallError, parse_expression, render, write_license
+from tools.li_install import InstallError, _complete_file, parse_expression, render, verify_gplv3_companion, write_license
 
 
 LICENSES = {"MIT", "Apache-2.0", "GPL-2.0", "GPL-2.0+", "GPL-2.0-only"}
@@ -158,6 +158,62 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(self.output.read_bytes(), b"existing")
         self.assertEqual(list(self.directory.iterdir()), [self.output])
 
+    def test_companion_requires_the_exact_regular_file(self):
+        base = self.directory / "COPYING"
+        expected = b"GPLv3 fixture\n"
+        with self.assertRaisesRegex(InstallError, "Could not verify GPLv3 companion"):
+            verify_gplv3_companion(self.output, base, expected)
+        base.mkdir()
+        with self.assertRaisesRegex(InstallError, "regular file"):
+            verify_gplv3_companion(self.output, base, expected)
+        base.rmdir()
+        for invalid in (b"gPLv3 fixture\n", b"GPLv3 fixture\r\n"):
+            with self.subTest(invalid=invalid):
+                base.write_bytes(invalid)
+                with self.assertRaisesRegex(InstallError, "exact bundled GPL version 3"):
+                    verify_gplv3_companion(self.output, base, expected)
+        base.write_bytes(expected)
+        verify_gplv3_companion(self.output, base, expected)
+        self.assertEqual(base.read_bytes(), expected)
+        self.assertFalse(self.output.exists())
+
+    def test_companion_and_output_must_have_distinct_paths(self):
+        base = self.directory / "COPYING"
+        base.write_bytes(b"base")
+        with self.assertRaisesRegex(InstallError, "must be distinct"):
+            verify_gplv3_companion(base, base, b"base")
+        self.assertEqual(base.read_bytes(), b"base")
+
+    def test_hard_link_to_companion_cannot_be_the_output(self):
+        base = self.directory / "COPYING"
+        base.write_bytes(b"base")
+        try:
+            os.link(base, self.output)
+        except OSError as failure:
+            self.skipTest(f"Hard links unavailable: {failure}")
+        with self.assertRaisesRegex(InstallError, "must be distinct"):
+            verify_gplv3_companion(self.output, base, b"base")
+        self.assertEqual(base.read_bytes(), b"base")
+        self.assertEqual(self.output.read_bytes(), b"base")
+
+    def test_companion_is_rechecked_after_staging(self):
+        base = self.directory / "COPYING"
+        base.write_bytes(b"base")
+        self.output.write_bytes(b"existing")
+
+        def change_companion_after_staging(descriptor, content):
+            _complete_file(descriptor, content)
+            base.write_bytes(b"changed by another process")
+
+        def verify(stat_output):
+            verify_gplv3_companion(self.output, base, b"base", stat_output=stat_output)
+
+        with patch("tools.li_install._complete_file", side_effect=change_companion_after_staging):
+            with self.assertRaisesRegex(InstallError, "exact bundled GPL version 3"):
+                write_license(self.output, b"supplement", force=True, before_publish=verify)
+        self.assertEqual(self.output.read_bytes(), b"existing")
+        self.assertEqual(set(self.directory.iterdir()), {self.output, base})
+
     def test_unsafe_path_is_rejected_even_for_dry_run(self):
         for path in (
             self.directory / "subdirectory" / ".." / "LICENSE",
@@ -190,6 +246,10 @@ class InstallTests(unittest.TestCase):
             write_license(self.output, b"replacement", force=True)
         with self.assertRaises(InstallError):
             write_license(linked_directory / "LICENSE", b"replacement", force=True)
+        with self.assertRaises(InstallError):
+            verify_gplv3_companion(real_path / "LICENSE", self.output, b"keep")
+        with self.assertRaises(InstallError):
+            verify_gplv3_companion(real_path / "LICENSE", linked_directory / "original", b"keep")
         self.assertEqual(list(real_path.iterdir()), [original])
         self.assertEqual(original.read_bytes(), b"keep")
 
@@ -206,7 +266,11 @@ class InstallTests(unittest.TestCase):
             self.skipTest("Windows junction creation is unavailable in this environment")
         with self.assertRaisesRegex(InstallError, "regular directory"):
             write_license(linked_directory / "LICENSE", b"replacement", force=True)
-        self.assertEqual(list(real_path.iterdir()), [])
+        original = real_path / "COPYING"
+        original.write_bytes(b"base")
+        with self.assertRaisesRegex(InstallError, "regular directory"):
+            verify_gplv3_companion(self.output, linked_directory / original.name, b"base")
+        self.assertEqual(list(real_path.iterdir()), [original])
 
     def test_failed_sync_leaves_existing_target_and_cleans_temporary(self):
         self.output.write_bytes(b"existing")

@@ -15,6 +15,10 @@ class InstallError(ValueError):
     """An invalid expression, unsupported rendering, or unsafe install target."""
 
 
+LGPL_V3_SUPPLEMENT = "lgpl-v3-supplement"
+LGPL_V3_IDS = frozenset({"LGPL-3.0-only", "LGPL-3.0-or-later"})
+
+
 class _Token(NamedTuple):
     value: str
     start: int
@@ -265,22 +269,29 @@ def _complete_file(descriptor, content):
         os.fsync(stream.fileno())
 
 
-def _write_posix(output, content, force, dry_run):
+def _open_posix_parent(path):
     # Walk no-follow directory handles so replacing a path component cannot
-    # redirect a subsequent write to a different directory.
+    # redirect a subsequent operation to a different directory.
     directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
-    directory = os.open(output.anchor, directory_flags)
+    directory = os.open(path.anchor, directory_flags)
     try:
-        for part in output.parts[1:-1]:
+        for part in path.parts[1:-1]:
             child = os.open(part, directory_flags, dir_fd=directory)
             os.close(directory)
             directory = child
-        _check_target(
-            lambda: os.stat(output.name, dir_fd=directory, follow_symlinks=False),
-            output,
-            force,
-            dry_run,
-        )
+        return directory
+    except BaseException:
+        os.close(directory)
+        raise
+
+
+def _write_posix(output, content, force, dry_run, before_publish):
+    directory = _open_posix_parent(output)
+    try:
+        def stat_target():
+            return os.stat(output.name, dir_fd=directory, follow_symlinks=False)
+
+        _check_target(stat_target, output, force, dry_run)
         if dry_run:
             return
 
@@ -290,6 +301,8 @@ def _write_posix(output, content, force, dry_run):
         )
         try:
             _complete_file(descriptor, content)
+            if before_publish is not None:
+                before_publish(stat_target)
             if force:
                 os.replace(temporary, output.name, src_dir_fd=directory, dst_dir_fd=directory)
             else:
@@ -317,7 +330,60 @@ def _check_windows_parent(output):
     return info.st_dev, info.st_ino
 
 
-def _write_windows(output, content, force, dry_run):
+def _verify_companion_file(name, expected, *, directory=None, check_parent=None):
+    initial = os.stat(name, dir_fd=directory, follow_symlinks=False)
+    if _is_link(initial) or not stat.S_ISREG(initial.st_mode):
+        raise InstallError("GPLv3 companion must be a regular file without links")
+    flags = os.O_RDONLY | (os.O_BINARY if directory is None else os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(os.open(name, flags, dir_fd=directory), "rb") as stream:
+        opened = os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or not os.path.samestat(opened, initial):
+            raise InstallError("The GPLv3 companion changed during verification")
+        if check_parent is not None:
+            check_parent()
+        if opened.st_size != len(expected) or stream.read(len(expected) + 1) != expected:
+            raise InstallError("GPLv3 companion must match the exact bundled GPL version 3 text")
+        if check_parent is not None:
+            check_parent()
+        current = os.stat(name, dir_fd=directory, follow_symlinks=False)
+        if (_is_link(current) or not os.path.samestat(opened, current)
+                or (opened.st_size, opened.st_mtime_ns) != (current.st_size, current.st_mtime_ns)):
+            raise InstallError("The GPLv3 companion changed during verification")
+    return opened
+
+
+def verify_gplv3_companion(output: Path, companion: Path, expected: bytes, *, stat_output=None) -> None:
+    """Verify the existing GPL text and refuse to use its file as the supplement target."""
+    output = _validate_path(output)
+    companion = _validate_path(companion)
+    if output == companion:
+        raise InstallError("The LGPLv3 output must be distinct from the GPLv3 companion")
+    try:
+        if os.name == "nt":
+            parent = _check_windows_parent(companion)
+
+            def check_parent():
+                if _check_windows_parent(companion) != parent:
+                    raise InstallError("The GPLv3 companion directory changed during verification")
+
+            verified = _verify_companion_file(companion, expected, check_parent=check_parent)
+        else:
+            directory = _open_posix_parent(companion)
+            try:
+                verified = _verify_companion_file(companion.name, expected, directory=directory)
+            finally:
+                os.close(directory)
+        try:
+            target = (stat_output or output.lstat)()
+        except FileNotFoundError:
+            return
+        if os.path.samestat(verified, target):
+            raise InstallError("The LGPLv3 output must be distinct from the GPLv3 companion")
+    except OSError as failure:
+        raise InstallError(f"Could not verify GPLv3 companion {companion}: {failure.strerror or failure}") from failure
+
+
+def _write_windows(output, content, force, dry_run, before_publish):
     parent_identity = _check_windows_parent(output)
     _check_target(output.lstat, output, force, dry_run)
     if dry_run:
@@ -326,6 +392,8 @@ def _write_windows(output, content, force, dry_run):
     descriptor, temporary = tempfile.mkstemp(prefix=".license-index-", suffix=".tmp", dir=output.parent)
     try:
         _complete_file(descriptor, content)
+        if before_publish is not None:
+            before_publish(output.lstat)
         if _check_windows_parent(output) != parent_identity:
             raise InstallError("The output directory changed during installation")
         _check_target(output.lstat, output, force, dry_run=False)
@@ -338,12 +406,15 @@ def _write_windows(output, content, force, dry_run):
         Path(temporary).unlink(missing_ok=True)
 
 
-def write_license(output: Path, content: bytes, *, force: bool = False, dry_run: bool = False) -> None:
+def write_license(output: Path, content: bytes, *, force: bool = False, dry_run: bool = False,
+                  before_publish=None) -> None:
     """Atomically write the selected target without creating directories."""
     output = _validate_path(output)
     writer = _write_windows if os.name == "nt" else _write_posix
     try:
-        writer(output, content, force, dry_run)
+        if before_publish is not None:
+            before_publish(output.lstat)
+        writer(output, content, force, dry_run, before_publish)
     except FileExistsError as failure:
         raise InstallError(f"Output already exists: {output}. Use --force to replace it.") from failure
     except OSError as failure:

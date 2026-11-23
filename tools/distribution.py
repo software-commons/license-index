@@ -6,7 +6,7 @@ from io import BytesIO
 from pathlib import Path
 from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
-from .li_install import write_license
+from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
 from .qualification import check_history, qualified
 from .records import DATA_COMMIT, HEX_256, VERSION, checked_bytes, encode, is_removed, local_path, read, require
 
@@ -58,11 +58,17 @@ def validate_texts(catalog):
                 f"missing publication provenance for {identifier}")
         if "rights_sha256" in package:
             require(HEX_256.fullmatch(package["rights_sha256"]), f"invalid rights digest for {identifier}")
-        require(package.get("install") in {None, "unchanged"}, f"unexpected bundle treatment: {identifier}")
-        if package.get("install"):
+        recipe = package.get("install")
+        require(recipe in {None, "unchanged", LGPL_V3_SUPPLEMENT}, f"unexpected bundle treatment: {identifier}")
+        if recipe:
             require(origin["list_kind"] == "license" and not origin["deprecated"]
                     and not is_removed(row) and package.get("application"),
                     f"invalid installation target: {identifier}")
+            lgplv3 = identifier in LGPL_V3_IDS
+            require((recipe == LGPL_V3_SUPPLEMENT) == lgplv3, f"incorrect GPLv3 companion requirement: {identifier}")
+            if lgplv3:
+                require(catalog.packaged.get("GPL-3.0-only", {}).get("install") == "unchanged",
+                        "LGPLv3 installation requires the bundled unchanged GPLv3 text")
 
 
 def validate_profiles(catalog):

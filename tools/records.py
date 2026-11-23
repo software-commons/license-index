@@ -11,6 +11,8 @@ import re
 from urllib.error import URLError
 from urllib.request import HTTPRedirectHandler, build_opener
 
+from .li_install import LGPL_V3_SUPPLEMENT
+
 ROOT = Path(__file__).resolve().parent.parent
 OPAQUE_ID = re.compile(r"[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}")
 HEX_256 = re.compile(r"[0-9a-f]{64}")
@@ -224,7 +226,9 @@ class Catalog:
                 "bundled_publisher_text_files": len({item["path"] for item in self.packaged.values()}),
             },
             "installation": {
-                "offline": sorted(key for key, package in self.packaged.items() if package.get("install")),
+                "offline": sorted(key for key, package in self.packaged.items() if package.get("install") == "unchanged"),
+                "requires_verified_companion": sorted(key for key, package in self.packaged.items()
+                                                      if package.get("install") == LGPL_V3_SUPPLEMENT),
                 "requires_verified_spdx_input": ["MIT"] if "mit" in self.spdx else [],
             },
             "research": {

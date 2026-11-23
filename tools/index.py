@@ -8,7 +8,9 @@ import json
 from pathlib import Path
 import sys
 
-from .li_install import InstallError, parse_expression, render, write_license
+from .li_install import (
+    LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, InstallError, parse_expression, render, verify_gplv3_companion, write_license,
+)
 from .records import Catalog, DataError, ROOT, VERSION, encode, is_removed, require
 
 
@@ -51,6 +53,8 @@ def parser():
             sub.add_argument("--holder")
             sub.add_argument("--year")
             sub.add_argument("--output", type=Path, default=Path("LICENSE"), help="target filename")
+            sub.add_argument("--gplv3-text", type=Path,
+                             help="existing exact GNU GPLv3 text required for an LGPLv3 supplement")
             sub.add_argument("--dry-run", action="store_true")
             sub.add_argument("--force", action="store_true", help="explicitly replace an existing regular file")
         if command == "compare":
@@ -100,6 +104,12 @@ def text_or_add(catalog, args):
     installing = args.command == "add"
     row = install_target(catalog, args.identifier) if installing else catalog.resolve(args.identifier)
     identifier = row["origin"]["identifier"]
+    companion = getattr(args, "gplv3_text", None)
+    supplement = installing and identifier in LGPL_V3_IDS
+    if supplement:
+        require(companion is not None, "Include both publisher texts. Use --gplv3-text to verify an existing GPLv3 copy.")
+    else:
+        require(companion is None, "--gplv3-text applies only to LGPL-3.0-only and LGPL-3.0-or-later")
     text, source = catalog.text(row, artifact_root=args.artifact_root, fetch=args.fetch,
                                 for_installation=installing)
     result = {"identifier": identifier, "source": source, "text_sha256": sha256(text).hexdigest()}
@@ -108,9 +118,20 @@ def text_or_add(catalog, args):
         return result, text
     application = source.get("application")
     guidance = f". {application}" if application else ""
-    require(source.get("install"), f"installation is unsupported for {identifier}{guidance}")
-    installed = render(text, source["install"], holder=args.holder, year=args.year, preview=args.dry_run)
-    write_license(args.output, installed, force=args.force, dry_run=args.dry_run)
+    recipe = source.get("install")
+    require(recipe, f"installation is unsupported for {identifier}{guidance}")
+    require((recipe == LGPL_V3_SUPPLEMENT) == supplement, f"incorrect GPLv3 companion requirement: {identifier}")
+    mode = "unchanged" if supplement else recipe
+    installed = render(text, mode, holder=args.holder, year=args.year, preview=args.dry_run)
+    before_publish = None
+    if supplement:
+        base, descriptor = catalog.text(catalog.resolve("GPL-3.0-only"))
+
+        def before_publish(stat_output):
+            verify_gplv3_companion(args.output, companion, base, stat_output=stat_output)
+
+        result["gplv3_text"] = {"path": str(companion), "sha256": descriptor["sha256"]}
+    write_license(args.output, installed, force=args.force, dry_run=args.dry_run, before_publish=before_publish)
     result.update({
         "output": str(args.output),
         "dry_run": args.dry_run,

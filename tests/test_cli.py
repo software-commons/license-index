@@ -10,7 +10,8 @@ from tempfile import TemporaryDirectory
 import unittest
 from zipfile import ZipFile
 
-from tools.records import ROOT, Catalog, encode
+from tools.index import parser, text_or_add
+from tools.records import ROOT, Catalog, DataError, encode
 from tools.review_plan import admission_packet
 
 
@@ -28,6 +29,19 @@ class ToolTests(unittest.TestCase):
         process = command("--json", *args)
         self.assertEqual(process.returncode, 0, process.stderr.decode())
         return json.loads(process.stdout)
+
+    def test_lgplv3_recipe_cannot_bypass_companion_gate(self):
+        catalog = Catalog(ROOT)
+        catalog.packaged["LGPL-3.0-only"]["install"] = "unchanged"
+        with TemporaryDirectory() as temporary:
+            output = Path(temporary) / "COPYING.LESSER"
+            args = parser().parse_args(["add", "LGPL-3.0-only", "--output", str(output)])
+            with self.assertRaisesRegex(DataError, "Include both publisher texts"):
+                text_or_add(catalog, args)
+            args.gplv3_text = ROOT / "legal-texts/gpl-3.0.txt"
+            with self.assertRaisesRegex(DataError, "incorrect GPLv3 companion requirement"):
+                text_or_add(catalog, args)
+            self.assertFalse(output.exists())
 
     def test_population_search_and_historical_identity(self):
         coverage = self.json_output("coverage")
@@ -337,14 +351,53 @@ class ToolTests(unittest.TestCase):
             self.assertFalse(changed.stdout)
             self.assertIn(b"artifact size or SHA-256 mismatch", changed.stderr)
             publisher_text.write_bytes(original)
-            for identifier in ("LGPL-3.0-only", "LGPL-3.0-or-later"):
+            base_output = folder / "COPYING"
+            base = (ROOT / "legal-texts/gpl-3.0.txt").read_bytes()
+            result = command("add", "GPL-3.0-only", "--output", base_output, root=unpacked)
+            self.assertEqual(result.returncode, 0, result.stderr.decode())
+            self.assertEqual(base_output.read_bytes(), base)
+            base_mtime = base_output.stat().st_mtime_ns
+            for identifier, notice in (("LGPL-3.0-only", "version 3 only"),
+                                       ("LGPL-3.0-or-later", "version 3 or any later version")):
                 with self.subTest(identifier=identifier):
                     expected = (ROOT / "legal-texts" / "lgpl-3.0.txt").read_bytes()
                     self.assertEqual(command("text", identifier, root=unpacked).stdout, expected)
-                    rejected = command("add", identifier, "--output", folder / "COPYING.LESSER", root=unpacked)
+                    output = folder / f"{identifier}.COPYING.LESSER"
+                    args = ("add", identifier, "--output", output)
+                    rejected = command(*args, root=unpacked)
                     self.assertEqual(rejected.returncode, 1)
                     self.assertIn(b"Include both publisher texts", rejected.stderr)
-                    self.assertFalse((folder / "COPYING.LESSER").exists())
+                    self.assertFalse(output.exists())
+                    args += ("--gplv3-text", base_output)
+                    preview = command(*args, "--dry-run", "--json", root=unpacked)
+                    self.assertEqual(preview.returncode, 0, preview.stderr.decode())
+                    result = json.loads(preview.stdout)
+                    self.assertEqual(result["gplv3_text"], {"path": str(base_output),
+                                                          "sha256": hashlib.sha256(base).hexdigest()})
+                    self.assertEqual(result["text"].encode(), expected)
+                    self.assertFalse(result["written"])
+                    self.assertIn(notice, result["application"])
+                    self.assertFalse(output.exists())
+                    installed = command(*args, root=unpacked)
+                    self.assertEqual(installed.returncode, 0, installed.stderr.decode())
+                    self.assertEqual(output.read_bytes(), expected)
+                    output.write_bytes(b"keep existing")
+                    self.assertEqual(command(*args, root=unpacked).returncode, 1)
+                    self.assertEqual(output.read_bytes(), b"keep existing")
+                    replaced = command(*args, "--force", root=unpacked)
+                    self.assertEqual(replaced.returncode, 0, replaced.stderr.decode())
+                    self.assertEqual(output.read_bytes(), expected)
+            rejected = command("add", "LGPL-3.0-only", "--gplv3-text", base_output, "--output", base_output,
+                               "--force", root=unpacked)
+            self.assertEqual(rejected.returncode, 1)
+            self.assertIn(b"must be distinct", rejected.stderr)
+            rejected = command("add", "MIT", "--fetch", "--gplv3-text", base_output, "--output", folder / "LICENSE",
+                               root=unpacked)
+            self.assertEqual(rejected.returncode, 1)
+            self.assertIn(b"applies only to LGPL", rejected.stderr)
+            self.assertFalse((folder / "LICENSE").exists())
+            self.assertEqual(base_output.read_bytes(), base)
+            self.assertEqual(base_output.stat().st_mtime_ns, base_mtime)
             self.assertEqual(command("coverage", root=unpacked).returncode, 0)
             planned = command("review-plan", "--admission", "GCC-exception-3.1", root=unpacked)
             self.assertEqual(planned.returncode, 0, planned.stderr.decode())
