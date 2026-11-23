@@ -13,6 +13,7 @@ from tools.li_install import InstallError
 from tools.qualification import POLICY_DIGEST
 from tools.records import DataError, encode
 from tools.stage_release import stage
+from tools.verify_release import GATES, verify
 
 
 class ReleaseStageTests(unittest.TestCase):
@@ -25,12 +26,16 @@ class ReleaseStageTests(unittest.TestCase):
         self.release = "fixture"
         self.stem = f"sces/releases/{self.release}"
         self.selection = {"release": self.release, "source_commit": "a" * 40}
-        self.claims = [{"claim": {"id": "fixture"}, "dependencies": []}]
+        claim = {"kind": "claim", "id": "fixture", "revision": 1}
+        self.claims = [{"claim": claim, "dependencies": []}]
         self.selection_file = self.write("sces/publication.json", self.selection)
         self.payload = self.write(f"{self.stem}/claims.json", self.claims)
         self.report = {
             **self.selection, "repository": "software-commons/license-index", "dataset": "license-index",
             "dataset_version": "fixture", "schema_version": "1.0.0", "policy_sha256": POLICY_DIGEST,
+            "policy": "SCES-1.0", "synthetic": False, "gates": GATES.copy(), "claims": [claim],
+            "review_kind": "separate-codex-executions", "outcome": "structure-and-recorded-review-qualified",
+            "coverage": {"selected": 1},
             "selection_sha256": sha256(self.selection_file.read_bytes()).hexdigest(),
             "artifacts": [{"path": f"{self.stem}/claims.json", "sha256": sha256(self.payload.read_bytes()).hexdigest()}],
         }
@@ -81,6 +86,10 @@ class ReleaseStageTests(unittest.TestCase):
         repeat = self.root / "repeat.zip"
         stage(self.catalog, self.root, repeat, base=self.base)
         self.assertEqual(repeat.read_bytes(), self.output.read_bytes())
+        raw = encode(request)
+        observed = verify(raw, sha256(raw).hexdigest(), archive_path=self.output)
+        self.assertEqual(observed["selected_claims"], 1)
+        self.assertEqual(observed["publication_commit"], self.commit)
         with self.assertRaises(InstallError):
             stage(self.catalog, self.root, self.output, base=self.base)
 
@@ -120,3 +129,10 @@ class ReleaseStageTests(unittest.TestCase):
             stage(self.catalog, self.root, self.output, base=self.commit)
         self.validate.assert_not_called()
         self.assertFalse(self.output.exists())
+
+    def test_archive_filename_must_survive_github_upload(self):
+        output = self.root / "candidate version.zip"
+        with self.assertRaisesRegex(DataError, "GitHub-safe ZIP filename"):
+            stage(self.catalog, self.root, output, base=self.base)
+        self.validate.assert_not_called()
+        self.assertFalse(output.exists())

@@ -7,8 +7,8 @@ Canonical publication uses the exact selected SCES artifacts and an authorized r
 1. Freeze a source commit containing the exact registry entities, source revisions, claims, dependency links, acquisition evidence, and verification records used in the release.
 2. Verify the two distinct Codex executions and directly inspect their source acquisition records. Resolve blocking adversarial findings before selection.
 3. Write the publication selection and run the pinned SCES builder and validator. Validate the domain registry against the same source commit and reproduce consumer output using the offline CLI.
-4. Open a governed release pull request. Require SCES and registry validation and the applicable code-owner review. Record who authorized publication and which exact report, commit, and asset digests are approved.
-5. A release operator may publish the exact checked artifacts under a versioned release identifier after merge. A tag alone does not establish qualification.
+4. Open a governed release pull request. Require SCES and registry validation and the applicable code-owner review or the commissioned Codex gate. Preserve the frozen source commit in the integrated Git history. If the release PR introduces that commit, use an ancestry-preserving merge.
+5. Stage from the integrated publication commit on the protected default branch. Verify protection for the intended versioned release tag and obtain the separate owner decision before publishing the exact checked assets.
 
 The repository keeps evidence and domain gate configuration, review requirements, and publication records on protected paths. Administrator changes to the controls remain governance decisions and require a recorded rationale.
 
@@ -22,11 +22,26 @@ Use `license-index coverage --policy PATH` to check the pinned policy and any ac
 
 ## Stage the exact release candidate
 
-From the checked publication candidate commit, run `python -B -m tools.stage_release /path/to/new-candidate.zip --policy /path/to/pinned-policy --base TRUSTED_PREDECESSOR_SHA`. Substitute paths appropriate to the operating system. The command verifies the active release against the pinned policy and requires the evidence and registry data used in validation to match the commit. It stages only the exact SCES payload and qualification report, the pinned SCES schema and their checksums. Discovery records, extra entity projections, raw source captures and verification traces stay outside the ZIP.
+From the checked publication commit, run `python -B -m tools.stage_release /path/to/new-candidate.zip --policy /path/to/pinned-policy --base TRUSTED_PREDECESSOR_SHA`. Substitute paths appropriate to the operating system. The command verifies the active release against the pinned policy and requires the evidence and registry data used in validation to match the commit. It stages only the exact SCES payload and qualification report, the pinned SCES schema and their checksums. Discovery records, extra entity projections, raw source captures and verification traces stay outside the ZIP.
 
-Preserve the JSON result with the authorization request. It binds the publication candidate commit, trusted history base, frozen source commit, dataset and policy versions, exact asset hashes and the archive digest. It carries no approval. A second build from the same inputs and the pinned policy produces identical ZIP bytes without fetching sources. Compare the hash and use the pinned `sces-contracts.schema.json` definitions for the payload claim, dependency and qualification structures.
+Preserve the exact UTF-8 output as `REQUEST.json` using byte-preserving redirection, such as native command redirection in PowerShell 7.4 or later. It binds the publication candidate commit, trusted history base, frozen source commit, dataset and policy versions, exact asset hashes and the archive digest. It carries no approval. A second build from the same inputs and the pinned policy produces identical ZIP bytes without fetching sources. Compare the hash and use the pinned `sces-contracts.schema.json` definitions for the payload claim, dependency and qualification structures.
 
-Before publishing, verify the integrated publication commit and intended protected release ref. Record the separate owner's authorization for the exact assets, data license and scope. Verify the bytes again when attaching them and after public download.
+Use a ZIP filename that starts with an ASCII letter or digit and contains only ASCII letters, digits, periods, underscores and hyphens before the ZIP suffix. GitHub can rename uploaded assets with other characters. Release assets must be under 2 GiB. [GitHub asset naming](https://docs.github.com/en/rest/releases/assets#upload-a-release-asset), [GitHub release limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases#storage-and-bandwidth-quotas).
+
+Use the request generated from the final integrated commit for authorization. If a previously staged candidate integrates to a different commit, restage at the integrated commit and compare the payload and report digests. The frozen source commit identifies the earlier evidence snapshot. SCES validates that it remains in the integrated commit’s ancestry.
+
+## Authorize and verify publication
+
+Retain the owner’s separate decision with the approving principal, exact staging request SHA-256, integrated commit, versioned tag, release title and body, data license and scope. Verify the protected default branch and release tag controls using the owner’s view, including any bypass actors. The branch ruleset alone does not establish release tag protection. Attach the exact staged ZIP as the dataset attachment, using its filename as its displayed label or leaving the label blank. The machine-readable qualification report is inside that ZIP and at the same SCES path in the tagged source. GitHub also supplies source archives for the tag.
+
+Verify the staged bytes locally before attaching them. After publication, verify the public asset and tag without credentials.
+
+```text
+python -B -m tools.verify_release REQUEST.json --request-sha256 REQUEST_DIGEST --zip CANDIDATE.zip
+python -B -m tools.verify_release REQUEST.json --request-sha256 REQUEST_DIGEST --tag APPROVED_TAG --notes-sha256 NOTES_DIGEST
+```
+
+For `NOTES_DIGEST`, hash the bytes from `tools.records.encode({"name": approved_title, "body": approved_body})`. Use the exact GitHub title and body, including whitespace. The verifier matches the published title and body and resolves the public tag to the integrated commit in the request. It checks the downloaded ZIP, each asset digest, the checksum file, and the report’s claim list and policy result. It verifies those bindings against the supplied digests. Preserve the authenticated owner decision and protection observations separately.
 
 Research-only notes and candidate catalogs carry provisional status. Empty registries and incomplete qualification provide no release. Follow SCES advisory and supersession procedures if an existing release loses active status.
 

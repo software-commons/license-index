@@ -6,6 +6,7 @@ import argparse
 from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
+import re
 import sys
 from zipfile import ZipFile
 
@@ -17,6 +18,26 @@ from .records import Catalog, DATA_COMMIT, DataError, ROOT, decode, encode, loca
 CONTRACTS_PATH = "evidence/v1/contracts.schema.json"
 SELECTION_PATH = "sces/publication.json"
 DATA_DIRECTORIES = ("sces", "registry", "research", "legal-texts")
+REPORT_FIELDS = ("repository", "release", "dataset", "dataset_version", "schema_version", "source_commit",
+                 "policy_sha256", "selection_sha256")
+REQUEST_STATUS = "awaiting-separate-release-authorization"
+CHECKSUMS = "SHA256SUMS"
+RELEASE_ASSETS = {"claims.json", "qualification.json", "sces-contracts.schema.json", CHECKSUMS}
+ARCHIVE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\.zip", re.ASCII | re.IGNORECASE)
+GITHUB_ASSET_LIMIT = 2 * 1024 ** 3
+
+
+def valid_archive_name(name):
+    return isinstance(name, str) and ARCHIVE_NAME.fullmatch(name) is not None
+
+
+def valid_archive_size(size):
+    return type(size) is int and 0 < size < GITHUB_ASSET_LIMIT
+
+
+def checksum_listing(assets):
+    return "".join(f"{sha256(content).hexdigest()}  {name}\n" for name, content in sorted(assets.items())
+                   if name != CHECKSUMS).encode("ascii")
 
 
 def committed_file(root, commit, path):
@@ -99,12 +120,10 @@ def collect(catalog, policy, base):
         "qualification.json": report_bytes,
         "sces-contracts.schema.json": policy_schema(policy),
     }
-    checksums = {name: sha256(content).hexdigest() for name, content in sorted(assets.items())}
-    assets["SHA256SUMS"] = "".join(f"{digest}  {name}\n" for name, digest in checksums.items()).encode("ascii")
-    metadata = {key: report[key] for key in ("repository", "release", "dataset", "dataset_version",
-                                              "schema_version", "source_commit", "policy_sha256", "selection_sha256")}
+    assets[CHECKSUMS] = checksum_listing(assets)
+    metadata = {key: report[key] for key in REPORT_FIELDS}
     metadata.update({
-        "status": "awaiting-separate-release-authorization",
+        "status": REQUEST_STATUS,
         "publication_candidate_commit": publication_commit,
         "history_base_commit": base,
         "policy_commit": POLICY_COMMIT,
@@ -115,14 +134,15 @@ def collect(catalog, policy, base):
 
 
 def stage(catalog, policy, output, base):
-    assets, metadata = collect(catalog, policy, base)
     target = Path(output)
-    require(target.suffix.lower() == ".zip", "release staging requires a ZIP output path")
+    require(valid_archive_name(target.name), "release staging requires a GitHub-safe ZIP filename")
+    assets, metadata = collect(catalog, policy, base)
     archive = BytesIO()
     with ZipFile(archive, "w") as bundle:
         for name, content in sorted(assets.items()):
             archive_entry(bundle, name, content)
     content = archive.getvalue()
+    require(valid_archive_size(len(content)), "release ZIP exceeds the GitHub attachment size limit")
     write_license(target, content)
     return {**metadata, "archive": {"name": target.name, "bytes": len(content), "sha256": sha256(content).hexdigest()}}
 
