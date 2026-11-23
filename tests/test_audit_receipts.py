@@ -2,6 +2,7 @@
 
 from base64 import b64encode
 from contextlib import redirect_stderr
+from copy import deepcopy
 from hashlib import sha256
 from io import StringIO
 import json
@@ -20,6 +21,7 @@ LOCATOR = "https://example.invalid/fixture"
 STARTED = "2026-01-01T12:00:00Z"
 RETRIEVED = "2026-01-01T12:00:01Z"
 COMPLETED = "2026-01-01T12:00:02Z"
+CHECK_NAMES = ("authenticity", "integrity", "relevance", "interpretation", "applicability", "contradiction")
 
 
 class ReceiptAuditTests(unittest.TestCase):
@@ -108,6 +110,123 @@ class ReceiptAuditTests(unittest.TestCase):
         with patch.dict(acquisition, {"sha256": "c" * 64}):
             with self.assertRaisesRegex(DataError, "cannot corroborate a source byte digest"):
                 audit_receipts(self.registry, [self.first, self.second])
+
+    def write_final_assessment(self, paths, assessment):
+        message = json.dumps(assessment)
+        events, session = [[json.loads(line) for line in path.read_bytes().splitlines()] for path in paths]
+        events[-2]["item"]["text"] = message
+        session[-1]["payload"]["last_agent_message"] = message
+        for path, rows in zip(paths, (events, session)):
+            path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
+
+    def use_structured_assessments(self):
+        messages = []
+        for paths, recorded in zip((self.first, self.second), self.registry["claims"][0]["recorded_reviews"]):
+            dependencies = [
+                {"id": identity, "outcome": "supports", "reasoning": f"Rationale for {identity}",
+                 "checks": dict.fromkeys(CHECK_NAMES, "pass")}
+                for identity in ("fixture-first", "fixture-second")
+            ]
+            claim = {"claim_sha256": CLAIM_DIGEST, "conclusion": "supported",
+                     "reasoning": f"Rationale for {recorded['phase']}", "limitations": ["This exact edition only."],
+                     "dependencies": dependencies}
+            recorded.update(reasoning=claim["reasoning"], limitations=claim["limitations"].copy(), assessments=[
+                {**{field: row[field] for field in ("outcome", "reasoning")},
+                 "checks": row["checks"].copy(), "dependency": {"id": row["id"], "kind": "dependency", "revision": 1}}
+                for row in reversed(dependencies)
+            ])
+            if recorded["phase"] == "independent-review":
+                claim.update(challenge_method="Check another edition.", challenge_result="Another edition differs.")
+                recorded["challenge"] = {"method": claim["challenge_method"], "results": claim["challenge_result"],
+                                         "targeted": True}
+            message = {"claims": [claim]}
+            self.write_final_assessment(paths, message)
+            messages.append(message)
+        return messages
+
+    def test_matches_structured_findings_in_both_phases_by_dependency_id(self):
+        self.use_structured_assessments()
+        report = audit_receipts(self.registry, [self.first, self.second])
+        self.assertEqual(report["claims"], [CLAIM])
+        self.assertEqual(report["acquisition_bindings"], 2)
+        self.assertNotIn("Rationale", json.dumps(report))
+
+    def test_preserves_archived_batched_assessments_with_claim_level_checks(self):
+        legacy = {"claim_sha256": CLAIM_DIGEST, "conclusion": "supported", "reasoning": "Claim reasoning.",
+                  "limitations": ["Exact edition only."], "challenge_method": "Compare other editions.",
+                  "challenge_result": "Claim holds for this edition.", "checks": dict.fromkeys(CHECK_NAMES, "pass")}
+        self.write_final_assessment(self.first, {"claims": [legacy]})
+        self.write_final_assessment(self.second, {"claims": [legacy]})
+        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+
+    def test_compares_structured_claim_reasoning_limitations_and_independent_challenge(self):
+        _, original = self.use_structured_assessments()
+        for field, error in (
+            ("reasoning", "claim reasoning or limitations"),
+            ("limitations", "claim reasoning or limitations"),
+            ("challenge_method", "challenge method or results"),
+            ("challenge_result", "challenge method or results"),
+        ):
+            with self.subTest(field=field):
+                modified = deepcopy(original)
+                modified["claims"][0][field] = ["Changed scope."] if field == "limitations" else "Changed finding."
+                self.write_final_assessment(self.second, modified)
+                with self.assertRaisesRegex(DataError, error):
+                    audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_dependency_assessment_coverage_changes(self):
+        original, _ = self.use_structured_assessments()
+        dependencies = original["claims"][0]["dependencies"]
+        for rows, error in (
+            ([], "dependency assessments are incomplete"),
+            (dependencies[:1], "differ from the recorded dependencies"),
+            ([*dependencies, dependencies[0]], "dependency assessments are incomplete or ambiguous"),
+            ([{**dependencies[0], "id": "unexpected-dependency"}, dependencies[1]],
+             "differ from the recorded dependencies"),
+        ):
+            with self.subTest(rows=rows):
+                self.write_final_assessment(self.first, {"claims": [{**original["claims"][0], "dependencies": rows}]})
+                with self.assertRaisesRegex(DataError, error):
+                    audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_changed_dependency_outcome_reasoning_and_each_check(self):
+        original, _ = self.use_structured_assessments()
+        for field in ("outcome", "reasoning", *CHECK_NAMES):
+            with self.subTest(field=field):
+                modified = deepcopy(original)
+                dependency = modified["claims"][0]["dependencies"][0]
+                if field in CHECK_NAMES:
+                    dependency["checks"][field] = "fail"
+                else:
+                    dependency[field] = "changed"
+                self.write_final_assessment(self.first, modified)
+                with self.assertRaisesRegex(DataError, "dependency outcome, reasoning or checks"):
+                    audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_duplicate_claims_and_partly_structured_claims(self):
+        original, _ = self.use_structured_assessments()
+        claim = original["claims"][0]
+        for other, error in (
+            (claim, "claim assessments are incomplete or ambiguous"),
+            ({"claim_sha256": "b" * 64, "conclusion": "supported"}, "structured Codex claim assessments are incomplete"),
+        ):
+            with self.subTest(other=other):
+                self.write_final_assessment(self.first, {"claims": [claim, other]})
+                with self.assertRaisesRegex(DataError, error):
+                    audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_missing_dependencies_in_single_structured_claim(self):
+        _, original = self.use_structured_assessments()
+        del original["claims"][0]["dependencies"]
+        self.write_final_assessment(self.second, original)
+        with self.assertRaisesRegex(DataError, "structured Codex claim assessments are incomplete"):
+            audit_receipts(self.registry, [self.first, self.second])
+
+    def test_cli_does_not_echo_structured_assessment_content(self):
+        _, original = self.use_structured_assessments()
+        original["claims"][0]["challenge_result"] = "private-sentinel"
+        self.write_final_assessment(self.second, original)
+        self.assert_private_error("challenge method or results")
 
     def test_requires_actual_tool_output_even_when_agent_message_is_present(self):
         self.first[1].write_bytes(self.first[1].read_bytes().replace(

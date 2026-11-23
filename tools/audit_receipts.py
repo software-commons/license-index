@@ -14,7 +14,11 @@ import sys
 from .audit_claims import audit_claims
 from .capture_source import fingerprints
 from .qualification import _exact_file
-from .records import DataError, decode, encode, require, unique_fields
+from .records import HEX_256, DataError, decode, encode, require, unique_fields
+
+
+CHECKS = {"authenticity", "integrity", "relevance", "interpretation", "applicability", "contradiction"}
+CHALLENGE_FIELDS = {"challenge_method", "challenge_result"}
 
 
 class ObjectPairs(list):
@@ -87,9 +91,22 @@ def execution(events_path, session_path):
     except (DataError, ValueError, RecursionError) as error:
         raise DataError("Codex final assessment contains invalid JSON") from error
     require(isinstance(parsed, dict), "Codex final assessment is not a JSON object")
-    assessments = parsed.get("claims", [parsed])
-    conclusions = {row["claim_sha256"]: row["conclusion"] for row in assessments}
-    require(conclusions and len(conclusions) == len(assessments), "Codex claim assessments are ambiguous")
+    rows = parsed.get("claims", [parsed])
+    require(isinstance(rows, list) and rows and all(isinstance(row, dict) for row in rows),
+            "Codex claim assessments are incomplete")
+    assessments = {}
+    for row in rows:
+        digest = row.get("claim_sha256")
+        require(isinstance(digest, str) and HEX_256.fullmatch(digest)
+                and isinstance(row.get("conclusion"), str) and digest not in assessments,
+                "Codex claim assessments are incomplete or ambiguous")
+        assessments[digest] = row
+    # Earlier batched assessments put checks directly on each claim.
+    structured = "claims" in parsed and any(
+        "dependencies" in row or ("checks" not in row and CHALLENGE_FIELDS & row.keys()) for row in rows
+    )
+    require(not structured or all("dependencies" in row for row in rows),
+            "structured Codex claim assessments are incomplete")
 
     meta = one((row["payload"] for row in session if row["type"] == "session_meta"), "Codex session header")
     context = one((row["payload"] for row in session if row["type"] == "turn_context"), "Codex turn context")
@@ -112,7 +129,8 @@ def execution(events_path, session_path):
         "started": timing["task_started"],
         "completed": timing["task_complete"],
         "final_message": message,
-        "conclusions": conclusions,
+        "assessments": assessments,
+        "structured": structured,
         "event_items": event_items,
         "session": session,
         "events_sha256": events_digest,
@@ -254,6 +272,44 @@ def check_acquisition(run, recorded, byte_bindings=None):
     return "web-open"
 
 
+def check_assessment(run, review):
+    assessment = run["assessments"].get(review["claim_sha256"])
+    require(assessment is not None and assessment["conclusion"] == review["conclusion"],
+            "Codex final assessment differs from the recorded claim or conclusion")
+    if not run["structured"]:
+        return
+
+    require(assessment.get("reasoning") == review["reasoning"]
+            and assessment.get("limitations") == review["limitations"],
+            "Codex claim reasoning or limitations differ from the recorded assessment")
+    dependencies = assessment["dependencies"]
+    require(isinstance(dependencies, list) and dependencies, "Codex dependency assessments are incomplete")
+    native = {}
+    for dependency in dependencies:
+        identifier = dependency.get("id") if isinstance(dependency, dict) else None
+        require(isinstance(identifier, str) and identifier and identifier not in native,
+                "Codex dependency assessments are incomplete or ambiguous")
+        native[identifier] = dependency
+
+    rows = review["assessments"]
+    recorded = {row["dependency"]["id"]: row for row in rows}
+    require(len(recorded) == len(rows), "recorded dependency assessments have ambiguous IDs")
+    require(native.keys() == recorded.keys(), "Codex dependency assessments differ from the recorded dependencies")
+    for identifier, dependency in recorded.items():
+        findings = native[identifier]
+        checks = findings.get("checks")
+        require(isinstance(checks, dict) and checks.keys() == CHECKS and checks == dependency["checks"]
+                and findings.get("outcome") == dependency["outcome"]
+                and findings.get("reasoning") == dependency["reasoning"],
+                "Codex dependency outcome, reasoning or checks differ from the recorded assessment")
+
+    if review["phase"] == "independent-review" or "challenge" in review:
+        challenge = review.get("challenge")
+        require(challenge is not None and assessment.get("challenge_method") == challenge["method"]
+                and assessment.get("challenge_result") == challenge["results"],
+                "Codex challenge method or results differ from the recorded assessment")
+
+
 def audit_receipts(registry, executions):
     runs = {}
     for events, session in executions:
@@ -272,7 +328,7 @@ def audit_receipts(registry, executions):
         expected = {review["run"]["execution"] for review in reviews}
         if not expected or not expected <= runs.keys():
             continue
-        require(len(expected) == 2, "a matched claim must have two separate recorded executions")
+        require(len(reviews) == len(expected) == 2, "a matched claim must have two separate recorded executions")
         require({review["phase"] for review in reviews} == {"research", "independent-review"},
                 "recorded execution pair lacks distinct research and review phases")
         for review in reviews:
@@ -282,8 +338,7 @@ def audit_receipts(registry, executions):
                     and recorded["started"] == seconds(run["started"])
                     and recorded["completed"] == seconds(run["completed"]),
                     "recorded execution metadata differs from the Codex session")
-            require(run["conclusions"].get(review["claim_sha256"]) == review["conclusion"],
-                    "Codex final assessment differs from the recorded claim or conclusion")
+            check_assessment(run, review)
             require(review["acquisitions"], "the recorded execution has no source acquisitions to compare")
             for acquisition in review["acquisitions"]:
                 methods.add(check_acquisition(run, acquisition, byte_bindings))
