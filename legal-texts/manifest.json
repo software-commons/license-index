@@ -1,4 +1,30 @@
 {
+  "AGPL-3.0-only": {
+    "application": "This writes the verbatim GNU AGPL version 3 document. Use a separate project notice to state version 3 only and follow the publisher’s application instructions at the end of the document.",
+    "bytes": 34523,
+    "encoding": "UTF-8",
+    "install": "unchanged",
+    "line_endings": "LF",
+    "path": "legal-texts/agpl-3.0.txt",
+    "representation": "publisher plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "edition plus SHA-256",
+    "rights": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+    "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+    "source": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt"
+  },
+  "AGPL-3.0-or-later": {
+    "bytes": 34523,
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "path": "legal-texts/agpl-3.0.txt",
+    "representation": "publisher plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "edition plus SHA-256",
+    "rights": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+    "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+    "source": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt"
+  },
   "Apache-2.0": {
     "application": "This writes the Apache license document. Review the publisher instructions for source headers, attribution and any NOTICE file.",
     "bytes": 11358,
@@ -101,6 +127,20 @@
     "rights": "https://creativecommons.org/policies/",
     "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
     "source": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt"
+  },
+  "EPL-2.0": {
+    "application": "This writes the verbatim EPL 2.0 agreement. Declare the project’s licensing separately and retain required notices. Selecting a Secondary License requires a separate Exhibit A notice from the initial Contributor and the conditions in section 3.2.",
+    "bytes": 14198,
+    "encoding": "UTF-8",
+    "install": "unchanged",
+    "line_endings": "LF",
+    "path": "legal-texts/epl-2.0.txt",
+    "representation": "publisher plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "edition plus SHA-256",
+    "rights": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+    "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+    "source": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt"
   },
   "GPL-2.0-only": {
     "application": "This writes the verbatim GNU license document. Review the GNU application instructions and use a separate notice to state the selected version terms.",

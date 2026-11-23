@@ -20,7 +20,9 @@ The text command prefers a bundled publisher file when available. Other SPDX-lis
 
 `text PolyForm-Noncommercial-1.0.0` and `text PolyForm-Small-Business-1.0.0` return the publisher's exact source Markdown with its original line wrapping. The six Creative Commons 4.0 International texts use the publisher's English plain-text representation. Inspect `text --json` for the representation, source and digest.
 
-The installation command supports exact Apache-2.0 and GNU GPL version 2 and 3 license documents. Review the publisher's separate application guidance and add any required notices or headers yourself. MIT's recipe accepts a single-line Unicode holder and an explicit four-digit year. It replaces only the designated notice line in the hash-verified source. A preview without MIT fields shows that line with placeholders. The CLI rejects incomplete pairs and rejects copyright fields for unchanged-copy recipes.
+The installation command supports exact copies of Apache-2.0, EPL-2.0, AGPL-3.0-only, GPL-2.0-only and GPL-3.0-only. Use the separate publisher guidance to declare the applicable terms and add any required notices or headers. EPL 2.0’s Secondary License option has the separate conditions in §3.2 and Exhibit A. The AGPL and GPL later-version identifiers also have offline text. The application notice states which version election applies.
+
+MIT's recipe accepts a single-line Unicode holder and an explicit four-digit year. It replaces only the designated notice line in the hash-verified source. A preview without MIT fields shows that line with placeholders. The CLI rejects incomplete pairs and rejects copyright fields for unchanged-copy recipes.
 
 Only a single current license identifier can select an install recipe. With a compound expression or a standalone exception, inspect the source and determine the applicable documents first. Expression output describes syntax and referenced identities. The meaning of `WITH` depends on the identified exception and the relevant base instrument.
 
