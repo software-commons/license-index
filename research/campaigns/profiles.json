@@ -1057,6 +1057,66 @@
       }
     ]
   },
+  "GPL-1.0-only": {
+    "summary": "SPDX uses this identifier for a grant restricted to GNU GPL version 1. Verify the actual project notice for the material covered by that grant.",
+    "dimensions": {
+      "modification": {
+        "state": "condition",
+        "text": "Paragraph 2(a) calls for prominent change notices and dates in modified files. Paragraph 2(b) addresses licensing a distributed or published work containing the Program or any part of it. Paragraph 2 distinguishes mere aggregation with an independent work on a distribution medium.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 2"}]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "For verbatim source distribution, paragraph 1 calls for an appropriate copyright and warranty-disclaimer notice, retention of notices referring to the GPL and absence of warranty, and a copy of the GPL for recipients.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 1"}]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "For object code or executables, paragraph 3(a) calls for accompanying complete corresponding machine-readable source. Paragraph 3(b) permits an accompanying written offer for at least three years to supply such source to any third party, with only a nominal charge for distribution cost. Paragraph 3(c) permits passing along source-location information only for noncommercial redistribution after receiving the Program solely in object or executable form.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 3(a)–(c)"}]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "An authorized grant of version 1 only restricts the choice to that version. The sample notice printed in the GPLv1 appendix illustrates an or-later grant. Use the project’s actual notice to establish its version choice.",
+        "sources": [
+          {"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraphs 0 and 7 and application appendix"},
+          {"url": "https://spdx.org/licenses/GPL-1.0-only.html", "locator": "Notes and Standard License Header"}
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Passing on an executable received under GPL version 1 only",
+        "text": "Check whether the distribution is noncommercial and whether you received only object code or an executable. Paragraph 3(c) requires passing on the source-location information you received. If the route is unavailable, assess the accompanying-source and written-offer options in paragraphs 3(a) and 3(b).",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 3(a)–(c)"}]
+      }
+    ]
+  },
+  "GPL-1.0-or-later": {
+    "summary": "SPDX uses this identifier for a grant allowing GNU GPL version 1 or any later GNU GPL version published by the Free Software Foundation.",
+    "dimensions": {
+      "version_choice": {
+        "state": "documented",
+        "text": "Paragraph 7 permits following a later FSF version where the applicable grant specifies version 1 and the later-version option. It separately addresses a GNU GPL grant that specifies no version number. Check the grant for the file or release before exercising either option.",
+        "sources": [
+          {"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraphs 0 and 7"},
+          {"url": "https://spdx.org/licenses/GPL-1.0-or-later.html", "locator": "Notes and Standard License Header"}
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "A distributor following version 1 checks the three source routes in paragraph 3 and that paragraph’s definition of complete source. A distributor following a later edition checks the terms of that edition.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraphs 3 and 7"}]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Selecting an edition for redistributing older GPL-covered code",
+        "text": "Inspect the authorized notice on the material you received. If it grants version 1 or later and you elect a later FSF version, assess that edition’s distribution conditions. The common version 1 license document shows the original terms and sample notice.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 7 and application appendix"}]
+      }
+    ]
+  },
   "GPL-2.0-only": {
     "summary": "This SPDX identifier describes a grant restricted to GNU GPL version 2. The project's authorized license notices establish where that grant applies.",
     "dimensions": {
@@ -1980,11 +2040,11 @@
       },
       "larger_work": {
         "state": "permission",
-        "text": "A Larger Work may be distributed on chosen terms if the distributor also meets the MPL requirements for Covered Software. Section 3.3 separately provides for additional distribution under a qualifying Secondary License where its combination and compatibility conditions hold.",
+        "text": "The first paragraph of §3.3 permits distributing a Larger Work on chosen terms while meeting the MPL requirements for Covered Software. The Larger Work definition concerns additional material in separate files.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
-            "locator": "§§1.5, 1.7, 1.12 and 3.3"
+            "locator": "§1.7 and §3.3 first paragraph"
           }
         ]
       },
@@ -2018,6 +2078,14 @@
           }
         ]
       },
+      "secondary_licenses": {
+        "state": "permission",
+        "text": "Section 3.3 permits a qualifying initial distribution of eligible Covered Software under both the MPL and the relevant Secondary License when the Larger Work combines it with an existing work governed by that license. Check both incompatibility grounds in §1.5. Recipients may then further distribute the Covered Software under either applicable license.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 1.12 and 3.3"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/FAQ/", "locator": "Q14"}
+        ]
+      },
       "source_availability": {
         "state": "condition",
         "text": "A distributor of Covered Software in Executable Form must make the source available under §3.1 and tell executable recipients how to get the source by reasonable means, in a timely manner, for at most the cost of distribution to them.",
@@ -2048,6 +2116,55 @@
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
             "locator": "§§1.10 and 3.1–3.3"
           }
+        ]
+      },
+      {
+        "situation": "Distributing a Larger Work with an existing GPLv3 component",
+        "text": "Check the MPL-covered files’ notices and their licensing history. If neither §1.5 ground applies and the work meets §3.3’s combination condition, follow Mozilla’s guidance for making the covered source available under both licenses. Apply the executable source-access rules separately if shipping executable copies.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 1.12 and 3.2–3.3"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/combining-mpl-and-gpl/", "locator": "Initial Distribution of MPL-licensed Files As Part Of an (L)GPL-licensed Project"}
+        ]
+      }
+    ]
+  },
+  "MPL-2.0-no-copyleft-exception": {
+    "summary": "SPDX uses this identifier for MPL 2.0 with the Exhibit B incompatibility notice attached to the covered source. The additional distribution route under Secondary Licenses in §3.3 depends on the actual notice and licensing history.",
+    "dimensions": {
+      "larger_work": {
+        "state": "permission",
+        "text": "The first paragraph of §3.3 still permits distributing a Larger Work on chosen terms while meeting the MPL requirements for Covered Software. Assess the separate files under the Larger Work definition.",
+        "sources": [{"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§1.7 and §3.3 first paragraph"}]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Section 10.4 requires attaching Exhibit B when distributing incompatible Covered Software in Source Code Form under MPL 2.0. Mozilla explains that printing Exhibit B within a copy of the full license leaves this attachment requirement unfulfilled. Preserve applicable source notices under §3.4.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§3.4 and 10.4, Exhibits A and B"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/FAQ/", "locator": "Q25"}
+        ]
+      },
+      "secondary_licenses": {
+        "state": "restriction",
+        "text": "Section 1.5(a) treats Covered Software as incompatible with Secondary Licenses when its initial Contributor attaches Exhibit B. Section 1.5(b) separately applies if the software was made available under MPL 1.1 or earlier without also being made available under a Secondary License. The second paragraph of §3.3 supplies no additional Secondary License permission for such incompatible source.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 1.12 and 3.3 second paragraph"},
+          {"url": "https://spdx.org/licenses/MPL-2.0-no-copyleft-exception.html", "locator": "Notes and Standard License Header"}
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "When distributing Covered Software in Executable Form, make its source available under §3.1 and tell recipients how to obtain it under the conditions in §3.2(a). Exhibit B affects the separate Secondary License route.",
+        "sources": [{"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§3.1–3.3 and 10.4"}]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Considering a Larger Work with a GPLv3 component and Exhibit B source",
+        "text": "Verify whether Exhibit B was actually attached to the covered source and check its licensing history. If the source is incompatible under §1.5, seek another applicable grant before relying on GPLv3 terms for that source. When distributing the incompatible source under MPL 2.0, attach Exhibit B and preserve applicable notices.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 3.3–3.4 and 10.4"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/FAQ/", "locator": "Q14 and Q25"}
         ]
       }
     ]

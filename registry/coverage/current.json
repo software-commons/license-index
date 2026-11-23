@@ -1,8 +1,8 @@
 {
   "assessment": {
     "authentic_text": {
-      "bundled_publisher_text_files": 15,
-      "bundled_publisher_text_identities": 19,
+      "bundled_publisher_text_files": 16,
+      "bundled_publisher_text_identities": 21,
       "spdx_header_references": 93,
       "spdx_matching_template_references": 826,
       "spdx_text_references": 826
@@ -29,6 +29,8 @@
         "CC-BY-4.0",
         "CC0-1.0",
         "EPL-2.0",
+        "GPL-1.0-only",
+        "GPL-1.0-or-later",
         "GPL-2.0-only",
         "GPL-2.0-or-later",
         "GPL-3.0-only",
@@ -43,14 +45,14 @@
       "status": "development"
     },
     "research": {
-      "provisional_explanations": 31,
-      "spdx_without_provisional_explanation": 795
+      "provisional_explanations": 34,
+      "spdx_without_provisional_explanation": 792
     },
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-23",
   "method": "Reconcile exact upstream list manifests and per-ID artifact checksums. Count discovery, packaged text, safe installation, provisional research, and selected SCES claims separately.",
   "schema_version": "1.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-offline-install-scope.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-gplv1-mpl-variant.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

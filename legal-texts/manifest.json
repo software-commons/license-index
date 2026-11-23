@@ -148,6 +148,34 @@
     "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
     "source": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt"
   },
+  "GPL-1.0-only": {
+    "application": "This writes the verbatim GNU GPL version 1 document. State version 1 only in the separate authorized project notice. The appendix illustrates notice placement and shows an or-later example.",
+    "bytes": 12527,
+    "encoding": "UTF-8",
+    "install": "unchanged",
+    "line_endings": "LF",
+    "path": "legal-texts/gpl-1.0.txt",
+    "representation": "publisher plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "edition plus SHA-256",
+    "rights": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt",
+    "sha256": "49c007bafb5ad6dd9f9d4dae4d3ac0461975498150c05d684c551f0914ab486c",
+    "source": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt"
+  },
+  "GPL-1.0-or-later": {
+    "application": "This writes the verbatim GNU GPL version 1 document. Follow the publisher’s application appendix and state in a separate authorized project notice that version 1 or any later version published by the Free Software Foundation applies.",
+    "bytes": 12527,
+    "encoding": "UTF-8",
+    "install": "unchanged",
+    "line_endings": "LF",
+    "path": "legal-texts/gpl-1.0.txt",
+    "representation": "publisher plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "edition plus SHA-256",
+    "rights": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt",
+    "sha256": "49c007bafb5ad6dd9f9d4dae4d3ac0461975498150c05d684c551f0914ab486c",
+    "source": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt"
+  },
   "GPL-2.0-only": {
     "application": "This writes the verbatim GNU GPL version 2 document. Apply the publisher’s instructions separately and state version 2 only in the authorized project notice.",
     "bytes": 17984,

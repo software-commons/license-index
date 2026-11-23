@@ -219,6 +219,8 @@ class ToolTests(unittest.TestCase):
                 ("CC-BY-4.0", "cc-by-4.0.txt"),
                 ("CC0-1.0", "cc0-1.0.txt"),
                 ("EPL-2.0", "epl-2.0.txt"),
+                ("GPL-1.0-only", "gpl-1.0.txt"),
+                ("GPL-1.0-or-later", "gpl-1.0.txt"),
                 ("GPL-2.0-or-later", "gpl-2.0.txt"),
                 ("GPL-3.0-or-later", "gpl-3.0.txt"),
             ):
@@ -237,6 +239,14 @@ class ToolTests(unittest.TestCase):
             self.assertFalse(result["written"])
             self.assertFalse((folder / "COPYING").exists())
             self.assertIn("version 2 or any later version", result["application"])
+            for identifier, notice in (("GPL-1.0-only", "version 1 only"),
+                                       ("GPL-1.0-or-later", "version 1 or any later version")):
+                with self.subTest(identifier=identifier):
+                    preview = command("add", identifier, "--output", folder / "COPYING", "--dry-run",
+                                      "--json", root=unpacked)
+                    self.assertEqual(preview.returncode, 0, preview.stderr.decode())
+                    self.assertIn(notice, json.loads(preview.stdout)["application"])
+                    self.assertFalse((folder / "COPYING").exists())
             for identifier in ("LGPL-3.0-only", "LGPL-3.0-or-later"):
                 with self.subTest(identifier=identifier):
                     expected = (ROOT / "legal-texts" / "lgpl-3.0.txt").read_bytes()
