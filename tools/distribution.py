@@ -144,7 +144,8 @@ def bundle(catalog, output):
                      for path in (catalog.root / folder).rglob(pattern) if path.is_file())
     if catalog.profiles:
         files.add("research/campaigns/profiles.json")
-    files.difference_update({"tools/audit_claims.py", "tools/audit_receipts.py", "tools/release_download.py",
+    files.difference_update({"tools/audit_claims.py", "tools/audit_receipts.py", "tools/capture_source.py",
+                             "tools/release_download.py",
                              "tools/review_commission.py",
                              "tools/review_gate.py", "tools/review_queue.py", "tools/review_snapshot.py",
                              "tools/stage_release.py", "tools/verify_release.py"})

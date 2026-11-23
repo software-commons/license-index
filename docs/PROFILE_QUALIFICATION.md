@@ -21,6 +21,19 @@ Use the packet's planning labels to separate instrument identity, authority, tex
 
 Maintain separate counts for catalog entries, provisional profiles, independently reviewed assertions, canonical identities and selected claims. A single verified assertion can remain useful while the rest of its profile awaits review. The initial pilot concerns SPDX membership and supplies no legal interpretation or accepted instrument identity.
 
+## Retain and recheck exact source bytes
+
+After choosing a public, authorized source, use its final HTTPS URL without credentials, a query, or a fragment. Give the capture command a new file in local working storage outside the tool checkout. It checks the HTTP response and any supplied pins before atomically writing the body. It reports the observed SHA-256, length, media type, capture time and optional citation fingerprints. It requests identity encoding and refuses redirects and existing destinations. Save stdout to a new observation file using byte-preserving redirection.
+
+```text
+python -B -m tools.capture_source capture FINAL_HTTPS_URL NEW_ARTIFACT --expect-sha256 SOURCE_DIGEST --expect-bytes SOURCE_SIZE --range START END > OBSERVATION.json
+python -B -m tools.capture_source verify NEW_ARTIFACT OBSERVATION.json --observation-sha256 OBSERVATION_DIGEST
+```
+
+Ranges count raw bytes from zero and exclude the end offset. Repeat `--range` to hash multiple passages. The offline verifier recomputes the whole-file and range fingerprints. Supply the observation SHA-256 from separate trusted custody to pin the exact observation. If the first capture has no independent source pin, leave the corresponding `--expect` options out and record the result as a measurement.
+
+Keep the captured bytes and observation where the research and independent review can inspect them with authorized access. Follow the pinned protocol for each execution’s acquisition events, authority assessment, citation locators, applicable modality and review records.
+
 ## Audit exact draft revisions locally
 
 Use a trusted License Index tool checkout, a trusted pinned policy checkout, and a Python environment with the policy's `tools/sces/requirements.txt` installed. Run `python -B -m tools.audit_claims --repo PRIVATE_DRAFT_CHECKOUT --policy PINNED_SCES_CHECKOUT --base TRUSTED_PREDECESSOR_SHA`. The draft's adoption file must match the tool checkout. Supply a trusted Git ancestor as `--base`, or omit it for a draft with no trusted predecessor. The audit compares the pinned policy bytes before loading the validator. It verifies the registry and reports each exact claim revision and digest, the recorded review phases and disposition, and the first SCES eligibility check that blocks it. An invalid registry aborts the audit. Preserve the output privately because it names draft claims and includes their digests.
