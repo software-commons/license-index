@@ -51,7 +51,7 @@ jobs:
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.12"
-      - name: Validate schema, frozen history and active qualification
+      - name: Validate schema, SPDX replay, frozen history and active qualification
         working-directory: index
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
@@ -63,4 +63,4 @@ jobs:
           if [[ -n "$BASE_SHA" && "$BASE_SHA" != 0000000000000000000000000000000000000000 ]]; then
             args+=(--base "$BASE_SHA")
           fi
-          python -B -m tools.index validate --policy ../policy "${args[@]}"
+          python -B -m tools.index validate --policy ../policy --fetch-spdx-archive "${args[@]}"

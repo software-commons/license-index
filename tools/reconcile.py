@@ -297,7 +297,7 @@ def reconcile(existing, origins, manifest):
             continue
 
         old = prior["origin"]
-        changed = comparable_origin(old) != comparable_origin(origin)
+        changed = json_bytes(comparable_origin(old)) != json_bytes(comparable_origin(origin))
         removed = prior.get("membership", {}).get("status") == "removed"
         if not changed and not removed:
             continue

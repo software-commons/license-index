@@ -61,6 +61,10 @@ def parser():
             sub.add_argument("--policy", type=Path, help="checkout at the pinned SCES commit")
         if command == "validate":
             sub.add_argument("--base", help="full SHA of a trusted prior commit")
+            archive = sub.add_mutually_exclusive_group()
+            archive.add_argument("--spdx-archive", type=Path, help="replay the pinned SPDX archive from a local file")
+            archive.add_argument("--fetch-spdx-archive", action="store_true",
+                                 help="retrieve and replay the pinned SPDX archive")
         if command == "export":
             sub.add_argument("--qualified", action="store_true", help="require a current SCES-qualified selection")
         if command == "bundle":
@@ -175,9 +179,11 @@ def execute(catalog, args):
             else:
                 validate(catalog, policy=args.policy)
             return discovery_export(catalog), None
-        report, claims = validate(catalog, getattr(args, "base", None), args.policy)
         if command == "validate":
+            report, claims = validate(catalog, args.base, args.policy, spdx_archive=args.spdx_archive,
+                                      fetch_spdx_archive=args.fetch_spdx_archive)
             return {"valid": True, "qualification": report, "coverage": catalog.coverage(claims)}, "Valid registry"
+        report, claims = validate(catalog, policy=args.policy)
         require(report, "no active SCES-qualified release")
         return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}, None
     row = catalog.resolve(args.identifier)

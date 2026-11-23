@@ -1,12 +1,15 @@
+from copy import deepcopy
 from hashlib import sha256
 import io
 from pathlib import Path
 import tarfile
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from tools import reconcile
+from tools import reconcile, spdx_replay
+from tools.records import DataError
 
 
 DATA = "a" * 40
@@ -66,6 +69,87 @@ class ReconcileTests(unittest.TestCase):
 
     def read(self, release="3.29.0", data=DATA, expected_sha=None):
         return reconcile.load_release(self.archive, release, data, XML, expected_sha)
+
+    def replay_catalog(self, candidates):
+        return SimpleNamespace(root=self.repo, spdx={key.casefold(): row for key, row in candidates.items()})
+
+    def test_archive_replay_checks_exact_membership_and_origin(self):
+        fixture(self.archive)
+        origins, source = self.read()
+        reconcile.prepare(self.repo, self.repo, origins, source, initial=True)
+        rows = reconcile.read_candidates(self.repo)
+        spdx_replay.replay(self.replay_catalog(rows), source, self.archive, None)
+
+        changed = deepcopy(rows)
+        changed["Substitute"] = changed.pop("Example")
+        changed["Substitute"]["origin"]["identifier"] = "Substitute"
+        with self.assertRaisesRegex(DataError, "inventory mismatch .*missing: example; unexpected: substitute"):
+            spdx_replay.replay(self.replay_catalog(changed), source, self.archive, None)
+
+        for change in ("digest", "reference number", "forged history", "invented older pin", "invented membership"):
+            with self.subTest(change=change):
+                changed = deepcopy(rows)
+                row = changed["Example"]
+                if change == "digest":
+                    row["origin"]["artifacts"]["text"]["sha256"] = "0" * 64
+                elif change == "reference number":
+                    row["origin"]["metadata"]["referenceNumber"] = 12
+                elif change == "forged history":
+                    row["history"] = [{"origin": row["origin"]}]
+                elif change == "invented older pin":
+                    row["origin"]["source"] = NEXT
+                else:
+                    row["membership"] = {"status": "restored", "source": DATA, "release": source["release"]}
+                with self.assertRaises(DataError):
+                    spdx_replay.replay(self.replay_catalog(changed), source, self.archive, None)
+
+        rows["Example"]["origin"]["metadata"]["referenceNumber"] = 12
+        catalog = self.replay_catalog(rows)
+        with patch.object(spdx_replay, "trusted_candidates", return_value=catalog.spdx):
+            with self.assertRaisesRegex(DataError, "current origin differs from the archive: Example"):
+                spdx_replay.replay(catalog, source, self.archive, DATA)
+
+    def test_archive_replay_retains_trusted_origins_and_ids_at_release_change(self):
+        fixture(self.archive, licenses=("Example", "Removed"))
+        first, source = self.read()
+        reconcile.prepare(self.repo, self.repo, first, source, initial=True)
+        previous = self.replay_catalog(reconcile.read_candidates(self.repo))
+        fixture(self.archive, release="3.30.0", data=NEXT, licenses=("Example", "Added"))
+        second, source = self.read(release="3.30.0", data=NEXT)
+        delta, _ = reconcile.reconcile(previous.spdx, second, source)
+        catalog = self.replay_catalog({**previous.spdx, **{key.casefold(): row for key, row in delta.items()}})
+        with patch.object(spdx_replay, "trusted_candidates", return_value=previous.spdx):
+            spdx_replay.replay(catalog, source, self.archive, DATA)
+            changed = deepcopy(catalog)
+            changed.spdx["example"]["origin"] = second["Example"]
+            with self.assertRaisesRegex(DataError, "origin mismatch: Example"):
+                spdx_replay.replay(changed, source, self.archive, DATA)
+            changed = deepcopy(catalog)
+            del changed.spdx["removed"]["membership"]
+            with self.assertRaisesRegex(DataError, "membership mismatch: Removed"):
+                spdx_replay.replay(changed, source, self.archive, DATA)
+            changed = deepcopy(catalog)
+            changed.spdx["example"]["id"] = "0" * 32
+            with self.assertRaisesRegex(DataError, "candidate ID mismatch: Example"):
+                spdx_replay.replay(changed, source, self.archive, DATA)
+
+    def test_archive_replay_requires_exact_committed_acquisition(self):
+        fixture(self.archive)
+        _, source = self.read()
+        with patch.object(spdx_replay, "build_opener") as opener:
+            changed = deepcopy(source)
+            changed["archive"]["url"] = "https://example.org/archive.tar.gz"
+            with self.assertRaisesRegex(DataError, "archive location or size"):
+                spdx_replay.fetch_archive(changed, self.root / "download.tar.gz")
+            opener.assert_not_called()
+        changed = deepcopy(source)
+        changed["archive"]["bytes"] += 1
+        with self.assertRaisesRegex(DataError, "archive size differs"):
+            spdx_replay.replay(None, changed, self.archive, None)
+        changed = deepcopy(source)
+        changed["archive"]["sha256"] = "0" * 64
+        with self.assertRaisesRegex(DataError, "SHA-256 mismatch"):
+            spdx_replay.replay(None, changed, self.archive, None)
 
     def test_fingerprints_and_deprecated_text_fallback(self):
         fixture(self.archive, deprecated=True)

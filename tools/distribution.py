@@ -85,7 +85,7 @@ def validate_profiles(catalog):
                         f"invalid evidence locator for {identifier}")
 
 
-def validate_discovery(catalog):
+def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_archive=False):
     saved = read(catalog.root / COVERAGE)
     source = read(local_path(catalog.root, saved["source_manifest"]))
     validate_source(catalog, source)
@@ -95,10 +95,16 @@ def validate_discovery(catalog):
     snapshot = local_path(catalog.root, saved["snapshot"])
     require(snapshot.read_bytes() == (catalog.root / COVERAGE).read_bytes(),
             "current coverage differs from its immutable snapshot")
+    if spdx_archive is not None or fetch_spdx_archive:
+        from .spdx_replay import replay, replay_download
+        if spdx_archive is not None:
+            replay(catalog, source, spdx_archive, base)
+        else:
+            replay_download(catalog, source, base)
 
 
-def validate(catalog, base=None, policy=None):
-    validate_discovery(catalog)
+def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False):
+    validate_discovery(catalog, base=base, spdx_archive=spdx_archive, fetch_spdx_archive=fetch_spdx_archive)
     result = qualified(catalog, policy, base=base)
     if base:
         check_history(catalog, base)
