@@ -3,6 +3,8 @@
 from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
+import subprocess
+import sys
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
@@ -67,6 +69,16 @@ class VerifyReleaseTests(unittest.TestCase):
     def check_local(self, raw):
         return verify(raw, describe(raw)["sha256"], archive_path=self.zip_path)
 
+    def authorization(self, raw):
+        return {
+            "version": 1, "decision": "authorize-publication", "repository": REPOSITORY,
+            "principal": "synthetic owner fixture", "approved_at": "2026-11-23T08:00:00Z",
+            "request_sha256": describe(raw)["sha256"],
+            "publication_commit": self.request["publication_candidate_commit"], "tag": "v1.0.0",
+            "notes": {"name": "Fixture release", "body": "Fixture scope and data license.\n"},
+            "data_license": "Fixture only", "scope": "One synthetic claim",
+        }
+
     def test_verifies_exact_local_archive_without_approval(self):
         raw = self.pack()
         report = self.check_local(raw)
@@ -123,3 +135,59 @@ class VerifyReleaseTests(unittest.TestCase):
         args = fetch.call_args
         self.assertEqual(args.args[1:3], ("v1.0.0", self.request["publication_candidate_commit"]))
         self.assertEqual(args.kwargs["notes_sha256"], notes)
+
+    def test_authorization_binds_local_zip_and_public_verification(self):
+        raw = self.pack()
+        decision = self.authorization(raw)
+        receipt = encode(decision)
+        receipt_digest = describe(receipt)["sha256"]
+        options = {"authorization": receipt, "authorization_digest": receipt_digest}
+        offline = verify(raw, archive_path=self.zip_path, **options)
+        self.assertEqual(offline["request_sha256"], decision["request_sha256"])
+        self.assertEqual(offline["authorization_record"]["sha256"], receipt_digest)
+        self.assertEqual(offline["authorization_record"]["principal"], decision["principal"])
+        with patch("tools.verify_release.fetch_public_archive",
+                   return_value=(self.zip_path.read_bytes(), {"release_url": "fixture"})) as fetch:
+            public = verify(raw, **options)
+        self.assertEqual(public["authorization_record"], offline["authorization_record"])
+        self.assertEqual(fetch.call_args.args[1:3], (decision["tag"], decision["publication_commit"]))
+        self.assertEqual(fetch.call_args.kwargs["notes_sha256"], describe(encode(decision["notes"]))["sha256"])
+
+    def test_cli_reads_the_authorization_and_pins_the_local_archive(self):
+        raw = self.pack()
+        request = self.zip_path.with_name("request.json")
+        approval = self.zip_path.with_name("authorization.json")
+        request.write_bytes(raw)
+        approval.write_bytes(encode(self.authorization(raw)))
+        digest = describe(approval.read_bytes())["sha256"]
+        result = subprocess.run([sys.executable, "-B", "-m", "tools.verify_release", str(request),
+                                 "--authorization", str(approval), "--authorization-sha256", digest,
+                                 "--zip", str(self.zip_path)], capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stderr.decode())
+        self.assertEqual(decode(result.stdout)["authorization_record"]["sha256"], digest)
+
+    def test_authorization_requires_authenticated_digest_and_matching_request(self):
+        raw = self.pack()
+        decision = self.authorization(raw)
+        receipt = encode(decision)
+        receipt_digest = describe(receipt)["sha256"]
+        with patch("tools.verify_release.fetch_public_archive") as fetch:
+            with self.assertRaisesRegex(DataError, "digest from the authenticated owner decision"):
+                verify(raw, authorization=receipt + b"\n", authorization_digest=receipt_digest)
+            with self.assertRaisesRegex(DataError, "digest from the authenticated owner decision"):
+                verify(raw, authorization=receipt)
+            with self.assertRaisesRegex(DataError, "authorization supplies the tag and exact notes"):
+                verify(raw, tag="v2.0.0", authorization=receipt, authorization_digest=receipt_digest)
+            for field, changed, diagnostic in (
+                ("request_sha256", "a" * 64, "staged request does not match"),
+                ("publication_commit", "a" * 40, "publication commit differs"),
+                ("version", True, "invalid owner authorization record"),
+                ("decision", "decline-publication", "invalid owner authorization record"),
+                ("scope", " ", "missing authorization scope"),
+                ("approved_at", "2026-11-23T08:00:00", "timestamp must be in UTC"),
+                ("notes", {"name": "Title", "body": ""}, "exact release name and body"),
+            ):
+                with self.subTest(field=field), self.assertRaisesRegex(DataError, diagnostic):
+                    altered = encode({**decision, field: changed})
+                    verify(raw, authorization=altered, authorization_digest=describe(altered)["sha256"])
+            fetch.assert_not_called()

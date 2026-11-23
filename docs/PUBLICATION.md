@@ -32,16 +32,36 @@ Use the request generated from the final integrated commit for authorization. If
 
 ## Authorize and verify publication
 
-Retain the owner’s separate decision with the approving principal, exact staging request SHA-256, integrated commit, versioned tag, release title and body, data license and scope. Verify the protected default branch and release tag controls using the owner’s view, including any bypass actors. The branch ruleset alone does not establish release tag protection. Attach the exact staged ZIP as the dataset attachment, using its filename as its displayed label or leaving the label blank. The machine-readable qualification report is inside that ZIP and at the same SCES path in the tagged source. GitHub also supplies source archives for the tag.
+Verify the protected default branch and versioned release tag controls using the owner’s view, including any bypass actors. Retain the authenticated decision and protection observations with the exact authorization record. Store the authorization separately from the release archive and the commit it approves. Ask the owner to communicate the exact authorization file’s SHA-256 through the authenticated decision channel so an operator can verify the binding independently.
+
+Record those approved values in the following UTF-8 JSON format as `AUTHORIZATION.json`. Use a UTC timestamp such as `YYYY-MM-DDTHH:MM:SSZ` for `approved_at`.
+
+```json
+{
+  "version": 1,
+  "decision": "authorize-publication",
+  "repository": "software-commons/license-index",
+  "principal": "AUTHENTICATED_OWNER_IDENTIFIER",
+  "approved_at": "APPROVAL_TIMESTAMP_IN_UTC",
+  "request_sha256": "APPROVED_REQUEST_SHA256",
+  "publication_commit": "INTEGRATED_COMMIT_SHA",
+  "tag": "APPROVED_VERSIONED_TAG",
+  "notes": {"name": "APPROVED_RELEASE_TITLE", "body": "APPROVED_RELEASE_BODY"},
+  "data_license": "APPROVED_DATA_LICENSE",
+  "scope": "APPROVED_DATASET_SCOPE_AND_LIMITATIONS"
+}
+```
+
+The verifier checks the supplied decision digest and its bindings to the exact request, integrated commit, release tag and notes. Authenticating the principal and confirming the body communicates the approved scope and license require the retained owner decision. Attach the exact staged ZIP as the dataset attachment, using its filename as its displayed label or leaving the label blank. The machine-readable qualification report is inside that ZIP and at the same SCES path in the tagged source. GitHub also supplies source archives for the tag.
 
 Verify the staged bytes locally before attaching them. After publication, verify the public asset and tag without credentials.
 
 ```text
-python -B -m tools.verify_release REQUEST.json --request-sha256 REQUEST_DIGEST --zip CANDIDATE.zip
-python -B -m tools.verify_release REQUEST.json --request-sha256 REQUEST_DIGEST --tag APPROVED_TAG --notes-sha256 NOTES_DIGEST
+python -B -m tools.verify_release REQUEST.json --authorization AUTHORIZATION.json --authorization-sha256 AUTHORIZATION_DIGEST --zip CANDIDATE.zip
+python -B -m tools.verify_release REQUEST.json --authorization AUTHORIZATION.json --authorization-sha256 AUTHORIZATION_DIGEST
 ```
 
-For `NOTES_DIGEST`, hash the bytes from `tools.records.encode({"name": approved_title, "body": approved_body})`. Use the exact GitHub title and body, including whitespace. The verifier matches the published title and body and resolves the public tag to the integrated commit in the request. It checks the downloaded ZIP, each asset digest, the checksum file, and the report’s claim list and policy result. It verifies those bindings against the supplied digests. Preserve the authenticated owner decision and protection observations separately.
+Preserve the exact GitHub title and body, including whitespace, in `notes`. The verifier matches the published notes, resolves the public tag to the integrated commit, checks the downloaded ZIP and each asset digest, and compares the report’s claim list and policy result. For an integrity-only check, use `--request-sha256 REQUEST_DIGEST` with `--zip CANDIDATE.zip`, or with `--tag TAG --notes-sha256 NOTES_DIGEST`. Calculate the notes digest from `tools.records.encode({"name": title, "body": body})`.
 
 Research-only notes and candidate catalogs carry provisional status. Empty registries and incomplete qualification provide no release. Follow SCES advisory and supersession procedures if an existing release loses active status.
 

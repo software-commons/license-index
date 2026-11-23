@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timedelta
 from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
@@ -12,7 +13,7 @@ from zipfile import BadZipFile, ZIP_STORED, ZipFile
 
 from .qualification import DATASET, POLICY_COMMIT, POLICY_DIGEST, REPOSITORY, SCHEMA_VERSION
 from .records import DATA_COMMIT, HEX_256, DataError, decode, encode, require
-from .release_download import fetch_public_archive
+from .release_download import _valid_tag, fetch_public_archive
 from .review_snapshot import GitHub
 from .stage_release import (
     CHECKSUMS, RELEASE_ASSETS, REPORT_FIELDS, REQUEST_STATUS, checksum_listing, valid_archive_name, valid_archive_size,
@@ -20,6 +21,8 @@ from .stage_release import (
 
 REQUEST_FIELDS = {*REPORT_FIELDS, "archive", "assets", "status", "history_base_commit",
                   "publication_candidate_commit", "policy_commit"}
+AUTHORIZATION_FIELDS = {"version", "decision", "repository", "principal", "approved_at", "request_sha256",
+                        "publication_commit", "tag", "notes", "data_license", "scope"}
 RELEASE_SLUG = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 GATES = {"A": "structural-pass", "B": "admissibility-pass", "C": "recorded-review-pass",
          "D": "recorded-scientific-controls-pass", "E": "artifact-integrity-pass"}
@@ -66,6 +69,30 @@ def checked_bytes(content, expected, label):
     return content
 
 
+def load_authorization(raw, expected_digest):
+    require(isinstance(raw, bytes) and match(HEX_256, expected_digest)
+            and sha256(raw).hexdigest() == expected_digest,
+            "authorization does not match the digest from the authenticated owner decision")
+    decision = decode(raw)
+    require(isinstance(decision, dict) and decision.keys() == AUTHORIZATION_FIELDS
+            and type(decision["version"]) is int and decision["version"] == 1
+            and decision["decision"] == "authorize-publication" and decision["repository"] == REPOSITORY
+            and match(HEX_256, decision["request_sha256"]) and match(DATA_COMMIT, decision["publication_commit"])
+            and _valid_tag(decision["tag"]), "invalid owner authorization record")
+    for field in ("principal", "approved_at", "data_license", "scope"):
+        require(isinstance(decision[field], str) and decision[field].strip(), f"missing authorization {field}")
+    try:
+        approved = datetime.fromisoformat(decision["approved_at"])
+    except ValueError as error:
+        raise DataError("invalid authorization timestamp") from error
+    require(approved.utcoffset() == timedelta(0), "authorization timestamp must be in UTC")
+    notes = decision["notes"]
+    require(isinstance(notes, dict) and notes.keys() == {"name", "body"}
+            and all(isinstance(value, str) and value.strip() for value in notes.values()),
+            "authorization must include the exact release name and body")
+    return decision
+
+
 def verify_report(request, assets):
     report = decode(assets["qualification.json"])
     require(isinstance(report, dict) and all(report.get(key) == request[key] for key in REPORT_FIELDS)
@@ -104,8 +131,22 @@ def verify_archive(content, request, descriptors):
     return verify_report(request, assets)
 
 
-def verify(raw_request, request_digest, *, archive_path=None, tag=None, notes_digest=None):
+def verify(raw_request, request_digest=None, *, archive_path=None, tag=None, notes_digest=None,
+           authorization=None, authorization_digest=None):
+    decision = None
+    if authorization is not None or authorization_digest is not None:
+        decision = load_authorization(authorization, authorization_digest)
+        require(request_digest is None or request_digest == decision["request_sha256"],
+                "request digest differs from the owner authorization")
+        require(tag is None and notes_digest is None, "the owner authorization supplies the tag and exact notes")
+        request_digest = decision["request_sha256"]
+        if archive_path is None:
+            tag = decision["tag"]
+            notes_digest = sha256(encode(decision["notes"])).hexdigest()
     request, assets = load_request(raw_request, request_digest)
+    if decision is not None:
+        require(decision["publication_commit"] == request["publication_candidate_commit"],
+                "publication commit differs from the owner authorization")
     require((archive_path is None) != (tag is None), "select either a local ZIP or a published tag")
     archive = request["archive"]
     public = None
@@ -134,21 +175,33 @@ def verify(raw_request, request_digest, *, archive_path=None, tag=None, notes_di
     }
     if public:
         result["public_release"] = public
+    if decision is not None:
+        result["authorization_record"] = {"sha256": authorization_digest, "principal": decision["principal"],
+                                          "approved_at": decision["approved_at"], "tag": decision["tag"],
+                                          "data_license": decision["data_license"], "scope": decision["scope"]}
     return result
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("request", type=Path, help="exact JSON emitted by stage_release")
-    parser.add_argument("--request-sha256", required=True, help="SHA-256 of the request from the separate decision")
-    targets = parser.add_mutually_exclusive_group(required=True)
+    parser.add_argument("--request-sha256", help="independently recorded request SHA-256 for an integrity-only check")
+    targets = parser.add_mutually_exclusive_group()
     targets.add_argument("--zip", type=Path, help="local candidate archive for an offline integrity check")
     targets.add_argument("--tag", help="versioned tag from the separate publication decision")
     parser.add_argument("--notes-sha256", help="approved SHA-256 of the JSON release name and body for --tag")
+    parser.add_argument("--authorization", type=Path, help="exact owner authorization record")
+    parser.add_argument("--authorization-sha256", help="digest obtained from the authenticated owner decision")
     args = parser.parse_args(argv)
+    if (args.authorization is None) != (args.authorization_sha256 is None):
+        parser.error("supply --authorization and --authorization-sha256 together")
+    if args.authorization is None and (args.request_sha256 is None or (args.zip is None and args.tag is None)):
+        parser.error("supply --request-sha256 and either --zip or --tag for an integrity-only check")
     try:
+        authorization = args.authorization.read_bytes() if args.authorization is not None else None
         result = verify(args.request.read_bytes(), args.request_sha256, archive_path=args.zip, tag=args.tag,
-                        notes_digest=args.notes_sha256)
+                        notes_digest=args.notes_sha256, authorization=authorization,
+                        authorization_digest=args.authorization_sha256)
     except (DataError, OSError, ValueError, TypeError, KeyError, BadZipFile, RuntimeError) as error:
         parser.exit(1, f"verify release: {error}\n")
     sys.stdout.buffer.write(encode(result))
