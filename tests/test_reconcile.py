@@ -6,7 +6,7 @@ import tarfile
 import tempfile
 from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 from tools import reconcile, spdx_replay
 from tools.records import DataError
@@ -155,15 +155,51 @@ class ReconcileTests(unittest.TestCase):
         fixture(self.archive)
         _, source = self.read()
         source["xml_commit"] = NEXT
-        with (patch.object(spdx_replay, "resolve_xml_tag", return_value=XML) as resolve,
+        with (patch.object(spdx_replay, "resolve_release_tag", return_value=XML) as resolve,
               patch.object(spdx_replay, "fetch_archive") as fetch):
             with self.assertRaisesRegex(DataError, "XML release tag differs from the committed XML pin"):
                 spdx_replay.replay_download(None, source, None)
             resolve.assert_called_once()
-            release, directory = resolve.call_args.args
+            repository, release, directory = resolve.call_args.args
+            self.assertEqual(repository, reconcile.SOURCE_REPOSITORY)
             self.assertEqual(release, "3.29.0")
             self.assertFalse(directory.exists())
             fetch.assert_not_called()
+
+    def test_online_replay_rejects_matching_archive_from_an_untagged_data_commit(self):
+        fixture(self.archive, data=NEXT)
+        origins, source = self.read(data=NEXT)
+        reconcile.prepare(self.repo, self.repo, origins, source, initial=True)
+        catalog = self.replay_catalog(reconcile.read_candidates(self.repo))
+        spdx_replay.replay(catalog, source, self.archive, None)
+
+        with (patch.object(spdx_replay, "resolve_release_tag", side_effect=(XML, DATA)) as resolve,
+              patch.object(spdx_replay, "fetch_archive") as fetch):
+            with self.assertRaisesRegex(DataError, "data release tag differs from the committed data pin"):
+                spdx_replay.replay_download(catalog, source, None)
+            directory = resolve.call_args.args[2]
+            self.assertEqual(resolve.call_args_list, [
+                call(reconcile.SOURCE_REPOSITORY, "3.29.0", directory),
+                call(reconcile.DATA_REPOSITORY, "3.29.0", directory),
+            ])
+            fetch.assert_not_called()
+
+    def test_online_replay_accepts_matching_xml_and_data_release_tags(self):
+        fixture(self.archive)
+        origins, source = self.read()
+        reconcile.prepare(self.repo, self.repo, origins, source, initial=True)
+        catalog = self.replay_catalog(reconcile.read_candidates(self.repo))
+
+        def download(pin, destination):
+            self.assertEqual(pin, source)
+            destination.write_bytes(self.archive.read_bytes())
+
+        with (patch.object(spdx_replay, "resolve_release_tag", side_effect=(XML, DATA)) as resolve,
+              patch.object(spdx_replay, "fetch_archive", side_effect=download) as fetch):
+            spdx_replay.replay_download(catalog, source, None)
+            self.assertEqual([args.args[0] for args in resolve.call_args_list],
+                             [reconcile.SOURCE_REPOSITORY, reconcile.DATA_REPOSITORY])
+            fetch.assert_called_once()
 
     def test_fingerprints_and_deprecated_text_fallback(self):
         fixture(self.archive, deprecated=True)

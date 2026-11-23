@@ -107,10 +107,11 @@ def replay(catalog, source, archive, base):
     compare_registry(catalog, origins, source, base)
 
 
-def resolve_xml_tag(release, directory):
+def resolve_release_tag(repository, release, directory):
     """Confirm the publisher's exact tag and peel it to a commit without the REST API."""
     tag = f"refs/tags/v{release}"
-    url = f"https://github.com/{SOURCE_REPOSITORY}.git"
+    description = f"SPDX release tag v{release} in {repository}"
+    url = f"https://github.com/{repository}.git"
     environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("GIT_")}
     environment.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull, GIT_TERMINAL_PROMPT="0",
                        GIT_NO_REPLACE_OBJECTS="1", GIT_GRAFT_FILE=os.devnull)
@@ -122,16 +123,16 @@ def resolve_xml_tag(release, directory):
             result = subprocess.run([*command, *arguments], stdin=subprocess.DEVNULL,
                                     capture_output=True, check=False, env=environment, timeout=60)
         except (OSError, subprocess.TimeoutExpired) as error:
-            raise DataError(f"could not run Git to verify SPDX XML release tag v{release}: {error}") from error
+            raise DataError(f"could not run Git to verify {description}: {error}") from error
         require(result.returncode == 0,
-                f"Git {arguments[0]} could not verify SPDX XML release tag v{release} (exit {result.returncode})")
+                f"Git {arguments[0]} could not verify {description} (exit {result.returncode})")
         return result.stdout
 
     git("init", "--quiet", "--template=")
     git("fetch", "--quiet", "--no-tags", "--no-recurse-submodules", "--no-auto-maintenance",
         "--depth=1", "--filter=tree:0", "--", url, tag)
     commit = git("rev-parse", "--verify", "FETCH_HEAD^{commit}").decode("ascii").strip()
-    require(DATA_COMMIT.fullmatch(commit), "invalid SPDX XML release tag commit")
+    require(DATA_COMMIT.fullmatch(commit), f"invalid commit for {description}")
     return commit
 
 
@@ -140,8 +141,10 @@ def replay_download(catalog, source, base):
     require(RELEASE.fullmatch(release), "invalid SPDX release version")
     with TemporaryDirectory(prefix="license-index-spdx-") as directory:
         root = Path(directory)
-        xml_commit = resolve_xml_tag(release, root)
+        xml_commit = resolve_release_tag(SOURCE_REPOSITORY, release, root)
         require(xml_commit == source["xml_commit"], "SPDX XML release tag differs from the committed XML pin")
+        data_commit = resolve_release_tag(DATA_REPOSITORY, release, root)
+        require(data_commit == source["data_commit"], "SPDX data release tag differs from the committed data pin")
         archive = root / "spdx.tar.gz"
         fetch_archive(source, archive)
         replay(catalog, source, archive, base)
