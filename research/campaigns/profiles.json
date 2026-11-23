@@ -1172,6 +1172,217 @@
       }
     ]
   },
+  "GFDL-1.1-only": {
+    "summary": "GNU FDL 1.1 addresses copying and modifying covered documents. Its quantity rules depend on the notice, the number of copies, and whether those copies are printed or Opaque.",
+    "dimensions": {
+      "cover_texts": {
+        "state": "condition",
+        "text": "Cover Texts are passages identified in the document’s notice. For more than 100 printed copies, §3 requires the specified Cover Texts when the notice calls for them. Use the designated front and back covers.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      },
+      "format_classification": {
+        "state": "documented",
+        "text": "Section 1 defines Transparent and Opaque copies and includes PostScript and PDF among its examples of Opaque formats.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§1, Transparent and Opaque copies"
+          }
+        ]
+      },
+      "invariant_sections": {
+        "state": "condition",
+        "text": "Use the document’s notice to identify any designated Invariant Sections. For Modified Versions, §4 requires keeping those sections’ text and titles and carrying forward the required lists in the notice.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§1 and §4(G), §4(L)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Distribution of more than 100 Opaque copies requires a machine-readable Transparent copy with each copy or a network location for a complete Transparent copy. The network option includes anonymous access without charge and reasonably prudent steps to keep it accessible for at least one year after the last public distribution of that edition.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§3, Opaque copying in quantity"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 9 provides for automatic termination for copying, modification, sublicensing, or distribution outside the license. It preserves licenses of downstream recipients who remain in full compliance.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§9"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing a large batch of printed manuals",
+        "text": "Check the actual license notice and count. Assess both the printed Cover Text condition and the separate Opaque-copy condition before deciding how to package the batch.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      }
+    ]
+  },
+  "GFDL-1.2-only": {
+    "summary": "GNU FDL 1.2 provides conditions for covered document copies and Modified Versions, with defined treatment of designated sections, notices and editable formats.",
+    "dimensions": {
+      "cover_texts": {
+        "state": "condition",
+        "text": "When publishing more than 100 printed copies or copies on media commonly having printed covers, follow §3’s front- and back-cover requirements if the notice calls for Cover Texts.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§3, Cover Texts"
+          }
+        ]
+      },
+      "format_classification": {
+        "state": "documented",
+        "text": "Section 1 includes PostScript and PDF designed for human modification as examples of potentially Transparent formats and gives output-only versions as examples of Opaque formats. Classify using the definition and how the actual file was made.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§1, Transparent and Opaque copies"
+          }
+        ]
+      },
+      "invariant_sections": {
+        "state": "condition",
+        "text": "An Invariant Section must qualify as a Secondary Section and be designated in the notice. Preserve the titles and text of existing Invariant Sections in Modified Versions. The notice can identify zero Invariant Sections.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§1, Secondary and Invariant Sections, §4(G) and §4(L)"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 9 provides for automatic termination for copying, modification, sublicensing, or distribution outside the license. It preserves licenses of downstream recipients who remain in full compliance.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§9"
+          }
+        ]
+      },
+      "warranty_notices": {
+        "state": "condition",
+        "text": "Section 4 requires preserving Warranty Disclaimers for Modified Versions, and §5 requires preserving them when combining documents. Section 1 describes their role and limits.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§1, §4(O), §5"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Selecting the editable copy for a PDF distribution",
+        "text": "Use the §1 editability criteria and assess the actual PDF. If issuing more than 100 Opaque copies, plan to accompany each with a Transparent copy or use the public network option on the terms in §3.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      }
+    ]
+  },
+  "GFDL-1.3-only": {
+    "summary": "GNU FDL 1.3 includes holder-specific reinstatement conditions and a historical, limited collaboration-site relicensing provision.",
+    "dimensions": {
+      "cover_texts": {
+        "state": "condition",
+        "text": "When publishing more than 100 printed copies or copies on media that commonly have printed covers, §3 requires the Front- and Back-Cover Texts specified by the document’s notice.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      },
+      "format_classification": {
+        "state": "documented",
+        "text": "Section 1 distinguishes machine-readable copies suitable for straightforward revision from Opaque formats. It lists PostScript and PDF designed for human modification as suitable examples and gives output-only versions as Opaque examples.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§1, Transparent and Opaque copies"
+          }
+        ]
+      },
+      "historical_relicensing": {
+        "state": "condition",
+        "text": "Section 11 allowed a Massive Multiauthor Collaboration Site operator to republish an eligible collaboration on that same site under the defined CC BY-SA terms before 1 August 2009. Eligibility required the collaboration to be licensed under this License. Works first published elsewhere under this License and later incorporated had to lack Cover Texts and Invariant Sections and be incorporated before 1 November 2008.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§11, eligibility and deadline"
+          }
+        ]
+      },
+      "invariant_sections": {
+        "state": "condition",
+        "text": "An Invariant Section is a qualifying Secondary Section designated by title in the document’s notice. Preserve existing Invariant Sections and listed Cover Texts as directed for Modified Versions.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§1 and §4(G), §4(L)"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 9 automatically terminates rights for the specified acts outside the license. After all violations cease, reinstatement is assessed by copyright holder. It is provisional unless and until the holder explicitly and finally terminates. It may become permanent if that holder fails to give reasonable notice before 60 days after cessation, or when the first reasonable notice for any work under this license from that holder is cured before 30 days after receipt.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§9, termination and reinstatement"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "condition",
+        "text": "Section 10 bases a later-version choice on the document’s authorized grant. It separately addresses a grant that specifies no version and the public acceptance of a future version by a document-designated proxy.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§10"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Assessing reinstatement after a breach",
+        "text": "Record when all violations ceased. Check each copyright holder’s notice history, any final termination, and when a first notice was cured before assessing the corresponding rights.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§9"
+          }
+        ]
+      }
+    ]
+  },
   "GPL-1.0-only": {
     "summary": "SPDX uses this identifier for a grant restricted to GNU GPL version 1. Verify the actual project notice for the material covered by that grant.",
     "dimensions": {

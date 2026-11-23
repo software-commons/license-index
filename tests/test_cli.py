@@ -112,6 +112,12 @@ class ToolTests(unittest.TestCase):
         self.assertIn("litigation against a Contributor", editions["CPL-1.0"]["termination"]["text"])
         self.assertIn("Program itself", editions["EPL-1.0"]["termination"]["text"])
         self.assertIn("subsequent distribution", editions["EPL-2.0"]["alternate_license"]["text"])
+        documentation = self.json_output("compare", "GFDL-1.1-only", "GFDL-1.2-only", "GFDL-1.3-only")
+        self.assertEqual(documentation["status"], "provisional")
+        gfdl = {row["identifier"]: row["dimensions"] for row in documentation["records"]}
+        self.assertIn("examples of Opaque formats", gfdl["GFDL-1.1-only"]["format_classification"]["text"])
+        self.assertIn("designed for human modification", gfdl["GFDL-1.2-only"]["format_classification"]["text"])
+        self.assertIn("before 1 August 2009", gfdl["GFDL-1.3-only"]["historical_relicensing"]["text"])
         sources = self.json_output("sources", "MIT")
         self.assertTrue(sources["research_citations"])
         self.assertIn("sha256", sources["origin"]["artifacts"]["text"])
@@ -223,6 +229,17 @@ class ToolTests(unittest.TestCase):
                     text = package.read(package_source["path"])
                     self.assertEqual(hashlib.sha256(text).hexdigest(), package_source["sha256"])
                     self.assertNotIn("install", package_source)
+                for edition in ("1.1", "1.2", "1.3"):
+                    path = f"legal-texts/fdl-{edition}.txt"
+                    expected = (ROOT / path).read_bytes()
+                    self.assertEqual(package.read(path), expected)
+                    for variant in ("", "-invariants", "-no-invariants"):
+                        for version_choice in ("only", "or-later"):
+                            identifier = f"GFDL-{edition}{variant}-{version_choice}"
+                            with self.subTest(identifier=identifier):
+                                self.assertEqual(manifest[identifier]["path"], path)
+                                self.assertEqual(manifest[identifier]["install"], "unchanged")
+                                self.assertEqual(manifest[identifier]["sha256"], hashlib.sha256(expected).hexdigest())
                 package.extractall(unpacked)
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())
@@ -233,6 +250,9 @@ class ToolTests(unittest.TestCase):
                 ("CC0-1.0", "cc0-1.0.txt"),
                 ("EPL-1.0", "epl-1.0.txt"),
                 ("EPL-2.0", "epl-2.0.txt"),
+                ("GFDL-1.1-only", "fdl-1.1.txt"),
+                ("GFDL-1.2-invariants-or-later", "fdl-1.2.txt"),
+                ("GFDL-1.3-no-invariants-only", "fdl-1.3.txt"),
                 ("GPL-1.0-only", "gpl-1.0.txt"),
                 ("GPL-1.0-or-later", "gpl-1.0.txt"),
                 ("GPL-2.0-or-later", "gpl-2.0.txt"),
@@ -262,7 +282,10 @@ class ToolTests(unittest.TestCase):
                                        ("LGPL-2.0-only", "version 2 only"),
                                        ("LGPL-2.0-or-later", "version 2 or any later version"),
                                        ("LGPL-2.1-only", "version 2.1 only"),
-                                       ("LGPL-2.1-or-later", "version 2.1 or any later version")):
+                                       ("LGPL-2.1-or-later", "version 2.1 or any later version"),
+                                       ("GFDL-1.1-only", "version 1.1 only"),
+                                       ("GFDL-1.2-invariants-or-later", "at least one Invariant Section"),
+                                       ("GFDL-1.3-no-invariants-only", "no Invariant Sections")):
                 with self.subTest(identifier=identifier):
                     preview = command("add", identifier, "--output", folder / "COPYING", "--dry-run",
                                       "--json", root=unpacked)
