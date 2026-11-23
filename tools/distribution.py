@@ -45,7 +45,7 @@ BUNDLE_SUPPORT = {
     "research/sources/predecessor-assessment.md", "schemas/domain/registry-v1.schema.json",
     "tools/__init__.py", "tools/distribution.py", "tools/index.py", "tools/li_install.py",
     "tools/qualification.py", "tools/reconcile.py", "tools/records.py", "tools/review_plan.py",
-    "tools/schema_check.py", "tools/spdx_replay.py",
+    "tools/run_isolated.py", "tools/schema_check.py", "tools/spdx_replay.py",
 }
 
 

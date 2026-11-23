@@ -24,8 +24,11 @@ from .records import DataError, NoRedirects, decode, encode, require
 from .review_authorization import validate_control_authorization
 from .review_evidence import capture_selected_evidence
 from .review_protection import commissioning_policy, observed_approval
-from .review_queue import capture_queue_observation
-from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_control_paths, capture_diff, token_is_target_only
+from .review_queue import capture_queue_observation, capture_queue_target
+from .review_snapshot import (
+    BASE_REF, REPOSITORY, GitHub, capture_candidate_patch, capture_candidate_tree, capture_control_paths, capture_diff,
+    token_is_target_only,
+)
 
 CHECK_NAME = "Software Commons / Codex technical review"
 ACTIONS_APP_ID = 15368
@@ -245,8 +248,11 @@ def require_queue_rules(github, app_id, *, policy):
     require({"pull_request", "deletion", "non_fast_forward"} <= by_type.keys(),
             "mandatory pull requests, branch deletion protection and force-push protection are required")
     approval = observed_approval(rules)
-    require(policy.matches(approval),
-            f"live Code Owner and ordinary approval rules do not match commissioning phase {policy.phase}")
+    if policy is None:
+        require(approval is not None, "could not authenticate the live pull-request approval rule")
+    else:
+        require(policy.matches(approval),
+                f"live Code Owner and ordinary approval rules do not match commissioning phase {policy.phase}")
     queue = by_type.get("merge_queue", [])
     require(len(queue) == 1, "App issuance requires a mandatory merge queue")
     parameters = queue[0].get("parameters")
@@ -339,8 +345,8 @@ def supersede_checks(github, snapshot, target, app_id, token, previous, publishe
     for check in previous:
         verify_fresh()
         result = publisher(token, {"status": "completed", "conclusion": "failure", "output": {
-            "title": "Superseded by a new independent Codex review",
-            "summary": "A new exact review has started. This older decision no longer authorizes queue progress.",
+            "title": "Prior independent Codex review superseded",
+            "summary": "This older decision no longer authorizes queue progress.",
         }}, check_id=check["id"])
         verify_issued_check(result, target, app_id, check["external_id"], "completed", "failure")
         require(result.get("id") == check["id"], "GitHub superseded a different review check")
@@ -355,26 +361,82 @@ def run(args, github, *, token_input=None, publisher=write_check):
     rehearsal = reviewer is not None and args.app_id is None
     admission = getattr(args, "queue_admission", False)
     run_id = getattr(args, "queue_run", None)
+    revoke_only = getattr(args, "revoke_only", False)
+    expected_merge = getattr(args, "expected_merge", None)
     require(not (admission and run_id is not None), "select one review phase")
+    require(not revoke_only or expected_merge is not None, "revocation requires an exact expected merge SHA")
+    require(expected_merge is None or (args.app_id is not None and args.mode == "review"
+            and isinstance(expected_merge, str) and re.fullmatch(r"[0-9a-f]{40}", expected_merge)),
+            "an expected merge requires a protected issuer and an exact SHA")
     policy = getattr(args, "commissioning_policy", None)
-    approval = None
+    approval, revocation_approval = None, None
     if args.app_id is not None:
+        require(args.mode == "review", "protected App writes require review mode")
         require(admission or run_id is not None, "check issuance requires a mandatory merge-queue phase")
-        require(policy is not None, "check issuance requires a protected commissioning policy")
-        approval = require_queue_rules(github, args.app_id, policy=policy)
-    audit = state / str(uuid4())
-    audit.mkdir(mode=0o700)
     pull = github.get_pull(args.pull)
-    observation = None
+    observation, queue_target = None, None
     snapshot = pull
     capture_options = {"linear_head": True} if admission else {}
-    if run_id is not None:
-        observation = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
-        snapshot = replace(pull, merge=observation["merge"])
-        capture_options["queue_ref"] = observation["queue_ref"]
+    if run_id is not None and args.app_id is not None:
+        queue_target = capture_queue_target(github, pull, run_id)
+        snapshot = replace(pull, merge=queue_target["merge"])
+        capture_options["queue_ref"] = queue_target["queue_ref"]
+    if expected_merge is not None:
+        require(snapshot.merge == expected_merge, "live review target differs from the expected review merge")
+    audit = state / str(uuid4())
+    audit.mkdir(mode=0o700)
+
+    def verify_live_target(*, revocation=False):
+        require(github.get_pull(pull.number) == pull, "pull request changed after review target capture")
+        if args.app_id is not None:
+            current = require_queue_rules(github, args.app_id, policy=None if revocation else policy)
+            require(current == (revocation_approval if revocation else approval),
+                    "live approval rules changed after review target capture")
+        if revocation and queue_target is not None:
+            require(capture_queue_target(github, pull, run_id) == queue_target,
+                    "merge queue target changed before revocation")
+
+    installation_token = None
     with TemporaryDirectory(prefix="git-", dir=state) as directory:
         checkout = Path(directory)
-        tree, diff = capture_diff(snapshot, checkout, **capture_options)
+        tree = None
+        if args.app_id is not None:
+            check_target = snapshot.head if admission else snapshot.merge
+            previous = successful_checks(github, check_target, args.app_id)
+            if previous:
+                # Authenticate the role and Git target before any write, regardless of review availability.
+                revocation_approval = require_queue_rules(github, args.app_id, policy=None)
+                tree = capture_candidate_tree(snapshot, checkout, **capture_options)
+                save(audit / "revocation-target.json", encode({
+                    **asdict(snapshot), "checked_sha": check_target, "app_id": args.app_id, "tree": tree,
+                    "queue_target": queue_target, "live_approval": asdict(revocation_approval),
+                }))
+                save(audit / "superseded-checks.json", encode(previous))
+                installation_token = token_input().strip()
+                supersede_checks(github, snapshot, check_target, args.app_id, installation_token, previous, publisher,
+                                 lambda: verify_live_target(revocation=True))
+                save(audit / "revocation-result.json", encode({
+                    "checked_sha": check_target, "revoked_check_ids": [check["id"] for check in previous],
+                }))
+            if revoke_only:
+                return {"audit": str(audit), "status": "revocation-only", "checked_sha": check_target,
+                        "revoked_check_ids": [check["id"] for check in previous]}
+            require(policy is not None, "check issuance requires a protected commissioning policy")
+            approval = require_queue_rules(github, args.app_id, policy=policy)
+        if run_id is not None:
+            observation = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
+            if queue_target is not None:
+                workflow = observation["workflows"].get(queue_target["workflow"], {})
+                require(all(observation[field] == queue_target[field] for field in ("merge", "queue_ref"))
+                        and workflow.get("workflow_id") == queue_target["workflow_id"]
+                        and workflow.get("id") == queue_target["observed_run_id"],
+                        "successful CI does not name the authenticated merge queue target")
+            snapshot = replace(pull, merge=observation["merge"])
+            capture_options["queue_ref"] = observation["queue_ref"]
+        if tree is None:
+            tree, diff = capture_diff(snapshot, checkout, **capture_options)
+        else:
+            diff = capture_candidate_patch(snapshot, checkout)
         controls = capture_control_paths(checkout, snapshot)
         evidence = capture_selected_evidence(checkout, snapshot.merge, REPOSITORY, base=snapshot.base)
     control_required = bool(controls) and args.app_id is not None and BASE_REF == "main"
@@ -412,22 +474,10 @@ def run(args, github, *, token_input=None, publisher=write_check):
                 github, binding, paths.record, paths.grant_state, protected_path,
             )
             require(current_authorization == authorization, "protected owner authorization changed after review")
-        require(github.get_pull(pull.number) == pull, "pull request changed after review")
-        if args.app_id is not None:
-            current = require_queue_rules(github, args.app_id, policy=policy)
-            require(current == approval, "live approval rules changed after review")
+        verify_live_target()
         if observation is not None:
             current = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
             require(current == observation, "merge queue candidate or CI evidence changed after review")
-
-    installation_token = None
-    if args.app_id is not None:
-        check_target = snapshot.head if admission else snapshot.merge
-        previous = successful_checks(github, check_target, args.app_id)
-        if previous:
-            save(audit / "superseded-checks.json", encode(previous))
-            installation_token = token_input().strip()
-            supersede_checks(github, snapshot, check_target, args.app_id, installation_token, previous, publisher, verify_fresh)
 
     token = secrets.token_hex(32)
     verdict_schema = VERDICT_SCHEMA
@@ -530,7 +580,7 @@ def trusted_executable(path):
     trusted_parents(path)
 
 
-def load_issuer(path, *, rehearsal=False):
+def load_issuer(path, *, rehearsal=False, revocation=False):
     require(os.name == "posix", "the protected reviewer requires a POSIX issuer account")
     protected_path(path.parent, directory=True)
     protected_path(path, directory=False)
@@ -545,23 +595,21 @@ def load_issuer(path, *, rehearsal=False):
     app_id = settings.get("app_id")
     require(rehearsal or (type(app_id) is int and app_id > 0 and app_id != ACTIONS_APP_ID),
             "invalid protected review App ID")
-    policy = None if rehearsal else commissioning_policy(
+    policy = None if rehearsal or revocation else commissioning_policy(
         REPOSITORY, BASE_REF, settings["commissioning_phase"], settings.get("authorized_cutover_ruleset"),
     )
-    authorized = settings.get("authorized_control_merge")
+    authorized = None if revocation else settings.get("authorized_control_merge")
     require(authorized is None or
             (BASE_REF == "main" and isinstance(authorized, str) and re.fullmatch(r"[0-9a-f]{40}", authorized)),
             "invalid protected control authorization")
-    record, grant_state = settings.get("authorized_control_record"), settings.get("owner_grant_state")
+    record, grant_state = ((None, None) if revocation else
+                           (settings.get("authorized_control_record"), settings.get("owner_grant_state")))
     authorization_paths = None
     if record is not None or grant_state is not None:
         require(BASE_REF == "main" and authorized is not None
                 and all(isinstance(path, str) and path for path in (record, grant_state)),
                 "invalid protected owner authorization configuration")
         authorization_paths = AuthorizationPaths(Path(record), Path(grant_state))
-        for private in (authorization_paths.record, authorization_paths.grant_state):
-            protected_path(private.parent, directory=True)
-            protected_path(private, directory=False)
     audit = Path(settings["audit_dir"])
     protected_path(audit, directory=True)
     reviewer = load_reviewer(settings)
@@ -617,10 +665,15 @@ def main(argv=None):
     phase = parser.add_mutually_exclusive_group()
     phase.add_argument("--queue-admission", action="store_true", help="review the test merge for queue admission")
     phase.add_argument("--queue-run", type=int, help="review the exact candidate for a GitHub merge-group Actions run")
+    parser.add_argument("--revoke-only", action="store_true", help="supersede prior success without starting a review")
+    parser.add_argument("--expected-merge", help="assert the exact merge SHA for a protected review or revocation")
     config = parser.add_mutually_exclusive_group()
     config.add_argument("--issuer-config", type=Path, help="protected issuer configuration, installation token read from stdin")
     config.add_argument("--rehearsal-config", type=Path, help="protected reviewer configuration without App access")
     args = parser.parse_args(argv)
+    if (args.revoke_only and args.expected_merge is None
+            or args.expected_merge is not None and (not args.issuer_config or not re.fullmatch(r"[0-9a-f]{40}", args.expected_merge))):
+        parser.error("expected merge checks require --issuer-config and an exact SHA, and revocation requires --expected-merge")
     args.app_id = None
     args.reviewer = None
     args.commissioning_policy = None
@@ -633,7 +686,7 @@ def main(argv=None):
                 parser.error("protected configuration is exclusive to review and supplies all deployment options")
             (args.state_dir, args.codex, args.model, args.app_id, args.reviewer,
              args.commissioning_policy, args.authorized_control_merge, args.authorization_paths) = load_issuer(
-                config_path, rehearsal=args.rehearsal_config is not None,
+                config_path, rehearsal=args.rehearsal_config is not None, revocation=args.revoke_only,
             )
         else:
             if not args.state_dir:

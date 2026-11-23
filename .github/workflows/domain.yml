@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.12"
-      - run: python -B -m unittest discover -s tests -v
+      - run: python -I -B tools/run_isolated.py tests
   registry:
     name: Registry validation
     needs: [platform]
@@ -59,12 +59,12 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
         run: |
           set -euo pipefail
-          python -B -m tools.schema_check
+          python -I -B tools/run_isolated.py schema_check
           args=()
           if [[ -n "$BASE_SHA" && "$BASE_SHA" != 0000000000000000000000000000000000000000 ]]; then
             args+=(--base "$BASE_SHA")
           fi
-          python -B -m tools.index validate --policy ../policy --fetch-spdx-archive --fetch-rights "${args[@]}"
+          python -I -B tools/run_isolated.py index validate --policy ../policy --fetch-spdx-archive --fetch-rights "${args[@]}"
 
           if [[ ${#args[@]} -eq 0 ]]; then
             exit 0
@@ -73,7 +73,7 @@ jobs:
           trap 'rm -rf -- "$staging"' EXIT
           mkdir "$staging/first" "$staging/second"
           stage_candidate() {
-            python -B -m tools.stage_release "$1/candidate.zip" --policy ../policy "${args[@]}" > "$1/REQUEST.json"
+            python -I -B tools/run_isolated.py stage_release "$1/candidate.zip" --policy ../policy "${args[@]}" > "$1/REQUEST.json"
           }
           if [[ -f sces/publication.json ]]; then
             stage_candidate "$staging/first"
@@ -81,7 +81,7 @@ jobs:
             cmp "$staging/first/candidate.zip" "$staging/second/candidate.zip"
             cmp "$staging/first/REQUEST.json" "$staging/second/REQUEST.json"
             request_digest=$(sha256sum "$staging/first/REQUEST.json" | cut -d ' ' -f 1)
-            python -B -m tools.verify_release "$staging/first/REQUEST.json" \
+            python -I -B tools/run_isolated.py verify_release "$staging/first/REQUEST.json" \
               --request-sha256 "$request_digest" --zip "$staging/first/candidate.zip"
           else
             if stage_candidate "$staging/first" 2> "$staging/error"; then

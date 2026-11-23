@@ -127,10 +127,9 @@ def _jobs(github, path, run, branch, merge, checks, actions_app_id):
     return evidence
 
 
-def capture_queue_observation(github, pull_snapshot, run_id, *, actions_app_id):
-    """Observe current CI provenance. The caller must still verify the commit's Git parents."""
+def _queue_anchor(github, pull_snapshot, run_id):
     _require(isinstance(pull_snapshot, PullSnapshot), "Expected a validated pull-request snapshot")
-    _require(_positive_id(run_id) and _positive_id(actions_app_id), "Expected positive Actions run and App IDs")
+    _require(_positive_id(run_id), "Expected a positive Actions run ID")
     anchor = github._get_json(f"{_REPO_PATH}/actions/runs/{run_id}")
     _require(isinstance(anchor, dict) and anchor.get("id") == run_id, "GitHub returned the wrong workflow run")
     path = _required_workflow(anchor)
@@ -144,9 +143,22 @@ def capture_queue_observation(github, pull_snapshot, run_id, *, actions_app_id):
              and merge not in (pull_snapshot.base, pull_snapshot.head),
              "GitHub workflow does not name a distinct merge-group commit")
     verified_anchor = _verify_run(anchor, path, pull_snapshot, branch, merge)
-    _require(_successful(anchor), "The selected GitHub merge-group run did not complete successfully")
     _verify_ref(github, branch, merge)
+    return anchor, path, branch, merge, verified_anchor
 
+
+def capture_queue_target(github, pull_snapshot, run_id):
+    """Bind the exact live queue identity without relying on CI completion or success."""
+    _, path, branch, merge, anchor = _queue_anchor(github, pull_snapshot, run_id)
+    return {"merge": merge, "queue_ref": f"refs/heads/{branch}", "workflow": path,
+            "workflow_id": anchor["workflow_id"], "observed_run_id": run_id}
+
+
+def capture_queue_observation(github, pull_snapshot, run_id, *, actions_app_id):
+    """Observe current CI provenance. The caller must still verify the commit's Git parents."""
+    _require(_positive_id(actions_app_id), "Expected a positive Actions App ID")
+    anchor, path, branch, merge, verified_anchor = _queue_anchor(github, pull_snapshot, run_id)
+    _require(_successful(anchor), "The selected GitHub merge-group run did not complete successfully")
     query = urlencode({"event": "merge_group", "branch": branch, "head_sha": merge, "per_page": 100})
     listing = f"{_REPO_PATH}/actions/runs?{query}"
     runs = _selected_runs(github, listing, pull_snapshot, branch, merge)

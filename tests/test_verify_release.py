@@ -14,7 +14,7 @@ from zipfile import ZipFile
 
 from tools.distribution import archive_entry
 from tools.qualification import DATASET, POLICY_COMMIT, POLICY_DIGEST, REPOSITORY, SCHEMA_VERSION
-from tools.records import DataError, decode, encode
+from tools.records import ROOT, DataError, decode, encode
 from tools.stage_release import CHECKSUMS, CONTRACTS_ASSET, REQUEST_STATUS, checksum_listing
 from tools.verify_release import GATES, main, verify
 
@@ -196,7 +196,8 @@ class VerifyReleaseTests(unittest.TestCase):
         raw = self.pack()
         request = self.zip_path.with_name("request.json")
         request.write_bytes(raw)
-        result = subprocess.run([sys.executable, "-B", "-m", "tools.verify_release", str(request),
+        result = subprocess.run([sys.executable, "-I", "-B", str(ROOT / "tools/run_isolated.py"),
+                                 "verify_release", str(request),
                                  "--request-sha256", describe(raw)["sha256"], "--zip", str(self.zip_path)],
                                 capture_output=True)
         self.assertEqual(result.returncode, 1, result.stderr.decode())

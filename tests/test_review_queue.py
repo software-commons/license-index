@@ -5,7 +5,7 @@ from json import dumps
 import unittest
 from urllib.parse import quote
 
-from tools.review_queue import capture_queue_observation
+from tools.review_queue import capture_queue_observation, capture_queue_target
 from tools.review_snapshot import REPOSITORY, REPOSITORY_ID, PullSnapshot, SnapshotError
 
 
@@ -99,6 +99,17 @@ class QueueObservationTests(unittest.TestCase):
         })
         self.assertEqual(github.calls, [SCES_RUN, REF_API, RUN_LIST, CHECKS, DOMAIN_JOBS, SCES_JOBS, RUN_LIST, REF_API])
         self.assertIsInstance(dumps(result), str)
+
+    def test_target_authentication_does_not_require_successful_ci(self):
+        responses = _responses()
+        responses[DOMAIN_RUN].update(status="completed", conclusion="failure")
+        github = FixtureGitHub(responses)
+        target = capture_queue_target(github, PULL, 11)
+        self.assertEqual(target, {"merge": QUEUE_SHA, "queue_ref": REF, "workflow": DOMAIN_PATH,
+                                  "workflow_id": 111, "observed_run_id": 11})
+        self.assertEqual(github.calls, [DOMAIN_RUN, REF_API])
+        with self.assertRaisesRegex(SnapshotError, "did not complete successfully"):
+            self.capture(responses)
 
     def test_rejects_bad_anchor(self):
         for changes in ({"id": 19}, {"event": "push"}, {"path": ".github/workflows/other.yml"},

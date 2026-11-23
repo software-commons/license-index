@@ -24,7 +24,11 @@ from tools.review_snapshot import PullSnapshot, REPOSITORY, SnapshotError
 
 EXECUTION = "90c3284d-c009-4e34-bc00-beb41319adad"
 SNAPSHOT = PullSnapshot(repository_id=1468281504, number=1, base="a" * 40, head="b" * 40, merge="c" * 40)
-QUEUE = {"merge": "d" * 40, "queue_ref": "refs/heads/gh-readonly-queue/main/pr-1-" + "c" * 40}
+DOMAIN = ".github/workflows/domain.yml"
+QUEUE = {"merge": "d" * 40, "queue_ref": "refs/heads/gh-readonly-queue/main/pr-1-" + "c" * 40,
+         "workflows": {DOMAIN: {"workflow_id": 123, "id": 321}}}
+QUEUE_TARGET = {"merge": QUEUE["merge"], "queue_ref": QUEUE["queue_ref"], "workflow": DOMAIN,
+                "workflow_id": 123, "observed_run_id": 321}
 PATCH = b"diff --git a/tools/index.py b/tools/index.py\n@@ -1,0 +2 @@\n+fixture change\n"
 BINDING = {"merge": SNAPSHOT.merge, "diff_sha256": sha256(PATCH).hexdigest()}
 LEGACY_TOKEN = "ghs_" + "a" * 36
@@ -118,6 +122,9 @@ class ReviewGateTests(unittest.TestCase):
         checks = patch("tools.review_gate.successful_checks", return_value=[])
         self.successful_checks = checks.start()
         self.addCleanup(checks.stop)
+        targets = patch("tools.review_gate.capture_queue_target", return_value=QUEUE_TARGET)
+        self.capture_queue_target = targets.start()
+        self.addCleanup(targets.stop)
         controls = patch("tools.review_gate.capture_control_paths", return_value=[])
         controls.start()
         self.addCleanup(controls.stop)
@@ -579,15 +586,95 @@ class ReviewGateTests(unittest.TestCase):
                 token = json.loads(staged)["inspection_token"]
                 return make_trace(token, verdict={"decision": "changes-required", "findings": ["Fixture finding"]})
 
-            with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+            with (patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40) as capture,
+                  patch("tools.review_gate.capture_candidate_patch", return_value=PATCH),
                   patch("tools.review_gate.protected_staging", return_value=state),
                   patch("tools.review_gate.share_reviewer_inputs"),
                   patch("tools.review_gate.token_is_target_only", return_value=True),
                   patch("tools.review_gate.launch_review", side_effect=negative)):
                 result = run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+            self.assertTrue(capture.call_args.kwargs["linear_head"])
             self.assertEqual(result["status"], "changes-required")
             self.assertEqual(json.loads((Path(result["audit"]) / "superseded-checks.json").read_bytes()), [prior])
             self.assertFalse((Path(result["audit"]) / "issued-check.json").exists())
+
+    def test_rechecks_role_and_revokes_before_a_failed_domain_or_grant_precondition(self):
+        for failure in ("evidence", "authorization", "CI"):
+            with self.subTest(failure=failure), TemporaryDirectory() as directory:
+                state = Path(directory)
+                queue = failure == "CI"
+                args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
+                                       app_id=123, reviewer=Reviewer(4001, 4002, state),
+                                       queue_admission=not queue, queue_run=321 if queue else None,
+                                       commissioning_policy=ADDITIVE, authorized_control_merge=SNAPSHOT.merge,
+                                       authorization_paths=AuthorizationPaths(state / "record", state / "grant"))
+                github = Mock()
+                use_queue_rules(github)
+                github.get_pull.return_value = SNAPSHOT
+                check_target = QUEUE["merge"] if queue else SNAPSHOT.head
+                prior = api_check({"name": CHECK_NAME, "head_sha": check_target, "external_id": "a" * 64,
+                                   "status": "completed", "conclusion": "success"})
+                self.successful_checks.side_effect = [[prior], [prior], []]
+                publisher = Mock(return_value={**prior, "conclusion": "failure"})
+
+                def reject(*_args, **_kwargs):
+                    self.assertEqual(publisher.call_args.kwargs["check_id"], prior["id"])
+                    raise DataError("Rejected " + failure)
+
+                with (patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40) as tree,
+                      patch("tools.review_gate.capture_candidate_patch", return_value=PATCH),
+                      patch("tools.review_gate.capture_control_paths", return_value=["tools/review_gate.py"]),
+                      patch("tools.review_gate.capture_selected_evidence", side_effect=reject if failure == "evidence" else None),
+                      patch("tools.review_gate.validate_control_authorization", side_effect=reject),
+                      patch("tools.review_gate.capture_queue_observation", side_effect=reject),
+                      patch("tools.review_gate.token_is_target_only", return_value=True),
+                      patch("tools.review_gate.launch_review") as reviewer):
+                    with self.assertRaisesRegex(DataError, "Rejected " + failure):
+                        run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                self.assertEqual(tree.call_args.kwargs,
+                                 {"queue_ref": QUEUE["queue_ref"]} if queue else {"linear_head": True})
+                reviewer.assert_not_called()
+                publisher.assert_called_once()
+
+    def test_protected_revoke_only_checks_exact_merge_and_skips_new_approval_gates(self):
+        with TemporaryDirectory() as directory:
+            state = Path(directory)
+            args = SimpleNamespace(state_dir=state, mode="review", pull=1, app_id=123,
+                                   reviewer=Reviewer(4001, 4002, state), queue_admission=True,
+                                   commissioning_policy=ADDITIVE, revoke_only=True, expected_merge="e" * 40)
+            github = Mock()
+            use_queue_rules(github)
+            github.get_pull.return_value = SNAPSHOT
+            credential = Mock(return_value=LEGACY_TOKEN)
+            publisher = Mock()
+            with self.assertRaisesRegex(DataError, "expected review merge"):
+                run(args, github, token_input=credential, publisher=publisher)
+            credential.assert_not_called()
+            publisher.assert_not_called()
+
+            prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
+                               "status": "completed", "conclusion": "success"})
+            args.expected_merge = SNAPSHOT.merge
+            self.successful_checks.side_effect = [[prior]]
+            with patch("tools.review_gate.capture_candidate_tree", side_effect=SnapshotError("single-parent")):
+                with self.assertRaisesRegex(SnapshotError, "single-parent"):
+                    run(args, github, token_input=credential, publisher=publisher)
+            credential.assert_not_called()
+            publisher.assert_not_called()
+
+            self.successful_checks.side_effect = [[prior], [prior], []]
+            publisher.return_value = {**prior, "conclusion": "failure"}
+            with (patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40),
+                  patch("tools.review_gate.capture_candidate_patch") as diff,
+                  patch("tools.review_gate.token_is_target_only", return_value=True),
+                  patch("tools.review_gate.validate_control_authorization") as grant,
+                  patch("tools.review_gate.launch_review") as reviewer):
+                result = run(args, github, token_input=credential, publisher=publisher)
+            self.assertEqual(result["revoked_check_ids"], [prior["id"]])
+            self.assertEqual(result["checked_sha"], SNAPSHOT.head)
+            diff.assert_not_called()
+            grant.assert_not_called()
+            reviewer.assert_not_called()
 
     def test_issuer_without_reviewer_fails_before_capture_or_credential_read(self):
         with TemporaryDirectory() as directory:
@@ -714,7 +801,7 @@ class ReviewGateTests(unittest.TestCase):
                   patch("tools.review_gate.sys.stdin", stdin)):
                 self.assertEqual(main(["review", "1", "--rehearsal-config", str(config), "--queue-admission"]), 0)
 
-            load.assert_called_once_with(config, rehearsal=True)
+            load.assert_called_once_with(config, rehearsal=True, revocation=False)
             self.assertTrue(capture.call_args.kwargs["linear_head"])
             self.assertEqual(share.call_args.args[1], reviewer.gid)
             self.assertEqual(launch.call_args.kwargs["reviewer"], reviewer)
@@ -770,6 +857,8 @@ class ReviewGateTests(unittest.TestCase):
                 config.write_text(json.dumps({**settings, "authorized_control_merge": "short"}), encoding="utf-8")
                 with self.assertRaisesRegex(DataError, "protected control authorization"):
                     load_issuer(config)
+                self.assertEqual(load_issuer(config, revocation=True),
+                                 (root, codex, "fixture", 123, reviewer, None, None, None))
                 config.write_text(json.dumps(settings), encoding="utf-8")
                 with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
                     load_issuer(config, rehearsal=True)

@@ -211,8 +211,8 @@ def _merge_tree(directory, snapshot):
     return trees[0].decode("ascii")
 
 
-def capture_diff(snapshot, directory: Path, *, queue_ref=None, linear_head=False) -> tuple[str, bytes]:
-    """Capture the exact tree and base-to-candidate patch in an empty directory."""
+def capture_candidate_tree(snapshot, directory: Path, *, queue_ref=None, linear_head=False) -> str:
+    """Fetch the exact candidate ref and verify its ordered parents without making a patch."""
     if not isinstance(snapshot, PullSnapshot):
         raise SnapshotError("Expected a validated pull-request snapshot")
     ref = f"refs/pull/{snapshot.number}/merge"
@@ -241,6 +241,11 @@ def capture_diff(snapshot, directory: Path, *, queue_ref=None, linear_head=False
         parents = _parents(_commit_headers(directory, snapshot.head))
         if len(parents) != 1 or re.fullmatch(rb"[0-9a-f]{40}", parents[0]) is None:
             raise SnapshotError("Queue admission requires a single-parent pull-request head")
+    return tree
+
+
+def capture_candidate_patch(snapshot, directory: Path) -> bytes:
+    """Read the patch of a candidate already captured by capture_candidate_tree."""
     diff = _git(
         directory, "diff", "--no-ext-diff", "--no-textconv",
         "--no-color", "--no-relative", "--no-renames", "--binary", "--full-index",
@@ -250,7 +255,13 @@ def capture_diff(snapshot, directory: Path, *, queue_ref=None, linear_head=False
     )
     if not diff:
         raise SnapshotError("The GitHub test merge makes no changes relative to its base")
-    return tree, diff
+    return diff
+
+
+def capture_diff(snapshot, directory: Path, *, queue_ref=None, linear_head=False) -> tuple[str, bytes]:
+    """Capture the exact tree and base-to-candidate patch in an empty directory."""
+    tree = capture_candidate_tree(snapshot, directory, queue_ref=queue_ref, linear_head=linear_head)
+    return tree, capture_candidate_patch(snapshot, directory)
 
 
 def capture_control_paths(directory, snapshot):

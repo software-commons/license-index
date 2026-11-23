@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from shutil import copytree
 import subprocess
 import sys
 from tempfile import TemporaryDirectory
@@ -17,7 +18,7 @@ from tools.review_plan import admission_packet
 
 def command(*args, root=ROOT):
     return subprocess.run(
-        [sys.executable, "-B", "-m", "tools.index", *map(str, args)],
+        [sys.executable, "-I", "-B", str(root / "tools/run_isolated.py"), "index", *map(str, args)],
         capture_output=True,
         cwd=root,
         check=False,
@@ -68,6 +69,36 @@ class ToolTests(unittest.TestCase):
             result = subprocess.run(invocation, cwd=temporary, capture_output=True, check=False)
             self.assertEqual(result.returncode, 0, result.stderr.decode())
             self.assertTrue(result.stdout.startswith(b"license-index "))
+
+    def test_required_entry_point_isolates_root_and_environment_imports(self):
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            copytree(ROOT / "tools", root / "tools")
+            (root / "json.py").write_text("SYNTHETIC_SHADOW = True\n", encoding="utf-8")
+            (root / "pathlib.py").write_text("SYNTHETIC_SHADOW = True\n", encoding="utf-8")
+            tests = root / "tests"
+            tests.mkdir()
+            (tests / "test_imports.py").write_text(
+                "import json\n"
+                "from pathlib import Path\n"
+                "import sys\n"
+                "import unittest\n"
+                "import tools\n"
+                "class Imports(unittest.TestCase):\n"
+                "    def test_import_paths(self):\n"
+                "        root = Path(__file__).resolve().parents[1]\n"
+                "        self.assertEqual(list(tools.__path__), [str(root / 'tools')])\n"
+                "        self.assertNotIn(str(root), sys.path)\n"
+                "        self.assertNotEqual(Path(json.__file__).parent, root)\n",
+                encoding="utf-8",
+            )
+            invocation = [sys.executable, "-I", "-B", str(root / "tools/run_isolated.py")]
+            environment = {**os.environ, "PYTHONPATH": str(root)}
+            for args, expected in ((["index", "--version"], b"license-index "), (["tests"], b"Ran 1 test")):
+                with self.subTest(args=args):
+                    result = subprocess.run([*invocation, *args], cwd=root, env=environment, capture_output=True)
+                    self.assertEqual(result.returncode, 0, result.stderr.decode())
+                    self.assertIn(expected, result.stdout + result.stderr)
 
     def test_install_and_preserve_unrelated_file(self):
         with TemporaryDirectory() as temporary:
