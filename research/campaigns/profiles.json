@@ -1638,51 +1638,59 @@
     ]
   },
   "LGPL-3.0-only": {
-    "summary": "LGPL 3.0 incorporates GPLv3 and adds permissions and requirements for specified library uses, including conveying a Combined Work.",
+    "summary": "The GNU LGPL version 3 supplement incorporates GPLv3 and adds permissions for specified library uses. This SPDX identifier describes an application restricted to LGPL version 3.",
     "dimensions": {
       "linked_works": {
         "state": "condition",
-        "text": "The additional permission for conveying a Combined Work is subject to notice, license-copy, reverse-engineering and relinking or suitable shared-library conditions.",
+        "text": "Section 4 permits conveying a Combined Work under terms that, taken together, effectively allow modification of the included library portions and reverse engineering to debug those modifications. The conveyor must also meet the notice, document and other conditions listed in §4.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
             "locator": "§4"
           }
         ]
       },
       "notices": {
         "state": "condition",
-        "text": "The Combined Work provisions require specified notices and copies of GPLv3 and LGPL 3.0.",
+        "text": "Conveyance under §4 requires prominent notice of the Library’s use and coverage, copies of the LGPLv3 supplement and GPLv3, and an additional library copyright notice and reference to those copies if the Combined Work displays copyright notices during execution.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
             "locator": "§4(a)–(c)"
           }
         ]
       },
       "source_availability": {
         "state": "condition",
-        "text": "The Minimal Corresponding Source, application materials and installation requirements depend on the §4 option and facts of conveyance.",
+        "text": "Section 4(d) provides a relinking-material route and a suitable shared-library route. Section 4(e) calls for Installation Information only where GPLv3 §6 would otherwise require it and to the extent needed to install and run the modified Combined Work produced through relinking or recombination.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
             "locator": "§§0 and 4(d)–(e)"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§6"
           }
         ]
       }
     },
     "scenarios": [
       {
-        "situation": "Bundling a program with a library",
-        "text": "Check the requirements for replacing the linked library and provide appropriate notices and both license documents. Determine what Installation Information is applicable.",
+        "situation": "Conveying a Combined Work under LGPL 3.0",
+        "text": "If relying on the shared-library route in §4(d)(1), check that the program uses a library copy already present on the user’s computer at runtime and works with a modified, interface-compatible version. Check the actual distribution terms, both license documents and the separate §4(e) trigger. Inspect the project’s grant before selecting a version.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-3.0-only.html",
-            "locator": "§4"
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+            "locator": "§§4 and 6"
           },
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
             "locator": "§6"
+          },
+          {
+            "url": "https://spdx.org/licenses/LGPL-3.0-only.html",
+            "locator": "Notes"
           }
         ]
       }
