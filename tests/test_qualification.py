@@ -9,13 +9,15 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from jsonschema import Draft202012Validator
+
 from tools.audit_claims import audit_claims
 from tools.distribution import COVERAGE, validate, validate_discovery
 from tools.index import execute, parser
 from tools.qualification import (
     POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _run, _validate_policy, check_history, qualified,
 )
-from tools.records import ROOT, Catalog, DataError, encode
+from tools.records import ROOT, Catalog, DataError, encode, read
 
 
 MIT = "123456789abc4def8123456789abcdef"
@@ -46,26 +48,37 @@ def claim(ref, identifier, predicate, value, scope=None):
 
 def identity_claim(row):
     value = _claim_value({key: row[key] for key in ("kind", "name", "state")})
-    return claim(row["identity_claim"], row["id"], "instrument-identity", value)
+    return claim(row["identity_claim"], row["id"], "instrument-identity", value, row.get("identity_scope"))
+
+
+def entity_schema():
+    schema = read(ROOT / "schemas/domain/registry-v1.schema.json")
+    return Draft202012Validator({**schema, "$ref": "#/$defs/entity"})
 
 
 class BindingsTests(unittest.TestCase):
     def test_bind_exact_identity_alias_spdx_crosswalk_and_external_edge(self):
         row = entity()
-        alias = {"name": "Fixture Alternate", "claim": reference("alias")}
+        identity_scope = {"authority": "fixture-publisher", "revision": "2024-01"}
+        row["identity_scope"] = identity_scope
+        alias = {"name": "Fixture Alternate", "claim": reference("alias"), "scope": identity_scope}
         crosswalk = {"origin": "spdx", "revision": SOURCE, "key": "MIT"}
+        crosswalk_scope = {"upstream-release": "3.2.0"}
         external = {"index": "software-commons/specification-index", "id": OTHER, "revision": "1.2.0"}
+        relationship_scope = {"owning-revision": SOURCE}
         row["aliases"].append(alias)
-        row["crosswalks"].append({**crosswalk, "claim": reference("crosswalk")})
-        row["relations"].append({"type": "related-to", "target": external, "claim": reference("external")})
+        row["crosswalks"].append({**crosswalk, "claim": reference("crosswalk"), "scope": crosswalk_scope})
+        row["relations"].append({"type": "related-to", "target": external, "claim": reference("external"),
+                                 "scope": relationship_scope})
         evidence = [
             identity_claim(row),
-            claim(alias["claim"], MIT, "instrument-identity", alias["name"]),
+            claim(alias["claim"], MIT, "instrument-identity", alias["name"], identity_scope),
             claim(reference("external"), MIT, "cross-index-relationship",
-                  "related-to:" + _claim_value(external), {"target-revision": "1.2.0"}),
+                  "related-to:" + _claim_value(external), {**relationship_scope, "target-revision": "1.2.0"}),
             claim(reference("crosswalk"), MIT, "spdx-membership", _claim_value(crosswalk),
-                  {"data-revision": SOURCE}),
+                  {**crosswalk_scope, "data-revision": SOURCE}),
         ]
+        entity_schema().validate(row)
         bound = _bind_payload({MIT: row}, evidence)
         self.assertEqual(
             [item["claim"]["id"] for item in bound], sorted(item["claim"]["id"] for item in evidence)
@@ -74,14 +87,17 @@ class BindingsTests(unittest.TestCase):
         for entry, field, invalid_value in (
             (evidence[0], "value", "invented"),
             (evidence[1], "revision", 2),
-            (evidence[2], "scope", {"target-revision": "2.0.0"}),
-            (evidence[3], "scope", {"data-revision": "b" * 40}),
+            (evidence[2], "scope", {**relationship_scope, "target-revision": "2.0.0"}),
+            (evidence[3], "scope", {**crosswalk_scope, "data-revision": "b" * 40}),
             (evidence[3], "predicate", "instrument-identity"),
             (evidence[0], "polarity", "documented-absence"),
         ):
             with self.subTest(field=field, value=invalid_value), patch.dict(entry["claim"], {field: invalid_value}):
                 with self.assertRaisesRegex(DataError, "does not bind"):
                     _bind_payload({MIT: row}, evidence)
+        row["crosswalks"][0]["scope"]["data-revision"] = "b" * 40
+        with self.assertRaisesRegex(DataError, "conflicts with pinned data-revision"):
+            _bind_payload({MIT: row}, evidence)
 
     def test_rejects_unbound_claim_subject(self):
         row = entity()
@@ -92,11 +108,25 @@ class BindingsTests(unittest.TestCase):
     def test_relations_cannot_flatten_conditions_or_modality(self):
         base, exception = entity(), entity(OTHER, kind="exception")
         entities = {MIT: base, OTHER: exception}
+        for row in entities.values():
+            row["identity_scope"] = {"authority": "fixture-publisher", "revision": "2024-01"}
         reference_key = reference("exception-for-fixture")
         target = {"id": MIT}
-        exception["relations"].append({"type": "exception-for", "target": target, "claim": reference_key})
+        edge = {"type": "exception-for", "target": target, "claim": reference_key}
+        exception["relations"].append(edge)
+        scope = {"edition": "2024", "base-license": "fixture-license", "revision": "2024-01",
+                 "material": "covered-file", "environment": "fixture-runtime"}
         evidence = [identity_claim(base), identity_claim(exception),
-                    claim(reference_key, OTHER, "exception-relationship", "exception-for:" + _claim_value(target))]
+                    claim(reference_key, OTHER, "exception-relationship", "exception-for:" + _claim_value(target), scope)]
+        with self.assertRaisesRegex(DataError, "does not bind the canonical field"):
+            _bind_payload(entities, evidence)
+
+        edge["scope"] = {key: scope[key] for key in ("edition", "base-license", "revision")}
+        with self.assertRaisesRegex(DataError, "does not bind the canonical field"):
+            _bind_payload(entities, evidence)
+
+        edge["scope"] = dict(scope)
+        entity_schema().validate(exception)
         _bind_payload(entities, evidence)
 
         for applicability in ({"conditions": ["Exact file notice required."]}, {"modality": "conditional"}):
@@ -108,6 +138,38 @@ class BindingsTests(unittest.TestCase):
                        "exception-for:" + _claim_value(target), {"material": "covered-file"})
         scoped["claim"].update(modality="conditional", conditions=["Exact file notice required."])
         self.assertIn(scoped, _bind_payload(entities, [*evidence, scoped]))
+
+        args = parser().parse_args(["export", "--qualified", "--policy", "fixture-policy"])
+        with patch("tools.distribution.validate", return_value=({"release": "fixture"}, evidence)):
+            exported, _ = execute(SimpleNamespace(entities=entities), args)
+        self.assertEqual(exported["entities"][1]["relations"][0]["scope"], scope)
+        self.assertEqual(exported["claims"][-1]["claim"]["scope"], scope)
+
+    def test_crosswalk_revision_matches_origin_in_domain_checks_and_schema(self):
+        schema = entity_schema()
+        record = entity()
+        record["identity_scope"] = {"authority": "fixture-publisher", "revision": "2024-01"}
+        binding = reference("external-origin")
+        digest = "sha256:" + "b" * 64
+        for origin, revision in (("software-commons/specification-index", SOURCE),
+                                 ("git+https://example.org/fixtures/instruments.git", SOURCE),
+                                 ("fixture-publisher", digest)):
+            with self.subTest(origin=origin, revision=revision):
+                scope = {"authority": "fixture-publisher"}
+                value = {"origin": origin, "revision": revision, "key": "exact-key"}
+                record["crosswalks"] = [{**value, "claim": binding, "scope": scope}]
+                schema.validate(record)
+                match = claim(binding, MIT, "instrument-identity", _claim_value(value), {**scope, "revision": revision})
+                self.assertIn(match, _bind_payload({MIT: record}, [identity_claim(record), match]))
+
+        for origin, revision in (("software-commons/specification-index", "refs/heads/release"),
+                                 ("git+https://example.org/fixtures/instruments.git", "1.2.0"),
+                                 ("fixture-publisher", "2024-01"), ("fixture-publisher", SOURCE), ("spdx", digest)):
+            with self.subTest(origin=origin, revision=revision):
+                record["crosswalks"] = [{"origin": origin, "revision": revision, "key": "exact-key", "claim": binding}]
+                self.assertFalse(schema.is_valid(record))
+                with self.assertRaisesRegex(DataError, "immutable revision appropriate to its origin"):
+                    _bind_payload({MIT: record}, [])
 
     def test_rejects_ambiguous_crosswalk_across_entities(self):
         first = entity()

@@ -29,6 +29,36 @@
         "revision": {"type": "integer", "minimum": 1}
       }
     },
+    "claim_scope": {
+      "type": "object",
+      "description": "Applicability dimensions preserved in the canonical field from its exact SCES claim.",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"},
+      "additionalProperties": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:-]*$"}
+    },
+    "content_revision": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "crosswalk": {
+      "type": "object",
+      "required": ["origin", "revision", "key", "claim"],
+      "additionalProperties": false,
+      "properties": {
+        "origin": {"$ref": "#/$defs/text"},
+        "revision": {"$ref": "#/$defs/text"},
+        "key": {"$ref": "#/$defs/text"},
+        "claim": {"$ref": "#/$defs/claim"},
+        "scope": {"$ref": "#/$defs/claim_scope"}
+      },
+      "if": {"properties": {"origin": {"const": "spdx"}}},
+      "then": {"properties": {"revision": {"$ref": "#/$defs/commit"}}},
+      "else": {
+        "if": {"properties": {"origin": {
+          "pattern": "^(?:software-commons/[a-z0-9]+(?:-[a-z0-9]+)*-index|git\\+https://[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?(/[A-Za-z0-9][A-Za-z0-9._-]*)+)$"
+        }}},
+        "then": {"properties": {"revision": {"anyOf": [
+          {"$ref": "#/$defs/commit"}, {"$ref": "#/$defs/content_revision"}
+        ]}}},
+        "else": {"properties": {"revision": {"$ref": "#/$defs/content_revision"}}}
+      }
+    },
     "origin": {
       "type": "object",
       "required": ["kind", "source", "identifier", "name"],
@@ -78,16 +108,16 @@
         "name": {"$ref": "#/$defs/text"},
         "state": {"enum": ["active", "historical", "retired"]},
         "identity_claim": {"$ref": "#/$defs/claim"},
+        "identity_scope": {"$ref": "#/$defs/claim_scope"},
         "aliases": {
           "type": "array",
           "items": {"type": "object", "required": ["name", "claim"], "additionalProperties": false,
-            "properties": {"name": {"$ref": "#/$defs/text"}, "claim": {"$ref": "#/$defs/claim"}}}
+            "properties": {"name": {"$ref": "#/$defs/text"}, "claim": {"$ref": "#/$defs/claim"},
+              "scope": {"$ref": "#/$defs/claim_scope"}}}
         },
         "crosswalks": {
           "type": "array",
-          "items": {"type": "object", "required": ["origin", "revision", "key", "claim"], "additionalProperties": false,
-            "properties": {"origin": {"$ref": "#/$defs/text"}, "revision": {"$ref": "#/$defs/text"},
-              "key": {"$ref": "#/$defs/text"}, "claim": {"$ref": "#/$defs/claim"}}}
+          "items": {"$ref": "#/$defs/crosswalk"}
         },
         "relations": {
           "type": "array",
@@ -98,7 +128,8 @@
                 "dependentRequired": {"index": ["revision"], "revision": ["index"]},
                 "properties": {"id": {"$ref": "#/$defs/text"}, "index": {"$ref": "#/$defs/text"},
                   "revision": {"$ref": "#/$defs/text"}}},
-              "claim": {"$ref": "#/$defs/claim"}
+              "claim": {"$ref": "#/$defs/claim"},
+              "scope": {"$ref": "#/$defs/claim_scope"}
             }}
         }
       }

@@ -19,12 +19,14 @@ SCHEMA_VERSION = "1.0.0"
 
 _KEY = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 _INDEX = re.compile(r"software-commons/[a-z0-9]+(?:-[a-z0-9]+)*-index")
+_GIT_ORIGIN = re.compile(r"git\+https://[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?(/[A-Za-z0-9][A-Za-z0-9._-]*)+")
+_CONTENT_REVISION = re.compile(r"sha256:[0-9a-f]{64}")
+_SCOPE_VALUE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+:-]*")
 _VERSION = re.compile(r"v?[0-9]+\.[0-9]+(?:\.[0-9]+)?(?:-[a-z0-9]+(?:[.-][a-z0-9]+)*)?")
 _KINDS = {"license", "exception", "related-instrument", "family"}
 _STATES = {"active", "historical", "retired"}
 _LINEAGE = {"edition-of", "member-of", "derived-from", "supersedes", "merged-from", "split-from"}
 _RELATIONS = _LINEAGE | {"exception-for", "related-to"}
-_MUTABLE = {"any", "current", "head", "latest", "main", "master", "unknown", "unspecified"}
 
 
 def _text(value):
@@ -37,6 +39,28 @@ def _matches(pattern, value):
 
 def _fields(value, fields):
     return isinstance(value, dict) and value.keys() == fields
+
+
+def _scoped_fields(value, fields, scope_key="scope"):
+    if not isinstance(value, dict) or value.keys() - {scope_key} != fields:
+        return False
+    scope = value.get(scope_key, {})
+    return isinstance(scope, dict) and all(_matches(_KEY, key) and _matches(_SCOPE_VALUE, identifier)
+                                          for key, identifier in scope.items())
+
+
+def _revision_scope(field, dimension, revision):
+    scope = field.get("scope", {})
+    require(scope.get(dimension, revision) == revision, f"explicit scope conflicts with pinned {dimension}")
+    return {**scope, dimension: revision}
+
+
+def _immutable_crosswalk_revision(origin, revision):
+    if origin == "spdx":
+        return _matches(DATA_COMMIT, revision)
+    if _matches(_CONTENT_REVISION, revision):
+        return True
+    return (_matches(_INDEX, origin) or _matches(_GIT_ORIGIN, origin)) and _matches(DATA_COMMIT, revision)
 
 
 def _canonical(value):
@@ -153,23 +177,26 @@ def _validate_policy(catalog_root, policy, base):
 
 def _binding_specs(entity):
     identity = {key: entity[key] for key in ("kind", "name", "state")}
-    yield entity["identity_claim"], "instrument-identity", _claim_value(identity), {}
+    yield entity["identity_claim"], "instrument-identity", _claim_value(identity), entity.get("identity_scope", {})
     for alias in entity["aliases"]:
-        yield alias["claim"], "instrument-identity", alias["name"], {}
+        yield alias["claim"], "instrument-identity", alias["name"], alias.get("scope", {})
     for item in entity["crosswalks"]:
         value = {key: item[key] for key in ("origin", "revision", "key")}
         if item["origin"] == "spdx":
-            yield item["claim"], "spdx-membership", _claim_value(value), {"data-revision": item["revision"]}
+            scope = _revision_scope(item, "data-revision", item["revision"])
+            yield item["claim"], "spdx-membership", _claim_value(value), scope
         else:
-            yield item["claim"], "instrument-identity", _claim_value(value), {"revision": item["revision"]}
+            scope = _revision_scope(item, "revision", item["revision"])
+            yield item["claim"], "instrument-identity", _claim_value(value), scope
     for edge in entity["relations"]:
         target = edge["target"]
         value = edge["type"] + ":" + _claim_value(target)
         if "index" in target:
-            yield edge["claim"], "cross-index-relationship", value, {"target-revision": target["revision"]}
+            scope = _revision_scope(edge, "target-revision", target["revision"])
+            yield edge["claim"], "cross-index-relationship", value, scope
         else:
             predicate = "exception-relationship" if edge["type"] == "exception-for" else "historical-relationship"
-            yield edge["claim"], predicate, value, {}
+            yield edge["claim"], predicate, value, edge.get("scope", {})
 
 
 def _validate_target(target, owner, relation, entities):
@@ -202,7 +229,8 @@ def _validate_entities(entities):
     crosswalk_owners = {}
     for identity, entity in entities.items():
         require(
-            _fields(entity, {"id", "kind", "name", "state", "identity_claim", "aliases", "crosswalks", "relations"})
+            _scoped_fields(entity, {"id", "kind", "name", "state", "identity_claim", "aliases", "crosswalks", "relations"},
+                           "identity_scope")
             and identity == entity["id"] and _matches(OPAQUE_ID, identity)
             and _text(entity["kind"]) and entity["kind"] in _KINDS
             and _text(entity["state"]) and entity["state"] in _STATES and _text(entity["name"])
@@ -212,7 +240,7 @@ def _validate_entities(entities):
         _claim_key(entity["identity_claim"])
         labels = {entity["name"].casefold()}
         for alias in entity["aliases"]:
-            require(_fields(alias, {"name", "claim"}) and _text(alias["name"]),
+            require(_scoped_fields(alias, {"name", "claim"}) and _text(alias["name"]),
                     f"{identity}: invalid alias")
             label = alias["name"].casefold()
             require(label not in labels, f"{identity}: duplicate canonical label or alias")
@@ -220,14 +248,13 @@ def _validate_entities(entities):
             _claim_key(alias["claim"])
         for item in entity["crosswalks"]:
             require(
-                _fields(item, {"origin", "revision", "key", "claim"})
-                and all(_text(item[name]) for name in ("origin", "revision", "key"))
-                and item["revision"].casefold() not in _MUTABLE,
-                f"{identity}: invalid or mutable external identity crosswalk",
+                _scoped_fields(item, {"origin", "revision", "key", "claim"})
+                and all(_text(item[name]) for name in ("origin", "key"))
+                and _immutable_crosswalk_revision(item["origin"], item["revision"]),
+                f"{identity}: external identity crosswalk requires an immutable revision appropriate to its origin",
             )
             locator = item["origin"], item["revision"], item["key"]
             if item["origin"] == "spdx":
-                require(_matches(DATA_COMMIT, item["revision"]), f"{identity}: missing SPDX data commit")
                 locator = locator[:2] + (item["key"].casefold(),)
             require(locator not in crosswalk_owners,
                     f"{identity}: crosswalk duplicates {crosswalk_owners.get(locator)}")
@@ -239,7 +266,7 @@ def _validate_entities(entities):
         edges = set()
         for edge in entity["relations"]:
             require(
-                _fields(edge, {"type", "target", "claim"}) and _text(edge["type"]) and edge["type"] in _RELATIONS,
+                _scoped_fields(edge, {"type", "target", "claim"}) and _text(edge["type"]) and edge["type"] in _RELATIONS,
                 f"{identity}: invalid relationship",
             )
             _claim_key(edge["claim"])
@@ -280,7 +307,7 @@ def _bind_payload(entities, payload):
                 f"duplicate SCES claim or noncanonical claim subject: {key}")
         by_key[key] = row
     for identity, entity in entities.items():
-        for ref, predicate, value, required_scope in _binding_specs(entity):
+        for ref, predicate, value, scope in _binding_specs(entity):
             key = _claim_key(ref)
             claim = by_key.get(key, {}).get("claim", {})
             require(
@@ -288,7 +315,7 @@ def _bind_payload(entities, payload):
                 and claim.get("value") == value
                 and claim.get("polarity") == "affirmative"
                 and claim.get("modality") == "descriptive" and claim.get("conditions") == []
-                and all(claim.get("scope", {}).get(name) == value for name, value in required_scope.items()),
+                and claim.get("scope") == scope,
                 f"{identity}: exact SCES claim does not bind the canonical field: {key}",
             )
     return [by_key[key] for key in sorted(by_key)]

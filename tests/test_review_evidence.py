@@ -201,7 +201,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         unchanged = self.commit({"sces/artifacts/unrelated.txt": b"unrelated\n"}, "preserve active selection")
         self.assertEqual(capture_selected_evidence(self.root, unchanged, REPOSITORY, base=candidate)[path], previous)
         rewrite = self.commit(make_publication(frozen, previous_report=older_link), "change active lineage")
-        with self.assertRaisesRegex(DataError, "active publication selection differs"):
+        with self.assertRaisesRegex(DataError, "must preserve exact verified base release"):
             capture_selected_evidence(self.root, rewrite, REPOSITORY, base=candidate)
 
         changed = _canonical({"release": "previous-release", "fixture": "candidate replacement"})
@@ -209,7 +209,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         for predecessor, extra, message in (
             (None, {}, "successor must identify the verified base release"),
             (older_link, {}, "successor must identify the verified base release"),
-            (replacement, {path: changed}, "previous report path or blob differs"),
+            (replacement, {path: changed}, "must preserve exact verified base release"),
         ):
             with self.subTest(predecessor=predecessor):
                 _git(self.root, "switch", "--quiet", "--detach", base)
@@ -256,8 +256,9 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
             ({}, "requires a new withdrawal advisory"),
             ({"sces/advisories/other.json": _canonical(advice)}, "requires a new withdrawal advisory"),
             ({advice_path: _canonical(wrong_digest)}, "does not bind the exact verified base qualification"),
-            ({advice_path: _canonical(rehashed), path: replacement}, "must preserve the exact verified base qualification blob"),
+            ({advice_path: _canonical(rehashed), path: replacement}, "must preserve exact verified base release"),
             ({advice_path: _canonical({**advice, "affected": [ref("claim", "other")]})}, "lists invalid affected claims"),
+            ({advice_path: _canonical({**advice, "recorded": "9999-01-01T00:00:00Z"})}, "timestamp is in the future"),
         ):
             with self.subTest(message=message, paths=sorted(files)):
                 _git(self.root, "switch", "--quiet", "--detach", base)
@@ -269,11 +270,34 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         _git(self.root, "switch", "--quiet", "--detach", base)
         (self.root / SELECTION).unlink()
         candidate = self.commit({advice_path: _canonical(advice)}, "withdraw the exact active qualification")
-        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=base), {"base:sces/publication.json": publication[SELECTION],
-                                                   "sces/adoption.json": inputs["sces/adoption.json"],
-                                                   path: report, advice_path: _canonical(advice)})
+        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=base),
+                         {"base:sces/publication.json": publication[SELECTION],
+                          "sces/adoption.json": inputs["sces/adoption.json"],
+                          path: report, advice_path: _canonical(advice)})
         with self.assertRaisesRegex(DataError, "requires the exact verified pull-request base"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+        for paths in ((advice_path,), (path,), (advice_path, path, RELEASE + "claims.json")):
+            with self.subTest(paths=paths):
+                _git(self.root, "switch", "--quiet", "--detach", candidate)
+                for removed in paths:
+                    (self.root / removed).unlink()
+                erased = self.commit({}, "try erasing inherited withdrawal history while inactive")
+                with self.assertRaisesRegex(DataError, "must preserve exact verified base release and withdrawal"):
+                    capture_selected_evidence(self.root, erased, REPOSITORY, base=candidate)
+
+        _git(self.root, "switch", "--quiet", "--detach", candidate)
+        replay = self.commit({SELECTION: publication[SELECTION]}, "try reselecting the already advised release")
+        with self.assertRaisesRegex(DataError, "active publication is already withdrawn"):
+            capture_selected_evidence(self.root, replay, REPOSITORY, base=candidate)
+
+        _git(self.root, "switch", "--quiet", "--detach", candidate)
+        kept = self.commit({"sces/artifacts/idle.txt": b"unrelated review"}, "keep withdrawal history while inactive")
+        self.assertEqual(capture_selected_evidence(self.root, kept, REPOSITORY, base=candidate), {})
+        revived = self.commit(make_publication(source, release="revived", previous_report=link),
+                              "reactivate using the retained withdrawal")
+        self.assertEqual(capture_selected_evidence(self.root, revived, REPOSITORY, base=kept)[advice_path],
+                         _canonical(advice))
 
     def test_reactivation_requires_an_exact_withdrawal_advisory(self):
         inputs, make_publication = fixture()
@@ -310,24 +334,62 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         self.assertEqual(captured[path], archive[path])
         self.assertEqual(captured[advisory], _canonical(advice))
 
-        _git(self.root, "switch", "--quiet", "--detach", advised_base)
-        older = make_publication(frozen, release="older-withdrawn")
-        del older[SELECTION]
-        older_path = "sces/releases/older-withdrawn/qualification.json"
-        older_advisory = "sces/advisories/older-withdrawn.json"
-        older_link = {"path": older_path, "sha256": digest(older[older_path])}
-        older_advice = {**advice, "report": older_link, "recorded": "2026-09-01T00:00:00Z"}
-        two_archives = self.commit({**older, older_advisory: _canonical(older_advice)}, "retain a second archived release")
-        candidate = self.commit(make_publication(frozen, previous_report=older_link), "try to use the older withdrawal")
-        with self.assertRaisesRegex(DataError, "latest withdrawn qualification report"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY, base=two_archives)
+    def test_inactive_predecessor_follows_verified_lineage_independently_of_advisory_time(self):
+        inputs, make_publication = fixture()
+        frozen = self.commit(inputs, "freeze evidence")
 
-        _git(self.root, "switch", "--quiet", "--detach", two_archives)
-        tie = {**older_advice, "recorded": advice["recorded"]}
-        tied_base = self.commit({older_advisory: _canonical(tie)}, "retain withdrawals at the same timestamp")
-        candidate = self.commit(successor, "try to choose one of two equally recent withdrawals")
-        with self.assertRaisesRegex(DataError, "withdrawn predecessor is ambiguous"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY, base=tied_base)
+        def archive(slug, recorded, predecessor=None):
+            files = make_publication(frozen, previous_report=predecessor, release=slug)
+            path = f"sces/releases/{slug}/qualification.json"
+            link = {"path": path, "sha256": digest(files[path])}
+            advisory = _canonical({"report": link, "affected": [ref("claim", "selected")],
+                                   "reason": "Synthetic withdrawal", "recorded": recorded})
+            return files, link, {f"sces/advisories/{slug}.json": advisory}
+
+        first, first_link, first_advice = archive("older", "2026-10-02T00:00:00Z")
+        initial = self.commit(first, "publish the first release")
+        latest, latest_link, latest_advice = archive("newest", "2026-10-02T00:00:00Z", first_link)
+        replaces_first = self.commit({**latest, **first_advice}, "replace and withdraw the old active release")
+        staged = capture_selected_evidence(self.root, replaces_first, REPOSITORY, base=initial)
+        self.assertEqual(staged["base:sces/publication.json"], first[SELECTION])
+
+        _git(self.root, "switch", "--quiet", "--detach", initial)
+        unadvised = self.commit(latest, "replace without withdrawing the prior release yet")
+        (self.root / SELECTION).unlink()
+        partial = self.commit(latest_advice, "leave an older unadvised release without an active selection")
+        with self.assertRaisesRegex(DataError, "inactive publication retains a qualification without a withdrawal advisory"):
+            capture_selected_evidence(self.root, partial, REPOSITORY, base=unadvised)
+        _git(self.root, "switch", "--quiet", "--detach", unadvised)
+        active = self.commit(first_advice, "append historical withdrawal without changing active selection")
+        staged = capture_selected_evidence(self.root, active, REPOSITORY, base=unadvised)
+        first_advisory_path, = first_advice
+        self.assertEqual(staged[first_advisory_path], first_advice[first_advisory_path])
+
+        successor = make_publication(frozen, previous_report=latest_link)
+        for timestamp in ("2026-10-01T00:00:00Z", "2026-10-02T00:00:00Z"):
+            with self.subTest(timestamp=timestamp):
+                _git(self.root, "switch", "--quiet", "--detach", active)
+                _, _, latest_advice = archive("newest", timestamp, first_link)
+                (self.root / SELECTION).unlink()
+                withdrawn = self.commit(latest_advice, "withdraw the newer release")
+                staged = capture_selected_evidence(self.root, withdrawn, REPOSITORY, base=active)
+                self.assertIn("sces/advisories/newest.json", staged)
+                older_selection = make_publication(frozen, previous_report=first_link)
+                previous = self.commit(older_selection, "select an older ancestor")
+                with self.assertRaisesRegex(DataError, "reactivation must identify the verified dataset's latest withdrawn"):
+                    capture_selected_evidence(self.root, previous, REPOSITORY, base=withdrawn)
+                _git(self.root, "switch", "--quiet", "--detach", withdrawn)
+                candidate = self.commit(successor, "link to the newest qualified descendant")
+                staged = capture_selected_evidence(self.root, candidate, REPOSITORY, base=withdrawn)
+                self.assertEqual(staged[latest_link["path"]], latest[latest_link["path"]])
+
+        _git(self.root, "switch", "--quiet", "--detach", withdrawn)
+        unrelated, _, advice = archive("disconnected", "2026-10-03T00:00:00Z")
+        del unrelated[SELECTION]
+        ambiguous = self.commit({**unrelated, **advice}, "seed legacy history with another same-dataset root")
+        candidate = self.commit(successor, "attempt reactivation with multiple protected lineage tips")
+        with self.assertRaisesRegex(DataError, "no unique successor tip"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=ambiguous)
 
     def test_predecessor_introduced_in_frozen_history_cannot_replace_verified_base(self):
         inputs, make_publication = fixture()
@@ -337,7 +399,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         frozen = self.commit({path: previous}, "add a predecessor after the verified base")
         candidate = self.commit(make_publication(frozen, previous_report={"path": path, "sha256": digest(previous)}),
                                 "point to the newly added report")
-        with self.assertRaisesRegex(DataError, "base"):
+        with self.assertRaisesRegex(DataError, "outside the active qualification"):
             capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
 
     def test_self_consistent_candidate_evidence_must_still_match_the_frozen_commit(self):
