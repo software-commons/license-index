@@ -75,9 +75,9 @@ def fixture(*, reused_execution_for=None):
         record(ref("disposition", name + "-disposition"), target=claim, evidence="supported",
                verification="independently-reviewed", **executions)
 
-    def publication(source_commit, *, previous_report=None, release="test-release"):
+    def publication(source_commit, *, previous_report=None, release="test-release", dataset="test-index"):
         release_path = f"sces/releases/{release}/"
-        selection = {"release": release, "dataset": "test-index", "schema_version": "1.0.0",
+        selection = {"release": release, "dataset": dataset, "schema_version": "1.0.0",
                      "source_commit": source_commit, "claims": [selected]}
         if previous_report is not None:
             selection["previous_report"] = previous_report
@@ -113,7 +113,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
     def test_selection_only_commit_stages_unchanged_closure_but_no_unrelated_records(self):
         inputs, make_publication = fixture()
         baseline = self.commit({**inputs, UNSELECTED: _canonical(ref("claim", "unselected"))}, "inherited evidence")
-        self.assertEqual(capture_selected_evidence(self.root, baseline, REPOSITORY), {})
+        self.assertEqual(capture_selected_evidence(self.root, baseline, REPOSITORY, base=baseline), {})
         publication = make_publication(baseline)
         candidate = self.commit(publication, "select previously committed evidence")
         changed = _git(self.root, "diff", "--name-only", baseline, candidate).decode().splitlines()
@@ -217,6 +217,63 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
                 candidate = self.commit({**publication, **extra}, "select successor with matching internal hashes")
                 with self.assertRaisesRegex(DataError, message):
                     capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+    def test_successor_and_its_predecessor_must_match_the_base_selection_dataset(self):
+        inputs, make_publication = fixture()
+        source = self.commit(inputs, "freeze evidence")
+        publication = make_publication(source)
+        base = self.commit(publication, "publish a release on the protected base")
+        path = RELEASE + "qualification.json"
+        link = {"path": path, "sha256": digest(publication[path])}
+        renamed = self.commit(make_publication(source, release="successor", previous_report=link, dataset="other-index"),
+                              "reuse base report while renaming dataset")
+        with self.assertRaisesRegex(DataError, "must retain the verified base dataset"):
+            capture_selected_evidence(self.root, renamed, REPOSITORY, base=base)
+
+        _git(self.root, "switch", "--quiet", "--detach", source)
+        bad_report = _canonical({**decode(publication[path]), "dataset": "other-index"})
+        base = self.commit({**publication, path: bad_report}, "store a prior report with the wrong dataset")
+        wrong_lineage = self.commit(make_publication(source, release="successor", previous_report={**link, "sha256": digest(bad_report)}),
+                                    "reference the exact but unrelated protected report")
+        with self.assertRaisesRegex(DataError, "previous report names a different dataset"):
+            capture_selected_evidence(self.root, wrong_lineage, REPOSITORY, base=base)
+
+    def test_removing_active_selection_binds_exact_protected_qualification_and_matching_advice(self):
+        inputs, make_publication = fixture()
+        source = self.commit(inputs, "freeze evidence")
+        publication = make_publication(source)
+        base = self.commit(publication, "publish the active release")
+        path = RELEASE + "qualification.json"
+        advice_path = "sces/advisories/test-release.json"
+        report = publication[path]
+        link = {"path": path, "sha256": digest(report)}
+        advice = {"report": link, "affected": [ref("claim", "selected")], "reason": "Synthetic withdrawal",
+                  "recorded": "2026-10-02T00:00:00Z"}
+        replacement = _canonical({**decode(report), "fixture": "candidate rewrite"})
+        wrong_digest = {**advice, "report": {**link, "sha256": "f" * 64}}
+        rehashed = {**advice, "report": {**link, "sha256": digest(replacement)}}
+        for files, message in (
+            ({}, "requires a new withdrawal advisory"),
+            ({"sces/advisories/other.json": _canonical(advice)}, "requires a new withdrawal advisory"),
+            ({advice_path: _canonical(wrong_digest)}, "does not bind the exact verified base qualification"),
+            ({advice_path: _canonical(rehashed), path: replacement}, "must preserve the exact verified base qualification blob"),
+            ({advice_path: _canonical({**advice, "affected": [ref("claim", "other")]})}, "lists invalid affected claims"),
+        ):
+            with self.subTest(message=message, paths=sorted(files)):
+                _git(self.root, "switch", "--quiet", "--detach", base)
+                (self.root / SELECTION).unlink()
+                candidate = self.commit(files, "try removing the active selection")
+                with self.assertRaisesRegex(DataError, message):
+                    capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+        _git(self.root, "switch", "--quiet", "--detach", base)
+        (self.root / SELECTION).unlink()
+        candidate = self.commit({advice_path: _canonical(advice)}, "withdraw the exact active qualification")
+        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=base), {"base:sces/publication.json": publication[SELECTION],
+                                                   "sces/adoption.json": inputs["sces/adoption.json"],
+                                                   path: report, advice_path: _canonical(advice)})
+        with self.assertRaisesRegex(DataError, "requires the exact verified pull-request base"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
 
     def test_reactivation_requires_an_exact_withdrawal_advisory(self):
         inputs, make_publication = fixture()

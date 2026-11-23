@@ -5,11 +5,14 @@
 /docs/CODEX_GATE.md @TheCyberLocal
 /docs/GOVERNANCE_REVIEW.md @TheCyberLocal
 /docs/PUBLICATION.md @TheCyberLocal
+/license-index @TheCyberLocal
+/license-index.cmd @TheCyberLocal
 /sces/adoption.json @TheCyberLocal
 /sces/publication.json @TheCyberLocal
 /sces/releases/ @TheCyberLocal
 /sces/advisories/ @TheCyberLocal
 /tools/ @TheCyberLocal
+/tests/ @TheCyberLocal
 /schemas/domain/ @TheCyberLocal
 /research/sources/ @TheCyberLocal
 /legal-texts/ @TheCyberLocal

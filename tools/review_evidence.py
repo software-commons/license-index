@@ -27,6 +27,7 @@ _MAX_RECORDS = 16 * 1024 * 1024
 _MAX_EVIDENCE = 16 * 1024 * 1024
 _MAX_BLOB = 4 * 1024 * 1024
 _SELECTION = "sces/publication.json"
+_BASE_SELECTION_REVIEW_PATH = "base:sces/publication.json"
 _ADOPTION = "sces/adoption.json"
 _RAW_HOST = "https://raw.githubusercontent.com"
 _RAW_TIMEOUT = 20
@@ -314,6 +315,58 @@ def _selection_tree(directory, commit):
     return {_SELECTION: match[1].decode("ascii")}
 
 
+def _qualification_identity(report, slug):
+    require(report["release"] == slug and report["repository"] == REPOSITORY
+            and report["policy"] == "SCES-1.0" and report["policy_sha256"] == POLICY_DIGEST
+            and report["synthetic"] is False, "invalid protected SCES qualification report")
+
+
+def _bind_base_qualification(report, selection, selection_bytes):
+    require(report["dataset"] == selection["dataset"] and report["schema_version"] == selection["schema_version"]
+            and report["source_commit"] == selection["source_commit"]
+            and report["selection_sha256"] == _digest(selection_bytes),
+            "SCES prior qualification does not bind the exact verified base selection and dataset")
+
+
+def _withdrawal_timestamp(recorded):
+    require(re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", recorded),
+            "invalid SCES withdrawal advisory timestamp")
+    return datetime.strptime(recorded, "%Y-%m-%dT%H:%M:%S%z")
+
+
+def _capture_withdrawal(directory, commit, base, base_selection_tree):
+    base_bytes = _blobs(directory, base_selection_tree, [_SELECTION], limit=_MAX_EVIDENCE)[_SELECTION]
+    base_selection = decode(base_bytes)
+    slug = base_selection["release"]
+    require(isinstance(slug, str) and _SLUG.fullmatch(slug), "invalid SCES base release name")
+    report_path = f"sces/releases/{slug}/qualification.json"
+    advisory_path = f"sces/advisories/{slug}.json"
+    base_paths = _inventory(directory, base, report_path, advisory_path)
+    candidate_paths = _inventory(directory, commit, _ADOPTION, report_path, advisory_path)
+    require(advisory_path not in base_paths and advisory_path in candidate_paths,
+            "SCES active publication removal requires a new withdrawal advisory for the verified base release")
+    require(report_path in base_paths and candidate_paths.get(report_path) == base_paths[report_path],
+            "SCES withdrawal must preserve the exact verified base qualification blob")
+    staged = _blobs(directory, candidate_paths, [_ADOPTION, report_path, advisory_path],
+                    limit=_MAX_EVIDENCE - len(base_bytes))
+    adoption = decode(staged[_ADOPTION])
+    require(adoption["policy"] == "SCES-1.0" and adoption["policy_sha256"] == POLICY_DIGEST
+            and adoption["repository"] == REPOSITORY and adoption["mode"] == "index",
+            "invalid protected SCES adoption for a withdrawal")
+    report, advisory = decode(staged[report_path]), decode(staged[advisory_path])
+    _qualification_identity(report, slug)
+    _bind_base_qualification(report, base_selection, base_bytes)
+    require(advisory["report"] == {"path": report_path, "sha256": _digest(staged[report_path])},
+            "SCES withdrawal advisory does not bind the exact verified base qualification")
+    _withdrawal_timestamp(advisory["recorded"])
+    affected = [_key(reference, "claim") for reference in advisory["affected"]]
+    require(affected and len(set(affected)) == len(affected)
+            and set(affected) <= {_key(reference, "claim") for reference in report["claims"]}
+            and isinstance(advisory["reason"], str) and advisory["reason"].strip(),
+            "SCES withdrawal advisory lacks a reason or lists invalid affected claims")
+    return dict(sorted({**staged, _BASE_SELECTION_REVIEW_PATH: base_bytes}.items()))
+
+
 def _withdrawn_predecessor(directory, paths, base, selection):
     """Use the matching dataset's latest UTC withdrawal; tied timestamps need adjudication."""
     advisory_paths = _inventory(directory, base, "sces/advisories")
@@ -327,10 +380,7 @@ def _withdrawn_predecessor(directory, paths, base, selection):
         descriptor = row["report"]
         require(descriptor["path"] == f"sces/releases/{slug}/qualification.json",
                 "SCES withdrawal advisory does not bind its archived predecessor")
-        recorded = row["recorded"]
-        require(re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", recorded),
-                "invalid SCES withdrawal advisory timestamp")
-        withdrawals.append((datetime.strptime(recorded, "%Y-%m-%dT%H:%M:%S%z"), slug, descriptor, advisory))
+        withdrawals.append((_withdrawal_timestamp(row["recorded"]), slug, descriptor, advisory))
 
     report_paths = _inventory(directory, base, "sces/releases") if withdrawals else {}
     reports = _blobs(directory, report_paths, sorted(item[2]["path"] for item in withdrawals),
@@ -340,9 +390,7 @@ def _withdrawn_predecessor(directory, paths, base, selection):
         blob = reports[descriptor["path"]]
         require(_digest(blob) == descriptor["sha256"], "SCES withdrawal advisory does not bind the archived predecessor")
         report = decode(blob)
-        require(report["release"] == slug and report["repository"] == REPOSITORY
-                and report["policy"] == "SCES-1.0" and report["policy_sha256"] == POLICY_DIGEST
-                and report["synthetic"] is False, "invalid protected SCES withdrawn qualification report")
+        _qualification_identity(report, slug)
         if report["dataset"] == selection["dataset"]:
             matching.append((recorded, descriptor, advisory))
 
@@ -363,16 +411,16 @@ def _withdrawn_predecessor(directory, paths, base, selection):
     return {path: reports[path], advisory: advisories[advisory]}
 
 
-def _previous_report(directory, paths, base, selection, selection_bytes):
-    require(isinstance(base, str) and re.fullmatch(r"[0-9a-f]{40}", base),
-            "SCES publication requires the exact verified pull-request base")
-    base_selection_tree = _selection_tree(directory, base)
+def _previous_report(directory, paths, base, base_selection_tree, selection, selection_bytes):
     if not base_selection_tree:
         return _withdrawn_predecessor(directory, paths, base, selection)
     predecessor = selection.get("previous_report")
     base_bytes = _blobs(directory, base_selection_tree, [_SELECTION], limit=_MAX_EVIDENCE)[_SELECTION]
-    base_slug = decode(base_bytes)["release"]
+    base_selection = decode(base_bytes)
+    base_slug = base_selection["release"]
     require(isinstance(base_slug, str) and _SLUG.fullmatch(base_slug), "invalid SCES base release name")
+    require(selection["dataset"] == base_selection["dataset"],
+            "SCES active publication successor must retain the verified base dataset")
     if selection["release"] == base_slug:
         require(selection_bytes == base_bytes,
                 "SCES active publication selection differs from the verified pull-request base")
@@ -391,10 +439,15 @@ def _previous_report(directory, paths, base, selection, selection_bytes):
             "SCES previous report path or blob differs from the verified pull-request base")
     history = _blobs(directory, paths, [path], limit=_MAX_EVIDENCE)
     require(_digest(history[path]) == predecessor["sha256"], "SCES previous report digest mismatch")
+    report = decode(history[path])
+    _qualification_identity(report, match[1])
+    require(report["dataset"] == selection["dataset"], "SCES previous report names a different dataset")
+    if selection["release"] != base_slug:
+        _bind_base_qualification(report, base_selection, base_bytes)
     return history
 
 
-def _selected_evidence(directory, paths, repository, base):
+def _selected_evidence(directory, paths, base, base_selection_tree):
     metadata = _blobs(directory, paths, [_ADOPTION, _SELECTION], limit=_MAX_EVIDENCE)
     adoption = decode(metadata[_ADOPTION])
     selection = decode(metadata[_SELECTION])
@@ -406,7 +459,7 @@ def _selected_evidence(directory, paths, repository, base):
     report = decode(metadata[report_path])
     require(adoption["policy"] == report["policy"] == "SCES-1.0"
             and adoption["policy_sha256"] == report["policy_sha256"] == POLICY_DIGEST
-            and adoption["repository"] == report["repository"] == repository and adoption["mode"] == "index"
+            and adoption["repository"] == report["repository"] == REPOSITORY and adoption["mode"] == "index"
             and report["dataset"] == selection["dataset"]
             and report["schema_version"] == selection["schema_version"]
             and report["synthetic"] is False and report["release"] == slug
@@ -417,7 +470,7 @@ def _selected_evidence(directory, paths, repository, base):
             "SCES selection and qualification do not bind the exact publication")
     require(("previous_report" in report) == ("previous_report" in selection)
             and report.get("previous_report") == selection.get("previous_report"), "SCES previous report mismatch")
-    metadata.update(_previous_report(directory, paths, base, selection, metadata[_SELECTION]))
+    metadata.update(_previous_report(directory, paths, base, base_selection_tree, selection, metadata[_SELECTION]))
 
     selected = [_key(ref, "claim") for ref in selection["claims"]]
     require(selected and len({identity[:2] for identity in selected}) == len(selected)
@@ -462,14 +515,18 @@ def _selected_evidence(directory, paths, repository, base):
 
 
 def capture_selected_evidence(directory, commit, repository, *, base=None):
-    """Return exact selected bytes, or an empty mapping when there is no active publication."""
+    """Return exact active-publication or withdrawal inputs for the verified Git transition."""
     try:
-        if not _selection_tree(directory, commit):
-            return {}
+        selection_tree = _selection_tree(directory, commit)
         require(repository == REPOSITORY, "SCES review repository is outside the allowlist")
+        require(isinstance(base, str) and re.fullmatch(r"[0-9a-f]{40}", base),
+                "SCES publication requires the exact verified pull-request base")
+        base_selection_tree = _selection_tree(directory, base)
+        if not selection_tree:
+            return _capture_withdrawal(directory, commit, base, base_selection_tree) if base_selection_tree else {}
         paths = _inventory(directory, commit, "sces")
-        return _selected_evidence(directory, paths, repository, base)
+        return _selected_evidence(directory, paths, base, base_selection_tree)
     except (KeyError, TypeError, ValueError, UnicodeError, RecursionError) as error:
         if isinstance(error, DataError):
             raise
-        raise DataError(f"could not capture the active SCES publication evidence: {error}") from error
+        raise DataError(f"could not capture the SCES publication evidence: {error}") from error

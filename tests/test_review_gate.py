@@ -23,7 +23,7 @@ from tools.review_snapshot import PullSnapshot, REPOSITORY, SnapshotError
 EXECUTION = "90c3284d-c009-4e34-bc00-beb41319adad"
 SNAPSHOT = PullSnapshot(repository_id=1468281504, number=1, base="a" * 40, head="b" * 40, merge="c" * 40)
 QUEUE = {"merge": "d" * 40, "queue_ref": "refs/heads/gh-readonly-queue/main/pr-1-" + "c" * 40}
-PATCH = b"diff --git a/tools/index.py b/tools/index.py\n+fixture change\n"
+PATCH = b"diff --git a/tools/index.py b/tools/index.py\n@@ -1,0 +2 @@\n+fixture change\n"
 BINDING = {"merge": SNAPSHOT.merge, "diff_sha256": sha256(PATCH).hexdigest()}
 LEGACY_TOKEN = "ghs_" + "a" * 36
 STATELESS_TOKEN = "ghs_12345_" + "A" * 120 + "." + "_-" * 100 + "." + "B" * 180
@@ -35,17 +35,21 @@ OWNER_BINDING = {"grant_commit": "e" * 40, "grant_sha256": "e" * 64,
                  "record_sha256": "f" * 64, "state_sha256": "1" * 64}
 
 
-def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.completed", proof=True, evidence=None):
+def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.completed", proof=True, evidence=None,
+               diff=PATCH, displayed=None):
+    diff_digest = sha256(diff).hexdigest()
     output = {"decision": "approve", "inspection_token": token, "merge_sha": BINDING["merge"],
-              "diff_sha256": BINDING["diff_sha256"], "findings": [], "rationale": "Synthetic fixture outcome"}
+              "diff_sha256": diff_digest, "findings": [], "rationale": "Synthetic fixture outcome"}
     output.update(verdict or {})
     events = [{"type": "thread.started", "thread_id": EXECUTION}, {"type": "turn.started"}]
     if inspect:
+        if displayed is None:
+            displayed = diff.decode() if proof else diff.decode().splitlines()[0]
+        digest = sha256(token.encode() + diff).hexdigest() if proof else diff_digest
         events.append({"type": "item.completed", "item": {
             "type": "command_execution", "status": "completed", "exit_code": 0,
             "command": "inspect review.diff",
-            "aggregated_output": (sha256(token.encode() + PATCH).hexdigest() + "\n" + PATCH.decode()
-                                  if proof else BINDING["diff_sha256"] + "\n" + PATCH.decode().splitlines()[0]),
+            "aggregated_output": digest + "\n" + displayed,
         }})
     if evidence:
         names = sorted(evidence)
@@ -270,6 +274,34 @@ class ReviewGateTests(unittest.TestCase):
             self.assertEqual(result["status"], "reviewed-locally")
             self.assertEqual(result["binding"]["sces_evidence"],
                              {path: sha256(raw).hexdigest() for path, raw in evidence.items()})
+
+    def test_short_patch_lines_qualify_but_text_headers_do_not(self):
+        diff = (b"diff --git a/mode b/mode\nold mode 100644\nnew mode 100755\n"
+                b"diff --git a/file b/file\nnew file mode 100644\n--- /dev/null\n+++ b/file\n"
+                b"@@ -0,0 +1,2 @@\n+x\n+++ y\n")
+        binding = {**BINDING, "diff_sha256": sha256(diff).hexdigest()}
+        for displayed in ("new file mode 100644", "new mode 100755", "+++ b/file", "@@ -0,0 +1,2 @@"):
+            with self.subTest(displayed=displayed), self.assertRaisesRegex(DataError, "patch body inspection"):
+                review_result(make_trace(diff=diff, displayed=displayed), binding, "abc", diff)
+        for displayed in ("+x", "+++ y"):
+            with self.subTest(displayed=displayed):
+                execution, verdict = review_result(make_trace(diff=diff, displayed=displayed), binding, "abc", diff)
+                self.assertEqual((execution, verdict["decision"]), (EXECUTION, "approve"))
+
+    def test_mode_only_and_binary_patches_require_their_own_content(self):
+        cases = (
+            (b"diff --git a/file b/file\nold mode 100644\nnew mode 100755\n",
+             "diff --git a/file b/file", "new mode 100755"),
+            (b"diff --git a/file b/file\nnew file mode 100644\nGIT binary patch\nliteral 3\nKc${Nk^?r|oO9I;v\n",
+             "GIT binary patch\nnew file mode 100644\nliteral 3", "Kc${Nk^?r|oO9I;v"),
+        )
+        for diff, header, body in cases:
+            binding = {**BINDING, "diff_sha256": sha256(diff).hexdigest()}
+            with self.subTest(diff=diff):
+                with self.assertRaisesRegex(DataError, "patch body inspection"):
+                    review_result(make_trace(diff=diff, displayed=header), binding, "abc", diff)
+                execution, verdict = review_result(make_trace(diff=diff, displayed=body), binding, "abc", diff)
+                self.assertEqual((execution, verdict["decision"]), (EXECUTION, "approve"))
 
     def test_installation_token_accepts_supported_formats_without_header_delimiters(self):
         for token in (LEGACY_TOKEN, STATELESS_TOKEN):
