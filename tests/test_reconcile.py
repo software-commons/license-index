@@ -394,6 +394,31 @@ class ReconcileTests(unittest.TestCase):
         path.write_bytes(reconcile.json_bytes(record))
         self.assertEqual(reconcile.find_dependencies(self.repo, ["Example"], []), [])
 
+    def test_case_only_spdx_change_reviews_both_exact_spellings(self):
+        fixture(self.archive)
+        first, source = self.read()
+        reconcile.prepare(self.repo, self.repo, first, source, initial=True)
+        baseline = reconcile.read_candidates(self.repo)["Example"]["id"]
+        claim_folder = self.repo / "sces/records/claim"
+        claim_folder.mkdir(parents=True)
+        for claim_id, key, revision in (("old-key", "Example", DATA), ("new-key", "EXAMPLE", NEXT),
+                                        ("substring-key", "Example-other", DATA)):
+            record = {"kind": "claim", "id": claim_id, "revision": 1,
+                      "subject": "e-123456789abc4def8123456789abcdef", "predicate": "spdx-membership",
+                      "value": f'{{"key":"{key}","origin":"spdx","revision":"{revision}"}}'}
+            (claim_folder / f"{claim_id}--1.json").write_bytes(reconcile.json_bytes(record))
+
+        fixture(self.archive, release="3.30.0", data=NEXT, licenses=("EXAMPLE",))
+        second, source = self.read(release="3.30.0", data=NEXT)
+        pending = self.root / "pending"
+        report = reconcile.prepare(self.repo, pending, second, source)
+        self.assertEqual(report["events"]["changed"], ["EXAMPLE"])
+        self.assertEqual(reconcile.read_candidates(pending)["EXAMPLE"]["id"], baseline)
+        self.assertEqual(report["dependency_review"], [
+            {"path": "sces/records/claim/new-key--1.json", "direct_matches": ["EXAMPLE"]},
+            {"path": "sces/records/claim/old-key--1.json", "direct_matches": ["Example"]},
+        ])
+
     def test_discover_resolves_annotated_tag_to_commit(self):
         payloads = {
             "repos/spdx/license-list-XML/releases/latest": {"tag_name": "v3.29.0"},

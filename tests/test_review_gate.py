@@ -14,8 +14,8 @@ from unittest.mock import Mock, patch
 
 from tools.records import DataError
 from tools.review_gate import (
-    ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, Reviewer, create_check, launch_review, load_issuer, main,
-    load_reviewer, protected_path, require_queue_rules, review_result, run, verify_issued_check,
+    ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, AuthorizationPaths, Reviewer, create_check, launch_review,
+    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, verify_issued_check,
 )
 from tools.review_protection import commissioning_policy
 from tools.review_snapshot import PullSnapshot, REPOSITORY, SnapshotError
@@ -31,6 +31,8 @@ TOKEN_REPOSITORY = {"id": SNAPSHOT.repository_id, "full_name": REPOSITORY}
 SCOPE_PATH = "/installation/repositories?per_page=100"
 RULESET = 27875276
 ADDITIVE = commissioning_policy(REPOSITORY, "main", "additive")
+OWNER_BINDING = {"grant_commit": "e" * 40, "grant_sha256": "e" * 64,
+                 "record_sha256": "f" * 64, "state_sha256": "1" * 64}
 
 
 def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.completed", proof=True, evidence=None):
@@ -113,14 +115,18 @@ class ReviewGateTests(unittest.TestCase):
 
     def test_license_control_authorization_matches_each_exact_candidate(self):
         for admission, merge in ((True, SNAPSHOT.merge), (False, QUEUE["merge"])):
-            for authorized in (None, SNAPSHOT.head, merge):
-                with self.subTest(admission=admission, authorized=authorized), TemporaryDirectory() as directory:
+            for authorized, has_record in ((None, False), (SNAPSHOT.head, True), (merge, False), (merge, True)):
+                valid = authorized == merge and has_record
+                with (self.subTest(admission=admission, authorized=authorized, has_record=has_record),
+                      TemporaryDirectory() as directory):
                     root = Path(directory)
                     github = Mock(get_pull=Mock(return_value=SNAPSHOT))
+                    paths = AuthorizationPaths(root / "auth.json", root / "grant.json") if has_record else None
                     args = SimpleNamespace(state_dir=root, mode="review", pull=1, app_id=123, model="fixture",
                                            codex=Path("fixture"), reviewer=Reviewer(4001, 4002, root),
                                            queue_admission=admission, queue_run=None if admission else 321,
-                                           commissioning_policy=ADDITIVE, authorized_control_merge=authorized)
+                                           commissioning_policy=ADDITIVE, authorized_control_merge=authorized,
+                                           authorization_paths=paths)
                     credential = Mock()
                     with (patch("tools.review_gate.require_queue_rules", return_value=ADDITIVE.approval),
                           patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
@@ -128,19 +134,53 @@ class ReviewGateTests(unittest.TestCase):
                           patch("tools.review_gate.capture_queue_observation", return_value=QUEUE),
                           patch("tools.review_gate.protected_staging", return_value=root),
                           patch("tools.review_gate.share_reviewer_inputs"),
+                          patch("tools.review_gate.validate_control_authorization", return_value=OWNER_BINDING) as authorizes,
                           patch("tools.review_gate.launch_review", side_effect=DataError("fixture launch")) as launch):
-                        diagnostic = "fixture launch" if authorized == merge else "separate authorization"
+                        diagnostic = ("fixture launch" if valid else "authenticated owner authorization"
+                                      if authorized == merge else "separate authorization")
                         with self.assertRaisesRegex(DataError, diagnostic):
                             run(args, github, token_input=credential)
                     self.assertEqual(capture.call_args.args[1].merge, merge)
-                    self.assertEqual(launch.call_count, int(authorized == merge))
+                    self.assertEqual(launch.call_count, int(valid))
+                    self.assertEqual(authorizes.call_count, int(valid))
                     credential.assert_not_called()
                     binding, = root.glob("*/binding.json")
                     data = json.loads(binding.read_bytes())
                     self.assertEqual(data["protected_paths"], ["sces/publication.json"])
                     self.assertEqual(data["protected_control_authorization"], {
                         "required": True, "authorized_merge": authorized,
+                        **(OWNER_BINDING if valid else {}),
                     })
+
+    def test_changed_owner_grant_blocks_token_access_after_review(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            github = Mock(get_pull=Mock(return_value=SNAPSHOT))
+            args = SimpleNamespace(state_dir=root, mode="review", pull=1, app_id=123, model="fixture",
+                                   codex=Path("fixture"), reviewer=Reviewer(4001, 4002, root),
+                                   queue_admission=True, commissioning_policy=ADDITIVE,
+                                   authorized_control_merge=SNAPSHOT.merge,
+                                   authorization_paths=AuthorizationPaths(root / "auth.json", root / "grant.json"))
+            token_input = Mock()
+            publisher = Mock()
+
+            def fake_launch(_codex, _model, inputs, _schema, _audit, *, reviewer):
+                staged = json.loads((inputs / "review-input.json").read_bytes())
+                self.assertEqual(staged["protected_control_authorization"]["grant_commit"], OWNER_BINDING["grant_commit"])
+                return make_trace(staged["inspection_token"])
+
+            with (patch("tools.review_gate.require_queue_rules", return_value=ADDITIVE.approval),
+                  patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                  patch("tools.review_gate.capture_control_paths", return_value=["sces/publication.json"]),
+                  patch("tools.review_gate.protected_staging", return_value=root),
+                  patch("tools.review_gate.share_reviewer_inputs"),
+                  patch("tools.review_gate.validate_control_authorization",
+                        side_effect=[OWNER_BINDING, {**OWNER_BINDING, "state_sha256": "0" * 64}]),
+                  patch("tools.review_gate.launch_review", side_effect=fake_launch)):
+                with self.assertRaisesRegex(DataError, "owner authorization changed after review"):
+                    run(args, github, token_input=token_input, publisher=publisher)
+            token_input.assert_not_called()
+            publisher.assert_not_called()
 
     def test_license_trial_records_protected_paths_without_a_production_pin(self):
         trial_branch = "codex-gate-trial"
@@ -430,7 +470,7 @@ class ReviewGateTests(unittest.TestCase):
     def test_protected_issuance_uses_owner_transport_and_local_inspection_uses_public_transport(self):
         with TemporaryDirectory() as directory:
             root = Path(directory)
-            settings = (root, root / "codex", "fixture", 123, Reviewer(4001, 4002, root), ADDITIVE, SNAPSHOT.merge)
+            settings = (root, root / "codex", "fixture", 123, Reviewer(4001, 4002, root), ADDITIVE, SNAPSHOT.merge, None)
             with (patch("tools.review_gate.load_issuer", return_value=settings),
                   patch("tools.review_commission.OwnerGitHub") as owner,
                   patch("tools.review_gate.GitHub") as public,
@@ -568,7 +608,7 @@ class ReviewGateTests(unittest.TestCase):
                 return make_trace(token)
 
             with (patch("tools.review_gate.load_issuer",
-                        return_value=(root, root / "codex", "fixture", None, reviewer, None, None)) as load,
+                        return_value=(root, root / "codex", "fixture", None, reviewer, None, None, None)) as load,
                   patch("tools.review_gate.GitHub", return_value=github),
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)) as capture,
                   patch("tools.review_gate.protected_staging", return_value=root),
@@ -611,15 +651,27 @@ class ReviewGateTests(unittest.TestCase):
             config.chmod(0o600)
             reviewer = Reviewer(4001, 4002, root / "reviewer-home")
             with patch("tools.review_gate.load_reviewer", return_value=reviewer):
-                self.assertEqual(load_issuer(config), (root, codex, "fixture", 123, reviewer, ADDITIVE, None))
+                self.assertEqual(load_issuer(config), (root, codex, "fixture", 123, reviewer, ADDITIVE, None, None))
                 with self.assertRaisesRegex(DataError, "exact production ruleset"):
                     config.write_text(json.dumps({**settings, "commissioning_phase": "final"}), encoding="utf-8")
                     load_issuer(config)
                 config.write_text(json.dumps({**settings, "commissioning_phase": "final",
                                               "authorized_cutover_ruleset": RULESET}), encoding="utf-8")
-                self.assertEqual(load_issuer(config)[-2], commissioning_policy(REPOSITORY, "main", "final", RULESET))
+                self.assertEqual(load_issuer(config)[-3], commissioning_policy(REPOSITORY, "main", "final", RULESET))
                 config.write_text(json.dumps({**settings, "authorized_control_merge": SNAPSHOT.merge}), encoding="utf-8")
-                self.assertEqual(load_issuer(config)[-1], SNAPSHOT.merge)
+                self.assertEqual(load_issuer(config)[-2], SNAPSHOT.merge)
+                record = root / "private-record.json"
+                grant = root / "private-grant.json"
+                for path in (record, grant):
+                    path.touch(mode=0o600)
+                config.write_text(json.dumps({**settings, "authorized_control_merge": SNAPSHOT.merge,
+                                              "authorized_control_record": str(record), "owner_grant_state": str(grant)}),
+                                  encoding="utf-8")
+                self.assertEqual(load_issuer(config)[-1], AuthorizationPaths(record, grant))
+                config.write_text(json.dumps({**settings, "authorized_control_merge": SNAPSHOT.merge,
+                                              "authorized_control_record": str(record)}), encoding="utf-8")
+                with self.assertRaisesRegex(DataError, "owner authorization configuration"):
+                    load_issuer(config)
                 config.write_text(json.dumps({**settings, "authorized_control_merge": "short"}), encoding="utf-8")
                 with self.assertRaisesRegex(DataError, "protected control authorization"):
                     load_issuer(config)
@@ -641,7 +693,8 @@ class ReviewGateTests(unittest.TestCase):
                 del settings["app_id"]
                 del settings["commissioning_phase"]
                 config.write_text(json.dumps(settings), encoding="utf-8")
-                self.assertEqual(load_issuer(config, rehearsal=True), (root, codex, "fixture", None, reviewer, None, None))
+                self.assertEqual(load_issuer(config, rehearsal=True),
+                                 (root, codex, "fixture", None, reviewer, None, None, None))
                 with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
                     load_issuer(config)
 

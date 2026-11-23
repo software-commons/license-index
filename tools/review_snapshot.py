@@ -12,6 +12,8 @@ from threading import Event, Timer
 from urllib.error import HTTPError, URLError
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from .review_authorization import GRANT_PATH
+
 
 REPOSITORY = "software-commons/license-index"
 REPOSITORY_ID = 1468281504
@@ -25,7 +27,7 @@ _API_TIMEOUT = 20
 _GIT_TIMEOUT = 90
 CONTROL_PATHS = (
     ".github", ".gitattributes", "AGENTS.md", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md",
-    "docs/PUBLICATION.md", "legal-texts", "license-index", "license-index.cmd", "research/review",
+    "docs/PUBLICATION.md", GRANT_PATH, "legal-texts", "license-index", "license-index.cmd", "research/review",
     "research/reviews", "research/sources", "research/tools", "schemas", "sces/adoption.json",
     "sces/advisories", "sces/publication.json", "sces/releases", "tests", "tools",
 )
@@ -140,6 +142,7 @@ def _isolated_git_environment():
         "GIT_CONFIG_GLOBAL": os.devnull,
         "GIT_TERMINAL_PROMPT": "0",
         "GIT_OPTIONAL_LOCKS": "0",
+        "GIT_NO_LAZY_FETCH": "1",
     })
     return result
 

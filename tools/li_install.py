@@ -1,12 +1,13 @@
 """SPDX expression parsing and safe installation of selected license bytes."""
 
-from contextlib import ExitStack
+from contextlib import ExitStack, contextmanager
 import errno
 import os
 from pathlib import Path
 import re
 import secrets
 import stat
+import sys
 from typing import NamedTuple
 import unicodedata
 
@@ -285,9 +286,89 @@ def _open_posix_parent(path):
         raise
 
 
-def _write_posix(output, content, force, dry_run, before_publish):
-    directory = _open_posix_parent(output)
+def _without_darwin_acl(directory):
+    if sys.platform != "darwin":
+        return True
+    import ctypes
+
+    # Extended ACLs can grant DELETE_CHILD independently of the BSD mode.
+    libc = ctypes.CDLL("/usr/lib/libSystem.B.dylib", use_errno=True)
+    get_acl = libc.acl_get_fd_np
+    get_acl.argtypes = (ctypes.c_int, ctypes.c_uint)
+    get_acl.restype = ctypes.c_void_p
+    free_acl = libc.acl_free
+    free_acl.argtypes = (ctypes.c_void_p,)
+    free_acl.restype = ctypes.c_int
+    ctypes.set_errno(0)
+    acl = get_acl(directory, 0x00000100)  # ACL_TYPE_EXTENDED
+    if acl:
+        free_acl(acl)
+        return False
+    return ctypes.get_errno() in {errno.ENOENT, errno.ENOTSUP}
+
+
+def _trusted_posix_staging_parent(directory, owner):
+    info = os.fstat(directory)
+    shared = info.st_mode & (stat.S_IWGRP | stat.S_IWOTH)
+    return (info.st_uid in {0, owner} and (not shared or info.st_mode & stat.S_ISVTX)
+            and _without_darwin_acl(directory))
+
+
+def _posix_staging_parent(directory, handles):
+    owner = os.geteuid()
+    if _trusted_posix_staging_parent(directory, owner):
+        return directory
+    # A shared output directory may be a valid destination. Stage under a
+    # protected parent on the same filesystem so publication remains atomic.
+    device = os.fstat(directory).st_dev
+    candidates = (os.environ.get("TMPDIR"), "/tmp", "/var/tmp", Path.home())
+    for name in filter(None, candidates):
+        try:
+            path = Path(name).resolve(strict=True)
+            staging_parent = _open_posix_parent(path / "unused")
+        except (OSError, RuntimeError):
+            continue
+        with ExitStack() as candidate:
+            candidate.callback(os.close, staging_parent)
+            if (os.fstat(staging_parent).st_dev == device
+                    and _trusted_posix_staging_parent(staging_parent, owner)
+                    and os.access(".", os.W_OK | os.X_OK, dir_fd=staging_parent)):
+                handles.callback(candidate.pop_all().close)
+                return staging_parent
+    raise InstallError("No trusted same-filesystem staging directory is available for the shared output directory")
+
+
+@contextmanager
+def _private_posix_stage(parent):
+    name = f".license-index-{secrets.token_hex(16)}.tmp"
+    os.mkdir(name, mode=0o700, dir_fd=parent)
     try:
+        directory = os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=parent)
+    except BaseException:
+        os.rmdir(name, dir_fd=parent)
+        raise
+    with ExitStack() as handles:
+        handles.callback(os.close, directory)
+        identity = os.fstat(directory)
+        try:
+            if (identity.st_uid != os.geteuid() or identity.st_mode & 0o077
+                    or not _without_darwin_acl(directory)):
+                raise InstallError("The license staging directory is not private")
+            yield directory
+        finally:
+            try:
+                current = os.stat(name, dir_fd=parent, follow_symlinks=False)
+                if os.path.samestat(identity, current) and _trusted_posix_staging_parent(parent, os.geteuid()):
+                    os.rmdir(name, dir_fd=parent)
+            except FileNotFoundError:
+                pass
+
+
+def _write_posix(output, content, force, dry_run, before_publish):
+    with ExitStack() as handles:
+        directory = _open_posix_parent(output)
+        handles.callback(os.close, directory)
+
         def stat_target():
             return os.stat(output.name, dir_fd=directory, follow_symlinks=False)
 
@@ -295,31 +376,31 @@ def _write_posix(output, content, force, dry_run, before_publish):
         if dry_run:
             return
 
-        temporary = f".license-index-{secrets.token_hex(16)}.tmp"
-        descriptor = os.open(
-            temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666, dir_fd=directory
-        )
-        try:
-            _complete_file(descriptor, content)
-            if before_publish is not None:
-                before_publish(stat_target)
-            if force:
-                os.replace(temporary, output.name, src_dir_fd=directory, dst_dir_fd=directory)
-            else:
-                os.link(
-                    temporary,
-                    output.name,
-                    src_dir_fd=directory,
-                    dst_dir_fd=directory,
-                    follow_symlinks=False,
-                )
-        finally:
+        staging_parent = _posix_staging_parent(directory, handles)
+        with _private_posix_stage(staging_parent) as stage:
+            temporary = "license"
+            descriptor = os.open(
+                temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o666, dir_fd=stage
+            )
             try:
-                os.unlink(temporary, dir_fd=directory)
-            except FileNotFoundError:
-                pass
-    finally:
-        os.close(directory)
+                _complete_file(descriptor, content)
+                if before_publish is not None:
+                    before_publish(stat_target)
+                if force:
+                    os.replace(temporary, output.name, src_dir_fd=stage, dst_dir_fd=directory)
+                else:
+                    os.link(
+                        temporary,
+                        output.name,
+                        src_dir_fd=stage,
+                        dst_dir_fd=directory,
+                        follow_symlinks=False,
+                    )
+            finally:
+                try:
+                    os.unlink(temporary, dir_fd=stage)
+                except FileNotFoundError:
+                    pass
 
 
 def _check_windows_parent(output):

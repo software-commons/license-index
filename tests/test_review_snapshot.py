@@ -7,8 +7,9 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
+from tools.review_authorization import GRANT_PATH
 from tools.review_snapshot import (
-    REPOSITORY, REPOSITORY_ID, GitHub, PullSnapshot, SnapshotError, capture_diff,
+    REPOSITORY, REPOSITORY_ID, GitHub, PullSnapshot, SnapshotError, capture_control_paths, capture_diff,
 )
 
 
@@ -110,6 +111,19 @@ class CaptureTests(unittest.TestCase):
     def test_rejects_changed_merge_ref(self):
         with self.assertRaisesRegex(SnapshotError, "changed during capture"):
             self.capture(merge="c" * 40)
+
+    def test_grant_only_change_is_a_protected_control(self):
+        grant = self.source / GRANT_PATH
+        grant.parent.mkdir()
+        grant.write_bytes(b'{"fixture":"synthetic grant"}\n')
+        self.git("add", "--", GRANT_PATH)
+        self.git("commit", "--quiet", "-m", "Change only the signed grant path")
+        head = self.git("rev-parse", "HEAD")
+        tree = self.git("rev-parse", "HEAD^{tree}")
+        merge = self.git("commit-tree", tree, "-p", self.head, "-p", head, "-m", "Grant-only merge")
+        self.assertEqual(self.git("diff", "--name-only", self.head, merge), GRANT_PATH)
+        snapshot = PullSnapshot(REPOSITORY_ID, 1, self.head, head, merge)
+        self.assertEqual(capture_control_paths(self.source, snapshot), [GRANT_PATH])
 
     def test_rejects_ordered_parent_mismatch(self):
         with self.assertRaisesRegex(SnapshotError, "ordered base and head parents"):

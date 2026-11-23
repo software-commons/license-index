@@ -1,6 +1,7 @@
 import errno
 import os
 from pathlib import Path
+import stat
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
@@ -337,6 +338,56 @@ class InstallTests(unittest.TestCase):
                 write_license(self.output, b"new", force=True)
         self.assertEqual(self.output.read_bytes(), b"existing")
         self.assertEqual(list(self.directory.iterdir()), [self.output])
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptor staging")
+    def test_shared_posix_output_uses_a_private_same_filesystem_stage(self):
+        shared = self.directory / "shared"
+        shared.mkdir()
+        shared.chmod(0o0777)
+        controlled = self.directory / "controlled"
+        controlled.mkdir(mode=0o700)
+        output = shared / self.output.name
+        foreign = shared / ".license-index-foreign.tmp"
+        foreign.write_bytes(b"a separate writer's file")
+        staged = []
+
+        def inspect_stage(descriptor, content):
+            directory, = controlled.iterdir()
+            self.assertEqual(stat.S_IMODE(directory.stat().st_mode), 0o700)
+            self.assertEqual(os.fstat(descriptor).st_ino, (directory / "license").stat().st_ino)
+            self.assertEqual(set(shared.iterdir()), {foreign, output} if output.exists() else {foreign})
+            staged.append(directory)
+            _complete_file(descriptor, content)
+
+        with patch.dict(os.environ, {"TMPDIR": str(controlled)}):
+            with patch("tools.li_install._complete_file", side_effect=inspect_stage):
+                write_license(output, b"initial")
+                write_license(output, b"replacement", force=True)
+        self.assertEqual(len(staged), 2)
+        self.assertEqual(list(controlled.iterdir()), [])
+        self.assertEqual(output.read_bytes(), b"replacement")
+        self.assertEqual(foreign.read_bytes(), b"a separate writer's file")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX descriptor cleanup")
+    def test_posix_cleanup_keeps_a_different_directory_at_the_old_stage_name(self):
+        moved = self.directory / "original-stage"
+        replacements = []
+
+        def interrupt_after_sync(descriptor, content):
+            _complete_file(descriptor, content)
+            stage, = self.directory.glob(".license-index-*.tmp")
+            stage.rename(moved)
+            stage.mkdir(mode=0o700)
+            replacements.append(stage)
+            raise KeyboardInterrupt
+
+        with patch("tools.li_install._complete_file", side_effect=interrupt_after_sync):
+            with self.assertRaises(KeyboardInterrupt):
+                write_license(self.output, b"interrupted")
+        self.assertFalse(self.output.exists())
+        self.assertEqual(list(moved.iterdir()), [])
+        self.assertEqual(len(replacements), 1)
+        self.assertTrue(replacements[0].is_dir())
 
     def test_interruption_before_commit_leaves_no_target_or_temporary(self):
         with patch("tools.li_install.os.fsync", side_effect=KeyboardInterrupt):

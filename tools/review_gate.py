@@ -20,6 +20,7 @@ from urllib.request import Request, build_opener
 from uuid import UUID, uuid4
 
 from .records import DataError, NoRedirects, decode, encode, require
+from .review_authorization import validate_control_authorization
 from .review_evidence import capture_selected_evidence
 from .review_protection import commissioning_policy, observed_approval
 from .review_queue import capture_queue_observation
@@ -58,6 +59,12 @@ class Reviewer:
     uid: int
     gid: int
     home: Path
+
+
+@dataclass(frozen=True)
+class AuthorizationPaths:
+    record: Path
+    grant_state: Path
 
 
 def save(path, data):
@@ -329,12 +336,20 @@ def run(args, github, *, token_input=None, publisher=write_check):
     if evidence:
         files = {path: sha256(blob).hexdigest() for path, blob in evidence.items()}
         binding.update(sces_evidence=files, sces_evidence_sha256=sha256(encode(files)).hexdigest())
-    save(audit / "binding.json", encode(binding))
     save(audit / "review.diff", diff)
+    authorization = None
+    try:
+        if args.mode != "inspect" and control_required:
+            require(authorized == snapshot.merge,
+                    "protected control changes require separate authorization for the exact candidate")
+            paths = getattr(args, "authorization_paths", None)
+            require(paths is not None, "protected main control changes require authenticated owner authorization evidence")
+            authorization = validate_control_authorization(github, binding, paths.record, paths.grant_state, protected_path)
+            binding["protected_control_authorization"].update(authorization)
+    finally:
+        save(audit / "binding.json", encode(binding))
     if args.mode == "inspect":
         return {"audit": str(audit), "binding": binding, "status": "inspection-only"}
-    require(not control_required or authorized == snapshot.merge,
-            "protected control changes require separate authorization for the exact candidate")
     token = secrets.token_hex(32)
     verdict_schema = VERDICT_SCHEMA
     if evidence:
@@ -377,6 +392,11 @@ def run(args, github, *, token_input=None, publisher=write_check):
     if verdict["decision"] != "approve":
         return {**result, "status": verdict["decision"], "findings": verdict["findings"], "rationale": verdict["rationale"]}
     def verify_fresh():
+        if authorization is not None:
+            current_authorization = validate_control_authorization(
+                github, binding, paths.record, paths.grant_state, protected_path,
+            )
+            require(current_authorization == authorization, "protected owner authorization changed after review")
         require(github.get_pull(pull.number) == pull, "pull request changed after review")
         if args.app_id is not None:
             current = require_queue_rules(github, args.app_id, policy=policy)
@@ -449,7 +469,9 @@ def load_issuer(path, *, rehearsal=False):
     protected_path(path, directory=False)
     settings = decode(path.read_bytes())
     expected_keys = RUNTIME_KEYS if rehearsal else RUNTIME_KEYS | {"app_id", "commissioning_phase"}
-    optional_keys = set() if rehearsal else {"authorized_cutover_ruleset", "authorized_control_merge"}
+    optional_keys = set() if rehearsal else {
+        "authorized_cutover_ruleset", "authorized_control_merge", "authorized_control_record", "owner_grant_state",
+    }
     require(isinstance(settings, dict) and expected_keys <= settings.keys() <= expected_keys | optional_keys
             and isinstance(settings["model"], str) and settings["model"].strip(),
             "invalid protected issuer configuration")
@@ -463,6 +485,16 @@ def load_issuer(path, *, rehearsal=False):
     require(authorized is None or
             (BASE_REF == "main" and isinstance(authorized, str) and re.fullmatch(r"[0-9a-f]{40}", authorized)),
             "invalid protected control authorization")
+    record, grant_state = settings.get("authorized_control_record"), settings.get("owner_grant_state")
+    authorization_paths = None
+    if record is not None or grant_state is not None:
+        require(BASE_REF == "main" and authorized is not None
+                and all(isinstance(path, str) and path for path in (record, grant_state)),
+                "invalid protected owner authorization configuration")
+        authorization_paths = AuthorizationPaths(Path(record), Path(grant_state))
+        for private in (authorization_paths.record, authorization_paths.grant_state):
+            protected_path(private.parent, directory=True)
+            protected_path(private, directory=False)
     audit = Path(settings["audit_dir"])
     protected_path(audit, directory=True)
     reviewer = load_reviewer(settings)
@@ -471,7 +503,7 @@ def load_issuer(path, *, rehearsal=False):
     with codex.open("rb") as executable:
         require(file_digest(executable, "sha256").hexdigest() == settings["codex_sha256"],
                 "Codex executable differs from the protected issuer pin")
-    return audit, codex, settings["model"], app_id, reviewer, policy, authorized
+    return audit, codex, settings["model"], app_id, reviewer, policy, authorized, authorization_paths
 
 
 def load_reviewer(settings):
@@ -509,13 +541,14 @@ def main(argv=None):
     args.reviewer = None
     args.commissioning_policy = None
     args.authorized_control_merge = None
+    args.authorization_paths = None
     try:
         config_path = args.issuer_config or args.rehearsal_config
         if config_path:
             if args.mode != "review" or args.state_dir or args.codex or args.model:
                 parser.error("protected configuration is exclusive to review and supplies all deployment options")
             (args.state_dir, args.codex, args.model, args.app_id, args.reviewer,
-             args.commissioning_policy, args.authorized_control_merge) = load_issuer(
+             args.commissioning_policy, args.authorized_control_merge, args.authorization_paths) = load_issuer(
                 config_path, rehearsal=args.rehearsal_config is not None,
             )
         else:

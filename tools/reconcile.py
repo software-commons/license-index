@@ -426,6 +426,9 @@ def prepare(repo, out, origins, manifest, *, initial=False):
 
     updates, events = reconcile(existing, origins, manifest)
     affected = set().union(*events.values())
+    prior_keys = {identifier.casefold(): identifier for identifier in existing}
+    # Affected membership claims can still cite the exact prior key spelling.
+    review_keys = affected | {prior_keys.get(identifier.casefold(), identifier) for identifier in affected}
     report = {
         "release": manifest["release"],
         "data_commit": manifest["data_commit"],
@@ -433,7 +436,7 @@ def prepare(repo, out, origins, manifest, *, initial=False):
         "population": manifest["population"],
         "events": events,
         "dependency_review": find_dependencies(
-            repo, affected, (updates[identifier]["id"] for identifier in affected)
+            repo, review_keys, (updates[identifier]["id"] for identifier in affected)
         ),
         "candidate_changes": len(updates),
         "unchanged": len(origins) - sum(identifier in origins for identifier in updates),

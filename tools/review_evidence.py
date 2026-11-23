@@ -1,12 +1,18 @@
 """Capture the active SCES publication inputs as inert bytes from a reviewed Git tree."""
 
+from base64 import b64decode, b64encode
 from collections import defaultdict
 from hashlib import sha256
+import os
+from pathlib import Path
 import re
+import subprocess
+import sys
+from urllib.request import ProxyHandler, Request, build_opener
 
-from .qualification import POLICY_DIGEST, _canonical
-from .records import DataError, decode, require
-from .review_snapshot import REPOSITORY, SnapshotError, _REMOTE_URL, _git
+from .qualification import POLICY_DIGEST, _blob_hash, _canonical
+from .records import DataError, NoRedirects, decode, encode, require
+from .review_snapshot import REPOSITORY, SnapshotError, _GIT_TIMEOUT, _REMOTE_URL, _git
 
 
 _RECORD_KINDS = {"claim", "source", "dependency", "disposition", "conflict", "verification"}
@@ -21,6 +27,13 @@ _MAX_EVIDENCE = 16 * 1024 * 1024
 _MAX_BLOB = 4 * 1024 * 1024
 _SELECTION = "sces/publication.json"
 _ADOPTION = "sces/adoption.json"
+_RAW_HOST = "https://raw.githubusercontent.com"
+_RAW_TIMEOUT = 20
+_READ_FROZEN_RECORDS = (
+    "import sys; sys.path.insert(0, sys.argv[1]); "
+    "from tools.review_evidence import _retrieve_frozen_records; "
+    "_retrieve_frozen_records()"
+)
 
 
 def _digest(blob):
@@ -57,6 +70,18 @@ def _inventory(directory, commit, *prefixes):
     return paths
 
 
+def _forget_promisor_remotes(directory):
+    # A direct URL plus --filter still auto-registers a promisor. Older Git ignores
+    # GIT_NO_LAZY_FETCH, so remove that local configuration in the bare capture.
+    keys = _git(directory, "config", "--local", "--null", "--name-only", "--list").decode("utf-8").split("\0")
+    sections = sorted({key.rsplit(".", 1)[0] for key in keys
+                       if key.startswith("remote.") and key.endswith((".promisor", ".partialclonefilter"))})
+    for section in sections:
+        _git(directory, "config", "--local", "--remove-section", section)
+    if "extensions.partialclone" in keys:
+        _git(directory, "config", "--local", "--unset-all", "extensions.partialclone")
+
+
 def _frozen_inputs(directory, commit):
     try:
         object_type = _git(directory, "cat-file", "-t", commit).strip()
@@ -65,6 +90,7 @@ def _frozen_inputs(directory, commit):
              "--no-recurse-submodules", "--no-auto-maintenance", "--", _REMOTE_URL, commit,
              config=("http.followRedirects=false", "fetch.fsckObjects=true",
                      "protocol.allow=never", "protocol.https.allow=always"))
+        _forget_promisor_remotes(directory)
         fetched = _git(directory, "rev-parse", "--verify", "FETCH_HEAD").strip()
         require(fetched == commit.encode("ascii"), "Git did not fetch the exact frozen SCES source commit")
         object_type = _git(directory, "cat-file", "-t", commit).strip()
@@ -94,11 +120,84 @@ def _blobs(directory, paths, ordered, *, limit):
     return result
 
 
-def _record_blobs(directory, paths, cache):
+def _missing_record_oids(directory, oids):
+    if not oids:
+        return set()
+    ordered = sorted(oids)
+    rows = _git(directory, "cat-file", "--batch-check=%(objectname) %(objecttype)",
+                input_data=("\n".join(ordered) + "\n").encode("ascii"), limit=60 * len(ordered)).splitlines()
+    require(len(rows) == len(ordered), "incomplete local frozen SCES object inventory")
+    missing = set()
+    for oid, row in zip(ordered, rows, strict=True):
+        expected = oid.encode("ascii") + b" "
+        require(row in (expected + b"blob", expected + b"missing"), "invalid local frozen SCES object inventory")
+        if row.endswith(b" missing"):
+            missing.add(oid)
+    return missing
+
+
+def _retrieve_frozen_records():
+    """Read only bounded, commit-qualified record paths from the fixed raw host."""
+    request = decode(sys.stdin.buffer.read())
+    repository, commit, paths, remaining = (request[key] for key in ("repository", "commit", "paths", "limit"))
+    require(repository == REPOSITORY and re.fullmatch(r"[0-9a-f]{40}", commit)
+            and type(remaining) is int and 0 < remaining <= _MAX_RECORDS, "unapproved frozen record retrieval")
+    opener = build_opener(ProxyHandler({}), NoRedirects())
+    outputs = {}
+    for path in paths:
+        require(path.startswith("sces/records/") and _TREE_PATH.fullmatch(path) and path not in outputs,
+                "invalid frozen record retrieval path")
+        cap = min(remaining, _MAX_BLOB)
+        require(cap > 0, "frozen SCES registry exceeds the review capture limit")
+        url = f"{_RAW_HOST}/{repository}/{commit}/{path}"
+        query = Request(url, headers={"Accept-Encoding": "identity", "User-Agent": "software-commons-review"},
+                        method="GET")
+        with opener.open(query, timeout=_RAW_TIMEOUT) as response:
+            require(response.status == 200 and response.geturl() == url
+                    and response.headers.get("Content-Encoding") in (None, "identity"),
+                    "unexpected frozen SCES record response")
+            raw = response.read(cap + 1)
+        require(0 < len(raw) <= cap, "invalid or oversized frozen SCES record response")
+        remaining -= len(raw)
+        outputs[path] = b64encode(raw).decode("ascii")
+    sys.stdout.buffer.write(encode(outputs))
+
+
+def _fetch_frozen_records(repository, commit, paths, limit):
+    require(0 < limit <= _MAX_RECORDS, "frozen SCES registry exceeds the review capture limit")
+    package_root = Path(__file__).resolve().parents[1]
+    request = encode({"repository": repository, "commit": commit, "paths": sorted(paths), "limit": limit})
+    environment = {name: value for name, value in os.environ.items() if name.upper() in {"SYSTEMROOT", "WINDIR"}}
+    try:
+        fetched = subprocess.run([sys.executable, "-I", "-S", "-B", "-c", _READ_FROZEN_RECORDS, str(package_root)],
+                                 input=request, capture_output=True, timeout=_GIT_TIMEOUT, check=False, env=environment)
+    except (OSError, subprocess.TimeoutExpired) as error:
+        raise DataError("bounded frozen SCES record retrieval could not complete") from error
+    require(fetched.returncode == 0, "frozen SCES record retrieval failed")
+    outputs = decode(fetched.stdout)
+    require(isinstance(outputs, dict) and outputs.keys() == paths.keys(), "frozen SCES record retrieval is incomplete")
+    blobs = {path: b64decode(value, validate=True) for path, value in outputs.items()}
+    require(sum(map(len, blobs.values())) <= limit, "frozen SCES registry exceeds the review capture limit")
+    for path, blob in blobs.items():
+        require(0 < len(blob) <= _MAX_BLOB and _blob_hash(blob, "sha1") == paths[path],
+                f"retrieved frozen SCES blob does not match its Git object: {path}")
+    return blobs
+
+
+def _record_blobs(directory, paths, cache, *, frozen_source=None):
     records = {path: oid for path, oid in paths.items() if path.startswith("sces/records/")}
     uncached = {oid: path for path, oid in records.items() if oid not in cache}
-    for path, payload in _blobs(directory, paths, sorted(uncached.values()), limit=_MAX_RECORDS).items():
+    missing = _missing_record_oids(directory, uncached) if frozen_source is not None else set()
+    local = sorted(path for oid, path in uncached.items() if oid not in missing)
+    for path, payload in _blobs(directory, paths, local, limit=_MAX_RECORDS).items():
         cache[records[path]] = payload
+    if missing:
+        remaining = _MAX_RECORDS - sum(len(cache[oid]) for oid in records.values() if oid in cache)
+        # Fetch only inventoried missing records. The incoming data tree is never checked out.
+        wanted = {uncached[oid]: oid for oid in missing}
+        repository, commit = frozen_source
+        for path, payload in _fetch_frozen_records(repository, commit, wanted, remaining).items():
+            cache[records[path]] = payload
     blobs = {path: cache[oid] for path, oid in records.items()}
     require(sum(map(len, blobs.values())) <= _MAX_RECORDS, "SCES registry exceeds the review capture limit")
     return blobs
@@ -253,7 +352,9 @@ def _selected_evidence(directory, paths, repository):
     require(report["inputs_sha256"] == _digest(_canonical(inputs)), "SCES selected input digest mismatch")
     frozen = _frozen_inputs(directory, selection["source_commit"])
     # The same selected roots must reach the same records when reverse links come from the frozen tree.
-    *_, frozen_used, frozen_artifacts = _selected_registry(selected, _record_blobs(directory, frozen, blob_cache))
+    frozen_records = _record_blobs(directory, frozen, blob_cache,
+                                   frozen_source=(REPOSITORY, selection["source_commit"]))
+    *_, frozen_used, frozen_artifacts = _selected_registry(selected, frozen_records)
     require(used == frozen_used, "SCES selected record membership differs from the frozen source commit")
     require(artifacts == frozen_artifacts, "SCES selected artifact descriptors differ from the frozen source commit")
     for path in sorted(inputs):
