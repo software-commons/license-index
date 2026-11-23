@@ -1,0 +1,12 @@
+{
+  "id": "e6082aec87c24b23a3f539ded60bc168",
+  "disposition": "unresolved",
+  "reason": "Microsoft separately identifies and licenses the Visual Studio Code Server product. The Server agreement has its own installation and use terms and scope and distinguishes the source-code MIT license. Verify the exact product build, platform or localization, and republication authority before admission.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://code.visualstudio.com/license/server",
+    "name": "Microsoft Visual Studio Code Server product terms",
+    "identifier": "Microsoft Visual Studio Code Server product terms"
+  },
+  "history": []
+}
