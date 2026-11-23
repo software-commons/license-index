@@ -237,7 +237,7 @@ class ToolTests(unittest.TestCase):
                     package_source = manifest[identifier]
                     text = package.read(package_source["path"])
                     self.assertEqual(hashlib.sha256(text).hexdigest(), package_source["sha256"])
-                    self.assertNotIn("install", package_source)
+                    self.assertEqual(package_source["install"], "unchanged")
                 for edition in ("1.1", "1.2", "1.3"):
                     path = f"legal-texts/fdl-{edition}.txt"
                     expected = (ROOT / path).read_bytes()
@@ -265,6 +265,11 @@ class ToolTests(unittest.TestCase):
                 ("AGPL-3.0-only", "agpl-3.0.txt"),
                 ("AGPL-3.0-or-later", "agpl-3.0.txt"),
                 ("CC-BY-4.0", "cc-by-4.0.txt"),
+                ("CC-BY-NC-4.0", "cc-by-nc-4.0.txt"),
+                ("CC-BY-NC-ND-4.0", "cc-by-nc-nd-4.0.txt"),
+                ("CC-BY-NC-SA-4.0", "cc-by-nc-sa-4.0.txt"),
+                ("CC-BY-ND-4.0", "cc-by-nd-4.0.txt"),
+                ("CC-BY-SA-4.0", "cc-by-sa-4.0.txt"),
                 ("CC0-1.0", "cc0-1.0.txt"),
                 ("EPL-1.0", "epl-1.0.txt"),
                 ("EPL-2.0", "epl-2.0.txt"),
@@ -279,6 +284,8 @@ class ToolTests(unittest.TestCase):
                 ("LGPL-2.0-or-later", "lgpl-2.0.txt"),
                 ("LGPL-2.1-only", "lgpl-2.1.txt"),
                 ("LGPL-2.1-or-later", "lgpl-2.1.txt"),
+                ("PolyForm-Noncommercial-1.0.0", "polyform-noncommercial-1.0.0.md"),
+                ("PolyForm-Small-Business-1.0.0", "polyform-small-business-1.0.0.md"),
             ):
                 with self.subTest(identifier=identifier):
                     expected = (ROOT / "legal-texts" / text_name).read_bytes()
@@ -303,7 +310,11 @@ class ToolTests(unittest.TestCase):
                                        ("LGPL-2.1-or-later", "version 2.1 or any later version"),
                                        ("GFDL-1.1-only", "version 1.1 only"),
                                        ("GFDL-1.2-invariants-or-later", "at least one Invariant Section"),
-                                       ("GFDL-1.3-no-invariants-only", "no Invariant Sections")):
+                                       ("GFDL-1.3-no-invariants-only", "no Invariant Sections"),
+                                       ("CC-BY-NC-ND-4.0", "limits on sharing Adapted Material"),
+                                       ("CC-BY-SA-4.0", "ShareAlike"),
+                                       ("PolyForm-Noncommercial-1.0.0", "Required Notice"),
+                                       ("PolyForm-Small-Business-1.0.0", "Small Business definition")):
                 with self.subTest(identifier=identifier):
                     preview = command("add", identifier, "--output", folder / "COPYING", "--dry-run",
                                       "--json", root=unpacked)
@@ -326,14 +337,6 @@ class ToolTests(unittest.TestCase):
                     self.assertEqual(rejected.returncode, 1)
                     self.assertIn(b"Include both publisher texts", rejected.stderr)
                     self.assertFalse((folder / "COPYING.LESSER").exists())
-            for edition in ("Noncommercial", "Small-Business"):
-                identifier = f"PolyForm-{edition}-1.0.0"
-                text = ROOT / "legal-texts" / f"{identifier.lower()}.md"
-                self.assertEqual(command("text", identifier, root=unpacked).stdout, text.read_bytes())
-                rejected = command("add", identifier, "--output", folder / "LICENSE", root=unpacked)
-                self.assertEqual(rejected.returncode, 1)
-                self.assertIn(b"installation is unsupported", rejected.stderr)
-                self.assertFalse((folder / "LICENSE").exists())
             self.assertEqual(command("coverage", root=unpacked).returncode, 0)
             planned = command("review-plan", "--admission", "GCC-exception-3.1", root=unpacked)
             self.assertEqual(planned.returncode, 0, planned.stderr.decode())
