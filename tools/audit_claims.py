@@ -16,7 +16,7 @@ from pathlib import Path
 import runpy
 import sys
 
-validator, repository, name, policy_digest, base = sys.argv[1:]
+validator, repository, name, policy_digest, base, receipts = sys.argv[1:]
 policy = runpy.run_path(validator)
 if policy["policy_bundle"]() != policy_digest:
     raise ValueError("SCES bundle differs from the adopted digest")
@@ -31,7 +31,7 @@ for identity in sorted(ref for ref in registry.records if ref[0] == "claim"):
     except policy["Invalid"] as error:
         blocker = str(error).split(":", 1)[0]
     disposition = registry.dispositions.get(identity, {})
-    rows.append({
+    row = {
         "claim": dict(zip(("kind", "id", "revision"), identity)),
         "record_sha256": registry.record_digest(identity),
         "recorded_evidence": disposition.get("evidence"),
@@ -40,12 +40,17 @@ for identity in sorted(ref for ref in registry.records if ref[0] == "claim"):
                             if registry.verifications.get((identity, phase))],
         "eligible": blocker is None,
         "first_blocking_check": blocker,
-    })
+    }
+    if receipts == "yes" and blocker is None:
+        fields = ("phase", "run", "claim_sha256", "acquisitions", "conclusion")
+        row["recorded_reviews"] = [{field: review[field] for field in fields}
+                                   for review in registry.active_reviews[identity]]
+    rows.append(row)
 sys.stdout.buffer.write(policy["canonical"]({"assessed_at": now.isoformat(), "claims": rows}))
 """
 
 
-def audit_claims(repository, policy, base=None):
+def audit_claims(repository, policy, base=None, *, include_receipts=False):
     root = Path(repository).resolve()
     adoption = Path("sces/adoption.json")
     require(_exact_file(root / adoption) == _exact_file(ROOT / adoption),
@@ -60,7 +65,7 @@ def audit_claims(repository, policy, base=None):
             raise DataError(f"the draft history base must be an ancestor of HEAD: {error}") from error
     validator = _pinned_validator(policy)
     audited = decode(_run([sys.executable, "-I", "-B", "-c", PROBE, str(validator), str(root),
-                           REPOSITORY, POLICY_DIGEST, base or ""]))
+                           REPOSITORY, POLICY_DIGEST, base or "", "yes" if include_receipts else "no"]))
     eligible = sum(row["eligible"] for row in audited["claims"])
     return {"status": "local-claim-eligibility-audit", "repository": REPOSITORY,
             "policy_commit": POLICY_COMMIT, "policy_sha256": POLICY_DIGEST, "history_base": base,

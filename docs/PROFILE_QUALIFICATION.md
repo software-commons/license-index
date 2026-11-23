@@ -26,3 +26,13 @@ Maintain separate counts for catalog entries, provisional profiles, independentl
 Use a trusted License Index tool checkout, a trusted pinned policy checkout, and a Python environment with the policy's `tools/sces/requirements.txt` installed. Run `python -B -m tools.audit_claims --repo PRIVATE_DRAFT_CHECKOUT --policy PINNED_SCES_CHECKOUT --base TRUSTED_PREDECESSOR_SHA`. The draft's adoption file must match the tool checkout. Supply a trusted Git ancestor as `--base`, or omit it for a draft with no trusted predecessor. The audit compares the pinned policy bytes before loading the validator. It verifies the registry and reports each exact claim revision and digest, the recorded review phases and disposition, and the first SCES eligibility check that blocks it. An invalid registry aborts the audit. Preserve the output privately because it names draft claims and includes their digests.
 
 The audit uses the policy's recorded eligibility checks without making a release selection or changing evidence. It provides a way to catch missing or stale review records before selection. Source inspection, authentic execution verification, domain admission, release validation, and the separate owner decision remain part of the protected workflow.
+
+## Compare retained Codex web receipts
+
+For recorded eligible claims researched through Codex CLI web opens, retain each original `codex exec --json` stream and its corresponding session JSONL at acquisition time. Record who retained each file and its SHA-256 through the trusted capture process. Supply the two explicitly retained files for each execution, including both the research run and the independent review.
+
+```text
+python -B -m tools.audit_receipts --repo PRIVATE_DRAFT_CHECKOUT --policy PINNED_SCES_CHECKOUT --base TRUSTED_PREDECESSOR_SHA --execution RESEARCH_EVENTS RESEARCH_SESSION --execution REVIEW_EVENTS REVIEW_SESSION
+```
+
+The local audit matches eligible claim pairs in the pinned registry to the supplied event IDs, exact URLs, timestamps and tool responses. It checks that the final assessments name the same claim digests and conclusions. It reports raw log digests and counts without printing the transcripts. Compare the digests with the independently retained capture record and inspect the underlying tool responses and findings. This command audits rendered web-open receipts. Source-byte acquisitions, other log formats and substantive review still require inspection of the original capture. Keep the inputs and audit output private.
