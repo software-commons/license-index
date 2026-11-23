@@ -196,6 +196,7 @@ class ToolTests(unittest.TestCase):
             unpacked = folder / "unpacked"
             with ZipFile(archive) as package:
                 self.assertNotIn("sces/publication.json", package.namelist())
+                self.assertNotIn("tools/audit_claims.py", package.namelist())
                 self.assertNotIn("tools/review_gate.py", package.namelist())
                 self.assertNotIn("tools/review_commission.py", package.namelist())
                 self.assertNotIn("tools/review_queue.py", package.namelist())

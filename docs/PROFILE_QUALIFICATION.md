@@ -20,3 +20,9 @@ Use the packet's planning labels to separate instrument identity, authority, tex
 6. Validate the records and review their underlying traces before selection. For output that summarizes several claims, check sentence-to-claim mappings, factual labels, examples and limitations. Freeze eligible source records and follow the [protected release procedure](PUBLICATION.md).
 
 Maintain separate counts for catalog entries, provisional profiles, independently reviewed assertions, canonical identities and selected claims. A single verified assertion can remain useful while the rest of its profile awaits review. The initial pilot concerns SPDX membership and supplies no legal interpretation or accepted instrument identity.
+
+## Audit exact draft revisions locally
+
+From a trusted License Index tool checkout, run `python -B -m tools.audit_claims --repo PRIVATE_DRAFT_CHECKOUT --policy PINNED_SCES_CHECKOUT --base TRUSTED_PREDECESSOR_SHA`. The draft's adoption file must match the tool checkout. The audit compares the pinned policy bytes before loading the validator. It verifies the registry and reports each exact claim revision and digest, the recorded review phases and disposition, and the first SCES eligibility check that blocks it. Omit `--base` for a draft with no trusted predecessor. An invalid registry aborts the audit. Preserve the output privately because it names draft claims and includes their digests.
+
+The audit uses the policy's recorded eligibility checks without making a release selection or changing evidence. It provides a way to catch missing or stale review records before selection. Source inspection, authentic execution verification, domain admission, release validation, and the separate owner decision remain part of the protected workflow.

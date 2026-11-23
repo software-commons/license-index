@@ -108,6 +108,33 @@ class ReleaseStageTests(unittest.TestCase):
             stage(self.catalog, self.root, self.output, base=self.base)
         self.assertFalse(self.output.exists())
 
+    def test_git_replacement_cannot_stage_different_artifacts_under_the_candidate_sha(self):
+        self.payload.write_bytes(self.payload.read_bytes() + b"\n")
+        self.report["artifacts"][0]["sha256"] = sha256(self.payload.read_bytes()).hexdigest()
+        self.report_file.write_bytes(encode(self.report))
+        self.git("add", "sces")
+        tree = self.git("write-tree").strip()
+        replacement = self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                               "commit-tree", tree, "-p", self.base, "-m", "Synthetic replacement").strip()
+        self.git("replace", self.commit, replacement)
+        self.assertEqual(self.git("rev-parse", "HEAD").strip(), self.commit)
+        self.assertEqual(self.git("show", f"{self.commit}:{self.stem}/claims.json").encode(), self.payload.read_bytes())
+        with self.assertRaisesRegex(DataError, "differs from the candidate commit"):
+            stage(self.catalog, self.root, self.output, base=self.base)
+        self.validate.assert_not_called()
+        self.assertFalse(self.output.exists())
+
+    def test_git_graft_cannot_supply_a_false_predecessor(self):
+        tree = self.git("rev-parse", "HEAD^{tree}").strip()
+        unrelated = self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                             "commit-tree", tree, "-m", "Synthetic unrelated commit").strip()
+        (self.root / ".git/info/grafts").write_bytes(f"{self.commit} {unrelated}\n".encode("ascii"))
+        self.git("merge-base", "--is-ancestor", unrelated, self.commit)
+        with self.assertRaisesRegex(DataError, "Git failed"):
+            stage(self.catalog, self.root, self.output, base=unrelated)
+        self.validate.assert_not_called()
+        self.assertFalse(self.output.exists())
+
     def test_local_only_validation_inputs_are_rejected_before_validation(self):
         for relative in ("sces/records/fixture.json", "registry/entities/fixture.json"):
             with self.subTest(relative=relative):

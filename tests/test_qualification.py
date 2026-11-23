@@ -7,11 +7,12 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from tools.audit_claims import audit_claims
 from tools.index import execute, parser
 from tools.qualification import (
-    POLICY_COMMIT, _bind_payload, _claim_value, _validate_policy, check_history, qualified,
+    POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _validate_policy, check_history, qualified,
 )
-from tools.records import Catalog, DataError, encode
+from tools.records import ROOT, Catalog, DataError, encode
 
 
 MIT = "123456789abc4def8123456789abcdef"
@@ -256,3 +257,59 @@ class GitHistoryTests(unittest.TestCase):
             with self.assertRaisesRegex(DataError, "manifest does not match"):
                 _validate_policy(self.root, self.root, None)
             run.assert_not_called()
+
+    def test_claim_audit_reports_exact_eligibility_without_writing_selection(self):
+        adoption = self.root / "sces/adoption.json"
+        adoption.parent.mkdir(parents=True, exist_ok=True)
+        adoption.write_bytes((ROOT / "sces/adoption.json").read_bytes())
+        validator = self.root / "fixture-validator.py"
+        # Synthetic validator API for testing the audit bridge, not an evidence record.
+        validator.write_text(f'''
+import json
+
+def policy_bundle():
+    return {POLICY_DIGEST!r}
+
+def canonical(data):
+    return json.dumps(data).encode("utf-8")
+
+class Invalid(ValueError):
+    pass
+
+class Registry:
+    def __init__(self, root, digest, now, *, repository):
+        assert repository == "software-commons/license-index"
+        assert digest == policy_bundle()
+        self.passed = ("claim", "fixture-reviewed", 2)
+        self.pending = ("claim", "fixture-pending", 1)
+        self.records = {{self.passed: {{}}, self.pending: {{}}}}
+        self.dispositions = {{self.passed: {{"evidence": "supported", "verification": "independently-reviewed"}}}}
+        self.verifications = {{(self.passed, "research"): [True], (self.passed, "independent-review"): [True]}}
+
+    def validate_publication(self, *, write=False, base=None):
+        assert write is False
+        assert base == {self.base!r}
+
+    def check_eligibility(self, identity, now):
+        if identity == self.pending:
+            raise Invalid("unqualified-claim: diagnostic detail")
+
+    def record_digest(self, identity):
+        return ("e" if identity == self.passed else "f") * 64
+''', encoding="utf-8")
+        with patch("tools.audit_claims._pinned_validator", return_value=validator):
+            report = audit_claims(self.root, self.root, self.base)
+        self.assertEqual((report["eligible"], report["ineligible"]), (1, 1))
+        pending, reviewed = report["claims"]
+        self.assertEqual(pending["first_blocking_check"], "unqualified-claim")
+        self.assertEqual(pending["recorded_phases"], [])
+        self.assertEqual(reviewed["claim"]["revision"], 2)
+        self.assertEqual(reviewed["record_sha256"], "e" * 64)
+        self.assertEqual(reviewed["recorded_phases"], ["research", "independent-review"])
+        self.assertFalse((self.root / "sces/publication.json").exists())
+
+        adoption.write_bytes(adoption.read_bytes() + b"\n")
+        with patch("tools.audit_claims._pinned_validator") as load:
+            with self.assertRaisesRegex(DataError, "draft adoption file differs"):
+                audit_claims(self.root, self.root, self.base)
+            load.assert_not_called()

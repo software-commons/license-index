@@ -2,6 +2,7 @@
 
 from hashlib import new as new_hash, sha256
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -58,8 +59,12 @@ def _claim_key(ref):
 
 
 def _run(arguments):
+    # The validator also invokes Git. Both callers must read the same real objects
+    # and parent links under the repository path supplied by the index.
+    environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("GIT_")}
+    environment.update(GIT_NO_REPLACE_OBJECTS="1", GIT_GRAFT_FILE=os.devnull)
     try:
-        result = subprocess.run(arguments, capture_output=True, check=False)
+        result = subprocess.run(arguments, capture_output=True, check=False, env=environment)
     except OSError as error:
         raise DataError(f"could not execute {arguments[0]}: {error}") from error
     if result.returncode:
@@ -107,7 +112,7 @@ def _exact_file(path):
         raise DataError(f"could not read {path}: {error}") from error
 
 
-def _validate_policy(catalog_root, policy, base):
+def _pinned_validator(policy):
     root = Path(policy).resolve()
     if (root / ".git").exists():
         require(_git(root, "rev-parse", "HEAD").decode().strip() == POLICY_COMMIT,
@@ -127,9 +132,12 @@ def _validate_policy(catalog_root, policy, base):
     for relative, expected in files.items():
         require(sha256(_exact_file(root / relative)).hexdigest() == expected,
                 f"SCES policy file failed the pinned digest: {relative}")
+    return root / "tools/sces/validate.py"
 
+
+def _validate_policy(catalog_root, policy, base):
     arguments = [
-        sys.executable, "-I", "-B", str(root / "tools/sces/validate.py"),
+        sys.executable, "-I", "-B", str(_pinned_validator(policy)),
         "--repo", str(catalog_root), "--repository", REPOSITORY,
     ]
     if base is not None:
