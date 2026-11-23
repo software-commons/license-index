@@ -758,6 +758,91 @@
       }
     ]
   },
+  "CPL-1.0": {
+    "summary": "CPL 1.0 sets conditions for source and object-code distribution and contains two distinct patent-litigation triggers.",
+    "dimensions": {
+      "contributions": {
+        "state": "condition",
+        "text": "Section 1 excludes an addition from Contributions when it is a separately licensed module distributed with the Program and is outside the Program’s derivative works.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§1, Contribution"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Include the agreement with each Program copy made available as source. Keep existing copyright notices intact. Each Contributor identifies itself as the originator of its own Contributions, if any, so later Recipients can reasonably identify the originator.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "Section 2(b) grants rights under defined Licensed Patents. Its combination coverage depends on the addition of the Contribution bringing the specific combination with the Program within those claims at the time of addition. Other combinations and hardware as such are excluded.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§§1 and 2(b)"
+          }
+        ]
+      },
+      "publisher_history": {
+        "state": "documented",
+        "text": "Eclipse’s archive records the transfer of CPL stewardship from IBM in February 2009 and describes the Eclipse Public License as the follow-on. A particular project’s licensing remains a separate question.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "publisher note before the agreement, updated 16 April 2009"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "An alternate object-code agreement must tell recipients that the distributing Contributor provides the Program’s source and explain how to obtain it reasonably through a customary software-exchange medium. When the Program is made available as source, CPL 1.0 applies.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "When a Recipient files specified software-patent litigation against a Contributor, §7 terminates the CPL patent licenses that Contributor granted to the Recipient. Litigation alleging infringement by the Program itself, excluding combinations with other software or hardware, triggers termination of the Recipient’s §2(b) rights.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§7, patent-litigation paragraphs"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Assessing the effect of patent litigation under CPL or EPL",
+        "text": "Identify the license edition, whether the defendant is a Contributor and what the filing alleges about the Program itself. Compare the CPL Contributor-specific trigger with each edition’s separate Program trigger before identifying the affected patent grants.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§7"
+          },
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt",
+            "locator": "§7"
+          },
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+            "locator": "§7"
+          }
+        ]
+      }
+    ]
+  },
   "Classpath-exception-2.0": {
     "summary": "This exception permits a specified combination with independent modules when applied by the relevant copyright holders to the base license.",
     "dimensions": {
@@ -846,7 +931,7 @@
       },
       "notices": {
         "state": "condition",
-        "text": "Include a copy of the agreement with each source copy, retain copyright notices and identify each contribution’s originator.",
+        "text": "Include the agreement with each Program copy made available as source and keep existing copyright notices intact. Each Contributor identifies itself as the originator of its own Contributions, if any, so later Recipients can reasonably trace them.",
         "sources": [
           {
             "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
@@ -866,11 +951,21 @@
       },
       "source_availability": {
         "state": "condition",
-        "text": "The agreement permits object-code distribution under other terms subject to conditions including a statement of source availability and an explanation of how to obtain it.",
+        "text": "An alternate object-code agreement must state that the distributing Contributor provides the Program’s source and explain how to obtain it reasonably through a customary software-exchange medium. When the Program is made available as source, EPL 1.0 applies.",
         "sources": [
           {
             "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
             "locator": "§3"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "A Recipient loses its §2(b) patent rights when it files specified patent litigation alleging infringement by the Program itself, excluding combinations with other software or hardware.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt",
+            "locator": "§7, Program patent-litigation paragraph"
           }
         ]
       }
@@ -878,7 +973,7 @@
     "scenarios": [
       {
         "situation": "Shipping object code under separate terms",
-        "text": "Review the alternate agreement’s disclaimers, source availability statement and instructions. Check copyright and contribution-origin notices.",
+        "text": "Check the alternate agreement’s warranty and damages provisions on behalf of all Contributors, the statement assigning differing terms to the distributor alone, and instructions for obtaining the Program’s source. Check copyright notices and attribution of contribution origins.",
         "sources": [
           {
             "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
@@ -891,6 +986,16 @@
   "EPL-2.0": {
     "summary": "EPL 2.0 grants contributor rights with source availability and notice conditions. A Secondary License route has specific combination and notice requirements.",
     "dimensions": {
+      "alternate_license": {
+        "state": "condition",
+        "text": "Under §3.1(b), alternate terms must disclaim warranties and exclude damages liability for all other Contributors, preserve Recipients’ §3.2 Source Code rights and require terms satisfying §3 for subsequent distribution.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+            "locator": "§3.1(b)"
+          }
+        ]
+      },
       "copyright_grant": {
         "state": "permission",
         "text": "The contributor grants the listed copyright permissions concerning its contribution and covered derivative works, subject to the agreement.",
@@ -903,11 +1008,11 @@
       },
       "notices": {
         "state": "condition",
-        "text": "Preserve the categories of notices named in §3.3 and include a copy of the agreement with source distributions.",
+        "text": "Keep copyright, patent, trademark and attribution notices, warranty disclaimers and liability limitations intact in distributed copies of the Program. Contributors may add their own appropriate notices. Include the agreement with each Program copy distributed as Source Code.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
-            "locator": "§3"
+            "locator": "§§3.2(b) and 3.3"
           }
         ]
       },
@@ -923,21 +1028,31 @@
       },
       "secondary_license": {
         "state": "condition",
-        "text": "The §3.2(a) route depends on the combination with material in separate files under a Secondary License and the initial Contributor’s Exhibit A notice.",
+        "text": "Under §3.2(a), the Program’s Source Code can be made available under the applicable Secondary License when the Program is combined with material in separate files available under that license and the initial Contributor attaches the Exhibit A notice. Section 1 limits Secondary Licenses to GPL version 2.0 or later with any permissions or exceptions identified by the initial Contributor.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
-            "locator": "§3.2(a) and Exhibit A"
+            "locator": "§§1 and 3.2(a), Exhibit A"
           }
         ]
       },
       "source_availability": {
         "state": "condition",
-        "text": "Distribution of the Program requires making source available and communicating how recipients can obtain it.",
+        "text": "For distribution of the Program in any form, §3.1(a) requires making its Source Code available under the conditions in §3.2, with a statement of availability under EPL 2.0 and instructions for obtaining it through a customary software-exchange medium.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
-            "locator": "§3"
+            "locator": "§§3.1(a) and 3.2"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "A Recipient loses its §2(b) patent rights when it files specified patent litigation alleging infringement by the Program itself, excluding combinations with other software or hardware.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+            "locator": "§7, Program patent-litigation paragraph"
           }
         ]
       }
@@ -945,11 +1060,11 @@
     "scenarios": [
       {
         "situation": "Using the Secondary License route",
-        "text": "Check the initial contributor’s notice and the arrangement and licensing of separate files. The identifier alone does not establish the necessary circumstances.",
+        "text": "Check the initial Contributor’s completed Exhibit A notice for the named Secondary License and any permissions. Inspect the arrangement and licensing of separate files, and keep the EPL agreement with each source copy.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
-            "locator": "§§1 and 3.2(a), Exhibit A"
+            "locator": "§§1 and 3.2, Exhibit A"
           }
         ]
       }

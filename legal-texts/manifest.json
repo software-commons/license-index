@@ -134,6 +134,20 @@
     "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
     "source": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt"
   },
+  "EPL-1.0": {
+    "application": "This writes the verbatim EPL 1.0 agreement. Identify the covered program and its license separately. Follow section 3 for copyright notices, contributor identification, and distribution.",
+    "bytes": 11319,
+    "encoding": "UTF-8",
+    "install": "unchanged",
+    "line_endings": "LF",
+    "path": "legal-texts/epl-1.0.txt",
+    "representation": "publisher plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "edition plus SHA-256",
+    "rights": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt",
+    "sha256": "04132df1d27e9f0062df1503f88af2cc4ce4e7c75d0fe6eea5eda636bb2920bb",
+    "source": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt"
+  },
   "EPL-2.0": {
     "application": "This writes the verbatim EPL 2.0 agreement. Declare the project’s licensing separately and retain required notices. Selecting a Secondary License requires a separate Exhibit A notice from the initial Contributor and the conditions in section 3.2.",
     "bytes": 14198,

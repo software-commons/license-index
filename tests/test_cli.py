@@ -106,6 +106,12 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(older["sources"][0]["locator"], "§6 and §6(a)–(d)")
         self.assertIn("shared-library mechanism", newer["text"])
         self.assertEqual(newer["sources"][0]["locator"], "§6 and §6(b)")
+        eclipse = self.json_output("compare", "CPL-1.0", "EPL-1.0", "EPL-2.0")
+        self.assertEqual(eclipse["status"], "provisional")
+        editions = {row["identifier"]: row["dimensions"] for row in eclipse["records"]}
+        self.assertIn("litigation against a Contributor", editions["CPL-1.0"]["termination"]["text"])
+        self.assertIn("Program itself", editions["EPL-1.0"]["termination"]["text"])
+        self.assertIn("subsequent distribution", editions["EPL-2.0"]["alternate_license"]["text"])
         sources = self.json_output("sources", "MIT")
         self.assertTrue(sources["research_citations"])
         self.assertIn("sha256", sources["origin"]["artifacts"]["text"])
@@ -225,6 +231,7 @@ class ToolTests(unittest.TestCase):
                 ("AGPL-3.0-or-later", "agpl-3.0.txt"),
                 ("CC-BY-4.0", "cc-by-4.0.txt"),
                 ("CC0-1.0", "cc0-1.0.txt"),
+                ("EPL-1.0", "epl-1.0.txt"),
                 ("EPL-2.0", "epl-2.0.txt"),
                 ("GPL-1.0-only", "gpl-1.0.txt"),
                 ("GPL-1.0-or-later", "gpl-1.0.txt"),
