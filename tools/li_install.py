@@ -1,12 +1,12 @@
 """SPDX expression parsing and safe installation of selected license bytes."""
 
+from contextlib import ExitStack
 import errno
 import os
 from pathlib import Path
 import re
 import secrets
 import stat
-import tempfile
 from typing import NamedTuple
 import unicodedata
 
@@ -383,27 +383,161 @@ def verify_gplv3_companion(output: Path, companion: Path, expected: bytes, *, st
         raise InstallError(f"Could not verify GPLv3 companion {companion}: {failure.strerror or failure}") from failure
 
 
-def _write_windows(output, content, force, dry_run, before_publish):
-    parent_identity = _check_windows_parent(output)
-    _check_target(output.lstat, output, force, dry_run)
-    if dry_run:
-        return
+class _WindowsInstall:
+    """Documented Win32 handles for a pinned directory and its staged file."""
 
-    descriptor, temporary = tempfile.mkstemp(prefix=".license-index-", suffix=".tmp", dir=output.parent)
-    try:
+    _SHARE_READ = 0x00000001
+    _LIST_DIRECTORY = 0x00000001
+    _READ_ATTRIBUTES = 0x00000080
+    _DELETE = 0x00010000
+    _GENERIC_WRITE = 0x40000000
+    _OPEN_REPARSE_POINT = 0x00200000
+    _BACKUP_SEMANTICS = 0x02000000
+    _CREATE_NEW = 1
+    _OPEN_EXISTING = 3
+    _RENAME_INFORMATION = 10
+    _NAME_INFO = 2
+    _DISPOSITION_INFO = 4
+    _ATTRIBUTE_TAG_INFO = 9
+    _DUPLICATE_SAME_ACCESS = 0x00000002
+
+    def __init__(self):
+        import ctypes
+        from ctypes import wintypes
+
+        self._ctypes = ctypes
+        self._types = wintypes
+        self._invalid_handle = ctypes.c_void_p(-1).value
+        native = ctypes.WinDLL("kernel32", use_last_error=True)
+        nt = ctypes.WinDLL("ntdll")
+        handle, word, pointer = wintypes.HANDLE, wintypes.DWORD, wintypes.LPVOID
+        self._create_file = native.CreateFileW
+        self._create_file.argtypes = (wintypes.LPCWSTR, word, word, pointer, word, word, handle)
+        self._create_file.restype = handle
+        self.close = native.CloseHandle
+        self.close.argtypes = (handle,)
+        self.close.restype = wintypes.BOOL
+        self._get_info = native.GetFileInformationByHandleEx
+        self._get_info.argtypes = (handle, ctypes.c_int, pointer, word)
+        self._get_info.restype = wintypes.BOOL
+        self._set_info = native.SetFileInformationByHandle
+        self._set_info.argtypes = (handle, ctypes.c_int, pointer, word)
+        self._set_info.restype = wintypes.BOOL
+        current_process = native.GetCurrentProcess
+        current_process.argtypes = ()
+        current_process.restype = handle
+        self._process = current_process()
+        self._duplicate = native.DuplicateHandle
+        self._duplicate.argtypes = (handle, handle, handle, ctypes.POINTER(handle), word, wintypes.BOOL, word)
+        self._duplicate.restype = wintypes.BOOL
+        self._set_nt_info = nt.NtSetInformationFile
+        self._set_nt_info.argtypes = (handle, pointer, pointer, word, ctypes.c_int)
+        self._set_nt_info.restype = wintypes.LONG
+        self._dos_error = nt.RtlNtStatusToDosError
+        self._dos_error.argtypes = (wintypes.LONG,)
+        self._dos_error.restype = word
+
+    def _check(self, result):
+        if not result:
+            raise self._ctypes.WinError(self._ctypes.get_last_error())
+
+    def _open(self, path, access, disposition, flags):
+        handle = self._create_file(str(path), access, self._SHARE_READ, None, disposition, flags, None)
+        self._check(handle if handle != self._invalid_handle else None)
+        return handle
+
+    def pin_directory(self, path, handles):
+        handle = self._open(path, self._READ_ATTRIBUTES | self._LIST_DIRECTORY, self._OPEN_EXISTING,
+                            self._BACKUP_SEMANTICS | self._OPEN_REPARSE_POINT)
+        handles.callback(self.close, handle)
+        info = (self._types.DWORD * 2)()
+        self._check(self._get_info(handle, self._ATTRIBUTE_TAG_INFO, info, self._ctypes.sizeof(info)))
+        attributes = info[0]
+        if not attributes & stat.FILE_ATTRIBUTE_DIRECTORY or attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT:
+            raise InstallError(f"Output parent must be a regular directory path: {path}")
+
+    def stage(self, path, handles):
+        handle = self._open(path, self._GENERIC_WRITE | self._DELETE, self._CREATE_NEW, self._OPEN_REPARSE_POINT)
+        handles.callback(self.close, handle)
+        return handle
+
+    def write(self, handle, content):
+        import msvcrt
+
+        duplicate = self._types.HANDLE()
+        self._check(self._duplicate(self._process, handle, self._process, self._ctypes.byref(duplicate),
+                                    0, False, self._DUPLICATE_SAME_ACCESS))
+        try:
+            descriptor = msvcrt.open_osfhandle(duplicate.value, os.O_WRONLY | os.O_BINARY)
+        except BaseException:
+            self.close(duplicate)
+            raise
         _complete_file(descriptor, content)
-        if before_publish is not None:
-            before_publish(output.lstat)
-        if _check_windows_parent(output) != parent_identity:
-            raise InstallError("The output directory changed during installation")
-        _check_target(output.lstat, output, force, dry_run=False)
-        if force:
-            os.replace(temporary, output)
-        else:
-            # Windows rename fails atomically when the destination exists.
-            os.rename(temporary, output)
-    finally:
-        Path(temporary).unlink(missing_ok=True)
+
+    def publish(self, handle, name, force):
+        ctypes, wintypes = self._ctypes, self._types
+
+        class RenameInfo(ctypes.Structure):
+            _fields_ = (("replace", wintypes.DWORD), ("directory", wintypes.HANDLE),
+                        ("length", wintypes.DWORD), ("name", wintypes.WCHAR * 1))
+
+        encoded = name.encode("utf-16-le")
+        size = ctypes.sizeof(RenameInfo) + len(encoded) + 2
+        buffer = ctypes.create_string_buffer(size)
+        info = RenameInfo.from_buffer(buffer)
+        info.replace = int(force)
+        info.length = len(encoded)
+        ctypes.memmove(ctypes.addressof(buffer) + RenameInfo.name.offset, encoded, len(encoded))
+        # Native FileRenameInformation with a simple name and a null RootDirectory
+        # renames within the opened source file's directory.
+        status = (ctypes.c_void_p * 2)()
+        result = self._set_nt_info(handle, status, buffer, size, self._RENAME_INFORMATION)
+        if result < 0:
+            raise ctypes.WinError(self._dos_error(result))
+
+    def discard_stage(self, handle, temporary_name):
+        ctypes = self._ctypes
+        # An interruption can arrive just after rename succeeds. Check the
+        # handle's current name before marking the staged object for deletion.
+        word = self._types.DWORD
+        offset = ctypes.sizeof(word)
+        buffer = ctypes.create_string_buffer(offset + 65536)
+        self._check(self._get_info(handle, self._NAME_INFO, buffer, len(buffer)))
+        length = word.from_buffer(buffer).value
+        if not length or length % 2 or length > len(buffer) - offset:
+            raise OSError(errno.EIO, "Invalid staged-file name returned by Windows")
+        current_name = buffer[offset:offset + length].decode("utf-16-le").rsplit("\\", 1)[-1]
+        if current_name.casefold() == temporary_name.casefold():
+            delete = ctypes.c_ubyte(1)
+            self._check(self._set_info(handle, self._DISPOSITION_INFO, ctypes.byref(delete), ctypes.sizeof(delete)))
+
+
+def _write_windows(output, content, force, dry_run, before_publish):
+    native = _WindowsInstall()
+    with ExitStack() as handles:
+        # Deny write and delete sharing on each verified component before opening its child.
+        for parent in reversed(output.parents):
+            native.pin_directory(parent, handles)
+        _check_target(output.lstat, output, force, dry_run)
+        if dry_run:
+            return
+
+        temporary_name = f".license-index-{secrets.token_hex(16)}.tmp"
+        if output.name.casefold() == temporary_name.casefold():
+            temporary_name += ".stage"
+        temporary = output.parent / temporary_name
+        handle = native.stage(temporary, handles)
+        published = False
+        try:
+            native.write(handle, content)
+            if before_publish is not None:
+                before_publish(output.lstat)
+            _check_target(output.lstat, output, force, dry_run=False)
+            native.publish(handle, output.name, force)
+            published = True
+        finally:
+            if not published:
+                native.discard_stage(handle, temporary_name)
 
 
 def write_license(output: Path, content: bytes, *, force: bool = False, dry_run: bool = False,

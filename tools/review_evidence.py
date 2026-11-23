@@ -13,7 +13,8 @@ _RECORD_KINDS = {"claim", "source", "dependency", "disposition", "conflict", "ve
 _SUPPORT = {"support", "corroboration", "premise"}
 _PHASES = ("research", "independent-review")
 _SLUG = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
-_PATH = re.compile(r"sces/(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9._-]*")
+_ARTIFACT_PATH = re.compile(r"sces/(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9._-]*")
+_TREE_PATH = re.compile(r"sces/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*")
 _MAX_INVENTORY = 2 * 1024 * 1024
 _MAX_RECORDS = 16 * 1024 * 1024
 _MAX_EVIDENCE = 16 * 1024 * 1024
@@ -42,12 +43,16 @@ def _inventory(directory, commit, *prefixes):
     raw = _git(directory, "ls-tree", "-r", "-z", commit, "--", *prefixes, limit=_MAX_INVENTORY)
     require(not raw or raw.endswith(b"\0"), "incomplete SCES Git tree inventory")
     paths = {}
+    folded_paths = set()
     for row in raw.split(b"\0")[:-1]:
         parts = re.fullmatch(rb"100644 blob ([0-9a-f]{40})\t([^\0]+)", row)
         require(parts is not None, "SCES review tree must contain regular, non-executable blobs")
         oid, raw_path = parts.groups()
         path = raw_path.decode("ascii")
-        require(_PATH.fullmatch(path) and path not in paths, "unsafe or duplicate SCES Git tree path")
+        folded = path.casefold()
+        require(_TREE_PATH.fullmatch(path) and folded not in folded_paths,
+                "unsafe or duplicate SCES Git tree path")
+        folded_paths.add(folded)
         paths[path] = oid.decode("ascii")
     return paths
 
@@ -87,6 +92,16 @@ def _blobs(directory, paths, ordered, *, limit):
         cursor = end + 1
     require(cursor == len(raw), "unexpected extra SCES Git blobs")
     return result
+
+
+def _record_blobs(directory, paths, cache):
+    records = {path: oid for path, oid in paths.items() if path.startswith("sces/records/")}
+    uncached = {oid: path for path, oid in records.items() if oid not in cache}
+    for path, payload in _blobs(directory, paths, sorted(uncached.values()), limit=_MAX_RECORDS).items():
+        cache[records[path]] = payload
+    blobs = {path: cache[oid] for path, oid in records.items()}
+    require(sum(map(len, blobs.values())) <= _MAX_RECORDS, "SCES registry exceeds the review capture limit")
+    return blobs
 
 
 def _registry(blobs):
@@ -172,12 +187,19 @@ def _closure(selected, records, edges, active, dispositions, conflicts):
                            row.get("reproduction", {}).get("artifact")):
             if descriptor is not None:
                 path, checksum = descriptor["path"], descriptor["sha256"]
-                require(isinstance(path, str) and path.startswith("sces/artifacts/") and _PATH.fullmatch(path)
+                require(isinstance(path, str) and path.startswith("sces/artifacts/") and _ARTIFACT_PATH.fullmatch(path)
                         and artifacts.setdefault(path, checksum) == checksum, "invalid SCES artifact reference")
         for field in ("replaces", "previous"):
             if field in row:
                 pending.append(_key(row[field], kind))
     return used, artifacts
+
+
+def _selected_registry(selected, blobs):
+    records, edges, reviews, dispositions, conflicts = _registry(blobs)
+    active = _active_reviews(selected, records, edges, reviews, dispositions)
+    used, artifacts = _closure(selected, records, edges, active, dispositions, conflicts)
+    return records, edges, active, used, artifacts
 
 
 def _selected_evidence(directory, paths, repository):
@@ -206,11 +228,9 @@ def _selected_evidence(directory, paths, repository):
     require(selected and len({identity[:2] for identity in selected}) == len(selected)
             and [_key(ref, "claim") for ref in report["claims"]] == sorted(selected),
             "SCES publication claim selection does not match the report")
-    record_blobs = _blobs(directory, paths, sorted(path for path in paths if path.startswith("sces/records/")),
-                          limit=_MAX_RECORDS)
-    records, edges, reviews, dispositions, conflicts = _registry(record_blobs)
-    active = _active_reviews(selected, records, edges, reviews, dispositions)
-    used, artifacts = _closure(selected, records, edges, active, dispositions, conflicts)
+    blob_cache = {}
+    record_blobs = _record_blobs(directory, paths, blob_cache)
+    records, edges, active, used, artifacts = _selected_registry(selected, record_blobs)
     expected_claims = [{"claim": records[identity],
                         "dependencies": [records[edge] for edge in sorted(edges[identity])]}
                        for identity in sorted(selected)]
@@ -232,6 +252,10 @@ def _selected_evidence(directory, paths, repository):
     inputs[_ADOPTION] = _digest(metadata[_ADOPTION])
     require(report["inputs_sha256"] == _digest(_canonical(inputs)), "SCES selected input digest mismatch")
     frozen = _frozen_inputs(directory, selection["source_commit"])
+    # The same selected roots must reach the same records when reverse links come from the frozen tree.
+    *_, frozen_used, frozen_artifacts = _selected_registry(selected, _record_blobs(directory, frozen, blob_cache))
+    require(used == frozen_used, "SCES selected record membership differs from the frozen source commit")
+    require(artifacts == frozen_artifacts, "SCES selected artifact descriptors differ from the frozen source commit")
     for path in sorted(inputs):
         require(frozen.get(path) == paths[path], f"SCES selected input differs from its frozen source commit: {path}")
 

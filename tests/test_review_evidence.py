@@ -115,6 +115,21 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         self.assertEqual(staged, {**inputs, **publication})
         self.assertNotIn(UNSELECTED, staged)
 
+    def test_uppercase_history_path_stays_outside_selected_evidence(self):
+        inputs, make_publication = fixture()
+        readme = "sces/artifacts/candidate-history/README.md"
+        document = b"Human-readable historical provenance.\n"
+        frozen = self.commit({**inputs, readme: document}, "freeze evidence and historical documentation")
+        publication = make_publication(frozen)
+        candidate = self.commit(publication, "select evidence independently of the historical README")
+        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY), {**inputs, **publication})
+
+        source = decode(inputs[SOURCE])
+        source["artifact"] = {"path": readme, "sha256": digest(document)}
+        invalid = self.commit({SOURCE: _canonical(source)}, "try uppercase artifact declaration")
+        with self.assertRaisesRegex(DataError, "invalid SCES artifact reference"):
+            capture_selected_evidence(self.root, invalid, REPOSITORY)
+
     def test_missing_inherited_verification_or_artifact_is_rejected(self):
         inputs, make_publication = fixture()
         baseline = self.commit(inputs, "freeze selected evidence")
@@ -154,7 +169,36 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         origin["artifact"]["sha256"] = digest(inputs[SOURCE_ARTIFACT])
         inputs[SOURCE] = _canonical(origin)
         candidate = self.commit({**inputs, **make_publication(baseline)}, "recalculate candidate source digests")
-        with self.assertRaisesRegex(DataError, "frozen source commit: sces/artifacts/citation.txt"):
+        with self.assertRaisesRegex(DataError, "selected artifact descriptors differ from the frozen source commit"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_rebuilt_report_cannot_hide_a_frozen_conflict(self):
+        inputs, make_publication = fixture()
+        frozen = self.commit(inputs, "freeze the selected claim with its conflict")
+        conflict = "sces/records/conflict/selected-conflict--1.json"
+        del inputs[conflict]
+        (self.root / conflict).unlink()
+        candidate = self.commit(make_publication(frozen), "omit conflict and rebuild report digests")
+        with self.assertRaisesRegex(DataError, "selected record membership differs from the frozen source commit"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_rebuilt_report_cannot_hide_a_frozen_dependency(self):
+        inputs, make_publication = fixture()
+        omitted = "sces/records/dependency/selected-extra--1.json"
+        extra = _canonical({**ref("dependency", "selected-extra"), "claim": ref("claim", "selected"),
+                            "basis": ref("source", "original"), "relation": "support"})
+        frozen = self.commit({**inputs, omitted: extra}, "freeze the additional supporting dependency")
+        (self.root / omitted).unlink()
+        candidate = self.commit(make_publication(frozen), "publish the smaller candidate and rebuilt report")
+        with self.assertRaisesRegex(DataError, "selected record membership differs from the frozen source commit"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_same_membership_cannot_change_frozen_record_bytes(self):
+        inputs, make_publication = fixture()
+        frozen = self.commit(inputs, "freeze selected evidence")
+        inputs[CLAIM] = b"\n" + inputs[CLAIM]
+        candidate = self.commit({**inputs, **make_publication(frozen)}, "change only the selected record bytes")
+        with self.assertRaisesRegex(DataError, f"differs from its frozen source commit: {CLAIM}"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
 
     def test_frozen_source_commit_cannot_be_a_tree_object(self):
@@ -166,21 +210,40 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
 
     def test_missing_frozen_source_fetch_uses_the_fixed_license_remote_and_exact_sha(self):
-        source = "b" * 40
-        with patch("tools.review_evidence._git") as git:
-            git.side_effect = [SnapshotError("object missing"), b"", f"{source}\n".encode("ascii"), b"commit\n", b""]
-            self.assertEqual(_frozen_inputs(self.root, source), {})
-            self.assertEqual(git.call_args_list[1].args, (
-                self.root, "fetch", "--quiet", "--depth=1", "--filter=blob:none", "--no-tags",
-                "--no-recurse-submodules", "--no-auto-maintenance", "--",
-                "https://github.com/software-commons/license-index.git", source,
-            ))
-            self.assertEqual(git.call_args_list[1].kwargs["config"], (
-                "http.followRedirects=false", "fetch.fsckObjects=true", "protocol.allow=never", "protocol.https.allow=always",
-            ))
-            git.side_effect = [SnapshotError("object missing"), b"", b"a" * 40 + b"\n"]
+        inputs, make_publication = fixture()
+        baseline = self.commit(inputs, "freeze selected evidence")
+        publication = make_publication(baseline)
+        candidate = self.commit(publication, "select previously committed evidence")
+        _git(self.root, "config", "uploadpack.allowFilter", "true")
+        upstream = self.root.resolve().as_uri()
+        fetches = []
+
+        def local_git(directory, operation, *arguments, config=(), **options):
+            if operation == "fetch":
+                fetches.append((arguments, config))
+                arguments = (*arguments[:-2], upstream, arguments[-1])
+                config = (*config, "protocol.file.allow=always")
+            return _git(directory, operation, *arguments, config=config, **options)
+
+        with TemporaryDirectory() as directory:
+            shallow = Path(directory).resolve()
+            _git(shallow, "init", "--bare", "--quiet", "--template=")
+            _git(shallow, "fetch", "--quiet", "--depth=1", upstream, candidate, config=("protocol.file.allow=always",))
+            with self.assertRaises(SnapshotError):
+                _git(shallow, "cat-file", "-t", baseline)
+            with patch("tools.review_evidence._git", side_effect=local_git):
+                self.assertEqual(capture_selected_evidence(shallow, candidate, REPOSITORY), {**inputs, **publication})
+
+        self.assertEqual(fetches, [((
+            "--quiet", "--depth=1", "--filter=blob:none", "--no-tags", "--no-recurse-submodules",
+            "--no-auto-maintenance", "--", "https://github.com/software-commons/license-index.git", baseline,
+        ), ("http.followRedirects=false", "fetch.fsckObjects=true", "protocol.allow=never", "protocol.https.allow=always"))])
+
+    def test_frozen_source_fetch_rejects_a_different_sha(self):
+        responses = [SnapshotError("object missing"), b"", b"a" * 40 + b"\n"]
+        with patch("tools.review_evidence._git", side_effect=responses):
             with self.assertRaisesRegex(DataError, "did not fetch the exact frozen SCES source commit"):
-                _frozen_inputs(self.root, source)
+                _frozen_inputs(self.root, "b" * 40)
 
     def test_directory_at_selection_path_is_not_silently_treated_as_absence(self):
         candidate = self.commit({SELECTION + "/marker": b"not a publication selection"}, "unsupported selection path")

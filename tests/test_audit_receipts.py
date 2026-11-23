@@ -39,7 +39,9 @@ class ReceiptAuditTests(unittest.TestCase):
         capture = f"exec-{phase}"
         result = "turn1view0" if phase == "research" else "turn2view0"
         message = json.dumps({"claim_sha256": CLAIM_DIGEST, "conclusion": "supported",
-                              "checks": dict.fromkeys(CHECK_NAMES, "pass"), "reasoning": "Claim reasoning.",
+                              "dependencies": [{"id": "fixture", "outcome": "supports", "reasoning": "Clause applies.",
+                                                "checks": dict.fromkeys(CHECK_NAMES, "pass")}],
+                              "reasoning": "Claim reasoning.",
                               "limitations": ["Exact edition only."], "challenge_method": "Compare editions.",
                               "challenge_result": "Claim holds for this edition."})
         events = [
@@ -62,6 +64,8 @@ class ReceiptAuditTests(unittest.TestCase):
             {"type": "response_item", "payload": {"type": "custom_tool_call_output", "call_id": "fixture",
                                                  "output": [{"type": "input_text",
                                                              "text": f"\ue200cite\ue202{result}\ue201"}]}},
+            {"type": "response_item", "payload": {"type": "message", "role": "assistant",
+                                                 "content": [{"type": "output_text", "text": message}]}},
             {"type": "event_msg", "timestamp": COMPLETED, "payload": {"type": "task_complete", "turn_id": turn,
                                                                    "last_agent_message": message}},
         ]
@@ -123,9 +127,18 @@ class ReceiptAuditTests(unittest.TestCase):
         message = json.dumps(assessment)
         events, session = [[json.loads(line) for line in path.read_bytes().splitlines()] for path in paths]
         events[-2]["item"]["text"] = message
+        session[-2]["payload"]["content"][0]["text"] = message
         session[-1]["payload"]["last_agent_message"] = message
         for path, rows in zip(paths, (events, session)):
             path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
+
+    def pin_legacy(self, *logs, claims=(CLAIM_DIGEST,)):
+        pins = {}
+        for events, session in logs:
+            raw_events = events.read_bytes()
+            thread = json.loads(raw_events.splitlines()[0])["thread_id"]
+            pins[thread] = sha256(raw_events).hexdigest(), sha256(session.read_bytes()).hexdigest(), claims
+        return patch.dict("tools.audit_receipts.LEGACY_ARCHIVES", pins)
 
     def use_structured_assessments(self):
         messages = []
@@ -167,7 +180,8 @@ class ReceiptAuditTests(unittest.TestCase):
                   "challenge_result": "Claim holds for this edition.", "checks": dict.fromkeys(CHECK_NAMES, "pass")}
         self.write_final_assessment(self.first, {"claims": [legacy]})
         self.write_final_assessment(self.second, {"claims": [legacy]})
-        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+        with self.pin_legacy(self.first, self.second):
+            self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
         review = self.registry["claims"][0]["recorded_reviews"][1]
         for changed, expected in (
             ({"reasoning": "A different rationale."}, "claim reasoning or limitations"),
@@ -176,7 +190,7 @@ class ReceiptAuditTests(unittest.TestCase):
              "claim-level checks"),
             ({"challenge": {**review["challenge"], "results": "A different result."}}, "challenge method or results"),
         ):
-            with self.subTest(fields=tuple(changed)), patch.dict(review, changed):
+            with self.subTest(fields=tuple(changed)), patch.dict(review, changed), self.pin_legacy(self.first, self.second):
                 with self.assertRaisesRegex(DataError, expected):
                     audit_receipts(self.registry, [self.first, self.second])
 
@@ -189,7 +203,8 @@ class ReceiptAuditTests(unittest.TestCase):
         self.write_final_assessment(self.first, legacy)
         research = self.registry["claims"][0]["recorded_reviews"][0]
         research.pop("challenge")
-        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+        with self.pin_legacy(self.first):
+            self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
         recorded = research["assessments"][0]
         for changed, expected in (
             ({"dependency": {**recorded["dependency"], "id": "other"}}, "differ from the recorded dependencies"),
@@ -197,9 +212,45 @@ class ReceiptAuditTests(unittest.TestCase):
             ({"reasoning": "Another conclusion."}, "dependency outcome, reasoning or checks"),
             ({"checks": dict.fromkeys(CHECK_NAMES, "fail")}, "dependency outcome, reasoning or checks"),
         ):
-            with self.subTest(fields=tuple(changed)), patch.dict(recorded, changed):
+            with self.subTest(fields=tuple(changed)), patch.dict(recorded, changed), self.pin_legacy(self.first):
                 with self.assertRaisesRegex(DataError, expected):
                     audit_receipts(self.registry, [self.first, self.second])
+
+    def test_legacy_shape_requires_pinned_execution_claims_and_both_exact_archives(self):
+        message = {"claim_sha256": CLAIM_DIGEST, "conclusion": "supported", "reasoning": "Claim reasoning.",
+                   "limitations": ["Exact edition only."], "challenge_method": "Compare editions.",
+                   "challenge_result": "Claim holds for this edition.", "checks": dict.fromkeys(CHECK_NAMES, "pass")}
+        self.write_final_assessment(self.first, {"claims": [message]})
+        with self.assertRaisesRegex(DataError, "legacy assessment requires a pinned historical execution"):
+            audit_receipts(self.registry, [self.first, self.second])
+        with self.pin_legacy(self.first, claims=("b" * 64,)):
+            with self.assertRaisesRegex(DataError, "exact claim set"):
+                audit_receipts(self.registry, [self.first, self.second])
+        with self.pin_legacy(self.first):
+            self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+            for original_log in self.first:
+                with self.subTest(log=original_log.name):
+                    original = original_log.read_bytes()
+                    original_log.write_bytes(b"\xef\xbb\xbf" + original)
+                    with self.assertRaisesRegex(DataError, "both original logs"):
+                        audit_receipts(self.registry, [self.first, self.second])
+                    original_log.write_bytes(original)
+
+    def test_rejects_web_tool_output_delivered_after_the_assessment_before_task_completion(self):
+        path = self.first[1]
+        session = [json.loads(line) for line in path.read_bytes().splitlines()]
+        session.insert(-1, session.pop(5))
+        path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in session))
+        with self.assertRaisesRegex(DataError, "web tool result was not delivered before the assessment"):
+            audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_web_completion_after_the_cli_assessment(self):
+        path = self.first[0]
+        events = [json.loads(line) for line in path.read_bytes().splitlines()]
+        events[2:4] = reversed(events[2:4])
+        path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in events))
+        with self.assertRaisesRegex(DataError, "web-open completion follows the final assessment"):
+            audit_receipts(self.registry, [self.first, self.second])
 
     def test_compares_structured_claim_reasoning_limitations_and_independent_challenge(self):
         _, original = self.use_structured_assessments()
@@ -319,8 +370,6 @@ class ReceiptAuditTests(unittest.TestCase):
         session[4]["payload"]["item"] = {**call, "id": f"exec-{phase}", "type": "McpToolCall",
                                          "readOnlyHint": True, "result": {"content": content, "isError": False}}
         session[5]["payload"]["output"] = content
-        session[6:-1] = [{"type": "response_item", "payload": {"type": "message", "role": "assistant",
-                          "content": [{"type": "output_text", "text": events[-2]["item"]["text"]}]}}]
         for path, rows in zip(paths, (events, session)):
             path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
         review = next(row for row in self.registry["claims"][0]["recorded_reviews"] if row["phase"] == phase)

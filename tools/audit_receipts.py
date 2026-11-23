@@ -19,6 +19,54 @@ from .records import HEX_256, DataError, decode, encode, require, unique_fields
 
 CHECKS = {"authenticity", "integrity", "relevance", "interpretation", "applicability", "contradiction"}
 CHALLENGE_FIELDS = {"challenge_method", "challenge_result"}
+# Historical execution ID: original CLI log digest, original session digest, sorted claim digests.
+# These pins permit replay of the archived format. They do not qualify the underlying records.
+LEGACY_ARCHIVES = {
+    "01a207ff-6549-7aa2-a766-a57007b0035b": (
+        "5e3230e5348842d2d19097d5b0c7e7bcb18ed09f65c3010e2794ceaf25693893",
+        "97af4f9dcd4bbcb2ace739e0547412533b6a0339867be9bdff822367d3435aa9",
+        ("d4fbc15c2ad949cbc78006ae474293cc69c16ceb8981ed44ed30d4a469a2e6ba",),
+    ),
+    "01a207ff-db7e-77d0-b9d7-c2890da86dd5": (
+        "fb9ee6e30e224f3935457458daba28c00acd5960d24b9ed89888e3fdaee6e205",
+        "a73daf215ea8eb754ca158b677b79e66246ab6d997aa8fffe30d709cdb7f6dc7",
+        ("d4fbc15c2ad949cbc78006ae474293cc69c16ceb8981ed44ed30d4a469a2e6ba",),
+    ),
+    "01a20808-5af2-7780-ab27-6a17452c78ec": (
+        "de3618b1c15af7b03af969173025ae160f61797a54473791b9fa370a77e7b40c",
+        "6dded626a1be347ca24b55f628f48b3b0b102afae88cd986ae96ceaf44675600",
+        ("f5227f39dbf57c3ea8c6aa642193c98358278ac009ab9f75424a12dcdcffabd4",),
+    ),
+    "01a20808-d88d-7ea2-a5ca-80ee3714efc8": (
+        "4f27b054509ee0d8b0105d28ca49eb7474e644ceb81ced9b5ff76b4a819faad6",
+        "02e6e91bf426c069732c8d4be06076165134e40e8cea1e83bd4f1784b35f30e7",
+        ("f5227f39dbf57c3ea8c6aa642193c98358278ac009ab9f75424a12dcdcffabd4",),
+    ),
+    "01a20818-6f53-7922-954f-b7f1eb382a0a": (
+        "ac5e14204eac77141250edcc69dc8c2d3ef443f30446aade88bd6b4c6e70270e",
+        "a291a36d90e61dd55eb59a63d441e474ff62bf839d1d2da1586081c21c7854d5",
+        ("156a44ba1a6a52d26a9cc4010368457df9262d9c9f5d53f511d898ae488668d8",
+         "f38cd63ad2f23a9837d93880c22ffed2e2f8405b238d81e842554384883d3e84"),
+    ),
+    "01a20819-289c-76c0-85b7-c388529e9786": (
+        "0953bf1c3224fd99e11e4e87f5adf6e0c7c5ed8415add7ff66854c9ca4bedd19",
+        "c08acb420e56a3982c3b7cd277c283cc8ae37c73987d34d509e32f2157fcf695",
+        ("156a44ba1a6a52d26a9cc4010368457df9262d9c9f5d53f511d898ae488668d8",
+         "f38cd63ad2f23a9837d93880c22ffed2e2f8405b238d81e842554384883d3e84"),
+    ),
+    "01a20836-6952-74d3-9bac-2eb72a5e346f": (
+        "45541fdb472e978fd1e94e7792311860ed6bcdcfb479c9f7ee59f10c44330303",
+        "d9e417ce7b52b1e0191c7c11f6f8dcbb84204111cb6fef94ccf868cfbfef6cc5",
+        ("71ae4b65f92df592fb57fbb7a898935c7135fa339b028fcb51340b9ecb71c722",
+         "993ae4bdf9acb739a35d74d6a0db9903dac1aea3cbd4dd4e3b24dcdb2afad848"),
+    ),
+    "01a20838-229a-7b33-b003-28636bcea490": (
+        "470ebfa825a6100f8333709a97960ece1d8254f5b11c5adaa30c23c9ee601111",
+        "bd21b47289ea21e8750692199d25cd0ed8ada5b47b04ce3693095abebe02eafa",
+        ("71ae4b65f92df592fb57fbb7a898935c7135fa339b028fcb51340b9ecb71c722",
+         "993ae4bdf9acb739a35d74d6a0db9903dac1aea3cbd4dd4e3b24dcdb2afad848"),
+    ),
+}
 
 
 class ObjectPairs(list):
@@ -96,7 +144,9 @@ def execution(events_path, session_path):
             and not {"error", "turn.failed"} & set(kinds), "Codex event stream is not one successful execution")
     thread = events[0]["thread_id"]
     event_items = [row["item"] for row in events if row["type"] == "item.completed"]
-    message = next(item["text"] for item in reversed(event_items) if item["type"] == "agent_message")
+    final_event_index = next(index for index in range(len(event_items) - 1, -1, -1)
+                             if event_items[index]["type"] == "agent_message")
+    message = event_items[final_event_index]["text"]
     try:
         parsed = decode(message.encode("utf-8"))
     except (DataError, ValueError, RecursionError) as error:
@@ -112,10 +162,14 @@ def execution(events_path, session_path):
                 and isinstance(row.get("conclusion"), str) and digest not in assessments,
                 "Codex claim assessments are incomplete or ambiguous")
         assessments[digest] = row
-    # A missing dependency list cannot turn a current assessment into an archived format.
-    structured = any("dependencies" in row or not legacy_assessment(row, batched="claims" in parsed) for row in rows)
-    require(not structured or all("dependencies" in row for row in rows),
-            "structured Codex claim assessments are incomplete")
+    structured = any("dependencies" in row for row in rows)
+    if structured:
+        require(all("dependencies" in row for row in rows), "structured Codex claim assessments are incomplete")
+    else:
+        require(all(legacy_assessment(row, batched="claims" in parsed) for row in rows),
+                "structured Codex claim assessments are incomplete")
+        require(LEGACY_ARCHIVES.get(thread) == (events_digest, session_digest, tuple(sorted(assessments))),
+                "legacy assessment requires a pinned historical execution, exact claim set and both original logs")
 
     meta = one((row["payload"] for row in session if row["type"] == "session_meta"), "Codex session header")
     context = one((row["payload"] for row in session if row["type"] == "turn_context"), "Codex turn context")
@@ -138,6 +192,7 @@ def execution(events_path, session_path):
         "started": timing["task_started"],
         "completed": timing["task_complete"],
         "final_message": message,
+        "final_event_index": final_event_index,
         "assessments": assessments,
         "structured": structured,
         "event_items": event_items,
@@ -147,12 +202,24 @@ def execution(events_path, session_path):
     }
 
 
+def final_session_assessment_index(run):
+    return one(
+        (index for index, row in enumerate(run["session"]) if row["type"] == "response_item"
+         and row["payload"].get("type") == "message" and row["payload"].get("role") == "assistant"
+         and any(part.get("text", "").strip() == run["final_message"].strip()
+                 for part in row["payload"]["content"])),
+        "final Codex session assessment",
+    )
+
+
 def check_web_acquisition(run, recorded):
     require("sha256" not in recorded, "rendered Codex web results cannot corroborate a source byte digest")
     capture, locator = recorded["capture"], recorded["locator"]
-    native = one((item for item in run["event_items"] if item.get("id") == capture), "receipt event completion")
+    native_index, native = one(((index, item) for index, item in enumerate(run["event_items"])
+                                if item.get("id") == capture), "receipt event completion")
     require(native["type"] == "web_search" and native["action"] == {"type": "open_page", "url": locator},
             "recorded receipt differs from the Codex web-open event")
+    require(native_index < run["final_event_index"], "Codex web-open completion follows the final assessment")
     session = run["session"]
     index, row = one(
         ((index, row) for index, row in enumerate(session)
@@ -175,9 +242,14 @@ def check_web_acquisition(run, recorded):
                  if previous["type"] == "response_item"
                  and previous["payload"].get("type") == "custom_tool_call"), {})
     require(call.get("name") == "exec", "receipt lacks the associated Codex tool invocation")
-    output = one((later["payload"]["output"] for later in session[index + 1:]
-                  if later["type"] == "response_item" and later["payload"].get("type") == "custom_tool_call_output"
-                  and later["payload"]["call_id"] == call["call_id"]), "associated Codex tool output")
+    output_index, output = one(
+        ((i, entry["payload"]["output"]) for i, entry in enumerate(session)
+         if entry["type"] == "response_item" and entry["payload"].get("type") == "custom_tool_call_output"
+         and entry["payload"]["call_id"] == call["call_id"]),
+        "associated Codex tool output",
+    )
+    require(index < output_index < final_session_assessment_index(run),
+            "Codex web tool result was not delivered before the assessment")
     require(any(f"\ue200cite\ue202{reference}\ue201" in part["text"] for reference in refs for part in output
                 if part.get("type") in {"input_text", "text"}), "Codex tool output lacks the recorded result reference")
 
@@ -194,13 +266,7 @@ def check_byte_delivery(run, index, text):
          and row["payload"]["call_id"] == call["call_id"]),
         "source-byte tool output delivered to Codex",
     )
-    final_index = one(
-        (i for i, row in enumerate(session) if row["type"] == "response_item"
-         and row["payload"].get("type") == "message" and row["payload"].get("role") == "assistant"
-         and any(part.get("text", "").strip() == run["final_message"].strip()
-                 for part in row["payload"]["content"])),
-        "final Codex session assessment",
-    )
+    final_index = final_session_assessment_index(run)
     representations = (text, *(json.dumps(text, ensure_ascii=ascii_only)[1:-1] for ascii_only in (True, False)))
     require(index < output_index < final_index
             and any(value in part["text"] for part in output if part.get("type") in {"input_text", "text"}

@@ -5,7 +5,9 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from tools.li_install import InstallError, _complete_file, parse_expression, render, verify_gplv3_companion, write_license
+from tools.li_install import (
+    InstallError, _WindowsInstall, _complete_file, parse_expression, render, verify_gplv3_companion, write_license,
+)
 
 
 LICENSES = {"MIT", "Apache-2.0", "GPL-2.0", "GPL-2.0+", "GPL-2.0-only"}
@@ -272,6 +274,62 @@ class InstallTests(unittest.TestCase):
             verify_gplv3_companion(self.output, linked_directory / original.name, b"base")
         self.assertEqual(list(real_path.iterdir()), [original])
 
+    @unittest.skipUnless(os.name == "nt", "Windows directory sharing")
+    def test_windows_keeps_all_ancestors_pinned_before_staging(self):
+        ancestor = self.directory / "ancestor"
+        parent = ancestor / "parent"
+        parent.mkdir(parents=True)
+        output = parent / "LICENSE"
+        stage = _WindowsInstall.stage
+        checked = []
+
+        def stage_after_rename_attempts(native, path, handles):
+            for pinned in (parent, ancestor):
+                with self.assertRaises(PermissionError):
+                    pinned.rename(pinned.with_name(f"{pinned.name}-moved"))
+                checked.append(pinned)
+            return stage(native, path, handles)
+
+        with patch.object(_WindowsInstall, "stage", stage_after_rename_attempts):
+            write_license(output, b"protected directory")
+        self.assertEqual(checked, [parent, ancestor])
+        self.assertEqual(list(parent.iterdir()), [output])
+        moved = ancestor.rename(self.directory / "ancestor-moved")
+        self.assertEqual((moved / "parent" / output.name).read_bytes(), b"protected directory")
+
+    @unittest.skipUnless(os.name == "nt", "Windows staged-file sharing")
+    def test_windows_failure_discards_the_open_staged_file(self):
+        neighbor = self.directory / "neighbor"
+        neighbor.write_bytes(b"keep")
+
+        def interrupt_after_sync(descriptor, content):
+            _complete_file(descriptor, content)
+            staged, = self.directory.glob(".license-index-*.tmp")
+            with self.assertRaises(PermissionError):
+                staged.rename(staged.with_suffix(".different"))
+            raise KeyboardInterrupt
+
+        with patch("tools.li_install._complete_file", side_effect=interrupt_after_sync):
+            with self.assertRaises(KeyboardInterrupt):
+                write_license(self.output, b"aborted")
+        self.assertEqual(list(self.directory.iterdir()), [neighbor])
+        self.assertEqual(neighbor.read_bytes(), b"keep")
+
+    @unittest.skipUnless(os.name == "nt", "Windows rename interruption")
+    def test_windows_interruption_after_rename_keeps_the_committed_output(self):
+        self.output.write_bytes(b"prior")
+        publish = _WindowsInstall.publish
+
+        def interrupt_after_publish(native, handle, name, force):
+            publish(native, handle, name, force)
+            raise KeyboardInterrupt
+
+        with patch.object(_WindowsInstall, "publish", interrupt_after_publish):
+            with self.assertRaises(KeyboardInterrupt):
+                write_license(self.output, b"committed", force=True)
+        self.assertEqual(self.output.read_bytes(), b"committed")
+        self.assertEqual(list(self.directory.iterdir()), [self.output])
+
     def test_failed_sync_leaves_existing_target_and_cleans_temporary(self):
         self.output.write_bytes(b"existing")
         with patch("tools.li_install.os.fsync", side_effect=OSError(errno.ENOSPC, "disk full")):
@@ -287,14 +345,16 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(list(self.directory.iterdir()), [])
 
     def test_concurrent_new_file_cannot_be_clobbered(self):
-        commit = os.rename if os.name == "nt" else os.link
+        if os.name == "nt":
+            commit, commit_path = _WindowsInstall.publish, "tools.li_install._WindowsInstall.publish"
+        else:
+            commit, commit_path = os.link, "tools.li_install.os.link"
 
         def add_concurrent_file(*args, **kwargs):
             self.output.write_bytes(b"new from another writer")
             return commit(*args, **kwargs)
 
-        commit_name = "rename" if os.name == "nt" else "link"
-        with patch(f"tools.li_install.os.{commit_name}", side_effect=add_concurrent_file):
+        with patch(commit_path, new=add_concurrent_file):
             with self.assertRaisesRegex(InstallError, "already exists"):
                 write_license(self.output, b"our license")
         self.assertEqual(self.output.read_bytes(), b"new from another writer")
