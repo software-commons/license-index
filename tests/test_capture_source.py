@@ -101,6 +101,8 @@ class SourceCaptureTests(unittest.TestCase):
             (self.response(BODY, ("Content-Length", "8"), ("Content-Length", "8")), "invalid Content-Length"),
             (self.response(BODY, ("Content-Encoding", "gzip")), "unsupported content encoding"),
             (self.response(BODY, ("Transfer-Encoding", "gzip, chunked")), "transfer framing"),
+            (self.response(BODY, ("Transfer-Encoding", "chunked ")), "transfer framing"),
+            (self.response(BODY, ("Content-Length", "9" * 5000)), "exceeds the byte limit"),
             (self.response(BODY, ("Transfer-Encoding", "chunked"), ("Content-Length", "8")), "transfer framing"),
             (self.response(BODY, ("Content-Range", "bytes 0-7/8")), "complete source response"),
             (self.response(BODY + b"!",), "exceeds the byte limit"),

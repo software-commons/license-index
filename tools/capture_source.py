@@ -10,7 +10,7 @@ import re
 import sys
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import Request, build_opener
+from urllib.request import ProxyHandler, Request, build_opener
 
 from .li_install import InstallError, write_license
 from .qualification import _exact_file
@@ -49,11 +49,14 @@ def check_ranges(ranges, size):
                 "source range must be nonempty and within the bytes")
 
 
-def download(url, limit):
+def download(url, limit, *, direct=False):
     request = Request(url, headers={"Accept-Encoding": "identity",
                                     "User-Agent": "software-commons-license-index"})
+    handlers = [NoRedirects()]
+    if direct:
+        handlers.append(ProxyHandler({}))
     try:
-        with build_opener(NoRedirects()).open(request, timeout=30) as response:
+        with build_opener(*handlers).open(request, timeout=30) as response:
             require(response.status == 200 and response.geturl() == url
                     and response.headers.get("Content-Range") is None, "expected one complete source response")
             encodings = response.headers.get_all("Content-Encoding", [])
@@ -61,11 +64,13 @@ def download(url, limit):
                     "source response has unsupported content encoding")
             lengths = response.headers.get_all("Content-Length", [])
             transfer = response.headers.get_all("Transfer-Encoding", [])
-            require(not transfer or (not lengths and [value.strip().lower() for value in transfer] == ["chunked"]),
+            require(not transfer or (not lengths and [value.lower() for value in transfer] == ["chunked"]),
                     "source response has unsupported or conflicting transfer framing")
             require(len(lengths) <= 1 and all(re.fullmatch(r"[0-9]+", value.strip()) for value in lengths),
                     "source response has invalid Content-Length")
-            declared = int(lengths[0]) if lengths else None
+            digits = (lengths[0].strip().lstrip("0") or "0") if lengths else None
+            require(digits is None or len(digits) <= len(str(limit)), "source response exceeds the byte limit")
+            declared = int(digits) if digits is not None else None
             require(declared is None or declared <= limit, "source response exceeds the byte limit")
             content = response.read(limit + 1)
             require(0 < len(content) <= limit, "source response is empty or exceeds the byte limit")

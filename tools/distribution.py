@@ -145,7 +145,7 @@ def bundle(catalog, output):
     if catalog.profiles:
         files.add("research/campaigns/profiles.json")
     files.difference_update({"tools/audit_claims.py", "tools/audit_receipts.py", "tools/capture_source.py",
-                             "tools/release_download.py",
+                             "tools/public_source_mcp.py", "tools/release_download.py",
                              "tools/review_commission.py",
                              "tools/review_gate.py", "tools/review_queue.py", "tools/review_snapshot.py",
                              "tools/stage_release.py", "tools/verify_release.py"})

@@ -50,4 +50,24 @@ python -B -m tools.audit_receipts --repo PRIVATE_DRAFT_CHECKOUT --policy PINNED_
 
 The local audit matches eligible claim pairs in the pinned registry to the supplied event IDs, exact URLs, timestamps and tool responses. It checks the claim digests and conclusions in the final assessments. It also supports source-byte acquisitions from the fixed public source connector. For those acquisitions, it compares the completed tool response in both logs, decodes the retained bytes, and recomputes the full-file and citation-range digests. Rendered web opens support controlled inspection. Source-byte receipts require actual bytes. The command reports log digests and counts without printing transcripts. Compare the digests with the independently retained capture record and inspect the underlying responses, tool configuration and findings. Keep original logs and audit output in controlled custody.
 
-For a byte-exact public review, configure the read-only connector only for the two fresh executions. Use a trusted connector copy with an operator-reviewed list of fixed public source URLs. The [GCC connector snapshot](../sces/artifacts/gcc-runtime-exception-31/public-source-connector-v1.py) shows the audited `fixed_public_source.open_original_source` tool contract. Its model input selects a fixed source name. The tool has no model-supplied URL, file path, command, or credential. Pin the exact connector bytes and use read-only Codex sessions. Record any blocked acquisition before changing methods. Preserve the actual execution logs, including the results for adverse cases, and export only the safe SCES receipt fields.
+## Reacquire fixed public sources inside Codex
+
+Prepare a UTF-8 JSON manifest in operator-controlled storage. Check each final HTTPS origin and the reuse rights for sending the source to the two executions. Select exact public URLs without credentials, queries, or fragments. The only tool argument is a name from this manifest. Each call starts a new HTTPS retrieval without an environment proxy or redirect.
+
+```json
+{
+  "version": 1,
+  "sources": {
+    "publisher": {
+      "url": "https://raw.githubusercontent.com/gcc-mirror/gcc/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME",
+      "expected_bytes": 3324,
+      "expected_sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+      "ranges": [[59, 247]]
+    }
+  }
+}
+```
+
+For each fresh read-only Codex execution, configure the stdio server `fixed_public_source` with the trusted Python executable, the reviewed License Index checkout as its working directory, and arguments `-B -m tools.public_source_mcp /absolute/sources.json --manifest-sha256 MANIFEST_DIGEST`. Pin the checkout commit, Python and Codex CLI versions, and manifest digest in the operator's custody record. Set no credential environment variables. Start the server separately for each execution. The historical [GCC connector snapshot](../sces/artifacts/gcc-runtime-exception-31/public-source-connector-v1.py) preserves the earlier implementation used in those original logs.
+
+Use `full` delivery for byte receipts. It returns the original UTF-8 body, its reversible Base64 encoding and the measured file and range digests. The default cap is 64 KiB. Supply `max_bytes` to lower the limit. A named `excerpts` entry compares specified passages from a response of up to 1 MiB and limits total excerpt text to 16 KiB. Use it for comparison controls. The full-byte audit requires the original response body. In Codex, return each full tool response intact and budget enough tool output so both native logs retain it. If the response is truncated, record the acquisition failure and preserve its limits. Preserve the original execution logs, including the results of adverse cases, and export the safe SCES receipt fields.

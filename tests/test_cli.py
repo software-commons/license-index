@@ -224,6 +224,7 @@ class ToolTests(unittest.TestCase):
                 self.assertNotIn("tools/audit_claims.py", package.namelist())
                 self.assertNotIn("tools/audit_receipts.py", package.namelist())
                 self.assertNotIn("tools/capture_source.py", package.namelist())
+                self.assertNotIn("tools/public_source_mcp.py", package.namelist())
                 self.assertNotIn("tools/review_gate.py", package.namelist())
                 self.assertNotIn("tools/review_commission.py", package.namelist())
                 self.assertNotIn("tools/review_queue.py", package.namelist())
