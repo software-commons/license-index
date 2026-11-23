@@ -1,13 +1,24 @@
 {
   "id": "3abe731ce3a64bf2a76daa448dccf266",
   "disposition": "unresolved",
-  "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights.",
+  "reason": "The publisher's versioned form identifies a release-specific scheduled license grant and contains blanks for the start date and new terms. A filled form needs its release and inserted text checked separately. Verify classification and republication authority. Do not offer this unfilled instrument for standalone installation.",
   "origin": {
     "kind": "publisher",
-    "source": "https://polyformproject.org/licenses/countdown/1.0.0",
+    "source": "https://polyformproject.org/licenses/countdown/1.0.0.txt",
     "name": "PolyForm Countdown License 1.0.0",
     "identifier": "PolyForm Project Countdown 1.0.0",
     "revision": "1.0.0"
   },
-  "history": []
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://polyformproject.org/licenses/countdown/1.0.0",
+        "name": "PolyForm Countdown License 1.0.0",
+        "identifier": "PolyForm Project Countdown 1.0.0",
+        "revision": "1.0.0"
+      },
+      "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights."
+    }
+  ]
 }

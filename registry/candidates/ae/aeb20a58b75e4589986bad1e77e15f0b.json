@@ -1,13 +1,24 @@
 {
   "id": "aeb20a58b75e4589986bad1e77e15f0b",
   "disposition": "unresolved",
-  "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights.",
+  "reason": "The publisher's versioned plain text identifies Shield 1.0.0. The Noncompete clause refers to the software and products the licensor or its affiliates provide using it. Compare Perimeter's separately worded scope and verify SPDX matching and published-text terms before admission or packaging.",
   "origin": {
     "kind": "publisher",
-    "source": "https://polyformproject.org/licenses/shield/1.0.0",
+    "source": "https://polyformproject.org/licenses/shield/1.0.0.txt",
     "name": "PolyForm Shield License 1.0.0",
     "identifier": "PolyForm Project Shield 1.0.0",
     "revision": "1.0.0"
   },
-  "history": []
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://polyformproject.org/licenses/shield/1.0.0",
+        "name": "PolyForm Shield License 1.0.0",
+        "identifier": "PolyForm Project Shield 1.0.0",
+        "revision": "1.0.0"
+      },
+      "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights."
+    }
+  ]
 }

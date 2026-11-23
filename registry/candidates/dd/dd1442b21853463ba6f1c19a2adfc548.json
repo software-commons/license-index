@@ -1,13 +1,24 @@
 {
   "id": "dd1442b21853463ba6f1c19a2adfc548",
   "disposition": "unresolved",
-  "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights.",
+  "reason": "The publisher's versioned plain text identifies Internal Use 1.0.0. Its Internal Business Use clause names operations of the user and the user's company as the permitted purpose. Keep it distinct from the trial and general noncommercial forms. Verify matching and publisher text-terms scope before admission or packaging.",
   "origin": {
     "kind": "publisher",
-    "source": "https://polyformproject.org/licenses/internal-use/1.0.0",
+    "source": "https://polyformproject.org/licenses/internal-use/1.0.0.txt",
     "name": "PolyForm Internal Use License 1.0.0",
     "identifier": "PolyForm Project Internal Use 1.0.0",
     "revision": "1.0.0"
   },
-  "history": []
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://polyformproject.org/licenses/internal-use/1.0.0",
+        "name": "PolyForm Internal Use License 1.0.0",
+        "identifier": "PolyForm Project Internal Use 1.0.0",
+        "revision": "1.0.0"
+      },
+      "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights."
+    }
+  ]
 }
