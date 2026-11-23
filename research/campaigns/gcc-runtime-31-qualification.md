@@ -13,3 +13,11 @@ This is a provisional SCES research packet for the verbatim copy permission in `
 | Revalidation | Reopen the controlling source on a publisher correction or withdrawal, a changed representation, or a revised proposition. Eligibility requires two supported assessments and adjudication of any blocking findings. |
 
 The retained exact publisher plaintext and the public SPDX generated text use different bytes. Their scope as representations should be examined independently of the separate question of whether one lawfully may publish either one. The release's copyright and verbatim-copy notice supply the proposed controlling basis. [Pinned GCC source](https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L1-L14), [pinned SPDX generated text](https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/text/GCC-exception-3.1.txt).
+
+## Documentary identity
+
+Revision 1 of `gcc-14-2-runtime-exception-31-instrument-identity` examines the versioned libstdc++ manual's identification of the exception, its edition and date, and the reference to `COPYING.RUNTIME`. Its descriptive evidence comes from the publisher's manual. Challenge the candidate against confusion with the compiler's release number, the GPLv3 base text and the manual's separate documentation license. This claim uses the same prospective subject as the document-copy claim. [GCC 14.2.0 manual](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/libstdc%2B%2B/manual/manual/license.html#manual.intro.status.license.gpl).
+
+## Document-copy acquisition finding
+
+The first completed Codex research attempt located `COPYING.RUNTIME` in the tree at the annotated GCC 14.2.0 release commit. The Windows tool policy denied its command before it could acquire the raw publisher file. The execution reported insufficient evidence. Preserve its original logs in local custody. This finding leaves the document-copy claim provisional until both phases complete a direct byte inspection. [GCC release tag and tree](https://gnu.googlesource.com/gcc/%2B/refs/tags/releases/gcc-14.2.0).
