@@ -1,6 +1,6 @@
 # GCC Runtime Library Exception 3.1 document-copy research
 
-This is a provisional SCES research packet for the verbatim copy permission in `COPYING.RUNTIME` at the GCC 14.2.0 release commit. The discovery cutoff is 2026-11-23. The existing SPDX discovery candidate is `6b5e21da7f4942fc9ff2698e807fb3c6`. The prospective claim subject reserves a separate identity. Canonical admission, a crosswalk, the application of the exception to software, and release selection require their own decisions.
+This SCES research packet covers documentary identity and a proposed verbatim-copy claim for `COPYING.RUNTIME` at the GCC 14.2.0 release commit. The discovery cutoff is 2026-11-23. The existing SPDX discovery candidate is `6b5e21da7f4942fc9ff2698e807fb3c6`. The prospective claim subject reserves a separate identity. Canonical admission, a crosswalk, the application of the exception to software, and release selection require their own decisions.
 
 | Field | Scope |
 | --- | --- |
@@ -17,6 +17,8 @@ The retained exact publisher plaintext and the public SPDX generated text use di
 ## Documentary identity
 
 Revision 1 of `gcc-14-2-runtime-exception-31-instrument-identity` examines the versioned libstdc++ manual's identification of the exception, its edition and date, and the reference to `COPYING.RUNTIME`. Its descriptive evidence comes from the publisher's manual. Challenge the candidate against confusion with the compiler's release number, the GPLv3 base text and the manual's separate documentation license. This claim uses the same prospective subject as the document-copy claim. [GCC 14.2.0 manual](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/libstdc%2B%2B/manual/manual/license.html#manual.intro.status.license.gpl).
+
+The first research and review executions supported the reading and left integrity unverifiable. A later pair separately reopened the versioned manual, checked its cited passage against the annotated release and pinned `COPYING.RUNTIME`, and recorded six passing assessments for the controlled documentary scope. The independent execution challenged mixed editions, the separate GFDL documentation terms and the need for a file-specific copyright-holder notice. The original execution logs remain in local custody. The registry preserves both the initial unresolved disposition and the later independently reviewed result. The rendered inspections address documentary identity. The document-copy claim still needs exact source-byte verification in both executions. [GCC 14.2.0 manual](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/libstdc%2B%2B/manual/manual/license.html) · [Annotated release tag](https://gnu.googlesource.com/gcc/%2B/refs/tags/releases/gcc-14.2.0) · [Pinned release file](https://raw.githubusercontent.com/gcc-mirror/gcc/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME).
 
 ## Document-copy acquisition finding
 
