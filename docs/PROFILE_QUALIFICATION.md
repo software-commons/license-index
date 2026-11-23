@@ -21,6 +21,8 @@ Use the packet's planning labels to separate instrument identity, authority, tex
 
 Maintain separate counts for catalog entries, provisional profiles, independently reviewed assertions, canonical identities and selected claims. A single verified assertion can remain useful while the rest of its profile awaits review. The initial pilot concerns SPDX membership and supplies no legal interpretation or accepted instrument identity.
 
+Before freezing an admission claim or SPDX crosswalk, check the proposed entity and its binding in a scratch registry. The claim subject for a canonical entity is `e-` followed by the entity's 32 lowercase hexadecimal UUIDv4 digits. Verify that each intended crosswalk resolves to its own exact claim and candidate origin. A correction to a subject or binding requires a new claim revision and fresh execution receipts. Preserve the original records and append a supersession for the affected revision.
+
 ## Retain and recheck exact source bytes
 
 After choosing a public, authorized source, use its final HTTPS URL without credentials, a query, or a fragment. Give the capture command a new file in local working storage outside the tool checkout. It checks the HTTP response and any supplied pins before atomically writing the body. It reports the observed SHA-256, length, media type, capture time and optional citation fingerprints. It requests identity encoding and refuses redirects and existing destinations. Save stdout to a new observation file using byte-preserving redirection.
@@ -82,3 +84,5 @@ text(result.content[0].text);
 ```
 
 Budget enough output for the selected source and check the recorded delivery before qualification. Record startup failures, truncated or transformed evidence, and inconclusive attempts alongside their original logs. Keep those records in controlled custody and export only the safe SCES receipt fields for auditable runs.
+
+For an observed byte-comparison claim, preserve the exact input representations and a digest-bound method. Have the independent execution reproduce the comparison on its own complete acquisitions and retain the actual tool result. Match that result to the independently retained execution and replay the method offline. Report the equality, digest and difference only for the named inputs. Distinguish them from matching templates, rendered documents, notice metadata, and any decision about redistribution. [MPL 2.0 comparison method](../sces/artifacts/mpl-v2-representation-qualification/compare-representations.py).
