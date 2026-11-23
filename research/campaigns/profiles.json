@@ -1214,75 +1214,89 @@
     ]
   },
   "GPL-3.0-only": {
-    "summary": "GPLv3 provides copying and modification permissions. Conveying covered works carries requirements that depend on the form and circumstances of the transfer.",
+    "summary": "GPLv3 provides copying and modification permissions. Conveying covered works carries requirements that depend on the form and circumstances of the transfer. The only identifier refers to a version 3 declaration.",
     "dimensions": {
       "copyright_grant": {
         "state": "permission",
-        "text": "Section 2 grants permission to run the unmodified program and addresses making, running and propagating covered works that are not conveyed.",
+        "text": "Section 2 permits running the unmodified Program and making, running or propagating covered works without conveyance while the license remains in force. A separate conveyance permission for exclusive outsourced work or running facilities has conditions on license compliance, direction, control and copying outside that relationship.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
             "locator": "§2"
           }
         ]
       },
       "modification": {
         "state": "condition",
-        "text": "Conveying a covered work in modified source form has change-notice and licensing conditions.",
+        "text": "Conveying modified source under §5 requires prominent notices of changes and a relevant date, a license notice, and licensing the covered work as a whole under GPLv3. Section 5 separately defines when co-packaged independent works form an aggregate.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
             "locator": "§5"
           }
         ]
       },
       "network_interaction": {
         "state": "documented",
-        "text": "Network interaction without transfer of a copy is outside the definition of conveyance.",
+        "text": "Mere network interaction without transfer of a copy is outside §0’s definition of conveyance. Assess any copies actually transferred. Section 13 separately addresses a qualifying combination with AGPLv3-covered work.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
-            "locator": "§0"
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§§0 and 13"
           }
         ]
       },
       "notices": {
         "state": "condition",
-        "text": "Verbatim source conveyance must follow the license-copy and notice requirements. Modified source is subject to further notice conditions.",
+        "text": "Section 4 requires copyright and other specified notices and a license copy for recipients of verbatim source. Section 5 adds changes and date notices and a qualified interactive-interface requirement. Section 6 carries §§4–5 into object-code conveyance.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
-            "locator": "§§4–5"
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§§4–6"
           }
         ]
       },
       "patent_grant": {
         "state": "permission",
-        "text": "Section 11 defines an express patent grant from contributors for their essential patent claims over their contributor versions.",
+        "text": "Section 11 grants a nonexclusive, worldwide, royalty-free license under each contributor’s essential patent claims for the contents of that contributor’s version. The definition excludes claims infringed only as a consequence of further modification.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
-            "locator": "§11"
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§11, paragraphs 1–3"
           }
         ]
       },
       "source_availability": {
         "state": "condition",
-        "text": "Conveying object code requires use of an applicable Corresponding Source mechanism. Installation Information applies in specified User Product transactions.",
+        "text": "Conveying object code requires machine-readable Corresponding Source for the covered work through an applicable §6 route. Installation Information is a separate obligation for specified User Product transfers, subject to the exception when neither the conveyor nor any third party retains installation ability.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
             "locator": "§§1 and 6"
           }
         ]
       },
       "termination": {
         "state": "condition",
-        "text": "Section 8 provides for termination for specified noncompliance and circumstances for provisional or permanent reinstatement.",
+        "text": "Section 8 terminates rights for unauthorized propagation or modification. Upon cessation of violations, reinstatement works separately for each copyright holder. Permanent reinstatement has distinct paths for no notice before 60 days from cessation and first notice from that holder followed by cure before 30 days from receipt. Existing downstream licenses survive the termination.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
             "locator": "§8"
+          }
+        ]
+      },
+      "version_election": {
+        "state": "documented",
+        "text": "GPL-3.0-only identifies an application of version 3 only. Inspect the licensing declaration for the material. Section 14 provides a later-version election for a declaration that expressly includes that option, and a separate rule for a declaration with no version number.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14"
+          },
+          {
+            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "locator": "Notes and Standard License Header"
           }
         ]
       }
@@ -1290,25 +1304,74 @@
     "scenarios": [
       {
         "situation": "Shipping an embedded binary",
-        "text": "Check the source delivery alternatives, whether the product is a User Product, and the transfer and installation facts before assessing Installation Information.",
+        "text": "Evaluate the applicable Corresponding Source route for a physical shipment, offer, download or other conveyance. For Installation Information, check User Product status, a transfer of possession and use including a fixed term, and whether anyone retains the ability to install modified object code.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
             "locator": "§6"
           }
         ]
       },
       {
-        "situation": "Applying GPLv3 to a new project",
-        "text": "Use the correct license copy and application notices that specify the actual edition and later-version choice.",
+        "situation": "Applying GPL version 3 only to a new project",
+        "text": "Keep the publisher’s license document intact and declare version 3 only in the authorized project or source notice. The license appendix illustrates an or-later notice, so choose the notice wording for the intended grant.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
-            "locator": "License document and application appendix"
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14 and application appendix"
           },
           {
-            "url": "https://www.gnu.org/licenses/gpl-howto.en.html",
+            "url": "https://gnu.org/licenses/gpl-howto.html",
             "locator": "Application guidance and version notice"
+          }
+        ]
+      }
+    ]
+  },
+  "GPL-3.0-or-later": {
+    "summary": "This profile covers the GPLv3 later-version election. GPLv3 terms govern when the recipient follows version 3. A later-version election requires examining the chosen version's own terms.",
+    "dimensions": {
+      "version_election": {
+        "state": "permission",
+        "text": "If the Program's declaration specifies GPL version 3 or any later version, §14 allows a recipient to follow version 3 or a later GPL version published by the Free Software Foundation.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14, second paragraph"
+          },
+          {
+            "url": "https://spdx.org/licenses/GPL-3.0-or-later.html",
+            "locator": "Notes and Standard License Header"
+          }
+        ]
+      },
+      "notices": {
+        "state": "documented",
+        "text": "Apply the later-version election through an authorized licensing declaration. The same GNU GPLv3 document accompanies both version 3 choices. Inspect the declaration that applies to the relevant material.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "Application guidance and version notice"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Evaluating a version election in a distribution with mixed source notices",
+        "text": "Check which grant covers each relevant file or component before relying on a later-version election. An explicit version 3 or later declaration supports that choice for its covered material. Assess conflicting notices or a versionless declaration separately.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "Copying permission statement and version declaration"
           }
         ]
       }
