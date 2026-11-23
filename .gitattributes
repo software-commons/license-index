@@ -1,5 +1,6 @@
 * text=auto eol=lf
 sces/** -text
+sces/artifacts/cc-by-4.0/legalcode-en.txt -whitespace
 sces/artifacts/gcc-runtime-exception-31/copying-runtime.txt -whitespace
 legal-texts/** -text -whitespace
 LICENSE -text -whitespace
