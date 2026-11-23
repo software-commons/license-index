@@ -1,6 +1,6 @@
 # PolyForm Noncommercial 1.0.0
 
-Status **Provisional claim revisions**. The discovery cutoff is 2026-11-23. This campaign uses SCES-1.0 at `ab26f278422772f2d9e5d4dd016407d14372a710`, policy SHA-256 `14da3f31f697ab828d4a4560f060dbe511861020db54bea7bc531e20ea0855ce`, and publisher source revision `a2316cfa35d3947fdc5af4bcc1f321662bfd79d8`.
+Status **Three exact claim revisions eligible after independent review**. The discovery cutoff is 2026-11-23. This campaign uses SCES-1.0 at `ab26f278422772f2d9e5d4dd016407d14372a710`, policy SHA-256 `14da3f31f697ab828d4a4560f060dbe511861020db54bea7bc531e20ea0855ce`, and publisher source revision `a2316cfa35d3947fdc5af4bcc1f321662bfd79d8`.
 
 | Question | Inspection and adverse controls |
 | --- | --- |
@@ -9,3 +9,9 @@ Status **Provisional claim revisions**. The discovery cutoff is 2026-11-23. This
 | What must accompany a copy of the software? | Verify the Notices section in the source Markdown. Test a recipient of only part of the software, delivery of the official URL, a licensor-supplied notice line, and the case where the licensor supplies none. Distinguish the example from supplied notices and the notice requirement from the underlying distribution grant. [Publisher terms](https://polyformproject.org/licenses/noncommercial/1.0.0). |
 
 Verify [edition identity](../../sces/records/claim/polyform-nc-100-identity--1.json), [document redistribution](../../sces/records/claim/polyform-nc-100-document-copy--1.json), and [notice delivery](../../sces/records/claim/polyform-nc-100-notice-delivery--1.json) through separate research and independent review. Preserve actual acquisition events, exact received bytes, all six dependency findings and the targeted challenges. Hold the complete contributor copyright statement in operator custody. Keep modified text, trademarks, the exact SPDX crosswalk and applicability to a particular software distribution outside the selected scope. A change to a source, edition or proposition triggers revalidation. [Qualification procedure](../../docs/PROFILE_QUALIFICATION.md).
+
+## Verified scope
+
+The two executions retrieved the exact source Markdown and governing repository copyright statement. The independent review distinguished the Small Business edition and compared the Noncommercial Plain Text download. The two Noncommercial representations share the heading and byte count, with different full-file digests. It tested the separate condition for changes to the license text and evaluated the notice requirement for partial copies, delivery of the license URL, and supplied or absent notice lines. [Edition review](../../sces/records/verification/polyform-nc-100-identity-independent-review--1.json) · [Document copy review](../../sces/records/verification/polyform-nc-100-document-copy-independent-review--1.json) · [Notice review](../../sces/records/verification/polyform-nc-100-notice-delivery-independent-review--1.json).
+
+The source manifest SHA-256 is `b96b752624990c92c25badd85edb441094bee81d1dfd81e13e733354ee8c8042`. Both runs used connector commit `98ca81a4156b9c8ba7c58bdf055fb425c5abb936`. The audit matched the exact source receipts to native events and delivered tool output. Original logs and the acquired copyright statement remain in operator custody. [Manifest](../../sces/artifacts/polyform-nc-100/public-source-manifest.json) · [Research receipts](../../sces/artifacts/polyform-nc-100/research-receipts.jsonl) · [Independent-review receipts](../../sces/artifacts/polyform-nc-100/independent-review-receipts.jsonl).

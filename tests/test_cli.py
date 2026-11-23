@@ -294,7 +294,12 @@ class ToolTests(unittest.TestCase):
                     result = command("add", identifier, "--output", output, root=unpacked)
                     self.assertEqual(result.returncode, 0, result.stderr.decode())
                     self.assertEqual(output.read_bytes(), expected)
-                    self.assertEqual(command("add", identifier, "--output", output, root=unpacked).returncode, 1)
+                    existing = b"Existing project license notice\n"
+                    output.write_bytes(existing)
+                    rejected = command("add", identifier, "--output", output, root=unpacked)
+                    self.assertEqual(rejected.returncode, 1)
+                    self.assertIn(b"Output already exists", rejected.stderr)
+                    self.assertEqual(output.read_bytes(), existing)
             preview = command("add", "GPL-2.0-or-later", "--output", folder / "COPYING", "--dry-run",
                               "--json", root=unpacked)
             self.assertEqual(preview.returncode, 0, preview.stderr.decode())
@@ -319,7 +324,10 @@ class ToolTests(unittest.TestCase):
                     preview = command("add", identifier, "--output", folder / "COPYING", "--dry-run",
                                       "--json", root=unpacked)
                     self.assertEqual(preview.returncode, 0, preview.stderr.decode())
-                    self.assertIn(notice, json.loads(preview.stdout)["application"])
+                    result = json.loads(preview.stdout)
+                    self.assertIn(notice, result["application"])
+                    self.assertEqual(result["output_sha256"], manifest[identifier]["sha256"])
+                    self.assertEqual(hashlib.sha256(result["text"].encode()).hexdigest(), result["output_sha256"])
                     self.assertFalse((folder / "COPYING").exists())
             publisher_text = unpacked / "legal-texts/lgpl-2.0.txt"
             original = publisher_text.read_bytes()
