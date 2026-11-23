@@ -6,7 +6,7 @@ import re
 
 from .qualification import POLICY_DIGEST, _canonical
 from .records import DataError, decode, require
-from .review_snapshot import _git
+from .review_snapshot import REPOSITORY, SnapshotError, _REMOTE_URL, _git
 
 
 _RECORD_KINDS = {"claim", "source", "dependency", "disposition", "conflict", "verification"}
@@ -38,8 +38,8 @@ def _record_path(identity):
     return f"sces/records/{kind}/{name}--{revision}.json"
 
 
-def _inventory(directory, commit):
-    raw = _git(directory, "ls-tree", "-r", "-z", commit, "--", "sces", limit=_MAX_INVENTORY)
+def _inventory(directory, commit, *prefixes):
+    raw = _git(directory, "ls-tree", "-r", "-z", commit, "--", *prefixes, limit=_MAX_INVENTORY)
     require(not raw or raw.endswith(b"\0"), "incomplete SCES Git tree inventory")
     paths = {}
     for row in raw.split(b"\0")[:-1]:
@@ -50,6 +50,22 @@ def _inventory(directory, commit):
         require(_PATH.fullmatch(path) and path not in paths, "unsafe or duplicate SCES Git tree path")
         paths[path] = oid.decode("ascii")
     return paths
+
+
+def _frozen_inputs(directory, commit):
+    try:
+        object_type = _git(directory, "cat-file", "-t", commit).strip()
+    except SnapshotError:
+        _git(directory, "fetch", "--quiet", "--depth=1", "--filter=blob:none", "--no-tags",
+             "--no-recurse-submodules", "--no-auto-maintenance", "--", _REMOTE_URL, commit,
+             config=("http.followRedirects=false", "fetch.fsckObjects=true",
+                     "protocol.allow=never", "protocol.https.allow=always"))
+        fetched = _git(directory, "rev-parse", "--verify", "FETCH_HEAD").strip()
+        require(fetched == commit.encode("ascii"), "Git did not fetch the exact frozen SCES source commit")
+        object_type = _git(directory, "cat-file", "-t", commit).strip()
+    require(object_type == b"commit", "the frozen SCES source is not a commit object")
+    # The pinned SCES validator separately checks source ancestry in CI.
+    return _inventory(directory, commit, _ADOPTION, "sces/records", "sces/artifacts")
 
 
 def _blobs(directory, paths, ordered, *, limit):
@@ -215,6 +231,9 @@ def _selected_evidence(directory, paths, repository):
     inputs = {path: _digest(blob) for path, blob in evidence.items()}
     inputs[_ADOPTION] = _digest(metadata[_ADOPTION])
     require(report["inputs_sha256"] == _digest(_canonical(inputs)), "SCES selected input digest mismatch")
+    frozen = _frozen_inputs(directory, selection["source_commit"])
+    for path in sorted(inputs):
+        require(frozen.get(path) == paths[path], f"SCES selected input differs from its frozen source commit: {path}")
 
     predecessor = selection.get("previous_report")
     require(report.get("previous_report") == predecessor, "SCES previous report mismatch")
@@ -237,7 +256,8 @@ def capture_selected_evidence(directory, commit, repository):
             return {}
         require(re.fullmatch(rb"100644 blob [0-9a-f]{40}\tsces/publication\.json\x00", selection),
                 "SCES publication selection is not a regular, non-executable blob")
-        paths = _inventory(directory, commit)
+        require(repository == REPOSITORY, "SCES review repository is outside the allowlist")
+        paths = _inventory(directory, commit, "sces")
         return _selected_evidence(directory, paths, repository)
     except (KeyError, TypeError, ValueError, UnicodeError, RecursionError) as error:
         if isinstance(error, DataError):

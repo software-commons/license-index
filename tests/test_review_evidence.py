@@ -4,18 +4,19 @@ from hashlib import sha256
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 from tools.qualification import POLICY_DIGEST, _canonical
 from tools.records import DataError, decode
-from tools.review_evidence import capture_selected_evidence
-from tools.review_snapshot import _git
+from tools.review_evidence import _frozen_inputs, capture_selected_evidence
+from tools.review_snapshot import REPOSITORY, SnapshotError, _git
 
 
-REPOSITORY = "software-commons/test-index"
 SELECTION = "sces/publication.json"
 RELEASE = "sces/releases/test-release/"
 CLAIM = "sces/records/claim/selected--1.json"
 UNSELECTED = "sces/records/claim/unselected--1.json"
+SOURCE = "sces/records/source/original--1.json"
 SOURCE_ARTIFACT = "sces/artifacts/citation.txt"
 REVIEW = "sces/records/verification/selected-review--1.json"
 
@@ -68,16 +69,19 @@ def fixture():
             executions[suffix] = identity
         record(ref("disposition", name + "-disposition"), target=claim, evidence="supported",
                verification="independently-reviewed", **executions)
-    selection = {"release": "test-release", "dataset": "test-index", "schema_version": "1.0.0",
-                 "source_commit": "b" * 40, "claims": [selected]}
-    selection_bytes = _canonical(selection)
-    claims_bytes = _canonical([{"claim": selected_row, "dependencies": [selected_dependency]}])
-    report = {**selection, "policy": "SCES-1.0", "policy_sha256": POLICY_DIGEST, "synthetic": False,
-              "repository": REPOSITORY, "selection_sha256": digest(selection_bytes), "verifications": summaries,
-              "artifacts": [{"path": RELEASE + "claims.json", "sha256": digest(claims_bytes)}],
-              "inputs_sha256": digest(_canonical({path: digest(raw) for path, raw in inputs.items()}))}
-    publication = {SELECTION: selection_bytes, RELEASE + "claims.json": claims_bytes,
-                   RELEASE + "qualification.json": _canonical(report)}
+
+    def publication(source_commit):
+        selection = {"release": "test-release", "dataset": "test-index", "schema_version": "1.0.0",
+                     "source_commit": source_commit, "claims": [selected]}
+        selection_bytes = _canonical(selection)
+        claims_bytes = _canonical([{"claim": selected_row, "dependencies": [selected_dependency]}])
+        report = {**selection, "policy": "SCES-1.0", "policy_sha256": POLICY_DIGEST, "synthetic": False,
+                  "repository": REPOSITORY, "selection_sha256": digest(selection_bytes), "verifications": summaries,
+                  "artifacts": [{"path": RELEASE + "claims.json", "sha256": digest(claims_bytes)}],
+                  "inputs_sha256": digest(_canonical({path: digest(raw) for path, raw in inputs.items()}))}
+        return {SELECTION: selection_bytes, RELEASE + "claims.json": claims_bytes,
+                RELEASE + "qualification.json": _canonical(report)}
+
     return inputs, publication
 
 
@@ -99,9 +103,10 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         return _git(self.root, "rev-parse", "HEAD").decode("ascii").strip()
 
     def test_selection_only_commit_stages_unchanged_closure_but_no_unrelated_records(self):
-        inputs, publication = fixture()
+        inputs, make_publication = fixture()
         baseline = self.commit({**inputs, UNSELECTED: _canonical(ref("claim", "unselected"))}, "inherited evidence")
         self.assertEqual(capture_selected_evidence(self.root, baseline, REPOSITORY), {})
+        publication = make_publication(baseline)
         candidate = self.commit(publication, "select previously committed evidence")
         changed = _git(self.root, "diff", "--name-only", baseline, candidate).decode().splitlines()
         self.assertNotIn(CLAIM, changed)
@@ -111,18 +116,20 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         self.assertNotIn(UNSELECTED, staged)
 
     def test_missing_inherited_verification_or_artifact_is_rejected(self):
-        inputs, publication = fixture()
-        del inputs[REVIEW]
-        candidate = self.commit({**inputs, **publication}, "omit inherited verification")
+        inputs, make_publication = fixture()
+        baseline = self.commit(inputs, "freeze selected evidence")
+        (self.root / REVIEW).unlink()
+        candidate = self.commit(make_publication(baseline), "omit inherited verification")
         with self.assertRaisesRegex(DataError, "lacks current independent verification"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
-        correct, _ = fixture()
-        candidate = self.commit({REVIEW: correct[REVIEW], SOURCE_ARTIFACT: b"wrong citation bytes"}, "alter citation")
+        candidate = self.commit({REVIEW: inputs[REVIEW], SOURCE_ARTIFACT: b"wrong citation bytes"}, "alter citation")
         with self.assertRaisesRegex(DataError, "selected artifact digest mismatch"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
 
     def test_qualification_cannot_omit_review_or_claim_dependencies(self):
-        inputs, publication = fixture()
+        inputs, make_publication = fixture()
+        baseline = self.commit(inputs, "freeze selected evidence")
+        publication = make_publication(baseline)
         path = RELEASE + "qualification.json"
         report = decode(publication[path])
         report["verifications"].pop()
@@ -138,6 +145,42 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         candidate = self.commit({path: _canonical(report), claims_path: altered}, "omit dependency in payload")
         with self.assertRaisesRegex(DataError, "omits or changes selected evidence"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_self_consistent_candidate_evidence_must_still_match_the_frozen_commit(self):
+        inputs, make_publication = fixture()
+        baseline = self.commit(inputs, "freeze selected evidence")
+        inputs[SOURCE_ARTIFACT] = b"Later substituted source bytes.\n"
+        origin = decode(inputs[SOURCE])
+        origin["artifact"]["sha256"] = digest(inputs[SOURCE_ARTIFACT])
+        inputs[SOURCE] = _canonical(origin)
+        candidate = self.commit({**inputs, **make_publication(baseline)}, "recalculate candidate source digests")
+        with self.assertRaisesRegex(DataError, "frozen source commit: sces/artifacts/citation.txt"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_frozen_source_commit_cannot_be_a_tree_object(self):
+        inputs, make_publication = fixture()
+        self.commit(inputs, "freeze selected evidence")
+        tree = _git(self.root, "rev-parse", "HEAD^{tree}").decode("ascii").strip()
+        candidate = self.commit(make_publication(tree), "select a tree instead of a commit")
+        with self.assertRaisesRegex(DataError, "not a commit object"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_missing_frozen_source_fetch_uses_the_fixed_license_remote_and_exact_sha(self):
+        source = "b" * 40
+        with patch("tools.review_evidence._git") as git:
+            git.side_effect = [SnapshotError("object missing"), b"", f"{source}\n".encode("ascii"), b"commit\n", b""]
+            self.assertEqual(_frozen_inputs(self.root, source), {})
+            self.assertEqual(git.call_args_list[1].args, (
+                self.root, "fetch", "--quiet", "--depth=1", "--filter=blob:none", "--no-tags",
+                "--no-recurse-submodules", "--no-auto-maintenance", "--",
+                "https://github.com/software-commons/license-index.git", source,
+            ))
+            self.assertEqual(git.call_args_list[1].kwargs["config"], (
+                "http.followRedirects=false", "fetch.fsckObjects=true", "protocol.allow=never", "protocol.https.allow=always",
+            ))
+            git.side_effect = [SnapshotError("object missing"), b"", b"a" * 40 + b"\n"]
+            with self.assertRaisesRegex(DataError, "did not fetch the exact frozen SCES source commit"):
+                _frozen_inputs(self.root, source)
 
     def test_directory_at_selection_path_is_not_silently_treated_as_absence(self):
         candidate = self.commit({SELECTION + "/marker": b"not a publication selection"}, "unsupported selection path")
