@@ -287,6 +287,7 @@ def _bind_payload(entities, payload):
                 claim.get("subject") == f"e-{identity}" and claim.get("predicate") == predicate
                 and claim.get("value") == value
                 and claim.get("polarity") == "affirmative"
+                and claim.get("modality") == "descriptive" and claim.get("conditions") == []
                 and all(claim.get("scope", {}).get(name) == value for name, value in required_scope.items()),
                 f"{identity}: exact SCES claim does not bind the canonical field: {key}",
             )

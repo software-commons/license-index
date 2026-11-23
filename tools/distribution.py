@@ -167,15 +167,20 @@ def validate_profiles(catalog):
 
 
 def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
-    saved = read(catalog.root / COVERAGE)
+    current = _exact_file(catalog.root / COVERAGE)
+    saved = decode(current)
     source = read(local_path(catalog.root, saved["source_manifest"]))
     retained_sources = validate_source(catalog, source)
     validate_texts(catalog, rights_reader=rights_reader)
     validate_profiles(catalog)
     require(encode(saved["assessment"]) == encode(catalog.coverage()),
             "discovery coverage snapshot differs from the live ledger")
-    snapshot = local_path(catalog.root, saved["snapshot"])
-    require(snapshot.read_bytes() == (catalog.root / COVERAGE).read_bytes(),
+    name = saved["snapshot"]
+    snapshot = local_path(catalog.root, name)
+    require(name.startswith(f"{SNAPSHOTS}/") and snapshot.suffix == ".json"
+            and snapshot.relative_to(catalog.root).as_posix() == name,
+            "current coverage must name a JSON archive under registry/coverage/snapshots")
+    require(_exact_file(snapshot) == current,
             "current coverage differs from its immutable snapshot")
     if spdx_archive is not None or fetch_spdx_archive:
         from .spdx_replay import replay, replay_download
@@ -223,14 +228,19 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None):
     head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
     prior = _git_blobs(root, base, SNAPSHOTS)
     _git(root, "merge-base", "--is-ancestor", base, head)
-    tracked = _git_blobs(root, head, SNAPSHOTS)
+    tracked = _git_blobs(root, head, COVERAGE, SNAPSHOTS)
+    current_oid = tracked.pop(COVERAGE, None)
+    algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
+    current = _exact_file(root / COVERAGE)
+    require(_blob_hash(current, algorithm) == current_oid, "current coverage differs from the committed ledger")
+    selected = decode(current)["snapshot"]
+    require(tracked.get(selected) == current_oid, "current coverage does not name an exact committed archive")
     worktree = {path.relative_to(root).as_posix() for path in (root / SNAPSHOTS).rglob("*.json")}
     require(worktree == tracked.keys(), "coverage snapshots must be committed JSON files")
     pending = tracked.keys() - prior.keys()
     if not pending:
         return
     tracked_sources = _git_blobs(root, head, SOURCES)
-    algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
     for name in sorted(pending):
         require(_blob_hash(_exact_file(root / name), algorithm) == tracked[name],
                 f"{name}: incoming coverage differs from the committed snapshot")

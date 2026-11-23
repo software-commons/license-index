@@ -75,8 +75,9 @@ def fixture(*, reused_execution_for=None):
         record(ref("disposition", name + "-disposition"), target=claim, evidence="supported",
                verification="independently-reviewed", **executions)
 
-    def publication(source_commit, *, previous_report=None):
-        selection = {"release": "test-release", "dataset": "test-index", "schema_version": "1.0.0",
+    def publication(source_commit, *, previous_report=None, release="test-release"):
+        release_path = f"sces/releases/{release}/"
+        selection = {"release": release, "dataset": "test-index", "schema_version": "1.0.0",
                      "source_commit": source_commit, "claims": [selected]}
         if previous_report is not None:
             selection["previous_report"] = previous_report
@@ -84,10 +85,10 @@ def fixture(*, reused_execution_for=None):
         claims_bytes = _canonical([{"claim": selected_row, "dependencies": [selected_dependency]}])
         report = {**selection, "policy": "SCES-1.0", "policy_sha256": POLICY_DIGEST, "synthetic": False,
                   "repository": REPOSITORY, "selection_sha256": digest(selection_bytes), "verifications": summaries,
-                  "artifacts": [{"path": RELEASE + "claims.json", "sha256": digest(claims_bytes)}],
+                  "artifacts": [{"path": release_path + "claims.json", "sha256": digest(claims_bytes)}],
                   "inputs_sha256": digest(_canonical({path: digest(raw) for path, raw in inputs.items()}))}
-        return {SELECTION: selection_bytes, RELEASE + "claims.json": claims_bytes,
-                RELEASE + "qualification.json": _canonical(report)}
+        return {SELECTION: selection_bytes, release_path + "claims.json": claims_bytes,
+                release_path + "qualification.json": _canonical(report)}
 
     return inputs, publication
 
@@ -118,7 +119,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         changed = _git(self.root, "diff", "--name-only", baseline, candidate).decode().splitlines()
         self.assertNotIn(CLAIM, changed)
         self.assertNotIn(REVIEW, changed)
-        staged = capture_selected_evidence(self.root, candidate, REPOSITORY)
+        staged = capture_selected_evidence(self.root, candidate, REPOSITORY, base=baseline)
         self.assertEqual(staged, {**inputs, **publication})
         self.assertNotIn(UNSELECTED, staged)
 
@@ -129,13 +130,13 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         frozen = self.commit({**inputs, readme: document}, "freeze evidence and historical documentation")
         publication = make_publication(frozen)
         candidate = self.commit(publication, "select evidence independently of the historical README")
-        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY), {**inputs, **publication})
+        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen), {**inputs, **publication})
 
         source = decode(inputs[SOURCE])
         source["artifact"] = {"path": readme, "sha256": digest(document)}
         invalid = self.commit({SOURCE: _canonical(source)}, "try uppercase artifact declaration")
         with self.assertRaisesRegex(DataError, "invalid SCES artifact reference"):
-            capture_selected_evidence(self.root, invalid, REPOSITORY)
+            capture_selected_evidence(self.root, invalid, REPOSITORY, base=frozen)
 
     def test_missing_inherited_verification_or_artifact_is_rejected(self):
         inputs, make_publication = fixture()
@@ -143,10 +144,10 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         (self.root / REVIEW).unlink()
         candidate = self.commit(make_publication(baseline), "omit inherited verification")
         with self.assertRaisesRegex(DataError, "lacks current independent verification"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=baseline)
         candidate = self.commit({REVIEW: inputs[REVIEW], SOURCE_ARTIFACT: b"wrong citation bytes"}, "alter citation")
         with self.assertRaisesRegex(DataError, "selected artifact digest mismatch"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=baseline)
 
     def test_qualification_cannot_omit_review_or_claim_dependencies(self):
         inputs, make_publication = fixture()
@@ -157,7 +158,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         report["verifications"].pop()
         candidate = self.commit({**inputs, **publication, path: _canonical(report)}, "omit verification in report")
         with self.assertRaisesRegex(DataError, "omits or changes selected verification records"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=baseline)
         report = decode(publication[path])
         claims_path = RELEASE + "claims.json"
         incomplete = decode(publication[claims_path])
@@ -166,35 +167,110 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         report["artifacts"][0]["sha256"] = digest(altered)
         candidate = self.commit({path: _canonical(report), claims_path: altered}, "omit dependency in payload")
         with self.assertRaisesRegex(DataError, "omits or changes selected evidence"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=baseline)
 
     def test_reusing_research_execution_fails_for_selected_and_inherited_claims(self):
+        baseline = self.commit({"sces/artifacts/fixture.txt": b"fixture\n"}, "prepare independent fixtures")
         for claim in ("selected", "premise"):
             with self.subTest(claim=claim):
+                _git(self.root, "switch", "--quiet", "--detach", baseline)
                 inputs, make_publication = fixture(reused_execution_for=claim)
                 frozen = self.commit(inputs, "freeze review records with reused execution")
                 candidate = self.commit(make_publication(frozen), "publish the accurately rehashed report")
                 with self.assertRaisesRegex(DataError, "execution"):
-                    capture_selected_evidence(self.root, candidate, REPOSITORY)
+                    capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
 
-    def test_predecessor_digest_must_bind_the_report_in_the_verified_base(self):
+    def test_successor_requires_the_direct_base_report_at_its_unchanged_bytes(self):
         inputs, make_publication = fixture()
         path = "sces/releases/previous-release/qualification.json"
-        previous = _canonical({"release": "previous-release", "fixture": "reviewed predecessor"})
+        older_path = "sces/releases/older-release/qualification.json"
         frozen = self.commit(inputs, "freeze research inputs without the publication report")
-        base = self.commit({path: previous}, "retain an earlier trusted report")
-        candidate = self.commit(make_publication(frozen, previous_report={"path": path, "sha256": digest(previous)}),
-                                "select evidence with exact predecessor")
+        older = make_publication(frozen, release="older-release")
+        self.commit(older, "publish the older release")
+        older_link = {"path": older_path, "sha256": digest(older[older_path])}
+        direct = make_publication(frozen, release="previous-release", previous_report=older_link)
+        base = self.commit(direct, "publish the direct predecessor")
+        previous = direct[path]
+        link = {"path": path, "sha256": digest(previous)}
+        candidate = self.commit(make_publication(frozen, previous_report=link), "select evidence with exact predecessor")
         staged = capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
         self.assertEqual(staged[path], previous)
         with self.assertRaisesRegex(DataError, "base"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
 
+        unchanged = self.commit({"sces/artifacts/unrelated.txt": b"unrelated\n"}, "preserve active selection")
+        self.assertEqual(capture_selected_evidence(self.root, unchanged, REPOSITORY, base=candidate)[path], previous)
+        rewrite = self.commit(make_publication(frozen, previous_report=older_link), "change active lineage")
+        with self.assertRaisesRegex(DataError, "active publication selection differs"):
+            capture_selected_evidence(self.root, rewrite, REPOSITORY, base=candidate)
+
         changed = _canonical({"release": "previous-release", "fixture": "candidate replacement"})
-        publication = make_publication(frozen, previous_report={"path": path, "sha256": digest(changed)})
-        candidate = self.commit({**publication, path: changed}, "replace the predecessor and recompute hashes")
-        with self.assertRaisesRegex(DataError, "base"):
+        replacement = {"path": path, "sha256": digest(changed)}
+        for predecessor, extra, message in (
+            (None, {}, "successor must identify the verified base release"),
+            (older_link, {}, "successor must identify the verified base release"),
+            (replacement, {path: changed}, "previous report path or blob differs"),
+        ):
+            with self.subTest(predecessor=predecessor):
+                _git(self.root, "switch", "--quiet", "--detach", base)
+                publication = make_publication(frozen, previous_report=predecessor)
+                candidate = self.commit({**publication, **extra}, "select successor with matching internal hashes")
+                with self.assertRaisesRegex(DataError, message):
+                    capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+    def test_reactivation_requires_an_exact_withdrawal_advisory(self):
+        inputs, make_publication = fixture()
+        frozen = self.commit(inputs, "freeze evidence")
+        archive = make_publication(frozen, release="withdrawn")
+        path = "sces/releases/withdrawn/qualification.json"
+        advisory = "sces/advisories/withdrawn.json"
+        link = {"path": path, "sha256": digest(archive[path])}
+        successor = make_publication(frozen, previous_report=link)
+        del archive[SELECTION]
+        base = self.commit(archive, "archive report without an active selection or advisory")
+        candidate = self.commit(successor, "claim unadvised archived lineage")
+        with self.assertRaisesRegex(DataError, "requires an unchanged withdrawal advisory"):
             capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+        advice = {"report": link, "affected": [ref("claim", "selected")], "reason": "Synthetic withdrawal",
+                  "recorded": "2026-10-01T00:00:00Z"}
+        _git(self.root, "switch", "--quiet", "--detach", base)
+        unbound = {**advice, "report": {**link, "sha256": "f" * 64}}
+        unbound_base = self.commit({advisory: _canonical(unbound)}, "archive advisory with different report digest")
+        candidate = self.commit(successor, "claim lineage to an unbound archived report")
+        with self.assertRaisesRegex(DataError, "withdrawal advisory does not bind"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=unbound_base)
+
+        _git(self.root, "switch", "--quiet", "--detach", base)
+        advised_base = self.commit({advisory: _canonical(advice)}, "record exact withdrawal on the verified base")
+        omission = self.commit(make_publication(frozen), "omit the predecessor from both selection and report")
+        with self.assertRaisesRegex(DataError, "withdrawn"):
+            capture_selected_evidence(self.root, omission, REPOSITORY, base=advised_base)
+
+        _git(self.root, "switch", "--quiet", "--detach", advised_base)
+        candidate = self.commit(successor, "link to the advised withdrawn archive")
+        captured = capture_selected_evidence(self.root, candidate, REPOSITORY, base=advised_base)
+        self.assertEqual(captured[path], archive[path])
+        self.assertEqual(captured[advisory], _canonical(advice))
+
+        _git(self.root, "switch", "--quiet", "--detach", advised_base)
+        older = make_publication(frozen, release="older-withdrawn")
+        del older[SELECTION]
+        older_path = "sces/releases/older-withdrawn/qualification.json"
+        older_advisory = "sces/advisories/older-withdrawn.json"
+        older_link = {"path": older_path, "sha256": digest(older[older_path])}
+        older_advice = {**advice, "report": older_link, "recorded": "2026-09-01T00:00:00Z"}
+        two_archives = self.commit({**older, older_advisory: _canonical(older_advice)}, "retain a second archived release")
+        candidate = self.commit(make_publication(frozen, previous_report=older_link), "try to use the older withdrawal")
+        with self.assertRaisesRegex(DataError, "latest withdrawn qualification report"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=two_archives)
+
+        _git(self.root, "switch", "--quiet", "--detach", two_archives)
+        tie = {**older_advice, "recorded": advice["recorded"]}
+        tied_base = self.commit({older_advisory: _canonical(tie)}, "retain withdrawals at the same timestamp")
+        candidate = self.commit(successor, "try to choose one of two equally recent withdrawals")
+        with self.assertRaisesRegex(DataError, "withdrawn predecessor is ambiguous"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=tied_base)
 
     def test_predecessor_introduced_in_frozen_history_cannot_replace_verified_base(self):
         inputs, make_publication = fixture()
@@ -216,7 +292,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         inputs[SOURCE] = _canonical(origin)
         candidate = self.commit({**inputs, **make_publication(baseline)}, "recalculate candidate source digests")
         with self.assertRaisesRegex(DataError, "selected artifact descriptors differ from the frozen source commit"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=baseline)
 
     def test_rebuilt_report_cannot_hide_a_frozen_conflict(self):
         inputs, make_publication = fixture()
@@ -226,7 +302,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         (self.root / conflict).unlink()
         candidate = self.commit(make_publication(frozen), "omit conflict and rebuild report digests")
         with self.assertRaisesRegex(DataError, "selected record membership differs from the frozen source commit"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
 
     def test_rebuilt_report_cannot_hide_a_frozen_dependency(self):
         inputs, make_publication = fixture()
@@ -237,7 +313,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         (self.root / omitted).unlink()
         candidate = self.commit(make_publication(frozen), "publish the smaller candidate and rebuilt report")
         with self.assertRaisesRegex(DataError, "selected record membership differs from the frozen source commit"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
 
     def test_same_membership_cannot_change_frozen_record_bytes(self):
         inputs, make_publication = fixture()
@@ -245,15 +321,15 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         inputs[CLAIM] = b"\n" + inputs[CLAIM]
         candidate = self.commit({**inputs, **make_publication(frozen)}, "change only the selected record bytes")
         with self.assertRaisesRegex(DataError, f"differs from its frozen source commit: {CLAIM}"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
 
     def test_frozen_source_commit_cannot_be_a_tree_object(self):
         inputs, make_publication = fixture()
-        self.commit(inputs, "freeze selected evidence")
+        base = self.commit(inputs, "freeze selected evidence")
         tree = _git(self.root, "rev-parse", "HEAD^{tree}").decode("ascii").strip()
         candidate = self.commit(make_publication(tree), "select a tree instead of a commit")
         with self.assertRaisesRegex(DataError, "not a commit object"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY)
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
 
     def test_missing_frozen_source_fetch_uses_the_fixed_license_remote_and_exact_sha(self):
         inputs, make_publication = fixture()
@@ -261,6 +337,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         baseline = self.commit({**inputs, UNSELECTED: unrelated}, "freeze evidence with an unrelated record")
         publication = make_publication(baseline)
         (self.root / UNSELECTED).unlink()
+        base = self.commit({}, "retain the exact base separately from frozen evidence")
         candidate = self.commit(publication, "select previously committed evidence")
         _git(self.root, "config", "uploadpack.allowFilter", "true")
         _git(self.root, "config", "uploadpack.allowReachableSHA1InWant", "true")
@@ -285,7 +362,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             shallow = Path(directory).resolve()
             _git(shallow, "init", "--bare", "--quiet", "--template=")
-            _git(shallow, "fetch", "--quiet", "--depth=1", upstream, candidate, config=("protocol.file.allow=always",))
+            _git(shallow, "fetch", "--quiet", "--depth=2", upstream, candidate, config=("protocol.file.allow=always",))
             with self.assertRaises(SnapshotError):
                 _git(shallow, "cat-file", "-t", baseline)
             old_git_environment = _isolated_git_environment()
@@ -293,7 +370,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
             with (patch("tools.review_evidence._git", side_effect=local_git),
                   patch("tools.review_snapshot._isolated_git_environment", return_value=old_git_environment),
                   patch("tools.review_evidence._fetch_frozen_records", side_effect=obtain_missing) as fallback):
-                self.assertEqual(capture_selected_evidence(shallow, candidate, REPOSITORY), {**inputs, **publication})
+                self.assertEqual(capture_selected_evidence(shallow, candidate, REPOSITORY, base=base), {**inputs, **publication})
 
         fallback.assert_called_once()
         self.assertEqual(fetches, [((

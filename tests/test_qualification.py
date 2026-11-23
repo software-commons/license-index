@@ -39,7 +39,7 @@ def entity(identifier=MIT, kind="license", name="Fixture License"):
 def claim(ref, identifier, predicate, value, scope=None):
     return {
         "claim": {**ref, "subject": f"e-{identifier}", "predicate": predicate, "value": value, "scope": scope or {},
-                  "polarity": "affirmative"},
+                  "polarity": "affirmative", "modality": "descriptive", "conditions": []},
         "dependencies": [],
     }
 
@@ -88,6 +88,26 @@ class BindingsTests(unittest.TestCase):
         wrong = claim(reference("unsupported"), OTHER, "permission", "unsupported")
         with self.assertRaisesRegex(DataError, "noncanonical claim subject"):
             _bind_payload({MIT: row}, [identity_claim(row), wrong])
+
+    def test_relations_cannot_flatten_conditions_or_modality(self):
+        base, exception = entity(), entity(OTHER, kind="exception")
+        entities = {MIT: base, OTHER: exception}
+        reference_key = reference("exception-for-fixture")
+        target = {"id": MIT}
+        exception["relations"].append({"type": "exception-for", "target": target, "claim": reference_key})
+        evidence = [identity_claim(base), identity_claim(exception),
+                    claim(reference_key, OTHER, "exception-relationship", "exception-for:" + _claim_value(target))]
+        _bind_payload(entities, evidence)
+
+        for applicability in ({"conditions": ["Exact file notice required."]}, {"modality": "conditional"}):
+            with self.subTest(applicability=applicability), patch.dict(evidence[-1]["claim"], applicability):
+                with self.assertRaisesRegex(DataError, "does not bind the canonical field"):
+                    _bind_payload(entities, evidence)
+
+        scoped = claim(reference("scoped-applicability"), OTHER, "exception-relationship",
+                       "exception-for:" + _claim_value(target), {"material": "covered-file"})
+        scoped["claim"].update(modality="conditional", conditions=["Exact file notice required."])
+        self.assertIn(scoped, _bind_payload(entities, [*evidence, scoped]))
 
     def test_rejects_ambiguous_crosswalk_across_entities(self):
         first = entity()
@@ -180,6 +200,39 @@ class GitHistoryTests(unittest.TestCase):
         self.source.unlink()
         with self.assertRaisesRegex(DataError, "missing or linked file: .*first.json"):
             check_history(self.catalog, self.base)
+
+    def test_current_coverage_requires_a_distinct_tracked_json_archive(self):
+        self.path.unlink()
+        candidate_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
+        self.write(candidate_path, {"id": CANDIDATE, "disposition": "unresolved", "origin": {"kind": "publisher"}})
+        source = "research/sources/fixture.json"
+        self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+                            "population": dict.fromkeys((
+                                "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                "missing_text", "missing_template",
+                            ), 0)})
+        self.commit("Set discovery baseline")
+        base = self.git("rev-parse", "HEAD").strip()
+        catalog = Catalog(self.root)
+        ledger = {"source_manifest": source, "snapshot": COVERAGE, "assessment": catalog.coverage()}
+        self.write(COVERAGE, ledger)
+        with self.assertRaisesRegex(DataError, "must name a JSON archive"):
+            validate_discovery(catalog)
+
+        archive = "registry/coverage/snapshots/selected.json"
+        ledger["snapshot"] = archive
+        self.write(COVERAGE, ledger)
+        self.write(archive, ledger)
+        validate_discovery(catalog)
+        self.commit("Retain the exact selected archive")
+        validate(catalog, base=base)
+
+        edited = {**ledger, "method": "Uncommitted fixture metadata"}
+        self.write(COVERAGE, edited)
+        self.write(archive, edited)
+        validate_discovery(catalog)
+        with self.assertRaisesRegex(DataError, "current coverage differs from the committed ledger"):
+            validate(catalog, base=base)
 
     def test_incoming_archives_replay_the_original_ledger(self):
         (self.root / f"registry/entities/{MIT[:2]}/{MIT}.json").unlink()
