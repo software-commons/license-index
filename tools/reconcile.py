@@ -139,7 +139,8 @@ def make_origin(archive, record, list_kind, version, data_commit):
         "metadata": metadata,
         "artifacts": artifacts,
     }
-    headers = [field for field in HEADER_FIELDS if detail.get(field)]
+    headers = [field for field in HEADER_FIELDS
+               if isinstance(detail.get(field), str) and detail[field].strip()]
     if headers:
         origin["headers"] = {"artifact": "detail", "fields": headers}
     if deprecated:

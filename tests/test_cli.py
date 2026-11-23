@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -41,6 +42,18 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(old["catalog_status"], "discovery")
         self.assertIsNone(self.json_output("show", "llvm-exception")["text_package"])
 
+    def test_launcher_runs_from_another_project(self):
+        with TemporaryDirectory() as temporary:
+            if os.name == "nt":
+                launcher = ROOT / "license-index.cmd"
+                shell = os.environ.get("COMSPEC", "cmd.exe")
+                invocation = f'"{shell}" /d /s /c ""{launcher}" --version"'
+            else:
+                invocation = ["/bin/sh", str(ROOT / "license-index"), "--version"]
+            result = subprocess.run(invocation, cwd=temporary, capture_output=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr.decode())
+            self.assertTrue(result.stdout.startswith(b"license-index "))
+
     def test_install_and_preserve_unrelated_file(self):
         with TemporaryDirectory() as temporary:
             folder = Path(temporary).resolve()
@@ -64,6 +77,9 @@ class ToolTests(unittest.TestCase):
             target = folder / "LICENSE"
             text = folder / "text" / "MIT.txt"
             text.parent.mkdir()
+            missing = command("text", "MIT", "--artifact-root", folder, "--json")
+            self.assertEqual(missing.returncode, 1)
+            self.assertIn("pinned source text is missing", json.loads(missing.stderr)["error"])
             text.write_bytes(b"not the pinned text")
             for value, parameters in (
                 ("MIT AND Apache-2.0", []),

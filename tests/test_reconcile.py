@@ -32,6 +32,8 @@ def fixture(archive_path, *, release="3.29.0", data=DATA, licenses=("Example",),
                 row = {id_field: identifier, "name": identifier, "isDeprecatedLicenseId": deprecated}
                 manifest.append(row)
                 detail = dict(row)
+                if kind == "license":
+                    detail["standardLicenseHeaderHtml"] = "\n      "
                 if mismatch and kind == "license":
                     detail[id_field] = "Another"
                 add_file(tar, f"{prefix}json/{detail_folder}/{identifier}.json",
@@ -69,6 +71,7 @@ class ReconcileTests(unittest.TestCase):
         fixture(self.archive, deprecated=True)
         origins, provenance = self.read(expected_sha=sha256(self.archive.read_bytes()).hexdigest())
         row = origins["Example-exception"]
+        self.assertNotIn("headers", origins["Example"])
         self.assertTrue(row["deprecated"])
         self.assertEqual(row["artifacts"]["text"]["path"], "text/Example-exception.txt")
         self.assertEqual(row["artifacts"]["text"]["sha256"], sha256(TEXT).hexdigest())

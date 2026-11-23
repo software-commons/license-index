@@ -27,12 +27,6 @@
       }
     },
     "deprecated": false,
-    "headers": {
-      "artifact": "detail",
-      "fields": [
-        "standardLicenseHeaderHtml"
-      ]
-    },
     "identifier": "Ubuntu-font-1.0",
     "kind": "spdx",
     "list_kind": "license",
