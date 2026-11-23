@@ -44,10 +44,11 @@ def source_spec(row):
     require(isinstance(url, str), "expected a fixed public source URL")
     validate_url(url)
     mode = row.get("mode", "full")
-    require(mode in ("full", "excerpts"), "unknown source delivery mode")
-    limit = row.get("max_bytes", MAX_FULL if mode == "full" else MAX_RESPONSE)
+    require(mode in ("full", "full-utf8", "excerpts"), "unknown source delivery mode")
+    maximum = MAX_RESPONSE if mode == "excerpts" else MAX_FULL
+    limit = row.get("max_bytes", maximum)
     validate_count(limit)
-    require(limit <= (MAX_FULL if mode == "full" else MAX_RESPONSE), "source exceeds the delivery byte limit")
+    require(limit <= maximum, "source exceeds the delivery byte limit")
     expected_bytes = row.get("expected_bytes")
     if expected_bytes is not None:
         validate_count(expected_bytes)
@@ -97,13 +98,17 @@ def acquire(name, source):
         "retrieved_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "acquisition_id": uuid4().hex, **observed,
     }
-    if source.mode == "full":
-        result.update(body_base64=b64encode(content).decode("ascii"), source_text=content.decode("utf-8"))
-    else:
+    if source.mode == "excerpts":
         result["excerpts"] = [
             {"start": start, "end": end, "text": content[start:end].decode("utf-8")}
             for start, end in source.ranges
         ]
+    else:
+        result["source_text"] = content.decode("utf-8")
+        if source.mode == "full-utf8":
+            result["body_encoding"] = "utf-8"
+        else:
+            result["body_base64"] = b64encode(content).decode("ascii")
     return result
 
 

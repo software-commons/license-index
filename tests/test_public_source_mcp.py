@@ -48,6 +48,27 @@ class PublicSourceTests(unittest.TestCase):
         self.assertEqual(first["source_text"].encode("utf-8"), BODY)
         self.assertEqual(first["ranges"], [{"start": 3, "end": 11, "sha256": sha256(BODY[3:11]).hexdigest()}])
 
+    def test_utf8_delivery_preserves_the_complete_body_with_less_output(self):
+        body = BODY + '"quoted" \\ \x00 e\u0301 \U0001f4c4\r\n'.encode("utf-8")
+        compact = source_spec({"url": URL, "mode": "full-utf8", "ranges": [[0, len(body)]]})
+        default = source_spec({"url": URL, "ranges": [[0, len(body)]]})
+        output = BytesIO()
+        with patch("tools.public_source_mcp.download", return_value=(body, "text/plain")):
+            serve(BytesIO(open_source("compact", 1) + open_source("default", 2)), output,
+                  {"compact": compact, "default": default})
+        result, legacy = (json.loads(line)["result"] for line in output.getvalue().splitlines())
+        self.assertFalse(result["isError"])
+        text = result["content"][0]["text"]
+        self.assertLess(len(text.encode("utf-8")), len(legacy["content"][0]["text"].encode("utf-8")))
+        observation = json.loads(text)
+        digest = sha256(body).hexdigest()
+        self.assertEqual(observation["body_encoding"], "utf-8")
+        self.assertNotIn("body_base64", observation)
+        self.assertEqual(observation["source_text"].encode("utf-8"), body)
+        self.assertEqual(observation["bytes"], len(body))
+        self.assertEqual(observation["sha256"], digest)
+        self.assertEqual(observation["ranges"], [{"start": 0, "end": len(body), "sha256": digest}])
+
     def test_comparison_excerpts_exclude_the_complete_body(self):
         sources = {"control": source_spec({"url": URL, "mode": "excerpts", "ranges": [[3, 11]]})}
         with patch("tools.public_source_mcp.download", return_value=(BODY, "text/plain")):
@@ -82,6 +103,7 @@ class PublicSourceTests(unittest.TestCase):
                 load_manifest(path)
             for options in ({"url": URL + "?secret=query"}, {"ranges": [[0, True]]},
                             {"mode": "excerpts"}, {"mode": "excerpts", "ranges": [[0, 20000]]},
+                            {"mode": "full-utf8", "max_bytes": 64 * 1024 + 1},
                             {"expected_bytes": 13, "max_bytes": 12}):
                 with self.subTest(options=options), self.assertRaises(DataError):
                     source_spec({"url": URL, **options})
@@ -96,7 +118,8 @@ class PublicSourceTests(unittest.TestCase):
         self.assertEqual(valid, {"jsonrpc": "2.0", "id": 2, "result": {}})
 
     def test_mismatched_pin_and_invalid_utf8_do_not_deliver_evidence(self):
-        for options, body in (({"expected_sha256": "a" * 64}, BODY), ({}, b"\xff")):
+        for options, body in (({"expected_sha256": "a" * 64}, BODY), ({}, b"\xff"),
+                              ({"mode": "full-utf8"}, b"\xff")):
             sources = {"publisher": source_spec({"url": URL, **options})}
             with self.subTest(options=options), patch("tools.public_source_mcp.download", return_value=(body, None)):
                 result = respond(open_source("publisher"), sources)["result"]

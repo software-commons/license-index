@@ -208,6 +208,29 @@ def check_byte_delivery(run, index, text):
             "source-byte tool result was not delivered before the assessment")
 
 
+def retained_source_bytes(observation):
+    if "body_encoding" in observation:
+        require(observation.keys() == {"source", "url", "http_status", "retrieved_at", "acquisition_id",
+                                       "bytes", "sha256", "ranges", "body_encoding", "source_text"}
+                and observation["body_encoding"] == "utf-8" and isinstance(observation["source_text"], str),
+                "source-byte tool returned an invalid UTF-8 observation")
+        try:
+            raw = observation["source_text"].encode("utf-8")
+        except UnicodeEncodeError as error:
+            raise DataError("source-byte tool returned an invalid UTF-8 body") from error
+        require(raw, "source-byte tool returned an empty UTF-8 body")
+        return raw
+
+    try:
+        raw = b64decode(observation["body_base64"], validate=True)
+    except (Base64Error, ValueError) as error:
+        raise DataError("source-byte tool returned invalid base64") from error
+    require(raw and b64encode(raw).decode("ascii") == observation["body_base64"]
+            and observation["source_text"].encode("utf-8") == raw,
+            "retained source bytes differ from the displayed source text")
+    return raw
+
+
 def check_byte_acquisition(run, index, row, recorded):
     event = row["payload"]
     item = event["item"]
@@ -233,6 +256,8 @@ def check_byte_acquisition(run, index, row, recorded):
         observation = decode(content[0]["text"].encode("utf-8"))
     except (DataError, ValueError, RecursionError) as error:
         raise DataError("source-byte tool returned invalid observation JSON") from error
+    require(isinstance(observation, dict), "source-byte tool returned invalid observation JSON")
+    raw = retained_source_bytes(observation)
     require(observation["source"] == arguments["source"] and observation["url"] == recorded["locator"]
             and type(observation["http_status"]) is int and observation["http_status"] == 200
             and observation["retrieved_at"] == recorded["retrieved_at"]
@@ -247,13 +272,6 @@ def check_byte_acquisition(run, index, row, recorded):
     require(run["started"] <= when <= run["completed"]
             and instant(seconds(run["started"])) <= started <= retrieved <= completed <= instant(seconds(when)),
             "byte receipt is outside the recorded tool call")
-    try:
-        raw = b64decode(observation["body_base64"], validate=True)
-    except (Base64Error, ValueError) as error:
-        raise DataError("source-byte tool returned invalid base64") from error
-    require(raw and b64encode(raw).decode("ascii") == observation["body_base64"]
-            and observation["source_text"].encode("utf-8") == raw,
-            "retained source bytes differ from the displayed source text")
     ranges = observation["ranges"]
     require(isinstance(ranges, list), "source-byte tool returned invalid citation ranges")
     observed = fingerprints(raw, [(area["start"], area["end"]) for area in ranges])

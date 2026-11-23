@@ -261,8 +261,9 @@ class ReceiptAuditTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "tool output lacks"):
             audit_receipts(self.registry, [self.first, self.second])
 
-    def use_byte_receipt(self, phase="research", *, retrieved=RETRIEVED, observation_text=None):
-        raw = b"Publisher text\n"
+    def use_byte_receipt(self, phase="research", *, retrieved=RETRIEVED, observation_text=None,
+                         mode="full", observation_changes=None):
+        raw = b'\xef\xbb\xbfPublisher "quoted" e\xcc\x81 \x00\r\n' if mode == "full-utf8" else b"Publisher text\n"
         digest = sha256(raw).hexdigest()
         observation = {
             "source": "publisher", "url": LOCATOR, "http_status": 200,
@@ -271,6 +272,10 @@ class ReceiptAuditTests(unittest.TestCase):
             "sha256": digest, "bytes": len(raw),
             "ranges": [{"start": 0, "end": 9, "sha256": sha256(raw[:9]).hexdigest()}],
         }
+        if mode == "full-utf8":
+            observation["body_encoding"] = "utf-8"
+            del observation["body_base64"]
+        observation.update(observation_changes or {})
         content = [{"type": "text", "text": observation_text or json.dumps(observation)}]
         call = {"server": "fixed_public_source", "tool": "open_original_source",
                 "arguments": {"source": "publisher"}, "status": "completed"}
@@ -284,8 +289,8 @@ class ReceiptAuditTests(unittest.TestCase):
         session[4]["payload"]["item"] = {**call, "id": f"exec-{phase}", "type": "McpToolCall",
                                          "readOnlyHint": True, "result": {"content": content, "isError": False}}
         session[5]["payload"]["output"] = content
-        session.insert(6, {"type": "response_item", "payload": {"type": "message", "role": "assistant",
-                        "content": [{"type": "output_text", "text": events[-2]["item"]["text"]}]}})
+        session[6:-1] = [{"type": "response_item", "payload": {"type": "message", "role": "assistant",
+                          "content": [{"type": "output_text", "text": events[-2]["item"]["text"]}]}}]
         for path, rows in zip(paths, (events, session)):
             path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
         review = next(row for row in self.registry["claims"][0]["recorded_reviews"] if row["phase"] == phase)
@@ -303,6 +308,37 @@ class ReceiptAuditTests(unittest.TestCase):
                 audit_receipts(self.registry, [self.first, self.second])
         self.first[1].write_bytes(self.first[1].read_bytes().replace(b"Publisher text", b"Different text"))
         with self.assertRaisesRegex(DataError, "matching Codex CLI source-byte tool completion"):
+            audit_receipts(self.registry, [self.first, self.second])
+
+    def test_checks_lossless_utf8_delivery_in_both_executions(self):
+        self.use_byte_receipt(mode="full-utf8")
+        self.use_byte_receipt("independent-review", mode="full-utf8", observation_changes={"acquisition_id": "2" * 32})
+        checked = audit_receipts(self.registry, [self.first, self.second])
+        self.assertEqual(checked["status"], "recorded-source-receipts-match-supplied-codex-logs")
+        self.assertEqual(checked["unique_acquisitions"], 2)
+
+    def test_rejects_invalid_or_changed_utf8_byte_receipts(self):
+        for changes, expected in (
+            ({"body_encoding": "latin-1"}, "invalid UTF-8 observation"),
+            ({"source_text": 3}, "invalid UTF-8 observation"),
+            ({"body_base64": "YQ=="}, "invalid UTF-8 observation"),
+            ({"source_text": "\ud800"}, "invalid UTF-8 body"),
+            ({"source_text": ""}, "empty UTF-8 body"),
+            ({"source_text": "Changed publisher text\r\n"}, "digest differs from the retained bytes"),
+            ({"ranges": [{"start": 0, "end": 9, "sha256": "a" * 64}]}, "digest differs from the retained bytes"),
+        ):
+            with self.subTest(changes=changes):
+                self.use_byte_receipt(mode="full-utf8", observation_changes=changes)
+                with self.assertRaisesRegex(DataError, expected):
+                    audit_receipts(self.registry, [self.first, self.second])
+
+    def test_requires_the_complete_utf8_observation_in_actual_tool_output(self):
+        self.use_byte_receipt(mode="full-utf8")
+        rows = [json.loads(line) for line in self.first[1].read_bytes().splitlines()]
+        delivered = rows[5]["payload"]["output"][0]
+        delivered["text"] = delivered["text"][:-1]
+        self.first[1].write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
+        with self.assertRaisesRegex(DataError, "source-byte tool result was not delivered"):
             audit_receipts(self.registry, [self.first, self.second])
 
     def test_rejects_replayed_byte_acquisition_across_executions(self):
