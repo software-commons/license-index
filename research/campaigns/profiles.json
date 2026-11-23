@@ -813,7 +813,7 @@
       },
       "termination": {
         "state": "condition",
-        "text": "When a Recipient files specified software-patent litigation against a Contributor, §7 terminates the CPL patent licenses that Contributor granted to the Recipient. Litigation alleging infringement by the Program itself, excluding combinations with other software or hardware, triggers termination of the Recipient’s §2(b) rights.",
+        "text": "If a Recipient files patent litigation against a Contributor over a patent applicable to software, the CPL patent licenses that Contributor granted to the Recipient end on filing. If a Recipient files against any entity alleging that the Program itself infringes the Recipient’s patents, the Recipient’s §2(b) rights end on filing. The Program trigger excludes combinations with other software or hardware. Both triggers cover cross-claims and counterclaims.",
         "sources": [
           {
             "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
@@ -961,7 +961,7 @@
       },
       "termination": {
         "state": "condition",
-        "text": "A Recipient loses its §2(b) patent rights when it files specified patent litigation alleging infringement by the Program itself, excluding combinations with other software or hardware.",
+        "text": "A Recipient’s §2(b) patent rights end when the Recipient files patent litigation against any entity alleging that the Program itself infringes the Recipient’s patents. This includes cross-claims and counterclaims. The trigger excludes combinations with other software or hardware.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt",
@@ -1028,7 +1028,7 @@
       },
       "secondary_license": {
         "state": "condition",
-        "text": "Under §3.2(a), the Program’s Source Code can be made available under the applicable Secondary License when the Program is combined with material in separate files available under that license and the initial Contributor attaches the Exhibit A notice. Section 1 limits Secondary Licenses to GPL version 2.0 or later with any permissions or exceptions identified by the initial Contributor.",
+        "text": "Under §3.2(a), the Program’s Source Code can be made available under the applicable Secondary License when the Program is combined with material in separate files available under that license and the initial Contributor attaches the Exhibit A notice to the Source Code. Section 1 limits Secondary Licenses to GPL version 2.0 or later with any permissions or exceptions identified by the initial Contributor.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
@@ -1048,7 +1048,7 @@
       },
       "termination": {
         "state": "condition",
-        "text": "A Recipient loses its §2(b) patent rights when it files specified patent litigation alleging infringement by the Program itself, excluding combinations with other software or hardware.",
+        "text": "A Recipient’s §2(b) patent rights end when the Recipient files patent litigation against any entity alleging that the Program itself infringes the Recipient’s patents. This includes cross-claims and counterclaims. The trigger excludes combinations with other software or hardware.",
         "sources": [
           {
             "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
