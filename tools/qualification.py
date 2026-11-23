@@ -358,7 +358,7 @@ def qualified(catalog, policy: Path | None, *, base: str | None = None) -> tuple
 
 
 def check_history(catalog, base: str) -> None:
-    """Keep permanent paths and earlier coverage snapshots on a trusted base."""
+    """Keep permanent paths, earlier coverage snapshots and their source manifests."""
     root = catalog.root.resolve()
     _validate_entities(catalog.entities)
     for section, records in (("entities", catalog.entities), ("candidates", catalog.candidates)):
@@ -368,6 +368,16 @@ def check_history(catalog, base: str) -> None:
     prior = _git_blobs(root, base, "registry/coverage/snapshots")
     if prior:
         algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
+        sources = _git_blobs(root, base, "research/sources")
+        referenced = set()
         for name, oid in prior.items():
             content = _exact_file(root / name)
             require(_blob_hash(content, algorithm) == oid, f"{name}: prior coverage snapshot was modified")
+            manifest = decode(content).get("source_manifest")
+            require(isinstance(manifest, str) and manifest in sources,
+                    f"{name}: prior coverage source manifest is absent from the trusted base")
+            referenced.add(manifest)
+        for name in sorted(referenced):
+            content = _exact_file(root / name)
+            require(_blob_hash(content, algorithm) == sources[name],
+                    f"{name}: prior coverage source manifest was modified")

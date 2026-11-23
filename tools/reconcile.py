@@ -343,17 +343,45 @@ def reconcile(existing, origins, manifest):
 def find_dependencies(repo, identifiers, candidate_ids):
     tokens = set(identifiers) | set(candidate_ids)
     matches = []
+    pending = {}
     for pattern in ("registry/entities/**/*.json", "sces/records/**/*.json"):
-        dependent_ids = set()
         for path in sorted(repo.glob(pattern)):
             value = read_json(path.read_bytes())
-            found = find_tokens(value, tokens)
-            if found:
-                matches.append({"path": path.relative_to(repo).as_posix(), "direct_matches": sorted(found)})
-                if isinstance(value, dict) and isinstance(value.get("id"), str):
-                    dependent_ids.add(value["id"])
-        tokens.update(dependent_ids)
+            pending[path.relative_to(repo).as_posix()] = (value, spdx_membership_key(value))
+    while tokens and pending:
+        found = [(path, find_tokens(value, tokens) | ({key} & tokens))
+                 for path, (value, key) in pending.items()]
+        tokens = set()
+        for path, direct in found:
+            if not direct:
+                continue
+            matches.append({"path": path, "direct_matches": sorted(direct)})
+            value, _ = pending.pop(path)
+            identity = value.get("id") if isinstance(value, dict) else None
+            if isinstance(identity, str):
+                tokens.add(identity)
+                if path.startswith("registry/entities/") and CANDIDATE_ID.fullmatch(identity):
+                    tokens.add(f"e-{identity}")
     return matches
+
+
+def spdx_membership_key(record):
+    if not isinstance(record, dict) or record.get("kind") != "claim" or record.get("predicate") != "spdx-membership":
+        return None
+    value = record.get("value")
+    if not isinstance(value, str):
+        return None
+    try:
+        binding = read_json(value.encode("utf-8"))
+    except ValueError:
+        return None
+    if (isinstance(binding, dict) and binding.keys() == {"origin", "revision", "key"}
+            and binding["origin"] == "spdx"
+            and isinstance(binding["revision"], str) and COMMIT.fullmatch(binding["revision"])
+            and isinstance(binding["key"], str) and SAFE_ID.fullmatch(binding["key"])
+            and json.dumps(binding, ensure_ascii=False, sort_keys=True, separators=(",", ":")) == value):
+        return binding["key"]
+    return None
 
 
 def find_tokens(value, tokens):

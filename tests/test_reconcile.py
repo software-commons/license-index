@@ -2,6 +2,7 @@ from copy import deepcopy
 from hashlib import sha256
 import io
 from pathlib import Path
+import subprocess
 import tarfile
 import tempfile
 from types import SimpleNamespace
@@ -9,7 +10,8 @@ import unittest
 from unittest.mock import call, patch
 
 from tools import reconcile, spdx_replay
-from tools.records import DataError
+from tools.distribution import COVERAGE, validate, validate_discovery
+from tools.records import Catalog, DataError, encode
 
 
 DATA = "a" * 40
@@ -132,6 +134,51 @@ class ReconcileTests(unittest.TestCase):
             changed.spdx["example"]["id"] = "0" * 32
             with self.assertRaisesRegex(DataError, "candidate ID mismatch: Example"):
                 spdx_replay.replay(changed, source, self.archive, DATA)
+
+    def test_two_releases_validate_current_membership_and_retained_origins(self):
+        def git(*args):
+            return subprocess.run(["git", "-C", str(self.repo), *args], check=True,
+                                  capture_output=True, text=True).stdout.strip()
+
+        def snapshot(release):
+            archive = f"registry/coverage/snapshots/{release}.json"
+            saved = {"source_manifest": f"research/sources/spdx-{release}.json",
+                     "snapshot": archive, "assessment": Catalog(self.repo).coverage()}
+            (self.repo / archive).parent.mkdir(parents=True, exist_ok=True)
+            for name in (archive, COVERAGE):
+                (self.repo / name).write_bytes(encode(saved))
+            git("add", "-A")
+            git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                "-c", "commit.gpgsign=false", "commit", "--quiet", "-m", release)
+
+        git("init", "--quiet")
+        git("config", "core.autocrlf", "false")
+        fixture(self.archive, licenses=("Example", "Removed"))
+        first, source = self.read()
+        reconcile.prepare(self.repo, self.repo, first, source, initial=True)
+        snapshot("3.29.0")
+        base = git("rev-parse", "HEAD")
+        self.assertEqual(validate(Catalog(self.repo), spdx_archive=self.archive), (None, []))
+
+        fixture(self.archive, release="3.30.0", data=NEXT, licenses=("Example", "Added"))
+        second, source = self.read(release="3.30.0", data=NEXT)
+        staging = self.root / "pending"
+        reconcile.prepare(self.repo, staging, second, source)
+        for path in staging.rglob("*.json"):
+            if path.name != "reconciliation-report.json":
+                installed = self.repo / path.relative_to(staging)
+                installed.parent.mkdir(parents=True, exist_ok=True)
+                installed.write_bytes(path.read_bytes())
+        snapshot("3.30.0")
+        current = Catalog(self.repo)
+        self.assertEqual(current.spdx["added"]["origin"]["source"], NEXT)
+        self.assertEqual(current.spdx["example"]["origin"]["source"], DATA)
+        self.assertEqual(validate(current, base=base, spdx_archive=self.archive), (None, []))
+
+        prior = self.repo / "research/sources/spdx-3.29.0.json"
+        prior.unlink()
+        with self.assertRaisesRegex(DataError, "unregistered retained SPDX source pin"):
+            validate_discovery(current)
 
     def test_archive_replay_requires_exact_committed_acquisition(self):
         fixture(self.archive)
@@ -304,18 +351,48 @@ class ReconcileTests(unittest.TestCase):
         self.assertEqual(prior_manifest.read_bytes(), before)
 
     def test_dependency_review_includes_claims_for_matching_entities(self):
+        identity = "123456789abc4def8123456789abcdef"
+        subject = f"e-{identity}"
+        entity_path = f"registry/entities/{identity[:2]}/{identity}.json"
+        claim = "example-identity"
+        verification = "example-review"
         for path, record in (
-            (self.repo / "registry/entities/ab/entity.json", {
-                "id": "entity", "crosswalk": {"spdx": "Example"}
+            (entity_path, {"id": identity, "crosswalks": [{"origin": "spdx", "key": "Example"}]}),
+            (f"sces/records/claim/{claim}--1.json", {"kind": "claim", "id": claim, "revision": 1,
+                                                   "subject": subject, "predicate": "instrument-identity"}),
+            ("sces/records/verification/example-review--1.json", {
+                "kind": "verification", "id": verification, "revision": 1,
+                "claim": {"kind": "claim", "id": claim, "revision": 1},
             }),
-            (self.repo / "sces/records/claim.json", {"id": "claim", "subject": "entity"}),
+            ("sces/records/disposition/example-disposition--1.json", {
+                "kind": "disposition", "id": "example-disposition", "revision": 1,
+                "review": {"kind": "verification", "id": verification, "revision": 1},
+            }),
         ):
+            path = self.repo / path
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(reconcile.json_bytes(record))
         self.assertEqual(reconcile.find_dependencies(self.repo, ["Example"], []), [
-            {"path": "registry/entities/ab/entity.json", "direct_matches": ["Example"]},
-            {"path": "sces/records/claim.json", "direct_matches": ["entity"]},
+            {"path": entity_path, "direct_matches": ["Example"]},
+            {"path": f"sces/records/claim/{claim}--1.json", "direct_matches": [subject]},
+            {"path": "sces/records/verification/example-review--1.json", "direct_matches": [claim]},
+            {"path": "sces/records/disposition/example-disposition--1.json", "direct_matches": [verification]},
         ])
+
+    def test_dependency_review_matches_exact_encoded_spdx_membership_keys(self):
+        path = self.repo / "sces/records/claim/example-crosswalk--1.json"
+        path.parent.mkdir(parents=True)
+        record = {"kind": "claim", "id": "example-crosswalk", "revision": 1,
+                  "subject": "e-123456789abc4def8123456789abcdef",
+                  "predicate": "spdx-membership",
+                  "value": f'{{"key":"Example","origin":"spdx","revision":"{DATA}"}}'}
+        path.write_bytes(reconcile.json_bytes(record))
+        self.assertEqual(reconcile.find_dependencies(self.repo, ["Example"], []),
+                         [{"path": path.relative_to(self.repo).as_posix(), "direct_matches": ["Example"]}])
+        self.assertEqual(reconcile.find_dependencies(self.repo, ["Exam"], []), [])
+        record["predicate"] = "instrument-identity"
+        path.write_bytes(reconcile.json_bytes(record))
+        self.assertEqual(reconcile.find_dependencies(self.repo, ["Example"], []), [])
 
     def test_discover_resolves_annotated_tag_to_commit(self):
         payloads = {

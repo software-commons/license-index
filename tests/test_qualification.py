@@ -133,7 +133,10 @@ class GitHistoryTests(unittest.TestCase):
         self.row = entity()
         self.path = self.write(f"registry/entities/{MIT[:2]}/{MIT}.json", self.row)
         self.write(f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json", {"id": CANDIDATE})
-        self.snapshot = self.write("registry/coverage/snapshots/first.json", {"snapshot": "first"})
+        self.source = self.write("research/sources/first.json", {"source": "first"})
+        self.snapshot = self.write("registry/coverage/snapshots/first.json", {
+            "snapshot": "first", "source_manifest": "research/sources/first.json",
+        })
         self.commit("Synthetic domain snapshot")
         self.base = self.git("rev-parse", "HEAD").strip()
         self.catalog = SimpleNamespace(root=self.root, entities={MIT: self.row}, candidates={CANDIDATE: {}})
@@ -165,6 +168,17 @@ class GitHistoryTests(unittest.TestCase):
     def test_history_preserves_snapshots_byte_for_byte(self):
         self.snapshot.write_bytes(self.snapshot.read_bytes() + b"\n")
         with self.assertRaisesRegex(DataError, "snapshot was modified"):
+            check_history(self.catalog, self.base)
+
+    def test_history_preserves_prior_snapshot_source_after_current_moves(self):
+        self.write("research/sources/next.json", {"source": "next"})
+        self.write(COVERAGE, {"source_manifest": "research/sources/next.json"})
+        check_history(self.catalog, self.base)
+        self.source.write_bytes(self.source.read_bytes() + b"\n")
+        with self.assertRaisesRegex(DataError, "prior coverage source manifest was modified"):
+            check_history(self.catalog, self.base)
+        self.source.unlink()
+        with self.assertRaisesRegex(DataError, "missing or linked file: .*first.json"):
             check_history(self.catalog, self.base)
 
     def test_incoming_archives_replay_the_original_ledger(self):

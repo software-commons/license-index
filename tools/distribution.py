@@ -6,19 +6,22 @@ from functools import cache
 from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
+import re
 from urllib.request import Request, build_opener
 from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
 from .qualification import _blob_hash, _exact_file, _git, _git_blobs, check_history, qualified
+from .reconcile import RELEASE
 from .records import (
-    DATA_COMMIT, HEX_256, VERSION, Catalog, NoRedirects, checked_bytes, decode, encode, is_removed, local_path, read,
-    require,
+    DATA_COMMIT, HEX_256, VERSION, Catalog, DataError, NoRedirects, checked_bytes, decode, encode, is_removed,
+    local_path, read, require,
 )
 
 COVERAGE = "registry/coverage/current.json"
 SNAPSHOTS = "registry/coverage/snapshots"
 SOURCES = "research/sources"
+SPDX_SOURCE = re.compile(rf"{SOURCES}/spdx-[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-f]{{40}})?\.json")
 PACKAGED_TEXTS = "legal-texts/manifest.json"
 PROFILES = "research/campaigns/profiles.json"
 QUALIFICATION_SCOPE = "development-discovery"
@@ -63,9 +66,10 @@ def validate_source(catalog, source):
     for key in ("text", "template"):
         count = sum(key not in row["origin"]["artifacts"] for row in catalog.active_spdx)
         require(expected[f"missing_{key}"] == count, f"SPDX missing {key} count mismatch")
+    active_pins = set()
     for row in catalog.active_spdx:
         origin = row["origin"]
-        require(origin["source"] == source["data_commit"], f"SPDX source mismatch: {origin['identifier']}")
+        active_pins.add((origin["release"], origin["source"]))
         require("detail" in origin["artifacts"], f"missing SPDX detail: {origin['identifier']}")
         for value in origin["artifacts"].values():
             descriptor(value)
@@ -74,6 +78,21 @@ def validate_source(catalog, source):
         require((metadata[field], metadata["name"], metadata["isDeprecatedLicenseId"]) ==
                 (origin["identifier"], origin["name"], origin["deprecated"]),
                 f"SPDX identity drift: {origin['identifier']}")
+
+    # The current manifest defines membership. Unchanged records keep their original artifact
+    # source, which archive replay checks against the exact predecessor and current population.
+    retained_paths = set()
+    for release, commit in sorted(active_pins - {(source.get("release"), source["data_commit"])}):
+        require(RELEASE.fullmatch(release) and DATA_COMMIT.fullmatch(commit), "invalid retained SPDX source pin")
+        for suffix in ("", f"-{commit}"):
+            name = f"{SOURCES}/spdx-{release}{suffix}.json"
+            prior = catalog._optional(name)
+            if (prior.get("release"), prior.get("data_commit")) == (release, commit):
+                retained_paths.add(name)
+                break
+        else:
+            raise DataError(f"unregistered retained SPDX source pin: {release} at {commit}")
+    return retained_paths
 
 
 def read_rights_document(url, *, root=None):
@@ -150,7 +169,7 @@ def validate_profiles(catalog):
 def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
     saved = read(catalog.root / COVERAGE)
     source = read(local_path(catalog.root, saved["source_manifest"]))
-    validate_source(catalog, source)
+    retained_sources = validate_source(catalog, source)
     validate_texts(catalog, rights_reader=rights_reader)
     validate_profiles(catalog)
     require(encode(saved["assessment"]) == encode(catalog.coverage()),
@@ -164,7 +183,7 @@ def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_arch
             replay(catalog, source, spdx_archive, base)
         else:
             replay_download(catalog, source, base)
-    return saved
+    return saved, retained_sources
 
 
 class _HistoricalCatalog(Catalog):
@@ -210,6 +229,7 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None):
     pending = tracked.keys() - prior.keys()
     if not pending:
         return
+    tracked_sources = _git_blobs(root, head, SOURCES)
     algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
     for name in sorted(pending):
         require(_blob_hash(_exact_file(root / name), algorithm) == tracked[name],
@@ -228,8 +248,11 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None):
             inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", PACKAGED_TEXTS, PROFILES)
             require(isinstance(source, str) and source.startswith(f"{SOURCES}/") and source in inputs,
                     f"{name}: source manifest missing from historical Git tree {commit}")
+            require(tracked_sources.get(source) == inputs[source],
+                    f"{name}: historical source manifest was dropped or changed at the candidate tip")
             data = _read_git_blobs(root, {path: oid for path, oid in inputs.items()
-                                         if path == source or not path.startswith(f"{SOURCES}/")}, cache)
+                                         if path == source or SPDX_SOURCE.fullmatch(path)
+                                         or not path.startswith(f"{SOURCES}/")}, cache)
             rows = {path: decode(payload) for path, payload in data.items()}
             historic = _HistoricalCatalog(root, rows)
             validate_source(historic, rows[source])
@@ -294,11 +317,12 @@ def _bundle_path(root, value, folder, suffixes):
 
 
 def bundle(catalog, output):
-    coverage = validate_discovery(catalog)
+    coverage, retained_sources = validate_discovery(catalog)
     root = catalog.root
     files = BUNDLE_SUPPORT | {
         _bundle_path(root, coverage["source_manifest"], SOURCES, {".json"}),
         _bundle_path(root, coverage["snapshot"], SNAPSHOTS, {".json"}),
+        *retained_sources,
         *(f"registry/candidates/{identity[:2]}/{identity}.json" for identity in catalog.candidates),
     }
     if catalog.packaged:
