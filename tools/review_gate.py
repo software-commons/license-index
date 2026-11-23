@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from hashlib import file_digest, sha256
+import json
 import os
 from pathlib import Path
 import re
@@ -22,6 +23,7 @@ from .records import DataError, NoRedirects, decode, encode, require
 from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_diff
 
 CHECK_NAME = "Software Commons / Codex technical review"
+ACTIONS_APP_ID = 15368
 VERDICT_KEYS = {"decision", "inspection_token", "merge_sha", "diff_sha256", "findings", "rationale"}
 VERDICT_SCHEMA = {
     "type": "object",
@@ -42,8 +44,16 @@ REVIEWER_ENV = {
     "SYSTEMROOT", "TEMP", "TMP", "TMPDIR", "USERPROFILE", "WINDIR",
 }
 MAX_TRACE_BYTES = 32 * 1024 * 1024
-APP_TOKEN = re.compile(r"ghs_[A-Za-z0-9_]+")
-ISSUER_KEYS = {"app_id", "audit_dir", "codex", "codex_sha256", "model"}
+APP_TOKEN = re.compile(r"ghs_[A-Za-z0-9._-]{36,}")
+ISSUER_KEYS = {"app_id", "audit_dir", "codex", "codex_sha256", "model",
+               "reviewer_uid", "reviewer_gid", "reviewer_home"}
+
+
+@dataclass(frozen=True)
+class Reviewer:
+    uid: int
+    gid: int
+    home: Path
 
 
 def save(path, data):
@@ -73,6 +83,18 @@ def review_result(trace, binding, inspection_token, diff):
     messages = [position for position, item in enumerate(items) if item["type"] == "agent_message"]
     require(messages, "Codex review did not return a verdict")
     final_position = messages[-1]
+    verdict = decode(items[final_position]["text"].encode("utf-8"))
+    require(isinstance(verdict, dict) and verdict.keys() == VERDICT_KEYS
+            and verdict["inspection_token"] == inspection_token
+            and verdict["merge_sha"] == binding["merge"]
+            and verdict["diff_sha256"] == binding["diff_sha256"],
+            "review verdict does not bind the exact inspected inputs")
+    require(verdict["decision"] in {"approve", "changes-required", "inconclusive"}
+            and isinstance(verdict["findings"], list)
+            and all(isinstance(item, str) and item.strip() for item in verdict["findings"])
+            and isinstance(verdict["rationale"], str) and verdict["rationale"].strip(), "invalid review verdict")
+    if verdict["decision"] == "inconclusive":
+        return execution, verdict
     inspections = [item.get("aggregated_output", "") for item in items[:final_position]
                    if item["type"] == "command_execution" and item.get("status") == "completed"
                    and type(item.get("exit_code")) is int and item["exit_code"] == 0
@@ -85,25 +107,29 @@ def review_result(trace, binding, inspection_token, diff):
     require(any(witness in output.casefold() for output in inspections)
             and any(any(line in patch_lines for line in output.splitlines()) for output in inspections),
             "review trace lacks a successful exact-byte proof and patch body inspection")
-    verdict = decode(items[final_position]["text"].encode("utf-8"))
-    require(isinstance(verdict, dict) and verdict.keys() == VERDICT_KEYS
-            and verdict["inspection_token"] == inspection_token
-            and verdict["merge_sha"] == binding["merge"]
-            and verdict["diff_sha256"] == binding["diff_sha256"],
-            "review verdict does not bind the exact inspected inputs")
-    require(verdict["decision"] in {"approve", "changes-required", "inconclusive"}
-            and isinstance(verdict["findings"], list)
-            and all(isinstance(item, str) and item.strip() for item in verdict["findings"])
-            and isinstance(verdict["rationale"], str) and verdict["rationale"].strip(), "invalid review verdict")
-    require(verdict["decision"] == "approve" and not verdict["findings"], "Codex did not approve the technical change")
+    require(verdict["decision"] != "approve" or not verdict["findings"], "approval contains material findings")
     return execution, verdict
 
 
-def launch_review(codex, model, input_dir, schema, audit_dir):
+def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
     arguments = [str(codex), "exec", "--ignore-user-config", "--ignore-rules", "--skip-git-repo-check",
-                 "--sandbox", "read-only", "--json", "--color", "never", "--model", model,
-                 "-c", 'approval_policy="never"', "-c", 'web_search="disabled"',
-                 "--output-schema", str(schema), "-"]
+                 "--json", "--color", "never", "--model", model,
+                 "-c", 'approval_policy="never"', "-c", 'web_search="disabled"']
+    process_options = {}
+    if reviewer is None:
+        arguments.extend(("--sandbox", "read-only"))
+        environment = {key: value for key, value in os.environ.items() if key.upper() in REVIEWER_ENV}
+    else:
+        input_key = json.dumps(str(input_dir), ensure_ascii=False)
+        permissions = (f'permissions.review-inputs={{filesystem={{":minimal"="read", {input_key}="read"}}, '
+                       'network={enabled=false}}')
+        arguments.extend((
+            "--strict-config", "--ephemeral", "-c", 'default_permissions="review-inputs"',
+            "-c", permissions,
+        ))
+        environment = {"PATH": os.defpath, "HOME": str(reviewer.home), "CODEX_HOME": str(reviewer.home / ".codex")}
+        process_options = {"user": reviewer.uid, "group": reviewer.gid, "extra_groups": (), "start_new_session": True}
+    arguments.extend(("--output-schema", str(schema), "-"))
     prompt = (
         "Perform an independent technical review for a protected public GitHub pull request. "
         "Open review-input.json and inspect the exact patch through read-only tools. "
@@ -119,10 +145,9 @@ def launch_review(codex, model, input_dir, schema, audit_dir):
         "in the rationale. This is technical review only. You have no authority to verify scientific claims or "
         "authorize a release."
     )
-    environment = {key: value for key, value in os.environ.items() if key.upper() in REVIEWER_ENV}
     with (audit_dir / "codex-events.jsonl").open("xb") as stdout, (audit_dir / "codex-stderr.txt").open("xb") as stderr:
         result = subprocess.run(arguments, cwd=input_dir, env=environment, input=prompt.encode("utf-8"),
-                                stdout=stdout, stderr=stderr, timeout=1800, check=False)
+                                stdout=stdout, stderr=stderr, timeout=1800, check=False, **process_options)
     require(result.returncode == 0, f"Codex process failed with exit code {result.returncode}")
     path = audit_dir / "codex-events.jsonl"
     require(path.stat().st_size <= MAX_TRACE_BYTES, "review trace exceeds the configured limit")
@@ -151,7 +176,8 @@ def write_check(token, payload, *, check_id=None):
 
 
 def create_check(github, snapshot, app_id, token, decision, publisher):
-    require(type(app_id) is int and app_id > 0 and APP_TOKEN.fullmatch(token), "expected a GitHub App installation token")
+    require(type(app_id) is int and app_id > 0 and app_id != ACTIONS_APP_ID and APP_TOKEN.fullmatch(token),
+            "expected a dedicated GitHub App installation token")
     # The target is the GitHub test-merge object whose ordered parents were reviewed.
     # Never emit this check on the PR head, where it could be reused on a different base.
     require(github.get_pull(snapshot.number) == snapshot, "pull request changed after review")
@@ -181,6 +207,8 @@ def create_check(github, snapshot, app_id, token, decision, publisher):
 def run(args, github, *, token_input=None, publisher=write_check):
     state = args.state_dir.resolve()
     require(state.is_dir(), "configure an existing issuer-owned state directory")
+    reviewer = getattr(args, "reviewer", None)
+    require(args.app_id is None or reviewer is not None, "check issuance requires the isolated reviewer identity")
     audit = state / str(uuid4())
     audit.mkdir(mode=0o700)
     snapshot = github.get_pull(args.pull)
@@ -193,23 +221,32 @@ def run(args, github, *, token_input=None, publisher=write_check):
     if args.mode == "inspect":
         return {"audit": str(audit), "binding": binding, "status": "inspection-only"}
     token = secrets.token_hex(32)
-    schema = audit / "verdict-schema.json"
-    save(schema, encode(VERDICT_SCHEMA))
     # The review work directory contains no Git checkout, PR code, or issuer credentials.
-    with TemporaryDirectory(prefix="reviewer-", dir=state) as directory:
+    staging = state if reviewer is None else protected_staging()
+    with TemporaryDirectory(prefix="reviewer-", dir=staging) as directory:
         input_dir = Path(directory)
         save(input_dir / "review-input.json", encode({**binding, "inspection_token": token}))
         save(input_dir / "review.diff", diff)
+        schema = input_dir / "verdict-schema.json"
+        save(schema, encode(VERDICT_SCHEMA))
+        if reviewer is not None:
+            share_reviewer_inputs(input_dir, reviewer.gid)
         started_at = datetime.now(timezone.utc).isoformat()
-        trace = launch_review(args.codex, args.model, input_dir, schema, audit)
+        trace = launch_review(args.codex, args.model, input_dir, schema, audit, reviewer=reviewer)
         completed_at = datetime.now(timezone.utc).isoformat()
     execution, verdict = review_result(trace, binding, token, diff)
     decision = {"binding": binding, "execution": execution, "model": args.model,
                 "started_at": started_at, "completed_at": completed_at,
-                "trace_sha256": sha256(trace).hexdigest(), "rationale": verdict["rationale"]}
-    save(audit / "decision.json", encode(decision))
+                "trace_sha256": sha256(trace).hexdigest(), "decision": verdict["decision"],
+                "findings": verdict["findings"], "rationale": verdict["rationale"]}
+    record = encode(decision)
+    save(audit / "decision.json", record)
+    result = {"audit": str(audit), "binding": binding, "execution": execution,
+              "decision_sha256": sha256(record).hexdigest()}
+    if verdict["decision"] != "approve":
+        return {**result, "status": verdict["decision"], "findings": verdict["findings"], "rationale": verdict["rationale"]}
     require(github.get_pull(snapshot.number) == snapshot, "pull request changed after review")
-    result = {"audit": str(audit), "binding": binding, "execution": execution, "status": "reviewed-locally"}
+    result["status"] = "reviewed-locally"
     if args.app_id is not None:
         # A protected caller, not the reviewer, provides a short-lived installation token.
         installation_token = token_input().strip()
@@ -217,6 +254,22 @@ def run(args, github, *, token_input=None, publisher=write_check):
         save(audit / "issued-check.json", encode(check))
         result.update(status="check-issued", check_id=check["id"])
     return result
+
+
+def protected_staging():
+    path = Path("/tmp").resolve(strict=True)
+    content = path.lstat()
+    require(stat.S_ISDIR(content.st_mode) and content.st_uid == 0 and content.st_mode & stat.S_ISVTX,
+            "review staging requires the root-owned sticky POSIX temporary directory")
+    return path
+
+
+def share_reviewer_inputs(input_dir, gid):
+    for item in input_dir.iterdir():
+        os.chown(item, -1, gid)
+        item.chmod(0o440)
+    os.chown(input_dir, -1, gid)
+    input_dir.chmod(0o750)
 
 
 def protected_path(path, *, directory):
@@ -229,22 +282,54 @@ def protected_path(path, *, directory):
             "issuer configuration and state must be outside Git working trees")
 
 
+def trusted_executable(path):
+    require(path.is_absolute() and path.resolve() == path, "invalid pinned Codex path")
+    owners = {0, os.geteuid()}
+    executable = path.lstat()
+    require(stat.S_ISREG(executable.st_mode) and executable.st_uid in owners and not executable.st_mode & 0o6022,
+            "pinned Codex must be a trusted regular file without privilege or shared write bits")
+    for parent in path.parents:
+        content = parent.lstat()
+        require(content.st_uid in owners and (not content.st_mode & 0o022
+                or (content.st_uid == 0 and content.st_mode & stat.S_ISVTX)),
+                "pinned Codex parent directories must prevent reviewer replacement")
+
+
 def load_issuer(path):
     require(os.name == "posix", "check issuance currently requires a protected POSIX issuer account")
     protected_path(path.parent, directory=True)
     protected_path(path, directory=False)
     settings = decode(path.read_bytes())
     require(isinstance(settings, dict) and settings.keys() == ISSUER_KEYS and type(settings["app_id"]) is int
-            and settings["app_id"] > 0 and isinstance(settings["model"], str) and settings["model"].strip(),
+            and settings["app_id"] > 0 and settings["app_id"] != ACTIONS_APP_ID
+            and isinstance(settings["model"], str) and settings["model"].strip(),
             "invalid protected issuer configuration")
     audit = Path(settings["audit_dir"])
     protected_path(audit, directory=True)
+    reviewer = load_reviewer(settings)
     codex = Path(settings["codex"])
-    require(codex.is_absolute() and codex.resolve() == codex and codex.is_file(), "invalid pinned Codex path")
+    trusted_executable(codex)
     with codex.open("rb") as executable:
         require(file_digest(executable, "sha256").hexdigest() == settings["codex_sha256"],
                 "Codex executable differs from the protected issuer pin")
-    return audit, codex, settings["model"], settings["app_id"]
+    return audit, codex, settings["model"], settings["app_id"], reviewer
+
+
+def load_reviewer(settings):
+    from pwd import getpwuid
+
+    uid, gid = settings["reviewer_uid"], settings["reviewer_gid"]
+    require(type(uid) is int and uid > 0 and uid != os.geteuid() and uid != os.getuid()
+            and type(gid) is int and gid > 0 and gid not in {os.getegid(), os.getgid(), *os.getgroups()},
+            "the reviewer must have a dedicated unprivileged UID and GID separate from the issuer")
+    account = getpwuid(uid)
+    home = Path(settings["reviewer_home"])
+    require(account.pw_gid == gid and account.pw_dir == str(home) and home.is_absolute() and home.resolve() == home,
+            "reviewer UID, primary GID, and home must identify the same dedicated POSIX account")
+    content = home.lstat()
+    require(stat.S_ISDIR(content.st_mode) and content.st_uid == uid and content.st_gid == gid and not content.st_mode & 0o077,
+            "reviewer home must be private and owned by the reviewer account")
+    return Reviewer(uid, gid, home)
 
 
 def main(argv=None):
@@ -257,11 +342,12 @@ def main(argv=None):
     parser.add_argument("--issuer-config", type=Path, help="protected issuer configuration, installation token read from stdin")
     args = parser.parse_args(argv)
     args.app_id = None
+    args.reviewer = None
     try:
         if args.issuer_config:
             if args.mode != "review" or args.state_dir or args.codex or args.model:
                 parser.error("issuer configuration is exclusive to review and supplies all deployment options")
-            args.state_dir, args.codex, args.model, args.app_id = load_issuer(args.issuer_config)
+            args.state_dir, args.codex, args.model, args.app_id, args.reviewer = load_issuer(args.issuer_config)
         else:
             if not args.state_dir:
                 parser.error("local inspection or review needs --state-dir")
@@ -271,7 +357,7 @@ def main(argv=None):
     except (DataError, OSError, ValueError, TypeError, KeyError, subprocess.TimeoutExpired) as error:
         parser.exit(1, f"review gate: {error}\n")
     sys.stdout.buffer.write(encode(result))
-    return 0
+    return 1 if result["status"] in {"changes-required", "inconclusive"} else 0
 
 
 if __name__ == "__main__":

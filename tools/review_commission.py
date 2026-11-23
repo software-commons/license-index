@@ -12,11 +12,10 @@ import subprocess
 import sys
 
 from .records import encode
-from .review_gate import APP_TOKEN, CHECK_NAME
+from .review_gate import ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME
 from .review_snapshot import BASE_REF, REPOSITORY, REPOSITORY_ID, GitHub, SnapshotError
 
 ORGANIZATION = REPOSITORY.split("/", 1)[0]
-ACTIONS_APP_ID = 15368
 CI_CONTEXTS = ("Evidence / SCES validation", "Registry validation")
 APP_PERMISSIONS = {"checks": "write", "statuses": "write", "metadata": "read"}
 LATEST_CHECKS = "/check-runs?filter=latest&per_page=100"
@@ -264,9 +263,11 @@ def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, 
     ]
     for context in CI_CONTEXTS:
         merged = checks["test_merge"]["contexts"][context]
-        observed = merged if merged["check_run_ids"] or merged["classic_status_present"] else checks["head"]["contexts"][context]
-        if observed["classification"] != "matching-success":
-            findings.append(f"Expected CI result unconfirmed: {context} ({observed['classification']})")
+        if merged["classification"] != "matching-success":
+            head = checks["head"]["contexts"][context]["classification"]
+            findings.append(
+                f"Expected CI result unconfirmed on test merge: {context} ({merged['classification']}; head: {head})"
+            )
     review = checks["test_merge"]["contexts"][CHECK_NAME]["classification"]
     if review != "matching-success":
         findings.append(f"Exact review check on test merge: {review}")

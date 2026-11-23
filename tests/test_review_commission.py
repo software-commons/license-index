@@ -65,7 +65,8 @@ def responses():
         }]),
         "/apps/codex-review-check": {"id": APP_ID, "owner": {"login": "software-commons"}, "public": False},
         CHECKS_HEAD: rows("check_runs", [run(name, ACTIONS_APP_ID, SNAPSHOT.head) for name in CI_CONTEXTS]),
-        CHECKS_MERGE: rows("check_runs", [run(CHECK_NAME, APP_ID, SNAPSHOT.merge)]),
+        CHECKS_MERGE: rows("check_runs", [run(CHECK_NAME, APP_ID, SNAPSHOT.merge),
+                                        *[run(name, ACTIONS_APP_ID, SNAPSHOT.merge) for name in CI_CONTEXTS]]),
         STATUS_HEAD: rows("statuses", []),
         STATUS_MERGE: rows("statuses", []),
         TOKEN_SCOPE: rows("repositories", [{"id": REPOSITORY_ID, "full_name": REPOSITORY}]),
@@ -206,14 +207,21 @@ class CommissionTests(unittest.TestCase):
 
     def test_head_success_does_not_mask_a_failing_test_merge_ci_run(self):
         values = responses()
-        values[CHECKS_MERGE]["check_runs"].append(
-            run(CI_CONTEXTS[0], ACTIONS_APP_ID, SNAPSHOT.merge, conclusion="failure")
-        )
-        values[CHECKS_MERGE]["total_count"] += 1
+        values[CHECKS_MERGE]["check_runs"][1]["conclusion"] = "failure"
         result = self.inspect(values)
         self.assertEqual(result["checks"]["head"]["contexts"][CI_CONTEXTS[0]]["classification"], "matching-success")
         self.assertEqual(result["status"], "blocked")
-        self.assertIn(f"Expected CI result unconfirmed: {CI_CONTEXTS[0]} (not-successful)", result["findings"])
+        self.assertIn(f"Expected CI result unconfirmed on test merge: {CI_CONTEXTS[0]} "
+                      "(not-successful; head: matching-success)", result["findings"])
+
+    def test_split_commit_checks_do_not_pass_commissioning(self):
+        values = responses()
+        values[CHECKS_MERGE] = rows("check_runs", [run(CHECK_NAME, APP_ID, SNAPSHOT.merge)])
+        result = self.inspect(values)
+        self.assertEqual(result["status"], "blocked")
+        self.assertEqual(result["checks"]["test_merge"]["contexts"][CHECK_NAME]["classification"], "matching-success")
+        self.assertIn(f"Expected CI result unconfirmed on test merge: {CI_CONTEXTS[0]} "
+                      "(missing; head: matching-success)", result["findings"])
 
     def test_partial_data_and_snapshot_changes_fail(self):
         values = responses()
