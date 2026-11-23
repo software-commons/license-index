@@ -1,6 +1,6 @@
 # Apache License 2.0 qualification
 
-These six candidate assertions describe the January 2004 edition. Their records are provisional pending original-source research and independent verification. The catalog's Apache profile remains a research lead.
+Six assertions about the January 2004 edition passed original-source research and separate independent verification. Each execution acquired the exact public claim revisions, opened the originals, and recorded its findings and adverse checks. The claim dispositions are `independently-reviewed`. The broader catalog profile remains provisional.
 
 | Assertion | Original source | Adverse test |
 | --- | --- | --- |
@@ -13,6 +13,8 @@ These six candidate assertions describe the January 2004 edition. Their records 
 
 The ASF plaintext is preserved byte for byte with its commit and SHA-256 digest. The SPDX JSON-LD source is bound to its full capture digest. Its composite record remains in controlled custody. The rendered ASF FAQ is identified by the relevant answer. The claims leave source-header choices, trademark permissions, application to particular projects, compatibility, and compliance with a complete redistribution procedure open for further research.
 
+- [Source research receipts](../../sces/artifacts/apache-20/research-receipts.jsonl)
+- [Independent review receipts](../../sces/artifacts/apache-20/independent-review-receipts.jsonl)
 - [ASF license edition and authoritative language](https://www.apache.org/licenses/LICENSE-2.0)
 - [Pinned ASF publisher plaintext](https://raw.githubusercontent.com/apache/www-site/01b1be9fbc5cd93b6794f5653a58b9b863807f84/content/licenses/LICENSE-2.0.txt)
 - [ASF license document reuse permission](https://www.apache.org/foundation/license-faq.html#mod-license)
