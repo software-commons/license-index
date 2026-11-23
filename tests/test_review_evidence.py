@@ -309,9 +309,13 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         successor = make_publication(frozen, previous_report=link)
         del archive[SELECTION]
         base = self.commit(archive, "archive report without an active selection or advisory")
-        candidate = self.commit(successor, "claim unadvised archived lineage")
-        with self.assertRaisesRegex(DataError, "requires an unchanged withdrawal advisory"):
-            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+        for predecessor in (None, link):
+            with self.subTest(predecessor=predecessor):
+                _git(self.root, "switch", "--quiet", "--detach", base)
+                candidate = self.commit(make_publication(frozen, previous_report=predecessor),
+                                        "try publishing over an unadvised protected archive")
+                with self.assertRaisesRegex(DataError, "inactive base contains a qualification without its withdrawal advisory"):
+                    capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
 
         advice = {"report": link, "affected": [ref("claim", "selected")], "reason": "Synthetic withdrawal",
                   "recorded": "2026-10-01T00:00:00Z"}
@@ -333,6 +337,25 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         captured = capture_selected_evidence(self.root, candidate, REPOSITORY, base=advised_base)
         self.assertEqual(captured[path], archive[path])
         self.assertEqual(captured[advisory], _canonical(advice))
+
+        _git(self.root, "switch", "--quiet", "--detach", base)
+        unrelated = _canonical({**decode(archive[path]), "dataset": "INVALID DATASET"})
+        altered_advice = {**advice, "report": {**link, "sha256": digest(unrelated)}}
+        invalid_base = self.commit({path: unrelated, advisory: _canonical(altered_advice)},
+                                   "seed legacy inactive history with an invalid dataset label")
+        candidate = self.commit(make_publication(frozen), "try treating invalid history as a new dataset")
+        with self.assertRaisesRegex(DataError, "invalid protected SCES qualification dataset"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=invalid_base)
+
+    def test_claims_only_in_inactive_base_cannot_be_treated_as_empty_history(self):
+        inputs, make_publication = fixture()
+        frozen = self.commit(inputs, "freeze evidence")
+        archive = make_publication(frozen, release="incomplete")
+        claims = "sces/releases/incomplete/claims.json"
+        base = self.commit({claims: archive[claims]}, "retain an incomplete inactive archive")
+        candidate = self.commit(make_publication(frozen), "attempt a new root over incomplete history")
+        with self.assertRaisesRegex(DataError, "inactive base contains an incomplete archived release bundle"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
 
     def test_inactive_predecessor_follows_verified_lineage_independently_of_advisory_time(self):
         inputs, make_publication = fixture()

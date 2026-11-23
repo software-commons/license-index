@@ -416,22 +416,29 @@ def _new_withdrawals(directory, commit, selection_tree, base_selection_tree, inh
 
 def _withdrawn_predecessor(directory, inherited, selection):
     """Follow exact qualification parent links; advisory timestamps do not order releases."""
-    advisory_paths = sorted(path for path in inherited if path.startswith("sces/advisories/"))
-    reports = {}
-    if advisory_paths:
-        report_paths = sorted(path for path in inherited if path.endswith("/qualification.json"))
-        reports = _blobs(directory, inherited, report_paths, limit=_MAX_EVIDENCE)
-    rows = {}
-    for path, blob in reports.items():
-        report = decode(blob)
-        if report["dataset"] == selection["dataset"]:
-            slug, canonical = _archived_report_path(f"sces/advisories/{report['release']}.json")
-            require(path == canonical, "invalid protected SCES qualification report path")
-            _qualification_identity(report, slug)
-            rows[path] = report
-    matching = {path: advisory for advisory in advisory_paths
-                if (path := _archived_report_path(advisory)[1]) in rows}
-    if not matching:
+    release_paths = {path for path in inherited if path.startswith("sces/releases/")}
+    report_paths = sorted(path for path in release_paths if path.endswith("/qualification.json"))
+    expected_paths = {artifact for path in report_paths
+                      for artifact in (path, path.removesuffix("qualification.json") + "claims.json")}
+    require(release_paths == expected_paths, "SCES inactive base contains an incomplete archived release bundle")
+    reports = _blobs(directory, inherited, report_paths, limit=_MAX_EVIDENCE)
+    archived = {path: decode(blob) for path, blob in reports.items()}
+    advisory_paths = {}
+    for path, report in archived.items():
+        advisory_path = f"sces/advisories/{report['release']}.json"
+        slug, canonical = _archived_report_path(advisory_path)
+        require(path == canonical, "invalid protected SCES qualification report path")
+        _qualification_identity(report, slug)
+        require(isinstance(report["dataset"], str) and _SLUG.fullmatch(report["dataset"]),
+                "invalid protected SCES qualification dataset")
+        require(advisory_path in inherited, "SCES inactive base contains a qualification without its withdrawal advisory")
+        advisory_paths[path] = advisory_path
+    advisories = _blobs(directory, inherited, sorted(advisory_paths.values()),
+                       limit=_MAX_EVIDENCE - sum(map(len, reports.values())))
+    for path, advisory_path in advisory_paths.items():
+        _check_withdrawal(decode(advisories[advisory_path]), path, reports[path], archived[path])
+    rows = {path: report for path, report in archived.items() if report["dataset"] == selection["dataset"]}
+    if not rows:
         require("previous_report" not in selection,
                 "SCES archived predecessor requires an unchanged withdrawal advisory for the dataset on the verified pull-request base")
         return {}
@@ -454,15 +461,12 @@ def _withdrawn_predecessor(directory, inherited, selection):
         seen.add(cursor)
         cursor = parents.get(cursor)
     require(seen == rows.keys(), "SCES withdrawn qualification lineage is disconnected or cyclic")
-    require(tip in matching, "SCES latest protected dataset qualification has no withdrawal advisory")
     expected = {"path": tip, "sha256": _digest(reports[tip])}
     require(selection.get("previous_report") == expected,
             "SCES reactivation must identify the verified dataset's latest withdrawn qualification report")
     require(tip != f"sces/releases/{selection['release']}/qualification.json", "invalid SCES previous report path")
-    advisory_path = matching[tip]
-    advisory = _blobs(directory, inherited, [advisory_path], limit=_MAX_EVIDENCE)[advisory_path]
-    _check_withdrawal(decode(advisory), tip, reports[tip], rows[tip])
-    return {tip: reports[tip], advisory_path: advisory}
+    advisory_path = advisory_paths[tip]
+    return {tip: reports[tip], advisory_path: advisories[advisory_path]}
 
 
 def _previous_report(directory, paths, base, base_selection_tree, inherited, selection, selection_bytes):

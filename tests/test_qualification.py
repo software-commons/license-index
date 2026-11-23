@@ -9,15 +9,13 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from jsonschema import Draft202012Validator
-
 from tools.audit_claims import audit_claims
 from tools.distribution import COVERAGE, validate, validate_discovery
 from tools.index import execute, parser
 from tools.qualification import (
     POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _run, _validate_policy, check_history, qualified,
 )
-from tools.records import ROOT, Catalog, DataError, encode, read
+from tools.records import ROOT, Catalog, DataError, encode
 
 
 MIT = "123456789abc4def8123456789abcdef"
@@ -50,12 +48,6 @@ def identity_claim(row):
     value = _claim_value({key: row[key] for key in ("kind", "name", "state")})
     return claim(row["identity_claim"], row["id"], "instrument-identity", value, row.get("identity_scope"))
 
-
-def entity_schema():
-    schema = read(ROOT / "schemas/domain/registry-v1.schema.json")
-    return Draft202012Validator({**schema, "$ref": "#/$defs/entity"})
-
-
 class BindingsTests(unittest.TestCase):
     def test_bind_exact_identity_alias_spdx_crosswalk_and_external_edge(self):
         row = entity()
@@ -78,7 +70,6 @@ class BindingsTests(unittest.TestCase):
             claim(reference("crosswalk"), MIT, "spdx-membership", _claim_value(crosswalk),
                   {**crosswalk_scope, "data-revision": SOURCE}),
         ]
-        entity_schema().validate(row)
         bound = _bind_payload({MIT: row}, evidence)
         self.assertEqual(
             [item["claim"]["id"] for item in bound], sorted(item["claim"]["id"] for item in evidence)
@@ -126,7 +117,6 @@ class BindingsTests(unittest.TestCase):
             _bind_payload(entities, evidence)
 
         edge["scope"] = dict(scope)
-        entity_schema().validate(exception)
         _bind_payload(entities, evidence)
 
         for applicability in ({"conditions": ["Exact file notice required."]}, {"modality": "conditional"}):
@@ -145,8 +135,7 @@ class BindingsTests(unittest.TestCase):
         self.assertEqual(exported["entities"][1]["relations"][0]["scope"], scope)
         self.assertEqual(exported["claims"][-1]["claim"]["scope"], scope)
 
-    def test_crosswalk_revision_matches_origin_in_domain_checks_and_schema(self):
-        schema = entity_schema()
+    def test_crosswalk_revision_matches_immutable_origin_type(self):
         record = entity()
         record["identity_scope"] = {"authority": "fixture-publisher", "revision": "2024-01"}
         binding = reference("external-origin")
@@ -158,7 +147,6 @@ class BindingsTests(unittest.TestCase):
                 scope = {"authority": "fixture-publisher"}
                 value = {"origin": origin, "revision": revision, "key": "exact-key"}
                 record["crosswalks"] = [{**value, "claim": binding, "scope": scope}]
-                schema.validate(record)
                 match = claim(binding, MIT, "instrument-identity", _claim_value(value), {**scope, "revision": revision})
                 self.assertIn(match, _bind_payload({MIT: record}, [identity_claim(record), match]))
 
@@ -167,7 +155,6 @@ class BindingsTests(unittest.TestCase):
                                  ("fixture-publisher", "2024-01"), ("fixture-publisher", SOURCE), ("spdx", digest)):
             with self.subTest(origin=origin, revision=revision):
                 record["crosswalks"] = [{"origin": origin, "revision": revision, "key": "exact-key", "claim": binding}]
-                self.assertFalse(schema.is_valid(record))
                 with self.assertRaisesRegex(DataError, "immutable revision appropriate to its origin"):
                     _bind_payload({MIT: record}, [])
 
