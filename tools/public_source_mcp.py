@@ -127,7 +127,8 @@ def call_source(params, sources):
     name = arguments["source"]
     try:
         observation = acquire(name, sources[name])
-        return {"isError": False, "content": [{"type": "text", "text": _canonical(observation).decode("utf-8")}]}
+        text = _canonical(observation).decode("utf-8").removesuffix("\n")
+        return {"isError": False, "content": [{"type": "text", "text": text}]}
     except (DataError, OSError, ValueError):
         return {"isError": True, "content": [{"type": "text", "text": "Public source acquisition failed."}]}
 
