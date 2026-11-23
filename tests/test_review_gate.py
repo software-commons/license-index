@@ -16,7 +16,7 @@ from urllib.parse import parse_qs, urlsplit
 from tools.records import DataError
 from tools.review_gate import (
     ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, AuthorizationPaths, Reviewer, create_check, launch_review,
-    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, successful_checks,
+    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, successful_checks, supersede_checks,
     verify_issued_check,
 )
 from tools.review_protection import commissioning_policy
@@ -112,6 +112,101 @@ def use_queue_rules(github, rules=None, *, bypass=None, on_read=None):
                 "bypass_actors": [] if bypass is None else bypass}
 
     github._get_json.side_effect = read
+
+
+class CheckHistoryTests(unittest.TestCase):
+    def suite(self, suite_id):
+        return {"id": suite_id, "head_sha": SNAPSHOT.head, "app": {"id": 123}, "repository": TOKEN_REPOSITORY}
+
+    def check(self, check_id, suite_id, conclusion="failure"):
+        return {"id": check_id, "head_sha": SNAPSHOT.head, "name": CHECK_NAME, "app": {"id": 123},
+                "check_suite": {"id": suite_id}, "status": "completed", "conclusion": conclusion, "external_id": "a" * 64}
+
+    def github(self, suites, runs):
+        def respond(url):
+            path = urlsplit(url)
+            query = parse_qs(path.query)
+            self.assertEqual(query.pop("per_page"), ["100"])
+            page, = query.pop("page")
+            index = (int(page) - 1) * 100
+            repo = f"/repos/{REPOSITORY}"
+            if path.path == f"{repo}/commits/{SNAPSHOT.head}/check-suites":
+                self.assertEqual(query, {"app_id": ["123"]})
+                key, rows = "check_suites", suites
+            else:
+                match = path.path.removeprefix(f"{repo}/check-suites/").removesuffix("/check-runs")
+                self.assertEqual(path.path, f"{repo}/check-suites/{match}/check-runs")
+                self.assertEqual(query, {"check_name": [CHECK_NAME], "filter": ["all"]})
+                key, rows = "check_runs", runs[int(match)]
+            return {"total_count": len(rows), key: rows[index:index + 100]}
+
+        return Mock(_get_json=Mock(side_effect=respond))
+
+    def test_revokes_success_on_second_run_page_of_second_suite_page(self):
+        suites = [self.suite(suite_id) for suite_id in range(1, 102)]
+        runs = {suite["id"]: [] for suite in suites}
+        runs[101] = [self.check(check_id, 101) for check_id in range(1, 102)]
+        prior = {**runs[101][-1], "conclusion": "success"}
+        runs[101][-1] = prior
+        github = self.github(suites, runs)
+        self.assertEqual(successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [prior])
+
+        def publish(token, payload, *, check_id):
+            self.assertEqual((token, payload["conclusion"], check_id), (LEGACY_TOKEN, "failure", prior["id"]))
+            replacement = {**prior, "conclusion": "failure"}
+            runs[101][-1] = replacement
+            return replacement
+
+        freshness = Mock()
+        with patch("tools.review_gate.token_is_target_only", return_value=True):
+            supersede_checks(github, SNAPSHOT, SNAPSHOT.head, 123, LEGACY_TOKEN, [prior], publish, freshness)
+        freshness.assert_called_once()
+        self.assertEqual(successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
+
+    def test_does_not_apply_a_per_suite_limit_globally(self):
+        suites = [self.suite(1), self.suite(2)]
+        runs = {1: [self.check(check_id, 1) for check_id in range(1, 1001)],
+                2: [self.check(1001, 2, "success")]}
+        self.assertEqual(successful_checks(self.github(suites, runs), SNAPSHOT, SNAPSHOT.head, 123), runs[2])
+
+    def test_denial_revokes_an_authenticated_success_without_an_approval_digest(self):
+        for digest in (None, "legacy-unstructured-identifier"):
+            with self.subTest(digest=digest):
+                prior = self.check(42, 1, "success")
+                prior["external_id"] = digest
+                runs = {1: [prior]}
+                github = self.github([self.suite(1)], runs)
+
+                def publish(token, payload, *, check_id):
+                    self.assertEqual((token, payload["conclusion"], check_id), (LEGACY_TOKEN, "failure", prior["id"]))
+                    replacement = {**prior, "conclusion": "failure"}
+                    runs[1][0] = replacement
+                    return replacement
+
+                with patch("tools.review_gate.token_is_target_only", return_value=True):
+                    supersede_checks(github, SNAPSHOT, SNAPSHOT.head, 123, LEGACY_TOKEN, [prior], publish, Mock())
+                self.assertEqual(successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
+                with self.assertRaisesRegex(DataError, "wrong-source review check"):
+                    verify_issued_check(prior, SNAPSHOT.head, 123, "a" * 64, "completed", "success")
+
+    def test_unstable_partial_duplicate_or_wrong_scope_history_is_rejected(self):
+        runs = [self.check(check_id, 12) for check_id in range(1, 102)]
+        for page in ({"total_count": 102, "check_runs": runs[-1:]},
+                     {"total_count": 101, "check_runs": []},
+                     {"total_count": 101, "check_runs": runs[:1]},
+                     {"total_count": 101, "check_runs": [{**runs[-1], "check_suite": {"id": 13}}]},
+                     {"total_count": 101, "check_runs": [{**runs[-1], "app": {"id": 13}}]}):
+            with self.subTest(page=page):
+                github = Mock(_get_json=Mock(side_effect=[{"total_count": 1, "check_suites": [self.suite(12)]},
+                                                          {"total_count": 101, "check_runs": runs[:100]}, page]))
+                with self.assertRaises(DataError):
+                    successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123)
+
+        for suites, runs in (([{**self.suite(12), "repository": {"id": 1468265981, "full_name": "software-commons/language-index"}}], {12: []}),
+                             ([self.suite(12), self.suite(13)], {12: [self.check(1, 12)], 13: [self.check(1, 13)]})):
+            with self.subTest(suites=suites):
+                with self.assertRaises(DataError):
+                    successful_checks(self.github(suites, runs), SNAPSHOT, SNAPSHOT.head, 123)
 
 
 class ReviewGateTests(unittest.TestCase):
@@ -542,27 +637,6 @@ class ReviewGateTests(unittest.TestCase):
             with self.subTest(check=check), self.assertRaisesRegex(DataError, "wrong-source"):
                 verify_issued_check(check, SNAPSHOT.merge, 123, "expected", "completed", "success")
 
-    def test_listing_selects_only_exact_app_context_and_ref_and_rejects_an_incomplete_history(self):
-        prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
-                           "status": "completed", "conclusion": "success"})
-        rows = [prior, {**prior, "app": {"id": 124}}, {**prior, "name": "unrelated"},
-                {**prior, "id": 43, "conclusion": "failure"}]
-        github = Mock()
-        github._get_json.return_value = {"total_count": len(rows), "check_runs": rows}
-        self.assertEqual(successful_checks(github, SNAPSHOT.head, 123), [prior])
-        endpoint = urlsplit(github._get_json.call_args.args[0])
-        self.assertEqual(endpoint.path, f"/repos/{REPOSITORY}/commits/{SNAPSHOT.head}/check-runs")
-        self.assertEqual(parse_qs(endpoint.query), {
-            "check_name": [CHECK_NAME], "app_id": ["123"], "filter": ["all"], "per_page": ["100"],
-        })
-        github._get_json.return_value["total_count"] += 1
-        with self.assertRaisesRegex(DataError, "complete history"):
-            successful_checks(github, SNAPSHOT.head, 123)
-
-        github._get_json.return_value = {"total_count": 1, "check_runs": [{**prior, "head_sha": SNAPSHOT.merge}]}
-        with self.assertRaisesRegex(DataError, "invalid exact review checks"):
-            successful_checks(github, SNAPSHOT.head, 123)
-
     def test_same_head_adverse_review_revokes_old_success_before_launch(self):
         with TemporaryDirectory() as directory:
             state = Path(directory)
@@ -599,7 +673,7 @@ class ReviewGateTests(unittest.TestCase):
             self.assertFalse((Path(result["audit"]) / "issued-check.json").exists())
 
     def test_rechecks_role_and_revokes_before_a_failed_domain_or_grant_precondition(self):
-        for failure in ("evidence", "authorization", "CI"):
+        for failure in ("evidence", "authorization", "CI", "rules"):
             with self.subTest(failure=failure), TemporaryDirectory() as directory:
                 state = Path(directory)
                 queue = failure == "CI"
@@ -610,6 +684,10 @@ class ReviewGateTests(unittest.TestCase):
                                        authorization_paths=AuthorizationPaths(state / "record", state / "grant"))
                 github = Mock()
                 use_queue_rules(github)
+                if failure == "rules":
+                    drifted = active_queue_rules()
+                    drifted[-1]["parameters"]["strict_required_status_checks_policy"] = False
+                    use_queue_rules(github, drifted)
                 github.get_pull.return_value = SNAPSHOT
                 check_target = QUEUE["merge"] if queue else SNAPSHOT.head
                 prior = api_check({"name": CHECK_NAME, "head_sha": check_target, "external_id": "a" * 64,
@@ -629,7 +707,8 @@ class ReviewGateTests(unittest.TestCase):
                       patch("tools.review_gate.capture_queue_observation", side_effect=reject),
                       patch("tools.review_gate.token_is_target_only", return_value=True),
                       patch("tools.review_gate.launch_review") as reviewer):
-                    with self.assertRaisesRegex(DataError, "Rejected " + failure):
+                    message = "enforce strict checks" if failure == "rules" else "Rejected " + failure
+                    with self.assertRaisesRegex(DataError, message):
                         run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
                 self.assertEqual(tree.call_args.kwargs,
                                  {"queue_ref": QUEUE["queue_ref"]} if queue else {"linear_head": True})
@@ -664,6 +743,7 @@ class ReviewGateTests(unittest.TestCase):
 
             self.successful_checks.side_effect = [[prior], [prior], []]
             publisher.return_value = {**prior, "conclusion": "failure"}
+            github._get_json.side_effect = AssertionError("denial-only must not read issuance protection policy")
             with (patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40),
                   patch("tools.review_gate.capture_candidate_patch") as diff,
                   patch("tools.review_gate.token_is_target_only", return_value=True),

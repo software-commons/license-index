@@ -297,7 +297,7 @@ def retained_source_bytes(observation):
     return raw
 
 
-def check_byte_acquisition(run, index, row, recorded):
+def check_byte_acquisition(run, index, row, recorded, dependencies):
     event = row["payload"]
     item = event["item"]
     arguments = item["arguments"]
@@ -344,17 +344,26 @@ def check_byte_acquisition(run, index, row, recorded):
     require(type(observation["bytes"]) is int and {field: observation[field] for field in observed} == observed
             and recorded.get("sha256") == observed["sha256"],
             "recorded source byte or range digest differs from the retained bytes")
+    reference = recorded["dependency"]
+    dependency = one((edge for edge in dependencies
+                      if {field: edge[field] for field in ("kind", "id", "revision")} == reference),
+                     "exact SCES dependency for the source-byte receipt")
+    require(dependency["basis"] == recorded["source"], "source-byte receipt differs from the exact SCES dependency source")
+    citation = dependency["citation"]
+    required_range = {field: citation[field] for field in ("start", "end", "sha256") if field in citation}
+    require(not required_range or required_range in observed["ranges"],
+            "source-byte tool result lacks the exact SCES dependency citation range")
     return native["id"], observation["acquisition_id"]
 
 
-def check_acquisition(run, recorded, byte_bindings=None):
+def check_acquisition(run, recorded, dependencies, byte_bindings=None):
     mcp_items = [(index, row) for index, row in enumerate(run["session"]) if row["type"] == "event_msg"
                  and row["payload"].get("type") == "item_completed"
                  and row["payload"].get("item", {}).get("type") == "McpToolCall"
                  and row["payload"]["item"]["id"] == recorded["capture"]]
     if mcp_items:
         index, row = one(mcp_items, "native source-byte tool event")
-        native_id, acquisition_id = check_byte_acquisition(run, index, row, recorded)
+        native_id, acquisition_id = check_byte_acquisition(run, index, row, recorded, dependencies)
         if byte_bindings is not None:
             owner = (run["execution"], recorded["capture"])
             for key in (("cli", run["execution"], native_id), ("acquisition", acquisition_id)):
@@ -426,6 +435,7 @@ def audit_receipts(registry, executions):
     byte_bindings = {}
     for row in registry["claims"]:
         reviews = row.get("recorded_reviews", ())
+        dependencies = row.get("recorded_dependencies", ())
         expected = {review["run"]["execution"] for review in reviews}
         if not expected or not expected <= runs.keys():
             continue
@@ -442,7 +452,7 @@ def audit_receipts(registry, executions):
             check_assessment(run, review)
             require(review["acquisitions"], "the recorded execution has no source acquisitions to compare")
             for acquisition in review["acquisitions"]:
-                methods.add(check_acquisition(run, acquisition, byte_bindings))
+                methods.add(check_acquisition(run, acquisition, dependencies, byte_bindings))
                 acquisitions += 1
                 captures.add((run["execution"], acquisition["capture"]))
             used.add(run["execution"])

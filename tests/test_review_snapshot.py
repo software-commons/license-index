@@ -125,6 +125,18 @@ class CaptureTests(unittest.TestCase):
         snapshot = PullSnapshot(REPOSITORY_ID, 1, self.head, head, merge)
         self.assertEqual(capture_control_paths(self.source, snapshot), [GRANT_PATH])
 
+    def test_root_license_is_a_protected_control(self):
+        (self.source / "LICENSE").write_bytes(b"synthetic root license\n")
+        (self.source / "examples").mkdir()
+        (self.source / "examples/LICENSE").write_bytes(b"synthetic example license\n")
+        self.git("add", "--", "LICENSE", "examples/LICENSE")
+        self.git("commit", "--quiet", "-m", "Change repository and example licenses")
+        head = self.git("rev-parse", "HEAD")
+        tree = self.git("rev-parse", "HEAD^{tree}")
+        merge = self.git("commit-tree", tree, "-p", self.head, "-p", head, "-m", "License merge")
+        snapshot = PullSnapshot(REPOSITORY_ID, 1, self.head, head, merge)
+        self.assertEqual(capture_control_paths(self.source, snapshot), ["LICENSE"])
+
     def test_rejects_ordered_parent_mismatch(self):
         with self.assertRaisesRegex(SnapshotError, "ordered base and head parents"):
             self.capture(head="d" * 40)

@@ -26,7 +26,7 @@ _SHA = re.compile(r"[0-9a-f]{40}")
 _API_TIMEOUT = 20
 _GIT_TIMEOUT = 90
 CONTROL_PATHS = (
-    ".github", ".gitattributes", "AGENTS.md", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md",
+    ".github", ".gitattributes", "AGENTS.md", "LICENSE", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md",
     "docs/PUBLICATION.md", GRANT_PATH, "legal-texts", "license-index", "license-index.cmd", "research/review",
     "research/reviews", "research/sources", "research/tools", "schemas", "sces/adoption.json",
     "sces/advisories", "sces/publication.json", "sces/releases", "tests", "tools",

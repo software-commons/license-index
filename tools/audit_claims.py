@@ -44,8 +44,11 @@ for identity in sorted(ref for ref in registry.records if ref[0] == "claim"):
     if receipts == "yes" and blocker is None:
         fields = ("phase", "run", "claim_sha256", "acquisitions", "conclusion", "reasoning",
                   "limitations", "assessments", "challenge")
+        reviews = registry.active_reviews[identity]
         row["recorded_reviews"] = [{field: review[field] for field in fields if field in review}
-                                   for review in registry.active_reviews[identity]]
+                                   for review in reviews]
+        references = {policy["key"](receipt["dependency"]) for review in reviews for receipt in review["acquisitions"]}
+        row["recorded_dependencies"] = [registry.records[ref] for ref in sorted(references)]
     rows.append(row)
 sys.stdout.buffer.write(policy["canonical"]({"assessed_at": now.isoformat(), "claims": rows}))
 """

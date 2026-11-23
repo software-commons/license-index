@@ -346,12 +346,13 @@ class ReceiptAuditTests(unittest.TestCase):
                          mode="full", observation_changes=None):
         raw = b'\xef\xbb\xbfPublisher "quoted" e\xcc\x81 \x00\r\n' if mode == "full-utf8" else b"Publisher text\n"
         digest = sha256(raw).hexdigest()
+        citation = {"start": 0, "end": 9, "sha256": sha256(raw[:9]).hexdigest()}
         observation = {
             "source": "publisher", "url": LOCATOR, "http_status": 200,
             "retrieved_at": retrieved, "acquisition_id": "1" * 32,
             "body_base64": b64encode(raw).decode("ascii"), "source_text": raw.decode("utf-8"),
             "sha256": digest, "bytes": len(raw),
-            "ranges": [{"start": 0, "end": 9, "sha256": sha256(raw[:9]).hexdigest()}],
+            "ranges": [citation],
         }
         if mode == "full-utf8":
             observation["body_encoding"] = "utf-8"
@@ -372,9 +373,13 @@ class ReceiptAuditTests(unittest.TestCase):
         session[5]["payload"]["output"] = content
         for path, rows in zip(paths, (events, session)):
             path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
-        review = next(row for row in self.registry["claims"][0]["recorded_reviews"] if row["phase"] == phase)
+        claim = self.registry["claims"][0]
+        review = next(row for row in claim["recorded_reviews"] if row["phase"] == phase)
         receipt = review["acquisitions"][0]
-        receipt.update(sha256=digest, retrieved_at=retrieved)
+        reference = {"kind": "dependency", "id": "publisher-citation", "revision": 1}
+        source = {"kind": "source", "id": "publisher", "revision": 1}
+        receipt.update(sha256=digest, retrieved_at=retrieved, dependency=reference, source=source)
+        claim["recorded_dependencies"] = [{**reference, "basis": source, "citation": dict(citation)}]
         return receipt
 
     def test_checks_fixed_source_bytes_and_keeps_web_receipts_separate(self):
@@ -395,6 +400,28 @@ class ReceiptAuditTests(unittest.TestCase):
         checked = audit_receipts(self.registry, [self.first, self.second])
         self.assertEqual(checked["status"], "recorded-source-receipts-match-supplied-codex-logs")
         self.assertEqual(checked["unique_acquisitions"], 2)
+
+    def test_rejects_self_consistent_tool_results_without_the_exact_cited_span(self):
+        different_range = {"start": 0, "end": 8, "sha256": sha256(b"Publishe").hexdigest()}
+        for ranges in ([], [different_range]):
+            with self.subTest(ranges=ranges):
+                self.use_byte_receipt(observation_changes={"ranges": ranges})
+                with self.assertRaisesRegex(DataError, "lacks the exact SCES dependency citation range"):
+                    audit_receipts(self.registry, [self.first, self.second])
+
+        receipt = self.use_byte_receipt()
+        with patch.dict(receipt, {"dependency": {**receipt["dependency"], "revision": 2}}):
+            with self.assertRaisesRegex(DataError, "expected one exact SCES dependency"):
+                audit_receipts(self.registry, [self.first, self.second])
+        with patch.dict(receipt, {"source": {**receipt["source"], "revision": 2}}):
+            with self.assertRaisesRegex(DataError, "differs from the exact SCES dependency source"):
+                audit_receipts(self.registry, [self.first, self.second])
+        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+
+        self.use_byte_receipt(observation_changes={"ranges": []})
+        dependency = self.registry["claims"][0]["recorded_dependencies"][0]
+        dependency["citation"] = {"locator": "publisher record without a preserved byte-range dependency"}
+        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
 
     def test_rejects_invalid_or_changed_utf8_byte_receipts(self):
         for changes, expected in (

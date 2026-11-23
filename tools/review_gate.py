@@ -217,10 +217,15 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
     return path.read_bytes()
 
 
+def _verify_check_state(check, merge, app_id, status, conclusion):
+    require(isinstance(check, dict) and check.get("name") == CHECK_NAME and _exact_check_author(check, merge, app_id)
+            and check.get("status") == status and check.get("conclusion") == conclusion,
+            "GitHub returned a stale, failed, or wrong-source review check")
+
+
 def verify_issued_check(check, merge, app_id, external_id, status, conclusion=None):
-    require(check.get("name") == CHECK_NAME and check.get("head_sha") == merge
-            and check.get("status") == status and check.get("conclusion") == conclusion
-            and check.get("external_id") == external_id and (check.get("app") or {}).get("id") == app_id,
+    _verify_check_state(check, merge, app_id, status, conclusion)
+    require(check.get("external_id") == external_id,
             "GitHub returned a stale, failed, or wrong-source review check")
 
 
@@ -248,11 +253,8 @@ def require_queue_rules(github, app_id, *, policy):
     require({"pull_request", "deletion", "non_fast_forward"} <= by_type.keys(),
             "mandatory pull requests, branch deletion protection and force-push protection are required")
     approval = observed_approval(rules)
-    if policy is None:
-        require(approval is not None, "could not authenticate the live pull-request approval rule")
-    else:
-        require(policy.matches(approval),
-                f"live Code Owner and ordinary approval rules do not match commissioning phase {policy.phase}")
+    require(policy.matches(approval),
+            f"live Code Owner and ordinary approval rules do not match commissioning phase {policy.phase}")
     queue = by_type.get("merge_queue", [])
     require(len(queue) == 1, "App issuance requires a mandatory merge queue")
     parameters = queue[0].get("parameters")
@@ -318,17 +320,59 @@ def create_check(snapshot, app_id, token, decision, publisher, verify_fresh, *, 
     return result
 
 
-def successful_checks(github, target, app_id):
-    query = urlencode({"check_name": CHECK_NAME, "app_id": app_id, "filter": "all", "per_page": 100})
-    response = github._get_json(f"/repos/{REPOSITORY}/commits/{target}/check-runs?{query}")
-    rows = response.get("check_runs") if isinstance(response, dict) else None
-    require(isinstance(rows, list) and type(response.get("total_count")) is int
-            and response["total_count"] == len(rows) <= 100 and all(isinstance(row, dict) for row in rows),
-            "could not confirm the complete history of the exact review check")
-    selected = [row for row in rows if row.get("name") == CHECK_NAME and (row.get("app") or {}).get("id") == app_id]
-    require(all(row.get("head_sha") == target and type(row.get("id")) is int and row["id"] > 0 for row in selected)
-            and len({row["id"] for row in selected}) == len(selected), "GitHub returned invalid exact review checks")
-    return [row for row in selected if row.get("conclusion") == "success"]
+def _check_history_rows(github, path, key, **filters):
+    page_size = 100
+    total, page = None, 1
+    seen = set()
+    while True:
+        query = urlencode({**filters, "per_page": page_size, "page": page})
+        response = github._get_json(f"{path}?{query}")
+        require(isinstance(response, dict), "GitHub returned an invalid exact review check page")
+        count, rows = response.get("total_count"), response.get(key)
+        require(type(count) is int and count >= 0 and (total is None or count == total)
+                and isinstance(rows, list) and len(rows) == min(page_size, count - len(seen)),
+                "could not confirm the complete stable history of the exact review check")
+        total = count
+        for row in rows:
+            require(isinstance(row, dict) and type(row.get("id")) is int and row["id"] > 0
+                    and row["id"] not in seen, "GitHub returned invalid or duplicate exact review check identifiers")
+            seen.add(row["id"])
+            yield row
+        if len(seen) == total:
+            return
+        page += 1
+
+
+def _exact_check_author(row, target, app_id):
+    app = row.get("app")
+    return (row.get("head_sha") == target and isinstance(app, dict)
+            and type(app.get("id")) is int and app["id"] == app_id)
+
+
+def successful_checks(github, snapshot, target, app_id):
+    # The reference check-runs endpoint only covers the newest 1,000 suites. Enumerate App suites explicitly.
+    repo = f"/repos/{REPOSITORY}"
+    suite_path = f"{repo}/commits/{target}/check-suites"
+    suites = _check_history_rows(github, suite_path, "check_suites", app_id=app_id)
+    seen, successes = set(), []
+    for suite in suites:
+        repository = suite.get("repository")
+        require(_exact_check_author(suite, target, app_id) and isinstance(repository, dict)
+                and type(repository.get("id")) is int and repository["id"] == snapshot.repository_id
+                and repository.get("full_name") == REPOSITORY,
+                "GitHub returned a check suite outside the exact review repository, App or commit")
+        suite_id = suite["id"]
+        path = f"{repo}/check-suites/{suite_id}/check-runs"
+        for row in _check_history_rows(github, path, "check_runs", check_name=CHECK_NAME, filter="all"):
+            check_suite = row.get("check_suite")
+            require(_exact_check_author(row, target, app_id) and row.get("name") == CHECK_NAME
+                    and isinstance(check_suite, dict) and type(check_suite.get("id")) is int
+                    and check_suite["id"] == suite_id and row["id"] not in seen,
+                    "GitHub returned an invalid or duplicate exact review check")
+            seen.add(row["id"])
+            if row.get("conclusion") == "success":
+                successes.append(row)
+    return sorted(successes, key=lambda row: row["id"])
 
 
 def supersede_checks(github, snapshot, target, app_id, token, previous, publisher, verify_fresh):
@@ -336,21 +380,21 @@ def supersede_checks(github, snapshot, target, app_id, token, previous, publishe
     scope = GitHub(token)
     require(token_is_target_only(scope, snapshot.repository_id, REPOSITORY),
             "the installation token must list only the configured review repository")
-    require(successful_checks(github, target, app_id) == previous,
+    require(successful_checks(github, snapshot, target, app_id) == previous,
             "prior review changes during the supersession preflight")
     for check in previous:
-        digest = check.get("external_id")
-        require(isinstance(digest, str) and re.fullmatch(r"[0-9a-f]{64}", digest), "invalid prior review digest")
-        verify_issued_check(check, target, app_id, digest, "completed", "success")
+        # GitHub can accept a legacy success without a decision digest. Its authenticated identity is enough to deny it.
+        _verify_check_state(check, target, app_id, "completed", "success")
+        require(type(check.get("id")) is int and check["id"] > 0, "invalid prior review check ID")
     for check in previous:
         verify_fresh()
         result = publisher(token, {"status": "completed", "conclusion": "failure", "output": {
             "title": "Prior independent Codex review superseded",
             "summary": "This older decision no longer authorizes queue progress.",
         }}, check_id=check["id"])
-        verify_issued_check(result, target, app_id, check["external_id"], "completed", "failure")
-        require(result.get("id") == check["id"], "GitHub superseded a different review check")
-    require(not successful_checks(github, target, app_id), "a superseded success remains visible on GitHub")
+        _verify_check_state(result, target, app_id, "completed", "failure")
+        require(type(result.get("id")) is int and result["id"] == check["id"], "GitHub superseded a different review check")
+    require(not successful_checks(github, snapshot, target, app_id), "a superseded success remains visible on GitHub")
 
 
 def run(args, github, *, token_input=None, publisher=write_check):
@@ -369,7 +413,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
             and isinstance(expected_merge, str) and re.fullmatch(r"[0-9a-f]{40}", expected_merge)),
             "an expected merge requires a protected issuer and an exact SHA")
     policy = getattr(args, "commissioning_policy", None)
-    approval, revocation_approval = None, None
+    approval = None
     if args.app_id is not None:
         require(args.mode == "review", "protected App writes require review mode")
         require(admission or run_id is not None, "check issuance requires a mandatory merge-queue phase")
@@ -386,13 +430,12 @@ def run(args, github, *, token_input=None, publisher=write_check):
     audit = state / str(uuid4())
     audit.mkdir(mode=0o700)
 
-    def verify_live_target(*, revocation=False):
+    def verify_current_pull():
         require(github.get_pull(pull.number) == pull, "pull request changed after review target capture")
-        if args.app_id is not None:
-            current = require_queue_rules(github, args.app_id, policy=None if revocation else policy)
-            require(current == (revocation_approval if revocation else approval),
-                    "live approval rules changed after review target capture")
-        if revocation and queue_target is not None:
+
+    def verify_revocation_target():
+        verify_current_pull()
+        if queue_target is not None:
             require(capture_queue_target(github, pull, run_id) == queue_target,
                     "merge queue target changed before revocation")
 
@@ -402,19 +445,18 @@ def run(args, github, *, token_input=None, publisher=write_check):
         tree = None
         if args.app_id is not None:
             check_target = snapshot.head if admission else snapshot.merge
-            previous = successful_checks(github, check_target, args.app_id)
+            previous = successful_checks(github, snapshot, check_target, args.app_id)
             if previous:
-                # Authenticate the role and Git target before any write, regardless of review availability.
-                revocation_approval = require_queue_rules(github, args.app_id, policy=None)
+                # Denial needs exact target and writer authentication. Approval rules are evaluated below.
                 tree = capture_candidate_tree(snapshot, checkout, **capture_options)
                 save(audit / "revocation-target.json", encode({
                     **asdict(snapshot), "checked_sha": check_target, "app_id": args.app_id, "tree": tree,
-                    "queue_target": queue_target, "live_approval": asdict(revocation_approval),
+                    "queue_target": queue_target, "phase": "queue-admission" if admission else "queue-merge",
                 }))
                 save(audit / "superseded-checks.json", encode(previous))
                 installation_token = token_input().strip()
                 supersede_checks(github, snapshot, check_target, args.app_id, installation_token, previous, publisher,
-                                 lambda: verify_live_target(revocation=True))
+                                 verify_revocation_target)
                 save(audit / "revocation-result.json", encode({
                     "checked_sha": check_target, "revoked_check_ids": [check["id"] for check in previous],
                 }))
@@ -474,7 +516,10 @@ def run(args, github, *, token_input=None, publisher=write_check):
                 github, binding, paths.record, paths.grant_state, protected_path,
             )
             require(current_authorization == authorization, "protected owner authorization changed after review")
-        verify_live_target()
+        verify_current_pull()
+        if args.app_id is not None:
+            current = require_queue_rules(github, args.app_id, policy=policy)
+            require(current == approval, "live approval rules changed after review target capture")
         if observation is not None:
             current = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
             require(current == observation, "merge queue candidate or CI evidence changed after review")
