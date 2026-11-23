@@ -40,12 +40,14 @@ Use a trusted License Index tool checkout, a trusted pinned policy checkout, and
 
 The audit uses the policy's recorded eligibility checks without making a release selection or changing evidence. It provides a way to catch missing or stale review records before selection. Source inspection, authentic execution verification, domain admission, release validation, and the separate owner decision remain part of the protected workflow.
 
-## Compare retained Codex web receipts
+## Compare retained Codex source receipts
 
-For recorded eligible claims researched through Codex CLI web opens, retain each original `codex exec --json` stream and its corresponding session JSONL at acquisition time. Record who retained each file and its SHA-256 through the trusted capture process. Supply the two explicitly retained files for each execution, including both the research run and the independent review.
+Retain each original `codex exec --json` stream and its corresponding session JSONL at acquisition time. Record who retained each file and its SHA-256. Supply the two original files for each phase, including both the research run and the independent review.
 
 ```text
 python -B -m tools.audit_receipts --repo PRIVATE_DRAFT_CHECKOUT --policy PINNED_SCES_CHECKOUT --base TRUSTED_PREDECESSOR_SHA --execution RESEARCH_EVENTS RESEARCH_SESSION --execution REVIEW_EVENTS REVIEW_SESSION
 ```
 
-The local audit matches eligible claim pairs in the pinned registry to the supplied event IDs, exact URLs, timestamps and tool responses. It checks that the final assessments name the same claim digests and conclusions. It reports raw log digests and counts without printing the transcripts. Compare the digests with the independently retained capture record and inspect the underlying tool responses and findings. This command audits rendered web-open receipts. Source-byte acquisitions, other log formats and substantive review still require inspection of the original capture. Keep the inputs and audit output private.
+The local audit matches eligible claim pairs in the pinned registry to the supplied event IDs, exact URLs, timestamps and tool responses. It checks the claim digests and conclusions in the final assessments. It also supports source-byte acquisitions from the fixed public source connector. For those acquisitions, it compares the completed tool response in both logs, decodes the retained bytes, and recomputes the full-file and citation-range digests. Rendered web opens support controlled inspection. Source-byte receipts require actual bytes. The command reports log digests and counts without printing transcripts. Compare the digests with the independently retained capture record and inspect the underlying responses, tool configuration and findings. Keep original logs and audit output in controlled custody.
+
+For a byte-exact public review, configure the read-only connector only for the two fresh executions. Use a trusted connector copy with an operator-reviewed list of fixed public source URLs. The [GCC connector snapshot](../sces/artifacts/gcc-runtime-exception-31/public-source-connector-v1.py) shows the audited `fixed_public_source.open_original_source` tool contract. Its model input selects a fixed source name. The tool has no model-supplied URL, file path, command, or credential. Pin the exact connector bytes and use read-only Codex sessions. Record any blocked acquisition before changing methods. Preserve the actual execution logs, including the results for adverse cases, and export only the safe SCES receipt fields.

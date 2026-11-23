@@ -1,6 +1,8 @@
 """Synthetic event streams for testing mechanical receipt matching."""
 
+from base64 import b64encode
 from contextlib import redirect_stderr
+from hashlib import sha256
 from io import StringIO
 import json
 from pathlib import Path
@@ -8,7 +10,7 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from tools.audit_receipts import audit_receipts, cli_event, main
+from tools.audit_receipts import audit_receipts, cli_event, instant, main
 from tools.records import DataError
 
 
@@ -113,6 +115,65 @@ class ReceiptAuditTests(unittest.TestCase):
         ))
         with self.assertRaisesRegex(DataError, "tool output lacks"):
             audit_receipts(self.registry, [self.first, self.second])
+
+    def use_byte_receipt(self, phase="research", *, retrieved=RETRIEVED, observation_text=None):
+        raw = b"Publisher text\n"
+        digest = sha256(raw).hexdigest()
+        observation = {
+            "source": "publisher", "url": LOCATOR, "http_status": 200,
+            "retrieved_at": retrieved, "acquisition_id": "1" * 32,
+            "body_base64": b64encode(raw).decode("ascii"), "source_text": raw.decode("utf-8"),
+            "sha256": digest, "bytes": len(raw),
+            "ranges": [{"start": 0, "end": 9, "sha256": sha256(raw[:9]).hexdigest()}],
+        }
+        content = [{"type": "text", "text": observation_text or json.dumps(observation)}]
+        call = {"server": "fixed_public_source", "tool": "open_original_source",
+                "arguments": {"source": "publisher"}, "status": "completed"}
+        paths = self.first if phase == "research" else self.second
+        events, session = [[json.loads(line) for line in path.read_bytes().splitlines()] for path in paths]
+        events[2]["item"] = {**call, "id": "item_1", "type": "mcp_tool_call",
+                             "result": {"content": content, "structured_content": None}}
+        timestamp = int(instant(retrieved).timestamp() * 1000)
+        session[4]["payload"].update(thread_id=f"fixture-{phase}", started_at_ms=timestamp,
+                                     completed_at_ms=timestamp)
+        session[4]["payload"]["item"] = {**call, "id": f"exec-{phase}", "type": "McpToolCall",
+                                         "readOnlyHint": True, "result": {"content": content, "isError": False}}
+        session[5]["payload"]["output"] = content
+        session.insert(6, {"type": "response_item", "payload": {"type": "message", "role": "assistant",
+                        "content": [{"type": "output_text", "text": events[-2]["item"]["text"]}]}})
+        for path, rows in zip(paths, (events, session)):
+            path.write_bytes(b"".join((json.dumps(row) + "\n").encode() for row in rows))
+        review = next(row for row in self.registry["claims"][0]["recorded_reviews"] if row["phase"] == phase)
+        receipt = review["acquisitions"][0]
+        receipt.update(sha256=digest, retrieved_at=retrieved)
+        return receipt
+
+    def test_checks_fixed_source_bytes_and_keeps_web_receipts_separate(self):
+        receipt = self.use_byte_receipt()
+        checked = audit_receipts(self.registry, [self.first, self.second])
+        self.assertEqual(checked["status"], "recorded-source-receipts-match-supplied-codex-logs")
+        self.assertEqual(checked["unique_acquisitions"], 2)
+        with patch.dict(receipt, {"sha256": "c" * 64}):
+            with self.assertRaisesRegex(DataError, "digest differs from the retained bytes"):
+                audit_receipts(self.registry, [self.first, self.second])
+        self.first[1].write_bytes(self.first[1].read_bytes().replace(b"Publisher text", b"Different text"))
+        with self.assertRaisesRegex(DataError, "matching Codex CLI source-byte tool completion"):
+            audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_replayed_byte_acquisition_across_executions(self):
+        self.use_byte_receipt()
+        self.use_byte_receipt("independent-review")
+        with self.assertRaisesRegex(DataError, "reused across captures"):
+            audit_receipts(self.registry, [self.first, self.second])
+
+    def test_rejects_byte_acquisition_before_the_run(self):
+        self.use_byte_receipt(retrieved="2026-01-01T11:00:00Z")
+        with self.assertRaisesRegex(DataError, "outside the recorded tool call"):
+            audit_receipts(self.registry, [self.first, self.second])
+
+    def test_cli_does_not_echo_malformed_byte_observation(self):
+        self.use_byte_receipt(observation_text='{"private-sentinel":0,"private-sentinel":1}')
+        self.assert_private_error("invalid observation JSON")
 
     def test_cli_accepts_only_the_documented_duplicate_web_item_shape(self):
         event = b'{"type":"item.completed","item":{"id":"item_1","type":"web_search","id":"exec-fixture"}}'

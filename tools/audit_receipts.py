@@ -1,6 +1,8 @@
-"""Compare recorded SCES web receipts with explicitly supplied private Codex logs."""
+"""Compare recorded SCES source receipts with explicitly supplied private Codex logs."""
 
 import argparse
+from base64 import b64decode, b64encode
+from binascii import Error as Base64Error
 from datetime import datetime, timezone
 from hashlib import sha256
 import json
@@ -10,6 +12,7 @@ import re
 import sys
 
 from .audit_claims import audit_claims
+from .capture_source import fingerprints
 from .qualification import _exact_file
 from .records import DataError, decode, encode, require, unique_fields
 
@@ -108,6 +111,7 @@ def execution(events_path, session_path):
         "turn": context["turn_id"],
         "started": timing["task_started"],
         "completed": timing["task_complete"],
+        "final_message": message,
         "conclusions": conclusions,
         "event_items": event_items,
         "session": session,
@@ -116,7 +120,7 @@ def execution(events_path, session_path):
     }
 
 
-def check_acquisition(run, recorded):
+def check_web_acquisition(run, recorded):
     require("sha256" not in recorded, "rendered Codex web results cannot corroborate a source byte digest")
     capture, locator = recorded["capture"], recorded["locator"]
     native = one((item for item in run["event_items"] if item.get("id") == capture), "receipt event completion")
@@ -151,6 +155,105 @@ def check_acquisition(run, recorded):
                 if part.get("type") in {"input_text", "text"}), "Codex tool output lacks the recorded result reference")
 
 
+def check_byte_delivery(run, index, text):
+    session = run["session"]
+    call = next((row["payload"] for row in reversed(session[:index])
+                 if row["type"] == "response_item"
+                 and row["payload"].get("type") == "custom_tool_call"), {})
+    require(call.get("name") == "exec", "source-byte receipt lacks its Codex tool invocation")
+    output_index, output = one(
+        ((i, row["payload"]["output"]) for i, row in enumerate(session)
+         if row["type"] == "response_item" and row["payload"].get("type") == "custom_tool_call_output"
+         and row["payload"]["call_id"] == call["call_id"]),
+        "source-byte tool output delivered to Codex",
+    )
+    final_index = one(
+        (i for i, row in enumerate(session) if row["type"] == "response_item"
+         and row["payload"].get("type") == "message" and row["payload"].get("role") == "assistant"
+         and any(part.get("text", "").strip() == run["final_message"].strip()
+                 for part in row["payload"]["content"])),
+        "final Codex session assessment",
+    )
+    representations = (text, *(json.dumps(text, ensure_ascii=ascii_only)[1:-1] for ascii_only in (True, False)))
+    require(index < output_index < final_index
+            and any(value in part["text"] for part in output if part.get("type") in {"input_text", "text"}
+                    for value in representations),
+            "source-byte tool result was not delivered before the assessment")
+
+
+def check_byte_acquisition(run, index, row, recorded):
+    event = row["payload"]
+    item = event["item"]
+    arguments = item["arguments"]
+    result = item["result"]
+    require(event["thread_id"] == run["execution"] and event["turn_id"] == run["turn"]
+            and item["server"] == "fixed_public_source" and item["tool"] == "open_original_source"
+            and item["readOnlyHint"] is True and item["status"] == "completed"
+            and result.get("isError") is False and arguments.keys() == {"source"},
+            "byte receipt differs from a completed fixed-source call")
+    content = result["content"]
+    native = one((entry for entry in run["event_items"]
+                  if entry["type"] == "mcp_tool_call" and entry["server"] == item["server"]
+                  and entry["tool"] == item["tool"] and entry["arguments"] == arguments
+                  and entry.get("result") and entry["result"]["content"] == content),
+                 "matching Codex CLI source-byte tool completion")
+    final_item = next(entry for entry in reversed(run["event_items"]) if entry["type"] == "agent_message")
+    require(run["event_items"].index(native) < run["event_items"].index(final_item)
+            and native["status"] == "completed" and len(content) == 1 and content[0]["type"] == "text",
+            "source-byte tool completion is invalid")
+    check_byte_delivery(run, index, content[0]["text"])
+    try:
+        observation = decode(content[0]["text"].encode("utf-8"))
+    except (DataError, ValueError, RecursionError) as error:
+        raise DataError("source-byte tool returned invalid observation JSON") from error
+    require(observation["source"] == arguments["source"] and observation["url"] == recorded["locator"]
+            and type(observation["http_status"]) is int and observation["http_status"] == 200
+            and observation["retrieved_at"] == recorded["retrieved_at"]
+            and re.fullmatch(r"[0-9a-f]{32}", observation["acquisition_id"]),
+            "byte receipt differs from the observed acquisition")
+    retrieved = instant(observation["retrieved_at"])
+    when = instant(row["timestamp"])
+    start_ms, end_ms = event["started_at_ms"], event["completed_at_ms"]
+    require(type(start_ms) is int and type(end_ms) is int and start_ms <= end_ms,
+            "source-byte tool call has invalid timestamps")
+    started, completed = (datetime.fromtimestamp(value // 1000, timezone.utc) for value in (start_ms, end_ms))
+    require(run["started"] <= when <= run["completed"]
+            and instant(seconds(run["started"])) <= started <= retrieved <= completed <= instant(seconds(when)),
+            "byte receipt is outside the recorded tool call")
+    try:
+        raw = b64decode(observation["body_base64"], validate=True)
+    except (Base64Error, ValueError) as error:
+        raise DataError("source-byte tool returned invalid base64") from error
+    require(raw and b64encode(raw).decode("ascii") == observation["body_base64"]
+            and observation["source_text"].encode("utf-8") == raw,
+            "retained source bytes differ from the displayed source text")
+    ranges = observation["ranges"]
+    require(isinstance(ranges, list), "source-byte tool returned invalid citation ranges")
+    observed = fingerprints(raw, [(area["start"], area["end"]) for area in ranges])
+    require(type(observation["bytes"]) is int and {field: observation[field] for field in observed} == observed
+            and recorded.get("sha256") == observed["sha256"],
+            "recorded source byte or range digest differs from the retained bytes")
+    return native["id"], observation["acquisition_id"]
+
+
+def check_acquisition(run, recorded, byte_bindings=None):
+    mcp_items = [(index, row) for index, row in enumerate(run["session"]) if row["type"] == "event_msg"
+                 and row["payload"].get("type") == "item_completed"
+                 and row["payload"].get("item", {}).get("type") == "McpToolCall"
+                 and row["payload"]["item"]["id"] == recorded["capture"]]
+    if mcp_items:
+        index, row = one(mcp_items, "native source-byte tool event")
+        native_id, acquisition_id = check_byte_acquisition(run, index, row, recorded)
+        if byte_bindings is not None:
+            owner = (run["execution"], recorded["capture"])
+            for key in (("cli", run["execution"], native_id), ("acquisition", acquisition_id)):
+                require(byte_bindings.setdefault(key, owner) == owner,
+                        "source-byte tool completion or acquisition was reused across captures")
+        return "source-bytes"
+    check_web_acquisition(run, recorded)
+    return "web-open"
+
+
 def audit_receipts(registry, executions):
     runs = {}
     for events, session in executions:
@@ -162,6 +265,8 @@ def audit_receipts(registry, executions):
     captures = set()
     claims = []
     acquisitions = 0
+    methods = set()
+    byte_bindings = {}
     for row in registry["claims"]:
         reviews = row.get("recorded_reviews", ())
         expected = {review["run"]["execution"] for review in reviews}
@@ -181,14 +286,15 @@ def audit_receipts(registry, executions):
                     "Codex final assessment differs from the recorded claim or conclusion")
             require(review["acquisitions"], "the recorded execution has no source acquisitions to compare")
             for acquisition in review["acquisitions"]:
-                check_acquisition(run, acquisition)
+                methods.add(check_acquisition(run, acquisition, byte_bindings))
                 acquisitions += 1
                 captures.add((run["execution"], acquisition["capture"]))
             used.add(run["execution"])
         claims.append(row["claim"])
     require(claims and used == runs.keys(), "supplied executions must form complete recorded eligible claim pairs")
     return {
-        "status": "recorded-web-receipts-match-supplied-codex-logs",
+        "status": ("recorded-source-receipts-match-supplied-codex-logs" if "source-bytes" in methods
+                   else "recorded-web-receipts-match-supplied-codex-logs"),
         "claims": claims,
         "acquisition_bindings": acquisitions,
         "unique_acquisitions": len(captures),
