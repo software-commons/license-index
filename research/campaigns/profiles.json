@@ -1739,21 +1739,21 @@
     "dimensions": {
       "copyright_grant": {
         "state": "permission",
-        "text": "Section 2.1(a) grants specified rights to use, reproduce, make available, modify, display, perform and distribute contributions.",
+        "text": "Each Contributor grants the rights specified in §2.1(a) over its Contributions under rights it can license, excluding patents and trademarks. The grant takes effect for a Contribution on that Contributor’s first distribution and is subject to §§3.1–3.4.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
-            "locator": "§2.1(a)"
+            "locator": "§§2.1(a), 2.2 and 2.7"
           }
         ]
       },
       "larger_work": {
         "state": "permission",
-        "text": "Larger Works may be distributed on chosen terms subject to meeting the license for Covered Software. Conditional secondary licensing is addressed separately.",
+        "text": "A Larger Work may be distributed on chosen terms if the distributor also meets the MPL requirements for Covered Software. Section 3.3 separately provides for additional distribution under a qualifying Secondary License where its combination and compatibility conditions hold.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
-            "locator": "§3.3"
+            "locator": "§§1.5, 1.7, 1.12 and 3.3"
           }
         ]
       },
@@ -1769,7 +1769,7 @@
       },
       "notices": {
         "state": "condition",
-        "text": "Existing source notices generally retain their substance, with a stated exception for known factual inaccuracies.",
+        "text": "Preserve the substance of license notices in the Source Code Form of Covered Software. Section 3.4 allows changes to the extent required to correct known factual inaccuracies.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
@@ -1779,17 +1779,17 @@
       },
       "patent_grant": {
         "state": "permission",
-        "text": "Section 2.1(b) grants defined contributor patent permissions, subject to the exclusions in §2.3.",
+        "text": "Section 2.1(b) grants rights over a Contributor’s Contributions or Contributor Version under that Contributor’s defined, licensable Patent Claims. The grant takes effect on the Contributor’s first distribution of the Contribution and has the exclusions in §2.3.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
-            "locator": "§§2.1(b) and 2.3"
+            "locator": "§§1.2, 1.9, 1.11 and 2.1(b)–2.3"
           }
         ]
       },
       "source_availability": {
         "state": "condition",
-        "text": "Distributed Covered Software in executable form must also be made available in source, and executable recipients must be told how to obtain it.",
+        "text": "A distributor of Covered Software in Executable Form must make the source available under §3.1 and tell executable recipients how to get the source by reasonable means, in a timely manner, for at most the cost of distribution to them.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
@@ -1799,7 +1799,7 @@
       },
       "termination": {
         "state": "condition",
-        "text": "Specified noncompliance or patent litigation can terminate rights. The noncompliance provision describes reinstatement.",
+        "text": "Section 5.1 provides automatic termination for noncompliance and separate routes to reinstatement. The patent litigation specified in §5.2 terminates both §2.1 grants from all Contributors for the Covered Software, subject to the trigger’s stated exclusions and §5.3’s surviving end-user agreements.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
@@ -1810,8 +1810,8 @@
     },
     "scenarios": [
       {
-        "situation": "Shipping a larger work with an edited MPL file",
-        "text": "Make the covered source available and tell executable recipients how to obtain it. Inspect any new source files containing copied MPL material.",
+        "situation": "Shipping an executable Larger Work with an edited MPL file",
+        "text": "Make the Covered Software’s source available under §3.1 and give executable recipients the access instructions required by §3.2(a). Include new source files containing portions of Covered Software when identifying Modifications, and evaluate separate material under §3.3.",
         "sources": [
           {
             "url": "https://www.mozilla.org/en-US/MPL/2.0/",
