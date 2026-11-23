@@ -155,11 +155,14 @@ class ReconcileTests(unittest.TestCase):
         fixture(self.archive)
         _, source = self.read()
         source["xml_commit"] = NEXT
-        with (patch.object(spdx_replay, "resolve_tag", return_value=XML) as resolve,
+        with (patch.object(spdx_replay, "resolve_xml_tag", return_value=XML) as resolve,
               patch.object(spdx_replay, "fetch_archive") as fetch):
             with self.assertRaisesRegex(DataError, "XML release tag differs from the committed XML pin"):
                 spdx_replay.replay_download(None, source, None)
-            resolve.assert_called_once_with("spdx/license-list-XML", "v3.29.0")
+            resolve.assert_called_once()
+            release, directory = resolve.call_args.args
+            self.assertEqual(release, "3.29.0")
+            self.assertFalse(directory.exists())
             fetch.assert_not_called()
 
     def test_fingerprints_and_deprecated_text_fallback(self):

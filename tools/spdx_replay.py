@@ -1,13 +1,15 @@
 """Replay the pinned SPDX archive against the catalog and its trusted prior tree."""
 
+import os
 from pathlib import Path
+import subprocess
 import tarfile
 from tempfile import TemporaryDirectory
 from urllib.request import Request, build_opener
 from xml.etree.ElementTree import ParseError
 
 from .qualification import _blob_hash, _git, _git_blobs
-from .reconcile import DATA_REPOSITORY, RELEASE, SOURCE_REPOSITORY, load_release, reconcile, resolve_tag
+from .reconcile import DATA_REPOSITORY, RELEASE, SOURCE_REPOSITORY, load_release, reconcile
 from .records import DATA_COMMIT, HEX_256, DataError, NoRedirects, decode, encode, require
 
 CHUNK_BYTES = 1024 * 1024
@@ -105,15 +107,41 @@ def replay(catalog, source, archive, base):
     compare_registry(catalog, origins, source, base)
 
 
+def resolve_xml_tag(release, directory):
+    """Confirm the publisher's exact tag and peel it to a commit without the REST API."""
+    tag = f"refs/tags/v{release}"
+    url = f"https://github.com/{SOURCE_REPOSITORY}.git"
+    environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("GIT_")}
+    environment.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull, GIT_TERMINAL_PROMPT="0",
+                       GIT_NO_REPLACE_OBJECTS="1", GIT_GRAFT_FILE=os.devnull)
+    command = ["git", "-C", str(directory), "-c", "http.followRedirects=false",
+               "-c", "protocol.allow=never", "-c", "protocol.https.allow=always"]
+
+    def git(*arguments):
+        try:
+            result = subprocess.run([*command, *arguments], stdin=subprocess.DEVNULL,
+                                    capture_output=True, check=False, env=environment, timeout=60)
+        except (OSError, subprocess.TimeoutExpired) as error:
+            raise DataError(f"could not run Git to verify SPDX XML release tag v{release}: {error}") from error
+        require(result.returncode == 0,
+                f"Git {arguments[0]} could not verify SPDX XML release tag v{release} (exit {result.returncode})")
+        return result.stdout
+
+    git("init", "--quiet", "--template=")
+    git("fetch", "--quiet", "--no-tags", "--no-recurse-submodules", "--no-auto-maintenance",
+        "--depth=1", "--filter=tree:0", "--", url, tag)
+    commit = git("rev-parse", "--verify", "FETCH_HEAD^{commit}").decode("ascii").strip()
+    require(DATA_COMMIT.fullmatch(commit), "invalid SPDX XML release tag commit")
+    return commit
+
+
 def replay_download(catalog, source, base):
     release = source["release"]
     require(RELEASE.fullmatch(release), "invalid SPDX release version")
-    try:
-        xml_commit = resolve_tag(SOURCE_REPOSITORY, f"v{release}")
-    except ValueError as error:
-        raise DataError(f"could not resolve the SPDX XML release tag: {error}") from error
-    require(xml_commit == source["xml_commit"], "SPDX XML release tag differs from the committed XML pin")
     with TemporaryDirectory(prefix="license-index-spdx-") as directory:
-        archive = Path(directory) / "spdx.tar.gz"
+        root = Path(directory)
+        xml_commit = resolve_xml_tag(release, root)
+        require(xml_commit == source["xml_commit"], "SPDX XML release tag differs from the committed XML pin")
+        archive = root / "spdx.tar.gz"
         fetch_archive(source, archive)
         replay(catalog, source, archive, base)
