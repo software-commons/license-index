@@ -387,6 +387,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         unadvised = self.commit(latest, "replace without withdrawing the prior release yet")
         (self.root / SELECTION).unlink()
         partial = self.commit(latest_advice, "leave an older unadvised release without an active selection")
+        # The pinned SCES unadvised-withdrawal gate applies to every retained release.
         with self.assertRaisesRegex(DataError, "inactive publication retains a qualification without a withdrawal advisory"):
             capture_selected_evidence(self.root, partial, REPOSITORY, base=unadvised)
         _git(self.root, "switch", "--quiet", "--detach", unadvised)
@@ -420,6 +421,40 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         candidate = self.commit(successor, "attempt reactivation with multiple protected lineage tips")
         with self.assertRaisesRegex(DataError, "no unique successor tip"):
             capture_selected_evidence(self.root, candidate, REPOSITORY, base=ambiguous)
+
+    def test_reactivation_checks_large_archive_without_staging_its_entire_history(self):
+        inputs, make_publication = fixture()
+        source = self.commit(inputs, "freeze evidence")
+        history, sizes, previous = {}, [], None
+        for serial in range(5):
+            slug = f"archive-{serial}"
+            files = make_publication(source, release=slug, previous_report=previous)
+            del files[SELECTION]
+            report_path = f"sces/releases/{slug}/qualification.json"
+            if serial < 4:
+                files[report_path] = _canonical({**decode(files[report_path]), "limitations": ["x" * 4000]})
+            previous = {"path": report_path, "sha256": digest(files[report_path])}
+            advisory_path = f"sces/advisories/{slug}.json"
+            files[advisory_path] = _canonical({"report": previous, "affected": [ref("claim", "selected")],
+                                                "reason": "Synthetic withdrawal", "recorded": "2026-10-01T00:00:00Z"})
+            history.update(files)
+            sizes.append(sum(map(len, files.values())))
+
+        base = self.commit(history, "retain an inactive archive of individually bounded releases")
+        candidate = self.commit(make_publication(source, previous_report=previous), "reactivate the qualified tip")
+        expected = capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+        staging_limit = sum(map(len, expected.values())) + 1024
+        self.assertLess(max(sizes), staging_limit)
+        self.assertGreater(sum(sizes), staging_limit)
+        with patch("tools.review_evidence._MAX_EVIDENCE", staging_limit):
+            captured = capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+        self.assertEqual(captured, expected)
+        self.assertEqual(captured[report_path], history[report_path])
+        self.assertEqual(captured[advisory_path], history[advisory_path])
+        self.assertNotIn("sces/releases/archive-0/qualification.json", captured)
+        with (patch("tools.review_evidence._MAX_BLOB", max(map(len, history.values())) - 1),
+              self.assertRaisesRegex(DataError, "incomplete or oversized SCES Git blob")):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
 
     def test_another_datasets_advised_archive_cannot_hide_replaced_claims_bytes(self):
         inputs, make_publication = fixture()

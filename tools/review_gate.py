@@ -16,6 +16,7 @@ import subprocess
 import sys
 from tempfile import TemporaryDirectory
 from urllib.error import URLError
+from urllib.parse import urlencode
 from urllib.request import Request, build_opener
 from uuid import UUID, uuid4
 
@@ -311,6 +312,41 @@ def create_check(snapshot, app_id, token, decision, publisher, verify_fresh, *, 
     return result
 
 
+def successful_checks(github, target, app_id):
+    query = urlencode({"check_name": CHECK_NAME, "app_id": app_id, "filter": "all", "per_page": 100})
+    response = github._get_json(f"/repos/{REPOSITORY}/commits/{target}/check-runs?{query}")
+    rows = response.get("check_runs") if isinstance(response, dict) else None
+    require(isinstance(rows, list) and type(response.get("total_count")) is int
+            and response["total_count"] == len(rows) <= 100 and all(isinstance(row, dict) for row in rows),
+            "could not confirm the complete history of the exact review check")
+    selected = [row for row in rows if row.get("name") == CHECK_NAME and (row.get("app") or {}).get("id") == app_id]
+    require(all(row.get("head_sha") == target and type(row.get("id")) is int and row["id"] > 0 for row in selected)
+            and len({row["id"] for row in selected}) == len(selected), "GitHub returned invalid exact review checks")
+    return [row for row in selected if row.get("conclusion") == "success"]
+
+
+def supersede_checks(github, snapshot, target, app_id, token, previous, publisher, verify_fresh):
+    require(APP_TOKEN.fullmatch(token), "expected a dedicated GitHub App installation token")
+    scope = GitHub(token)
+    require(token_is_target_only(scope, snapshot.repository_id, REPOSITORY),
+            "the installation token must list only the configured review repository")
+    require(successful_checks(github, target, app_id) == previous,
+            "prior review changes during the supersession preflight")
+    for check in previous:
+        digest = check.get("external_id")
+        require(isinstance(digest, str) and re.fullmatch(r"[0-9a-f]{64}", digest), "invalid prior review digest")
+        verify_issued_check(check, target, app_id, digest, "completed", "success")
+    for check in previous:
+        verify_fresh()
+        result = publisher(token, {"status": "completed", "conclusion": "failure", "output": {
+            "title": "Superseded by a new independent Codex review",
+            "summary": "A new exact review has started. This older decision no longer authorizes queue progress.",
+        }}, check_id=check["id"])
+        verify_issued_check(result, target, app_id, check["external_id"], "completed", "failure")
+        require(result.get("id") == check["id"], "GitHub superseded a different review check")
+    require(not successful_checks(github, target, app_id), "a superseded success remains visible on GitHub")
+
+
 def run(args, github, *, token_input=None, publisher=write_check):
     state = args.state_dir.resolve()
     require(state.is_dir(), "configure an existing issuer-owned state directory")
@@ -369,6 +405,30 @@ def run(args, github, *, token_input=None, publisher=write_check):
         save(audit / "binding.json", encode(binding))
     if args.mode == "inspect":
         return {"audit": str(audit), "binding": binding, "status": "inspection-only"}
+
+    def verify_fresh():
+        if authorization is not None:
+            current_authorization = validate_control_authorization(
+                github, binding, paths.record, paths.grant_state, protected_path,
+            )
+            require(current_authorization == authorization, "protected owner authorization changed after review")
+        require(github.get_pull(pull.number) == pull, "pull request changed after review")
+        if args.app_id is not None:
+            current = require_queue_rules(github, args.app_id, policy=policy)
+            require(current == approval, "live approval rules changed after review")
+        if observation is not None:
+            current = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
+            require(current == observation, "merge queue candidate or CI evidence changed after review")
+
+    installation_token = None
+    if args.app_id is not None:
+        check_target = snapshot.head if admission else snapshot.merge
+        previous = successful_checks(github, check_target, args.app_id)
+        if previous:
+            save(audit / "superseded-checks.json", encode(previous))
+            installation_token = token_input().strip()
+            supersede_checks(github, snapshot, check_target, args.app_id, installation_token, previous, publisher, verify_fresh)
+
     token = secrets.token_hex(32)
     verdict_schema = VERDICT_SCHEMA
     if evidence:
@@ -410,25 +470,13 @@ def run(args, github, *, token_input=None, publisher=write_check):
         result["rehearsal"] = True
     if verdict["decision"] != "approve":
         return {**result, "status": verdict["decision"], "findings": verdict["findings"], "rationale": verdict["rationale"]}
-    def verify_fresh():
-        if authorization is not None:
-            current_authorization = validate_control_authorization(
-                github, binding, paths.record, paths.grant_state, protected_path,
-            )
-            require(current_authorization == authorization, "protected owner authorization changed after review")
-        require(github.get_pull(pull.number) == pull, "pull request changed after review")
-        if args.app_id is not None:
-            current = require_queue_rules(github, args.app_id, policy=policy)
-            require(current == approval, "live approval rules changed after review")
-        if observation is not None:
-            current = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
-            require(current == observation, "merge queue candidate or CI evidence changed after review")
 
     verify_fresh()
     result["status"] = "protected-rehearsal" if rehearsal else "reviewed-locally"
     if args.app_id is not None:
         # A protected caller, not the reviewer, provides a short-lived installation token.
-        installation_token = token_input().strip()
+        if installation_token is None:
+            installation_token = token_input().strip()
         check = create_check(snapshot, args.app_id, installation_token, decision, publisher, verify_fresh,
                              admission=admission)
         save(audit / "issued-check.json", encode(check))
@@ -542,6 +590,23 @@ def load_reviewer(settings):
     return Reviewer(uid, gid, home)
 
 
+def run_serialized(args, github, token_input):
+    """Hold the issuer's per-repository writer lock through review and issuance."""
+    import fcntl
+
+    protected_path(args.state_dir, directory=True)
+    path = args.state_dir / "issuer-write.lock"
+    with os.fdopen(os.open(path, os.O_CREAT | os.O_NOFOLLOW | os.O_RDWR, 0o600), "rb") as lock:
+        info = os.fstat(lock.fileno())
+        require(stat.S_ISREG(info.st_mode) and info.st_uid == os.geteuid() and not info.st_mode & 0o077,
+                "issuer writer lock has untrusted ownership or permissions")
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as error:
+            raise DataError("another protected review is active for this repository") from error
+        return run(args, github, token_input=token_input)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("inspect", "review"))
@@ -582,7 +647,10 @@ def main(argv=None):
             github = OwnerGitHub()
         else:
             github = GitHub()
-        result = run(args, github, token_input=token_input)
+        if args.app_id is None:
+            result = run(args, github, token_input=token_input)
+        else:
+            result = run_serialized(args, github, token_input)
     except (DataError, OSError, ValueError, TypeError, KeyError, subprocess.TimeoutExpired) as error:
         parser.exit(1, f"review gate: {error}\n")
     sys.stdout.buffer.write(encode(result))

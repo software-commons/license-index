@@ -11,11 +11,13 @@ import tomllib
 from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
+from urllib.parse import parse_qs, urlsplit
 
 from tools.records import DataError
 from tools.review_gate import (
     ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, AuthorizationPaths, Reviewer, create_check, launch_review,
-    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, verify_issued_check,
+    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, successful_checks,
+    verify_issued_check,
 )
 from tools.review_protection import commissioning_policy
 from tools.review_snapshot import PullSnapshot, REPOSITORY, SnapshotError
@@ -113,6 +115,9 @@ class ReviewGateTests(unittest.TestCase):
         capture = patch("tools.review_gate.capture_selected_evidence", return_value={})
         self.capture_evidence = capture.start()
         self.addCleanup(capture.stop)
+        checks = patch("tools.review_gate.successful_checks", return_value=[])
+        self.successful_checks = checks.start()
+        self.addCleanup(checks.stop)
         controls = patch("tools.review_gate.capture_control_paths", return_value=[])
         controls.start()
         self.addCleanup(controls.stop)
@@ -507,11 +512,14 @@ class ReviewGateTests(unittest.TestCase):
             with (patch("tools.review_gate.load_issuer", return_value=settings),
                   patch("tools.review_commission.OwnerGitHub") as owner,
                   patch("tools.review_gate.GitHub") as public,
+                  patch("tools.review_gate.run_serialized", return_value={"status": "check-issued"}) as issuer,
                   patch("tools.review_gate.run", return_value={"status": "inspection-only"}) as execute,
                   patch("tools.review_gate.sys.stdout", SimpleNamespace(buffer=BytesIO()))):
                 self.assertEqual(main(["review", "1", "--issuer-config", str(root / "config"), "--queue-admission"]), 0)
-                self.assertIs(execute.call_args.args[1], owner.return_value)
-                self.assertEqual(execute.call_args.args[0].authorized_control_merge, SNAPSHOT.merge)
+                self.assertIs(issuer.call_args.args[1], owner.return_value)
+                self.assertEqual(issuer.call_args.args[0].authorized_control_merge, SNAPSHOT.merge)
+                self.assertTrue(callable(issuer.call_args.args[2]))
+                execute.assert_not_called()
                 public.assert_not_called()
                 owner.reset_mock()
                 self.assertEqual(main(["inspect", "1", "--state-dir", str(root)]), 0)
@@ -526,6 +534,60 @@ class ReviewGateTests(unittest.TestCase):
                       api_check({**payload, "external_id": "unrelated"}), api_check({**payload, "conclusion": "failure"})):
             with self.subTest(check=check), self.assertRaisesRegex(DataError, "wrong-source"):
                 verify_issued_check(check, SNAPSHOT.merge, 123, "expected", "completed", "success")
+
+    def test_listing_selects_only_exact_app_context_and_ref_and_rejects_an_incomplete_history(self):
+        prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
+                           "status": "completed", "conclusion": "success"})
+        rows = [prior, {**prior, "app": {"id": 124}}, {**prior, "name": "unrelated"},
+                {**prior, "id": 43, "conclusion": "failure"}]
+        github = Mock()
+        github._get_json.return_value = {"total_count": len(rows), "check_runs": rows}
+        self.assertEqual(successful_checks(github, SNAPSHOT.head, 123), [prior])
+        endpoint = urlsplit(github._get_json.call_args.args[0])
+        self.assertEqual(endpoint.path, f"/repos/{REPOSITORY}/commits/{SNAPSHOT.head}/check-runs")
+        self.assertEqual(parse_qs(endpoint.query), {
+            "check_name": [CHECK_NAME], "app_id": ["123"], "filter": ["all"], "per_page": ["100"],
+        })
+        github._get_json.return_value["total_count"] += 1
+        with self.assertRaisesRegex(DataError, "complete history"):
+            successful_checks(github, SNAPSHOT.head, 123)
+
+        github._get_json.return_value = {"total_count": 1, "check_runs": [{**prior, "head_sha": SNAPSHOT.merge}]}
+        with self.assertRaisesRegex(DataError, "invalid exact review checks"):
+            successful_checks(github, SNAPSHOT.head, 123)
+
+    def test_same_head_adverse_review_revokes_old_success_before_launch(self):
+        with TemporaryDirectory() as directory:
+            state = Path(directory)
+            args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
+                                   app_id=123, reviewer=Reviewer(4001, 4002, state / "reviewer-home"),
+                                   queue_admission=True, commissioning_policy=ADDITIVE)
+            github = Mock()
+            use_queue_rules(github)
+            github.get_pull.return_value = SNAPSHOT
+            prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
+                               "status": "completed", "conclusion": "success"})
+            self.successful_checks.side_effect = [[prior], [prior], []]
+            publisher = Mock(return_value={**prior, "conclusion": "failure"})
+
+            def negative(_codex, _model, input_dir, _schema, _audit, *, reviewer):
+                publisher.assert_called_once()
+                self.assertEqual(publisher.call_args.kwargs["check_id"], prior["id"])
+                self.assertEqual(publisher.call_args.args[1]["conclusion"], "failure")
+                staged = (input_dir / "review-input.json").read_bytes()
+                self.assertNotIn(LEGACY_TOKEN.encode(), staged)
+                token = json.loads(staged)["inspection_token"]
+                return make_trace(token, verdict={"decision": "changes-required", "findings": ["Fixture finding"]})
+
+            with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                  patch("tools.review_gate.protected_staging", return_value=state),
+                  patch("tools.review_gate.share_reviewer_inputs"),
+                  patch("tools.review_gate.token_is_target_only", return_value=True),
+                  patch("tools.review_gate.launch_review", side_effect=negative)):
+                result = run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+            self.assertEqual(result["status"], "changes-required")
+            self.assertEqual(json.loads((Path(result["audit"]) / "superseded-checks.json").read_bytes()), [prior])
+            self.assertFalse((Path(result["audit"]) / "issued-check.json").exists())
 
     def test_issuer_without_reviewer_fails_before_capture_or_credential_read(self):
         with TemporaryDirectory() as directory:
