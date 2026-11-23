@@ -27,6 +27,26 @@ class SnapshotError(ValueError):
     """GitHub or the captured Git objects could not establish the review target."""
 
 
+def complete_rows(response, key):
+    """Reject incomplete GitHub listings before making scope decisions."""
+    if not isinstance(response, dict):
+        raise SnapshotError(f"GitHub returned malformed {key}")
+    rows = response.get(key)
+    if not isinstance(rows, list) or type(response.get("total_count")) is not int:
+        raise SnapshotError(f"GitHub returned malformed {key}")
+    if len(rows) != response["total_count"]:
+        raise SnapshotError(f"GitHub returned only part of the {key} listing")
+    return rows
+
+
+def token_is_target_only(github, repository_id, repository):
+    rows = complete_rows(github._get_json("/installation/repositories?per_page=100"), "repositories")
+    if len(rows) != 1 or not isinstance(rows[0], dict):
+        return False
+    row, = rows
+    return type(row.get("id")) is int and row["id"] == repository_id and row.get("full_name") == repository
+
+
 def _is_sha(value):
     return isinstance(value, str) and _SHA.fullmatch(value) is not None
 

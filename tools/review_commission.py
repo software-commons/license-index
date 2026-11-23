@@ -14,7 +14,9 @@ import sys
 from .records import encode
 from .review_gate import ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, require_queue_rules
 from .review_queue import capture_queue_observation
-from .review_snapshot import BASE_REF, REPOSITORY, REPOSITORY_ID, GitHub, SnapshotError
+from .review_snapshot import (
+    BASE_REF, REPOSITORY, REPOSITORY_ID, GitHub, SnapshotError, complete_rows, token_is_target_only,
+)
 
 ORGANIZATION = REPOSITORY.split("/", 1)[0]
 APP_PERMISSIONS = {"checks": "write", "statuses": "write", "metadata": "read"}
@@ -42,18 +44,6 @@ class OwnerGitHub(GitHub):
         except (OSError, ValueError, subprocess.TimeoutExpired):
             pass
         raise SnapshotError(f"GitHub CLI could not supply owner-readable commissioning data for {path}")
-
-
-def complete_rows(response, key):
-    """An incomplete listing cannot establish a negative finding."""
-    if not isinstance(response, dict):
-        raise SnapshotError(f"GitHub returned malformed {key}")
-    rows = response.get(key)
-    if not isinstance(rows, list) or type(response.get("total_count")) is not int:
-        raise SnapshotError(f"GitHub returned malformed {key}")
-    if len(rows) != response["total_count"]:
-        raise SnapshotError(f"GitHub returned only part of the {key} listing")
-    return rows
 
 
 def read_protection(github, sources):
@@ -164,9 +154,7 @@ def read_installation(github, scope_github, app_id, owner_session):
     if scope_github is None:
         problems.append("The installation token's repository scope has not been observed")
     else:
-        repositories = complete_rows(scope_github._get_json("/installation/repositories?per_page=100"), "repositories")
-        observed = [(repo.get("id"), repo.get("full_name")) for repo in repositories]
-        if observed == [(REPOSITORY_ID, REPOSITORY)]:
+        if token_is_target_only(scope_github, REPOSITORY_ID, REPOSITORY):
             result["token_scope"] = "target-only"
         else:
             result["token_scope"] = "mismatch"

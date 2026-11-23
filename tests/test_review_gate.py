@@ -17,7 +17,7 @@ from tools.review_gate import (
     ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, Reviewer, create_check, launch_review, load_issuer, main,
     load_reviewer, protected_path, require_queue_rules, review_result, run, verify_issued_check,
 )
-from tools.review_snapshot import PullSnapshot
+from tools.review_snapshot import PullSnapshot, REPOSITORY, SnapshotError
 
 EXECUTION = "90c3284d-c009-4e34-bc00-beb41319adad"
 SNAPSHOT = PullSnapshot(repository_id=1468281504, number=1, base="a" * 40, head="b" * 40, merge="c" * 40)
@@ -26,6 +26,8 @@ PATCH = b"diff --git a/tools/index.py b/tools/index.py\n+fixture change\n"
 BINDING = {"merge": SNAPSHOT.merge, "diff_sha256": sha256(PATCH).hexdigest()}
 LEGACY_TOKEN = "ghs_" + "a" * 36
 STATELESS_TOKEN = "ghs_12345_" + "A" * 120 + "." + "_-" * 100 + "." + "B" * 180
+TOKEN_REPOSITORY = {"id": SNAPSHOT.repository_id, "full_name": REPOSITORY}
+SCOPE_PATH = "/installation/repositories?per_page=100"
 
 
 def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.completed", proof=True):
@@ -83,6 +85,34 @@ class ReviewGateTests(unittest.TestCase):
         for token in ("ghp_" + "a" * 36, "ghs_short", LEGACY_TOKEN + "\r\nAuthorization: fixture"):
             self.assertIsNone(APP_TOKEN.fullmatch(token))
 
+    def test_issuer_refuses_unverified_repository_scope_before_writing(self):
+        scope = Mock()
+        publisher = Mock()
+        fresh = Mock()
+        other = {"id": SNAPSHOT.repository_id + 1, "full_name": "software-commons/other-index"}
+        wrong_rows = ([], [TOKEN_REPOSITORY, TOKEN_REPOSITORY], [TOKEN_REPOSITORY, other], [None],
+                      [{**TOKEN_REPOSITORY, "id": SNAPSHOT.repository_id + 1}],
+                      [{**TOKEN_REPOSITORY, "id": float(SNAPSHOT.repository_id)}],
+                      [{**TOKEN_REPOSITORY, "full_name": "software-commons/other-index"}])
+        responses = [{"total_count": len(rows), "repositories": rows} for rows in wrong_rows]
+        responses.extend(({"total_count": 2, "repositories": [TOKEN_REPOSITORY]},
+                          {"total_count": True, "repositories": [TOKEN_REPOSITORY]},
+                          {"total_count": 1, "repositories": {}}, None))
+        with patch("tools.review_gate.GitHub", return_value=scope) as client:
+            for response in responses:
+                scope._get_json.return_value = response
+                with self.subTest(response=response), self.assertRaisesRegex(
+                    (DataError, SnapshotError), "installation token|repositories",
+                ):
+                    create_check(SNAPSHOT, 123, LEGACY_TOKEN, {}, publisher, fresh)
+            scope._get_json.side_effect = SnapshotError("GitHub could not supply the review target")
+            with self.assertRaises(SnapshotError):
+                create_check(SNAPSHOT, 123, LEGACY_TOKEN, {}, publisher, fresh)
+        self.assertEqual(client.call_count, len(responses) + 1)
+        scope._get_json.assert_called_with(SCOPE_PATH)
+        publisher.assert_not_called()
+        fresh.assert_not_called()
+
     def test_issuer_publishes_final_review_only_to_the_current_queue_result(self):
         with TemporaryDirectory() as directory:
             state = Path(directory)
@@ -96,19 +126,24 @@ class ReviewGateTests(unittest.TestCase):
                                   **payload} if check_id is not None else payload)
 
             publisher = Mock(side_effect=respond)
+            scope = Mock()
+            scope._get_json.return_value = {"total_count": 1, "repositories": [TOKEN_REPOSITORY]}
             github.get_pull.return_value = SNAPSHOT
 
             def fake_launch(_codex, _model, input_dir, _schema, _audit, *, reviewer):
                 bound = json.loads((input_dir / "review-input.json").read_bytes())
                 return make_trace(bound["inspection_token"], verdict={"merge_sha": bound["merge"]})
 
-            with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+            with (patch("tools.review_gate.GitHub", return_value=scope) as client,
+                  patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
                   patch("tools.review_gate.capture_queue_observation", return_value=QUEUE) as observed,
                   patch("tools.review_gate.protected_staging", return_value=state),
                   patch("tools.review_gate.share_reviewer_inputs"),
                   patch("tools.review_gate.launch_review", side_effect=fake_launch)):
                 result = run(args, github, token_input=lambda: STATELESS_TOKEN, publisher=publisher)
                 self.assertEqual(result["status"], "check-issued")
+                client.assert_called_once_with(STATELESS_TOKEN)
+                scope._get_json.assert_called_once_with(SCOPE_PATH)
                 first, last = publisher.call_args_list
                 self.assertEqual(first.args[0], STATELESS_TOKEN)
                 self.assertEqual(first.args[1]["head_sha"], QUEUE["merge"])
@@ -160,7 +195,12 @@ class ReviewGateTests(unittest.TestCase):
                               "external_id": checks[0]["external_id"], **payload})
 
         fresh = Mock()
-        create_check(SNAPSHOT, 123, STATELESS_TOKEN, {"execution": EXECUTION}, publish, fresh, admission=True)
+        scope = Mock()
+        scope._get_json.return_value = {"total_count": 1, "repositories": [TOKEN_REPOSITORY]}
+        with patch("tools.review_gate.GitHub", return_value=scope) as client:
+            create_check(SNAPSHOT, 123, STATELESS_TOKEN, {"execution": EXECUTION}, publish, fresh, admission=True)
+        client.assert_called_once_with(STATELESS_TOKEN)
+        scope._get_json.assert_called_once_with(SCOPE_PATH)
         self.assertEqual(checks[0]["head_sha"], SNAPSHOT.head)
         self.assertIn("Queue admission", checks[1]["output"]["title"])
         self.assertEqual(fresh.call_count, 2)

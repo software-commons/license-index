@@ -21,7 +21,7 @@ from uuid import UUID, uuid4
 
 from .records import DataError, NoRedirects, decode, encode, require
 from .review_queue import capture_queue_observation
-from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_diff
+from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_diff, token_is_target_only
 
 CHECK_NAME = "Software Commons / Codex technical review"
 ACTIONS_APP_ID = 15368
@@ -217,6 +217,8 @@ def require_queue_rules(github, app_id):
 def create_check(snapshot, app_id, token, decision, publisher, verify_fresh, *, admission=False):
     require(type(app_id) is int and app_id > 0 and app_id != ACTIONS_APP_ID and APP_TOKEN.fullmatch(token),
             "expected a dedicated GitHub App installation token")
+    require(token_is_target_only(GitHub(token), snapshot.repository_id, REPOSITORY),
+            "the installation token must list only the configured review repository")
     target = snapshot.head if admission else snapshot.merge
     purpose = "Queue admission" if admission else "Final merge-queue review"
     verify_fresh()
