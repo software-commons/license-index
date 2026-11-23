@@ -63,6 +63,10 @@ def _run(arguments):
     # and parent links under the repository path supplied by the index.
     environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("GIT_")}
     environment.update(GIT_NO_REPLACE_OBJECTS="1", GIT_GRAFT_FILE=os.devnull)
+    if os.name == "nt":
+        # Git for Windows tests the full commit:path argument as a path before
+        # dereferencing it. Allow long paths in both Git and the validator's Git.
+        environment.update(GIT_CONFIG_COUNT="1", GIT_CONFIG_KEY_0="core.longpaths", GIT_CONFIG_VALUE_0="true")
     try:
         result = subprocess.run(arguments, capture_output=True, check=False, env=environment)
     except OSError as error:

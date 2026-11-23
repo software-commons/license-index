@@ -1,7 +1,9 @@
 """Synthetic domain fixtures. They do not supply SCES research or verification."""
 
+import os
 from pathlib import Path
 import subprocess
+import sys
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
@@ -10,7 +12,7 @@ from unittest.mock import patch
 from tools.audit_claims import audit_claims
 from tools.index import execute, parser
 from tools.qualification import (
-    POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _validate_policy, check_history, qualified,
+    POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _run, _validate_policy, check_history, qualified,
 )
 from tools.records import ROOT, Catalog, DataError, encode
 
@@ -160,6 +162,27 @@ class GitHistoryTests(unittest.TestCase):
         self.snapshot.write_bytes(self.snapshot.read_bytes() + b"\n")
         with self.assertRaisesRegex(DataError, "snapshot was modified"):
             check_history(self.catalog, self.base)
+
+    @unittest.skipUnless(os.name == "nt", "requires Git for Windows")
+    def test_validator_reads_committed_evidence_with_a_long_git_path(self):
+        self.git("config", "core.longpaths", "false")
+        parent = "sces/records/dependency"
+        suffix = "--1.json"
+        name_length = 245 - len(str(self.root / parent)) - len(suffix) - 1
+        path = f"{parent}/{'d' * name_length}{suffix}"
+        evidence = self.write(path, {"fixture": "synthetic evidence reference"})
+        self.git("add", "--", path)
+        self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                 "-c", "commit.gpgsign=false", "commit", "--quiet", "-m", "Synthetic evidence snapshot")
+        revision = self.git("rev-parse", "HEAD").strip()
+        # Invoke Git through a child interpreter as the isolated SCES validator does.
+        code = "import subprocess, sys; sys.stdout.buffer.write(subprocess.check_output(sys.argv[1:]))"
+        inherited = {"GIT_DIR": str(self.root / "wrong"), "GIT_CONFIG_COUNT": "1",
+                     "GIT_CONFIG_KEY_0": "core.longpaths", "GIT_CONFIG_VALUE_0": "false"}
+        with patch.dict(os.environ, inherited):
+            output = _run([sys.executable, "-I", "-B", "-c", code, "git", "-C", str(self.root),
+                           "show", f"{revision}:{path}"])
+        self.assertEqual(output, evidence.read_bytes())
 
     def test_no_active_qualification_rejects_registered_entities(self):
         with self.assertRaisesRegex(DataError, "require an active"):
