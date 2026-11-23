@@ -56,6 +56,8 @@ def validate_texts(catalog):
         content.decode("utf-8")
         require(package["source"].startswith("https://") and package["rights"].startswith("https://"),
                 f"missing publication provenance for {identifier}")
+        if "rights_sha256" in package:
+            require(HEX_256.fullmatch(package["rights_sha256"]), f"invalid rights digest for {identifier}")
         require(package.get("install") in {None, "unchanged"}, f"unexpected bundle treatment: {identifier}")
         if package.get("install"):
             require(origin["list_kind"] == "license" and not origin["deprecated"]
@@ -136,7 +138,7 @@ def bundle(catalog, output):
                      for path in (catalog.root / folder).rglob(pattern) if path.is_file())
     if catalog.profiles:
         files.add("research/campaigns/profiles.json")
-    files.difference_update({"tools/review_gate.py", "tools/review_snapshot.py"})
+    files.difference_update({"tools/review_commission.py", "tools/review_gate.py", "tools/review_snapshot.py"})
     data = BytesIO()
     with ZipFile(data, "w") as archive:
         archive_entry(archive, "catalog.json", encode(discovery_export(catalog)))

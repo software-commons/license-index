@@ -137,9 +137,25 @@ class ToolTests(unittest.TestCase):
             with ZipFile(archive) as package:
                 self.assertNotIn("sces/publication.json", package.namelist())
                 self.assertNotIn("tools/review_gate.py", package.namelist())
+                self.assertNotIn("tools/review_commission.py", package.namelist())
+                manifest = json.loads(package.read("legal-texts/manifest.json"))
+                for identifier in ("CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0",
+                                   "CC-BY-NC-SA-4.0", "CC-BY-NC-ND-4.0"):
+                    package_source = manifest[identifier]
+                    text = package.read(package_source["path"])
+                    self.assertEqual(hashlib.sha256(text).hexdigest(), package_source["sha256"])
+                    self.assertNotIn("install", package_source)
                 package.extractall(unpacked)
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())
+            for edition in ("Noncommercial", "Small-Business"):
+                identifier = f"PolyForm-{edition}-1.0.0"
+                text = ROOT / "legal-texts" / f"{identifier.lower()}.md"
+                self.assertEqual(command("text", identifier, root=unpacked).stdout, text.read_bytes())
+                rejected = command("add", identifier, "--output", folder / "LICENSE", root=unpacked)
+                self.assertEqual(rejected.returncode, 1)
+                self.assertIn(b"installation is unsupported", rejected.stderr)
+                self.assertFalse((folder / "LICENSE").exists())
             self.assertEqual(command("coverage", root=unpacked).returncode, 0)
             selection = unpacked / "sces" / "publication.json"
             selection.parent.mkdir()

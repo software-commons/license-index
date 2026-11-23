@@ -1,8 +1,8 @@
 {
   "assessment": {
     "authentic_text": {
-      "bundled_publisher_text_files": 5,
-      "bundled_publisher_text_identities": 7,
+      "bundled_publisher_text_files": 12,
+      "bundled_publisher_text_identities": 14,
       "spdx_header_references": 93,
       "spdx_matching_template_references": 826,
       "spdx_text_references": 826
@@ -44,6 +44,6 @@
   "cutoff": "2026-11-23",
   "method": "Reconcile exact upstream list manifests and per-ID artifact checksums. Count discovery, packaged text, safe installation, provisional research, and selected SCES claims separately.",
   "schema_version": "1.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-publisher-revisit.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-offline-publisher-texts.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
