@@ -23,7 +23,15 @@ python -B -m tools.review_gate inspect 1 --state-dir /protected/codex-review-aud
 python -B -m tools.review_gate review 1 --state-dir /protected/codex-review-audit --codex /protected/bin/codex --model APPROVED_MODEL
 ```
 
-The first command captures the public Git objects and exact patch. The second exercises the reviewer without contacting the write endpoint or applying the protected issuer's POSIX identity and permissions profile. Add `--queue-admission` to exercise single-parent head validation. After GitHub produces a live merge-group run, use `--queue-run RUN_ID` to inspect the exact queued candidate and the GitHub CI records.
+The first command captures the public Git objects and exact patch. The second exercises the reviewer on the local account. Add `--queue-admission` to exercise single-parent head validation. After GitHub produces a live merge-group run, use `--queue-run RUN_ID` to inspect the exact queued candidate and the GitHub CI records.
+
+On the intended issuer host, exercise the protected runtime before App registration or live rule changes.
+
+```text
+python -B -m tools.review_gate review 1 --rehearsal-config /protected/config/rehearsal.json --queue-admission
+```
+
+Use the same `audit_dir`, `codex`, `codex_sha256`, `model`, `reviewer_uid`, `reviewer_gid`, and `reviewer_home` settings described below. The rehearsal configuration omits `app_id`. This runs the pinned Codex launcher under the dedicated reviewer account with the same staging permissions and network-disabled tool profile used for issuance. The audit record is marked as a rehearsal and the command neither reads a token nor writes a check. Verify the account, file access and tool-network boundaries with synthetic sentinels on the intended host. The protected GitHub queue trial establishes live enforcement separately.
 
 For issuance, run `python -B -m tools.review_gate review 1 --issuer-config /protected/config/review.json --queue-admission` and then a separate execution with `--queue-run RUN_ID` for the live group. Use an issuer-controlled POSIX account with authority to launch the process under the reviewer identity and assign the input group. Configure `app_id`, `audit_dir`, `codex`, `codex_sha256`, `model`, `reviewer_uid`, `reviewer_gid`, and `reviewer_home` in that private configuration. The reviewer UID, primary GID, and home must match a dedicated system account. The issuer launches Codex with a minimal environment and no supplemental groups. It stages the public inputs under the root-owned sticky temporary directory and grants the reviewer group read-only access. Use a pinned Codex CLI that supports scoped permissions profiles. The protected launch uses strict configuration and an ephemeral session, grants tool reads to minimal runtime paths and that run's staged inputs, and disables tool network access. Verify these boundaries on the actual host before commissioning.
 

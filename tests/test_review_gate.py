@@ -2,6 +2,7 @@
 
 from dataclasses import replace
 from hashlib import sha256
+from io import BytesIO
 import json
 import os
 from pathlib import Path
@@ -13,7 +14,7 @@ from unittest.mock import Mock, patch
 
 from tools.records import DataError
 from tools.review_gate import (
-    ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, Reviewer, create_check, launch_review, load_issuer,
+    ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, Reviewer, create_check, launch_review, load_issuer, main,
     load_reviewer, require_queue_rules, review_result, run, verify_issued_check,
 )
 from tools.review_snapshot import PullSnapshot
@@ -284,6 +285,48 @@ class ReviewGateTests(unittest.TestCase):
                 "network": {"enabled": False}, "filesystem": {":minimal": "read", str(root / "inputs"): "read"},
             })
 
+    def test_protected_rehearsal_records_a_review_without_reading_a_token_or_writing_a_check(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            reviewer = Reviewer(4001, 4002, root / "reviewer-home")
+            config = root / "rehearsal.json"
+            github = Mock()
+            github.get_pull.return_value = SNAPSHOT
+            stdout = BytesIO()
+            stdin = Mock()
+
+            def fake_launch(_codex, _model, input_dir, _schema, _audit, *, reviewer):
+                self.assertEqual(reviewer.uid, 4001)
+                self.assertEqual((input_dir / "review.diff").read_bytes(), PATCH)
+                token = json.loads((input_dir / "review-input.json").read_bytes())["inspection_token"]
+                return make_trace(token)
+
+            with (patch("tools.review_gate.load_issuer", return_value=(root, root / "codex", "fixture", None, reviewer)) as load,
+                  patch("tools.review_gate.GitHub", return_value=github),
+                  patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)) as capture,
+                  patch("tools.review_gate.protected_staging", return_value=root),
+                  patch("tools.review_gate.share_reviewer_inputs") as share,
+                  patch("tools.review_gate.launch_review", side_effect=fake_launch) as launch,
+                  patch("tools.review_gate.create_check") as issuer,
+                  patch("tools.review_gate.sys.stdout", SimpleNamespace(buffer=stdout)),
+                  patch("tools.review_gate.sys.stdin", stdin)):
+                self.assertEqual(main(["review", "1", "--rehearsal-config", str(config), "--queue-admission"]), 0)
+
+            load.assert_called_once_with(config, rehearsal=True)
+            self.assertTrue(capture.call_args.kwargs["linear_head"])
+            self.assertEqual(share.call_args.args[1], reviewer.gid)
+            self.assertEqual(launch.call_args.kwargs["reviewer"], reviewer)
+            self.assertEqual(len(github.method_calls), 2)
+            self.assertTrue(all(method[0] == "get_pull" for method in github.method_calls))
+            stdin.readline.assert_not_called()
+            issuer.assert_not_called()
+            result = json.loads(stdout.getvalue())
+            self.assertEqual(result["status"], "protected-rehearsal")
+            decision = (Path(result["audit"]) / "decision.json").read_bytes()
+            self.assertTrue(json.loads(decision)["rehearsal"])
+            self.assertEqual(result["decision_sha256"], sha256(decision).hexdigest())
+            self.assertFalse((Path(result["audit"]) / "issued-check.json").exists())
+
     @unittest.skipUnless(os.name == "posix", "issuer deployment requires POSIX permissions")
     def test_protected_issuer_config_rejects_unpinned_runner_and_shared_permissions(self):
         with TemporaryDirectory() as directory:
@@ -291,15 +334,18 @@ class ReviewGateTests(unittest.TestCase):
             codex = root / "codex"
             codex.write_bytes(b"synthetic executable")
             config = root / "review.json"
-            config.write_text(json.dumps({
+            settings = {
                 "app_id": 123, "audit_dir": str(root), "codex": str(codex), "model": "fixture",
                 "codex_sha256": sha256(codex.read_bytes()).hexdigest(),
                 "reviewer_uid": 4001, "reviewer_gid": 4002, "reviewer_home": str(root / "reviewer-home"),
-            }), encoding="utf-8")
+            }
+            config.write_text(json.dumps(settings), encoding="utf-8")
             config.chmod(0o600)
             reviewer = Reviewer(4001, 4002, root / "reviewer-home")
             with patch("tools.review_gate.load_reviewer", return_value=reviewer):
                 self.assertEqual(load_issuer(config), (root, codex, "fixture", 123, reviewer))
+                with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
+                    load_issuer(config, rehearsal=True)
                 config.chmod(0o640)
                 with self.assertRaisesRegex(DataError, "must be private"):
                     load_issuer(config)
@@ -310,6 +356,12 @@ class ReviewGateTests(unittest.TestCase):
                 codex.chmod(0o644)
                 codex.write_bytes(b"another executable")
                 with self.assertRaisesRegex(DataError, "differs from"):
+                    load_issuer(config)
+                codex.write_bytes(b"synthetic executable")
+                del settings["app_id"]
+                config.write_text(json.dumps(settings), encoding="utf-8")
+                self.assertEqual(load_issuer(config, rehearsal=True), (root, codex, "fixture", None, reviewer))
+                with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
                     load_issuer(config)
 
     @unittest.skipUnless(os.name == "posix", "issuer deployment requires POSIX permissions")

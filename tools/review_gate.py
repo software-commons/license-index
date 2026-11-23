@@ -47,8 +47,7 @@ REVIEWER_ENV = {
 }
 MAX_TRACE_BYTES = 32 * 1024 * 1024
 APP_TOKEN = re.compile(r"ghs_[A-Za-z0-9._-]{36,}")
-ISSUER_KEYS = {"app_id", "audit_dir", "codex", "codex_sha256", "model",
-               "reviewer_uid", "reviewer_gid", "reviewer_home"}
+RUNTIME_KEYS = {"audit_dir", "codex", "codex_sha256", "model", "reviewer_uid", "reviewer_gid", "reviewer_home"}
 
 
 @dataclass(frozen=True)
@@ -243,6 +242,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
     require(state.is_dir(), "configure an existing issuer-owned state directory")
     reviewer = getattr(args, "reviewer", None)
     require(args.app_id is None or reviewer is not None, "check issuance requires the isolated reviewer identity")
+    rehearsal = reviewer is not None and args.app_id is None
     admission = getattr(args, "queue_admission", False)
     run_id = getattr(args, "queue_run", None)
     require(not (admission and run_id is not None), "select one review phase")
@@ -289,10 +289,14 @@ def run(args, github, *, token_input=None, publisher=write_check):
                 "started_at": started_at, "completed_at": completed_at,
                 "trace_sha256": sha256(trace).hexdigest(), "decision": verdict["decision"],
                 "findings": verdict["findings"], "rationale": verdict["rationale"]}
+    if rehearsal:
+        decision["rehearsal"] = True
     record = encode(decision)
     save(audit / "decision.json", record)
     result = {"audit": str(audit), "binding": binding, "execution": execution,
               "decision_sha256": sha256(record).hexdigest()}
+    if rehearsal:
+        result["rehearsal"] = True
     if verdict["decision"] != "approve":
         return {**result, "status": verdict["decision"], "findings": verdict["findings"], "rationale": verdict["rationale"]}
     def verify_fresh():
@@ -304,7 +308,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
             require(current == observation, "merge queue candidate or CI evidence changed after review")
 
     verify_fresh()
-    result["status"] = "reviewed-locally"
+    result["status"] = "protected-rehearsal" if rehearsal else "reviewed-locally"
     if args.app_id is not None:
         # A protected caller, not the reviewer, provides a short-lived installation token.
         installation_token = token_input().strip()
@@ -354,15 +358,18 @@ def trusted_executable(path):
                 "pinned Codex parent directories must prevent reviewer replacement")
 
 
-def load_issuer(path):
-    require(os.name == "posix", "check issuance currently requires a protected POSIX issuer account")
+def load_issuer(path, *, rehearsal=False):
+    require(os.name == "posix", "the protected reviewer requires a POSIX issuer account")
     protected_path(path.parent, directory=True)
     protected_path(path, directory=False)
     settings = decode(path.read_bytes())
-    require(isinstance(settings, dict) and settings.keys() == ISSUER_KEYS and type(settings["app_id"]) is int
-            and settings["app_id"] > 0 and settings["app_id"] != ACTIONS_APP_ID
+    expected_keys = RUNTIME_KEYS if rehearsal else RUNTIME_KEYS | {"app_id"}
+    require(isinstance(settings, dict) and settings.keys() == expected_keys
             and isinstance(settings["model"], str) and settings["model"].strip(),
             "invalid protected issuer configuration")
+    app_id = settings.get("app_id")
+    require(rehearsal or (type(app_id) is int and app_id > 0 and app_id != ACTIONS_APP_ID),
+            "invalid protected review App ID")
     audit = Path(settings["audit_dir"])
     protected_path(audit, directory=True)
     reviewer = load_reviewer(settings)
@@ -371,7 +378,7 @@ def load_issuer(path):
     with codex.open("rb") as executable:
         require(file_digest(executable, "sha256").hexdigest() == settings["codex_sha256"],
                 "Codex executable differs from the protected issuer pin")
-    return audit, codex, settings["model"], settings["app_id"], reviewer
+    return audit, codex, settings["model"], app_id, reviewer
 
 
 def load_reviewer(settings):
@@ -401,21 +408,27 @@ def main(argv=None):
     phase = parser.add_mutually_exclusive_group()
     phase.add_argument("--queue-admission", action="store_true", help="review the test merge for queue admission")
     phase.add_argument("--queue-run", type=int, help="review the exact candidate for a GitHub merge-group Actions run")
-    parser.add_argument("--issuer-config", type=Path, help="protected issuer configuration, installation token read from stdin")
+    config = parser.add_mutually_exclusive_group()
+    config.add_argument("--issuer-config", type=Path, help="protected issuer configuration, installation token read from stdin")
+    config.add_argument("--rehearsal-config", type=Path, help="protected reviewer configuration without App access")
     args = parser.parse_args(argv)
     args.app_id = None
     args.reviewer = None
     try:
-        if args.issuer_config:
+        config_path = args.issuer_config or args.rehearsal_config
+        if config_path:
             if args.mode != "review" or args.state_dir or args.codex or args.model:
-                parser.error("issuer configuration is exclusive to review and supplies all deployment options")
-            args.state_dir, args.codex, args.model, args.app_id, args.reviewer = load_issuer(args.issuer_config)
+                parser.error("protected configuration is exclusive to review and supplies all deployment options")
+            args.state_dir, args.codex, args.model, args.app_id, args.reviewer = load_issuer(
+                config_path, rehearsal=args.rehearsal_config is not None,
+            )
         else:
             if not args.state_dir:
                 parser.error("local inspection or review needs --state-dir")
             if args.mode == "review" and (not args.codex or not args.codex.is_absolute() or not args.model):
                 parser.error("local review needs an absolute --codex path and an explicit --model")
-        result = run(args, GitHub(), token_input=lambda: sys.stdin.readline(4096))
+        token_input = (lambda: sys.stdin.readline(4096)) if args.app_id is not None else None
+        result = run(args, GitHub(), token_input=token_input)
     except (DataError, OSError, ValueError, TypeError, KeyError, subprocess.TimeoutExpired) as error:
         parser.exit(1, f"review gate: {error}\n")
     sys.stdout.buffer.write(encode(result))
