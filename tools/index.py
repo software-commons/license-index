@@ -106,7 +106,9 @@ def text_or_add(catalog, args):
     if not installing:
         result["text"] = text.decode("utf-8")
         return result, text
-    require(source.get("install"), f"installation is unsupported for {identifier}")
+    application = source.get("application")
+    guidance = f". {application}" if application else ""
+    require(source.get("install"), f"installation is unsupported for {identifier}{guidance}")
     installed = render(text, source["install"], holder=args.holder, year=args.year, preview=args.dry_run)
     write_license(args.output, installed, force=args.force, dry_run=args.dry_run)
     result.update({
@@ -114,7 +116,7 @@ def text_or_add(catalog, args):
         "dry_run": args.dry_run,
         "written": not args.dry_run,
         "output_sha256": sha256(installed).hexdigest(),
-        "application": source.get("application", "Use the selected notice only for material you can license."),
+        "application": application or "Use the selected notice only for material you can license.",
     })
     if args.dry_run:
         result["text"] = installed.decode("utf-8")

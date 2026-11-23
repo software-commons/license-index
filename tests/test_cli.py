@@ -212,7 +212,15 @@ class ToolTests(unittest.TestCase):
                 package.extractall(unpacked)
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())
-            for identifier, text_name in (("AGPL-3.0-only", "agpl-3.0.txt"), ("EPL-2.0", "epl-2.0.txt")):
+            for identifier, text_name in (
+                ("AGPL-3.0-only", "agpl-3.0.txt"),
+                ("AGPL-3.0-or-later", "agpl-3.0.txt"),
+                ("CC-BY-4.0", "cc-by-4.0.txt"),
+                ("CC0-1.0", "cc0-1.0.txt"),
+                ("EPL-2.0", "epl-2.0.txt"),
+                ("GPL-2.0-or-later", "gpl-2.0.txt"),
+                ("GPL-3.0-or-later", "gpl-3.0.txt"),
+            ):
                 with self.subTest(identifier=identifier):
                     expected = (ROOT / "legal-texts" / text_name).read_bytes()
                     self.assertEqual(command("text", identifier, root=unpacked).stdout, expected)
@@ -221,12 +229,21 @@ class ToolTests(unittest.TestCase):
                     self.assertEqual(result.returncode, 0, result.stderr.decode())
                     self.assertEqual(output.read_bytes(), expected)
                     self.assertEqual(command("add", identifier, "--output", output, root=unpacked).returncode, 1)
-            self.assertEqual(command("text", "AGPL-3.0-or-later", root=unpacked).stdout,
-                             (ROOT / "legal-texts/agpl-3.0.txt").read_bytes())
-            unsupported = command("add", "AGPL-3.0-or-later", "--output", folder / "LICENSE", root=unpacked)
-            self.assertEqual(unsupported.returncode, 1)
-            self.assertIn(b"installation is unsupported", unsupported.stderr)
-            self.assertFalse((folder / "LICENSE").exists())
+            preview = command("add", "GPL-2.0-or-later", "--output", folder / "COPYING", "--dry-run",
+                              "--json", root=unpacked)
+            self.assertEqual(preview.returncode, 0, preview.stderr.decode())
+            result = json.loads(preview.stdout)
+            self.assertFalse(result["written"])
+            self.assertFalse((folder / "COPYING").exists())
+            self.assertIn("version 2 or any later version", result["application"])
+            for identifier in ("LGPL-3.0-only", "LGPL-3.0-or-later"):
+                with self.subTest(identifier=identifier):
+                    expected = (ROOT / "legal-texts" / "lgpl-3.0.txt").read_bytes()
+                    self.assertEqual(command("text", identifier, root=unpacked).stdout, expected)
+                    rejected = command("add", identifier, "--output", folder / "COPYING.LESSER", root=unpacked)
+                    self.assertEqual(rejected.returncode, 1)
+                    self.assertIn(b"Include both publisher texts", rejected.stderr)
+                    self.assertFalse((folder / "COPYING.LESSER").exists())
             for edition in ("Noncommercial", "Small-Business"):
                 identifier = f"PolyForm-{edition}-1.0.0"
                 text = ROOT / "legal-texts" / f"{identifier.lower()}.md"
