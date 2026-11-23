@@ -118,6 +118,13 @@ class ToolTests(unittest.TestCase):
         self.assertIn("examples of Opaque formats", gfdl["GFDL-1.1-only"]["format_classification"]["text"])
         self.assertIn("designed for human modification", gfdl["GFDL-1.2-only"]["format_classification"]["text"])
         self.assertIn("before 1 August 2009", gfdl["GFDL-1.3-only"]["historical_relicensing"]["text"])
+        exceptions = self.json_output("compare", "GCC-exception-3.1", "Linux-syscall-note")
+        self.assertEqual(exceptions["status"], "provisional")
+        gcc, linux = [row["dimensions"] for row in exceptions["records"]]
+        self.assertIn("all Target Code", gcc["exception_scope"]["text"])
+        self.assertIn("ordinary use", linux["exception_scope"]["text"])
+        odbl = self.json_output("explain", "ODbL-1.0")["profile"]
+        self.assertIn("Public Use of a Produced Work", odbl["dimensions"]["share_alike"]["text"])
         sources = self.json_output("sources", "MIT")
         self.assertTrue(sources["research_citations"])
         self.assertIn("sha256", sources["origin"]["artifacts"]["text"])
@@ -163,7 +170,7 @@ class ToolTests(unittest.TestCase):
 
     def test_admission_plan_preserves_legacy_scope_and_unprofiled_leads(self):
         identifiers = ("GPL-2.0-with-classpath-exception", "LLVM-exception", "Commons Clause License Condition v1.0",
-                       "GCC-exception-3.1", "Zlib")
+                       "GCC-exception-2.0", "Zlib")
         plan = self.json_output("review-plan", "--admission", *identifiers)
         self.assertEqual(plan, self.json_output("review-plan", "--admission", *reversed(identifiers), "llvm-exception"))
         packets = {item["identifier"]: item for item in plan["candidates"]}
@@ -244,6 +251,15 @@ class ToolTests(unittest.TestCase):
                 package.extractall(unpacked)
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())
+            exception = "GCC-exception-3.1"
+            expected = (ROOT / "legal-texts/gcc-runtime-exception-3.1.txt").read_bytes()
+            self.assertEqual(command("text", exception, root=unpacked).stdout, expected)
+            self.assertNotIn("install", manifest[exception])
+            exception_output = folder / "COPYING.RUNTIME"
+            rejected = command("add", exception, "--output", exception_output, root=unpacked)
+            self.assertEqual(rejected.returncode, 1)
+            self.assertIn(b"standalone license", rejected.stderr)
+            self.assertFalse(exception_output.exists())
             for identifier, text_name in (
                 ("AGPL-3.0-only", "agpl-3.0.txt"),
                 ("AGPL-3.0-or-later", "agpl-3.0.txt"),

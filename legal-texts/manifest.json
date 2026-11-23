@@ -162,6 +162,18 @@
     "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
     "source": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt"
   },
+  "GCC-exception-3.1": {
+    "bytes": 3324,
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "path": "legal-texts/gcc-runtime-exception-3.1.txt",
+    "representation": "publisher release plain text",
+    "retrieved_on": "2026-11-23",
+    "revision": "04696df09633baf97cdbbdd6e9929b9d472161d3",
+    "rights": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L5-L8",
+    "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+    "source": "https://raw.githubusercontent.com/gcc-mirror/gcc/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME"
+  },
   "GFDL-1.1-invariants-only": {
     "application": "This writes the verbatim GNU FDL 1.1 document. State version 1.1 only in the authorized document notice, following the edition’s Addendum. Use this identifier when the authorized notice designates at least one Invariant Section, Front-Cover Text, or Back-Cover Text. Record and preserve the exact designations.",
     "bytes": 18101,
