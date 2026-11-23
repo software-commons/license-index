@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 import sys
 
-from .qualification import POLICY_COMMIT, POLICY_DIGEST, REPOSITORY, _exact_file, _pinned_validator, _run
+from .qualification import POLICY_COMMIT, POLICY_DIGEST, REPOSITORY, _exact_file, _git, _pinned_validator, _run
 from .records import DATA_COMMIT, ROOT, DataError, decode, encode, require
 
 
@@ -51,6 +51,13 @@ def audit_claims(repository, policy, base=None):
     require(_exact_file(root / adoption) == _exact_file(ROOT / adoption),
             "the draft adoption file differs from the License Index tool checkout")
     require(base is None or DATA_COMMIT.fullmatch(base), "use a full Git commit for the history base")
+    if base is not None:
+        checkout = _git(root, "rev-parse", "--show-toplevel").decode("utf-8").strip()
+        require(Path(checkout).resolve() == root, "the draft path must be its Git checkout root")
+        try:
+            _git(root, "merge-base", "--is-ancestor", base, "HEAD")
+        except DataError as error:
+            raise DataError(f"the draft history base must be an ancestor of HEAD: {error}") from error
     validator = _pinned_validator(policy)
     audited = decode(_run([sys.executable, "-I", "-B", "-c", PROBE, str(validator), str(root),
                            REPOSITORY, POLICY_DIGEST, base or ""]))

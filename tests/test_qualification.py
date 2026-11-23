@@ -308,6 +308,14 @@ class Registry:
         self.assertEqual(reviewed["recorded_phases"], ["research", "independent-review"])
         self.assertFalse((self.root / "sces/publication.json").exists())
 
+        tree = self.git("rev-parse", "HEAD^{tree}").strip()
+        unrelated = self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                             "commit-tree", tree, "-m", "Synthetic unrelated history").strip()
+        with patch("tools.audit_claims._pinned_validator") as load:
+            with self.assertRaisesRegex(DataError, "history base must be an ancestor"):
+                audit_claims(self.root, self.root, unrelated)
+            load.assert_not_called()
+
         adoption.write_bytes(adoption.read_bytes() + b"\n")
         with patch("tools.audit_claims._pinned_validator") as load:
             with self.assertRaisesRegex(DataError, "draft adoption file differs"):
