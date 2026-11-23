@@ -1,6 +1,6 @@
 # Eclipse Public License qualification
 
-This campaign proposes eight assertions about Eclipse Public License 1.0 and 2.0. The separate publisher documents have exact byte pins and independent SPDX License List 3.29.0 entries. Each draft remains provisional until original-source research and fresh independent verification support its exact bytes.
+Separate research and independent Codex review supported eight exact assertions about Eclipse Public License 1.0 and 2.0. Both executions reopened the publisher documents and the separate SPDX License List 3.29.0 records. The broader Eclipse profiles remain provisional.
 
 | Assertions | Original inputs | Challenge |
 | --- | --- | --- |
@@ -12,6 +12,8 @@ This campaign proposes eight assertions about Eclipse Public License 1.0 and 2.0
 
 The publisher files match the existing offline installer inputs byte for byte. The composite SPDX responses are in controlled research custody. These assertions leave project licensing, general compatibility, and an assessment of any complete distribution open for separate research.
 
+- [Source research receipts](../../sces/artifacts/eclipse-public-licenses/research-receipts.jsonl)
+- [Independent verification receipts](../../sces/artifacts/eclipse-public-licenses/independent-review-receipts.jsonl)
 - [Eclipse Public License 1.0](https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt)
 - [Eclipse Public License 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
 - [Eclipse Foundation Board approval of the revised EPL 2.0 Exhibit A, page 2](https://www.eclipse.org/org/foundation/minutes/board/2017-09-20-minutes.pdf)
