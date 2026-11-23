@@ -16,13 +16,15 @@ from .qualification import POLICY_COMMIT, POLICY_DIGEST, _blob_hash, _canonical,
 from .records import Catalog, DATA_COMMIT, DataError, ROOT, decode, encode, local_path, require
 
 CONTRACTS_PATH = "evidence/v1/contracts.schema.json"
+CONTRACTS_SHA256 = "574956395247de677332da8e2cec19453bd34cf0497b40c31280b202cfd8630c"
+CONTRACTS_ASSET = "sces-contracts.schema.json"
 SELECTION_PATH = "sces/publication.json"
 DATA_DIRECTORIES = ("sces", "registry", "research", "legal-texts")
 REPORT_FIELDS = ("repository", "release", "dataset", "dataset_version", "schema_version", "source_commit",
                  "policy_sha256", "selection_sha256")
 REQUEST_STATUS = "awaiting-separate-release-authorization"
 CHECKSUMS = "SHA256SUMS"
-RELEASE_ASSETS = {"claims.json", "qualification.json", "sces-contracts.schema.json", CHECKSUMS}
+RELEASE_ASSETS = {"claims.json", "qualification.json", CONTRACTS_ASSET, CHECKSUMS}
 ARCHIVE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\.zip", re.ASCII | re.IGNORECASE)
 GITHUB_ASSET_LIMIT = 2 * 1024 ** 3
 
@@ -83,7 +85,8 @@ def policy_schema(policy):
     files = manifest["files"]
     require(sha256(_canonical(files)).hexdigest() == POLICY_DIGEST, "SCES schema manifest is outside the policy pin")
     schema = _exact_file(root / CONTRACTS_PATH)
-    require(sha256(schema).hexdigest() == files[CONTRACTS_PATH], "SCES schema bytes differ from the policy pin")
+    require(sha256(schema).hexdigest() == files[CONTRACTS_PATH] == CONTRACTS_SHA256,
+            "SCES schema bytes differ from the policy pin")
     return schema
 
 
@@ -118,7 +121,7 @@ def collect(catalog, policy, base):
     assets = {
         "claims.json": claims_bytes,
         "qualification.json": report_bytes,
-        "sces-contracts.schema.json": policy_schema(policy),
+        CONTRACTS_ASSET: policy_schema(policy),
     }
     assets[CHECKSUMS] = checksum_listing(assets)
     metadata = {key: report[key] for key in REPORT_FIELDS}

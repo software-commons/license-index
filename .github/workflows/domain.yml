@@ -56,7 +56,7 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
         run: |
-          set -eu
+          set -euo pipefail
           python -m pip install --disable-pip-version-check -r ../policy/tools/sces/requirements.txt
           python -B -m tools.schema_check
           args=()
@@ -64,3 +64,31 @@ jobs:
             args+=(--base "$BASE_SHA")
           fi
           python -B -m tools.index validate --policy ../policy --fetch-spdx-archive "${args[@]}"
+
+          if [[ ${#args[@]} -eq 0 ]]; then
+            exit 0
+          fi
+          staging=$(mktemp -d)
+          trap 'rm -rf -- "$staging"' EXIT
+          mkdir "$staging/first" "$staging/second"
+          stage_candidate() {
+            python -B -m tools.stage_release "$1/candidate.zip" --policy ../policy "${args[@]}" > "$1/REQUEST.json"
+          }
+          if [[ -f sces/publication.json ]]; then
+            stage_candidate "$staging/first"
+            stage_candidate "$staging/second"
+            cmp "$staging/first/candidate.zip" "$staging/second/candidate.zip"
+            cmp "$staging/first/REQUEST.json" "$staging/second/REQUEST.json"
+            request_digest=$(sha256sum "$staging/first/REQUEST.json" | cut -d ' ' -f 1)
+            python -B -m tools.verify_release "$staging/first/REQUEST.json" \
+              --request-sha256 "$request_digest" --zip "$staging/first/candidate.zip"
+          else
+            if stage_candidate "$staging/first" 2> "$staging/error"; then
+              echo 'Staging succeeded without an active selection' >&2
+              exit 1
+            fi
+            cat "$staging/error" >&2
+            grep -Fx 'stage release: no active SCES-qualified release to stage' "$staging/error" >/dev/null
+            test ! -e "$staging/first/candidate.zip"
+            test ! -s "$staging/first/REQUEST.json"
+          fi

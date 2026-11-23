@@ -16,7 +16,8 @@ from .records import DATA_COMMIT, HEX_256, DataError, decode, encode, require
 from .release_download import _valid_tag, fetch_public_archive
 from .review_snapshot import GitHub
 from .stage_release import (
-    CHECKSUMS, RELEASE_ASSETS, REPORT_FIELDS, REQUEST_STATUS, checksum_listing, valid_archive_name, valid_archive_size,
+    CHECKSUMS, CONTRACTS_ASSET, CONTRACTS_SHA256, RELEASE_ASSETS, REPORT_FIELDS, REQUEST_STATUS,
+    checksum_listing, valid_archive_name, valid_archive_size,
 )
 
 REQUEST_FIELDS = {*REPORT_FIELDS, "archive", "assets", "status", "history_base_commit",
@@ -60,6 +61,7 @@ def load_request(raw, expected_digest):
             "unexpected staged release asset list")
     assets = {item["path"]: item for item in (descriptor(row, "path") for row in request["assets"])}
     require(assets.keys() == RELEASE_ASSETS, "staged asset names are missing, duplicated or unexpected")
+    require(assets[CONTRACTS_ASSET]["sha256"] == CONTRACTS_SHA256, "staged SCES schema differs from the policy pin")
     return request, assets
 
 

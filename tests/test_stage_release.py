@@ -52,9 +52,13 @@ class ReleaseStageTests(unittest.TestCase):
         policy_boundary = patch("tools.stage_release.validate", return_value=(self.report, self.claims))
         self.validate = policy_boundary.start()
         self.addCleanup(policy_boundary.stop)
-        schema = patch("tools.stage_release.policy_schema", return_value=b"synthetic schema\n")
+        schema_bytes = b"synthetic schema\n"
+        schema = patch("tools.stage_release.policy_schema", return_value=schema_bytes)
         schema.start()
         self.addCleanup(schema.stop)
+        schema_pin = patch("tools.verify_release.CONTRACTS_SHA256", sha256(schema_bytes).hexdigest())
+        schema_pin.start()
+        self.addCleanup(schema_pin.stop)
 
     def write(self, relative, value):
         path = self.root / relative

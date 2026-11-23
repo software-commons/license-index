@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 import warnings
@@ -14,8 +15,8 @@ from zipfile import ZipFile
 from tools.distribution import archive_entry
 from tools.qualification import DATASET, POLICY_COMMIT, POLICY_DIGEST, REPOSITORY, SCHEMA_VERSION
 from tools.records import DataError, decode, encode
-from tools.stage_release import CHECKSUMS, REQUEST_STATUS, checksum_listing
-from tools.verify_release import GATES, verify
+from tools.stage_release import CHECKSUMS, CONTRACTS_ASSET, REQUEST_STATUS, checksum_listing
+from tools.verify_release import GATES, main, verify
 
 
 def describe(content):
@@ -45,7 +46,10 @@ class VerifyReleaseTests(unittest.TestCase):
             "coverage": {"selected": 1},
             "artifacts": [{"path": "sces/releases/fixture/claims.json", "sha256": describe(payload)["sha256"]}],
         }
-        self.assets = {"claims.json": payload, "sces-contracts.schema.json": b'{"fixture": true}\n'}
+        self.assets = {"claims.json": payload, CONTRACTS_ASSET: b'{"fixture": true}\n'}
+        schema_pin = patch("tools.verify_release.CONTRACTS_SHA256", describe(self.assets[CONTRACTS_ASSET])["sha256"])
+        schema_pin.start()
+        self.addCleanup(schema_pin.stop)
 
     def pack(self, *, extra=None, checksum_override=None):
         assets = {**self.assets, "qualification.json": encode(self.report)}
@@ -160,11 +164,21 @@ class VerifyReleaseTests(unittest.TestCase):
         request.write_bytes(raw)
         approval.write_bytes(encode(self.authorization(raw)))
         digest = describe(approval.read_bytes())["sha256"]
+        output = BytesIO()
+        with patch("tools.verify_release.sys.stdout", SimpleNamespace(buffer=output)):
+            main([str(request), "--authorization", str(approval), "--authorization-sha256", digest,
+                  "--zip", str(self.zip_path)])
+        self.assertEqual(decode(output.getvalue())["authorization_record"]["sha256"], digest)
+
+    def test_cli_rejects_unpinned_schema_with_matching_archive_checksums(self):
+        raw = self.pack()
+        request = self.zip_path.with_name("request.json")
+        request.write_bytes(raw)
         result = subprocess.run([sys.executable, "-B", "-m", "tools.verify_release", str(request),
-                                 "--authorization", str(approval), "--authorization-sha256", digest,
-                                 "--zip", str(self.zip_path)], capture_output=True)
-        self.assertEqual(result.returncode, 0, result.stderr.decode())
-        self.assertEqual(decode(result.stdout)["authorization_record"]["sha256"], digest)
+                                 "--request-sha256", describe(raw)["sha256"], "--zip", str(self.zip_path)],
+                                capture_output=True)
+        self.assertEqual(result.returncode, 1, result.stderr.decode())
+        self.assertIn("staged SCES schema differs from the policy pin", result.stderr.decode())
 
     def test_authorization_requires_authenticated_digest_and_matching_request(self):
         raw = self.pack()
