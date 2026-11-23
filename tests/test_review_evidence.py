@@ -33,7 +33,7 @@ def digest(blob):
     return sha256(blob).hexdigest()
 
 
-def fixture():
+def fixture(*, reused_execution_for=None):
     inputs = {"sces/adoption.json": _canonical({"policy": "SCES-1.0", "policy_sha256": POLICY_DIGEST,
                                                "mode": "index", "repository": REPOSITORY}),
               SOURCE_ARTIFACT: b"Exact inherited citation bytes.\n"}
@@ -61,22 +61,25 @@ def fixture():
         executions = {}
         for phase, suffix in (("research", "research"), ("independent-review", "review")):
             run = name + "-" + suffix
+            execution = f"{name}-research" if name == reused_execution_for else run
             identity = ref("verification", run)
             trace_path = f"sces/artifacts/{run}.jsonl"
             inputs[trace_path] = b'{"fixture":"inert trace"}\n'
             row = record(identity, claim=claim, phase=phase, conclusion="supported", run={
-                "execution": run, "completed": "2026-10-01T00:00:00Z",
+                "execution": execution, "completed": "2026-10-01T00:00:00Z",
                 "trace": {"path": trace_path, "sha256": digest(inputs[trace_path])},
             })
-            summaries.append({"record": identity, "phase": phase, "execution": run,
+            summaries.append({"record": identity, "phase": phase, "execution": execution,
                               "result": "supported", "record_sha256": digest(_canonical(row))})
             executions[suffix] = identity
         record(ref("disposition", name + "-disposition"), target=claim, evidence="supported",
                verification="independently-reviewed", **executions)
 
-    def publication(source_commit):
+    def publication(source_commit, *, previous_report=None):
         selection = {"release": "test-release", "dataset": "test-index", "schema_version": "1.0.0",
                      "source_commit": source_commit, "claims": [selected]}
+        if previous_report is not None:
+            selection["previous_report"] = previous_report
         selection_bytes = _canonical(selection)
         claims_bytes = _canonical([{"claim": selected_row, "dependencies": [selected_dependency]}])
         report = {**selection, "policy": "SCES-1.0", "policy_sha256": POLICY_DIGEST, "synthetic": False,
@@ -164,6 +167,45 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         candidate = self.commit({path: _canonical(report), claims_path: altered}, "omit dependency in payload")
         with self.assertRaisesRegex(DataError, "omits or changes selected evidence"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_reusing_research_execution_fails_for_selected_and_inherited_claims(self):
+        for claim in ("selected", "premise"):
+            with self.subTest(claim=claim):
+                inputs, make_publication = fixture(reused_execution_for=claim)
+                frozen = self.commit(inputs, "freeze review records with reused execution")
+                candidate = self.commit(make_publication(frozen), "publish the accurately rehashed report")
+                with self.assertRaisesRegex(DataError, "execution"):
+                    capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+    def test_predecessor_digest_must_bind_the_report_in_the_verified_base(self):
+        inputs, make_publication = fixture()
+        path = "sces/releases/previous-release/qualification.json"
+        previous = _canonical({"release": "previous-release", "fixture": "reviewed predecessor"})
+        frozen = self.commit(inputs, "freeze research inputs without the publication report")
+        base = self.commit({path: previous}, "retain an earlier trusted report")
+        candidate = self.commit(make_publication(frozen, previous_report={"path": path, "sha256": digest(previous)}),
+                                "select evidence with exact predecessor")
+        staged = capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+        self.assertEqual(staged[path], previous)
+        with self.assertRaisesRegex(DataError, "base"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY)
+
+        changed = _canonical({"release": "previous-release", "fixture": "candidate replacement"})
+        publication = make_publication(frozen, previous_report={"path": path, "sha256": digest(changed)})
+        candidate = self.commit({**publication, path: changed}, "replace the predecessor and recompute hashes")
+        with self.assertRaisesRegex(DataError, "base"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
+
+    def test_predecessor_introduced_in_frozen_history_cannot_replace_verified_base(self):
+        inputs, make_publication = fixture()
+        base = self.commit(inputs, "verified base without a predecessor")
+        path = "sces/releases/previous-release/qualification.json"
+        previous = _canonical({"release": "previous-release"})
+        frozen = self.commit({path: previous}, "add a predecessor after the verified base")
+        candidate = self.commit(make_publication(frozen, previous_report={"path": path, "sha256": digest(previous)}),
+                                "point to the newly added report")
+        with self.assertRaisesRegex(DataError, "base"):
+            capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
 
     def test_self_consistent_candidate_evidence_must_still_match_the_frozen_commit(self):
         inputs, make_publication = fixture()

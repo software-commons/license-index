@@ -253,6 +253,9 @@ def _active_reviews(selected, records, edges, reviews, dispositions):
                          or records[candidates[-2]]["run"]["completed"] != records[chosen]["run"]["completed"]),
                     "selected SCES claim lacks current independent verification")
             current.append(chosen)
+        research, review = (records[key]["run"]["execution"] for key in current)
+        require(all(isinstance(value, str) and value and value == value.strip() for value in (research, review))
+                and research != review, "selected SCES claim requires distinct nonempty research and review executions")
         active[identity] = current
         for dependency in edges[identity]:
             row = records[dependency]
@@ -301,7 +304,7 @@ def _selected_registry(selected, blobs):
     return records, edges, active, used, artifacts
 
 
-def _selected_evidence(directory, paths, repository):
+def _selected_evidence(directory, paths, repository, base):
     metadata = _blobs(directory, paths, [_ADOPTION, _SELECTION], limit=_MAX_EVIDENCE)
     adoption = decode(metadata[_ADOPTION])
     selection = decode(metadata[_SELECTION])
@@ -366,6 +369,11 @@ def _selected_evidence(directory, paths, repository):
         path = predecessor["path"]
         require(isinstance(path, str) and re.fullmatch(r"sces/releases/[a-z][a-z0-9-]*/qualification\.json", path)
                 and path != report_path, "invalid SCES previous report path")
+        require(isinstance(base, str) and re.fullmatch(r"[0-9a-f]{40}", base),
+                "SCES previous report requires the exact verified pull-request base")
+        base_paths = _inventory(directory, base, path)
+        require(path in paths and base_paths.get(path) == paths[path],
+                "SCES previous report path or blob differs from the verified pull-request base")
         metadata.update(_blobs(directory, paths, [path], limit=_MAX_EVIDENCE))
         require(_digest(metadata[path]) == predecessor["sha256"], "SCES previous report digest mismatch")
     staged = {**metadata, **evidence}
@@ -373,7 +381,7 @@ def _selected_evidence(directory, paths, repository):
     return dict(sorted(staged.items()))
 
 
-def capture_selected_evidence(directory, commit, repository):
+def capture_selected_evidence(directory, commit, repository, *, base=None):
     """Return exact selected bytes, or an empty mapping when there is no active publication."""
     try:
         selection = _git(directory, "ls-tree", "-z", commit, "--", _SELECTION)
@@ -383,7 +391,7 @@ def capture_selected_evidence(directory, commit, repository):
                 "SCES publication selection is not a regular, non-executable blob")
         require(repository == REPOSITORY, "SCES review repository is outside the allowlist")
         paths = _inventory(directory, commit, "sces")
-        return _selected_evidence(directory, paths, repository)
+        return _selected_evidence(directory, paths, repository, base)
     except (KeyError, TypeError, ValueError, UnicodeError, RecursionError) as error:
         if isinstance(error, DataError):
             raise

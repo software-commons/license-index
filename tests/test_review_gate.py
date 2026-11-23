@@ -265,7 +265,8 @@ class ReviewGateTests(unittest.TestCase):
             with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)) as capture,
                   patch("tools.review_gate.launch_review", side_effect=inspect)):
                 result = run(args, github)
-            self.capture_evidence.assert_called_once_with(capture.call_args.args[1], SNAPSHOT.merge, REPOSITORY)
+            self.capture_evidence.assert_called_once_with(capture.call_args.args[1], SNAPSHOT.merge, REPOSITORY,
+                                                          base=SNAPSHOT.base)
             self.assertEqual(result["status"], "reviewed-locally")
             self.assertEqual(result["binding"]["sces_evidence"],
                              {path: sha256(raw).hexdigest() for path, raw in evidence.items()})

@@ -321,7 +321,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
         checkout = Path(directory)
         tree, diff = capture_diff(snapshot, checkout, **capture_options)
         controls = capture_control_paths(checkout, snapshot)
-        evidence = capture_selected_evidence(checkout, snapshot.merge, REPOSITORY)
+        evidence = capture_selected_evidence(checkout, snapshot.merge, REPOSITORY, base=snapshot.base)
     control_required = bool(controls) and args.app_id is not None and BASE_REF == "main"
     authorized = getattr(args, "authorized_control_merge", None)
     binding = {**asdict(snapshot), "repository": REPOSITORY, "base_ref": BASE_REF,
