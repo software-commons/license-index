@@ -138,6 +138,7 @@ class ToolTests(unittest.TestCase):
                 self.assertNotIn("sces/publication.json", package.namelist())
                 self.assertNotIn("tools/review_gate.py", package.namelist())
                 self.assertNotIn("tools/review_commission.py", package.namelist())
+                self.assertNotIn("tools/stage_release.py", package.namelist())
                 manifest = json.loads(package.read("legal-texts/manifest.json"))
                 for identifier in ("CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0",
                                    "CC-BY-NC-SA-4.0", "CC-BY-NC-ND-4.0"):

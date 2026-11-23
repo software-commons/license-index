@@ -20,6 +20,14 @@ The local qualified export assembles the exact SCES claims and the entity record
 
 Use `license-index coverage --policy PATH` to check the pinned policy and any active release. It reports zero selected claims if the registry has no active release. `license-index export --qualified --policy PATH` requires an active, validated release. The default discovery view and offline ZIP use the discovery snapshot and can be built without the policy checkout.
 
+## Stage the exact release candidate
+
+From the checked publication candidate commit, run `python -B -m tools.stage_release /path/to/new-candidate.zip --policy /path/to/pinned-policy --base TRUSTED_PREDECESSOR_SHA`. Substitute paths appropriate to the operating system. The command verifies the active release against the pinned policy and requires the evidence and registry data used in validation to match the commit. It stages only the exact SCES payload and qualification report, the pinned SCES schema and their checksums. Discovery records, extra entity projections, raw source captures and verification traces stay outside the ZIP.
+
+Preserve the JSON result with the authorization request. It binds the publication candidate commit, trusted history base, frozen source commit, dataset and policy versions, exact asset hashes and the archive digest. It carries no approval. A second build from the same inputs and the pinned policy produces identical ZIP bytes without fetching sources. Compare the hash and use the pinned `sces-contracts.schema.json` definitions for the payload claim, dependency and qualification structures.
+
+Before publishing, verify the integrated publication commit and intended protected release ref. Record the separate owner's authorization for the exact assets, data license and scope. Verify the bytes again when attaching them and after public download.
+
 Research-only notes and candidate catalogs carry provisional status. Empty registries and incomplete qualification provide no release. Follow SCES advisory and supersession procedures if an existing release loses active status.
 
 ## Withdraw a release
