@@ -69,6 +69,20 @@
           }
         ]
       },
+      "license_combination": {
+        "state": "permission",
+        "text": "Section 13 permits a single combined work with a GPLv3-licensed work and conveyance of the result. Each part retains its respective terms. The GPLv3 counterpart applies the AGPLv3 network requirements to the combination as such, and the applicable AGPL source offer includes the Corresponding Source of GPLv3 material incorporated through the route.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      },
       "modification": {
         "state": "condition",
         "text": "Conveying a covered work in modified source form has change-notice and licensing conditions.",
@@ -81,11 +95,11 @@
       },
       "network_interaction": {
         "state": "condition",
-        "text": "If the modified version supports remote network interaction, it must prominently offer remotely interacting users access to its Corresponding Source at no charge.",
+        "text": "When you modify the Program and your version supports remote network interaction, that version must prominently offer every remotely interacting user access to its Corresponding Source at no charge from a network server by customary or standard software-copying means.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
-            "locator": "§13"
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1 and 13"
           }
         ]
       },
@@ -128,6 +142,20 @@
             "locator": "§8"
           }
         ]
+      },
+      "version_choice": {
+        "state": "condition",
+        "text": "A version 3 only grant names this edition. Confirm that version choice in the applicable project authorization. The common license document identifies version 3.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "Edition heading, §14 and application appendix"
+          },
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "SPDX identifier and example notice"
+          }
+        ]
       }
     },
     "scenarios": [
@@ -152,6 +180,89 @@
           {
             "url": "https://www.gnu.org/licenses/gpl-howto.en.html",
             "locator": "Application guidance and version notice"
+          }
+        ]
+      },
+      {
+        "situation": "Operating a combined AGPLv3 and GPLv3 network service",
+        "text": "Identify the authorized license of each component and determine whether they are joined into a single combined work. If the AGPLv3 network rule applies, scope the Corresponding Source to the interacting version and the GPLv3 work incorporated through section 13. Assess any client downloads separately.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1, 5 and 13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      }
+    ]
+  },
+  "AGPL-3.0-or-later": {
+    "summary": "A GNU AGPL version 3 or later grant permits using version 3 or a later FSF-published version. The network and combination descriptions here address version 3.",
+    "dimensions": {
+      "license_combination": {
+        "state": "permission",
+        "text": "Section 13 permits a single combined work with a GPLv3-licensed work and conveyance of the result. Each part retains its respective terms. The GPLv3 counterpart applies the AGPLv3 network requirements to the combination as such, and the applicable AGPL source offer includes the Corresponding Source of GPLv3 material incorporated through the route.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      },
+      "network_interaction": {
+        "state": "condition",
+        "text": "When you modify the Program and your version supports remote network interaction, that version must prominently offer every remotely interacting user access to its Corresponding Source at no charge from a network server by customary or standard software-copying means.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1 and 13"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "permission",
+        "text": "Section 14 permits choosing version 3 or any later GNU AGPL version published by the FSF when the applicable Program grant includes that later-version option.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-or-later.html",
+            "locator": "SPDX identifier and example notice"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Choosing which GNU AGPL version applies",
+        "text": "Check the authorized grant for the Program and the files in scope. If the grant permits version 3 or later and you elect version 3, read the version 3 terms. A grant that states version 3 only, an unnumbered grant and a proxy decision each have different conditions.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          }
+        ]
+      },
+      {
+        "situation": "Operating a combined AGPLv3 and GPLv3 network service",
+        "text": "Identify the authorized license of each component and determine whether they are joined into a single combined work. If the AGPLv3 network rule applies, scope the Corresponding Source to the interacting version and the GPLv3 work incorporated through section 13. Assess any client downloads separately.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1, 5 and 13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
           }
         ]
       }

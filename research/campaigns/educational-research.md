@@ -67,9 +67,11 @@ The 2026-11-23 inspection reopened the 35,149-byte retained publisher GPLv3 text
 
 ## GNU AGPL 3.0
 
-**Summary.** Section 13 adds a specific obligation when a modified version supports remote interaction through a computer network. The modified version must prominently offer those remotely interacting users a way to receive its Corresponding Source at no charge. Sections 4–6 separately address conveying copies. [AGPLv3 §§4–6 and 13 via SPDX](https://spdx.org/licenses/AGPL-3.0-only.html), [FSF publisher locator](https://www.gnu.org/licenses/agpl-3.0.html).
+**Network interaction.** Section 0 distinguishes mere remote interaction without copy transfer from conveyance. Section 13 requires a version that the licensee modifies and that supports remote network interaction to prominently offer the users who interact with it remotely access to its Corresponding Source. Access must be at no charge from a network server through a standard or customary means of copying software. Sections 4–6 separately address conveying copies. [FSF AGPLv3 §§0, 1, 4–6 and 13](https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt)
 
-**Scenario.** For an operator deploying changed server code, start with whether remote users interact with the modified program, then determine the corresponding material and how those users can obtain it. Examine existing notices and any copies already being conveyed. Whether independently operated components are part of the covered work needs its own inquiry. [AGPLv3 §§0, 1 and 13 via SPDX](https://spdx.org/licenses/AGPL-3.0-only.html).
+**Combination and version choice.** AGPLv3 §13 permits combining its covered work with a GPLv3-licensed work into one combined work and conveying it under the respective terms. GPLv3 §13 applies AGPLv3's network requirements to the combination as such. The AGPLv3 network offer includes Corresponding Source of GPLv3 work incorporated through that route. Determine the actual component grants and whether the components constitute one combined work. Both SPDX version choices use the exact FSF version 3 document, and the applicable grant establishes whether the licensee may elect a later version under §14. [FSF AGPLv3 §§1, 5, 13 and 14](https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt), [FSF GPLv3 §13](https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt)
+
+Independent verification supported eleven exact AGPLv3 claims. The comparison profiles remain provisional as a whole, including conclusions about individual works, particular distributions, and independently operated components. [AGPLv3 claim-level qualification](gnu-agpl-v3-qualification.md)
 
 ## GNU Free Documentation License 1.1, 1.2 and 1.3
 

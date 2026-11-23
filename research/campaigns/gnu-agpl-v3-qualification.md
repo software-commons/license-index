@@ -1,6 +1,6 @@
 # GNU AGPL version 3 qualification
 
-These eleven candidate assertions distinguish the publisher instrument, precise legal conditions, and SPDX version-choice and historical records. Each remains provisional pending source research and a separate verification of the exact claim revision.
+Separate Codex research and independent verification supported eleven exact claims about the publisher instrument, precise legal conditions, and SPDX version-choice and historical records. The broader AGPL profiles remain provisional.
 
 | Assertions | Governing or documentary evidence | Adverse comparisons |
 | --- | --- | --- |
@@ -10,7 +10,12 @@ These eleven candidate assertions distinguish the publisher instrument, precise 
 | Later-version election | AGPLv3 §14 | Compare an authorized version-3-or-later grant, version 3 only, an unnumbered authorized grant, and a proxy decision. |
 | Two current SPDX entries and one deprecated identifier | Exact generated XML records and pinned SPDX field definitions | Compare the two example notices and distinguish bare and suffixed historical expressions. Keep SPDX replacement guidance within the documentation scope. |
 
-The chosen XML records are complete official SPDX artifacts. Each fits the full-source delivery limit. They are retained in controlled research custody with exact digests. The FSF publisher documents supply the legal text and remain separate from the SPDX matching representations.
+The chosen XML records are complete official SPDX artifacts. Each fits the full-source delivery limit and matches its corresponding authoring XML at the pinned SPDX source revision byte for byte. The release and authoring files share a single SPDX origin. The XML is retained in controlled research custody with exact digests. The FSF publisher documents supply the legal text. [Pinned SPDX authoring XML](https://github.com/spdx/license-list-XML/tree/b1dbeb5c8bca21af860a90e187f71d60b84a7a40/src)
+
+- [FSF source research receipts](../../sces/artifacts/gnu-agpl-v3/research-receipts.jsonl)
+- [FSF independent review receipts](../../sces/artifacts/gnu-agpl-v3/independent-review-receipts.jsonl)
+- [SPDX source research receipts](../../sces/artifacts/gnu-agpl-v3-spdx/research-receipts.jsonl)
+- [SPDX independent review receipts](../../sces/artifacts/gnu-agpl-v3-spdx/independent-review-receipts.jsonl)
 
 - [FSF GNU AGPLv3 plaintext](https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt)
 - [FSF GNU GPLv3 plaintext](https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt)
