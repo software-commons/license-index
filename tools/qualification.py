@@ -7,7 +7,7 @@ import re
 import subprocess
 import sys
 
-from .records import DATA_COMMIT, OPAQUE_ID, DataError, decode, read, require
+from .records import DATA_COMMIT, OPAQUE_ID, DataError, decode, require
 
 
 POLICY_COMMIT = "ab26f278422772f2d9e5d4dd016407d14372a710"
@@ -280,6 +280,45 @@ def _bind_payload(entities, payload):
     return [by_key[key] for key in sorted(by_key)]
 
 
+def _report(root, name):
+    require(_matches(_KEY, name), "invalid SCES release slug")
+    report = decode(_exact_file(root / "sces/releases" / name / "qualification.json"))
+    require(
+        report.get("repository") == REPOSITORY and report.get("dataset") == DATASET
+        and report.get("schema_version") == SCHEMA_VERSION and report.get("synthetic") is False,
+        "foreign, synthetic, or incompatible SCES report",
+    )
+    return report
+
+
+def _entity_blobs(root, entities):
+    algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
+    blobs = {}
+    for name, record in _record_paths("entities", entities).items():
+        content = _exact_file(root / name)
+        require(decode(content) == record, f"{name}: canonical record changed during validation")
+        blobs[name] = _blob_hash(content, algorithm)
+    return blobs
+
+
+def _check_withdrawn_entities(root, entities, base):
+    """Allow retained files only after the pinned policy has validated the withdrawal."""
+    advisories = sorted((root / "sces/advisories").glob("*.json"))
+    require(advisories, "canonical identities require an active SCES qualification or a checked withdrawal")
+    _validate_entities(entities)
+    baseline = base or _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
+    current = _entity_blobs(root, entities)
+    require(current == _git_blobs(root, baseline, "registry/entities"),
+            "withdrawn canonical records must retain the exact trusted baseline bytes")
+    for advisory in advisories:
+        report = _report(root, advisory.stem)
+        frozen = report["source_commit"]
+        if current == _git_blobs(root, frozen, "registry/entities"):
+            _git(root, "merge-base", "--is-ancestor", frozen, baseline)
+            return
+    raise DataError("withdrawn canonical records do not match an archived SCES release")
+
+
 def qualified(catalog, policy: Path | None, *, base: str | None = None) -> tuple[dict | None, list]:
     """Return the active validated report and domain-bound claims, if present."""
     root = catalog.root.resolve()
@@ -288,29 +327,20 @@ def qualified(catalog, policy: Path | None, *, base: str | None = None) -> tuple
         _validate_policy(root, policy, base)
 
     if not selection.exists() and not selection.is_symlink():
-        require(not catalog.entities, "canonical identities require an active SCES qualification")
+        if catalog.entities:
+            require(policy is not None, "canonical identities require an active SCES qualification or a checked withdrawal")
+            _check_withdrawn_entities(root, catalog.entities, base)
         return None, []
     require(policy is not None, "active SCES publication requires --policy with the pinned bundle")
 
-    name = read(selection)["release"]
-    require(_matches(_KEY, name), "invalid SCES release slug")
-    directory = root / "sces/releases" / name
-    report = read(directory / "qualification.json")
-    require(
-        report.get("repository") == REPOSITORY and report.get("dataset") == DATASET
-        and report.get("schema_version") == SCHEMA_VERSION and report.get("synthetic") is False,
-        "foreign, synthetic, or incompatible SCES report",
-    )
+    name = decode(_exact_file(selection))["release"]
+    report = _report(root, name)
     require(catalog.entities, "a License Index release must include a canonical entity")
     expected = _git_blobs(root, report["source_commit"], "registry/entities")
-    current = _record_paths("entities", catalog.entities)
+    current = _entity_blobs(root, catalog.entities)
     require(expected.keys() == current.keys(), "canonical entity paths differ from the frozen SCES source")
-    algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
-    for name, record in current.items():
-        content = _exact_file(root / name)
-        require(_blob_hash(content, algorithm) == expected[name] and decode(content) == record,
-                f"{name}: canonical record bytes differ from the frozen SCES source")
-    payload = read(directory / "claims.json")
+    require(expected == current, "canonical record bytes differ from the frozen SCES source")
+    payload = decode(_exact_file(root / "sces/releases" / name / "claims.json"))
     return report, _bind_payload(catalog.entities, payload)
 
 

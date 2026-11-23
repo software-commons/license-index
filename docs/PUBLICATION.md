@@ -22,6 +22,10 @@ Use `license-index coverage --policy PATH` to check the pinned policy and any ac
 
 Research-only notes and candidate catalogs carry provisional status. Empty registries and incomplete qualification provide no release. Follow SCES advisory and supersession procedures if an existing release loses active status.
 
+## Withdraw a release
+
+Add the required SCES advisory and remove the active selection in the same protected change when there is no qualified successor. Retain the archived report, payload, evidence, and canonical entity files at their exact trusted baseline bytes. The pinned policy validates the withdrawal and the domain validator checks that the retained entity bytes match an archived release. The CLI reports zero selected claims and refuses qualified export until a new checked selection becomes active. Use the previous report when preparing a successor and correct the affected downstream publication surfaces.
+
 ## Licensing
 
 Apache-2.0 governs the index's original tooling and documentation. Record the provenance and applicable terms of upstream material before retaining or redistributing it. State the data license and scope in each versioned release.

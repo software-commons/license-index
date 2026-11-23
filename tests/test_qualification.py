@@ -166,6 +166,26 @@ class GitHistoryTests(unittest.TestCase):
         self.catalog.entities.clear()
         self.assertEqual(qualified(self.catalog, None), (None, []))
 
+    def test_checked_withdrawal_preserves_entities_without_qualified_output(self):
+        report = {
+            "repository": "software-commons/license-index", "dataset": "license-index",
+            "schema_version": "1.0.0", "synthetic": False, "source_commit": self.base,
+        }
+        self.write("sces/releases/withdrawn-fixture/qualification.json", report)
+        with patch("tools.qualification._validate_policy") as validate_policy:
+            with self.assertRaisesRegex(DataError, "checked withdrawal"):
+                qualified(self.catalog, self.root, base=self.base)
+            self.write("sces/advisories/withdrawn-fixture.json", {"fixture": True})
+            self.assertEqual(qualified(self.catalog, self.root, base=self.base), (None, []))
+            validate_policy.assert_called_with(self.root, self.root, self.base)
+            validate_policy.side_effect = DataError("pinned SCES policy rejected the advisory")
+            with self.assertRaisesRegex(DataError, "policy rejected"):
+                qualified(self.catalog, self.root, base=self.base)
+            validate_policy.side_effect = None
+            self.path.write_bytes(self.path.read_bytes() + b"\n")
+            with self.assertRaisesRegex(DataError, "exact trusted baseline bytes"):
+                qualified(self.catalog, self.root, base=self.base)
+
     def test_mocked_policy_boundary_accepts_only_frozen_exact_registry_bytes(self):
         self.write("sces/publication.json", {"release": "synthetic-fixture"})
         report = {
