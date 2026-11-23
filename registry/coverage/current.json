@@ -1,8 +1,8 @@
 {
   "assessment": {
     "authentic_text": {
-      "bundled_publisher_text_files": 16,
-      "bundled_publisher_text_identities": 21,
+      "bundled_publisher_text_files": 18,
+      "bundled_publisher_text_identities": 25,
       "spdx_header_references": 93,
       "spdx_matching_template_references": 826,
       "spdx_text_references": 826
@@ -34,7 +34,11 @@
         "GPL-2.0-only",
         "GPL-2.0-or-later",
         "GPL-3.0-only",
-        "GPL-3.0-or-later"
+        "GPL-3.0-or-later",
+        "LGPL-2.0-only",
+        "LGPL-2.0-or-later",
+        "LGPL-2.1-only",
+        "LGPL-2.1-or-later"
       ],
       "requires_verified_spdx_input": [
         "MIT"
@@ -53,6 +57,6 @@
   "cutoff": "2026-11-23",
   "method": "Reconcile exact upstream list manifests and per-ID artifact checksums. Count discovery, packaged text, safe installation, provisional research, and selected SCES claims separately.",
   "schema_version": "1.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-gplv1-mpl-variant.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-lgpl-2x.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

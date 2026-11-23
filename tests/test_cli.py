@@ -100,6 +100,12 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(entries["Apache-2.0"]["patent_grant"]["state"], "permission")
         self.assertTrue(entries["Apache-2.0"]["patent_grant"]["sources"])
         self.assertEqual(entries["Apache-2.0"]["termination"]["state"], "condition")
+        lgpl = self.json_output("compare", "LGPL-2.0-only", "LGPL-2.1-only")
+        self.assertEqual(lgpl["status"], "provisional")
+        older, newer = [record["dimensions"]["linked_works"] for record in lgpl["records"]]
+        self.assertEqual(older["sources"][0]["locator"], "§6 and §6(a)–(d)")
+        self.assertIn("shared-library mechanism", newer["text"])
+        self.assertEqual(newer["sources"][0]["locator"], "§6 and §6(b)")
         sources = self.json_output("sources", "MIT")
         self.assertTrue(sources["research_citations"])
         self.assertIn("sha256", sources["origin"]["artifacts"]["text"])
@@ -223,6 +229,10 @@ class ToolTests(unittest.TestCase):
                 ("GPL-1.0-or-later", "gpl-1.0.txt"),
                 ("GPL-2.0-or-later", "gpl-2.0.txt"),
                 ("GPL-3.0-or-later", "gpl-3.0.txt"),
+                ("LGPL-2.0-only", "lgpl-2.0.txt"),
+                ("LGPL-2.0-or-later", "lgpl-2.0.txt"),
+                ("LGPL-2.1-only", "lgpl-2.1.txt"),
+                ("LGPL-2.1-or-later", "lgpl-2.1.txt"),
             ):
                 with self.subTest(identifier=identifier):
                     expected = (ROOT / "legal-texts" / text_name).read_bytes()
@@ -240,13 +250,25 @@ class ToolTests(unittest.TestCase):
             self.assertFalse((folder / "COPYING").exists())
             self.assertIn("version 2 or any later version", result["application"])
             for identifier, notice in (("GPL-1.0-only", "version 1 only"),
-                                       ("GPL-1.0-or-later", "version 1 or any later version")):
+                                       ("GPL-1.0-or-later", "version 1 or any later version"),
+                                       ("LGPL-2.0-only", "version 2 only"),
+                                       ("LGPL-2.0-or-later", "version 2 or any later version"),
+                                       ("LGPL-2.1-only", "version 2.1 only"),
+                                       ("LGPL-2.1-or-later", "version 2.1 or any later version")):
                 with self.subTest(identifier=identifier):
                     preview = command("add", identifier, "--output", folder / "COPYING", "--dry-run",
                                       "--json", root=unpacked)
                     self.assertEqual(preview.returncode, 0, preview.stderr.decode())
                     self.assertIn(notice, json.loads(preview.stdout)["application"])
                     self.assertFalse((folder / "COPYING").exists())
+            publisher_text = unpacked / "legal-texts/lgpl-2.0.txt"
+            original = publisher_text.read_bytes()
+            publisher_text.write_bytes(original[:1] + b"!" + original[2:])
+            changed = command("text", "LGPL-2.0-or-later", root=unpacked)
+            self.assertEqual(changed.returncode, 1)
+            self.assertFalse(changed.stdout)
+            self.assertIn(b"artifact size or SHA-256 mismatch", changed.stderr)
+            publisher_text.write_bytes(original)
             for identifier in ("LGPL-3.0-only", "LGPL-3.0-or-later"):
                 with self.subTest(identifier=identifier):
                     expected = (ROOT / "legal-texts" / "lgpl-3.0.txt").read_bytes()

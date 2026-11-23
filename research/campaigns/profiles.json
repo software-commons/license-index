@@ -1588,11 +1588,11 @@
     "dimensions": {
       "linked_works": {
         "state": "condition",
-        "text": "Review §6’s exact conditions for distributing a work linked with the library, including how recipients can modify and relink the library.",
+        "text": "Section 6 permits distribution of specified linked works under terms that allow modification for the customer's own use and reverse engineering to debug those modifications. It also requires notices, a license copy, and one of the routes in §6(a)–(d) for providing source and relinking materials or verifying prior delivery.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.0-only.html",
-            "locator": "§§5–6"
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
+            "locator": "§6 and §6(a)–(d)"
           }
         ]
       },
@@ -1601,7 +1601,7 @@
         "text": "Modified library distributions are subject to §2 conditions, including conditions on notices and licensing.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.0-only.html",
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
             "locator": "§2"
           }
         ]
@@ -1611,7 +1611,7 @@
         "text": "Distributing the library in object or executable form requires accompanying corresponding machine-readable source under the stated terms.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.0-only.html",
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
             "locator": "§4"
           }
         ]
@@ -1633,7 +1633,7 @@
         "text": "Record the package structure, distribution terms, available source and whether recipients can use a modified library. Apply the reviewed edition’s linked-work provisions.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.0-only.html",
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
             "locator": "§§4–6"
           }
         ]
@@ -1645,11 +1645,11 @@
     "dimensions": {
       "linked_works": {
         "state": "condition",
-        "text": "Review §6’s conditions for a linked work, including reverse-engineering terms and the stated choices concerning relinking or a suitable shared-library mechanism.",
+        "text": "Section 6 requires notices, a license copy, and terms that allow modification for the customer's own use and reverse engineering to debug those modifications. One route under §6(b) is a shared-library mechanism that uses the user's existing library at runtime and still works with an installed, interface-compatible modified library.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.1-only.html",
-            "locator": "§§5–6"
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
+            "locator": "§6 and §6(b)"
           }
         ]
       },
@@ -1658,7 +1658,7 @@
         "text": "Modified library distributions are subject to §2 conditions, including conditions on notices and licensing.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.1-only.html",
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
             "locator": "§2"
           }
         ]
@@ -1668,7 +1668,7 @@
         "text": "Distributing the library in object or executable form requires accompanying corresponding machine-readable source under the stated terms.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.1-only.html",
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
             "locator": "§4"
           }
         ]
@@ -1690,7 +1690,7 @@
         "text": "Record the package structure, distribution terms, available source and whether recipients can use a modified library. Apply the reviewed edition’s linked-work provisions.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/LGPL-2.1-only.html",
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
             "locator": "§§4–6"
           }
         ]
