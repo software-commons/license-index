@@ -58,7 +58,7 @@ def _claim_key(ref):
     return ref["id"], ref["revision"]
 
 
-def _run(arguments):
+def _run(arguments, *, input_data=None):
     # The validator also invokes Git. Both callers must read the same real objects
     # and parent links under the repository path supplied by the index.
     environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("GIT_")}
@@ -68,7 +68,8 @@ def _run(arguments):
         # dereferencing it. Allow long paths in both Git and the validator's Git.
         environment.update(GIT_CONFIG_COUNT="1", GIT_CONFIG_KEY_0="core.longpaths", GIT_CONFIG_VALUE_0="true")
     try:
-        result = subprocess.run(arguments, capture_output=True, check=False, env=environment)
+        result = subprocess.run(arguments, capture_output=True, check=False, env=environment,
+                                input=input_data)
     except OSError as error:
         raise DataError(f"could not execute {arguments[0]}: {error}") from error
     if result.returncode:
@@ -78,14 +79,14 @@ def _run(arguments):
     return result.stdout
 
 
-def _git(root, *args):
-    return _run(["git", "--no-pager", "-C", str(root), *args])
+def _git(root, *args, input_data=None):
+    return _run(["git", "--no-pager", "-C", str(root), *args], input_data=input_data)
 
 
-def _git_blobs(root, commit, section):
+def _git_blobs(root, commit, *sections):
     require(_matches(DATA_COMMIT, commit), "use a full 40-character Git commit")
     result = {}
-    listing = _git(root, "ls-tree", "-r", "-z", commit, "--", section)
+    listing = _git(root, "ls-tree", "-r", "-z", commit, "--", *sections)
     for entry in listing.decode("utf-8").split("\0"):
         if not entry:
             continue

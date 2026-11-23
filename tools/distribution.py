@@ -7,10 +7,16 @@ from pathlib import Path
 from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
-from .qualification import check_history, qualified
-from .records import DATA_COMMIT, HEX_256, VERSION, checked_bytes, encode, is_removed, local_path, read, require
+from .qualification import _blob_hash, _exact_file, _git, _git_blobs, check_history, qualified
+from .records import (
+    DATA_COMMIT, HEX_256, VERSION, Catalog, checked_bytes, decode, encode, is_removed, local_path, read, require,
+)
 
 COVERAGE = "registry/coverage/current.json"
+SNAPSHOTS = "registry/coverage/snapshots"
+SOURCES = "research/sources"
+PACKAGED_TEXTS = "legal-texts/manifest.json"
+PROFILES = "research/campaigns/profiles.json"
 QUALIFICATION_SCOPE = "development-discovery"
 DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
                     "inapplicable", "explicit-absence"}
@@ -35,6 +41,7 @@ def validate_source(catalog, source):
         require(expected[f"missing_{key}"] == count, f"SPDX missing {key} count mismatch")
     for row in catalog.active_spdx:
         origin = row["origin"]
+        require(origin["source"] == source["data_commit"], f"SPDX source mismatch: {origin['identifier']}")
         require("detail" in origin["artifacts"], f"missing SPDX detail: {origin['identifier']}")
         for value in origin["artifacts"].values():
             descriptor(value)
@@ -45,14 +52,15 @@ def validate_source(catalog, source):
                 f"SPDX identity drift: {origin['identifier']}")
 
 
-def validate_texts(catalog):
+def validate_texts(catalog, read_bytes=None):
     for identifier, package in catalog.packaged.items():
         row = catalog.resolve(identifier)
         origin = row["origin"]
         require(origin["identifier"] == identifier and origin["kind"] == "spdx",
                 f"ambiguous text binding: {identifier}")
         descriptor(package)
-        content = checked_bytes(local_path(catalog.root, package["path"]).read_bytes(), package)
+        path = local_path(catalog.root, package["path"])
+        content = checked_bytes(path.read_bytes() if read_bytes is None else read_bytes(package["path"]), package)
         content.decode("utf-8")
         require(package["source"].startswith("https://") and package["rights"].startswith("https://"),
                 f"missing publication provenance for {identifier}")
@@ -97,7 +105,8 @@ def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_arch
     validate_source(catalog, source)
     validate_texts(catalog)
     validate_profiles(catalog)
-    require(saved["assessment"] == catalog.coverage(), "discovery coverage snapshot differs from the live ledger")
+    require(encode(saved["assessment"]) == encode(catalog.coverage()),
+            "discovery coverage snapshot differs from the live ledger")
     snapshot = local_path(catalog.root, saved["snapshot"])
     require(snapshot.read_bytes() == (catalog.root / COVERAGE).read_bytes(),
             "current coverage differs from its immutable snapshot")
@@ -109,11 +118,98 @@ def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_arch
             replay_download(catalog, source, base)
 
 
+class _HistoricalCatalog(Catalog):
+    """Replay current discovery logic over immutable JSON from one Git tree."""
+
+    def __init__(self, root, rows):
+        self._rows = rows
+        super().__init__(root)
+
+    def _optional(self, relative):
+        return self._rows.get(relative, {})
+
+    def _sharded_rows(self, kind):
+        prefix = f"registry/{kind}/"
+        return ((name, row) for name, row in self._rows.items()
+                if name.startswith(prefix) and name.endswith(".json"))
+
+
+def _read_git_blobs(root, paths, cache):
+    missing = sorted(set(paths.values()) - cache.keys())
+    if missing:
+        request = "".join(f"{oid}\n" for oid in missing).encode("ascii")
+        with BytesIO(_git(root, "cat-file", "--batch", input_data=request)) as stream:
+            for oid in missing:
+                header = stream.readline().split()
+                require(len(header) == 3 and header[:2] == [oid.encode("ascii"), b"blob"]
+                        and header[2].isdigit(), f"missing or invalid historical Git blob: {oid}")
+                payload = stream.read(int(header[2]))
+                require(len(payload) == int(header[2]) and stream.read(1) == b"\n",
+                        f"truncated historical Git blob: {oid}")
+                cache[oid] = payload
+            require(not stream.read(1), "unexpected data after historical Git blobs")
+    return {path: cache[oid] for path, oid in paths.items()}
+
+
+def validate_incoming_snapshots(root, base):
+    head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
+    prior = _git_blobs(root, base, SNAPSHOTS)
+    _git(root, "merge-base", "--is-ancestor", base, head)
+    tracked = _git_blobs(root, head, SNAPSHOTS)
+    worktree = {path.relative_to(root).as_posix() for path in (root / SNAPSHOTS).rglob("*.json")}
+    require(worktree == tracked.keys(), "coverage snapshots must be committed JSON files")
+    pending = tracked.keys() - prior.keys()
+    if not pending:
+        return
+    algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
+    for name in sorted(pending):
+        require(_blob_hash(_exact_file(root / name), algorithm) == tracked[name],
+                f"{name}: incoming coverage differs from the committed snapshot")
+
+    cache = {}
+    commits = _git(root, "log", "--full-history", "--format=%H", f"{base}..{head}",
+                   "--", COVERAGE).decode().splitlines()
+    for commit in commits:
+        blobs = _git_blobs(root, commit, COVERAGE, SNAPSHOTS)
+        matches = sorted(name for name in pending if blobs.get(COVERAGE) == blobs.get(name) == tracked[name])
+        for name in matches:
+            archived = decode(_read_git_blobs(root, {name: tracked[name]}, cache)[name])
+            require(archived["snapshot"] == name, f"{name}: invalid snapshot self-reference")
+            source = archived["source_manifest"]
+            inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", PACKAGED_TEXTS, PROFILES)
+            require(isinstance(source, str) and source.startswith(f"{SOURCES}/") and source in inputs,
+                    f"{name}: source manifest missing from historical Git tree {commit}")
+            data = _read_git_blobs(root, {path: oid for path, oid in inputs.items()
+                                         if path == source or not path.startswith(f"{SOURCES}/")}, cache)
+            rows = {path: decode(payload) for path, payload in data.items()}
+            historic = _HistoricalCatalog(root, rows)
+            validate_source(historic, rows[source])
+            text_paths = {package["path"] for package in historic.packaged.values()}
+            texts = _git_blobs(root, commit, "legal-texts", "LICENSE")
+            require(text_paths <= texts.keys(), f"{name}: publisher text missing from historical Git tree {commit}")
+            historical_texts = _read_git_blobs(root, {path: texts[path] for path in text_paths}, cache)
+            validate_texts(historic, historical_texts.__getitem__)
+            validate_profiles(historic)
+            expected = historic.coverage()
+            installation = expected["installation"]
+            # The v1 discovery format originally omitted this field when there were no companions.
+            if not installation["requires_verified_companion"] and (
+                    "requires_verified_companion" not in archived["assessment"]["installation"]):
+                del installation["requires_verified_companion"]
+            require(encode(archived["assessment"]) == encode(expected),
+                    f"{name}: coverage differs from historical registry inputs at {commit}")
+            pending.remove(name)
+        if not pending:
+            return
+    require(not pending, f"coverage snapshots lack a matching historical current ledger: {', '.join(sorted(pending))}")
+
+
 def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False):
     validate_discovery(catalog, base=base, spdx_archive=spdx_archive, fetch_spdx_archive=fetch_spdx_archive)
     result = qualified(catalog, policy, base=base)
     if base:
         check_history(catalog, base)
+        validate_incoming_snapshots(catalog.root, base)
     return result
 
 

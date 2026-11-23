@@ -10,6 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from tools.audit_claims import audit_claims
+from tools.distribution import COVERAGE, validate, validate_discovery
 from tools.index import execute, parser
 from tools.qualification import (
     POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _run, _validate_policy, check_history, qualified,
@@ -133,15 +134,18 @@ class GitHistoryTests(unittest.TestCase):
         self.path = self.write(f"registry/entities/{MIT[:2]}/{MIT}.json", self.row)
         self.write(f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json", {"id": CANDIDATE})
         self.snapshot = self.write("registry/coverage/snapshots/first.json", {"snapshot": "first"})
-        self.git("add", ".")
-        self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
-                 "-c", "commit.gpgsign=false", "commit", "--quiet", "-m", "Synthetic domain snapshot")
+        self.commit("Synthetic domain snapshot")
         self.base = self.git("rev-parse", "HEAD").strip()
         self.catalog = SimpleNamespace(root=self.root, entities={MIT: self.row}, candidates={CANDIDATE: {}})
 
     def git(self, *arguments):
         return subprocess.run(["git", "-C", str(self.root), *arguments], check=True,
                               capture_output=True, text=True).stdout
+
+    def commit(self, message):
+        self.git("add", "-A")
+        self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                 "-c", "commit.gpgsign=false", "commit", "--quiet", "-m", message)
 
     def write(self, name, value):
         path = self.root / name
@@ -162,6 +166,48 @@ class GitHistoryTests(unittest.TestCase):
         self.snapshot.write_bytes(self.snapshot.read_bytes() + b"\n")
         with self.assertRaisesRegex(DataError, "snapshot was modified"):
             check_history(self.catalog, self.base)
+
+    def test_incoming_archives_replay_the_original_ledger(self):
+        (self.root / f"registry/entities/{MIT[:2]}/{MIT}.json").unlink()
+        source = "research/sources/fixture.json"
+        self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+                            "population": dict.fromkeys((
+                                "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                "missing_text", "missing_template",
+                            ), 0)})
+        candidate_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
+        row = {"id": CANDIDATE, "disposition": "unresolved", "origin": {"kind": "publisher"}}
+        self.write(candidate_path, row)
+        self.commit("Set the pre-admission baseline without qualified entities")
+        base = self.git("rev-parse", "HEAD").strip()
+        archive = "registry/coverage/snapshots/archived.json"
+        assessment = Catalog(self.root).coverage()
+        snapshot = {"source_manifest": source, "snapshot": archive, "assessment": assessment}
+        self.write(archive, snapshot)
+        self.write(COVERAGE, snapshot)
+        self.commit("Introduce a truthful archive")
+        archived_commit = self.git("rev-parse", "HEAD").strip()
+
+        def select_current():
+            self.write(candidate_path, {**row, "disposition": "out-of-scope"})
+            current = {"source_manifest": source, "snapshot": "registry/coverage/snapshots/current.json",
+                       "assessment": Catalog(self.root).coverage()}
+            self.write(current["snapshot"], current)
+            self.write(COVERAGE, current)
+            self.commit("Publish a different truthful current assessment")
+
+        select_current()
+        validate(Catalog(self.root), base=base)
+
+        self.git("reset", "--hard", archived_commit)
+        assessment["catalog"]["beyond_spdx_leads"] = 99
+        self.write(archive, snapshot)
+        self.write(COVERAGE, snapshot)
+        self.commit("Introduce a false historical archive")
+        select_current()
+        validate_discovery(Catalog(self.root))
+        with self.assertRaisesRegex(DataError, "archived.json: coverage differs from historical"):
+            validate(Catalog(self.root), base=base)
 
     @unittest.skipUnless(os.name == "nt", "requires Git for Windows")
     def test_validator_reads_committed_evidence_with_a_long_git_path(self):

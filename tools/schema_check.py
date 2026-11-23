@@ -2,20 +2,20 @@
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from .distribution import COVERAGE, discovery_export
-from .records import Catalog, ROOT, read
+from .distribution import COVERAGE, SNAPSHOTS, discovery_export
+from .records import Catalog, ROOT, local_path, read
 
 
 def main():
     schema = read(ROOT / "schemas/domain/registry-v1.schema.json")
     Draft202012Validator.check_schema(schema)
     catalog = Catalog()
-    snapshot = read(ROOT / COVERAGE)
+    snapshots = [read(ROOT / COVERAGE), *(read(path) for path in sorted((ROOT / SNAPSHOTS).rglob("*.json")))]
     groups = {
         "candidate": catalog.candidates.values(),
         "entity": catalog.entities.values(),
-        "coverage": (snapshot,),
-        "source": (read(ROOT / snapshot["source_manifest"]),),
+        "coverage": snapshots,
+        "source": (read(local_path(ROOT, name)) for name in sorted({row["source_manifest"] for row in snapshots})),
         "export": (discovery_export(catalog),),
     }
     for name, rows in groups.items():

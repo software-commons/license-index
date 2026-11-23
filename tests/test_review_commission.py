@@ -12,7 +12,7 @@ from tools.review_commission import (
 from tools.review_snapshot import BASE_REF, REPOSITORY, REPOSITORY_ID, PullSnapshot, SnapshotError
 
 APP_ID = 8421
-RULESET = 14
+RULESET = 27875276
 NOW = datetime(2026, 11, 23, tzinfo=timezone.utc)
 DECISION = "0" * 64
 SNAPSHOT = PullSnapshot(REPOSITORY_ID, 1, "a" * 40, "b" * 40, "c" * 40)
@@ -91,7 +91,7 @@ class CommissionTests(unittest.TestCase):
     def inspect(self, values=None, *, after=SNAPSHOT, **options):
         github = FixtureGitHub(values if values is not None else responses(), after)
         options = {"app_id": APP_ID, "decision": DECISION, "owner_session": True,
-                   "scope_github": github, "now": NOW, **options}
+                   "scope_github": github, "now": NOW, "phase": "additive", **options}
         return preflight(github, pull=1, **options)
 
     def test_match_reports_observations_only_and_distinguishes_head_and_merge(self):
@@ -161,7 +161,7 @@ class CommissionTests(unittest.TestCase):
         self.assertEqual(result["app_installation"]["token_scope"], "mismatch")
         self.assertEqual(result["status"], "blocked")
 
-    def test_active_human_and_protection_rules_must_remain(self):
+    def test_additive_approval_and_protection_rules_must_remain(self):
         for details in ({}, {"bypass_actors": [{"actor_id": APP_ID}]}, {"enforcement": "evaluate"}):
             with self.subTest(details=details):
                 values = responses()
@@ -171,13 +171,31 @@ class CommissionTests(unittest.TestCase):
                     del values[RULESET_PATH]["bypass_actors"]
                 result = self.inspect(values)
                 self.assertFalse(result["protection"]["active_rulesets_explicitly_without_bypass"])
-                self.assertTrue(result["protection"]["human_approval_configured"])
+                self.assertEqual(result["protection"]["approval"]["approving_review_count"], 1)
                 self.assertEqual(result["status"], "blocked")
         values = responses()
         values[BRANCH_RULES][2]["parameters"].update(required_approving_review_count=0, require_code_owner_review=False)
-        missing = self.inspect(values)["protection"]
-        self.assertFalse(missing["human_approval_configured"])
-        self.assertFalse(missing["code_owner_review_configured"])
+        result = self.inspect(values)
+        self.assertEqual(result["protection"]["approval"], {
+            "ruleset_id": RULESET, "code_owner_review": False, "approving_review_count": 0,
+        })
+        self.assertEqual(result["status"], "blocked")
+        self.assertTrue(any("ordinary approval" in reason for reason in result["findings"]))
+        self.assertEqual(self.inspect(values, phase="final", authorized_cutover_ruleset=RULESET)["status"],
+                         "matching-observations")
+
+    def test_protection_is_reread_and_changes_block_commissioning(self):
+        values = responses()
+        github = FixtureGitHub(values)
+        get = github._get_json
+        changed = deepcopy(values[BRANCH_RULES])
+        changed[2]["parameters"]["required_approving_review_count"] = 0
+        branch_reads = iter((values[BRANCH_RULES], changed))
+        with patch.object(github, "_get_json", side_effect=lambda path: next(branch_reads) if path == BRANCH_RULES
+                          else get(path)):
+            with self.assertRaisesRegex(SnapshotError, "live branch rules changed"):
+                preflight(github, pull=1, app_id=APP_ID, decision=DECISION, owner_session=True,
+                          scope_github=github, now=NOW, phase="additive")
 
     def test_ruleset_context_requires_exact_app_and_strict_enforcement(self):
         for update in ({"integration_id": ACTIONS_APP_ID}, {"integration_id": None}):

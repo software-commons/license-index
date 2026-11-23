@@ -1,11 +1,13 @@
 """Capture an exact GitHub pull-request merge candidate without checking it out."""
 
+from contextlib import nullcontext
 from dataclasses import dataclass
 import json
 import os
 from pathlib import Path
 import re
 import subprocess
+from tempfile import TemporaryFile
 from threading import Event, Timer
 from urllib.error import HTTPError, URLError
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -136,17 +138,21 @@ def _isolated_git_environment():
     return result
 
 
-def _git(directory, operation, *arguments, limit=4096, config=()):
+def _git(directory, operation, *arguments, limit=4096, config=(), input_data=None):
     command = ["git", "--no-pager", "-C", str(directory)]
     for setting in config:
         command.extend(("-c", setting))
     command.extend((operation, *arguments))
     deadline = Event()
     try:
-        process = subprocess.Popen(
-            command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
-            env=_isolated_git_environment(),
-        )
+        with (nullcontext(subprocess.DEVNULL) if input_data is None else TemporaryFile()) as source:
+            if input_data is not None:
+                source.write(input_data)
+                source.seek(0)
+            process = subprocess.Popen(
+                command, stdin=source, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                env=_isolated_git_environment(),
+            )
     except OSError as error:
         raise SnapshotError("Cannot start Git for isolated review capture") from error
 

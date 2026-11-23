@@ -13,6 +13,7 @@ import sys
 
 from .records import encode
 from .review_gate import ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, require_queue_rules
+from .review_protection import PHASES, ApprovalRule, commissioning_policy, observed_approval
 from .review_queue import capture_queue_observation
 from .review_snapshot import (
     BASE_REF, REPOSITORY, REPOSITORY_ID, GitHub, SnapshotError, complete_rows, token_is_target_only,
@@ -46,10 +47,11 @@ class OwnerGitHub(GitHub):
         raise SnapshotError(f"GitHub CLI could not supply owner-readable commissioning data for {path}")
 
 
-def read_protection(github, sources):
+def read_protection(github, sources, *, rules=None):
     repo_path = f"/repos/{REPOSITORY}"
-    rules = github._get_json(f"{repo_path}/rules/branches/{BASE_REF}?per_page=100")
-    if not isinstance(rules, list) or len(rules) >= 100:
+    if rules is None:
+        rules = github._get_json(f"{repo_path}/rules/branches/{BASE_REF}?per_page=100")
+    if not isinstance(rules, list) or len(rules) >= 100 or not all(isinstance(rule, dict) for rule in rules):
         raise SnapshotError("The applied branch rules could not be read completely")
     identifiers = {rule.get("ruleset_id") for rule in rules}
     if any(type(value) is not int or value <= 0 for value in identifiers):
@@ -62,13 +64,7 @@ def read_protection(github, sources):
         for key, item in sets.items()
     ) and bool(sets)
     types = {rule.get("type") for rule in rules}
-    approvals = [
-        rule.get("parameters") or {} for rule in rules if rule.get("type") == "pull_request"
-    ]
-    count_required = any(
-        type(policy.get("required_approving_review_count")) is int and policy["required_approving_review_count"] >= 1
-        for policy in approvals
-    )
+    approval = observed_approval(rules)
     configured_sources = {}
     for name, integration in sources.items():
         matches = [
@@ -83,8 +79,9 @@ def read_protection(github, sources):
         configured_sources[name] = {
             "expected_app_id": integration,
             "observed_app_ids": [match[0] for match in matches],
-            "strict_source_bound": bool(matches) and integration is not None and all(
-                app == integration and strict is True and waive is False for app, strict, waive in matches
+            "strict_source_bound": len(matches) == 1 and integration is not None and all(
+                type(app) is int and app == integration and strict is True and waive is False
+                for app, strict, waive in matches
             ),
         }
     return {
@@ -93,8 +90,7 @@ def read_protection(github, sources):
         "pull_request_required": "pull_request" in types,
         "deletion_blocked": "deletion" in types,
         "force_push_blocked": "non_fast_forward" in types,
-        "human_approval_configured": count_required,
-        "code_owner_review_configured": any(policy.get("require_code_owner_review") is True for policy in approvals),
+        "approval": asdict(approval) if approval is not None else None,
         "contexts": configured_sources,
     }
 
@@ -232,7 +228,7 @@ def read_checks(github, snapshot, sources, now, decision, *, admission=None, que
 
 
 def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, scope_github=None,
-              queue_run=None, admission=None, now=None):
+              queue_run=None, admission=None, now=None, phase, authorized_cutover_ruleset=None):
     if app_id is not None and (type(app_id) is not int or app_id <= 0 or app_id == ACTIONS_APP_ID):
         raise SnapshotError("Supply the numeric ID of a dedicated App, separate from GitHub Actions")
     if decision is not None and not DECISION_SHA.fullmatch(decision):
@@ -244,16 +240,19 @@ def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, 
         raise SnapshotError("An admission decision requires a final queue run")
     now = now or datetime.now(timezone.utc)
     snapshot = github.get_pull(pull)
+    policy = commissioning_policy(REPOSITORY, BASE_REF, phase, authorized_cutover_ruleset)
     sources = {**dict.fromkeys(CI_CONTEXTS, ACTIONS_APP_ID), CHECK_NAME: app_id}
     controls = read_protection(github, sources)
     install = read_installation(github, scope_github, app_id, owner_session)
     queue = None
     if queue_run is not None:
-        require_queue_rules(github, app_id)
+        require_queue_rules(github, app_id, policy=policy)
         queue = capture_queue_observation(github, snapshot, queue_run, actions_app_id=ACTIONS_APP_ID)
     checks = read_checks(github, snapshot, sources, now, decision, admission=admission, queue=queue)
     if github.get_pull(pull) != snapshot:
         raise SnapshotError("The GitHub review target changed during commissioning")
+    if read_protection(github, sources) != controls:
+        raise SnapshotError("The live branch rules changed during commissioning")
 
     findings = [
         *[f"Branch control unconfirmed: {name}" for name, confirmed in controls.items()
@@ -262,11 +261,14 @@ def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, 
           if not context["strict_source_bound"]],
         *install["problems"],
     ]
+    approval = controls["approval"]
+    if approval is None or not policy.matches(ApprovalRule(**approval)):
+        findings.append(f"Code Owner and ordinary approval requirements do not match commissioning phase {phase}")
     if queue:
-        for phase in ("head", "queue"):
-            for context, check in checks[phase]["contexts"].items():
+        for check_target in ("head", "queue"):
+            for context, check in checks[check_target]["contexts"].items():
                 if check["classification"] != "matching-success":
-                    findings.append(f"Required {phase} check {context}: {check['classification']}")
+                    findings.append(f"Required {check_target} check {context}: {check['classification']}")
     else:
         for context in CI_CONTEXTS:
             merged = checks["test_merge"]["contexts"][context]
@@ -287,6 +289,7 @@ def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, 
         "observed_at": now.isoformat(),
         "snapshot": asdict(snapshot),
         "mode": "mandatory-merge-queue" if queue else "test-merge-diagnostic",
+        "commissioning_phase": phase,
         "queue_ci": queue,
         "status": "blocked" if findings else "matching-observations",
         "live_branch_enforcement_proven": False,
@@ -306,6 +309,8 @@ def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pull", type=int, default=1)
+    parser.add_argument("--commissioning-phase", required=True, choices=PHASES)
+    parser.add_argument("--authorized-cutover-ruleset", type=int, help="Owner-authorized production ruleset for final observations")
     parser.add_argument("--app-id", type=int, help="Expected dedicated GitHub App ID")
     parser.add_argument("--decision-sha256", help="SHA-256 of the protected review decision")
     parser.add_argument("--queue-run", type=int, help="GitHub Actions run ID on the live merge group")
@@ -325,7 +330,8 @@ def main(argv=None):
             scope = GitHub(bearer=token)
         result = preflight(OwnerGitHub() if args.gh_owner else GitHub(), pull=args.pull, app_id=args.app_id,
                            decision=args.decision_sha256, owner_session=args.gh_owner, scope_github=scope,
-                           queue_run=args.queue_run, admission=args.admission_sha256)
+                           queue_run=args.queue_run, admission=args.admission_sha256, phase=args.commissioning_phase,
+                           authorized_cutover_ruleset=args.authorized_cutover_ruleset)
         sys.stdout.buffer.write(encode(result))
         return 0 if result["status"] == "matching-observations" else 1
     except (OSError, SnapshotError, TypeError, ValueError, KeyError, AttributeError) as error:

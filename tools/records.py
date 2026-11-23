@@ -108,14 +108,16 @@ class Catalog:
         path = self.root / relative
         return read(path) if path.exists() else {}
 
+    def _sharded_rows(self, kind):
+        for path in sorted((self.root / "registry" / kind).rglob("*.json")):
+            yield path.relative_to(self.root).as_posix(), read(path)
+
     def _read_sharded(self, kind):
         rows = {}
-        for path in sorted((self.root / "registry" / kind).rglob("*.json")):
-            row = read(path)
+        for path, row in self._sharded_rows(kind):
             identifier = row.get("id", "")
             require(OPAQUE_ID.fullmatch(identifier), f"invalid permanent ID: {path}")
-            require(path.parent.name == identifier[:2] and path.stem == identifier
-                    and path.parent.parent == self.root / "registry" / kind,
+            require(path == f"registry/{kind}/{identifier[:2]}/{identifier}.json",
                     f"incorrect shard or filename: {path}")
             require(identifier not in rows, f"duplicate permanent ID: {identifier}")
             rows[identifier] = row

@@ -17,6 +17,7 @@ from tools.review_gate import (
     ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, Reviewer, create_check, launch_review, load_issuer, main,
     load_reviewer, protected_path, require_queue_rules, review_result, run, verify_issued_check,
 )
+from tools.review_protection import commissioning_policy
 from tools.review_snapshot import PullSnapshot, REPOSITORY, SnapshotError
 
 EXECUTION = "90c3284d-c009-4e34-bc00-beb41319adad"
@@ -28,9 +29,11 @@ LEGACY_TOKEN = "ghs_" + "a" * 36
 STATELESS_TOKEN = "ghs_12345_" + "A" * 120 + "." + "_-" * 100 + "." + "B" * 180
 TOKEN_REPOSITORY = {"id": SNAPSHOT.repository_id, "full_name": REPOSITORY}
 SCOPE_PATH = "/installation/repositories?per_page=100"
+RULESET = 27875276
+ADDITIVE = commissioning_policy(REPOSITORY, "main", "additive")
 
 
-def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.completed", proof=True):
+def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.completed", proof=True, evidence=None):
     output = {"decision": "approve", "inspection_token": token, "merge_sha": BINDING["merge"],
               "diff_sha256": BINDING["diff_sha256"], "findings": [], "rationale": "Synthetic fixture outcome"}
     output.update(verdict or {})
@@ -42,6 +45,18 @@ def make_trace(token="abc", *, verdict=None, inspect=True, terminal="turn.comple
             "aggregated_output": (sha256(token.encode() + PATCH).hexdigest() + "\n" + PATCH.decode()
                                   if proof else BINDING["diff_sha256"] + "\n" + PATCH.decode().splitlines()[0]),
         }})
+    if evidence:
+        names = sorted(evidence)
+        batches = []
+        for number, start in enumerate(range(0, len(names), 128)):
+            content = "".join(f"{name} {sha256(token.encode() + evidence[name]).hexdigest()}\n"
+                              for name in names[start:start + 128])
+            batches.append(f"sces-proof {number} {sha256(content.encode()).hexdigest()}")
+        events.append({"type": "item.completed", "item": {
+            "type": "command_execution", "status": "completed", "exit_code": 0,
+            "command": "inspect evidence listed in review-input.json",
+            "aggregated_output": "\n".join(batches),
+        }})
     events.extend([{"type": "item.completed", "item": {"type": "agent_message", "text": json.dumps(output)}},
                    {"type": terminal}])
     return ("\n".join(json.dumps(event) for event in events) + "\n").encode()
@@ -51,9 +66,15 @@ def api_check(payload, app=123):
     return {**payload, "app": {"id": app}, "id": 42}
 
 
-def active_queue_rules():
+def active_queue_rules(policy=ADDITIVE, *, ruleset=None):
     checks = [{"context": name, "integration_id": ACTIONS_APP_ID} for name in CI_CONTEXTS]
-    return [{"type": kind} for kind in ("pull_request", "deletion", "non_fast_forward")] + [
+    approval = policy.approval
+    rules = [
+        {"type": "pull_request", "parameters": {
+            "require_code_owner_review": approval.code_owner_review,
+            "required_approving_review_count": approval.approving_review_count,
+        }},
+        *[{"type": kind} for kind in ("deletion", "non_fast_forward")],
         {"type": "merge_queue", "parameters": {
             "merge_method": "MERGE", "grouping_strategy": "ALLGREEN",
             "max_entries_to_build": 1, "min_entries_to_merge": 1, "max_entries_to_merge": 1,
@@ -64,9 +85,29 @@ def active_queue_rules():
             "do_not_enforce_on_create": False,
         }},
     ]
+    source = ruleset or approval.ruleset_id or 27933278
+    return [{**rule, "ruleset_id": source} for rule in rules]
+
+
+def use_queue_rules(github, rules=None, *, bypass=None, on_read=None):
+    rules = active_queue_rules() if rules is None else rules
+
+    def read(path):
+        if "/rules/branches/" in path:
+            return on_read() if on_read is not None else rules
+        ruleset = int(path.rsplit("/", 1)[1])
+        return {"id": ruleset, "target": "branch", "enforcement": "active",
+                "bypass_actors": [] if bypass is None else bypass}
+
+    github._get_json.side_effect = read
 
 
 class ReviewGateTests(unittest.TestCase):
+    def setUp(self):
+        capture = patch("tools.review_gate.capture_selected_evidence", return_value={})
+        self.capture_evidence = capture.start()
+        self.addCleanup(capture.stop)
+
     def test_accepts_only_complete_bound_verdicts(self):
         execution, verdict = review_result(make_trace(), BINDING, "abc", PATCH)
         self.assertEqual(execution, EXECUTION)
@@ -78,6 +119,58 @@ class ReviewGateTests(unittest.TestCase):
                 review_result(trace, BINDING, "abc", PATCH)
         _, verdict = review_result(make_trace(verdict={"decision": "inconclusive"}, inspect=False), BINDING, "abc", PATCH)
         self.assertEqual(verdict["decision"], "inconclusive")
+
+    def test_approval_requires_evidence_binding_and_each_successful_byte_proof(self):
+        binding = {**BINDING, "sces_evidence_sha256": "e" * 64}
+        evidence = {"sces-00001.data": b"claim", "sces-00002.data": b"unchanged verification"}
+        verdict = {"sces_evidence_sha256": binding["sces_evidence_sha256"]}
+        for trace, message in (
+            (make_trace(evidence=evidence), "does not bind"),
+            (make_trace(verdict={**verdict, "sces_evidence_sha256": "f" * 64}, evidence=evidence), "does not bind"),
+            (make_trace(verdict=verdict, evidence={"sces-00001.data": b"claim"}), "lacks exact selected SCES"),
+            (make_trace(verdict=verdict, evidence={**evidence, "sces-00002.data": b"other"}), "lacks exact selected SCES"),
+        ):
+            with self.subTest(message=message), self.assertRaisesRegex(DataError, message):
+                review_result(trace, binding, "abc", PATCH, evidence)
+        _, decision = review_result(make_trace(verdict=verdict, evidence=evidence), binding, "abc", PATCH, evidence)
+        self.assertEqual(decision["decision"], "approve")
+
+    def test_truncated_multiple_batch_proof_cannot_authorize_approval(self):
+        binding = {**BINDING, "sces_evidence_sha256": "e" * 64}
+        evidence = {f"sces-{index:05}.data": f"fixture {index}".encode() for index in range(129)}
+        verdict = {"sces_evidence_sha256": binding["sces_evidence_sha256"]}
+        trace = make_trace(verdict=verdict, evidence=evidence)
+        review_result(trace, binding, "abc", PATCH, evidence)
+        first_batch = {name: evidence[name] for name in sorted(evidence)[:128]}
+        with self.assertRaisesRegex(DataError, "lacks exact selected SCES"):
+            review_result(make_trace(verdict=verdict, evidence=first_batch), binding, "abc", PATCH, evidence)
+
+    def test_stages_exact_selected_bytes_and_requires_them_in_review(self):
+        evidence = {"sces/releases/r/claims.json": b"published bytes",
+                    "sces/records/verification/example--1.json": b"unchanged verification"}
+        self.capture_evidence.return_value = evidence
+        github = Mock(get_pull=Mock(return_value=SNAPSHOT))
+        with TemporaryDirectory() as directory:
+            args = SimpleNamespace(state_dir=Path(directory), mode="review", pull=1, model="fixture",
+                                   codex=Path("fixture"), app_id=None)
+
+            def inspect(_, __, input_dir, schema, ___, *, reviewer):
+                review_input = json.loads((input_dir / "review-input.json").read_bytes())
+                opened = {name: (input_dir / name).read_bytes() for name in review_input["sces_review_files"]}
+                self.assertEqual({path: opened[name] for name, path in review_input["sces_review_files"].items()},
+                                 evidence)
+                self.assertIn("sces_evidence_sha256", json.loads(schema.read_bytes())["required"])
+                return make_trace(review_input["inspection_token"], evidence=opened, verdict={
+                    "sces_evidence_sha256": review_input["sces_evidence_sha256"],
+                })
+
+            with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)) as capture,
+                  patch("tools.review_gate.launch_review", side_effect=inspect)):
+                result = run(args, github)
+            self.capture_evidence.assert_called_once_with(capture.call_args.args[1], SNAPSHOT.merge, REPOSITORY)
+            self.assertEqual(result["status"], "reviewed-locally")
+            self.assertEqual(result["binding"]["sces_evidence"],
+                             {path: sha256(raw).hexdigest() for path, raw in evidence.items()})
 
     def test_installation_token_accepts_supported_formats_without_header_delimiters(self):
         for token in (LEGACY_TOKEN, STATELESS_TOKEN):
@@ -117,9 +210,10 @@ class ReviewGateTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             state = Path(directory)
             args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
-                                   app_id=123, reviewer=Reviewer(4001, 4002, state / "reviewer-home"), queue_run=321)
+                                   app_id=123, reviewer=Reviewer(4001, 4002, state / "reviewer-home"), queue_run=321,
+                                   commissioning_policy=ADDITIVE)
             github = Mock()
-            github._get_json.return_value = active_queue_rules()
+            use_queue_rules(github)
             def respond(_, payload, *, check_id=None):
                 return api_check({"name": CHECK_NAME, "head_sha": QUEUE["merge"],
                                   "external_id": publisher.call_args_list[-2].args[1]["external_id"],
@@ -154,6 +248,20 @@ class ReviewGateTests(unittest.TestCase):
                 self.assertEqual(last.kwargs["check_id"], 42)
                 self.assertTrue((Path(result["audit"]) / "decision.json").is_file())
                 self.assertEqual(first.args[1]["external_id"], result["decision_sha256"])
+                self.assertEqual(result["binding"]["commissioning"], {"phase": "additive", "approval": {
+                    "ruleset_id": RULESET, "code_owner_review": True, "approving_review_count": 1,
+                }})
+                wrong_approvals = active_queue_rules()
+                wrong_approvals[0]["parameters"]["required_approving_review_count"] = 0
+                live_reads = iter((active_queue_rules(), wrong_approvals))
+                use_queue_rules(github, on_read=lambda: next(live_reads))
+                publisher.reset_mock()
+                credential = Mock()
+                with self.assertRaisesRegex(DataError, "ordinary approval"):
+                    run(args, github, token_input=credential, publisher=publisher)
+                credential.assert_not_called()
+                publisher.assert_not_called()
+                use_queue_rules(github)
                 for stale in (replace(SNAPSHOT, head="f" * 40), replace(SNAPSHOT, base="f" * 40),
                               replace(SNAPSHOT, merge="f" * 40)):
                     with self.subTest(stale=stale):
@@ -207,28 +315,76 @@ class ReviewGateTests(unittest.TestCase):
 
     def test_queue_rules_require_replay_protection_and_source_pins(self):
         github = Mock()
-        github._get_json.return_value = active_queue_rules()
-        require_queue_rules(github, 123)
+        use_queue_rules(github)
+        require_queue_rules(github, 123, policy=ADDITIVE)
+        github._get_json.assert_any_call(f"/repos/{REPOSITORY}/rulesets/{RULESET}")
         with self.assertRaisesRegex(DataError, "exact integration"):
-            require_queue_rules(github, 321)
+            require_queue_rules(github, 321, policy=ADDITIVE)
         for key, value in (("merge_method", "SQUASH"), ("grouping_strategy", "HEADGREEN"),
                            ("max_entries_to_merge", 2), ("max_entries_to_build", True)):
             rules = active_queue_rules()
             rules[3]["parameters"][key] = value
-            github._get_json.return_value = rules
+            use_queue_rules(github, rules)
             with self.subTest(key=key), self.assertRaisesRegex(DataError, "single-entry"):
-                require_queue_rules(github, 123)
+                require_queue_rules(github, 123, policy=ADDITIVE)
         for key, value in (("strict_required_status_checks_policy", False),
                            ("strict_required_status_checks_policy", 1), ("do_not_enforce_on_create", True),
                            ("do_not_enforce_on_create", None)):
             rules = active_queue_rules()
             rules[-1]["parameters"][key] = value
-            github._get_json.return_value = rules
+            use_queue_rules(github, rules)
             with self.subTest(key=key, value=value), self.assertRaisesRegex(DataError, "enforce strict checks"):
-                require_queue_rules(github, 123)
-        github._get_json.return_value = [row for row in active_queue_rules() if row["type"] != "merge_queue"]
+                require_queue_rules(github, 123, policy=ADDITIVE)
+        use_queue_rules(github, [row for row in active_queue_rules() if row["type"] != "merge_queue"])
         with self.assertRaisesRegex(DataError, "mandatory merge queue"):
-            require_queue_rules(github, 123)
+            require_queue_rules(github, 123, policy=ADDITIVE)
+        use_queue_rules(github, bypass=[{"actor_id": 123}])
+        with self.assertRaisesRegex(DataError, "no-bypass"):
+            require_queue_rules(github, 123, policy=ADDITIVE)
+
+    def test_exact_approval_rule_for_every_commissioning_phase(self):
+        github = Mock()
+        for phase, base, owner, count, authorized in (
+            ("trial", "codex-gate-trial", False, 0, None),
+            ("additive", "main", True, 1, None),
+            ("final", "main", False, 0, RULESET),
+        ):
+            with self.subTest(phase=phase), patch("tools.review_gate.BASE_REF", base):
+                policy = commissioning_policy(REPOSITORY, base, phase, authorized)
+                rules = active_queue_rules(policy)
+                use_queue_rules(github, rules)
+                observed = require_queue_rules(github, 123, policy=policy)
+                self.assertIs(observed.code_owner_review, owner)
+                self.assertEqual(observed.approving_review_count, count)
+                use_queue_rules(github, [*rules, rules[0]])
+                with self.assertRaisesRegex(DataError, "ordinary approval"):
+                    require_queue_rules(github, 123, policy=policy)
+                if phase != "trial":
+                    use_queue_rules(github, active_queue_rules(policy, ruleset=14))
+                    with self.assertRaisesRegex(DataError, "ordinary approval"):
+                        require_queue_rules(github, 123, policy=policy)
+        for wrong in (True, None, 14, str(RULESET)):
+            with self.subTest(wrong=wrong), self.assertRaisesRegex(DataError, "exact production ruleset"):
+                commissioning_policy(REPOSITORY, "main", "final", wrong)
+        with self.assertRaisesRegex(DataError, "pinned trial branch"):
+            commissioning_policy(REPOSITORY, "main", "trial")
+
+    def test_protected_issuance_uses_owner_transport_and_local_inspection_uses_public_transport(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            settings = (root, root / "codex", "fixture", 123, Reviewer(4001, 4002, root), ADDITIVE)
+            with (patch("tools.review_gate.load_issuer", return_value=settings),
+                  patch("tools.review_commission.OwnerGitHub") as owner,
+                  patch("tools.review_gate.GitHub") as public,
+                  patch("tools.review_gate.run", return_value={"status": "inspection-only"}) as execute,
+                  patch("tools.review_gate.sys.stdout", SimpleNamespace(buffer=BytesIO()))):
+                self.assertEqual(main(["review", "1", "--issuer-config", str(root / "config"), "--queue-admission"]), 0)
+                self.assertIs(execute.call_args.args[1], owner.return_value)
+                public.assert_not_called()
+                owner.reset_mock()
+                self.assertEqual(main(["inspect", "1", "--state-dir", str(root)]), 0)
+                self.assertIs(execute.call_args.args[1], public.return_value)
+                owner.assert_not_called()
 
     def test_wrong_source_and_stale_returned_checks_are_rejected(self):
         payload = {"name": CHECK_NAME, "head_sha": SNAPSHOT.merge,
@@ -257,9 +413,9 @@ class ReviewGateTests(unittest.TestCase):
             state = Path(directory)
             args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
                                    app_id=123, reviewer=Reviewer(4001, 4002, state / "reviewer-home"),
-                                   queue_admission=True)
+                                   queue_admission=True, commissioning_policy=ADDITIVE)
             github = Mock()
-            github._get_json.return_value = active_queue_rules()
+            use_queue_rules(github)
             github.get_pull.return_value = SNAPSHOT
             credential = Mock()
             publisher = Mock()
@@ -277,9 +433,9 @@ class ReviewGateTests(unittest.TestCase):
             state = Path(directory)
             args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
                                    app_id=123, reviewer=Reviewer(4001, 4002, state / "reviewer-home"),
-                                   queue_admission=True)
+                                   queue_admission=True, commissioning_policy=ADDITIVE)
             github = Mock()
-            github._get_json.return_value = active_queue_rules()
+            use_queue_rules(github)
             github.get_pull.return_value = SNAPSHOT
             credential = Mock()
             publisher = Mock()
@@ -352,7 +508,8 @@ class ReviewGateTests(unittest.TestCase):
                 token = json.loads((input_dir / "review-input.json").read_bytes())["inspection_token"]
                 return make_trace(token)
 
-            with (patch("tools.review_gate.load_issuer", return_value=(root, root / "codex", "fixture", None, reviewer)) as load,
+            with (patch("tools.review_gate.load_issuer",
+                        return_value=(root, root / "codex", "fixture", None, reviewer, None)) as load,
                   patch("tools.review_gate.GitHub", return_value=github),
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)) as capture,
                   patch("tools.review_gate.protected_staging", return_value=root),
@@ -389,12 +546,20 @@ class ReviewGateTests(unittest.TestCase):
                 "app_id": 123, "audit_dir": str(root), "codex": str(codex), "model": "fixture",
                 "codex_sha256": sha256(codex.read_bytes()).hexdigest(),
                 "reviewer_uid": 4001, "reviewer_gid": 4002, "reviewer_home": str(root / "reviewer-home"),
+                "commissioning_phase": "additive",
             }
             config.write_text(json.dumps(settings), encoding="utf-8")
             config.chmod(0o600)
             reviewer = Reviewer(4001, 4002, root / "reviewer-home")
             with patch("tools.review_gate.load_reviewer", return_value=reviewer):
-                self.assertEqual(load_issuer(config), (root, codex, "fixture", 123, reviewer))
+                self.assertEqual(load_issuer(config), (root, codex, "fixture", 123, reviewer, ADDITIVE))
+                with self.assertRaisesRegex(DataError, "exact production ruleset"):
+                    config.write_text(json.dumps({**settings, "commissioning_phase": "final"}), encoding="utf-8")
+                    load_issuer(config)
+                config.write_text(json.dumps({**settings, "commissioning_phase": "final",
+                                              "authorized_cutover_ruleset": RULESET}), encoding="utf-8")
+                self.assertEqual(load_issuer(config)[-1], commissioning_policy(REPOSITORY, "main", "final", RULESET))
+                config.write_text(json.dumps(settings), encoding="utf-8")
                 with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
                     load_issuer(config, rehearsal=True)
                 config.chmod(0o640)
@@ -410,8 +575,9 @@ class ReviewGateTests(unittest.TestCase):
                     load_issuer(config)
                 codex.write_bytes(b"synthetic executable")
                 del settings["app_id"]
+                del settings["commissioning_phase"]
                 config.write_text(json.dumps(settings), encoding="utf-8")
-                self.assertEqual(load_issuer(config, rehearsal=True), (root, codex, "fixture", None, reviewer))
+                self.assertEqual(load_issuer(config, rehearsal=True), (root, codex, "fixture", None, reviewer, None))
                 with self.assertRaisesRegex(DataError, "invalid protected issuer configuration"):
                     load_issuer(config)
 
