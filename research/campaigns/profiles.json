@@ -182,7 +182,7 @@
       },
       "notices": {
         "state": "condition",
-        "text": "Redistribution requires a license copy. Pertinent source notices and readable upstream NOTICE attribution have distinct conditions.",
+        "text": "Give recipients a license copy. Retain pertinent upstream copyright, patent, trademark and attribution notices in any derivative Source you distribute. When the Work was distributed with a NOTICE file, include readable pertinent attribution from that file in distributed Derivative Works using a location specified in §4(d).",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
@@ -192,11 +192,11 @@
       },
       "patent_grant": {
         "state": "permission",
-        "text": "Each contributor grants rights under licensable patent claims necessarily infringed by the contributor’s contribution alone or in the stated combination.",
+        "text": "Subject to the license terms, each contributor grants the specified patent rights over the Work. The grant covers only claims that contributor can license and that their contribution necessarily infringes by itself or in combination with the Work to which they submitted it.",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
-            "locator": "§3, first paragraph"
+            "locator": "§3, patent grant sentence"
           }
         ]
       },
@@ -206,13 +206,13 @@
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
-            "locator": "§3, second paragraph"
+            "locator": "§3, litigation trigger sentence"
           }
         ]
       },
       "source_availability": {
         "state": "documented",
-        "text": "Section 4 permits distribution in source or object form subject to listed conditions. Paragraph 4(c) governs notices in distributed derivative source.",
+        "text": "Section 4 permits redistribution of the Work and Derivative Works in Source or Object form under its stated conditions. Section 4(c) governs notice retention in any derivative Source distributed.",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
@@ -222,7 +222,7 @@
       },
       "trademark": {
         "state": "restriction",
-        "text": "Trademark permission is reserved, subject to limited origin descriptions and reproduction of NOTICE content.",
+        "text": "Section 6 withholds permission to use the Licensor’s trade names, trademarks, service marks or product names, with a stated exception for reasonable and customary descriptions of the Work’s origin and reproduction of NOTICE content.",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
@@ -232,7 +232,7 @@
       },
       "warranty": {
         "state": "documented",
-        "text": "The work is provided without the stated warranties, subject to the applicable-law and written-agreement qualifications. Liability limitations are addressed separately.",
+        "text": "Section 7 supplies the Work from the Licensor and Contributions from their respective contributors on an as-is basis. Section 8 separately limits contributor liability to the recipient. Both sections have applicable-law and written-agreement qualifications.",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
@@ -244,7 +244,7 @@
     "scenarios": [
       {
         "situation": "Shipping a modified binary",
-        "text": "Include the license copy. Check changed-file notices and whether applicable attribution from an upstream NOTICE must accompany a distributed derivative work.",
+        "text": "Give recipients a copy of the license and check that modified files carry prominent change notices. Inspect any accompanying derivative Source for pertinent upstream notices. For a distributed Derivative Work whose upstream distribution included a NOTICE file, check for readable pertinent attribution in a location permitted by §4(d). How a specific binary package carries the modified-file notices requires separate review.",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
@@ -254,7 +254,7 @@
       },
       {
         "situation": "Applying Apache-2.0 to a new project",
-        "text": "Use the unchanged publisher license copy. The publisher describes a separate source-file notice or SPDX header and consideration of a NOTICE file.",
+        "text": "Keep the publisher license copy, including the appendix, intact. The ASF’s own-software guidance discusses personalizing a separate source-file notice, an alternative copyright line with the SPDX identifier, and consideration of a NOTICE file.",
         "sources": [
           {
             "url": "https://www.apache.org/licenses/LICENSE-2.0",
