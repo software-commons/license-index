@@ -93,10 +93,10 @@ class CaptureTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout.strip()
 
-    def capture(self, *, head=None, merge=None):
+    def capture(self, *, head=None, merge=None, **options):
         snapshot = PullSnapshot(REPOSITORY_ID, 1, self.base, head or self.head, merge or self.merge)
         with patch("tools.review_snapshot._REMOTE_URL", self.source.as_uri()):
-            return capture_diff(snapshot, self.root / "snapshot")
+            return capture_diff(snapshot, self.root / "snapshot", **options)
 
     def test_captures_exact_complete_diff_without_checking_out(self):
         inherited = {**os.environ, "GIT_DIR": "cannot-use-this", "GIT_EXTERNAL_DIFF": "cannot-run-this"}
@@ -119,6 +119,24 @@ class CaptureTests(unittest.TestCase):
         with patch("tools.review_snapshot.MAX_DIFF_BYTES", 32):
             with self.assertRaisesRegex(SnapshotError, "capture limit"):
                 self.capture()
+
+    def test_captures_single_pr_queue_commit_from_its_exact_branch(self):
+        ref = f"refs/heads/gh-readonly-queue/main/pr-1-{self.base}"
+        queue_merge = self.git("commit-tree", self.tree, "-p", self.base, "-p", self.head, "-m", "Queue merge")
+        self.git("update-ref", ref, queue_merge)
+        tree, diff = self.capture(merge=queue_merge, queue_ref=ref)
+        self.assertEqual(tree, self.tree)
+        self.assertIn(b"-before\n+after\n", diff)
+
+    def test_rejects_other_queue_ref_before_fetch(self):
+        with self.assertRaisesRegex(SnapshotError, "merge-queue branch"):
+            self.capture(queue_ref=f"refs/heads/gh-readonly-queue/main/pr-2-{self.base}")
+
+    def test_admission_refuses_a_merge_candidate_reused_as_the_head(self):
+        replay = self.git("commit-tree", self.tree, "-p", self.base, "-p", self.merge, "-m", "Replayed test merge")
+        self.git("update-ref", "refs/pull/1/merge", replay)
+        with self.assertRaisesRegex(SnapshotError, "single-parent"):
+            self.capture(head=self.merge, merge=replay, linear_head=True)
 
 
 if __name__ == "__main__":

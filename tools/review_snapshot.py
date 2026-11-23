@@ -156,10 +156,18 @@ def _git(directory, operation, *arguments, limit=4096, config=()):
         process.wait()
 
 
-def _commit_headers(directory, snapshot):
-    raw = _git(directory, "cat-file", "commit", snapshot.merge, limit=65536)
-    headers = raw.split(b"\n\n", 1)[0].splitlines()
-    parents = [line.removeprefix(b"parent ") for line in headers if line.startswith(b"parent ")]
+def _commit_headers(directory, commit):
+    raw = _git(directory, "cat-file", "commit", commit, limit=65536)
+    return raw.split(b"\n\n", 1)[0].splitlines()
+
+
+def _parents(headers):
+    return [line.removeprefix(b"parent ") for line in headers if line.startswith(b"parent ")]
+
+
+def _merge_tree(directory, snapshot):
+    headers = _commit_headers(directory, snapshot.merge)
+    parents = _parents(headers)
     if parents != [snapshot.base.encode("ascii"), snapshot.head.encode("ascii")]:
         raise SnapshotError("Test merge commit does not have the exact ordered base and head parents")
     trees = [line.removeprefix(b"tree ") for line in headers if line.startswith(b"tree ")]
@@ -168,10 +176,16 @@ def _commit_headers(directory, snapshot):
     return trees[0].decode("ascii")
 
 
-def capture_diff(snapshot, directory: Path) -> tuple[str, bytes]:
-    """Capture the tree and complete base-to-test-merge patch in an empty directory."""
+def capture_diff(snapshot, directory: Path, *, queue_ref=None, linear_head=False) -> tuple[str, bytes]:
+    """Capture the exact tree and base-to-candidate patch in an empty directory."""
     if not isinstance(snapshot, PullSnapshot):
         raise SnapshotError("Expected a validated pull-request snapshot")
+    ref = f"refs/pull/{snapshot.number}/merge"
+    if queue_ref is not None:
+        prefix = f"refs/heads/gh-readonly-queue/{BASE_REF}/pr-{snapshot.number}-"
+        if not isinstance(queue_ref, str) or not queue_ref.startswith(prefix) or not _is_sha(queue_ref[len(prefix):]):
+            raise SnapshotError("Expected the exact GitHub merge-queue branch for this pull request")
+        ref = queue_ref
     directory = Path(directory)
     if directory.is_symlink() or (directory.exists() and (not directory.is_dir() or any(directory.iterdir()))):
         raise SnapshotError("Review capture requires an empty, unlinked directory")
@@ -181,13 +195,17 @@ def capture_diff(snapshot, directory: Path) -> tuple[str, bytes]:
     _git(directory, "init", "--bare", "--quiet", "--template=", "--object-format=sha1")
     _git(
         directory, "fetch", "--quiet", "--depth=2", "--no-tags", "--no-recurse-submodules",
-        "--no-auto-maintenance", _REMOTE_URL, f"refs/pull/{snapshot.number}/merge",
+        "--no-auto-maintenance", _REMOTE_URL, ref,
         config=("http.followRedirects=false", "fetch.fsckObjects=true"),
     )
     fetched = _git(directory, "rev-parse", "--verify", "FETCH_HEAD^{commit}").strip()
     if fetched != snapshot.merge.encode("ascii"):
-        raise SnapshotError("GitHub test merge changed during capture")
-    tree = _commit_headers(directory, snapshot)
+        raise SnapshotError("GitHub merge candidate changed during capture")
+    tree = _merge_tree(directory, snapshot)
+    if linear_head:
+        parents = _parents(_commit_headers(directory, snapshot.head))
+        if len(parents) != 1 or re.fullmatch(rb"[0-9a-f]{40}", parents[0]) is None:
+            raise SnapshotError("Queue admission requires a single-parent pull-request head")
     diff = _git(
         directory, "diff", "--no-ext-diff", "--no-textconv",
         "--no-color", "--no-relative", "--no-renames", "--binary", "--full-index",

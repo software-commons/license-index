@@ -105,6 +105,30 @@ class CommissionTests(unittest.TestCase):
         self.assertEqual(result["checks"]["test_merge"]["contexts"][CHECK_NAME]["classification"], "matching-success")
         self.assertEqual(result["checks"]["head"]["contexts"][CI_CONTEXTS[0]]["classification"], "matching-success")
 
+    def test_queue_commission_requires_distinct_admission_and_final_checks(self):
+        values = responses()
+        admission = "1" * 64
+        candidate = "d" * 40
+        values[CHECKS_HEAD]["check_runs"].append(run(CHECK_NAME, APP_ID, SNAPSHOT.head, external_id=admission))
+        values[CHECKS_HEAD]["total_count"] += 1
+        candidate_checks = f"{REPO_PATH}/commits/{candidate}{LATEST_CHECKS}"
+        values[candidate_checks] = rows("check_runs", [
+            run(CHECK_NAME, APP_ID, candidate),
+            *[run(name, ACTIONS_APP_ID, candidate) for name in CI_CONTEXTS],
+        ])
+        values[f"{REPO_PATH}/commits/{candidate}/status?per_page=100"] = rows("statuses", [])
+        options = {"queue_run": 321, "admission": admission}
+        with (patch("tools.review_commission.require_queue_rules"),
+              patch("tools.review_commission.capture_queue_observation", return_value={"merge": candidate})):
+            result = self.inspect(values, **options)
+            self.assertEqual(result["status"], "matching-observations")
+            self.assertEqual(result["mode"], "mandatory-merge-queue")
+            self.assertFalse(result["approval_cutover_authorized"])
+            values[candidate_checks]["check_runs"][0]["external_id"] = admission
+            result = self.inspect(values, **options)
+            self.assertEqual(result["status"], "blocked")
+            self.assertEqual(result["checks"]["queue"]["contexts"][CHECK_NAME]["classification"], "wrong-decision")
+
     def test_no_unprovisioned_or_misconfigured_installation_counts_as_verified(self):
         empty = responses()
         empty[INSTALLATIONS] = rows("installations", [])

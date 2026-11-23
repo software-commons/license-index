@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from hashlib import file_digest, sha256
 import json
@@ -20,10 +20,12 @@ from urllib.request import Request, build_opener
 from uuid import UUID, uuid4
 
 from .records import DataError, NoRedirects, decode, encode, require
+from .review_queue import capture_queue_observation
 from .review_snapshot import BASE_REF, REPOSITORY, GitHub, capture_diff
 
 CHECK_NAME = "Software Commons / Codex technical review"
 ACTIONS_APP_ID = 15368
+CI_CONTEXTS = ("Evidence / SCES validation", "Registry validation")
 VERDICT_KEYS = {"decision", "inspection_token", "merge_sha", "diff_sha256", "findings", "rationale"}
 VERDICT_SCHEMA = {
     "type": "object",
@@ -175,23 +177,55 @@ def write_check(token, payload, *, check_id=None):
         raise DataError(f"GitHub check API failed: {error.reason}") from None
 
 
-def create_check(github, snapshot, app_id, token, decision, publisher):
+def require_queue_rules(github, app_id):
+    rules = github._get_json(f"/repos/{REPOSITORY}/rules/branches/{BASE_REF}?per_page=100")
+    require(isinstance(rules, list) and len(rules) < 100 and all(isinstance(item, dict) for item in rules),
+            "GitHub did not return a complete active branch rules view")
+    by_type = {}
+    for item in rules:
+        by_type.setdefault(item.get("type"), []).append(item)
+    require({"pull_request", "deletion", "non_fast_forward"} <= by_type.keys(),
+            "mandatory pull requests, branch deletion protection and force-push protection are required")
+    queue = by_type.get("merge_queue", [])
+    require(len(queue) == 1, "App issuance requires a mandatory merge queue")
+    parameters = queue[0].get("parameters")
+    required = {"merge_method": "MERGE", "grouping_strategy": "ALLGREEN",
+                "max_entries_to_build": 1, "min_entries_to_merge": 1, "max_entries_to_merge": 1}
+    require(isinstance(parameters, dict) and all(type(parameters.get(key)) is type(value) and parameters[key] == value
+                                                for key, value in required.items()),
+            "expected a single-entry merge queue using Merge and requiring every check")
+    expected = {**dict.fromkeys(CI_CONTEXTS, ACTIONS_APP_ID), CHECK_NAME: app_id}
+    bindings = {name: [] for name in expected}
+    for rule in by_type.get("required_status_checks", []):
+        parameters = rule.get("parameters")
+        checks = parameters.get("required_status_checks") if isinstance(parameters, dict) else None
+        require(isinstance(checks, list) and all(isinstance(check, dict) for check in checks),
+                "GitHub did not return a complete required status check rule")
+        for check in checks:
+            name = check.get("context")
+            if name in bindings:
+                bindings[name].append(check.get("integration_id"))
+    require(all(bindings[name] == [source] for name, source in expected.items()),
+            "required review and CI contexts must each bind their exact integration")
+
+
+def create_check(snapshot, app_id, token, decision, publisher, verify_fresh, *, admission=False):
     require(type(app_id) is int and app_id > 0 and app_id != ACTIONS_APP_ID and APP_TOKEN.fullmatch(token),
             "expected a dedicated GitHub App installation token")
-    # The target is the GitHub test-merge object whose ordered parents were reviewed.
-    # Never emit this check on the PR head, where it could be reused on a different base.
-    require(github.get_pull(snapshot.number) == snapshot, "pull request changed after review")
+    target = snapshot.head if admission else snapshot.merge
+    purpose = "Queue admission" if admission else "Final merge-queue review"
+    verify_fresh()
     decision_digest = sha256(encode(decision)).hexdigest()
-    pending = publisher(token, {"name": CHECK_NAME, "head_sha": snapshot.merge,
+    pending = publisher(token, {"name": CHECK_NAME, "head_sha": target,
                                 "status": "in_progress", "external_id": decision_digest})
-    verify_issued_check(pending, snapshot.merge, app_id, decision_digest, "in_progress")
+    verify_issued_check(pending, target, app_id, decision_digest, "in_progress")
     check_id = pending.get("id")
     require(type(check_id) is int and check_id > 0, "GitHub returned an invalid review check ID")
-    require(github.get_pull(snapshot.number) == snapshot, "pull request changed after review")
+    verify_fresh()
     result = publisher(token, {
         "status": "completed", "conclusion": "success",
         "output": {
-            "title": "Independent Codex technical review",
+            "title": f"{purpose} from independent Codex review",
             "summary": (
                 f"PR #{snapshot.number}\n\nHead: `{snapshot.head}`\n\nBase: `{snapshot.base}`\n\n"
                 f"Reviewed merge: `{snapshot.merge}`\n\nExecution: `{decision['execution']}`\n\n"
@@ -199,7 +233,7 @@ def create_check(github, snapshot, app_id, token, decision, publisher):
             ),
         },
     }, check_id=check_id)
-    verify_issued_check(result, snapshot.merge, app_id, decision_digest, "completed", "success")
+    verify_issued_check(result, target, app_id, decision_digest, "completed", "success")
     require(result.get("id") == check_id, "GitHub updated the wrong review check")
     return result
 
@@ -209,13 +243,29 @@ def run(args, github, *, token_input=None, publisher=write_check):
     require(state.is_dir(), "configure an existing issuer-owned state directory")
     reviewer = getattr(args, "reviewer", None)
     require(args.app_id is None or reviewer is not None, "check issuance requires the isolated reviewer identity")
+    admission = getattr(args, "queue_admission", False)
+    run_id = getattr(args, "queue_run", None)
+    require(not (admission and run_id is not None), "select one review phase")
+    if args.app_id is not None:
+        require(admission or run_id is not None, "check issuance requires a mandatory merge-queue phase")
+        require_queue_rules(github, args.app_id)
     audit = state / str(uuid4())
     audit.mkdir(mode=0o700)
-    snapshot = github.get_pull(args.pull)
+    pull = github.get_pull(args.pull)
+    observation = None
+    snapshot = pull
+    capture_options = {"linear_head": True} if admission else {}
+    if run_id is not None:
+        observation = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
+        snapshot = replace(pull, merge=observation["merge"])
+        capture_options["queue_ref"] = observation["queue_ref"]
     with TemporaryDirectory(prefix="git-", dir=state) as directory:
-        tree, diff = capture_diff(snapshot, Path(directory))
+        tree, diff = capture_diff(snapshot, Path(directory), **capture_options)
     binding = {**asdict(snapshot), "repository": REPOSITORY, "base_ref": BASE_REF,
-               "tree": tree, "diff_sha256": sha256(diff).hexdigest()}
+               "tree": tree, "diff_sha256": sha256(diff).hexdigest(),
+               "phase": "queue-admission" if admission else "queue-merge" if observation else "pull-inspection"}
+    if observation:
+        binding.update(test_merge=pull.merge, queue_ci=observation)
     save(audit / "binding.json", encode(binding))
     save(audit / "review.diff", diff)
     if args.mode == "inspect":
@@ -245,12 +295,21 @@ def run(args, github, *, token_input=None, publisher=write_check):
               "decision_sha256": sha256(record).hexdigest()}
     if verdict["decision"] != "approve":
         return {**result, "status": verdict["decision"], "findings": verdict["findings"], "rationale": verdict["rationale"]}
-    require(github.get_pull(snapshot.number) == snapshot, "pull request changed after review")
+    def verify_fresh():
+        require(github.get_pull(pull.number) == pull, "pull request changed after review")
+        if args.app_id is not None:
+            require_queue_rules(github, args.app_id)
+        if observation is not None:
+            current = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
+            require(current == observation, "merge queue candidate or CI evidence changed after review")
+
+    verify_fresh()
     result["status"] = "reviewed-locally"
     if args.app_id is not None:
         # A protected caller, not the reviewer, provides a short-lived installation token.
         installation_token = token_input().strip()
-        check = create_check(github, snapshot, args.app_id, installation_token, decision, publisher)
+        check = create_check(snapshot, args.app_id, installation_token, decision, publisher, verify_fresh,
+                             admission=admission)
         save(audit / "issued-check.json", encode(check))
         result.update(status="check-issued", check_id=check["id"])
     return result
@@ -339,6 +398,9 @@ def main(argv=None):
     parser.add_argument("--state-dir", type=Path)
     parser.add_argument("--codex", type=Path, help="absolute path to an issuer-controlled Codex CLI")
     parser.add_argument("--model", help="model name for the fresh Codex execution")
+    phase = parser.add_mutually_exclusive_group()
+    phase.add_argument("--queue-admission", action="store_true", help="review the test merge for queue admission")
+    phase.add_argument("--queue-run", type=int, help="review the exact candidate for a GitHub merge-group Actions run")
     parser.add_argument("--issuer-config", type=Path, help="protected issuer configuration, installation token read from stdin")
     args = parser.parse_args(argv)
     args.app_id = None

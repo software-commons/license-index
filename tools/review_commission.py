@@ -12,11 +12,11 @@ import subprocess
 import sys
 
 from .records import encode
-from .review_gate import ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME
+from .review_gate import ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, require_queue_rules
+from .review_queue import capture_queue_observation
 from .review_snapshot import BASE_REF, REPOSITORY, REPOSITORY_ID, GitHub, SnapshotError
 
 ORGANIZATION = REPOSITORY.split("/", 1)[0]
-CI_CONTEXTS = ("Evidence / SCES validation", "Registry validation")
 APP_PERMISSIONS = {"checks": "write", "statuses": "write", "metadata": "read"}
 LATEST_CHECKS = "/check-runs?filter=latest&per_page=100"
 MAX_AGE = timedelta(days=7)
@@ -221,9 +221,12 @@ def observe_check(rows, classic, commit, name, app_id, now, *, decision=None, de
     return observation
 
 
-def read_checks(github, snapshot, sources, now, decision):
+def read_checks(github, snapshot, sources, now, decision, *, admission=None, queue=None):
     results = {}
-    for name, commit in (("head", snapshot.head), ("test_merge", snapshot.merge)):
+    targets = {"head": (snapshot.head, admission), "test_merge": (snapshot.merge, None if queue else decision)}
+    if queue:
+        targets["queue"] = (queue["merge"], decision)
+    for name, (commit, digest) in targets.items():
         path = f"/repos/{REPOSITORY}/commits/{commit}"
         runs = complete_rows(github._get_json(path + LATEST_CHECKS), "check_runs")
         statuses = complete_rows(github._get_json(path + "/status?per_page=100"), "statuses")
@@ -232,7 +235,7 @@ def read_checks(github, snapshot, sources, now, decision):
             "contexts": {
                 context: observe_check(
                     runs, statuses, commit, context, app, now,
-                    decision=decision if context == CHECK_NAME else None, decision_required=context == CHECK_NAME,
+                    decision=digest if context == CHECK_NAME else None, decision_required=context == CHECK_NAME,
                 )
                 for context, app in sources.items()
             },
@@ -240,17 +243,27 @@ def read_checks(github, snapshot, sources, now, decision):
     return results
 
 
-def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, scope_github=None, now=None):
+def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, scope_github=None,
+              queue_run=None, admission=None, now=None):
     if app_id is not None and (type(app_id) is not int or app_id <= 0 or app_id == ACTIONS_APP_ID):
         raise SnapshotError("Supply the numeric ID of a dedicated App, separate from GitHub Actions")
     if decision is not None and not DECISION_SHA.fullmatch(decision):
         raise SnapshotError("Supply the lowercase SHA-256 of the protected review decision")
+    if queue_run is not None and (app_id is None or admission is None or decision is None or decision == admission
+                                  or not DECISION_SHA.fullmatch(admission)):
+        raise SnapshotError("Queue commissioning requires an App ID and distinct admission and final decision SHA-256 values")
+    if admission is not None and queue_run is None:
+        raise SnapshotError("An admission decision requires a final queue run")
     now = now or datetime.now(timezone.utc)
     snapshot = github.get_pull(pull)
     sources = {**dict.fromkeys(CI_CONTEXTS, ACTIONS_APP_ID), CHECK_NAME: app_id}
     controls = read_protection(github, sources)
     install = read_installation(github, scope_github, app_id, owner_session)
-    checks = read_checks(github, snapshot, sources, now, decision)
+    queue = None
+    if queue_run is not None:
+        require_queue_rules(github, app_id)
+        queue = capture_queue_observation(github, snapshot, queue_run, actions_app_id=ACTIONS_APP_ID)
+    checks = read_checks(github, snapshot, sources, now, decision, admission=admission, queue=queue)
     if github.get_pull(pull) != snapshot:
         raise SnapshotError("The GitHub review target changed during commissioning")
 
@@ -261,24 +274,32 @@ def preflight(github, *, pull, app_id=None, decision=None, owner_session=False, 
           if not context["strict_source_bound"]],
         *install["problems"],
     ]
-    for context in CI_CONTEXTS:
-        merged = checks["test_merge"]["contexts"][context]
-        if merged["classification"] != "matching-success":
-            head = checks["head"]["contexts"][context]["classification"]
-            findings.append(
-                f"Expected CI result unconfirmed on test merge: {context} ({merged['classification']}; head: {head})"
-            )
-    review = checks["test_merge"]["contexts"][CHECK_NAME]["classification"]
-    if review != "matching-success":
-        findings.append(f"Exact review check on test merge: {review}")
-    head_review = checks["head"]["contexts"][CHECK_NAME]
-    if head_review["check_run_ids"] or head_review["classic_status_present"]:
-        findings.append("A review check or same-name status exists on the raw PR head")
+    if queue:
+        for phase in ("head", "queue"):
+            for context, check in checks[phase]["contexts"].items():
+                if check["classification"] != "matching-success":
+                    findings.append(f"Required {phase} check {context}: {check['classification']}")
+    else:
+        for context in CI_CONTEXTS:
+            merged = checks["test_merge"]["contexts"][context]
+            if merged["classification"] != "matching-success":
+                head = checks["head"]["contexts"][context]["classification"]
+                findings.append(
+                    f"Expected CI result unconfirmed on test merge: {context} ({merged['classification']}; head: {head})"
+                )
+        review = checks["test_merge"]["contexts"][CHECK_NAME]["classification"]
+        if review != "matching-success":
+            findings.append(f"Exact review check on test merge: {review}")
+        head_review = checks["head"]["contexts"][CHECK_NAME]
+        if head_review["check_run_ids"] or head_review["classic_status_present"]:
+            findings.append("A review check or same-name status exists on the raw PR head")
     return {
         "repository": REPOSITORY,
         "base_ref": BASE_REF,
         "observed_at": now.isoformat(),
         "snapshot": asdict(snapshot),
+        "mode": "mandatory-merge-queue" if queue else "test-merge-diagnostic",
+        "queue_ci": queue,
         "status": "blocked" if findings else "matching-observations",
         "live_branch_enforcement_proven": False,
         "approval_cutover_authorized": False,
@@ -299,6 +320,8 @@ def main(argv=None):
     parser.add_argument("--pull", type=int, default=1)
     parser.add_argument("--app-id", type=int, help="Expected dedicated GitHub App ID")
     parser.add_argument("--decision-sha256", help="SHA-256 of the protected review decision")
+    parser.add_argument("--queue-run", type=int, help="GitHub Actions run ID on the live merge group")
+    parser.add_argument("--admission-sha256", help="SHA-256 of the separate protected admission decision")
     parser.add_argument("--gh-owner", action="store_true", help="Use the existing organization owner GitHub CLI session")
     parser.add_argument("--installation-token-stdin", action="store_true",
                         help="Read a short-lived installation token over standard input for repository-scope inspection")
@@ -313,7 +336,8 @@ def main(argv=None):
                 raise SnapshotError("Expected a GitHub App installation token")
             scope = GitHub(bearer=token)
         result = preflight(OwnerGitHub() if args.gh_owner else GitHub(), pull=args.pull, app_id=args.app_id,
-                           decision=args.decision_sha256, owner_session=args.gh_owner, scope_github=scope)
+                           decision=args.decision_sha256, owner_session=args.gh_owner, scope_github=scope,
+                           queue_run=args.queue_run, admission=args.admission_sha256)
         sys.stdout.buffer.write(encode(result))
         return 0 if result["status"] == "matching-observations" else 1
     except (OSError, SnapshotError, TypeError, ValueError, KeyError, AttributeError) as error:
