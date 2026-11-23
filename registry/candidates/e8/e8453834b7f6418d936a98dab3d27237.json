@@ -1,0 +1,68 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e8453834b7f6418d936a98dab3d27237",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 58949,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AGPL-1.0.json",
+        "sha256": "2d1d024f5c9398c04a9f12985a85f8e732671ed849ddf44b329e8f8933cb5740"
+      },
+      "replacement_source": {
+        "bytes": 20480,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/AGPL-1.0.xml",
+        "sha256": "3d5b41c2f9b5edff22668bd8bed1753a82db2afd6a57a3f051ae91d13d0c6cd1"
+      },
+      "template": {
+        "bytes": 16924,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_AGPL-1.0.template.txt",
+        "sha256": "82f3f1213fa2b3a978c2e84ab8cc67c7b0111f72e3e2e12229e4ce206e91e1dd"
+      },
+      "text": {
+        "bytes": 15839,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_AGPL-1.0.txt",
+        "sha256": "0cf752be2bb9cdd02256cf540db397d94dc9ae2f8e74c325f62a5f8e7b3e1d86"
+      }
+    },
+    "deprecated": true,
+    "identifier": "AGPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.1",
+      "detailsUrl": "https://spdx.org/licenses/AGPL-1.0.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "AGPL-1.0",
+      "name": "Affero General Public License v1.0",
+      "reference": "https://spdx.org/licenses/AGPL-1.0.html",
+      "referenceNumber": 427,
+      "seeAlso": [
+        "http://www.affero.org/oagpl.html"
+      ]
+    },
+    "name": "Affero General Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "AGPL-1.0-only"
+      },
+      {
+        "for_expression": "AGPL-1.0+",
+        "target": "AGPL-1.0-or-later"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

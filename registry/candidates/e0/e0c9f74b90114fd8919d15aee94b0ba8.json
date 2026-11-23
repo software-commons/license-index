@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e0c9f74b90114fd8919d15aee94b0ba8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 64660,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ESA-PL-permissive-2.4.json",
+        "sha256": "bbe85b39e5f68a3d5443495301ac3fab230a6a5e3e53481f34bfe94d37b45397"
+      },
+      "template": {
+        "bytes": 15428,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ESA-PL-permissive-2.4.template.txt",
+        "sha256": "8e1f2d654c63d3f72b365b22f13d543a25c0ebddd368d62e835346a228594b27"
+      },
+      "text": {
+        "bytes": 12948,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ESA-PL-permissive-2.4.txt",
+        "sha256": "53974f3ce137b03662a7ee4d7f6597b1b9d58ba6a631a0f07c1f33036a77478e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ESA-PL-permissive-2.4",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ESA-PL-permissive-2.4.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ESA-PL-permissive-2.4",
+      "name": "European Space Agency Public License – v2.4 – Permissive (Type 3)",
+      "reference": "https://spdx.org/licenses/ESA-PL-permissive-2.4.html",
+      "referenceNumber": 585,
+      "seeAlso": [
+        "https://essr.esa.int/license/european-space-agency-public-license-v2-4-permissive-type-3"
+      ]
+    },
+    "name": "European Space Agency Public License – v2.4 – Permissive (Type 3)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

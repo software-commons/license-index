@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "988f4b91176c49b1a7e3306b8e8a1021",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13896,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/iMatix.json",
+        "sha256": "52074eacf15934e447fc81a4507688e121a36519bc5cbcbe1361256c45b113f6"
+      },
+      "template": {
+        "bytes": 3683,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/iMatix.template.txt",
+        "sha256": "578f5a9b24dd623855fea29faae7a61525392fa70de170e707378f4fc7fe81f1"
+      },
+      "text": {
+        "bytes": 3473,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/iMatix.txt",
+        "sha256": "b671c84dec7bc37711226b9db9da9a6cebaad6bd006df3d60f080706181820ac"
+      }
+    },
+    "deprecated": false,
+    "identifier": "iMatix",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/iMatix.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "iMatix",
+      "name": "iMatix Standard Function Library Agreement",
+      "reference": "https://spdx.org/licenses/iMatix.html",
+      "referenceNumber": 119,
+      "seeAlso": [
+        "http://legacy.imatix.com/html/sfl/sfl4.htm#license"
+      ]
+    },
+    "name": "iMatix Standard Function Library Agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4498480955e54116a62ca3da05c86cd0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2187,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/gtkbook.json",
+        "sha256": "a470b1490e60f70fd42c06a2c0ac2edb265973494f16f5c5603d6f5db3db36a9"
+      },
+      "template": {
+        "bytes": 363,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/gtkbook.template.txt",
+        "sha256": "ba095b2a63a3d042ca61d2f710619c131f82be49e6b87eb316e69bbe81250c1e"
+      },
+      "text": {
+        "bytes": 309,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/gtkbook.txt",
+        "sha256": "1ead41c862686ec7d2a95781027749e349de3df5446d5a19806ba23de05cc2dd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "gtkbook",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/gtkbook.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "gtkbook",
+      "name": "gtkbook License",
+      "reference": "https://spdx.org/licenses/gtkbook.html",
+      "referenceNumber": 336,
+      "seeAlso": [
+        "https://github.com/slogan621/gtkbook",
+        "https://github.com/oetiker/rrdtool-1.x/blob/master/src/plbasename.c#L8-L11"
+      ]
+    },
+    "name": "gtkbook License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

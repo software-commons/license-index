@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fa95ac4b8edc4aebaa8d70b886feae45",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3204,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/mpi-permissive.json",
+        "sha256": "374e027acabe38cddc7de6c71d97ec2a4683e8bdf96b7b54932ef40be3543e64"
+      },
+      "template": {
+        "bytes": 691,
+        "encoding": "UTF-8",
+        "line_endings": "none",
+        "path": "template/mpi-permissive.template.txt",
+        "sha256": "5214b5b5965a1ee8410d4ff36248b7877fb4feb3652f83fa679ff4597995df68"
+      },
+      "text": {
+        "bytes": 583,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/mpi-permissive.txt",
+        "sha256": "3f86e2f5f1cbe019e0738fa89b2fab321015b3e5e2c0acd6649680f38fc9cf75"
+      }
+    },
+    "deprecated": false,
+    "identifier": "mpi-permissive",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/mpi-permissive.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "mpi-permissive",
+      "name": "mpi Permissive License",
+      "reference": "https://spdx.org/licenses/mpi-permissive.html",
+      "referenceNumber": 668,
+      "seeAlso": [
+        "https://sources.debian.org/src/openmpi/4.1.0-10/ompi/debuggers/msgq_interface.h/?hl=19#L19"
+      ]
+    },
+    "name": "mpi Permissive License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

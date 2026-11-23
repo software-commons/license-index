@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fae38a4c28e84b989c7d7d1988016d25",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6134,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CFITSIO.json",
+        "sha256": "affe47f3abeb002409c236a1e6eeabbad6a3343eef8b0d4d484f2dd51313d0d9"
+      },
+      "template": {
+        "bytes": 1495,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CFITSIO.template.txt",
+        "sha256": "caaafc5c9b4f91f655e8b9001e168237f3036532f198eb5d6cce9e883a1cdfc1"
+      },
+      "text": {
+        "bytes": 1408,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CFITSIO.txt",
+        "sha256": "805453d73d82fa5bedec1ab5afdeaaecd3797e6ad735f5b58324ce0363a941a0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CFITSIO",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CFITSIO.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CFITSIO",
+      "name": "CFITSIO License",
+      "reference": "https://spdx.org/licenses/CFITSIO.html",
+      "referenceNumber": 598,
+      "seeAlso": [
+        "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/c/f_user/node9.html",
+        "https://heasarc.gsfc.nasa.gov/docs/software/ftools/fv/doc/license.html"
+      ]
+    },
+    "name": "CFITSIO License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

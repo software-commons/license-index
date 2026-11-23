@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b3b4712ea58e40ab9dc65624685bddad",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9939,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Inner-Net-2.0.json",
+        "sha256": "bcb4d6db2efe1dc5c2853a786b2964073c28e3aee1955b187da41d9811862c1c"
+      },
+      "template": {
+        "bytes": 2312,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Inner-Net-2.0.template.txt",
+        "sha256": "e4dbcb2be9e1b64912c8260b32ec9bf5970eeac27943e00dc24d32fc2a9842cd"
+      },
+      "text": {
+        "bytes": 1996,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Inner-Net-2.0.txt",
+        "sha256": "1beeb7b196011ecb20843a6de48dd34346341a3c6c97923ac2cb5846f4320d27"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Inner-Net-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Inner-Net-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Inner-Net-2.0",
+      "name": "Inner Net License v2.0",
+      "reference": "https://spdx.org/licenses/Inner-Net-2.0.html",
+      "referenceNumber": 39,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Inner_Net_License",
+        "https://sourceware.org/git/?p=glibc.git;a=blob;f=LICENSES;h=530893b1dc9ea00755603c68fb36bd4fc38a7be8;hb=HEAD#l207"
+      ]
+    },
+    "name": "Inner Net License v2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "028d94c9824a41999a3c4e67deb7573a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 50986,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LPL-1.0.json",
+        "sha256": "6c7ddbb0bc9c6024d14395b4311a29c08eb394f4d2576b0175a8eafa771de746"
+      },
+      "template": {
+        "bytes": 13592,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LPL-1.0.template.txt",
+        "sha256": "c4a33d920727f0d6776a45f366eebe491c4a5cda555232bd6f851a74c7868956"
+      },
+      "text": {
+        "bytes": 11948,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LPL-1.0.txt",
+        "sha256": "84110c251f5fda9b4f91eb38164891b6cee6b1f9a64efdcc71b4f8c062150296"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "LPL-1.0",
+      "name": "Lucent Public License Version 1.0",
+      "reference": "https://spdx.org/licenses/LPL-1.0.html",
+      "referenceNumber": 73,
+      "seeAlso": [
+        "https://opensource.org/license/LPL-1.0"
+      ]
+    },
+    "name": "Lucent Public License Version 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "38c74fbbc05b42daa019d84b4407b964",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2245,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Font-exception-2.0.json",
+        "sha256": "d03350baf9dd6051fb5d2affb2aec000641ee7511445c028f3881de3089e774f"
+      },
+      "template": {
+        "bytes": 583,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Font-exception-2.0.template.txt",
+        "sha256": "52744c80c73fba07c19705bebf1c14db9f8ea137ddeefd7064ec335778963942"
+      },
+      "text": {
+        "bytes": 582,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Font-exception-2.0.txt",
+        "sha256": "000c7fc2d306b8f74db81d1b44ce9a96da4c1674185714cbe4e9d6b82db45aa7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Font-exception-2.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Font-exception-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Font-exception-2.0",
+      "name": "Font exception 2.0",
+      "reference": "https://spdx.org/licenses/Font-exception-2.0.html",
+      "referenceNumber": 4,
+      "seeAlso": [
+        "http://www.gnu.org/licenses/gpl-faq.html#FontException"
+      ]
+    },
+    "name": "Font exception 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

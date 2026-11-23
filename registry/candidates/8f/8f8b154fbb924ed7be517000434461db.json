@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8f8b154fbb924ed7be517000434461db",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4563,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-ask-to-endorse.json",
+        "sha256": "e56f1992808c445977c9a60292b2f8aca11c01866e1b80b091a0f8b292c88774"
+      },
+      "template": {
+        "bytes": 1138,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-ask-to-endorse.template.txt",
+        "sha256": "f40c8d3c878d91f9369ced1b262f9b76aa9122357c5641d3fb7131ad41f172cb"
+      },
+      "text": {
+        "bytes": 1099,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-ask-to-endorse.txt",
+        "sha256": "a4db73b0f83109207d4a0af2756dffad0122c87209ba9bb6a8b6323324502bbd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-ask-to-endorse",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-ask-to-endorse.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "BSD-ask-to-endorse",
+      "name": "BSD - ask to endorse",
+      "reference": "https://spdx.org/licenses/BSD-ask-to-endorse.html",
+      "referenceNumber": 676,
+      "seeAlso": [
+        "https://github.com/sudo-project/sudo/blob/c1307ea9ff340ce0538779f8e456501461fc44b7/plugins/sudoers/redblack.c#L24-L43"
+      ]
+    },
+    "name": "BSD - ask to endorse",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

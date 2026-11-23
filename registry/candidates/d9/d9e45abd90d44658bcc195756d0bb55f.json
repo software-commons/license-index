@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d9e45abd90d44658bcc195756d0bb55f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1910,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/QPL-1.0-INRIA-2004-exception.json",
+        "sha256": "8b1c69a844b79899655c553bae71a113465eef6113f33b3c128dd07574f5dc58"
+      },
+      "template": {
+        "bytes": 406,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/QPL-1.0-INRIA-2004-exception.template.txt",
+        "sha256": "446690d220e502a6a6e18bba2362468722453ddec224d625311f903ccf43abd4"
+      },
+      "text": {
+        "bytes": 334,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/QPL-1.0-INRIA-2004-exception.txt",
+        "sha256": "083e76ab5c9be947fba231b640a4984f294b7a65df4fffae2845ef86e256908f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "QPL-1.0-INRIA-2004-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/QPL-1.0-INRIA-2004-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "QPL-1.0-INRIA-2004-exception",
+      "name": "INRIA QPL 1.0 2004 variant exception",
+      "reference": "https://spdx.org/licenses/QPL-1.0-INRIA-2004-exception.html",
+      "referenceNumber": 9,
+      "seeAlso": [
+        "https://git.frama-c.com/pub/frama-c/-/blob/master/licenses/Q_MODIFIED_LICENSE",
+        "https://github.com/maranget/hevea/blob/master/LICENSE"
+      ]
+    },
+    "name": "INRIA QPL 1.0 2004 variant exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

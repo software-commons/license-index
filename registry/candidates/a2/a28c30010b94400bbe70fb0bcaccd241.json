@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a28c30010b94400bbe70fb0bcaccd241",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 20719,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/QPL-1.0.json",
+        "sha256": "86f1116e59e1beae8ff7b421eb8e92877f3dc16b3b8066a18f20f3f1b7e02048"
+      },
+      "template": {
+        "bytes": 5162,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/QPL-1.0.template.txt",
+        "sha256": "1f12301725b55cd2c2af40261aae04625d9caefe49591d4e85ac6dd8e8dc0629"
+      },
+      "text": {
+        "bytes": 4364,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/QPL-1.0.txt",
+        "sha256": "524dce795dfcfda14f8ee06e738f3059c4a054306d07dc14601164ed94cd01ce"
+      }
+    },
+    "deprecated": false,
+    "identifier": "QPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/QPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "QPL-1.0",
+      "name": "Q Public License 1.0",
+      "reference": "https://spdx.org/licenses/QPL-1.0.html",
+      "referenceNumber": 733,
+      "seeAlso": [
+        "http://doc.qt.nokia.com/3.3/license.html",
+        "https://opensource.org/license/QPL-1.0",
+        "https://doc.qt.io/archives/3.3/license.html"
+      ]
+    },
+    "name": "Q Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

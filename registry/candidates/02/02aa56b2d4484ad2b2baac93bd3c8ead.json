@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "02aa56b2d4484ad2b2baac93bd3c8ead",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 94877,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CECILL-B.json",
+        "sha256": "aacaf18fee3abd5105bbd344f9d4ce17e9a710061a01764fd4084110b49cd793"
+      },
+      "template": {
+        "bytes": 25109,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CECILL-B.template.txt",
+        "sha256": "a25d05d51427201b2d71d58acac2f620877b4d5cb163bd26d308101f77917c75"
+      },
+      "text": {
+        "bytes": 21393,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CECILL-B.txt",
+        "sha256": "ae13622d13fd432d2e31ed4cb205667d98e203b0cb54b1f244bd8d8354cefd48"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CECILL-B",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CECILL-B.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "CECILL-B",
+      "name": "CeCILL-B Free Software License Agreement",
+      "reference": "https://spdx.org/licenses/CECILL-B.html",
+      "referenceNumber": 565,
+      "seeAlso": [
+        "http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html"
+      ]
+    },
+    "name": "CeCILL-B Free Software License Agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

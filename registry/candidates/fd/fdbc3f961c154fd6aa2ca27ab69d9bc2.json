@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fdbc3f961c154fd6aa2ca27ab69d9bc2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10992,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Zend-2.0.json",
+        "sha256": "bf34ec82a33be859de5a185ee8e34e5d489b13ab44bc635278b2410d986d5644"
+      },
+      "template": {
+        "bytes": 2855,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Zend-2.0.template.txt",
+        "sha256": "e7dd62e0fc7a33ca5f5596b31c038b62429a40850e25ad7ee940d934f23e5349"
+      },
+      "text": {
+        "bytes": 2490,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Zend-2.0.txt",
+        "sha256": "c501915ee7c588173de03db9a8ca105c1baadb16bb05bca211700b850bcb077d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Zend-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Zend-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Zend-2.0",
+      "name": "Zend License v2.0",
+      "reference": "https://spdx.org/licenses/Zend-2.0.html",
+      "referenceNumber": 706,
+      "seeAlso": [
+        "https://web.archive.org/web/20130517195954/http://www.zend.com/license/2_00.txt"
+      ]
+    },
+    "name": "Zend License v2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

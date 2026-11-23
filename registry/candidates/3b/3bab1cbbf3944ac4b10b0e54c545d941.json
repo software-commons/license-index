@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3bab1cbbf3944ac4b10b0e54c545d941",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4619,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-pkgconf-disclaimer.json",
+        "sha256": "35b9a3f808855075c21c4f8dde687ed053fb787c4c5f5e2e7b25b449ab0fe171"
+      },
+      "template": {
+        "bytes": 856,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause-pkgconf-disclaimer.template.txt",
+        "sha256": "cd57978cbe33935f5fe40677f30bd703009ce55e06992264e7fe9be23ddfd6fe"
+      },
+      "text": {
+        "bytes": 704,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause-pkgconf-disclaimer.txt",
+        "sha256": "220e8097313015af20d558c881a32977371089ee4471cacb6c14c1bbda86f192"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause-pkgconf-disclaimer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-pkgconf-disclaimer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-pkgconf-disclaimer",
+      "name": "BSD 2-Clause pkgconf disclaimer variant",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-pkgconf-disclaimer.html",
+      "referenceNumber": 77,
+      "seeAlso": [
+        "https://github.com/audacious-media-player/audacious/blob/master/src/audacious/main.cc",
+        "https://github.com/audacious-media-player/audacious/blob/master/COPYING"
+      ]
+    },
+    "name": "BSD 2-Clause pkgconf disclaimer variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

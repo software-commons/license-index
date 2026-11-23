@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ba211bd056f3474a812a788012d6f42d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14501,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CNRI-Python.json",
+        "sha256": "ab10ae784b0a5739c7252636f804388738d2bcb616dfc422ceca9c27fdb8ab43"
+      },
+      "template": {
+        "bytes": 3826,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CNRI-Python.template.txt",
+        "sha256": "70b192a57e321bbe52057f9f0c943e7e30193ba42b02ad62816f9088584a0ec8"
+      },
+      "text": {
+        "bytes": 3381,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CNRI-Python.txt",
+        "sha256": "69b5d7d41a6ece3b20c6a77774f567948766d8643f7646e3f65474692cce5c15"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CNRI-Python",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CNRI-Python.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CNRI-Python",
+      "name": "CNRI Python License",
+      "reference": "https://spdx.org/licenses/CNRI-Python.html",
+      "referenceNumber": 654,
+      "seeAlso": [
+        "https://opensource.org/license/CNRI-Python"
+      ]
+    },
+    "name": "CNRI Python License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

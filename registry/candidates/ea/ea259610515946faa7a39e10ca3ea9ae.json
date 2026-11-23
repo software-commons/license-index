@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ea259610515946faa7a39e10ca3ea9ae",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9531,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Systemics.json",
+        "sha256": "f501f2b62599bb1b068c33bf842dfbd64654952e2aa7c646cb3b71b27c7d9ae0"
+      },
+      "template": {
+        "bytes": 2411,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Systemics.template.txt",
+        "sha256": "93bcc9da1a2dc19f9c89db96c3bc5a671672074526ef17ec67d89c235d303ee4"
+      },
+      "text": {
+        "bytes": 2225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Systemics.txt",
+        "sha256": "68a2c77f4d91f98cb115a7cdb8f02b64b54072795aed28253947e632dc6da2cb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Systemics",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Systemics.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Systemics",
+      "name": "Systemics BSD variant license",
+      "reference": "https://spdx.org/licenses/BSD-Systemics.html",
+      "referenceNumber": 413,
+      "seeAlso": [
+        "https://metacpan.org/release/DPARIS/Crypt-DES-2.07/source/COPYRIGHT"
+      ]
+    },
+    "name": "Systemics BSD variant license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

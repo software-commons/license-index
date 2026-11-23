@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d93cf99022e040bcb425f95d2f409aac",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8428,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NTIA-PD.json",
+        "sha256": "b334173301b9db6545ed3129136a66dd553bc4bb10a26c8b0e0949d87f7273cb"
+      },
+      "template": {
+        "bytes": 2077,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NTIA-PD.template.txt",
+        "sha256": "f5577c0aae68db914b8f4c652918ae1a860d66f1b219199a1a45bbcb6eea12fb"
+      },
+      "text": {
+        "bytes": 2086,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NTIA-PD.txt",
+        "sha256": "8fd9f29859c2f0263db4ba39fb22722b2acecbe235f623069cbac611fdb64f3e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NTIA-PD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NTIA-PD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NTIA-PD",
+      "name": "NTIA Public Domain Notice",
+      "reference": "https://spdx.org/licenses/NTIA-PD.html",
+      "referenceNumber": 445,
+      "seeAlso": [
+        "https://raw.githubusercontent.com/NTIA/itm/refs/heads/master/LICENSE.md",
+        "https://raw.githubusercontent.com/NTIA/scos-sensor/refs/heads/master/LICENSE.md"
+      ]
+    },
+    "name": "NTIA Public Domain Notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

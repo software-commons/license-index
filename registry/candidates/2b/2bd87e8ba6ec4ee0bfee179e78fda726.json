@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2bd87e8ba6ec4ee0bfee179e78fda726",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13876,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NAIST-2003.json",
+        "sha256": "efd80bb7c237cc074b98841a07dc09a8f0b9650aae29d333d125175e7c46566c"
+      },
+      "template": {
+        "bytes": 3840,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NAIST-2003.template.txt",
+        "sha256": "7d9518a7ddbef74c5cd4e1ffc3aaa97a283fc21d77522884b20248486a3e93dd"
+      },
+      "text": {
+        "bytes": 3792,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NAIST-2003.txt",
+        "sha256": "0cc49a2743d845a9f3ea44ec3d7a6acc0aa8f0380772020310f3389713c45cbc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NAIST-2003",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NAIST-2003.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NAIST-2003",
+      "name": "Nara Institute of Science and Technology License (2003)",
+      "reference": "https://spdx.org/licenses/NAIST-2003.html",
+      "referenceNumber": 678,
+      "seeAlso": [
+        "https://enterprise.dejacode.com/licenses/public/naist-2003/#license-text",
+        "https://github.com/nodejs/node/blob/4a19cc8947b1bba2b2d27816ec3d0edf9b28e503/LICENSE#L343"
+      ]
+    },
+    "name": "Nara Institute of Science and Technology License (2003)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

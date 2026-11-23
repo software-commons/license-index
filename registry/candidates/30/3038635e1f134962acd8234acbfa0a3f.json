@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3038635e1f134962acd8234acbfa0a3f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 33579,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CERN-OHL-1.1.json",
+        "sha256": "e7bbb0e4c0f97d317b572805d5cd7d0e066be1ec4197eaee9b0dffec7520ce49"
+      },
+      "template": {
+        "bytes": 9188,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CERN-OHL-1.1.template.txt",
+        "sha256": "ae1b0be396020fd9305f50daa85c7040724e23832b4de872d7a50bf2808e59e8"
+      },
+      "text": {
+        "bytes": 8114,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CERN-OHL-1.1.txt",
+        "sha256": "6d1ef4fa73531fc09cb7e8dbe6d0f11dee648d3d219182f33bfd8eec9dc15f8f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CERN-OHL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CERN-OHL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CERN-OHL-1.1",
+      "name": "CERN Open Hardware Licence v1.1",
+      "reference": "https://spdx.org/licenses/CERN-OHL-1.1.html",
+      "referenceNumber": 260,
+      "seeAlso": [
+        "https://www.ohwr.org/project/licenses/wikis/cern-ohl-v1.1"
+      ]
+    },
+    "name": "CERN Open Hardware Licence v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

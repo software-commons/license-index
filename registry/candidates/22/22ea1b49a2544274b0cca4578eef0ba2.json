@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "22ea1b49a2544274b0cca4578eef0ba2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3968,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Ruby-pty.json",
+        "sha256": "118875f49b007c34d2b859fdaf12536a202d6c04024b93ca7c2f6f3731739205"
+      },
+      "template": {
+        "bytes": 553,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Ruby-pty.template.txt",
+        "sha256": "70902959d654868fba33eb74916d0bb30a25fb5001a781e3fbf600a2cc6c2566"
+      },
+      "text": {
+        "bytes": 497,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Ruby-pty.txt",
+        "sha256": "29bb7d95ec28e357a33968dddcc9a6e6bedad3d14d8b4e8ba3e3225d32490a69"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Ruby-pty",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Ruby-pty.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Ruby-pty",
+      "name": "Ruby pty extension license",
+      "reference": "https://spdx.org/licenses/Ruby-pty.html",
+      "referenceNumber": 433,
+      "seeAlso": [
+        "https://github.com/ruby/ruby/blob/9f6deaa6888a423720b4b127b5314f0ad26cc2e6/ext/pty/pty.c#L775-L786",
+        "https://github.com/ruby/ruby/commit/0a64817fb80016030c03518fb9459f63c11605ea#diff-ef5fa30838d6d0cecad9e675cc50b24628cfe2cb277c346053fafcc36c91c204",
+        "https://github.com/ruby/ruby/commit/0a64817fb80016030c03518fb9459f63c11605ea#diff-fedf217c1ce44bda01f0a678d3ff8b198bed478754d699c527a698ad933979a0"
+      ]
+    },
+    "name": "Ruby pty extension license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "576d305445b04040bee59a49d9f6e5be",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 20802,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/QPL-1.0-INRIA-2004.json",
+        "sha256": "09d507f64454a4f6274b84088fb2d293c1d51cdfa92a44638f5f239b536237c1"
+      },
+      "template": {
+        "bytes": 5112,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/QPL-1.0-INRIA-2004.template.txt",
+        "sha256": "5a1a3652adc403c85363543cf8dde4c0a835e88adfd4001f5fd7b6945d26f922"
+      },
+      "text": {
+        "bytes": 4641,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/QPL-1.0-INRIA-2004.txt",
+        "sha256": "36ed72077a7854285b3073c5c104afd36fa5d0077ab77baa85be56ff72c8660c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "QPL-1.0-INRIA-2004",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/QPL-1.0-INRIA-2004.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "QPL-1.0-INRIA-2004",
+      "name": "Q Public License 1.0 - INRIA 2004 variant",
+      "reference": "https://spdx.org/licenses/QPL-1.0-INRIA-2004.html",
+      "referenceNumber": 524,
+      "seeAlso": [
+        "https://github.com/maranget/hevea/blob/master/LICENSE"
+      ]
+    },
+    "name": "Q Public License 1.0 - INRIA 2004 variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

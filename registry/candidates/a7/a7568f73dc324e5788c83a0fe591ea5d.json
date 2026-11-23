@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a7568f73dc324e5788c83a0fe591ea5d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 27853,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Artistic-dist.json",
+        "sha256": "39ef72418d217c2edff6a7aaec999cd1e269ae9d344029c844dc0e0b73ff0fee"
+      },
+      "template": {
+        "bytes": 6806,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Artistic-dist.template.txt",
+        "sha256": "db3b340562e88f862a84d823681382e20e94d355d42bce16b48d23f8c6d7a145"
+      },
+      "text": {
+        "bytes": 6177,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Artistic-dist.txt",
+        "sha256": "482becd567796175dafb6916b86ea00d0b5e05ab1c95da7ae0922e8c71bb96f8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Artistic-dist",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Artistic-dist.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Artistic-dist",
+      "name": "Artistic License 1.0 (dist)",
+      "reference": "https://spdx.org/licenses/Artistic-dist.html",
+      "referenceNumber": 398,
+      "seeAlso": [
+        "https://github.com/pexip/os-perl/blob/833cf4c86cc465ccfc627ff16db67e783156a248/debian/copyright#L2720-L2845"
+      ]
+    },
+    "name": "Artistic License 1.0 (dist)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

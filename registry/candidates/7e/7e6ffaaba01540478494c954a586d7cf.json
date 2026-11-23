@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7e6ffaaba01540478494c954a586d7cf",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17094,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FDK-AAC.json",
+        "sha256": "d6383823d500afd9ffcc710bb4b5c2431fefcb37dc313d0b93b2f9d357666ebf"
+      },
+      "template": {
+        "bytes": 4824,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FDK-AAC.template.txt",
+        "sha256": "1ce88481c00583b6ce5edaf4f9ac2c993a3c15551dc4f048cbe46ab58316f639"
+      },
+      "text": {
+        "bytes": 4447,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FDK-AAC.txt",
+        "sha256": "c90edceefc6bd9352cc44912a94fcf74a683d918a3995deadefbf10a6770f6c2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FDK-AAC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FDK-AAC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FDK-AAC",
+      "name": "Fraunhofer FDK AAC Codec Library",
+      "reference": "https://spdx.org/licenses/FDK-AAC.html",
+      "referenceNumber": 94,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/FDK-AAC",
+        "https://directory.fsf.org/wiki/License:Fdk"
+      ]
+    },
+    "name": "Fraunhofer FDK AAC Codec Library",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

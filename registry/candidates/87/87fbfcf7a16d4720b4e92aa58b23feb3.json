@@ -1,0 +1,62 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "87fbfcf7a16d4720b4e92aa58b23feb3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6867,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Nokia-Qt-exception-1.1.json",
+        "sha256": "c87ace50909af643004a92ace736a0b58a0a9bbc311ba9dd55d4d028fee182b5"
+      },
+      "replacement_source": {
+        "bytes": 2501,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/exceptions/Nokia-Qt-exception-1.1.xml",
+        "sha256": "5a8361f60e135e357bc21059f59acf246909afc220985c5f9324031e1057bd6d"
+      },
+      "template": {
+        "bytes": 1538,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_Nokia-Qt-exception-1.1.template.txt",
+        "sha256": "d750133f7298f427d353976c86b4173092857d0905dbccc4b03435cf6389dbca"
+      },
+      "text": {
+        "bytes": 1177,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Nokia-Qt-exception-1.1.txt",
+        "sha256": "de1a377dd135af411b3d5d6c77aee10c8150ece3b7e911bf2cf139347a6a21be"
+      }
+    },
+    "deprecated": true,
+    "identifier": "Nokia-Qt-exception-1.1",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "deprecatedVersion": "3.1",
+      "detailsUrl": "https://spdx.org/licenses/Nokia-Qt-exception-1.1.json",
+      "isDeprecatedLicenseId": true,
+      "licenseExceptionId": "Nokia-Qt-exception-1.1",
+      "name": "Nokia Qt LGPL exception 1.1",
+      "reference": "https://spdx.org/licenses/Nokia-Qt-exception-1.1.html",
+      "referenceNumber": 36,
+      "seeAlso": [
+        "https://www.keepassx.org/dev/projects/keepassx/repository/revisions/b8dfb9cc4d5133e0f09cd7533d15a4f1c19a40f2/entry/LICENSE.NOKIA-LGPL-EXCEPTION"
+      ]
+    },
+    "name": "Nokia Qt LGPL exception 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "Qt-LGPL-exception-1.1"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

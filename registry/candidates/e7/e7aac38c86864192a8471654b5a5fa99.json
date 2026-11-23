@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e7aac38c86864192a8471654b5a5fa99",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5536,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-PDM-1.0.json",
+        "sha256": "01342e35f70b7adcbfc655d063b7cfdf737ffcaf2c4afbe806a11597692dbe14"
+      },
+      "template": {
+        "bytes": 1110,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-PDM-1.0.template.txt",
+        "sha256": "c96e118dd63a50173a479e0c78abcfa6e278cf3fcc8828b041938f6b153e9826"
+      },
+      "text": {
+        "bytes": 1111,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-PDM-1.0.txt",
+        "sha256": "e27a18ea1bd3954aaf9f2206efb317de9318f791d001d3b0b603d831d690d069"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-PDM-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-PDM-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-PDM-1.0",
+      "name": "Creative    Commons Public Domain Mark 1.0 Universal",
+      "reference": "https://spdx.org/licenses/CC-PDM-1.0.html",
+      "referenceNumber": 259,
+      "seeAlso": [
+        "https://creativecommons.org/publicdomain/mark/1.0/",
+        "https://creativecommons.org/share-your-work/cclicenses/"
+      ]
+    },
+    "name": "Creative    Commons Public Domain Mark 1.0 Universal",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

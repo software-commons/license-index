@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "777d87e850ed452b997214fabafb2373",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6324,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/X11-no-permit-persons.json",
+        "sha256": "46011b0208cb413c194e429c32223642c4b093feb9e63633d6613cec8ef0987a"
+      },
+      "template": {
+        "bytes": 1601,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/X11-no-permit-persons.template.txt",
+        "sha256": "769999fdd0d879fa2a2c8aea52256dc3171bc3ebe6388b9038d542850429983e"
+      },
+      "text": {
+        "bytes": 1324,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/X11-no-permit-persons.txt",
+        "sha256": "0b98e10aec594b3a6cd34adc96ef8fbe1140aa29b63a480fb42906b3b3057b22"
+      }
+    },
+    "deprecated": false,
+    "identifier": "X11-no-permit-persons",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/X11-no-permit-persons.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "X11-no-permit-persons",
+      "name": "X11 no permit persons clause",
+      "reference": "https://spdx.org/licenses/X11-no-permit-persons.html",
+      "referenceNumber": 669,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/lib/libxinerama/-/blob/cc22c2f60c3862482562955116d5455263b443dc/COPYING#L44-66"
+      ]
+    },
+    "name": "X11 no permit persons clause",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d3aa1e7458e047a4821252be6e4e3659",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4018,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LZMA-SDK-9.22.json",
+        "sha256": "12be254b1e88030af9093a5dea68452503e072d40a28da6c77ce179542b7d6ae"
+      },
+      "template": {
+        "bytes": 613,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LZMA-SDK-9.22.template.txt",
+        "sha256": "8ad6e525aac52247a5bbeef6b30a6afe99080ecb0a23561d1795809e984f45a8"
+      },
+      "text": {
+        "bytes": 582,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LZMA-SDK-9.22.txt",
+        "sha256": "6e31b1f0c4ae78e10710525955b2356adec878c918e86d8ee796b2925223ab88"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LZMA-SDK-9.22",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LZMA-SDK-9.22.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "LZMA-SDK-9.22",
+      "name": "LZMA SDK License (versions 9.22 and beyond)",
+      "reference": "https://spdx.org/licenses/LZMA-SDK-9.22.html",
+      "referenceNumber": 67,
+      "seeAlso": [
+        "https://www.7-zip.org/sdk.html",
+        "https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/"
+      ]
+    },
+    "name": "LZMA SDK License (versions 9.22 and beyond)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

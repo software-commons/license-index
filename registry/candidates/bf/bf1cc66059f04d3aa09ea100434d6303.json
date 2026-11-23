@@ -1,0 +1,54 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bf1cc66059f04d3aa09ea100434d6303",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10811,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NCBI-PD.json",
+        "sha256": "9f793451e04328674c3eef446cf968b7066cf04185cd7f835b7cb61b169d4a64"
+      },
+      "template": {
+        "bytes": 2799,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NCBI-PD.template.txt",
+        "sha256": "af33065b7e17f335f2d2b7d3cbebd69984ca831a06dd4da50053faf490b8c7a9"
+      },
+      "text": {
+        "bytes": 964,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NCBI-PD.txt",
+        "sha256": "53f6e0d0c9c596683193234d749741b43e39be59611d2e3681a3d150218d1436"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NCBI-PD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NCBI-PD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NCBI-PD",
+      "name": "NCBI Public Domain Notice",
+      "reference": "https://spdx.org/licenses/NCBI-PD.html",
+      "referenceNumber": 606,
+      "seeAlso": [
+        "https://github.com/ncbi/sra-tools/blob/e8e5b6af4edc460156ad9ce5902d0779cffbf685/LICENSE",
+        "https://github.com/ncbi/datasets/blob/0ea4cd16b61e5b799d9cc55aecfa016d6c9bd2bf/LICENSE.md",
+        "https://github.com/ncbi/gprobe/blob/de64d30fee8b4c4013094d7d3139ea89b5dd1ace/LICENSE",
+        "https://github.com/ncbi/egapx/blob/08930b9dec0c69b2d1a05e5153c7b95ef0a3eb0f/LICENSE",
+        "https://github.com/ncbi/datasets/blob/master/LICENSE.md"
+      ]
+    },
+    "name": "NCBI Public Domain Notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

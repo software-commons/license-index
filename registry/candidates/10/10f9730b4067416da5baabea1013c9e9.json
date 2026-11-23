@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "10f9730b4067416da5baabea1013c9e9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7112,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Eurosym.json",
+        "sha256": "ad248fbbb1ba7bba439937c4b0d77c85b07eb7667dbb6a9196c7418c13ba6465"
+      },
+      "template": {
+        "bytes": 1687,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Eurosym.template.txt",
+        "sha256": "36f7b7c915724925adc46ffaec3fd952135e50dc6e376eb03b22931ca34c2990"
+      },
+      "text": {
+        "bytes": 1367,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Eurosym.txt",
+        "sha256": "d637da895576888c3b9c31e416bfe4039b3273eda95f6295e046a26aef1c9cf8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Eurosym",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Eurosym.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Eurosym",
+      "name": "Eurosym License",
+      "reference": "https://spdx.org/licenses/Eurosym.html",
+      "referenceNumber": 408,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Eurosym"
+      ]
+    },
+    "name": "Eurosym License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

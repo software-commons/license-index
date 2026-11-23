@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5c9f8f3178564ee5a72afb7e735325e3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 53920,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OLFL-1.3.json",
+        "sha256": "ae552970c06c0b60ca8ce74f735b26d367c70dfdff16353254b484f242dca66f"
+      },
+      "template": {
+        "bytes": 13798,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OLFL-1.3.template.txt",
+        "sha256": "c60f9e9318afda119d4bd41ab805abda7dc9fffe98f83e9da1ec58b986046fa7"
+      },
+      "text": {
+        "bytes": 11413,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OLFL-1.3.txt",
+        "sha256": "a9996155436c8ce5fd46b3f3f5403d6d604c8994acbd9024946d505bc000a4b2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OLFL-1.3",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OLFL-1.3.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "OLFL-1.3",
+      "name": "Open Logistics Foundation License Version 1.3",
+      "reference": "https://spdx.org/licenses/OLFL-1.3.html",
+      "referenceNumber": 727,
+      "seeAlso": [
+        "https://openlogisticsfoundation.org/licenses/",
+        "https://opensource.org/license/OLFL-1.3"
+      ]
+    },
+    "name": "Open Logistics Foundation License Version 1.3",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

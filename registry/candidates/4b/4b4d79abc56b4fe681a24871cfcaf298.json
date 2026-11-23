@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4b4d79abc56b4fe681a24871cfcaf298",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11272,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/bzip2-1.0.6.json",
+        "sha256": "54ad98dfe2cecfa2b5c7ae625819a4ab2d160040ede9fc32fec229fe9113bf2e"
+      },
+      "template": {
+        "bytes": 2744,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/bzip2-1.0.6.template.txt",
+        "sha256": "fc78a445245bfa162085ad6c9cebee06166f3d505245de06be6be9d5832c6018"
+      },
+      "text": {
+        "bytes": 1739,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/bzip2-1.0.6.txt",
+        "sha256": "0a56dbabe7d2ff65dea26e8b795fe42c6204a192b974d8e9304fe356ccda9fd1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "bzip2-1.0.6",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/bzip2-1.0.6.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "bzip2-1.0.6",
+      "name": "bzip2 and libbzip2 License v1.0.6",
+      "reference": "https://spdx.org/licenses/bzip2-1.0.6.html",
+      "referenceNumber": 54,
+      "seeAlso": [
+        "https://sourceware.org/git/?p=bzip2.git;a=blob;f=LICENSE;hb=bzip2-1.0.6",
+        "http://bzip.org/1.0.5/bzip2-manual-1.0.5.html",
+        "https://sourceware.org/cgit/valgrind/tree/mpi/libmpiwrap.c"
+      ]
+    },
+    "name": "bzip2 and libbzip2 License v1.0.6",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

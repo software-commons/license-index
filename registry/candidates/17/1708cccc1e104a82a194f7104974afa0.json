@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1708cccc1e104a82a194f7104974afa0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3027,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/metamail.json",
+        "sha256": "3409c722959e57ebca37b3cd38522bd323158b22887f42a6a6d803770c8cf46e"
+      },
+      "template": {
+        "bytes": 684,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/metamail.template.txt",
+        "sha256": "249cf3bd838024d60ce391f3b1a7830d51921180b753104ce68438dee91408eb"
+      },
+      "text": {
+        "bytes": 629,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/metamail.txt",
+        "sha256": "a4b1dbdddeccbaad4687f2777ef43222eecf29ba4d9b196b1e46d11a2d57f008"
+      }
+    },
+    "deprecated": false,
+    "identifier": "metamail",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/metamail.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "metamail",
+      "name": "metamail License",
+      "reference": "https://spdx.org/licenses/metamail.html",
+      "referenceNumber": 634,
+      "seeAlso": [
+        "https://github.com/Dual-Life/mime-base64/blob/master/Base64.xs#L12"
+      ]
+    },
+    "name": "metamail License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

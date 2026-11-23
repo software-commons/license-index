@@ -1,0 +1,54 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b13410eb39d343dcbc5fec26018ef42d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1843,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/romic-exception.json",
+        "sha256": "cea8497be2db8c94135248b6cbbe4b02f06fd1fa7419c84a4ed3c70bbadca1b4"
+      },
+      "template": {
+        "bytes": 276,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/romic-exception.template.txt",
+        "sha256": "578fecd4ae805f1e4ed51a1bb9ad053f66f335d8de846ad84c626c836efe13eb"
+      },
+      "text": {
+        "bytes": 275,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/romic-exception.txt",
+        "sha256": "addfd4491750a9721d42357f7666573ca860620ac07bb545fa22c231259a4581"
+      }
+    },
+    "deprecated": false,
+    "identifier": "romic-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/romic-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "romic-exception",
+      "name": "Romic Exception",
+      "reference": "https://spdx.org/licenses/romic-exception.html",
+      "referenceNumber": 16,
+      "seeAlso": [
+        "https://web.archive.org/web/20210124015834/http://mo.morsi.org/blog/2009/08/13/lesser_affero_gplv3/",
+        "https://sourceforge.net/p/romic/code/ci/3ab2856180cf0d8b007609af53154cf092efc58f/tree/COPYING",
+        "https://github.com/moll/node-mitm/blob/bbf24b8bd7596dc6e091e625363161ce91984fc7/LICENSE#L8-L11",
+        "https://github.com/zenbones/SmallMind/blob/3c62b5995fe7f27c453f140ff9b60560a0893f2a/COPYRIGHT#L25-L30",
+        "https://github.com/CubeArtisan/cubeartisan/blob/2c6ab53455237b88a3ea07be02a838a135c4ab79/LICENSE.LESSER#L10-L15",
+        "https://github.com/savearray2/py.js/blob/b781273c08c8afa89f4954de4ecf42ec01429bae/README.md#license"
+      ]
+    },
+    "name": "Romic Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "682eea733d06449ba2b05fbdaa1087fd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11067,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/UBDL-exception.json",
+        "sha256": "bd267ff105bf34159c26c7d7b30e545cc32d37b263c171aa38a363d65d2bb1ec"
+      },
+      "template": {
+        "bytes": 3045,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/UBDL-exception.template.txt",
+        "sha256": "6d63e1444ce9e636b97f6b4dacb5a4e2ff4b7fbc2821a9a1e78cff8b961b92e1"
+      },
+      "text": {
+        "bytes": 2931,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/UBDL-exception.txt",
+        "sha256": "5be9d2f0268908f2eeb87578d9b730caf6f7b36bdc7a520b1a176f9ac0bf1db8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "UBDL-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/UBDL-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "UBDL-exception",
+      "name": "Unmodified Binary Distribution exception",
+      "reference": "https://spdx.org/licenses/UBDL-exception.html",
+      "referenceNumber": 69,
+      "seeAlso": [
+        "https://github.com/ipxe/ipxe/blob/master/COPYING.UBDL"
+      ]
+    },
+    "name": "Unmodified Binary Distribution exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

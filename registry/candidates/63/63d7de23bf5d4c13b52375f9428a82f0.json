@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "63d7de23bf5d4c13b52375f9428a82f0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8433,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT.json",
+        "sha256": "0c2b3c87a154a4aaac6bc6a735dd454dc29d9a78c23a85deedb080e0c65de1f8"
+      },
+      "template": {
+        "bytes": 1958,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT.template.txt",
+        "sha256": "9b91e12dfe57d42e91ea96d2acb7624040bffc54182bd164d39d0fae33e77794"
+      },
+      "text": {
+        "bytes": 1078,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT.txt",
+        "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "MIT",
+      "name": "MIT License",
+      "reference": "https://spdx.org/licenses/MIT.html",
+      "referenceNumber": 221,
+      "seeAlso": [
+        "https://opensource.org/license/MIT",
+        "https://gitlab.freedesktop.org/xorg/xserver/-/blob/dd5c2595a42d3ff0c4f18d9b53d1f6c3fd934fd4/COPYING#L365-389"
+      ]
+    },
+    "name": "MIT License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

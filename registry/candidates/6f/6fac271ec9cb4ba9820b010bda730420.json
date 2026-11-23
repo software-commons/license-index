@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6fac271ec9cb4ba9820b010bda730420",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 109881,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CUA-OPL-1.0.json",
+        "sha256": "68cb292d3d9fa6c0b27058c3cbef20a9bfb43355392dce75fff66f02e6b418bf"
+      },
+      "template": {
+        "bytes": 27212,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CUA-OPL-1.0.template.txt",
+        "sha256": "cf8bc83c56d2204f713ae45c45543a26c96e842b9ea0810748e4795f41810058"
+      },
+      "text": {
+        "bytes": 23381,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CUA-OPL-1.0.txt",
+        "sha256": "2fa6914d4062431b1e2616ce0ed265238d8eaaa58ded803860b888f12b978aae"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "CUA-OPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CUA-OPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CUA-OPL-1.0",
+      "name": "CUA Office Public License v1.0",
+      "reference": "https://spdx.org/licenses/CUA-OPL-1.0.html",
+      "referenceNumber": 215,
+      "seeAlso": [
+        "https://opensource.org/license/CUA-OPL-1.0"
+      ]
+    },
+    "name": "CUA Office Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

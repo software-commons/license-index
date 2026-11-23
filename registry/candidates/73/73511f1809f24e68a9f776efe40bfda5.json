@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "73511f1809f24e68a9f776efe40bfda5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4795,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Linux-OpenIB.json",
+        "sha256": "5e29b8e0269cc3616e1a781b0b7357c7d3c04b564677f2ec79f9df41fd7a92be"
+      },
+      "template": {
+        "bytes": 1042,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Linux-OpenIB.template.txt",
+        "sha256": "484c76564ddd99513d7571fe9f19c2889a6898ad0f2d33ca8d009b60c950c4a1"
+      },
+      "text": {
+        "bytes": 939,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Linux-OpenIB.txt",
+        "sha256": "6503d0418051ea29997c4c4d950386fcc356c9459a73a62d5d67707d04739b92"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Linux-OpenIB",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Linux-OpenIB.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Linux-OpenIB",
+      "name": "Linux Kernel Variant of OpenIB.org license",
+      "reference": "https://spdx.org/licenses/Linux-OpenIB.html",
+      "referenceNumber": 300,
+      "seeAlso": [
+        "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/infiniband/core/sa.h"
+      ]
+    },
+    "name": "Linux Kernel Variant of OpenIB.org license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

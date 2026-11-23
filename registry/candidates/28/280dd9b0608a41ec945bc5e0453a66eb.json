@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "280dd9b0608a41ec945bc5e0453a66eb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8360,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SAX-PD.json",
+        "sha256": "574f501e83c7c8673913547140495d9321eb7ff004987d995762d109d475113a"
+      },
+      "template": {
+        "bytes": 2316,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SAX-PD.template.txt",
+        "sha256": "2ff9080d96f3833b3ec656361161599204f073ba0ca9733a6ac4adde45b62e6c"
+      },
+      "text": {
+        "bytes": 2315,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SAX-PD.txt",
+        "sha256": "e451dbda697567122de73277794aee9555d4ab47621c8d4fb4ae970816597edb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SAX-PD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SAX-PD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SAX-PD",
+      "name": "Sax Public Domain Notice",
+      "reference": "https://spdx.org/licenses/SAX-PD.html",
+      "referenceNumber": 184,
+      "seeAlso": [
+        "http://www.saxproject.org/copying.html"
+      ]
+    },
+    "name": "Sax Public Domain Notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

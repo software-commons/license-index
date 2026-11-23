@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "72e0fd6ee69f4a6ba824bbfcb545515e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 19346,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NGPL.json",
+        "sha256": "003d8dd8ad4dac7dd844dc3f63d2a53d1840c9c38eb17604ce5059f98e7d3684"
+      },
+      "template": {
+        "bytes": 5244,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NGPL.template.txt",
+        "sha256": "4949c113f1ec875d4c0a4b91343d04172c938251e2965ac522f210aa935c586d"
+      },
+      "text": {
+        "bytes": 4703,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NGPL.txt",
+        "sha256": "c0c36141bbc888c6a2e724e2cc2b2529fccebc93fdddd7b960336c525e201082"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NGPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NGPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "NGPL",
+      "name": "Nethack General Public License",
+      "reference": "https://spdx.org/licenses/NGPL.html",
+      "referenceNumber": 5,
+      "seeAlso": [
+        "https://opensource.org/license/NGPL"
+      ]
+    },
+    "name": "Nethack General Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

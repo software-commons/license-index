@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e042d2d08e2140d2bcb40fd5cb61e10d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 135818,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/RPL-1.1.json",
+        "sha256": "605f1e3bb627664578bf85c80bcd34da97c51573ac9da43cde12749b0d01af16"
+      },
+      "template": {
+        "bytes": 37753,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/RPL-1.1.template.txt",
+        "sha256": "37f7e4136fc8e139fa8caefe6a3350342ee4748a6203329d37b5af5a307c34fe"
+      },
+      "text": {
+        "bytes": 33931,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/RPL-1.1.txt",
+        "sha256": "ea8d9811a051e7de6b7404ea1795dc4233a95d92950cb8c213e0f4245f181cac"
+      }
+    },
+    "deprecated": false,
+    "identifier": "RPL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/RPL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "RPL-1.1",
+      "name": "Reciprocal Public License 1.1",
+      "reference": "https://spdx.org/licenses/RPL-1.1.html",
+      "referenceNumber": 346,
+      "seeAlso": [
+        "https://opensource.org/license/RPL-1.1"
+      ]
+    },
+    "name": "Reciprocal Public License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

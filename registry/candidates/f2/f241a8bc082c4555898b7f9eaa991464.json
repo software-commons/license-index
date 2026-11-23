@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f241a8bc082c4555898b7f9eaa991464",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5953,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Cube.json",
+        "sha256": "8e345b777f39362db8c3b13878ba365d9c02e23d4a025ebbc1bb2a00e41cc549"
+      },
+      "template": {
+        "bytes": 1350,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Cube.template.txt",
+        "sha256": "916ac4651f3496c23c5e5fafe15f729fb4b836ca782d24586963c2a15699b375"
+      },
+      "text": {
+        "bytes": 1078,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Cube.txt",
+        "sha256": "eefb4a0ba74f94ab9fbf57c4391cddc914cc86248c788c0581497c93088788c9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Cube",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Cube.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Cube",
+      "name": "Cube License",
+      "reference": "https://spdx.org/licenses/Cube.html",
+      "referenceNumber": 110,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Cube"
+      ]
+    },
+    "name": "Cube License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

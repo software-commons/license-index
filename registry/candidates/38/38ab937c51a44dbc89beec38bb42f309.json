@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "38ab937c51a44dbc89beec38bb42f309",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8460,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TOSL.json",
+        "sha256": "85b0b486fcb3933503788efc7525c72b559e0f3db89ad46addae9284b6ac3274"
+      },
+      "template": {
+        "bytes": 2270,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TOSL.template.txt",
+        "sha256": "024b1ae5b2aa0f315904d46ea747c5271e4c5a6326d8e7ac7926c5a39e65226a"
+      },
+      "text": {
+        "bytes": 2074,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TOSL.txt",
+        "sha256": "3d65bc3ff37f202d56b1038cb19553a44d114787894daa99472849df8439169e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TOSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TOSL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TOSL",
+      "name": "Trusster Open Source License",
+      "reference": "https://spdx.org/licenses/TOSL.html",
+      "referenceNumber": 418,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/TOSL"
+      ]
+    },
+    "name": "Trusster Open Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

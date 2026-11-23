@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2e37e80d629e481b8c863ea5c213f661",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8250,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TekHVC.json",
+        "sha256": "e600767f4648fbc4d80a688dcc10cdd642d957098f1aa70a69ae7cacd541597c"
+      },
+      "template": {
+        "bytes": 2051,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TekHVC.template.txt",
+        "sha256": "68dcf9230d939aa8e9b8015bcfb096e21696cc66e0faa8d02224b78d17ce9477"
+      },
+      "text": {
+        "bytes": 1875,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TekHVC.txt",
+        "sha256": "e40ebba66d1986969cce7610b2c8fd996e12fb0aac2c7868bf2d75e0a2071520"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TekHVC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TekHVC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TekHVC",
+      "name": "TekHVC License",
+      "reference": "https://spdx.org/licenses/TekHVC.html",
+      "referenceNumber": 342,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/lib/libx11/-/blob/master/COPYING?ref_type=heads#L138-171"
+      ]
+    },
+    "name": "TekHVC License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

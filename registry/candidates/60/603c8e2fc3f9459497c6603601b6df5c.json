@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "603c8e2fc3f9459497c6603601b6df5c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OFFIS.json",
+        "sha256": "fcd1161305a587ab5068eb9cb72a3a3f616ddd0a5a6702ea3e64d0e6259db770"
+      },
+      "template": {
+        "bytes": 1027,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OFFIS.template.txt",
+        "sha256": "040876323bce5478a6ef35a35917442faf273767516307ec742c3e1c7a6fa866"
+      },
+      "text": {
+        "bytes": 1007,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OFFIS.txt",
+        "sha256": "752f1eef8948e5bbaa33079f0a031a407c3a7e42df4ba5d41c967d3794370b65"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OFFIS",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OFFIS.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OFFIS",
+      "name": "OFFIS License",
+      "reference": "https://spdx.org/licenses/OFFIS.html",
+      "referenceNumber": 377,
+      "seeAlso": [
+        "https://sourceforge.net/p/xmedcon/code/ci/master/tree/libs/dicom/README"
+      ]
+    },
+    "name": "OFFIS License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

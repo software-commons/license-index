@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f0a215aa44684e53bc6285e651ca3ffd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 51787,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-1.0-only.json",
+        "sha256": "112fcdebd22d3d67bd40e9aa8722bed6656e90b8ee78e0668c67bcab3a048563"
+      },
+      "template": {
+        "bytes": 13333,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-1.0-only.template.txt",
+        "sha256": "424460dad8e3c1e67765046d7239e9217d872aba386b20e55b4f49dd5d2f262a"
+      },
+      "text": {
+        "bytes": 12235,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-1.0-only.txt",
+        "sha256": "da37ffd5fcdf0a7d76af862a4330ea1076e1443b51782b2f912148357b7acabe"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GPL-1.0-only",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-1.0-only.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GPL-1.0-only",
+      "name": "GNU General Public License v1.0 only",
+      "reference": "https://spdx.org/licenses/GPL-1.0-only.html",
+      "referenceNumber": 134,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"
+      ]
+    },
+    "name": "GNU General Public License v1.0 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

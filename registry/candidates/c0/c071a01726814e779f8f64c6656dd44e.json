@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c071a01726814e779f8f64c6656dd44e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1967,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SGP4.json",
+        "sha256": "10784393b1f8a9188fa41749db66a6025e4b376a0c7642fda639b26828e5bacc"
+      },
+      "template": {
+        "bytes": 403,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SGP4.template.txt",
+        "sha256": "09366f893e2facbbd2af771c4cf17784393479c752f57b8c0d94e4a108644eb3"
+      },
+      "text": {
+        "bytes": 347,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SGP4.txt",
+        "sha256": "ca904c7522c495d88cc6b7dd7341efcefa41e9a71cc141b3695403c12302c9bf"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SGP4",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SGP4.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SGP4",
+      "name": "SGP4 Permission Notice",
+      "reference": "https://spdx.org/licenses/SGP4.html",
+      "referenceNumber": 480,
+      "seeAlso": [
+        "https://celestrak.org/publications/AIAA/2006-6753/faq.php"
+      ]
+    },
+    "name": "SGP4 Permission Notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

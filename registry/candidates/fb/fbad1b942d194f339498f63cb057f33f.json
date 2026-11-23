@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fbad1b942d194f339498f63cb057f33f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9932,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Bugroff.json",
+        "sha256": "fb45a5be7afe8114c5ac7eda4bdb777ac19604fe3aee80bdc443a07da83d480e"
+      },
+      "template": {
+        "bytes": 2677,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bugroff.template.txt",
+        "sha256": "34c681dc0dd36f1fe811516940e9ff088f6ed0e108ce5613b473addac0bdfcb4"
+      },
+      "text": {
+        "bytes": 2652,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bugroff.txt",
+        "sha256": "d9a5358f7ff94b8e4eeb15642bd6f76397c06ccda00dfcaec46e31af4f65ddd4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bugroff",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bugroff.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Bugroff",
+      "name": "Bugroff License",
+      "reference": "https://spdx.org/licenses/Bugroff.html",
+      "referenceNumber": 482,
+      "seeAlso": [
+        "https://tunes.org/legalese/bugroff.html"
+      ]
+    },
+    "name": "Bugroff License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

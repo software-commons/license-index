@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d68cd73f7b554268999bb92166068db3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 92329,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/gSOAP-1.3b.json",
+        "sha256": "8e0b26c7f58e7d6846fe252246832cb09e087bfbe5d679ecbeebf42848e38afe"
+      },
+      "template": {
+        "bytes": 23605,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/gSOAP-1.3b.template.txt",
+        "sha256": "84cdb6c53f7d4c87015df85ad8fd0f4979fa67c5e23de78d74ed0cff5ef7e137"
+      },
+      "text": {
+        "bytes": 20362,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/gSOAP-1.3b.txt",
+        "sha256": "1ee77551e0154daa4e2818fd388fe50bf6176b005e991ad8dde7dbf6ccb3b364"
+      }
+    },
+    "deprecated": false,
+    "identifier": "gSOAP-1.3b",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/gSOAP-1.3b.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "gSOAP-1.3b",
+      "name": "gSOAP Public License v1.3b",
+      "reference": "https://spdx.org/licenses/gSOAP-1.3b.html",
+      "referenceNumber": 192,
+      "seeAlso": [
+        "http://www.cs.fsu.edu/~engelen/license.html"
+      ]
+    },
+    "name": "gSOAP Public License v1.3b",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

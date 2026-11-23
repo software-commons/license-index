@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "577295c1128849dc8df025a02e97f838",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7488,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Imlib2.json",
+        "sha256": "c8f2175e8c458a82a5ff1207dbecc66f006b0b9656811178705f87df2b7b4dce"
+      },
+      "template": {
+        "bytes": 2036,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Imlib2.template.txt",
+        "sha256": "42514e9b196169c495e7d69770b69f1ec3546a4f83e23f2d4934a2621e6f8d40"
+      },
+      "text": {
+        "bytes": 2002,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Imlib2.txt",
+        "sha256": "19d21c4402df7020d631511274d991393267fd56b59aa014c0be90becd7631e4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Imlib2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Imlib2.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Imlib2",
+      "name": "Imlib2 License",
+      "reference": "https://spdx.org/licenses/Imlib2.html",
+      "referenceNumber": 189,
+      "seeAlso": [
+        "http://trac.enlightenment.org/e/browser/trunk/imlib2/COPYING",
+        "https://git.enlightenment.org/legacy/imlib2.git/tree/COPYING"
+      ]
+    },
+    "name": "Imlib2 License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

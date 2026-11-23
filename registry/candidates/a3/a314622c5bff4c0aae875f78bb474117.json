@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a314622c5bff4c0aae875f78bb474117",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7984,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-Open-MPI.json",
+        "sha256": "bd744bc7bdcd3752fbcc0dc133a39be652cb06531571193a524bcd750edffc80"
+      },
+      "template": {
+        "bytes": 1961,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-Open-MPI.template.txt",
+        "sha256": "7ce5e1b3d731cdcc6c53d8de346a0bef2327cf97b4ed1ff6f05dfb5ea44210f4"
+      },
+      "text": {
+        "bytes": 1820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-Open-MPI.txt",
+        "sha256": "a4bd3317cea75d614ac192803a60d6f54dd15a28ea509576d4932778e2879a98"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-Open-MPI",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-Open-MPI.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "BSD-3-Clause-Open-MPI",
+      "name": "BSD 3-Clause Open MPI variant",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-Open-MPI.html",
+      "referenceNumber": 233,
+      "seeAlso": [
+        "https://www.open-mpi.org/community/license.php",
+        "http://www.netlib.org/lapack/LICENSE.txt"
+      ]
+    },
+    "name": "BSD 3-Clause Open MPI variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

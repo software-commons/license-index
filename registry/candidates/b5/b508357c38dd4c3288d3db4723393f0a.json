@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b508357c38dd4c3288d3db4723393f0a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14119,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Apache-1.0.json",
+        "sha256": "bd1e973ab955044f8fe79b1baed29cbd83a09d65e6bf2b80ead9854691f4f32e"
+      },
+      "template": {
+        "bytes": 3508,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Apache-1.0.template.txt",
+        "sha256": "50e8b01a61e1ae25308f4edcbc5fbd4f2817b93274a3fbcb329bf43aecc7dba0"
+      },
+      "text": {
+        "bytes": 2507,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Apache-1.0.txt",
+        "sha256": "bea91cd78ce2cd6df0b21e83981a293d195b4ff53aec1cfecbd88d9de786315d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Apache-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Apache-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Apache-1.0",
+      "name": "Apache License 1.0",
+      "reference": "https://spdx.org/licenses/Apache-1.0.html",
+      "referenceNumber": 354,
+      "seeAlso": [
+        "http://www.apache.org/licenses/LICENSE-1.0"
+      ]
+    },
+    "name": "Apache License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

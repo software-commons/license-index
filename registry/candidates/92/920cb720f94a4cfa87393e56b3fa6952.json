@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "920cb720f94a4cfa87393e56b3fa6952",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3615,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/IBM-pibs.json",
+        "sha256": "233d6b4757c9994002fc4a697177d9785ad153a4617d5a15ad24eb72190e4e85"
+      },
+      "template": {
+        "bytes": 842,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/IBM-pibs.template.txt",
+        "sha256": "9c96ba860b37951369722f6e3632072f8639f9398721217407ad6cea744d8dab"
+      },
+      "text": {
+        "bytes": 849,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/IBM-pibs.txt",
+        "sha256": "833925bbe8b90270ebcc89ac5cff0e2f1f298e8a174f54d1e11e7d467d6bd21f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "IBM-pibs",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/IBM-pibs.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "IBM-pibs",
+      "name": "IBM PowerPC Initialization and Boot Software",
+      "reference": "https://spdx.org/licenses/IBM-pibs.html",
+      "referenceNumber": 175,
+      "seeAlso": [
+        "http://git.denx.de/?p=u-boot.git;a=blob;f=arch/powerpc/cpu/ppc4xx/miiphy.c;h=297155fdafa064b955e53e9832de93bfb0cfb85b;hb=9fab4bf4cc077c21e43941866f3f2c196f28670d"
+      ]
+    },
+    "name": "IBM PowerPC Initialization and Boot Software",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

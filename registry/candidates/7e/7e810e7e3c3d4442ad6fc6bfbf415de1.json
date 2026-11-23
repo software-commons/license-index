@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7e810e7e3c3d4442ad6fc6bfbf415de1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 39967,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LiLiQ-Rplus-1.1.json",
+        "sha256": "f91cd0e2723fdba25c55b73d95ded8d1392f1724734549168c47c5f3a05af88d"
+      },
+      "template": {
+        "bytes": 9652,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LiLiQ-Rplus-1.1.template.txt",
+        "sha256": "1bc2df9d21ab473f39eac7242bc44e407c6de5b83535761ee5e0356b66403c76"
+      },
+      "text": {
+        "bytes": 8338,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LiLiQ-Rplus-1.1.txt",
+        "sha256": "a26dc35b0586cfd36cf8f854c731ea20552d916a1d9f43387aa6636ec371838f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LiLiQ-Rplus-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LiLiQ-Rplus-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "LiLiQ-Rplus-1.1",
+      "name": "Licence Libre du Québec – Réciprocité forte version 1.1",
+      "reference": "https://spdx.org/licenses/LiLiQ-Rplus-1.1.html",
+      "referenceNumber": 178,
+      "seeAlso": [
+        "https://www.forge.gouv.qc.ca/participez/licence-logicielle/licence-libre-du-quebec-liliq-en-francais/licence-libre-du-quebec-reciprocite-forte-liliq-r-v1-1/",
+        "http://opensource.org/license/LiLiQ-Rplus-1.1",
+        "https://forge.gouv.qc.ca/licence/liliq-r+/"
+      ]
+    },
+    "name": "Licence Libre du Québec – Réciprocité forte version 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

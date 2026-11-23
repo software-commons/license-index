@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7b2cec47b1cb40ab9cc6cbc217979d51",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 24096,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Artistic-1.0-cl8.json",
+        "sha256": "0ad03594a816fee91563b6b20d2f01b098baa480ebb74d6856b5368491e30d58"
+      },
+      "template": {
+        "bytes": 6129,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Artistic-1.0-cl8.template.txt",
+        "sha256": "a0dcf2b80abae0ac9efbbb077898c01371fdba380eeb8e73ca24ebef01d2ef13"
+      },
+      "text": {
+        "bytes": 5184,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Artistic-1.0-cl8.txt",
+        "sha256": "a0db94ded05175a102689028b7664aa897caeb8a85cb143fc096928366b062ed"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Artistic-1.0-cl8",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Artistic-1.0-cl8.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Artistic-1.0-cl8",
+      "name": "Artistic License 1.0 w/clause 8",
+      "reference": "https://spdx.org/licenses/Artistic-1.0-cl8.html",
+      "referenceNumber": 517,
+      "seeAlso": [
+        "https://opensource.org/license/Artistic-1.0"
+      ]
+    },
+    "name": "Artistic License 1.0 w/clause 8",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b366e4057dc34a1089566eaaa6c2d749",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15307,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/libpng-1.6.35.json",
+        "sha256": "021a48710e36b38d90bd3f0190b3a0f0dcd95009cdba64922294a915104c4707"
+      },
+      "template": {
+        "bytes": 3755,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/libpng-1.6.35.template.txt",
+        "sha256": "43fd953f5d007c8afc8d1b0438f01296a17f5f78d68ca8eba5cdeb1418ef3d3c"
+      },
+      "text": {
+        "bytes": 3702,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/libpng-1.6.35.txt",
+        "sha256": "215a4f10038a1103980ac5b30e88136a6431da726f19cc4ec6019cbbb9abd413"
+      }
+    },
+    "deprecated": false,
+    "identifier": "libpng-1.6.35",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/libpng-1.6.35.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "libpng-1.6.35",
+      "name": "PNG Reference Library License v1 (for libpng 0.5 through 1.6.35)",
+      "reference": "https://spdx.org/licenses/libpng-1.6.35.html",
+      "referenceNumber": 68,
+      "seeAlso": [
+        "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"
+      ]
+    },
+    "name": "PNG Reference Library License v1 (for libpng 0.5 through 1.6.35)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

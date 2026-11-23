@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5eb6906aeb3a4a14b6b60bee31020a45",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 86475,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OPL-1.0.json",
+        "sha256": "eeb2efdb3ae553ff17ee213066605cd4a862a7e648d053c102edc03c4daa332d"
+      },
+      "template": {
+        "bytes": 23056,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OPL-1.0.template.txt",
+        "sha256": "28de8ed79164705b0e54da900369a1d85bf9e58538c9006b996fe21c92637afc"
+      },
+      "text": {
+        "bytes": 20309,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OPL-1.0.txt",
+        "sha256": "426dfae606856f71a18cdff4d7880fdfe72b5ace21b6af9fdd9c3102d6ea1c07"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "OPL-1.0",
+      "name": "Open Public License v1.0",
+      "reference": "https://spdx.org/licenses/OPL-1.0.html",
+      "referenceNumber": 281,
+      "seeAlso": [
+        "http://old.koalateam.com/jackaroo/OPL_1_0.TXT",
+        "https://fedoraproject.org/wiki/Licensing/Open_Public_License"
+      ]
+    },
+    "name": "Open Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

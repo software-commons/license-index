@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "10934c9ff10d4a549a80c1ff2f0e3115",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17353,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OFL-1.0-RFN.json",
+        "sha256": "c1b8f69688c281b3f7e072f2cea43ef717eaa80d7603084fec4632e09f38a238"
+      },
+      "template": {
+        "bytes": 4381,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OFL-1.0-RFN.template.txt",
+        "sha256": "dd9c5c4459967ada7cf4f8f1c084aaac84230cb38d7bbaccca3063a1af039d2b"
+      },
+      "text": {
+        "bytes": 3858,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OFL-1.0-RFN.txt",
+        "sha256": "7e6a2968a3782383e1b427aafaf7f7c7737fff024294c4a4d0347557b1aecb10"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OFL-1.0-RFN",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OFL-1.0-RFN.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OFL-1.0-RFN",
+      "name": "SIL Open Font License 1.0 with Reserved Font Name",
+      "reference": "https://spdx.org/licenses/OFL-1.0-RFN.html",
+      "referenceNumber": 520,
+      "seeAlso": [
+        "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"
+      ]
+    },
+    "name": "SIL Open Font License 1.0 with Reserved Font Name",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

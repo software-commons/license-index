@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "35e4cf61becd4c20ba8f7b352e86186b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 53458,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-NC-SA-2.0-UK.json",
+        "sha256": "448d649b601eb3b2d8191b73b93b374712eafc9bea6c2d8ca3990849817fd476"
+      },
+      "template": {
+        "bytes": 14040,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-NC-SA-2.0-UK.template.txt",
+        "sha256": "b251e8f75929cae8f4f8f0d1d6d2ea6a89f247ee8fbc6222697ac3de3b8d30e0"
+      },
+      "text": {
+        "bytes": 11347,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-NC-SA-2.0-UK.txt",
+        "sha256": "42ef58839f2a106619788b869467bba338e95ebc77a56fca4ad9c11ac619e161"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-NC-SA-2.0-UK",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-NC-SA-2.0-UK.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-NC-SA-2.0-UK",
+      "name": "Creative Commons Attribution Non Commercial Share Alike 2.0 England and Wales",
+      "reference": "https://spdx.org/licenses/CC-BY-NC-SA-2.0-UK.html",
+      "referenceNumber": 575,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Non Commercial Share Alike 2.0 England and Wales",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

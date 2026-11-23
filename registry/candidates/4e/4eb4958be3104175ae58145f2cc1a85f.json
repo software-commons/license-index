@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4eb4958be3104175ae58145f2cc1a85f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 130351,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AGPL-3.0-or-later.json",
+        "sha256": "adb587ef47a4046fb0c2b017ade8303605fbad6d2198fa2ef0edaf6db35ac359"
+      },
+      "template": {
+        "bytes": 35925,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AGPL-3.0-or-later.template.txt",
+        "sha256": "2de8e3bd722bedf4ff78e4d034eb1c8d6dd60708ddc6b4d050cc10c4a452b131"
+      },
+      "text": {
+        "bytes": 34020,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AGPL-3.0-or-later.txt",
+        "sha256": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "AGPL-3.0-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AGPL-3.0-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "AGPL-3.0-or-later",
+      "name": "GNU Affero General Public License v3.0 or later",
+      "reference": "https://spdx.org/licenses/AGPL-3.0-or-later.html",
+      "referenceNumber": 248,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/agpl.txt",
+        "https://opensource.org/license/AGPL-3.0"
+      ]
+    },
+    "name": "GNU Affero General Public License v3.0 or later",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

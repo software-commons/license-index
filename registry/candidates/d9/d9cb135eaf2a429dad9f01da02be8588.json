@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d9cb135eaf2a429dad9f01da02be8588",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6483,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/mpich2.json",
+        "sha256": "1cec51619247a83ce0775959c33561b4272c30bf95001c9f4e4ca05be181c04d"
+      },
+      "template": {
+        "bytes": 1588,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/mpich2.template.txt",
+        "sha256": "57d61cccf0ef9c24ddee29ae992c02fa7966d2c80b1637985fac6e53073e27b6"
+      },
+      "text": {
+        "bytes": 1424,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/mpich2.txt",
+        "sha256": "a284ae7293a108411704b2776064ac81a796ad2242813b8e777e36ede376eec6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "mpich2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/mpich2.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "mpich2",
+      "name": "mpich2 License",
+      "reference": "https://spdx.org/licenses/mpich2.html",
+      "referenceNumber": 179,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MIT"
+      ]
+    },
+    "name": "mpich2 License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

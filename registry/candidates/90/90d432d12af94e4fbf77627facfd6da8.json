@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "90d432d12af94e4fbf77627facfd6da8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 88439,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GFDL-1.3-no-invariants-or-later.json",
+        "sha256": "e86a932135740ff524184f6b6c87da4ad8f1998cc2efa2ee5377c689c63f5f0c"
+      },
+      "template": {
+        "bytes": 24362,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GFDL-1.3-no-invariants-or-later.template.txt",
+        "sha256": "f5b57e8fe2bc3503944b07ae8fc0ad33aebd43c36e69c4f6b0d8bd8ea4c9d9d1"
+      },
+      "text": {
+        "bytes": 22791,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GFDL-1.3-no-invariants-or-later.txt",
+        "sha256": "d024962f1f4966c102b40d9fd9cc834a3f0b3c1397b41444b7cd7925640dc929"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GFDL-1.3-no-invariants-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GFDL-1.3-no-invariants-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GFDL-1.3-no-invariants-or-later",
+      "name": "GNU Free Documentation License v1.3 or later - no invariants",
+      "reference": "https://spdx.org/licenses/GFDL-1.3-no-invariants-or-later.html",
+      "referenceNumber": 291,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/fdl-1.3.txt"
+      ]
+    },
+    "name": "GNU Free Documentation License v1.3 or later - no invariants",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

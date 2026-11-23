@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d1f5d7aaf63f4e13a0722aed9d7d99b1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2157,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ADSL.json",
+        "sha256": "ad3123eb23226aa412ef827c1037656cef52851910c4678f82aa51ac73b54e8a"
+      },
+      "template": {
+        "bytes": 489,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ADSL.template.txt",
+        "sha256": "f9b7e7d84c609c7550f87e5795ae5069125fc589412ff8865dc7a1c38f40fa19"
+      },
+      "text": {
+        "bytes": 488,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ADSL.txt",
+        "sha256": "499fa1d1608a106727aaa4482ff64c45091a2be9f0639f16d8509d39c33f872a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ADSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ADSL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ADSL",
+      "name": "Amazon Digital Services License",
+      "reference": "https://spdx.org/licenses/ADSL.html",
+      "referenceNumber": 453,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/AmazonDigitalServicesLicense"
+      ]
+    },
+    "name": "Amazon Digital Services License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

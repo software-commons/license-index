@@ -1,0 +1,63 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "42d6a46612654ba0b8328cfa2f469b8b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6378,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/wxWindows.json",
+        "sha256": "ba3c4884595a1cacb88f5377b41584ab074cae96a74aba7e717d4dd4f9017299"
+      },
+      "replacement_source": {
+        "bytes": 2516,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/wxWindows.xml",
+        "sha256": "80e3b76099f8be98d41d3948a91e39187f1f0dc0086697ac6b11f43cab0efcd2"
+      },
+      "template": {
+        "bytes": 1471,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_wxWindows.template.txt",
+        "sha256": "100b9d342f88b6133f534d26cd8f3155c70fb9f81b931d9f4c9f2c9d0348f464"
+      },
+      "text": {
+        "bytes": 1276,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_wxWindows.txt",
+        "sha256": "c4303da2434b941100e5b927fbb11a393865b9bde99a4e2450505f4a12d1a3e2"
+      }
+    },
+    "deprecated": true,
+    "identifier": "wxWindows",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/wxWindows.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": true,
+      "licenseId": "wxWindows",
+      "name": "wxWindows Library License",
+      "reference": "https://spdx.org/licenses/wxWindows.html",
+      "referenceNumber": 272,
+      "seeAlso": [
+        "https://opensource.org/license/wxWindows"
+      ]
+    },
+    "name": "wxWindows Library License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-2.0-or-later WITH WxWindows-exception-3.1"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

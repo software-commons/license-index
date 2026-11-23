@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "db93ffff378043a99ba2db7743cbcb8b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7401,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/OCaml-LGPL-linking-exception.json",
+        "sha256": "cbd7f81359792d3b8112818cf9a60fa7037e9ae434b05dc50606da9902f10cab"
+      },
+      "template": {
+        "bytes": 1816,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OCaml-LGPL-linking-exception.template.txt",
+        "sha256": "aeab0e6ba8ccd06f808cdfbef2db4ecd23e1f311a7af757c042483438d2c004d"
+      },
+      "text": {
+        "bytes": 881,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OCaml-LGPL-linking-exception.txt",
+        "sha256": "442eedab496337d413cd2537a564cdc63b2033b25b56a18ca1aa83fb054f99b4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OCaml-LGPL-linking-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OCaml-LGPL-linking-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "OCaml-LGPL-linking-exception",
+      "name": "OCaml LGPL Linking Exception",
+      "reference": "https://spdx.org/licenses/OCaml-LGPL-linking-exception.html",
+      "referenceNumber": 65,
+      "seeAlso": [
+        "https://caml.inria.fr/ocaml/license.en.html"
+      ]
+    },
+    "name": "OCaml LGPL Linking Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

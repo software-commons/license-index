@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "be978ba0b60f469a9eba4059926a0249",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5407,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Giftware.json",
+        "sha256": "da5d4ec9d08090afb5b68cbb2b744429c397ce8373b822d60059b10928505c50"
+      },
+      "template": {
+        "bytes": 1386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Giftware.template.txt",
+        "sha256": "4f19c0e927e341285925301f0c708c44253cf1915e35e175de489223f26d0bdd"
+      },
+      "text": {
+        "bytes": 1352,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Giftware.txt",
+        "sha256": "ea1f4b4145e906a6a6a0fb2288dd6362f175f58c69a24b598092fc53d74fc96e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Giftware",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Giftware.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Giftware",
+      "name": "Giftware License",
+      "reference": "https://spdx.org/licenses/Giftware.html",
+      "referenceNumber": 400,
+      "seeAlso": [
+        "http://liballeg.org/license.html#allegro-4-the-giftware-license"
+      ]
+    },
+    "name": "Giftware License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

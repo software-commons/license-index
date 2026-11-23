@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b4c809c283c6465c9e7823d4a43af423",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9280,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-4-Clause.json",
+        "sha256": "c74afba22b93fe1b54feb87bb2be5fa569027ed65acf54aad58165b459bb98f6"
+      },
+      "template": {
+        "bytes": 2204,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-4-Clause.template.txt",
+        "sha256": "4f9b064410ed8996b750579602f07710bd85601d175e973b3bdc077fe183d032"
+      },
+      "text": {
+        "bytes": 1618,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-4-Clause.txt",
+        "sha256": "c80d927f03db7212ba43a869a383e249c19b40859ff0d9e2e2f968e4fdcf005f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-4-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-4-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "BSD-4-Clause",
+      "name": "BSD 4-Clause \"Original\" or \"Old\" License",
+      "reference": "https://spdx.org/licenses/BSD-4-Clause.html",
+      "referenceNumber": 680,
+      "seeAlso": [
+        "http://directory.fsf.org/wiki/License:BSD_4Clause",
+        "https://github.com/jsommers/pytricia/blob/master/patricia.c#L33-L67"
+      ]
+    },
+    "name": "BSD 4-Clause \"Original\" or \"Old\" License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

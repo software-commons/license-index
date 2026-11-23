@@ -1,0 +1,61 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ccba234243cb4500801a487e76bd8ec0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 101590,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LGPL-2.1-only.json",
+        "sha256": "c26841db6b15d7b020d9e74412ce104e5cff445ebcb27b4c2ee91bf8ebb1d593"
+      },
+      "template": {
+        "bytes": 27986,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LGPL-2.1-only.template.txt",
+        "sha256": "35a96ff08aa6b75143a1f1b51eec1d0fbdde184eb5fe576709cc6a71c6ddfe9a"
+      },
+      "text": {
+        "bytes": 26001,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LGPL-2.1-only.txt",
+        "sha256": "5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "LGPL-2.1-only",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LGPL-2.1-only.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "LGPL-2.1-only",
+      "name": "GNU Lesser General Public License v2.1 only",
+      "reference": "https://spdx.org/licenses/LGPL-2.1-only.html",
+      "referenceNumber": 141,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+        "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html",
+        "https://opensource.org/license/LGPL-2.1-only"
+      ]
+    },
+    "name": "GNU Lesser General Public License v2.1 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

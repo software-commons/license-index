@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "104c9044aaa84f548862d4a58518d97d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2288,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Game-Programming-Gems.json",
+        "sha256": "9ea66b3f0ecd9bc039d18d017ec87aaa8373b462b970723b831a4468a2189539"
+      },
+      "template": {
+        "bytes": 425,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Game-Programming-Gems.template.txt",
+        "sha256": "45d2f1d6486e8ccec6ae238ccb59fe050d82113972087f6d9855ccc2071df448"
+      },
+      "text": {
+        "bytes": 369,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Game-Programming-Gems.txt",
+        "sha256": "f66fa6ad1343664019ae307e89bb0e5f6537a95266772cb5663dedebff05b657"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Game-Programming-Gems",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Game-Programming-Gems.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Game-Programming-Gems",
+      "name": "Game Programming Gems License",
+      "reference": "https://spdx.org/licenses/Game-Programming-Gems.html",
+      "referenceNumber": 18,
+      "seeAlso": [
+        "https://github.com/OGRECave/ogre/blob/master/OgreMain/include/OgreSingleton.h#L28C3-L35C46"
+      ]
+    },
+    "name": "Game Programming Gems License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

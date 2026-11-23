@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a908cd38124b4a419a952875e0859926",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1727,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Dotseqn.json",
+        "sha256": "ba92e6f215d865456694d9db6b7babd47641b701a8c6bddf678f7a19c4ed88db"
+      },
+      "template": {
+        "bytes": 317,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Dotseqn.template.txt",
+        "sha256": "4354649742b148b16aa607f79788733acbbf9087fd5483c7280f9ee7ec56cf37"
+      },
+      "text": {
+        "bytes": 261,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Dotseqn.txt",
+        "sha256": "173bc5170b7f83a138f8b0cbc30530cbb09273e6ef608d072cdd180e26cb1f1d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Dotseqn",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Dotseqn.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Dotseqn",
+      "name": "Dotseqn License",
+      "reference": "https://spdx.org/licenses/Dotseqn.html",
+      "referenceNumber": 700,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Dotseqn"
+      ]
+    },
+    "name": "Dotseqn License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

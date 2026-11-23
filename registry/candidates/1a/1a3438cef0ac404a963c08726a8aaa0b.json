@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1a3438cef0ac404a963c08726a8aaa0b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8639,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/UCAR.json",
+        "sha256": "2db3ea970d3f283cdaa3f6e6c44f6bb4dda6fdc8f318387cf456cc6f78cb1a12"
+      },
+      "template": {
+        "bytes": 2131,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/UCAR.template.txt",
+        "sha256": "92a31b79a7f6dfbfdba2b65e7ae6ff8b933fcca391ea2edf135b82df756a6d3f"
+      },
+      "text": {
+        "bytes": 1948,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/UCAR.txt",
+        "sha256": "fdbc952e38cca091be8ab257ae3770f05fa9ef4f86199bb6e66374e236083185"
+      }
+    },
+    "deprecated": false,
+    "identifier": "UCAR",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/UCAR.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "UCAR",
+      "name": "UCAR License",
+      "reference": "https://spdx.org/licenses/UCAR.html",
+      "referenceNumber": 55,
+      "seeAlso": [
+        "https://github.com/Unidata/UDUNITS-2/blob/master/COPYRIGHT"
+      ]
+    },
+    "name": "UCAR License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

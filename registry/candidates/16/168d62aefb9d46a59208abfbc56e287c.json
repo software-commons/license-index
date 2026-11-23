@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "168d62aefb9d46a59208abfbc56e287c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 114312,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ODbL-1.0.json",
+        "sha256": "a8738a634909a78488155a717c81f9256f76bea61f977a5e13e7821d6f9ecfc1"
+      },
+      "template": {
+        "bytes": 29805,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ODbL-1.0.template.txt",
+        "sha256": "f414994cef1b23a833e9d279c28f6205bc8c2fdb4773aacd9e71595f383bc9ce"
+      },
+      "text": {
+        "bytes": 25289,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ODbL-1.0.txt",
+        "sha256": "77d2692c3d64efdd4db18dce2407699baf62930e2b50d6e5ed90b48acf16b7c1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ODbL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ODbL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "ODbL-1.0",
+      "name": "Open Data Commons Open Database License v1.0",
+      "reference": "https://spdx.org/licenses/ODbL-1.0.html",
+      "referenceNumber": 95,
+      "seeAlso": [
+        "http://www.opendatacommons.org/licenses/odbl/1.0/",
+        "https://opendatacommons.org/licenses/odbl/1-0/"
+      ]
+    },
+    "name": "Open Data Commons Open Database License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

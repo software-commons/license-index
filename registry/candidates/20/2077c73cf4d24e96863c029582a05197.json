@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2077c73cf4d24e96863c029582a05197",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-4-Clause-UC.json",
+        "sha256": "67bca65eb3a2cf00f19e2541e7b547b61abb90c88f7b8728a0673c9fee3f9544"
+      },
+      "template": {
+        "bytes": 2053,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-4-Clause-UC.template.txt",
+        "sha256": "d120a7593c4d96f4f0136f274f02d59f5562e3d3daa249ce08dba47e5acb8161"
+      },
+      "text": {
+        "bytes": 1771,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-4-Clause-UC.txt",
+        "sha256": "c82a5eb55679a3fd483d992c2428e66ee4b9b05b5b78b4ac916692368955b526"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-4-Clause-UC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-4-Clause-UC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-4-Clause-UC",
+      "name": "BSD-4-Clause (University of California-Specific)",
+      "reference": "https://spdx.org/licenses/BSD-4-Clause-UC.html",
+      "referenceNumber": 80,
+      "seeAlso": [
+        "http://www.freebsd.org/copyright/license.html"
+      ]
+    },
+    "name": "BSD-4-Clause (University of California-Specific)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

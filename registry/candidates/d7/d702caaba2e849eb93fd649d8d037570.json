@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d702caaba2e849eb93fd649d8d037570",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 18144,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/eGenix.json",
+        "sha256": "d6f20ab5b8f6072f588e817b4b445511619210353dc3757b13ac372a12a5aa35"
+      },
+      "template": {
+        "bytes": 4724,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/eGenix.template.txt",
+        "sha256": "4226eea6a654c9b784bd56792edd88f6270a7b39974f4533f92e1d9fd0d80d7b"
+      },
+      "text": {
+        "bytes": 4235,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/eGenix.txt",
+        "sha256": "fc27d513401d457ae1d259f8714f9deed874aa35d733ed719a9f4248fb5e3e68"
+      }
+    },
+    "deprecated": false,
+    "identifier": "eGenix",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/eGenix.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "eGenix",
+      "name": "eGenix.com Public License 1.1.0",
+      "reference": "https://spdx.org/licenses/eGenix.html",
+      "referenceNumber": 732,
+      "seeAlso": [
+        "http://www.egenix.com/products/eGenix.com-Public-License-1.1.0.pdf",
+        "https://fedoraproject.org/wiki/Licensing/eGenix.com_Public_License_1.1.0"
+      ]
+    },
+    "name": "eGenix.com Public License 1.1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

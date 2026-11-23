@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "16d115dee04e449db91a3cce99737309",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 36748,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AFL-2.0.json",
+        "sha256": "5723c3b5e2974f0a0a6a6f5781666b6a359c2498486acb9247bcdde03c6af887"
+      },
+      "template": {
+        "bytes": 10038,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AFL-2.0.template.txt",
+        "sha256": "2f5c5046dcb1c60c4b4bb840c00d6ea307e0a6644c7b4dc65423717ef77e8a84"
+      },
+      "text": {
+        "bytes": 8987,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AFL-2.0.txt",
+        "sha256": "7ecc7db84298adb05d2cf10339c63a5315a1c5c270a68d97d7d40a53b508ccde"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "AFL-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AFL-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "AFL-2.0",
+      "name": "Academic Free License v2.0",
+      "reference": "https://spdx.org/licenses/AFL-2.0.html",
+      "referenceNumber": 711,
+      "seeAlso": [
+        "http://wayback.archive.org/web/20060924134533/http://www.opensource.org/licenses/afl-2.0.txt"
+      ]
+    },
+    "name": "Academic Free License v2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

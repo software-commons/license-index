@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e6b4de5e2be8438e8dcb0e81bf67516d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2789,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Source-Code-no-disclaimer.json",
+        "sha256": "e94e7c79e9ebd7fff5d9b2fdf7020ae660e0a083d8603851322af3fcf6fb75fa"
+      },
+      "template": {
+        "bytes": 514,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Source-Code-no-disclaimer.template.txt",
+        "sha256": "c803ac453644489052184d7c9904002eef4cee94eebcface5d98dff407e4d34a"
+      },
+      "text": {
+        "bytes": 416,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Source-Code-no-disclaimer.txt",
+        "sha256": "b21036fff55988f50ae093a92f502fd0da7a44242c0d980072ed3ab8982daa80"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Source-Code-no-disclaimer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Source-Code-no-disclaimer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Source-Code-no-disclaimer",
+      "name": "BSD Source Code Attribution - no disclaimer",
+      "reference": "https://spdx.org/licenses/BSD-Source-Code-no-disclaimer.html",
+      "referenceNumber": 627,
+      "seeAlso": [
+        "https://github.com/PicoEFI/PicoEFI/blob/2263ac1a2bc98e5534d64a4896d3cfbbae00745a/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt"
+      ]
+    },
+    "name": "BSD Source Code Attribution - no disclaimer",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c7e56cc4067c4045b7751a16233a7ca4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6969,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Source-Code.json",
+        "sha256": "12cb945ccb2d1b5be96dd544055e3cc365534f1f88e811a1a9a1b7f4f6b93ce2"
+      },
+      "template": {
+        "bytes": 1682,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Source-Code.template.txt",
+        "sha256": "8c94a2a09fe4c1c945acccb24ba2d2b7eb6390b7bfacb2baadb3a53bbb6f9da4"
+      },
+      "text": {
+        "bytes": 1301,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Source-Code.txt",
+        "sha256": "1f1b677d26ab73e159a55c3a914cf12d888e18a9d0d469fedab4aa6e5a48b1c0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Source-Code",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Source-Code.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Source-Code",
+      "name": "BSD Source Code Attribution",
+      "reference": "https://spdx.org/licenses/BSD-Source-Code.html",
+      "referenceNumber": 93,
+      "seeAlso": [
+        "https://github.com/robbiehanson/CocoaHTTPServer/blob/master/LICENSE.txt"
+      ]
+    },
+    "name": "BSD Source Code Attribution",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9e64adb74b0c473a8e745f8bb9c2480f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2222,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/PS-or-PDF-font-exception-20170817.json",
+        "sha256": "b4c4f85eb9c8a7f0e5e7513a87582ac4091339009fca7bec3684e4c4a7b06d2d"
+      },
+      "template": {
+        "bytes": 505,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PS-or-PDF-font-exception-20170817.template.txt",
+        "sha256": "2330a2fc4e73c2657dfcc3cee64713ce2490337f6d164ba54916a9cdf307bbb1"
+      },
+      "text": {
+        "bytes": 439,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PS-or-PDF-font-exception-20170817.txt",
+        "sha256": "a50c22c8599d84e2d684a0c8ced4b024a5ef24e6e489fcff8a2e771fb49c75e2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PS-or-PDF-font-exception-20170817",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PS-or-PDF-font-exception-20170817.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "PS-or-PDF-font-exception-20170817",
+      "name": "PS/PDF font exception (2017-08-17)",
+      "reference": "https://spdx.org/licenses/PS-or-PDF-font-exception-20170817.html",
+      "referenceNumber": 85,
+      "seeAlso": [
+        "https://github.com/ArtifexSoftware/urw-base35-fonts/blob/65962e27febc3883a17e651cdb23e783668c996f/LICENSE"
+      ]
+    },
+    "name": "PS/PDF font exception (2017-08-17)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

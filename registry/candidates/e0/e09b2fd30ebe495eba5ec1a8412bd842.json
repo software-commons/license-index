@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e09b2fd30ebe495eba5ec1a8412bd842",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2642,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LPD-document.json",
+        "sha256": "bd11bb65afc3bc8664b2f7a8c66db60d341f42f6ae2d13f8c84fcca900c23d05"
+      },
+      "template": {
+        "bytes": 485,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LPD-document.template.txt",
+        "sha256": "d80048a66f447deba78b74744c83b78b94d90dcd945e9365e7e8fe1815c1b660"
+      },
+      "text": {
+        "bytes": 363,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LPD-document.txt",
+        "sha256": "1eccbfa25c87f3e888f750f93a44d2c2a0974b161f3849ddd01ba67d783d2a1f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LPD-document",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LPD-document.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "LPD-document",
+      "name": "LPD Documentation License",
+      "reference": "https://spdx.org/licenses/LPD-document.html",
+      "referenceNumber": 302,
+      "seeAlso": [
+        "https://github.com/Cyan4973/xxHash/blob/dev/doc/xxhash_spec.md",
+        "https://www.ietf.org/rfc/rfc1952.txt"
+      ]
+    },
+    "name": "LPD Documentation License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

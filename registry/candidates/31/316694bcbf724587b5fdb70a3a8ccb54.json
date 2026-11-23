@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "316694bcbf724587b5fdb70a3a8ccb54",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1731,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-Markus-Kuhn.json",
+        "sha256": "79171c050c384812b3265bb8b84036e9ce4b1cef373c1f09ef997f58d2041bf9"
+      },
+      "template": {
+        "bytes": 180,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-Markus-Kuhn.template.txt",
+        "sha256": "1376a1ef497664c6430dd8704d8d66174c19f402743804cc46b4ef5439be42a5"
+      },
+      "text": {
+        "bytes": 179,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-Markus-Kuhn.txt",
+        "sha256": "d81e0150606531af1ea188093a1e62846a51c83eaeebaaa1cc7e94a3415deced"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-Markus-Kuhn",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-Markus-Kuhn.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-Markus-Kuhn",
+      "name": "Historical Permission Notice and Disclaimer - Markus Kuhn variant",
+      "reference": "https://spdx.org/licenses/HPND-Markus-Kuhn.html",
+      "referenceNumber": 367,
+      "seeAlso": [
+        "https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c",
+        "https://sourceware.org/git/?p=binutils-gdb.git;a=blob;f=readline/readline/support/wcwidth.c;h=0f5ec995796f4813abbcf4972aec0378ab74722a;hb=HEAD#l55"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - Markus Kuhn variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

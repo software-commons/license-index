@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3e6aba4f4a52474496c2e593b830346d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Linux-man-pages-1-para.json",
+        "sha256": "da53159bc7932bbac6fab70bc7f0b907f554f92508c5a6f8493a33bbbafe9f33"
+      },
+      "template": {
+        "bytes": 216,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Linux-man-pages-1-para.template.txt",
+        "sha256": "547bff44864ca8cc28738fa95f1aa3941dfe3b13bad5ee1ff1e608f8411408ce"
+      },
+      "text": {
+        "bytes": 215,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Linux-man-pages-1-para.txt",
+        "sha256": "f0c23664f8d8f73ed33aaba09b4686d05deb2723fe1cfd8fbc1f697013686cb3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Linux-man-pages-1-para",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Linux-man-pages-1-para.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Linux-man-pages-1-para",
+      "name": "Linux man-pages - 1 paragraph",
+      "reference": "https://spdx.org/licenses/Linux-man-pages-1-para.html",
+      "referenceNumber": 715,
+      "seeAlso": [
+        "https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/man2/getcpu.2#n4"
+      ]
+    },
+    "name": "Linux man-pages - 1 paragraph",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

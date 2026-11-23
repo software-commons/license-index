@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "998f44c810594573bafc64b8c39fb843",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9344,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OpenMDW-1.0.json",
+        "sha256": "a7928e7ca581a9f48a25326c29e869ab8b7b4c7a211472019eaff2648df4ac9e"
+      },
+      "template": {
+        "bytes": 2638,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OpenMDW-1.0.template.txt",
+        "sha256": "b689ef28242576be4e19a89a8974d7638f1c8c0c319b4f6ba63180ed5ade582f"
+      },
+      "text": {
+        "bytes": 2606,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OpenMDW-1.0.txt",
+        "sha256": "22d5488faff30b2e34e934779d2a6f033712ec6d1eaaee7e774e9cbe0c3c7587"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OpenMDW-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OpenMDW-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OpenMDW-1.0",
+      "name": "OpenMDW License Agreement v1.0",
+      "reference": "https://spdx.org/licenses/OpenMDW-1.0.html",
+      "referenceNumber": 621,
+      "seeAlso": [
+        "https://raw.githubusercontent.com/OpenMDW/OpenMDW/refs/heads/main/1.0/LICENSE.openmdw",
+        "https://openmdw.ai/license/"
+      ]
+    },
+    "name": "OpenMDW License Agreement v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8fb41901d65b4ad3b94a9a19d86ef9bf",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2936,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-Kevlin-Henney.json",
+        "sha256": "cf08df9af6126ceef8c34a3b5aba0680ddf37c6cc13ba7f7262d4e0effce1883"
+      },
+      "template": {
+        "bytes": 477,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-Kevlin-Henney.template.txt",
+        "sha256": "f1c68b2a4fb6c807e0484cebc8b1f7d796cfd89ca179ea25085c7c769b7e8163"
+      },
+      "text": {
+        "bytes": 421,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-Kevlin-Henney.txt",
+        "sha256": "9c73641270f020fce60e4b6aa93f56754763916517cd72d21a73527696ccd3ed"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-Kevlin-Henney",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-Kevlin-Henney.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-Kevlin-Henney",
+      "name": "Historical Permission Notice and Disclaimer - Kevlin Henney variant",
+      "reference": "https://spdx.org/licenses/HPND-Kevlin-Henney.html",
+      "referenceNumber": 552,
+      "seeAlso": [
+        "https://github.com/mruby/mruby/blob/83d12f8d52522cdb7c8cc46fad34821359f453e6/mrbgems/mruby-dir/src/Win/dirent.c#L127-L140"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - Kevlin Henney variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

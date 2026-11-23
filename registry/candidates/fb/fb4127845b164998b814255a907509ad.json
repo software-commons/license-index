@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fb4127845b164998b814255a907509ad",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3794,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/0BSD.json",
+        "sha256": "e308da5da661004eea450240e808b6bba33bbe83e22b9ade0bdbe2db3b6e43e4"
+      },
+      "template": {
+        "bytes": 860,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/0BSD.template.txt",
+        "sha256": "5b5b3cf0d303e1bed3144433e570f46f92810f6d9cb31073fb089786ff5472ff"
+      },
+      "text": {
+        "bytes": 643,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/0BSD.txt",
+        "sha256": "e3f18c71e10d673590eb9856c1d79dd3b4b0d65404efb5e8584dbede7edd608b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "0BSD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/0BSD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "0BSD",
+      "name": "BSD Zero Clause License",
+      "reference": "https://spdx.org/licenses/0BSD.html",
+      "referenceNumber": 547,
+      "seeAlso": [
+        "http://landley.net/toybox/license.html",
+        "https://opensource.org/license/0BSD"
+      ]
+    },
+    "name": "BSD Zero Clause License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

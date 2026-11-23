@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "74a66ef38f984f15bff61facacd09027",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6174,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/kvirc-openssl-exception.json",
+        "sha256": "dc0adbb14740744935f6a7f735cff3fd2287808bec6b102514f4469e57f7ccb9"
+      },
+      "template": {
+        "bytes": 1465,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/kvirc-openssl-exception.template.txt",
+        "sha256": "4c55456e1d17bc9cd8af390c51bbc3814cf63d81650f7b6a8904aa78e874421f"
+      },
+      "text": {
+        "bytes": 1323,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/kvirc-openssl-exception.txt",
+        "sha256": "edaac8ae3e24ecfc919a7aae4b445cc42539fd8685df71645de4c4301a8b4743"
+      }
+    },
+    "deprecated": false,
+    "identifier": "kvirc-openssl-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/kvirc-openssl-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "kvirc-openssl-exception",
+      "name": "kvirc OpenSSL Exception",
+      "reference": "https://spdx.org/licenses/kvirc-openssl-exception.html",
+      "referenceNumber": 59,
+      "seeAlso": [
+        "https://github.com/kvirc/KVIrc/blob/ba18690abb4f5ce77bb10164ee0835cc150f4a2a/doc/ABOUT-LICENSE#L34"
+      ]
+    },
+    "name": "kvirc OpenSSL Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7a4a93b8bbf94c8cb0419d552ed4fcee",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3586,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/x11vnc-openssl-exception.json",
+        "sha256": "e4d55096293dfe272509111dd3168222fd513d73d775b7f9523ede00415d5943"
+      },
+      "template": {
+        "bytes": 811,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/x11vnc-openssl-exception.template.txt",
+        "sha256": "b834190ef9215eb866069dd38880c0ba55249045861afebdb4ba50fb32396a71"
+      },
+      "text": {
+        "bytes": 591,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/x11vnc-openssl-exception.txt",
+        "sha256": "c5f04dd88fd00ad6025979555a55919a18ae08f254c535aac071164895406de7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "x11vnc-openssl-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/x11vnc-openssl-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "x11vnc-openssl-exception",
+      "name": "x11vnc OpenSSL Exception",
+      "reference": "https://spdx.org/licenses/x11vnc-openssl-exception.html",
+      "referenceNumber": 40,
+      "seeAlso": [
+        "https://github.com/LibVNC/x11vnc/blob/master/src/8to24.c#L22"
+      ]
+    },
+    "name": "x11vnc OpenSSL Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bd5c5218e16b4bb0af323ef1889224db",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 110794,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Interbase-1.0.json",
+        "sha256": "125593e6a12e903603939e35754acdb4fc6b5058dd236be4d310e4839d96d22f"
+      },
+      "template": {
+        "bytes": 28071,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Interbase-1.0.template.txt",
+        "sha256": "5d2c6ba3ef1cc9a57e6e2ba69a07bb0a544adf33b970fa67852441a3a2bfb53f"
+      },
+      "text": {
+        "bytes": 24344,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Interbase-1.0.txt",
+        "sha256": "f3a34d96829d93613b291b98cc01baeb65ae4b85b6d1ae35bc6b86ea1b037112"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "Interbase-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Interbase-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Interbase-1.0",
+      "name": "Interbase Public License v1.0",
+      "reference": "https://spdx.org/licenses/Interbase-1.0.html",
+      "referenceNumber": 361,
+      "seeAlso": [
+        "https://web.archive.org/web/20060319014854/http://info.borland.com/devsupport/interbase/opensource/IPL.html"
+      ]
+    },
+    "name": "Interbase Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

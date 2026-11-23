@@ -1,0 +1,54 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8d543ccaaab44425982cdf2c145bd1b7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 61369,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EPL-2.0.json",
+        "sha256": "9e701b33c7cac700d3125b8f82a68c39712c7dfe42ff2d148119bc68899c4014"
+      },
+      "template": {
+        "bytes": 15569,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EPL-2.0.template.txt",
+        "sha256": "b7830f3791575509e335b5dcfd4246e146374572c67102e466c1e8d49bc6b020"
+      },
+      "text": {
+        "bytes": 14020,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EPL-2.0.txt",
+        "sha256": "61616a4066701bc7888ad910de1633dbc55eb4d4d30d930feef55afb9492e33c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EPL-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EPL-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "EPL-2.0",
+      "name": "Eclipse Public License 2.0",
+      "reference": "https://spdx.org/licenses/EPL-2.0.html",
+      "referenceNumber": 601,
+      "seeAlso": [
+        "https://www.eclipse.org/legal/epl-2.0",
+        "https://www.opensource.org/license/EPL-2.0",
+        "https://www.eclipse.org/legal/epl-v20.html",
+        "https://projects.eclipse.org/license/epl-2.0"
+      ]
+    },
+    "name": "Eclipse Public License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

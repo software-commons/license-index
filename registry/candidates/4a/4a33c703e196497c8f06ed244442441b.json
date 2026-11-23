@@ -1,0 +1,54 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4a33c703e196497c8f06ed244442441b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4950,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/cryptsetup-OpenSSL-exception.json",
+        "sha256": "85a65671ab626feefbb1099b519a6c75a46f4a7655e9a54180596d3560f38cfe"
+      },
+      "template": {
+        "bytes": 1135,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/cryptsetup-OpenSSL-exception.template.txt",
+        "sha256": "aac495c8f1a71a855f5695b034cdde5ced8a659e9db5d738f0013fa4c45880cb"
+      },
+      "text": {
+        "bytes": 700,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/cryptsetup-OpenSSL-exception.txt",
+        "sha256": "abc9c3364edc1c581a74723ea83094709fef840d8d8a65c731c7303a90a19eaa"
+      }
+    },
+    "deprecated": false,
+    "identifier": "cryptsetup-OpenSSL-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/cryptsetup-OpenSSL-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "cryptsetup-OpenSSL-exception",
+      "name": "cryptsetup OpenSSL exception",
+      "reference": "https://spdx.org/licenses/cryptsetup-OpenSSL-exception.html",
+      "referenceNumber": 19,
+      "seeAlso": [
+        "https://gitlab.com/cryptsetup/cryptsetup/-/blob/main/COPYING",
+        "https://gitlab.nic.cz/datovka/datovka/-/blob/develop/COPYING",
+        "https://github.com/nbs-system/naxsi/blob/951123ad456bdf5ac94e8d8819342fe3d49bc002/naxsi_src/naxsi_raw.c",
+        "http://web.mit.edu/jgross/arch/amd64_deb60/bin/mosh",
+        "https://sourceforge.net/p/linux-ima/ima-evm-utils/ci/master/tree/src/evmctl.c#l30",
+        "https://github.com/ocaml-omake/omake/blob/master/LICENSE.OMake#L20"
+      ]
+    },
+    "name": "cryptsetup OpenSSL exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

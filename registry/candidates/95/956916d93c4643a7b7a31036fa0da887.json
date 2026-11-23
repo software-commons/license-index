@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "956916d93c4643a7b7a31036fa0da887",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Gmsh-exception.json",
+        "sha256": "572a3329ddb9028c519a04e34f2331f75a49597819ee6449ea56668f1d8bbd6b"
+      },
+      "template": {
+        "bytes": 943,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Gmsh-exception.template.txt",
+        "sha256": "cd8192be3621d972a87dd9b9c98d32bce357d7cd4dfb54e442b2682a88008e32"
+      },
+      "text": {
+        "bytes": 970,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Gmsh-exception.txt",
+        "sha256": "2ea30b3ed0edc602fbbab8291a56ffda20a8d28be7e0c80973e628b1c10a8250"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Gmsh-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Gmsh-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Gmsh-exception",
+      "name": "Gmsh exception",
+      "reference": "https://spdx.org/licenses/Gmsh-exception.html",
+      "referenceNumber": 23,
+      "seeAlso": [
+        "https://gitlab.onelab.info/gmsh/gmsh/-/raw/master/LICENSE.txt"
+      ]
+    },
+    "name": "Gmsh exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

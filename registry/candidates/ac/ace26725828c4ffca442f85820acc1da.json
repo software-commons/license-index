@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ace26725828c4ffca442f85820acc1da",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 39862,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Python-2.0.json",
+        "sha256": "f82322301e8cec568d3c34664aa2e2ef95baa7d5d1986f1ba234fecd6fa2cd1b"
+      },
+      "template": {
+        "bytes": 10708,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Python-2.0.template.txt",
+        "sha256": "e9bca0533ed70c07069797347e134da69d7eb3f5d4b0280aff9890688e6af730"
+      },
+      "text": {
+        "bytes": 9411,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Python-2.0.txt",
+        "sha256": "893c2bafbb8133f7aa97e1f79a3ee3241ebca7025f56278e9e1f72bb98592f9d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Python-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Python-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Python-2.0",
+      "name": "Python License 2.0",
+      "reference": "https://spdx.org/licenses/Python-2.0.html",
+      "referenceNumber": 458,
+      "seeAlso": [
+        "https://opensource.org/license/Python-2.0"
+      ]
+    },
+    "name": "Python License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

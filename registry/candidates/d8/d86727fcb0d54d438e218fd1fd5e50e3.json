@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d86727fcb0d54d438e218fd1fd5e50e3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8474,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Mark-Modifications.json",
+        "sha256": "c24cbec19ddd5c8ed6d68ea609a29c82cf01e2f22e4737d0f9c89211a19c9822"
+      },
+      "template": {
+        "bytes": 2020,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Mark-Modifications.template.txt",
+        "sha256": "ca2736c480873517c4986a892ff669cf5324b623b41e8f35e16bf6da0a50c4bd"
+      },
+      "text": {
+        "bytes": 1763,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Mark-Modifications.txt",
+        "sha256": "935b8ea2dd441f274b8175356a8cb92ffe69958c5d243cdc2a1280db20fea473"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Mark-Modifications",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Mark-Modifications.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Mark-Modifications",
+      "name": "BSD Mark Modifications License",
+      "reference": "https://spdx.org/licenses/BSD-Mark-Modifications.html",
+      "referenceNumber": 247,
+      "seeAlso": [
+        "https://ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2"
+      ]
+    },
+    "name": "BSD Mark Modifications License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3ea08c1471a74b19af93562c2c974140",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 81105,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/APSL-1.2.json",
+        "sha256": "4c9d710dcb16b32e0ed7efc0a511dfe9196020abaa6f96843ba285ea89587f3f"
+      },
+      "template": {
+        "bytes": 22182,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/APSL-1.2.template.txt",
+        "sha256": "b2c3234ec2655387b5642b99795e084958d306e4dd0b6a95017cd9ebb3d86c8f"
+      },
+      "text": {
+        "bytes": 19800,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/APSL-1.2.txt",
+        "sha256": "ea3732a5beb20493cdeb61f2d4bf78f1f1434bda046cc1ca18ac9ddda22cb28b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "APSL-1.2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/APSL-1.2.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "APSL-1.2",
+      "name": "Apple Public Source License 1.2",
+      "reference": "https://spdx.org/licenses/APSL-1.2.html",
+      "referenceNumber": 376,
+      "seeAlso": [
+        "http://www.samurajdata.se/opensource/mirror/licenses/apsl.php"
+      ]
+    },
+    "name": "Apple Public Source License 1.2",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

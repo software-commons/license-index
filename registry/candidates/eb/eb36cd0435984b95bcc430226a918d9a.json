@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "eb36cd0435984b95bcc430226a918d9a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 927,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Gutmann.json",
+        "sha256": "6c9aa3bf3e90a8b34ef3924e20ef68d3640be9a542704dc91dd8c194734efe6a"
+      },
+      "template": {
+        "bytes": 97,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Gutmann.template.txt",
+        "sha256": "3e9ae1a2c98eaa2902d4949525a809c518019d0af255ec91f8d5e01d81f5f4c4"
+      },
+      "text": {
+        "bytes": 96,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Gutmann.txt",
+        "sha256": "b1a2922b815f46c73ce067c65792cf557a65e2be00b309c303e2d9bb01244b17"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Gutmann",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Gutmann.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Gutmann",
+      "name": "Gutmann License",
+      "reference": "https://spdx.org/licenses/Gutmann.html",
+      "referenceNumber": 333,
+      "seeAlso": [
+        "https://www.cs.auckland.ac.nz/~pgut001/dumpasn1.c"
+      ]
+    },
+    "name": "Gutmann License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1e340c4b78d0462e8ec515abbeda6aa4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1406,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/KiCad-libraries-exception.json",
+        "sha256": "097e1a52ee813117529b4cd0aed832242ac04d1f945c8aa0d2f19dd90c0e5ee6"
+      },
+      "template": {
+        "bytes": 300,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/KiCad-libraries-exception.template.txt",
+        "sha256": "2e01510a40f33d6cc5be9f6451f01528c8e61c3bcbd7f144d36cb93e134c4f56"
+      },
+      "text": {
+        "bytes": 299,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/KiCad-libraries-exception.txt",
+        "sha256": "5cfeedcae118baccc28df6e77ac978b6383fbc668418755f4bf274d2d531ad70"
+      }
+    },
+    "deprecated": false,
+    "identifier": "KiCad-libraries-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/KiCad-libraries-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "KiCad-libraries-exception",
+      "name": "KiCad Libraries Exception",
+      "reference": "https://spdx.org/licenses/KiCad-libraries-exception.html",
+      "referenceNumber": 55,
+      "seeAlso": [
+        "https://www.kicad.org/libraries/license/"
+      ]
+    },
+    "name": "KiCad Libraries Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

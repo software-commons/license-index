@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b7b5ad8514cf4be1ac2376e10ce2c283",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4451,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/harbour-exception.json",
+        "sha256": "2bc4ddae76f3d247e4c90a2d268bce7891b6cf599c824f8b8699eebf4eaedad0"
+      },
+      "template": {
+        "bytes": 1198,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/harbour-exception.template.txt",
+        "sha256": "60d199267c105c61d0c01adb481d8967f5096e989010c1490c298219694a7141"
+      },
+      "text": {
+        "bytes": 1199,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/harbour-exception.txt",
+        "sha256": "e5b2fa131614c67348ccddd8f5f67dc7208396150f5a14ba1eb56ef4dc64d1f2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "harbour-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/harbour-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "harbour-exception",
+      "name": "harbour exception",
+      "reference": "https://spdx.org/licenses/harbour-exception.html",
+      "referenceNumber": 61,
+      "seeAlso": [
+        "https://github.com/harbour/core/blob/master/LICENSE.txt#L44-L66"
+      ]
+    },
+    "name": "harbour exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7e21a2db6b104a7aa461b87f41f6f78b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4253,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GCC-exception-2.0.json",
+        "sha256": "550e07bdb181cee4f2193942660bfa777647b74894c6f687e60a513006519688"
+      },
+      "template": {
+        "bytes": 918,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GCC-exception-2.0.template.txt",
+        "sha256": "2223aeaf2b5b25139f0d1aaade4415f8b3a3e3aeeff7bae762a8236a69b72ec2"
+      },
+      "text": {
+        "bytes": 482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GCC-exception-2.0.txt",
+        "sha256": "2657934bffd8c59b27a38f31c4bfc4cde9137a8e0cb168e1a272bc754ab78f0e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GCC-exception-2.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GCC-exception-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GCC-exception-2.0",
+      "name": "GCC Runtime Library exception 2.0",
+      "reference": "https://spdx.org/licenses/GCC-exception-2.0.html",
+      "referenceNumber": 54,
+      "seeAlso": [
+        "https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/libgcc1.c;h=762f5143fc6eed57b6797c82710f3538aa52b40b;hb=cb143a3ce4fb417c68f5fa2691a1b1b1053dfba9#l10",
+        "https://sourceware.org/git/?p=glibc.git;a=blob;f=csu/abi-note.c;h=c2ec208e94fbe91f63d3c375bd254b884695d190;hb=HEAD"
+      ]
+    },
+    "name": "GCC Runtime Library exception 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

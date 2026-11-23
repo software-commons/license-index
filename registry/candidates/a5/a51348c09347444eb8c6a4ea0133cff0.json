@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a51348c09347444eb8c6a4ea0133cff0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2156,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Jam.json",
+        "sha256": "8b90888576c2c4d7246482d807070b3d89ea89aa8fb205dbffabda16d4de8492"
+      },
+      "template": {
+        "bytes": 320,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Jam.template.txt",
+        "sha256": "7e55c545abff5704eb60e617f0b85345ec60d1f1e7e1845835cc6aa1c0145170"
+      },
+      "text": {
+        "bytes": 195,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Jam.txt",
+        "sha256": "5239625d8bf548b9c3cc0934b7f60ca781780db7165596f8b28e38e2701dddc6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Jam",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Jam.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Jam",
+      "name": "Jam License",
+      "reference": "https://spdx.org/licenses/Jam.html",
+      "referenceNumber": 368,
+      "seeAlso": [
+        "https://www.boost.org/doc/libs/1_35_0/doc/html/jam.html",
+        "https://web.archive.org/web/20160330173339/https://swarm.workshop.perforce.com/files/guest/perforce_software/jam/src/README"
+      ]
+    },
+    "name": "Jam License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

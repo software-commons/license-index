@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c4d0daab4ca040c7b974e47c90624541",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 53057,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CPOL-1.02.json",
+        "sha256": "335851aeb3507ced875fa310a25cbf8110918ec0a4099183100c9d94ba31dc81"
+      },
+      "template": {
+        "bytes": 13828,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CPOL-1.02.template.txt",
+        "sha256": "3bfecd41a02be6b6547fbf5773874e554f8edc514a3175da4da4fc1920a2b283"
+      },
+      "text": {
+        "bytes": 11649,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CPOL-1.02.txt",
+        "sha256": "d69c13067c9fdf52f2b4d9e26478c30821abd7d96bd31968eae78c829f9b1e64"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CPOL-1.02",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CPOL-1.02.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "CPOL-1.02",
+      "name": "Code Project Open License 1.02",
+      "reference": "https://spdx.org/licenses/CPOL-1.02.html",
+      "referenceNumber": 359,
+      "seeAlso": [
+        "http://www.codeproject.com/info/cpol10.aspx"
+      ]
+    },
+    "name": "Code Project Open License 1.02",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

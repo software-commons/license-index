@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3c04948c422e427781361a488d83b981",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5218,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ISC.json",
+        "sha256": "9484fe9a81ee02eb5e077ce5f8f849e191a74898fe49e3c6925d4f66e0dcf1fb"
+      },
+      "template": {
+        "bytes": 1031,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ISC.template.txt",
+        "sha256": "a382ee687364e5fa6361f299be089d79ded228a7ccbf1d4352a30fa22bfddb8f"
+      },
+      "text": {
+        "bytes": 737,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ISC.txt",
+        "sha256": "521c6f0ed8e64736684f89843d16a4df6b4b7449acbcfc6ca6630a3037ca8c53"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ISC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ISC.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "ISC",
+      "name": "ISC License",
+      "reference": "https://spdx.org/licenses/ISC.html",
+      "referenceNumber": 467,
+      "seeAlso": [
+        "https://www.isc.org/licenses/",
+        "https://www.isc.org/downloads/software-support-policy/isc-license/",
+        "https://opensource.org/license/ISC"
+      ]
+    },
+    "name": "ISC License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

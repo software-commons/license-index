@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3ddc18cdaab14e93ab1db2d9ce59486c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6680,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BOLA-1.1.json",
+        "sha256": "867e395b37989d027e857b00cdc50d330746ee1236bd2c574271f2c4211c432a"
+      },
+      "template": {
+        "bytes": 1553,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BOLA-1.1.template.txt",
+        "sha256": "0945ce239756e8563cf63730056012bf1cac7e2bf3204a2050160df4996acd7f"
+      },
+      "text": {
+        "bytes": 1187,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BOLA-1.1.txt",
+        "sha256": "3e1418ea4783c6af192078504076e0afc890b227165ec0b2be369407ce797847"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BOLA-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BOLA-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BOLA-1.1",
+      "name": "Buena Onda License Agreement v1.1",
+      "reference": "https://spdx.org/licenses/BOLA-1.1.html",
+      "referenceNumber": 156,
+      "seeAlso": [
+        "https://blitiri.com.ar/p/bola/"
+      ]
+    },
+    "name": "Buena Onda License Agreement v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "68fde4c94154434095d9769984d0cb5a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3880,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Informatica.json",
+        "sha256": "c04840feea30b3fa77df2fe1a99a153374a612c95451feffc29d37873423db3c"
+      },
+      "template": {
+        "bytes": 912,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Informatica.template.txt",
+        "sha256": "2b13f2080247c204a6ce597014d51fe961cc96dd964e76c7ceaac64981c2cbec"
+      },
+      "text": {
+        "bytes": 737,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Informatica.txt",
+        "sha256": "abb2042a17fed2de9540cfb6e2d8f9817e577e3eb354c3791e2b09e9050434b0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Informatica",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Informatica.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Informatica",
+      "name": "Informatica License",
+      "reference": "https://spdx.org/licenses/Informatica.html",
+      "referenceNumber": 647,
+      "seeAlso": [
+        "https://raw.githubusercontent.com/landtuna/open-mtools/6c04c2882eca7c4313ec267766ea53ac9bfe129b/msend.c",
+        "https://raw.githubusercontent.com/landtuna/open-mtools/6c04c2882eca7c4313ec267766ea53ac9bfe129b/mdump.c"
+      ]
+    },
+    "name": "Informatica License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

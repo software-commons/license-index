@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b13fe890fd224f4da8a86c963995f5ca",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 62287,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TAPR-OHL-1.0.json",
+        "sha256": "3af696cb522dbc82a056a1b6b62daa0e5e5e7561a7b0873ffcefaa8d44275f2d"
+      },
+      "template": {
+        "bytes": 16073,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TAPR-OHL-1.0.template.txt",
+        "sha256": "69b0153ac75ea0ed7f46092309cbafcb4b3fda7fedf328af243c8a2750ca9ec4"
+      },
+      "text": {
+        "bytes": 13932,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TAPR-OHL-1.0.txt",
+        "sha256": "b388f10f05822629ebd5c9b0779d3043d1a94e7e88ce7bb6b2cf6a098dc012ba"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TAPR-OHL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TAPR-OHL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TAPR-OHL-1.0",
+      "name": "TAPR Open Hardware License v1.0",
+      "reference": "https://spdx.org/licenses/TAPR-OHL-1.0.html",
+      "referenceNumber": 739,
+      "seeAlso": [
+        "https://www.tapr.org/OHL"
+      ]
+    },
+    "name": "TAPR Open Hardware License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

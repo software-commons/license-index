@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9567ed9794fc41bc9dc7dd64dba26e1c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6148,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-Modern-Variant.json",
+        "sha256": "d6977bfddaf193d84b2d60d8bc332a29aaf3330f37b83871974a1371e4a784f2"
+      },
+      "template": {
+        "bytes": 1310,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-Modern-Variant.template.txt",
+        "sha256": "8e7c201ded2616787448a3d21d9f6562ca74e99e50a53f07e7b0f5d480f8d43a"
+      },
+      "text": {
+        "bytes": 917,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-Modern-Variant.txt",
+        "sha256": "d7366190045ad81a5e612799b8f4eef242f9b389a0040836aad61bebe9849647"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-Modern-Variant",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-Modern-Variant.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "MIT-Modern-Variant",
+      "name": "MIT License Modern Variant",
+      "reference": "https://spdx.org/licenses/MIT-Modern-Variant.html",
+      "referenceNumber": 49,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:MIT#Modern_Variants",
+        "https://ptolemy.berkeley.edu/copyright.htm",
+        "https://pirlwww.lpl.arizona.edu/resources/guide/software/PerlTk/Tixlic.html"
+      ]
+    },
+    "name": "MIT License Modern Variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

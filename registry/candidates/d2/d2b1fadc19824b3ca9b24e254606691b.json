@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d2b1fadc19824b3ca9b24e254606691b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6798,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NIST-PD-fallback.json",
+        "sha256": "538956a2fc72c4d947913b60d58d0a59ce4edd3cda3f3e160e5ba47ae04fa968"
+      },
+      "template": {
+        "bytes": 1750,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NIST-PD-fallback.template.txt",
+        "sha256": "1b760e55b536a6cb081745858f6fe1e77cd190896f93b922875ab832f82aea5a"
+      },
+      "text": {
+        "bytes": 1644,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NIST-PD-fallback.txt",
+        "sha256": "fbd75808217bf1b9be0c209976435557e094322c4233211c4497f485fa987906"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NIST-PD-fallback",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NIST-PD-fallback.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NIST-PD-fallback",
+      "name": "NIST Public Domain Notice with license fallback",
+      "reference": "https://spdx.org/licenses/NIST-PD-fallback.html",
+      "referenceNumber": 653,
+      "seeAlso": [
+        "https://github.com/usnistgov/jsip/blob/59700e6926cbe96c5cdae897d9a7d2656b42abe3/LICENSE",
+        "https://github.com/usnistgov/fipy/blob/86aaa5c2ba2c6f1be19593c5986071cf6568cc34/LICENSE.rst"
+      ]
+    },
+    "name": "NIST Public Domain Notice with license fallback",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

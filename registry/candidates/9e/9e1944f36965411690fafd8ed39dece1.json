@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9e1944f36965411690fafd8ed39dece1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 30677,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SMAIL-GPL.json",
+        "sha256": "91be559669f46d8bd5622d2fa3818cb50e25a13a052b16f81e1be65e8a528f0d"
+      },
+      "template": {
+        "bytes": 7874,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SMAIL-GPL.template.txt",
+        "sha256": "283b58cba71ea16efed8c18771f3c595c79baf001454f74db11156fc6958e5b2"
+      },
+      "text": {
+        "bytes": 7386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SMAIL-GPL.txt",
+        "sha256": "7519276ccf9a04d2edf3378202e5677b6061da0ad82a671a8dd6e56c04ef3d9a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SMAIL-GPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SMAIL-GPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SMAIL-GPL",
+      "name": "SMAIL General Public License",
+      "reference": "https://spdx.org/licenses/SMAIL-GPL.html",
+      "referenceNumber": 176,
+      "seeAlso": [
+        "https://sources.debian.org/copyright/license/debianutils/4.11.2/"
+      ]
+    },
+    "name": "SMAIL General Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

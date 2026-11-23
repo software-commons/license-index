@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "74568bee6cbd4007b0ce383ce8e5a32d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5381,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSC-1.0.json",
+        "sha256": "c84e84904cd762bddb06430e4cbea73b19020b653ec2da52e7f0cffba694d383"
+      },
+      "template": {
+        "bytes": 1466,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSC-1.0.template.txt",
+        "sha256": "a3459b646fa7cdac615732d41d9b9ffa72813d6b4d1fd7ce622d381f02dae8f5"
+      },
+      "text": {
+        "bytes": 1412,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSC-1.0.txt",
+        "sha256": "63648e4e7fd5f798a34cf76515964f7cd5bfea1b976a9a08d1e538e927e70485"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OSC-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSC-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "OSC-1.0",
+      "name": "OSC License 1.0",
+      "reference": "https://spdx.org/licenses/OSC-1.0.html",
+      "referenceNumber": 549,
+      "seeAlso": [
+        "https://opensource.org/license/OSC-1.0"
+      ]
+    },
+    "name": "OSC License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5560e426a1ae47a98546a0256761a3ff",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6229,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PostgreSQL.json",
+        "sha256": "7e56ad9ca4401278cf1b57044f834adc79e1e380d8eff4b085b5ae8e53b56ac4"
+      },
+      "template": {
+        "bytes": 1526,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PostgreSQL.template.txt",
+        "sha256": "0453bd9e0721641998ef5b484ccf973150c48413f79080317dc0c77128da3dff"
+      },
+      "text": {
+        "bytes": 1195,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PostgreSQL.txt",
+        "sha256": "d443a7dc550da2be365b4e924bb8779101e1c318d15bb78e5cb6374cadd8b6c0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PostgreSQL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PostgreSQL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "PostgreSQL",
+      "name": "PostgreSQL License",
+      "reference": "https://spdx.org/licenses/PostgreSQL.html",
+      "referenceNumber": 584,
+      "seeAlso": [
+        "http://www.postgresql.org/about/licence",
+        "https://opensource.org/license/PostgreSQL"
+      ]
+    },
+    "name": "PostgreSQL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

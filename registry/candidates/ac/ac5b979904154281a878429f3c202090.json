@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ac5b979904154281a878429f3c202090",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13421,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MS-PL.json",
+        "sha256": "6385b0b3a71bbeb8d41c1ddb262cf19d98dbcbff506c1d16d69cc9073cb01416"
+      },
+      "template": {
+        "bytes": 3194,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MS-PL.template.txt",
+        "sha256": "612a7456d1583464f872c901846e630c98c09270315d1c3e78224f24966a4a42"
+      },
+      "text": {
+        "bytes": 2663,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MS-PL.txt",
+        "sha256": "7a162b1da10f1c22db4c68f07bec4a8355259f8d4aab5b00a2b2bbd423d833dd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MS-PL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MS-PL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "MS-PL",
+      "name": "Microsoft Public License",
+      "reference": "https://spdx.org/licenses/MS-PL.html",
+      "referenceNumber": 462,
+      "seeAlso": [
+        "http://www.microsoft.com/opensource/licenses.mspx",
+        "https://opensource.org/license/MS-PL"
+      ]
+    },
+    "name": "Microsoft Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

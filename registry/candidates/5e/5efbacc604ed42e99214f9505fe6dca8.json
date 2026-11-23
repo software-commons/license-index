@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5efbacc604ed42e99214f9505fe6dca8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 192690,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/APL-1.0.json",
+        "sha256": "d43ac0aada1bf2a3d1f5b80dfa6d4bba677c675973326010fc630ac65643390c"
+      },
+      "template": {
+        "bytes": 52202,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/APL-1.0.template.txt",
+        "sha256": "081cdca9942c776c755b469322ac6a0f99c924b999375596aef825539590dd55"
+      },
+      "text": {
+        "bytes": 46064,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/APL-1.0.txt",
+        "sha256": "ee583972c3b5bab45e51d3bdb254435ed7bf91ae5a7f45ad68538b3f7a4273e4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "APL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/APL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "APL-1.0",
+      "name": "Adaptive Public License 1.0",
+      "reference": "https://spdx.org/licenses/APL-1.0.html",
+      "referenceNumber": 143,
+      "seeAlso": [
+        "https://opensource.org/license/APL-1.0"
+      ]
+    },
+    "name": "Adaptive Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d529a310422249f799af5d3fa8996afd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 29621,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Unicode-TOU.json",
+        "sha256": "6f2c0983cb7974dbd72c7f3f00dff84f30e5a2ba098bee37264045d52baa3827"
+      },
+      "template": {
+        "bytes": 7464,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Unicode-TOU.template.txt",
+        "sha256": "4908ec8bcb7c84d90a4a0fd210e27c4c4d5e732105e32d9f11cc3b8fd82c8815"
+      },
+      "text": {
+        "bytes": 6261,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Unicode-TOU.txt",
+        "sha256": "cb6ba87a4979d8152c726eac13b4480d5bbddd206e0ade0cb91b769e5ca30025"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Unicode-TOU",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Unicode-TOU.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Unicode-TOU",
+      "name": "Unicode Terms of Use",
+      "reference": "https://spdx.org/licenses/Unicode-TOU.html",
+      "referenceNumber": 452,
+      "seeAlso": [
+        "http://web.archive.org/web/20140704074106/http://www.unicode.org/copyright.html",
+        "http://www.unicode.org/copyright.html"
+      ]
+    },
+    "name": "Unicode Terms of Use",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

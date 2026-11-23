@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8e220b437ab043f889b702b09ddfcea4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2713,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Wsuipa.json",
+        "sha256": "96d3593e574bd8646dad0408d3db86fb1a3c6ffff191b95a22112b72d1d53fbb"
+      },
+      "template": {
+        "bytes": 617,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Wsuipa.template.txt",
+        "sha256": "4637bb095e4f2176e3cd06008f0f22c9bb2a3079d64c05409a9c93365ac10eb9"
+      },
+      "text": {
+        "bytes": 529,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Wsuipa.txt",
+        "sha256": "f6c08f21d0b12e77ba730cab5ce6d55c2b65fd01a19c51a7c36134a6c83bc04a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Wsuipa",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Wsuipa.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Wsuipa",
+      "name": "Wsuipa License",
+      "reference": "https://spdx.org/licenses/Wsuipa.html",
+      "referenceNumber": 644,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Wsuipa"
+      ]
+    },
+    "name": "Wsuipa License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f0bd4487003e4ec1a9800abef85d6f04",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4653,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GL2PS.json",
+        "sha256": "d496d37f60ced67256a03b7eafe1719bd9b8ec76eb3d406caaf0c6a7530ee787"
+      },
+      "template": {
+        "bytes": 1087,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GL2PS.template.txt",
+        "sha256": "ea03f7d0c61c715b3dfe4837b8cd12fa1d7391167bd6dfa7c0e0bf5f244a0ad5"
+      },
+      "text": {
+        "bytes": 896,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GL2PS.txt",
+        "sha256": "58c616ccc0034975b82c0ae8d0dab9e7704ee1be5e670be7b81a762cc98c2346"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GL2PS",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GL2PS.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GL2PS",
+      "name": "GL2PS License",
+      "reference": "https://spdx.org/licenses/GL2PS.html",
+      "referenceNumber": 235,
+      "seeAlso": [
+        "http://www.geuz.org/gl2ps/COPYING.GL2PS"
+      ]
+    },
+    "name": "GL2PS License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

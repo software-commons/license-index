@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9cd8eff1fe504202a482fdad5826a41e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1661,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SL.json",
+        "sha256": "ae33a0191485dd44f0b7177de94bd522c9b0803285044b5b5683945e08d1eb89"
+      },
+      "template": {
+        "bytes": 319,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SL.template.txt",
+        "sha256": "5ce4c353d01269188dd9dd26778be72c7c5c94eebcf4be60eaebdd3c1ce7fb4e"
+      },
+      "text": {
+        "bytes": 275,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SL.txt",
+        "sha256": "4f856f272b788c83d8787cfb758c2def06b7f9b5a2fb000f380ede8d854310e9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SL",
+      "name": "SL License",
+      "reference": "https://spdx.org/licenses/SL.html",
+      "referenceNumber": 140,
+      "seeAlso": [
+        "https://github.com/mtoyoda/sl/blob/master/LICENSE"
+      ]
+    },
+    "name": "SL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

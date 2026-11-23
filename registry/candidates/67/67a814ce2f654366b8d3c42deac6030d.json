@@ -1,0 +1,67 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "67a814ce2f654366b8d3c42deac6030d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8238,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-3.0-with-autoconf-exception.json",
+        "sha256": "1b4e5c3db57d569b58b9c99b7181242ee918ced8b68edd5edfe45495706ce9dd"
+      },
+      "replacement_source": {
+        "bytes": 3036,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-3.0-with-autoconf-exception.xml",
+        "sha256": "e6abd7d787a5b57356f2937ce2889238050fa98123818f2683d46a659d4ddafc"
+      },
+      "template": {
+        "bytes": 2019,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-3.0-with-autoconf-exception.template.txt",
+        "sha256": "93a743669be60308341fd932cba07d5a161fe58d94cf148bdbd82f5a3055b8a5"
+      },
+      "text": {
+        "bytes": 1873,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-3.0-with-autoconf-exception.txt",
+        "sha256": "6f42c67c1e8434f223da96543d146dba90661085a9d1a346ec50c41fa4e9d044"
+      }
+    },
+    "deprecated": true,
+    "identifier": "GPL-3.0-with-autoconf-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0-with-autoconf-exception.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "GPL-3.0-with-autoconf-exception",
+      "name": "GNU General Public License v3.0 w/Autoconf exception",
+      "reference": "https://spdx.org/licenses/GPL-3.0-with-autoconf-exception.html",
+      "referenceNumber": 250,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/autoconf-exception-3.0.html"
+      ]
+    },
+    "name": "GNU General Public License v3.0 w/Autoconf exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-3.0 WITH Autoconf-exception-3.0"
+      },
+      {
+        "for_expression": "GPL-3.0-with-autoconf-exception+",
+        "target": "GPL-3.0-or-later WITH Autoconf-exception-3.0"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

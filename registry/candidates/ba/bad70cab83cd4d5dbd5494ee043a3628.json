@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bad70cab83cd4d5dbd5494ee043a3628",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8770,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Inferno-Nettverk.json",
+        "sha256": "43a509c6bdca788591c442a0cf8f5e05b5e2dbacafbc31d4f4b3ddb6e0543307"
+      },
+      "template": {
+        "bytes": 2153,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Inferno-Nettverk.template.txt",
+        "sha256": "601142ec8b12007955b7b7f2969d2793d874ce6e56c2a346ada0cdf5deb9bcf4"
+      },
+      "text": {
+        "bytes": 2084,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Inferno-Nettverk.txt",
+        "sha256": "b8c63e40314b8f741bb6ca46eb36a22125e93777089ccc38ee325cb2e8df48f4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Inferno-Nettverk",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Inferno-Nettverk.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Inferno-Nettverk",
+      "name": "BSD-Inferno-Nettverk",
+      "reference": "https://spdx.org/licenses/BSD-Inferno-Nettverk.html",
+      "referenceNumber": 572,
+      "seeAlso": [
+        "https://www.inet.no/dante/LICENSE"
+      ]
+    },
+    "name": "BSD-Inferno-Nettverk",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

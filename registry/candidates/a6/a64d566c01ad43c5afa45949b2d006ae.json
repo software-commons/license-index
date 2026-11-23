@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a64d566c01ad43c5afa45949b2d006ae",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 19234,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/LLGPL.json",
+        "sha256": "fca0e6396ead31888bcd7ec9931b1cab97c5c89afbbb34ec6abb8173b6748e9e"
+      },
+      "template": {
+        "bytes": 5281,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LLGPL.template.txt",
+        "sha256": "ec9405f470a17ec65e18ce03df847c3bb548ef9d42060aa5b6531ea73ee89957"
+      },
+      "text": {
+        "bytes": 3603,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LLGPL.txt",
+        "sha256": "d0487c31bc8ce4b45b977a237e110f90dbd841397865b51779d972f890920c93"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LLGPL",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LLGPL.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "LLGPL",
+      "name": "LLGPL Preamble",
+      "reference": "https://spdx.org/licenses/LLGPL.html",
+      "referenceNumber": 56,
+      "seeAlso": [
+        "http://opensource.franz.com/preamble.html"
+      ]
+    },
+    "name": "LLGPL Preamble",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

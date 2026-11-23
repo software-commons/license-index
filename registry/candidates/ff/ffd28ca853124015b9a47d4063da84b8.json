@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ffd28ca853124015b9a47d4063da84b8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5710,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Buddy.json",
+        "sha256": "d816c74f4dc6be043583c5604f89d03a653db56a24c8c5896eb365421d843e0d"
+      },
+      "template": {
+        "bytes": 1468,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Buddy.template.txt",
+        "sha256": "f92a40af9dbbe6cd92561652f749bcf7abcfb27a7a6cc9694bfc39c2a3cd266e"
+      },
+      "text": {
+        "bytes": 1447,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Buddy.txt",
+        "sha256": "aa51bc62ff6fa0731aa7015a06bca4f84cea40fc02f33a4842fa55821788eeb4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Buddy",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Buddy.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Buddy",
+      "name": "Buddy License",
+      "reference": "https://spdx.org/licenses/Buddy.html",
+      "referenceNumber": 444,
+      "seeAlso": [
+        "https://sourceforge.net/p/buddy/gitcode/ci/master/tree/README"
+      ]
+    },
+    "name": "Buddy License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

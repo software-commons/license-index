@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "06bf6d4281054bebb36396138dcb3e7c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2804,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Crossword.json",
+        "sha256": "286e46185c4e3a6d7d0716672e5c6160f5af615333abf48f1c628dc923869e66"
+      },
+      "template": {
+        "bytes": 612,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Crossword.template.txt",
+        "sha256": "c17ffd97a23e7746efbae8910aadde43d0e3e6b51892d64dfbbd8a470f2ea750"
+      },
+      "text": {
+        "bytes": 479,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Crossword.txt",
+        "sha256": "2d68d48c27390b69ce67c613f8ea8a485410eceda7125a834ff6df094a62bed3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Crossword",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Crossword.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Crossword",
+      "name": "Crossword License",
+      "reference": "https://spdx.org/licenses/Crossword.html",
+      "referenceNumber": 646,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Crossword"
+      ]
+    },
+    "name": "Crossword License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

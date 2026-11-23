@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e5bcec872c374180a043b1fba7177b28",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11680,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SMPPL.json",
+        "sha256": "084cd3ba4acfe12b7b79fc373d074bcd0e65b7b6e036553e1fe0a7a326541071"
+      },
+      "template": {
+        "bytes": 3261,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SMPPL.template.txt",
+        "sha256": "e7645738389c114013daa01e7f9ea15bdd394511774eb079b908afbbbb53cc06"
+      },
+      "text": {
+        "bytes": 3177,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SMPPL.txt",
+        "sha256": "33681dc201fc6a1c028a57fea1830b81a2bc77207df925bb0d87603892343d17"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SMPPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SMPPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SMPPL",
+      "name": "Secure Messaging Protocol Public License",
+      "reference": "https://spdx.org/licenses/SMPPL.html",
+      "referenceNumber": 162,
+      "seeAlso": [
+        "https://github.com/dcblake/SMP/blob/master/Documentation/License.txt"
+      ]
+    },
+    "name": "Secure Messaging Protocol Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

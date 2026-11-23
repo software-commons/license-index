@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e49bc855ae9b43c89dfbda5d2e5936fb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2303,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Glulxe.json",
+        "sha256": "ad64d37e06179c6b73d0eeddee206a5e8f0bfb3a1a09f998c9b5b3f0a1a95ba8"
+      },
+      "template": {
+        "bytes": 518,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Glulxe.template.txt",
+        "sha256": "506c6e34bbbb3a628f7e35a9ba267e8020f3ced02b8fe1caa312472d9e9422d9"
+      },
+      "text": {
+        "bytes": 462,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Glulxe.txt",
+        "sha256": "38df8b60705e5b622c66f431a11e5cfba9350e66ed0ae7eb529112699bfdc142"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Glulxe",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Glulxe.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Glulxe",
+      "name": "Glulxe License",
+      "reference": "https://spdx.org/licenses/Glulxe.html",
+      "referenceNumber": 79,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Glulxe"
+      ]
+    },
+    "name": "Glulxe License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

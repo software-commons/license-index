@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6718a17bec704e7abc46dd802e2d0dfd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5344,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/FLTK-exception.json",
+        "sha256": "415e7df4257ac097f6eda0330d02ac36b8bcdb52fa6f671e9eddad395a3be9d2"
+      },
+      "template": {
+        "bytes": 1471,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FLTK-exception.template.txt",
+        "sha256": "6e94832f8552b664ab5aa61bb74455f31cb4ca651379ea24cfd0438305d481b4"
+      },
+      "text": {
+        "bytes": 1470,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FLTK-exception.txt",
+        "sha256": "f4602375d7542419e93d99c308239b03e32001cc4e98f494f0c8ca0758e12de5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FLTK-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FLTK-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "FLTK-exception",
+      "name": "FLTK exception",
+      "reference": "https://spdx.org/licenses/FLTK-exception.html",
+      "referenceNumber": 14,
+      "seeAlso": [
+        "http://www.fltk.org/COPYING.php"
+      ]
+    },
+    "name": "FLTK exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

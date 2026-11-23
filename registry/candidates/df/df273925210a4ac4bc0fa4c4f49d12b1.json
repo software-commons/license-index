@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "df273925210a4ac4bc0fa4c4f49d12b1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 46351,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OCLC-2.0.json",
+        "sha256": "4992c07a66b2e74d29744e2e3efcb2c2cb2a75129890f53fcae1d703cedbdd03"
+      },
+      "template": {
+        "bytes": 11810,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OCLC-2.0.template.txt",
+        "sha256": "1be96aabd8c85ddc9d7da26e15e5404cea07f8d4b04d89d8b4feaa1035320332"
+      },
+      "text": {
+        "bytes": 11124,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OCLC-2.0.txt",
+        "sha256": "dbf0de8b59347abf26a602a8cd8b32f1162207801fb3e3eb24f33afa16ffb6b8"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "OCLC-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OCLC-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "OCLC-2.0",
+      "name": "OCLC Research Public License 2.0",
+      "reference": "https://spdx.org/licenses/OCLC-2.0.html",
+      "referenceNumber": 139,
+      "seeAlso": [
+        "http://www.oclc.org/research/activities/software/license/v2final.htm",
+        "https://opensource.org/license/OCLC-2.0"
+      ]
+    },
+    "name": "OCLC Research Public License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

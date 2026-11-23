@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b8e0b04390c342c898370364550f3f45",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2061,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/McPhee-slideshow.json",
+        "sha256": "cb6a4ca442f3f41811aaa0c199a14ce3f9c5c457559733a1d5ae937bda2732c7"
+      },
+      "template": {
+        "bytes": 378,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/McPhee-slideshow.template.txt",
+        "sha256": "afd9aa58cefde7796da73a6b25260054a1f4ab9854e7a12198e1f41c1871b66e"
+      },
+      "text": {
+        "bytes": 323,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/McPhee-slideshow.txt",
+        "sha256": "5cec066327c1b70d8b9d730f8568563edd9cf189c537466a448d95b42c8c655d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "McPhee-slideshow",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/McPhee-slideshow.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "McPhee-slideshow",
+      "name": "McPhee Slideshow License",
+      "reference": "https://spdx.org/licenses/McPhee-slideshow.html",
+      "referenceNumber": 19,
+      "seeAlso": [
+        "https://mirror.las.iastate.edu/tex-archive/graphics/metapost/contrib/macros/slideshow/slideshow.mp"
+      ]
+    },
+    "name": "McPhee Slideshow License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

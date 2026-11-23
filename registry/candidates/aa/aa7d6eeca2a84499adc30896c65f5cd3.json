@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "aa7d6eeca2a84499adc30896c65f5cd3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3936,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NTP-0.json",
+        "sha256": "b4dd322a0a43a807a6ed8888f929d8c5bd89c3713d6b37351de98afc663fddcf"
+      },
+      "template": {
+        "bytes": 769,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NTP-0.template.txt",
+        "sha256": "d388f74655591276e33ddda5c620aa7783588596d249b29f062b666289bc2262"
+      },
+      "text": {
+        "bytes": 528,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NTP-0.txt",
+        "sha256": "95f2d2be04f88370e06c806324a96b1b1f57d5fc50f5da9ada19acf4b70206ba"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NTP-0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NTP-0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NTP-0",
+      "name": "NTP No Attribution",
+      "reference": "https://spdx.org/licenses/NTP-0.html",
+      "referenceNumber": 463,
+      "seeAlso": [
+        "https://github.com/tytso/e2fsprogs/blob/master/lib/et/et_name.c"
+      ]
+    },
+    "name": "NTP No Attribution",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

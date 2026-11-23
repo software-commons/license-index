@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "69dd3e631eca46f9b5a75dac56edb1f6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4000,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/mxml-exception.json",
+        "sha256": "166b6e0c1c413ec40698896611f936aab1a00ec24e8f0a310f503e1a9e296d0e"
+      },
+      "template": {
+        "bytes": 736,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/mxml-exception.template.txt",
+        "sha256": "ee7a3338efe1911b88a46b8baecfce313f357f44c1066f8ecd3fee0f557a3a11"
+      },
+      "text": {
+        "bytes": 707,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/mxml-exception.txt",
+        "sha256": "1a8211d31b64f0becb4d1e7337d1c3efacd3582684881d72181875c1bd4bc9fc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "mxml-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/mxml-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "mxml-exception",
+      "name": "mxml Exception",
+      "reference": "https://spdx.org/licenses/mxml-exception.html",
+      "referenceNumber": 10,
+      "seeAlso": [
+        "https://github.com/michaelrsweet/mxml/blob/master/NOTICE",
+        "https://github.com/michaelrsweet/mxml/blob/master/LICENSE"
+      ]
+    },
+    "name": "mxml Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

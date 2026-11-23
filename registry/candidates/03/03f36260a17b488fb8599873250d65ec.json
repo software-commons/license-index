@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "03f36260a17b488fb8599873250d65ec",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5937,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-PDDC.json",
+        "sha256": "a1fd94601d71975fcb3835f2bb4bd55da42799d080f057556dc4803c2022e07e"
+      },
+      "template": {
+        "bytes": 1593,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-PDDC.template.txt",
+        "sha256": "ed679d5ba55c765c88421e7b80ee46d0c8c13b26eb45aebe8cfdd8ce9400b988"
+      },
+      "text": {
+        "bytes": 1593,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-PDDC.txt",
+        "sha256": "40f05ccacf018e7311690cd03bba659a1329b3df9775d2aafd33715d52541fe0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-PDDC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-PDDC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-PDDC",
+      "name": "Creative Commons Public Domain Dedication and Certification",
+      "reference": "https://spdx.org/licenses/CC-PDDC.html",
+      "referenceNumber": 269,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/publicdomain/"
+      ]
+    },
+    "name": "Creative Commons Public Domain Dedication and Certification",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

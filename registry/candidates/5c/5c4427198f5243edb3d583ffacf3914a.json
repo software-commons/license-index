@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5c4427198f5243edb3d583ffacf3914a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 109398,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SSPL-1.0.json",
+        "sha256": "7d2d4822a9968b0325817019b899d6c1b61f312172415518b0a751eca367a133"
+      },
+      "template": {
+        "bytes": 31218,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SSPL-1.0.template.txt",
+        "sha256": "b3714c7ff1a2e4b5dd2b0992457111ebf656bf2fe85020a48f7b3d3987cbcd7a"
+      },
+      "text": {
+        "bytes": 30609,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SSPL-1.0.txt",
+        "sha256": "3fac2f3a7404f72330ae38e3a1d2632ede9ad3fbdb0d471d04c33f2c1d0e94ca"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "SSPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SSPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SSPL-1.0",
+      "name": "Server Side Public License, v 1",
+      "reference": "https://spdx.org/licenses/SSPL-1.0.html",
+      "referenceNumber": 78,
+      "seeAlso": [
+        "https://www.mongodb.com/licensing/server-side-public-license"
+      ]
+    },
+    "name": "Server Side Public License, v 1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

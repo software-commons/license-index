@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0345f62d985747d580fd7d1397ef5386",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4049,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/LLVM-exception.json",
+        "sha256": "caad73fc83226f9762861f2447e9f8b8cdfa46907f6f95ee79e064185dec7c6a"
+      },
+      "template": {
+        "bytes": 1005,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LLVM-exception.template.txt",
+        "sha256": "6c1e641f62c534da83b25e550348c522032098e1e92f7cb8c2d13be1ca8b58cc"
+      },
+      "text": {
+        "bytes": 919,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LLVM-exception.txt",
+        "sha256": "e34c58338bd89d43e709e226610d8f32b3e3c47f4ad9a99a8dc1d4ac7842488e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LLVM-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LLVM-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "LLVM-exception",
+      "name": "LLVM Exception",
+      "reference": "https://spdx.org/licenses/LLVM-exception.html",
+      "referenceNumber": 42,
+      "seeAlso": [
+        "http://llvm.org/foundation/relicensing/LICENSE.txt",
+        "https://web.archive.org/web/20240423023852/https://foundation.llvm.org/relicensing/LICENSE.txt"
+      ]
+    },
+    "name": "LLVM Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

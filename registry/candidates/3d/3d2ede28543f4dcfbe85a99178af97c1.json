@@ -1,0 +1,48 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3d2ede28543f4dcfbe85a99178af97c1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1517,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SchemeReport.json",
+        "sha256": "19604d88cecd522820ec365c62593c3ab198fa6017fb53f4d39c4ea7cadeb91f"
+      },
+      "template": {
+        "bytes": 290,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SchemeReport.template.txt",
+        "sha256": "d9650bedfe7f326939d93ae593b2a6362ca6253c0736f6ee3441408234cfe983"
+      },
+      "text": {
+        "bytes": 290,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SchemeReport.txt",
+        "sha256": "625cb81833e80ddfd408112546f001a21ad85a23879ce30427e76cd40da25cf2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SchemeReport",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SchemeReport.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SchemeReport",
+      "name": "Scheme Language Report License",
+      "reference": "https://spdx.org/licenses/SchemeReport.html",
+      "referenceNumber": 717,
+      "seeAlso": []
+    },
+    "name": "Scheme Language Report License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

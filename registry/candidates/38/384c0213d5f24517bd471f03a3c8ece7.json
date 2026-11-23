@@ -1,0 +1,47 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "384c0213d5f24517bd471f03a3c8ece7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2290,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GPL-3.0-389-ds-base-exception.json",
+        "sha256": "9c98c812d0bc02181eb59193bb9de62465ba60d6addc0f525a3fff093906d781"
+      },
+      "template": {
+        "bytes": 534,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-3.0-389-ds-base-exception.template.txt",
+        "sha256": "d7c8c17ddd4e4ad6e7c154b4cd435a377d9eeedb44f93e6e28b4a6007d55cc5c"
+      },
+      "text": {
+        "bytes": 632,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-3.0-389-ds-base-exception.txt",
+        "sha256": "2e4111d48b06612690505eb3fe6c63b13d7e86df578c629c8ce7b581b14b479d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GPL-3.0-389-ds-base-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0-389-ds-base-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GPL-3.0-389-ds-base-exception",
+      "name": "GPL-3.0 389 DS Base Exception",
+      "reference": "https://spdx.org/licenses/GPL-3.0-389-ds-base-exception.html",
+      "referenceNumber": 52,
+      "seeAlso": []
+    },
+    "name": "GPL-3.0 389 DS Base Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

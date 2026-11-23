@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3ffb5921a2ca42b7bf1748a176f1483e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6849,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NetCDF.json",
+        "sha256": "afa52bd9ed72498982c96e79b9204a8c8eb9a72bdbb53969085e0d3b5ab07b4e"
+      },
+      "template": {
+        "bytes": 1937,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NetCDF.template.txt",
+        "sha256": "f289594df700a0aa51ed5951e1deca42292d63180847bdce7a3c7c6f9848690a"
+      },
+      "text": {
+        "bytes": 1881,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NetCDF.txt",
+        "sha256": "1e78978ebd3b198c0eff362d9dc63cbdd5ffa6654484dcce44cc17510c47be17"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NetCDF",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NetCDF.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NetCDF",
+      "name": "NetCDF license",
+      "reference": "https://spdx.org/licenses/NetCDF.html",
+      "referenceNumber": 583,
+      "seeAlso": [
+        "http://www.unidata.ucar.edu/software/netcdf/copyright.html"
+      ]
+    },
+    "name": "NetCDF license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

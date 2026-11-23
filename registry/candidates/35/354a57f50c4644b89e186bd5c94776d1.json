@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "354a57f50c4644b89e186bd5c94776d1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7291,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-Sun.json",
+        "sha256": "b358564cd437fbc173be6e7ccdc6440201f4f898930cec07ea27e158ca14507e"
+      },
+      "template": {
+        "bytes": 1697,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-Sun.template.txt",
+        "sha256": "edad2b1e3172b1be81be2f8f674e94548449c1d9fe4be4abbfc1cfcc5bead4bd"
+      },
+      "text": {
+        "bytes": 1620,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-Sun.txt",
+        "sha256": "a7bb12f504aa24ab3b3e879788303a9c9ef44e27595a81da8375405013337cde"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-Sun",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-Sun.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-Sun",
+      "name": "BSD 3-Clause Sun Microsystems",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-Sun.html",
+      "referenceNumber": 735,
+      "seeAlso": [
+        "https://github.com/xmlark/msv/blob/b9316e2f2270bc1606952ea4939ec87fbba157f3/xsdlib/src/main/java/com/sun/msv/datatype/regexp/InternalImpl.java"
+      ]
+    },
+    "name": "BSD 3-Clause Sun Microsystems",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4112e1bef47c43ebb38a04c7f52c1694",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 53629,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OCCT-PL.json",
+        "sha256": "d003de80748bd24fe6a294f563d0d1739549682a0b0e4b1e4e33f3d2b9739b92"
+      },
+      "template": {
+        "bytes": 14994,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OCCT-PL.template.txt",
+        "sha256": "6a36e5471027b0d2f0ab91b37d1d41d32dec64d5b801a46a9fef3c78f27137ba"
+      },
+      "text": {
+        "bytes": 14008,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OCCT-PL.txt",
+        "sha256": "f27bc08863387270b4b7814aa2aab8616f8ff6c42ecf604c44d96c4b186a0c81"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OCCT-PL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OCCT-PL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OCCT-PL",
+      "name": "Open CASCADE Technology Public License",
+      "reference": "https://spdx.org/licenses/OCCT-PL.html",
+      "referenceNumber": 593,
+      "seeAlso": [
+        "http://www.opencascade.com/content/occt-public-license"
+      ]
+    },
+    "name": "Open CASCADE Technology Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

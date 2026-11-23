@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a75e0a2877ea4f6f8da208d3d04067fb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1378,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Libtool-exception.json",
+        "sha256": "de54b174d0330f06f0fbbc7af03268f850a9011e8f7997dccf44e4038c5e586b"
+      },
+      "template": {
+        "bytes": 294,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Libtool-exception.template.txt",
+        "sha256": "307fb2c8470eaf1f873c9ac29da789a399376a45c0afb3ee98e0ee38a1fd15b5"
+      },
+      "text": {
+        "bytes": 254,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Libtool-exception.txt",
+        "sha256": "5c1b07009d9d2e8543ed64ece7433e75d9bb35adab57b9663dbc0a68f8dbe3c8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Libtool-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Libtool-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Libtool-exception",
+      "name": "Libtool Exception",
+      "reference": "https://spdx.org/licenses/Libtool-exception.html",
+      "referenceNumber": 71,
+      "seeAlso": [
+        "http://git.savannah.gnu.org/cgit/libtool.git/tree/m4/libtool.m4",
+        "https://git.savannah.gnu.org/cgit/libtool.git/tree/libltdl/lt__alloc.c#n15"
+      ]
+    },
+    "name": "Libtool Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

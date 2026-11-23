@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7c3c015f8f024e42a6acbf797c884135",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2095,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/mailprio.json",
+        "sha256": "0704456b03ff40a76b1540cbca670eab246790ec267b7f33f49dbf77671d4cf1"
+      },
+      "template": {
+        "bytes": 416,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/mailprio.template.txt",
+        "sha256": "27e708dd3d317c6b858f58afd5900d4b65bc21d21c89892de7b8309232c397c4"
+      },
+      "text": {
+        "bytes": 415,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/mailprio.txt",
+        "sha256": "d043a14b0f0584889194a46371243ca47ab9ccdcef0e719579939cb78f85da33"
+      }
+    },
+    "deprecated": false,
+    "identifier": "mailprio",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/mailprio.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "mailprio",
+      "name": "mailprio License",
+      "reference": "https://spdx.org/licenses/mailprio.html",
+      "referenceNumber": 88,
+      "seeAlso": [
+        "https://fossies.org/linux/sendmail/contrib/mailprio"
+      ]
+    },
+    "name": "mailprio License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

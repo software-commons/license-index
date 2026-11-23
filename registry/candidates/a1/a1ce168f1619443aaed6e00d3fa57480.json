@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a1ce168f1619443aaed6e00d3fa57480",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6801,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause.json",
+        "sha256": "dfd2f7dbba761cb3d60147f0187884a120f1f2a2d888c8a9b6a09610921bb969"
+      },
+      "template": {
+        "bytes": 1663,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause.template.txt",
+        "sha256": "922ac644c79e7c2aa31bacac531a5d4d5b9d183853a3dc44a253fd9267c3c890"
+      },
+      "text": {
+        "bytes": 1267,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause.txt",
+        "sha256": "f32fb3b417a194167cfad068223fc975ba96c5960513a10f66a3c28720aec1df"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "BSD-2-Clause",
+      "name": "BSD 2-Clause \"Simplified\" License",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause.html",
+      "referenceNumber": 570,
+      "seeAlso": [
+        "https://opensource.org/license/BSD-2-Clause"
+      ]
+    },
+    "name": "BSD 2-Clause \"Simplified\" License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

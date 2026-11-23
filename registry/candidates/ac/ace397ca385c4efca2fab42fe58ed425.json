@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ace397ca385c4efca2fab42fe58ed425",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 60902,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ErlPL-1.1.json",
+        "sha256": "fb73c81921251aa9f10fc727362c7579e27652497dbac87abde0c0dc616456cc"
+      },
+      "template": {
+        "bytes": 16077,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ErlPL-1.1.template.txt",
+        "sha256": "0cdfc39cf8fd32b29b4cde8117c43340ddffbf6427479c6a0897eafec60f4c01"
+      },
+      "text": {
+        "bytes": 13958,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ErlPL-1.1.txt",
+        "sha256": "d8b221d8996f491ba9ba8ebb12f89cb362a5208e8973e31e5baf11a33884c501"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ErlPL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ErlPL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ErlPL-1.1",
+      "name": "Erlang Public License v1.1",
+      "reference": "https://spdx.org/licenses/ErlPL-1.1.html",
+      "referenceNumber": 200,
+      "seeAlso": [
+        "http://www.erlang.org/EPLICENSE"
+      ]
+    },
+    "name": "Erlang Public License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

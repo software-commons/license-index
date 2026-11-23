@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8af4ab3d26dc436aa2dd41503c7e02e3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 31582,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LiLiQ-P-1.1.json",
+        "sha256": "3993303090a5e83c9db1fd433e1687ba1bb8f817513d8e8ca8a3af89a1b4a9c9"
+      },
+      "template": {
+        "bytes": 7608,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LiLiQ-P-1.1.template.txt",
+        "sha256": "483419fac9c31cd2558e351d3420b1133db718d51844ab3370c67b1cdadbdd83"
+      },
+      "text": {
+        "bytes": 6590,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LiLiQ-P-1.1.txt",
+        "sha256": "e29a35c0a27e3072a69900bcf8c478de3dcf31acd7058ef23b249b0bf5501ddf"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LiLiQ-P-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LiLiQ-P-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "LiLiQ-P-1.1",
+      "name": "Licence Libre du Québec – Permissive version 1.1",
+      "reference": "https://spdx.org/licenses/LiLiQ-P-1.1.html",
+      "referenceNumber": 150,
+      "seeAlso": [
+        "https://forge.gouv.qc.ca/licence/fr/liliq-v1-1/",
+        "http://opensource.org/license/LiLiQ-P-1.1",
+        "https://forge.gouv.qc.ca/licence/liliq-p/"
+      ]
+    },
+    "name": "Licence Libre du Québec – Permissive version 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

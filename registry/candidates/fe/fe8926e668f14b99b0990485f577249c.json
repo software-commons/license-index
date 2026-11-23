@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fe8926e668f14b99b0990485f577249c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 51625,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-SA-1.0.json",
+        "sha256": "70a192d0ffeed7a110075f58cc536ff3a976ca8e7fbdb545ac6496ee62de15c7"
+      },
+      "template": {
+        "bytes": 13289,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-SA-1.0.template.txt",
+        "sha256": "18dd4fe7fc91ba2c21c4c159c57c165a21ebec3ebce073719378704ae561604c"
+      },
+      "text": {
+        "bytes": 11937,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-SA-1.0.txt",
+        "sha256": "54cf9d66afdf884edf07e5b2fa5296cd2b5e7d71f9a7904d2a5a9863315e0e0b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-SA-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-SA-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-SA-1.0",
+      "name": "Creative Commons Share Alike 1.0 Generic",
+      "reference": "https://spdx.org/licenses/CC-SA-1.0.html",
+      "referenceNumber": 537,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/sa/1.0/legalcode"
+      ]
+    },
+    "name": "Creative Commons Share Alike 1.0 Generic",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

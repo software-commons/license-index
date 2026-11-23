@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "484ecb5582b94f3f8724e69b8ec8989a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12374,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OpenSSL-standalone.json",
+        "sha256": "7f4411ee8e29008af6bd9b4bdb009377a843465a9e23fd9eb3de75dc2fe51c63"
+      },
+      "template": {
+        "bytes": 2740,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OpenSSL-standalone.template.txt",
+        "sha256": "11abc6105628f7e216bdedb2be9d1a1630ff3a76621588b045f028999611f954"
+      },
+      "text": {
+        "bytes": 2502,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OpenSSL-standalone.txt",
+        "sha256": "58732ea797186959add662812bccd02e704e0ecd65b1ec6b26b72e449134337e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OpenSSL-standalone",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OpenSSL-standalone.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OpenSSL-standalone",
+      "name": "OpenSSL License - standalone",
+      "reference": "https://spdx.org/licenses/OpenSSL-standalone.html",
+      "referenceNumber": 632,
+      "seeAlso": [
+        "https://library.netapp.com/ecm/ecm_download_file/ECMP1196395",
+        "https://hstechdocs.helpsystems.com/manuals/globalscape/archive/cuteftp6/open_ssl_license_agreement.htm"
+      ]
+    },
+    "name": "OpenSSL License - standalone",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "849af0922dcf4f1fa8ac035abc1e787b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4756,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Unlicense.json",
+        "sha256": "cfaa34adc72071fb8b8a250449313197d81a2f4d28d8e3c98253fc9912974e1d"
+      },
+      "template": {
+        "bytes": 1245,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Unlicense.template.txt",
+        "sha256": "e6a01517253c197874d66ab30ca3f596cfce601aafcc310ec2944585a4a254bd"
+      },
+      "text": {
+        "bytes": 1211,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Unlicense.txt",
+        "sha256": "0bdebfeda07d45dada625ae1317c6f833186e798b171d0db640bcf32e92a8240"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Unlicense",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Unlicense.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Unlicense",
+      "name": "The Unlicense",
+      "reference": "https://spdx.org/licenses/Unlicense.html",
+      "referenceNumber": 133,
+      "seeAlso": [
+        "https://unlicense.org/"
+      ]
+    },
+    "name": "The Unlicense",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "cef90fdb73ee4865a05d0856de4ee2d0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 34414,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CDL-1.0.json",
+        "sha256": "03d5faf39c2d5083e5fcdede34daab829856c0e79a47b47e8ce08421694918f3"
+      },
+      "template": {
+        "bytes": 9681,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CDL-1.0.template.txt",
+        "sha256": "507e22d720c948dc71258ae5822cd8c5410068702a190746b4e9ef9420f40c6d"
+      },
+      "text": {
+        "bytes": 8592,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CDL-1.0.txt",
+        "sha256": "8ca6d06e4e0e8ee6397ec94aaebd6fb3d6537237a7b1fa1efc676bef957e0325"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CDL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CDL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CDL-1.0",
+      "name": "Common Documentation License 1.0",
+      "reference": "https://spdx.org/licenses/CDL-1.0.html",
+      "referenceNumber": 204,
+      "seeAlso": [
+        "http://www.opensource.apple.com/cdl/",
+        "https://fedoraproject.org/wiki/Licensing/Common_Documentation_License",
+        "https://www.gnu.org/licenses/license-list.html#ACDL"
+      ]
+    },
+    "name": "Common Documentation License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "14ab2b5f5e2d4fab87bed8390d93cd7d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9887,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-sell-variant.json",
+        "sha256": "af1d6aeb0a054ab6c39275e109cc72b1202691cc6fe3029d68f8bf3cdc47ff48"
+      },
+      "template": {
+        "bytes": 2087,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-sell-variant.template.txt",
+        "sha256": "0b212cdd47b8abd648c17edcdfaa11848e147581b8d99f519127d178bfad57d2"
+      },
+      "text": {
+        "bytes": 1102,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-sell-variant.txt",
+        "sha256": "235abc578371bf9861e3d6eee0a9ad16228f9be18408e17fc569c6a98ba69d5f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-sell-variant",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-sell-variant.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-sell-variant",
+      "name": "Historical Permission Notice and Disclaimer - sell variant",
+      "reference": "https://spdx.org/licenses/HPND-sell-variant.html",
+      "referenceNumber": 649,
+      "seeAlso": [
+        "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/net/sunrpc/auth_gss/gss_generic_token.c?h=v4.19",
+        "https://github.com/kfish/xsel/blob/master/COPYING"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - sell variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d38eadc09b644fa98161fceab1e4d471",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12786,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PHP-3.01.json",
+        "sha256": "b6e7e2b7e8cf874c0e957a49b2e507acd57f8c9b54d6252d0a054dfdab865d2f"
+      },
+      "template": {
+        "bytes": 3250,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PHP-3.01.template.txt",
+        "sha256": "96da564dd60934be39ee9b7f165d352b171a5d0da736dd07e7cbaa70c69fb760"
+      },
+      "text": {
+        "bytes": 2855,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PHP-3.01.txt",
+        "sha256": "c288e228ae7ccd27a39a7d4011057c85769a85e5fa38e91e31cec1f5549b1e7e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PHP-3.01",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PHP-3.01.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "PHP-3.01",
+      "name": "PHP License v3.01",
+      "reference": "https://spdx.org/licenses/PHP-3.01.html",
+      "referenceNumber": 555,
+      "seeAlso": [
+        "http://www.php.net/license/3_01.txt"
+      ]
+    },
+    "name": "PHP License v3.01",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

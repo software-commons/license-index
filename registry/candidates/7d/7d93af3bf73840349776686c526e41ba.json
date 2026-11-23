@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7d93af3bf73840349776686c526e41ba",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 73660,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GFDL-1.1-invariants-or-later.json",
+        "sha256": "54290d9a3dfe059d6a7b661df55dc5d9dfd18441771d53b3ccb207ea2e43c5ea"
+      },
+      "template": {
+        "bytes": 19710,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GFDL-1.1-invariants-or-later.template.txt",
+        "sha256": "0cc0a309a761df95dab027bbbd94fa88a2c60b4a9b2d0b83cfb81640bc4ec849"
+      },
+      "text": {
+        "bytes": 17970,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GFDL-1.1-invariants-or-later.txt",
+        "sha256": "25fa19cb49d292047f3f16879301ae3a496b263a938f74e1840906d97f6d0211"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GFDL-1.1-invariants-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GFDL-1.1-invariants-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GFDL-1.1-invariants-or-later",
+      "name": "GNU Free Documentation License v1.1 or later - invariants",
+      "reference": "https://spdx.org/licenses/GFDL-1.1-invariants-or-later.html",
+      "referenceNumber": 345,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"
+      ]
+    },
+    "name": "GNU Free Documentation License v1.1 or later - invariants",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

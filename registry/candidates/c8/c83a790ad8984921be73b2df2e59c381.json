@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c83a790ad8984921be73b2df2e59c381",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3123,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HP-1986.json",
+        "sha256": "e1cf1afd1dc6095f75890e2d8b1f7eea74c2f199cd6a38bc1e282ff1f579b6ff"
+      },
+      "template": {
+        "bytes": 663,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HP-1986.template.txt",
+        "sha256": "579ffa89c31548f0c83e11ad13a11eb6184b775709277b37de0ff80fbdf27c29"
+      },
+      "text": {
+        "bytes": 617,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HP-1986.txt",
+        "sha256": "9aa6d2493f6a371ce19d3538f352bbd80ee81190c4403cda7f1d9a6d878cb41c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HP-1986",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HP-1986.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HP-1986",
+      "name": "Hewlett-Packard 1986 License",
+      "reference": "https://spdx.org/licenses/HP-1986.html",
+      "referenceNumber": 187,
+      "seeAlso": [
+        "https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/machine/hppa/memchr.S;h=1cca3e5e8867aa4bffef1f75a5c1bba25c0c441e;hb=HEAD#l2"
+      ]
+    },
+    "name": "Hewlett-Packard 1986 License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

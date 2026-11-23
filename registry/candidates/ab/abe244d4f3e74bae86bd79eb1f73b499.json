@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "abe244d4f3e74bae86bd79eb1f73b499",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 18865,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Sendmail-8.23.json",
+        "sha256": "86d685d40e2985275062c89a0bd5d5b85e7f5aeba3624dee3879eff6dd00a424"
+      },
+      "template": {
+        "bytes": 4735,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Sendmail-8.23.template.txt",
+        "sha256": "76bed427523be62b244719f7dddd9b5a16ba31cd65aeec5eb138f6f12a517c88"
+      },
+      "text": {
+        "bytes": 4020,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Sendmail-8.23.txt",
+        "sha256": "3d0eac09b2b9a24df644d55d074435461b7cc2dc4035acffa992e6b0f9a583ce"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Sendmail-8.23",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Sendmail-8.23.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Sendmail-8.23",
+      "name": "Sendmail License 8.23",
+      "reference": "https://spdx.org/licenses/Sendmail-8.23.html",
+      "referenceNumber": 87,
+      "seeAlso": [
+        "https://www.proofpoint.com/sites/default/files/sendmail-license.pdf",
+        "https://web.archive.org/web/20181003101040/https://www.proofpoint.com/sites/default/files/sendmail-license.pdf"
+      ]
+    },
+    "name": "Sendmail License 8.23",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

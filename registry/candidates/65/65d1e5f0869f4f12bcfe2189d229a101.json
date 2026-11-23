@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "65d1e5f0869f4f12bcfe2189d229a101",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1963,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/pkgconf.json",
+        "sha256": "2961bd3ffa67aa3854c3017ea969ab63bc76b07cebd17f6eba89e20bde95803b"
+      },
+      "template": {
+        "bytes": 387,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/pkgconf.template.txt",
+        "sha256": "bf507a97c97c480b189e5e7e77bf838c4617c35fe0bfd0fed8909913fd634ea8"
+      },
+      "text": {
+        "bytes": 387,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/pkgconf.txt",
+        "sha256": "a1a5488eb4a3d421514847fdeff4a1a71d363629b145f42ec9a3b1d7151e114b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "pkgconf",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/pkgconf.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "pkgconf",
+      "name": "pkgconf License",
+      "reference": "https://spdx.org/licenses/pkgconf.html",
+      "referenceNumber": 30,
+      "seeAlso": [
+        "https://github.com/pkgconf/pkgconf/blob/master/cli/main.c#L8"
+      ]
+    },
+    "name": "pkgconf License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

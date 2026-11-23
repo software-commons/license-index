@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7d439e21e527431ab77c322d82cbf8a5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4481,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-4.3TAHOE.json",
+        "sha256": "b4aca5d6d20fca3e728e2f266da5ee436f11cc37e119eff04b3e1c6f8c989574"
+      },
+      "template": {
+        "bytes": 950,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-4.3TAHOE.template.txt",
+        "sha256": "b7220531f027592a95d4415c4117602374641696bf197ccf82f63312d5f95c4c"
+      },
+      "text": {
+        "bytes": 781,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-4.3TAHOE.txt",
+        "sha256": "e3559579df753e07c08959aefd4c7dad4de1ba036a86956a6fa18c22d5a22052"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-4.3TAHOE",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-4.3TAHOE.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-4.3TAHOE",
+      "name": "BSD 4.3 TAHOE License",
+      "reference": "https://spdx.org/licenses/BSD-4.3TAHOE.html",
+      "referenceNumber": 350,
+      "seeAlso": [
+        "https://github.com/389ds/389-ds-base/blob/main/ldap/include/sysexits-compat.h#L15",
+        "https://git.savannah.gnu.org/cgit/indent.git/tree/doc/indent.texi?id=a74c6b4ee49397cf330b333da1042bffa60ed14f#n1788"
+      ]
+    },
+    "name": "BSD 4.3 TAHOE License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

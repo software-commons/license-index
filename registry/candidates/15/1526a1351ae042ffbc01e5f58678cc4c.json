@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1526a1351ae042ffbc01e5f58678cc4c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10586,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Lucida-Bitmap-Fonts.json",
+        "sha256": "0158dde2f3fe6d5e656e61d2d9a3a256d77cab9cedd37683baae43dd05e7b1e8"
+      },
+      "template": {
+        "bytes": 2805,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Lucida-Bitmap-Fonts.template.txt",
+        "sha256": "8965da4de37069a98987c1d484fcab57b25a2b10d79a7865c033a2cf4b8395b0"
+      },
+      "text": {
+        "bytes": 2868,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Lucida-Bitmap-Fonts.txt",
+        "sha256": "a08a969727e153e76ed2837e65a88d3deece93794cc9590db503f17c58b84cdf"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Lucida-Bitmap-Fonts",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Lucida-Bitmap-Fonts.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Lucida-Bitmap-Fonts",
+      "name": "Lucida Bitmap Fonts License",
+      "reference": "https://spdx.org/licenses/Lucida-Bitmap-Fonts.html",
+      "referenceNumber": 29,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/font/bh-100dpi/-/blob/master/COPYING?ref_type=heads"
+      ]
+    },
+    "name": "Lucida Bitmap Fonts License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

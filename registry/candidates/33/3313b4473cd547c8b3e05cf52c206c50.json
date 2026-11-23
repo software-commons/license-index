@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3313b4473cd547c8b3e05cf52c206c50",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2256,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/softSurfer.json",
+        "sha256": "fa0135f0de61ef308f33091b243fec6d969a8f05433ad9dbca4a7ab64f88367a"
+      },
+      "template": {
+        "bytes": 358,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/softSurfer.template.txt",
+        "sha256": "13d298c91175f1679ed52df9baedbcde49d44f03a8c317d0544407c430ae64bc"
+      },
+      "text": {
+        "bytes": 484,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/softSurfer.txt",
+        "sha256": "dfc0543453cfb9d0a86cd15697fee05d0c9290ff45ba122f693467189e9184fd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "softSurfer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/softSurfer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "softSurfer",
+      "name": "softSurfer License",
+      "reference": "https://spdx.org/licenses/softSurfer.html",
+      "referenceNumber": 406,
+      "seeAlso": [
+        "https://github.com/mm2/Little-CMS/blob/master/src/cmssm.c#L207",
+        "https://fedoraproject.org/wiki/Licensing/softSurfer"
+      ]
+    },
+    "name": "softSurfer License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

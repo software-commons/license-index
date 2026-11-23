@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d57298e2225f4f048f406494f50a12e5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11450,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/JPNIC.json",
+        "sha256": "cf013a329b704945d222245ab30677c8ff90ce0b98f000e0c1b6fc32c31fdad1"
+      },
+      "template": {
+        "bytes": 2889,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/JPNIC.template.txt",
+        "sha256": "f5ab3d81d3de2d1f8e6b8e90bcbecbec4a371ed83d5e217e91603f6650bbff1f"
+      },
+      "text": {
+        "bytes": 2086,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/JPNIC.txt",
+        "sha256": "656bf1cb2fd290432c8728df087a71b5daf363c6fc4863992590f2567fd58930"
+      }
+    },
+    "deprecated": false,
+    "identifier": "JPNIC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/JPNIC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "JPNIC",
+      "name": "Japan Network Information Center License",
+      "reference": "https://spdx.org/licenses/JPNIC.html",
+      "referenceNumber": 402,
+      "seeAlso": [
+        "https://gitlab.isc.org/isc-projects/bind9/blob/master/COPYRIGHT#L366"
+      ]
+    },
+    "name": "Japan Network Information Center License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

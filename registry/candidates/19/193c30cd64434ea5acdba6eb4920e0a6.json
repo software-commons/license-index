@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "193c30cd64434ea5acdba6eb4920e0a6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6477,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HTMLTIDY.json",
+        "sha256": "29424362c84a35b4bcc1e107a8c7d8a4e293589bc3bfeba3cbd0077bda8d6090"
+      },
+      "template": {
+        "bytes": 1637,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HTMLTIDY.template.txt",
+        "sha256": "9c119e8f10ac1bde634ced6851d30db41229c5141041760d29a8e14b0aaf13e6"
+      },
+      "text": {
+        "bytes": 1460,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HTMLTIDY.txt",
+        "sha256": "2cffd83fc5d377d1390acd010caec134710aaf88baf06d40c4c82692a7d9d94f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HTMLTIDY",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HTMLTIDY.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HTMLTIDY",
+      "name": "HTML Tidy License",
+      "reference": "https://spdx.org/licenses/HTMLTIDY.html",
+      "referenceNumber": 612,
+      "seeAlso": [
+        "https://github.com/htacg/tidy-html5/blob/next/README/LICENSE.md"
+      ]
+    },
+    "name": "HTML Tidy License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

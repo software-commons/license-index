@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0d9a7638819d4f37938d99ef4c4ba508",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2532,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NLPL.json",
+        "sha256": "8dd7b4ddd725fe48badc7ac40a104b55256294ebf134faa4fec15af3a7d4a4d2"
+      },
+      "template": {
+        "bytes": 412,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NLPL.template.txt",
+        "sha256": "7be673d3b152027cbd93b3ba40c356e57b7e64ea82d1f259e98a8fcdf5c07b07"
+      },
+      "text": {
+        "bytes": 268,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NLPL.txt",
+        "sha256": "bd220cd4ce2e9d09093135fdf4d3eacc4d44c9866426c56c96eba86dcc2d925d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NLPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NLPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NLPL",
+      "name": "No Limit Public License",
+      "reference": "https://spdx.org/licenses/NLPL.html",
+      "referenceNumber": 507,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/NLPL"
+      ]
+    },
+    "name": "No Limit Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

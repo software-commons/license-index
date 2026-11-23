@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "63b20fbb139a457cb566eeb8fc4362a5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3016,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DocBook-Stylesheet.json",
+        "sha256": "ad06b0b49f713fa9e9cd0eac027c09f9f61799042e6afa821945e02c61ef144a"
+      },
+      "template": {
+        "bytes": 672,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DocBook-Stylesheet.template.txt",
+        "sha256": "976e00de0e8641d44d45df68a7ceb897336948ff4da94fffa10dd7d9b43614fa"
+      },
+      "text": {
+        "bytes": 615,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DocBook-Stylesheet.txt",
+        "sha256": "13e08f237e71dfd7f100cb0a82e8cff320fa8d07d6cf1876c0b17e9ddad7475a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DocBook-Stylesheet",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DocBook-Stylesheet.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DocBook-Stylesheet",
+      "name": "DocBook Stylesheet License",
+      "reference": "https://spdx.org/licenses/DocBook-Stylesheet.html",
+      "referenceNumber": 224,
+      "seeAlso": [
+        "http://www.docbook.org/xml/5.0/docbook-5.0.zip"
+      ]
+    },
+    "name": "DocBook Stylesheet License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

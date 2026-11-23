@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9c4f9aed63294c6fa77a8f8e4a23a81c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 85797,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Nokia.json",
+        "sha256": "f56317668458640dfb3eae748ed380fff98286f0dfbb969f4c32f4d2f94a9280"
+      },
+      "template": {
+        "bytes": 23104,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Nokia.template.txt",
+        "sha256": "20780cd73c974502b69327d529fdc7bb0ea2b0f7e77bd7cae679aa877d9ec8de"
+      },
+      "text": {
+        "bytes": 21003,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Nokia.txt",
+        "sha256": "15425a7c7bbde70efc9adf491faeac81d45d275d083c50c383557ca0b687c453"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Nokia",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Nokia.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Nokia",
+      "name": "Nokia Open Source License",
+      "reference": "https://spdx.org/licenses/Nokia.html",
+      "referenceNumber": 691,
+      "seeAlso": [
+        "https://opensource.org/license/Nokia"
+      ]
+    },
+    "name": "Nokia Open Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

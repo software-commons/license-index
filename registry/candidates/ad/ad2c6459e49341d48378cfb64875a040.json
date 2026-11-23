@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ad2c6459e49341d48378cfb64875a040",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 85599,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/APSL-2.0.json",
+        "sha256": "7ad42cf119d918567dfa0a4009b55ae9e5000afca25a9f3dd7d3de87d3c64b62"
+      },
+      "template": {
+        "bytes": 22508,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/APSL-2.0.template.txt",
+        "sha256": "435d5ea2ac236ab041f31dcd162c42a86b8d7af7265670babe29c39b2cfe45aa"
+      },
+      "text": {
+        "bytes": 20285,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/APSL-2.0.txt",
+        "sha256": "2d0c12edaaf8d31fec6796fef99291b12e833b6bef28100975120a53d209e06d"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "APSL-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/APSL-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "APSL-2.0",
+      "name": "Apple Public Source License 2.0",
+      "reference": "https://spdx.org/licenses/APSL-2.0.html",
+      "referenceNumber": 430,
+      "seeAlso": [
+        "http://www.opensource.apple.com/license/apsl/"
+      ]
+    },
+    "name": "Apple Public Source License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

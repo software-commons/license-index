@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9469c92c53bf4a139b76701ae56d421e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1380,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/mplus.json",
+        "sha256": "65613ae6a133e6803e18669db7864e63e6ec406a3c8d327b9f25ed39e6e2e331"
+      },
+      "template": {
+        "bytes": 220,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/mplus.template.txt",
+        "sha256": "500632d7b852c51c2291a328857bd3a9cfc0ed16d48504d74721a7065be6e571"
+      },
+      "text": {
+        "bytes": 226,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/mplus.txt",
+        "sha256": "c52bd7a2a72924c78c590908416345934a7e139cde62f3141533c2e500ebd4ff"
+      }
+    },
+    "deprecated": false,
+    "identifier": "mplus",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/mplus.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "mplus",
+      "name": "mplus Font License",
+      "reference": "https://spdx.org/licenses/mplus.html",
+      "referenceNumber": 573,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:Mplus?rd=Licensing/mplus"
+      ]
+    },
+    "name": "mplus Font License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

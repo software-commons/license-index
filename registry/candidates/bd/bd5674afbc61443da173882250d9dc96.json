@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bd5674afbc61443da173882250d9dc96",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 94874,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BitTorrent-1.0.json",
+        "sha256": "1c88ca87c4cba0e589affd492848044b65243c67a118490cd096dbff02550845"
+      },
+      "template": {
+        "bytes": 26125,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BitTorrent-1.0.template.txt",
+        "sha256": "7cb20e62f269ba56c39a97641107bba13916b56aeb2680c3140c9c8da22341b8"
+      },
+      "text": {
+        "bytes": 24219,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BitTorrent-1.0.txt",
+        "sha256": "cdc899a2347d6ca02027726202a69d3252edce26ea021b6d580235a9e87c7e58"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "BitTorrent-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BitTorrent-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BitTorrent-1.0",
+      "name": "BitTorrent Open Source License v1.0",
+      "reference": "https://spdx.org/licenses/BitTorrent-1.0.html",
+      "referenceNumber": 183,
+      "seeAlso": [
+        "http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/licenses/BitTorrent?r1=1.1&r2=1.1.1.1&diff_format=s"
+      ]
+    },
+    "name": "BitTorrent Open Source License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

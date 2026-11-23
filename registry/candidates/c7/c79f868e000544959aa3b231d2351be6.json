@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c79f868e000544959aa3b231d2351be6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2396,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Digia-Qt-LGPL-exception-1.1.json",
+        "sha256": "7a34f8d02721ae3e47630cc490a6f812fbe161123a5c647c93baa33ce747081d"
+      },
+      "template": {
+        "bytes": 567,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Digia-Qt-LGPL-exception-1.1.template.txt",
+        "sha256": "b40dae60ba07c232ace53c676d30e2c83f694e15dd23adfedeb735ef427b9a6b"
+      },
+      "text": {
+        "bytes": 533,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Digia-Qt-LGPL-exception-1.1.txt",
+        "sha256": "3377e7836510a9113f486be019383249841972c76cdbe0d545569175ab63994c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Digia-Qt-LGPL-exception-1.1",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Digia-Qt-LGPL-exception-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Digia-Qt-LGPL-exception-1.1",
+      "name": "Digia Qt LGPL Exception version 1.1",
+      "reference": "https://spdx.org/licenses/Digia-Qt-LGPL-exception-1.1.html",
+      "referenceNumber": 60,
+      "seeAlso": [
+        "https://src.fedoraproject.org/rpms/qtlockedfile/blob/rawhide/f/LGPL_EXCEPTION"
+      ]
+    },
+    "name": "Digia Qt LGPL Exception version 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

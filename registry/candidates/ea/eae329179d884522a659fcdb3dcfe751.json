@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "eae329179d884522a659fcdb3dcfe751",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3473,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Boehm-GC.json",
+        "sha256": "f8bd0c6864821281e6d7daac352bfa5d8f7cf18db46915e562747b3fa21051fb"
+      },
+      "template": {
+        "bytes": 590,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Boehm-GC.template.txt",
+        "sha256": "ace5adb7094124585c761ca041afd680bdbba4bc64c7df8b30a375aa887b140f"
+      },
+      "text": {
+        "bytes": 506,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Boehm-GC.txt",
+        "sha256": "9d79ea74534f11db4c04bc9c0175878c0f79641d335ff23d5b5b4d7671924509"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Boehm-GC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Boehm-GC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Boehm-GC",
+      "name": "Boehm-Demers-Weiser GC License",
+      "reference": "https://spdx.org/licenses/Boehm-GC.html",
+      "referenceNumber": 728,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:MIT#Another_Minimal_variant_(found_in_libatomic_ops)",
+        "https://github.com/uim/libgcroots/blob/master/COPYING",
+        "https://github.com/ivmai/libatomic_ops/blob/master/LICENSE"
+      ]
+    },
+    "name": "Boehm-Demers-Weiser GC License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "89111f0d249b425b95835040ad2b7545",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1714,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSFULLR.json",
+        "sha256": "0c40d0f56f317b05f3618fd45c605106dbabad4f0267df50b5278abdaa10f70e"
+      },
+      "template": {
+        "bytes": 290,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSFULLR.template.txt",
+        "sha256": "8e6eeaf5774e0882367f0359efbad4468fd08d6921412054ece500acb1daf327"
+      },
+      "text": {
+        "bytes": 234,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSFULLR.txt",
+        "sha256": "6d425c2caac889c969c8c2ebb18b1e2326f0d8c7f82e43c0e6c9c957fe3c6cd0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSFULLR",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSFULLR.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSFULLR",
+      "name": "FSF Unlimited License (with License Retention)",
+      "reference": "https://spdx.org/licenses/FSFULLR.html",
+      "referenceNumber": 596,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/FSF_Unlimited_License#License_Retention_Variant"
+      ]
+    },
+    "name": "FSF Unlimited License (with License Retention)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

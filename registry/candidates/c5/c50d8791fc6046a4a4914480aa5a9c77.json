@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c50d8791fc6046a4a4914480aa5a9c77",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13343,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause.json",
+        "sha256": "388c25252b2044f90dd8d48e2193738180dcff20f99c10c0f64bc3a01f8bce9f"
+      },
+      "template": {
+        "bytes": 3394,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause.template.txt",
+        "sha256": "c42368b683ceef1ad41b6f17999adf3b7534e3c47fbdd51449ed6690edb1fc5f"
+      },
+      "text": {
+        "bytes": 1460,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause.txt",
+        "sha256": "5a93d5831e1297ab10fe643e1a631e83be392896da14ee2951285a79012df69d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "BSD-3-Clause",
+      "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause.html",
+      "referenceNumber": 253,
+      "seeAlso": [
+        "https://opensource.org/license/BSD-3-Clause",
+        "https://www.eclipse.org/org/documents/edl-v10.php"
+      ]
+    },
+    "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

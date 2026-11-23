@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "535643a5692148299fc668b5a0391473",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4998,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Widget-Workshop.json",
+        "sha256": "fc07dfecf873921ba0718fe9e265033e5a4aae25a3eebee67b6413b882f053e3"
+      },
+      "template": {
+        "bytes": 1307,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Widget-Workshop.template.txt",
+        "sha256": "5a3088124caed259780895549fda825e41933e43e73311d97ce9a870493becae"
+      },
+      "text": {
+        "bytes": 1270,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Widget-Workshop.txt",
+        "sha256": "dde146bdf15c707da85b151b3990104992491368002d65b62e56e1dd25e5a03c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Widget-Workshop",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Widget-Workshop.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Widget-Workshop",
+      "name": "Widget Workshop License",
+      "reference": "https://spdx.org/licenses/Widget-Workshop.html",
+      "referenceNumber": 256,
+      "seeAlso": [
+        "https://github.com/novnc/noVNC/blob/master/core/crypto/des.js#L24"
+      ]
+    },
+    "name": "Widget Workshop License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

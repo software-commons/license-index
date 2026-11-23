@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "29ec01259b5d4ac29de825fa29010ea0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7221,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NIST-Software.json",
+        "sha256": "b82462ee25eea1e4bc3a437773230d6e9d873efc0d0620f16738d67d46bc5271"
+      },
+      "template": {
+        "bytes": 1830,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NIST-Software.template.txt",
+        "sha256": "42b84de11074d193ffa2d88d08c8b5af31873acaaa4faf13b1d0ae20dbfaa21c"
+      },
+      "text": {
+        "bytes": 1852,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NIST-Software.txt",
+        "sha256": "ebdf2cd74b947cae9a26ef198a7a84f2e20a6d4feb252bd569de89c38c3e7ece"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NIST-Software",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NIST-Software.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NIST-Software",
+      "name": "NIST Software License",
+      "reference": "https://spdx.org/licenses/NIST-Software.html",
+      "referenceNumber": 311,
+      "seeAlso": [
+        "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+        "https://github.com/open-quantum-safe/liboqs/blob/40b01fdbb270f8614fde30e65d30e9da18c02393/src/common/rand/rand_nist.c#L1-L15"
+      ]
+    },
+    "name": "NIST Software License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

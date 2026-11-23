@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "352cf0d906d142af9a9fd04990081448",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6275,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-open-group.json",
+        "sha256": "839e02adf11f043bf80b3fc3616c93d28d53fb3a8a71227834ee026ee646adef"
+      },
+      "template": {
+        "bytes": 1322,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-open-group.template.txt",
+        "sha256": "3e515a7e69a4e199e874ed97320689537e108464ee8f44dcd789d4833d0c7a9a"
+      },
+      "text": {
+        "bytes": 1136,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-open-group.txt",
+        "sha256": "d5942d51b7e079b0eab4d6f9e06f1b8625f918b8802117a9c3127c004c5df9b6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-open-group",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-open-group.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-open-group",
+      "name": "MIT Open Group variant",
+      "reference": "https://spdx.org/licenses/MIT-open-group.html",
+      "referenceNumber": 737,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/app/iceauth/-/blob/master/COPYING",
+        "https://gitlab.freedesktop.org/xorg/app/xsetroot/-/blob/master/COPYING",
+        "https://gitlab.freedesktop.org/xorg/app/xauth/-/blob/master/COPYING"
+      ]
+    },
+    "name": "MIT Open Group variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

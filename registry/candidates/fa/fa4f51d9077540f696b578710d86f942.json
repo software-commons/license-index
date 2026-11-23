@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fa4f51d9077540f696b578710d86f942",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9339,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/xinetd.json",
+        "sha256": "854451d814827a137a45323c16149f6bd93e9e947ff1b7e9c865ed06430d6109"
+      },
+      "template": {
+        "bytes": 2321,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/xinetd.template.txt",
+        "sha256": "f5f6564fc7fa2c638063613a8bebd8df833aee763bfbbb198f7818ed729bd6b8"
+      },
+      "text": {
+        "bytes": 2030,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/xinetd.txt",
+        "sha256": "7b3cf46961d23cf845ac7c52075693b6ca31389e1534c655333b4b6fe0459bd4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "xinetd",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/xinetd.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "xinetd",
+      "name": "xinetd License",
+      "reference": "https://spdx.org/licenses/xinetd.html",
+      "referenceNumber": 303,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Xinetd_License"
+      ]
+    },
+    "name": "xinetd License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

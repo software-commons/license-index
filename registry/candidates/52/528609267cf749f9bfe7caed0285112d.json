@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "528609267cf749f9bfe7caed0285112d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1959,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/hdparm.json",
+        "sha256": "15646467712516077a74a46abd6f1df4bdbb3dff4a93cde2c70b6d4c252d2c70"
+      },
+      "template": {
+        "bytes": 308,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/hdparm.template.txt",
+        "sha256": "fe00f4f33d8bd1eeae97f6604b3c35e5a78e71449a09f25bfb0bf0ea0b95a81a"
+      },
+      "text": {
+        "bytes": 253,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/hdparm.txt",
+        "sha256": "72760f4bb9d0f4ae7630cb80b915823012702de1701688c5c9d38f9c74adee1a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "hdparm",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/hdparm.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "hdparm",
+      "name": "hdparm License",
+      "reference": "https://spdx.org/licenses/hdparm.html",
+      "referenceNumber": 355,
+      "seeAlso": [
+        "https://github.com/Distrotech/hdparm/blob/4517550db29a91420fb2b020349523b1b4512df2/LICENSE.TXT"
+      ]
+    },
+    "name": "hdparm License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

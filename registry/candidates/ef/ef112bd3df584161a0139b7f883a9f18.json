@@ -1,0 +1,70 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ef112bd3df584161a0139b7f883a9f18",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 162114,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LGPL-3.0.json",
+        "sha256": "6cb913bb88142c59c8ad8352120a036747e9b1f5fd4ff6b79fb0e7381c621849"
+      },
+      "replacement_source": {
+        "bytes": 56982,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/LGPL-3.0.xml",
+        "sha256": "d930749f8eb1c4d27ff6de57701105e39d5cdbeff22599f583cb8a1d1e497fc0"
+      },
+      "template": {
+        "bytes": 44961,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_LGPL-3.0.template.txt",
+        "sha256": "5a2d695d75a998223610f949bd7b686bfe77bc61146a61b085cb04ee6ed6ec86"
+      },
+      "text": {
+        "bytes": 42098,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_LGPL-3.0.txt",
+        "sha256": "996af0513df21f7496288951c41428a03c174e9e4a9d63665c57d670f845ccb1"
+      }
+    },
+    "deprecated": true,
+    "identifier": "LGPL-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.0",
+      "detailsUrl": "https://spdx.org/licenses/LGPL-3.0.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "LGPL-3.0",
+      "name": "GNU Lesser General Public License v3.0 only",
+      "reference": "https://spdx.org/licenses/LGPL-3.0.html",
+      "referenceNumber": 614,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+        "https://www.gnu.org/licenses/lgpl+gpl-3.0.txt",
+        "https://opensource.org/license/LGPL-3.0"
+      ]
+    },
+    "name": "GNU Lesser General Public License v3.0 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "LGPL-3.0-only"
+      },
+      {
+        "for_expression": "LGPL-3.0+",
+        "target": "LGPL-3.0-or-later"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

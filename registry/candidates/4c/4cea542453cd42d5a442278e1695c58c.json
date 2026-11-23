@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4cea542453cd42d5a442278e1695c58c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9374,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/CLISP-exception-2.0.json",
+        "sha256": "3838edec80b2b33df119743063a3b1589e05e56251893df4af580302329188f6"
+      },
+      "template": {
+        "bytes": 2699,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CLISP-exception-2.0.template.txt",
+        "sha256": "97c0d2c77c0910076c76083092e232bb71d3566f463a445aa6a4f0c56c71a08c"
+      },
+      "text": {
+        "bytes": 2698,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CLISP-exception-2.0.txt",
+        "sha256": "a2f03cff1cb319b76676a8262225e7ba4f65c905d257d0f3913c79df606c54a7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CLISP-exception-2.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CLISP-exception-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "CLISP-exception-2.0",
+      "name": "CLISP exception 2.0",
+      "reference": "https://spdx.org/licenses/CLISP-exception-2.0.html",
+      "referenceNumber": 31,
+      "seeAlso": [
+        "http://sourceforge.net/p/clisp/clisp/ci/default/tree/COPYRIGHT"
+      ]
+    },
+    "name": "CLISP exception 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

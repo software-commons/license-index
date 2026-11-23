@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "49a7d359c59641e6bc1f8318fae1d731",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2288,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/checkmk.json",
+        "sha256": "312cf28f719e3fab8d35420717050e38e3d16cb73918eacce2f6532e8beb0e9b"
+      },
+      "template": {
+        "bytes": 474,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/checkmk.template.txt",
+        "sha256": "931dba3da070823e5e4d71fb7fb594973d11c439a90c2ee3d3dd2fb7e94c50f9"
+      },
+      "text": {
+        "bytes": 435,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/checkmk.txt",
+        "sha256": "30498c160b13f0299079b7158e8caf59f3ee457c17ef1a51ff8c7d9a67904f66"
+      }
+    },
+    "deprecated": false,
+    "identifier": "checkmk",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/checkmk.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "checkmk",
+      "name": "Checkmk License",
+      "reference": "https://spdx.org/licenses/checkmk.html",
+      "referenceNumber": 282,
+      "seeAlso": [
+        "https://github.com/libcheck/check/blob/master/checkmk/checkmk.in"
+      ]
+    },
+    "name": "Checkmk License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3bc0cf38cad444cf866de78d938eeee1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2690,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ISO-permission.json",
+        "sha256": "0ee03d71d4ff370367b60e88add71ec90cce69b655996c4c022e64eabed1f64b"
+      },
+      "template": {
+        "bytes": 427,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ISO-permission.template.txt",
+        "sha256": "831e20a0e018ce727c072c495c8a53a8138426482fc55d20dc9ff2eba9e7b593"
+      },
+      "text": {
+        "bytes": 225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ISO-permission.txt",
+        "sha256": "57357cebaaab8baa03e1b15e2e0705a19a9ff7e6fe25ff4967c13ee7024a65b2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ISO-permission",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ISO-permission.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ISO-permission",
+      "name": "ISO permission notice",
+      "reference": "https://spdx.org/licenses/ISO-permission.html",
+      "referenceNumber": 64,
+      "seeAlso": [
+        "https://gitlab.com/agmartin/linuxdoc-tools/-/blob/master/iso-entities/COPYING?ref_type=heads",
+        "https://www.itu.int/ITU-T/formal-language/itu-t/t/t173/1997/ISOMHEG-sir.html"
+      ]
+    },
+    "name": "ISO permission notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

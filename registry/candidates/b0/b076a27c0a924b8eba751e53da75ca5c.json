@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b076a27c0a924b8eba751e53da75ca5c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12377,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/W3C.json",
+        "sha256": "15c28ad22d0009f8ad606e0e4da14f9b43ff71de5e2f59c47c962d100792248f"
+      },
+      "template": {
+        "bytes": 2752,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/W3C.template.txt",
+        "sha256": "65929da7e927bf4cfcccc3a0540d894253439a71995919afab318c2a7b016d07"
+      },
+      "text": {
+        "bytes": 2701,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/W3C.txt",
+        "sha256": "df7429635bacfb82b3e92c2fff50553949afd97389890d53a67b67cbf9fba68e"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "W3C",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/W3C.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "W3C",
+      "name": "W3C Software Notice and License (2002-12-31)",
+      "reference": "https://spdx.org/licenses/W3C.html",
+      "referenceNumber": 299,
+      "seeAlso": [
+        "http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231.html",
+        "https://opensource.org/license/W3C"
+      ]
+    },
+    "name": "W3C Software Notice and License (2002-12-31)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dc6e3fa1b00640ca904231ad7a119e87",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 48696,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/IPL-1.0.json",
+        "sha256": "797636efe38dbf970b8cb9fe3279625755eeea81c4cc2752fd3179898ff46f98"
+      },
+      "template": {
+        "bytes": 12896,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/IPL-1.0.template.txt",
+        "sha256": "f66351f57f4f95603714d0b1e44328e8f310a945086b70dacdc675b8197152ff"
+      },
+      "text": {
+        "bytes": 11409,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/IPL-1.0.txt",
+        "sha256": "0d7fbdd478bb103ab440618af177275cbc47d936b1703214091a360dd36116e0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "IPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/IPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "IPL-1.0",
+      "name": "IBM Public License v1.0",
+      "reference": "https://spdx.org/licenses/IPL-1.0.html",
+      "referenceNumber": 487,
+      "seeAlso": [
+        "https://opensource.org/license/IPL-1.0"
+      ]
+    },
+    "name": "IBM Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

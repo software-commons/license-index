@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dfd069fc390942e2a5742babab9d52b1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 82812,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/APSL-1.1.json",
+        "sha256": "1984ca89c1a77e2d295784425f066551412af314d11deb98bde56513ba10eebe"
+      },
+      "template": {
+        "bytes": 22570,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/APSL-1.1.template.txt",
+        "sha256": "744df5c54eae22d2a7b08e09cd0c3e8fa227c52feb33e1b49a9cddc6f854244f"
+      },
+      "text": {
+        "bytes": 20151,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/APSL-1.1.txt",
+        "sha256": "81757b1a656d5e762711d6e45395fe9772db5058fc962c8f8a1b64b9d29fb9ac"
+      }
+    },
+    "deprecated": false,
+    "identifier": "APSL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/APSL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "APSL-1.1",
+      "name": "Apple Public Source License 1.1",
+      "reference": "https://spdx.org/licenses/APSL-1.1.html",
+      "referenceNumber": 238,
+      "seeAlso": [
+        "http://www.opensource.apple.com/source/IOSerialFamily/IOSerialFamily-7/APPLE_LICENSE"
+      ]
+    },
+    "name": "Apple Public Source License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

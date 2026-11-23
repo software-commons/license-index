@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3bab5240b6594c72937fd454019414a2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 24820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Condor-1.1.json",
+        "sha256": "2101d57a1cc30ae489ed1868ba562d207a43b303ed233b6297ca5a958fc16973"
+      },
+      "template": {
+        "bytes": 6704,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Condor-1.1.template.txt",
+        "sha256": "e932f5c8f18cc6993cf25cc8838ad8a6e6574a4ddfc8e1538a85fb6a32b3980d"
+      },
+      "text": {
+        "bytes": 6056,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Condor-1.1.txt",
+        "sha256": "4ec040dad1b8a812433489685590273260bd8039906379aae7a235cb585bd74e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Condor-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Condor-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Condor-1.1",
+      "name": "Condor Public License v1.1",
+      "reference": "https://spdx.org/licenses/Condor-1.1.html",
+      "referenceNumber": 699,
+      "seeAlso": [
+        "http://research.cs.wisc.edu/condor/license.html#condor",
+        "http://web.archive.org/web/20111123062036/http://research.cs.wisc.edu/condor/license.html#condor"
+      ]
+    },
+    "name": "Condor Public License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7e6dd3caa56c43a2be8f2c91d22ccf9c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17117,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSL-1.1-MIT.json",
+        "sha256": "8a3483c2ee5e88078efa3be2016ae6f8a984966228db3972e61ae241480a200f"
+      },
+      "template": {
+        "bytes": 4659,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSL-1.1-MIT.template.txt",
+        "sha256": "9c53e8a37ac48cb255d75ea77756f44278263027aa008166cc8791f3adf12392"
+      },
+      "text": {
+        "bytes": 4219,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSL-1.1-MIT.txt",
+        "sha256": "0905af4c021cb64aff11a80aae7f25f0d7bafc69c14e97992273873d175a718b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSL-1.1-MIT",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSL-1.1-MIT.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSL-1.1-MIT",
+      "name": "Functional Source License, Version 1.1, MIT Future License",
+      "reference": "https://spdx.org/licenses/FSL-1.1-MIT.html",
+      "referenceNumber": 237,
+      "seeAlso": [
+        "https://fsl.software/FSL-1.1-MIT.template.md"
+      ]
+    },
+    "name": "Functional Source License, Version 1.1, MIT Future License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

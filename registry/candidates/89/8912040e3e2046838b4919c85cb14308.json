@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8912040e3e2046838b4919c85cb14308",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3955,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Spencer-86.json",
+        "sha256": "12d5e32c708199c31773885f3f430ddc0ae52af59c7efc517a3a9df74cb40640"
+      },
+      "template": {
+        "bytes": 836,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Spencer-86.template.txt",
+        "sha256": "c84d5c690ad9830c9b060d5c518a791a865b3278028097dfa25618af961998ad"
+      },
+      "text": {
+        "bytes": 628,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Spencer-86.txt",
+        "sha256": "49e59df7e8775baf32d2b9b77d3413e5481a73b38a9b65898597be22aa662242"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Spencer-86",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Spencer-86.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Spencer-86",
+      "name": "Spencer License 86",
+      "reference": "https://spdx.org/licenses/Spencer-86.html",
+      "referenceNumber": 501,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License"
+      ]
+    },
+    "name": "Spencer License 86",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "168fc899c36b4fd1a0c83808dedfbed8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13595,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NRL.json",
+        "sha256": "fc2354c01d981954cb2521e137e1112c4bc6fd473043f1be10347a49ec78baf7"
+      },
+      "template": {
+        "bytes": 3630,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NRL.template.txt",
+        "sha256": "e7c1a47be27ee9659c317ae802b1c9738749bafc1e41b96f2f3e0160d22e4756"
+      },
+      "text": {
+        "bytes": 3298,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NRL.txt",
+        "sha256": "f22576bb7aa46c8f188ef1289e2bb13dd8585a8ff53851b8fde834e7b43fc839"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NRL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NRL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NRL",
+      "name": "NRL License",
+      "reference": "https://spdx.org/licenses/NRL.html",
+      "referenceNumber": 481,
+      "seeAlso": [
+        "http://web.mit.edu/network/isakmp/nrllicense.html"
+      ]
+    },
+    "name": "NRL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

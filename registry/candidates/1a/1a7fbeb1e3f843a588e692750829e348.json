@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1a7fbeb1e3f843a588e692750829e348",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3769,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TU-Berlin-1.0.json",
+        "sha256": "de35da73529869915cc51891701b0577d9746415cff3e13b7bf1a4404c8facff"
+      },
+      "template": {
+        "bytes": 829,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TU-Berlin-1.0.template.txt",
+        "sha256": "a33094e4e4c2edb7d2f585d21f11d5e66bd8b99b4047f9b4dd51710f18bb4f7d"
+      },
+      "text": {
+        "bytes": 678,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TU-Berlin-1.0.txt",
+        "sha256": "2a4f230a4eb28fca3c97aeb6e9464b8790a7905a7153458bd488f30b73e59281"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TU-Berlin-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TU-Berlin-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TU-Berlin-1.0",
+      "name": "Technische Universitaet Berlin License 1.0",
+      "reference": "https://spdx.org/licenses/TU-Berlin-1.0.html",
+      "referenceNumber": 202,
+      "seeAlso": [
+        "https://github.com/swh/ladspa/blob/7bf6f3799fdba70fda297c2d8fd9f526803d9680/gsm/COPYRIGHT"
+      ]
+    },
+    "name": "Technische Universitaet Berlin License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

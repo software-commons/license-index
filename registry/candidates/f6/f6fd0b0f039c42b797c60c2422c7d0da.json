@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f6fd0b0f039c42b797c60c2422c7d0da",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 115998,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NPL-1.1.json",
+        "sha256": "0416b65bf1a21b1df1a5ab416f84c44aab90d4ced3474c81a4c9e6b5c409860e"
+      },
+      "template": {
+        "bytes": 31166,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NPL-1.1.template.txt",
+        "sha256": "38dd69c7f602e2d8a7031e2f8fef4c12747512f32e163cb543c28d3bae639f02"
+      },
+      "text": {
+        "bytes": 28009,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NPL-1.1.txt",
+        "sha256": "728c887df6e36163a6fc21d2eb3f0ce38d7bb14fa0608a65e06f867575d13a19"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NPL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NPL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "NPL-1.1",
+      "name": "Netscape Public License v1.1",
+      "reference": "https://spdx.org/licenses/NPL-1.1.html",
+      "referenceNumber": 736,
+      "seeAlso": [
+        "http://www.mozilla.org/MPL/NPL/1.1/"
+      ]
+    },
+    "name": "Netscape Public License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

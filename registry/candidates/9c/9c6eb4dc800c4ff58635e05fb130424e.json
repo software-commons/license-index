@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9c6eb4dc800c4ff58635e05fb130424e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7554,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/freertos-exception-2.0.json",
+        "sha256": "b15df8407ac046115643a2f5fc9b4c2c3170a479fad487293934512a552da549"
+      },
+      "template": {
+        "bytes": 1881,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/freertos-exception-2.0.template.txt",
+        "sha256": "c31c5708a1b81ecaff226552c8c4d4c62291275ed09ed8d26f3471fe9bf3a209"
+      },
+      "text": {
+        "bytes": 1687,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/freertos-exception-2.0.txt",
+        "sha256": "f8e6f210132c16bbb9eb4080473280134d418ae05f17bce1096bd3406aa6900e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "freertos-exception-2.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/freertos-exception-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "freertos-exception-2.0",
+      "name": "FreeRTOS Exception 2.0",
+      "reference": "https://spdx.org/licenses/freertos-exception-2.0.html",
+      "referenceNumber": 86,
+      "seeAlso": [
+        "https://web.archive.org/web/20060809182744/http://www.freertos.org/a00114.html"
+      ]
+    },
+    "name": "FreeRTOS Exception 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

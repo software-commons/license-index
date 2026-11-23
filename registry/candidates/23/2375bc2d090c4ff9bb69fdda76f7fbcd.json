@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2375bc2d090c4ff9bb69fdda76f7fbcd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10593,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ZPL-2.0.json",
+        "sha256": "7107a274df909709df52730d853d2d42086e1c71e7856c8f096a440d758fe968"
+      },
+      "template": {
+        "bytes": 2657,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ZPL-2.0.template.txt",
+        "sha256": "9537822449e487ffba3fa3b2b198bcf3515f5c588d7c7825bf5cb57eed2b15ea"
+      },
+      "text": {
+        "bytes": 2275,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ZPL-2.0.txt",
+        "sha256": "f7a42094e22b669aaa352720e6dc93d49da430d8cb25ebf904b50faa3fd98b20"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ZPL-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ZPL-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "ZPL-2.0",
+      "name": "Zope Public License 2.0",
+      "reference": "https://spdx.org/licenses/ZPL-2.0.html",
+      "referenceNumber": 475,
+      "seeAlso": [
+        "http://old.zope.org/Resources/License/ZPL-2.0",
+        "https://opensource.org/license/ZPL-2.0"
+      ]
+    },
+    "name": "Zope Public License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

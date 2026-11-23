@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c06752582ce34bb8890a4a72b9c1ad4f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5560,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Autoconf-exception-2.0.json",
+        "sha256": "58572d8b913a62fc8d1737437be31d0d12786bf4ba1c79ec83dc961642a7f754"
+      },
+      "template": {
+        "bytes": 1574,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Autoconf-exception-2.0.template.txt",
+        "sha256": "611bc3bf8d4043bfc7b03e2cc9aba328081f222104a2694c01b269549cdc7fe4"
+      },
+      "text": {
+        "bytes": 1573,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Autoconf-exception-2.0.txt",
+        "sha256": "311609164358261bc6d307fe3204b7592a23e80a75a5c90d9d3422ee218d1033"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Autoconf-exception-2.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Autoconf-exception-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Autoconf-exception-2.0",
+      "name": "Autoconf exception 2.0",
+      "reference": "https://spdx.org/licenses/Autoconf-exception-2.0.html",
+      "referenceNumber": 80,
+      "seeAlso": [
+        "http://ac-archive.sourceforge.net/doc/copyright.html",
+        "http://ftp.gnu.org/gnu/autoconf/autoconf-2.59.tar.gz"
+      ]
+    },
+    "name": "Autoconf exception 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

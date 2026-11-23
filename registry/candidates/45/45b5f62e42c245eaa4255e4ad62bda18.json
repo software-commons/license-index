@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "45b5f62e42c245eaa4255e4ad62bda18",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5332,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Bahyph.json",
+        "sha256": "015aa8b3c9e7908aaaf14f4c78d831b97a33c03cef72baeafc096a18afdb5e24"
+      },
+      "template": {
+        "bytes": 1439,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bahyph.template.txt",
+        "sha256": "578c767ea74c6797cbc7df2f5775ad1713f59bcd1305a9446544d3e762dff433"
+      },
+      "text": {
+        "bytes": 1377,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bahyph.txt",
+        "sha256": "d4b791741e3436c7ed335cd667f58ce06449a273cdff702039ba31b7d9f39e0c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bahyph",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bahyph.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Bahyph",
+      "name": "Bahyph License",
+      "reference": "https://spdx.org/licenses/Bahyph.html",
+      "referenceNumber": 358,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Bahyph"
+      ]
+    },
+    "name": "Bahyph License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

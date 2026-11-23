@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "01f2448df2b4458f81d36805f8c8fdbb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5808,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-Intel.json",
+        "sha256": "13474f681baf32e79a10020776aeb922954843d8ec772043c9cbe29ed30d5369"
+      },
+      "template": {
+        "bytes": 1469,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-Intel.template.txt",
+        "sha256": "e00269deeffaf8b8503cfbcce4deb5495ec90df0b98a870e7aaaa6ecb8849ac8"
+      },
+      "text": {
+        "bytes": 1419,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-Intel.txt",
+        "sha256": "9ef7a1ef2c62df2512378aa071bf5d2a5f7842b8230585401ceb3e1d99628701"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-Intel",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-Intel.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-Intel",
+      "name": "Historical Permission Notice and Disclaimer - Intel variant",
+      "reference": "https://spdx.org/licenses/HPND-Intel.html",
+      "referenceNumber": 231,
+      "seeAlso": [
+        "https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/machine/i960/memcpy.S;hb=HEAD"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - Intel variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

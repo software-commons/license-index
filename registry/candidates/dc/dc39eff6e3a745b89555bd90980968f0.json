@@ -1,0 +1,67 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dc39eff6e3a745b89555bd90980968f0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14000,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-3.0-with-GCC-exception.json",
+        "sha256": "a6a8ac89208fa5dfb02b13b82a1e02bf6f492efd6bac42977ab7aef43de16a42"
+      },
+      "replacement_source": {
+        "bytes": 5380,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-3.0-with-GCC-exception.xml",
+        "sha256": "6727225ec8f71e9f1033f5b7f891d7a86fd15068bf678bb6d0cf86cb36e7c136"
+      },
+      "template": {
+        "bytes": 3623,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-3.0-with-GCC-exception.template.txt",
+        "sha256": "41d1cf8f755eba5a1449e7f1438a45df9c51e6c16f8eed8e0be24677342e3123"
+      },
+      "text": {
+        "bytes": 3442,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-3.0-with-GCC-exception.txt",
+        "sha256": "d506b7d11d2d4999642a0cd6a9fc84689f370d8e250a986730a2a7cfc842f66a"
+      }
+    },
+    "deprecated": true,
+    "identifier": "GPL-3.0-with-GCC-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0-with-GCC-exception.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": true,
+      "licenseId": "GPL-3.0-with-GCC-exception",
+      "name": "GNU General Public License v3.0 w/GCC Runtime Library exception",
+      "reference": "https://spdx.org/licenses/GPL-3.0-with-GCC-exception.html",
+      "referenceNumber": 531,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gcc-exception-3.1.html"
+      ]
+    },
+    "name": "GNU General Public License v3.0 w/GCC Runtime Library exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-3.0 WITH GCC-exception-3.1"
+      },
+      {
+        "for_expression": "GPL-3.0-with-GCC-exception+",
+        "target": "GPL-3.0-or-later WITH GCC-exception-3.1"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

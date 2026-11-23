@@ -1,0 +1,67 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b2938f96c326459b8c1525c25bc1c806",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2882,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-2.0-with-GCC-exception.json",
+        "sha256": "26b5a2518fdfe1efb058b7b7c6b41d9342094e0e82071f0661e046fbf0246496"
+      },
+      "replacement_source": {
+        "bytes": 1472,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-2.0-with-GCC-exception.xml",
+        "sha256": "505ea9b5b2817cfa944fb244976242b1dba0f03d775bf98e9709e3099ad20346"
+      },
+      "template": {
+        "bytes": 538,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-2.0-with-GCC-exception.template.txt",
+        "sha256": "d87e01e60b49ceef249f41a2f8eaef7d69eb9b6ce0eac622f27492f1770c6ca3"
+      },
+      "text": {
+        "bytes": 537,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-2.0-with-GCC-exception.txt",
+        "sha256": "22458e50520b799d96a9698a9b244d0d4e8fc17dffa8c436bde932c4e4dc706d"
+      }
+    },
+    "deprecated": true,
+    "identifier": "GPL-2.0-with-GCC-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-with-GCC-exception.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "GPL-2.0-with-GCC-exception",
+      "name": "GNU General Public License v2.0 w/GCC Runtime Library exception",
+      "reference": "https://spdx.org/licenses/GPL-2.0-with-GCC-exception.html",
+      "referenceNumber": 145,
+      "seeAlso": [
+        "https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/libgcc1.c;h=762f5143fc6eed57b6797c82710f3538aa52b40b;hb=cb143a3ce4fb417c68f5fa2691a1b1b1053dfba9#l10"
+      ]
+    },
+    "name": "GNU General Public License v2.0 w/GCC Runtime Library exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-2.0 WITH GCC-exception-2.0"
+      },
+      {
+        "for_expression": "GPL-2.0-with-GCC-exception+",
+        "target": "GPL-2.0-or-later WITH GCC-exception-2.0"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

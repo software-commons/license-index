@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b388048a47074caaa6e1682c4261239d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3299,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Borceux.json",
+        "sha256": "0f3fab638e629b960df142057f544b56885d274813652425431223f69c451a1f"
+      },
+      "template": {
+        "bytes": 701,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Borceux.template.txt",
+        "sha256": "4689e2d77ac7d53ca47ae6659270fbb57cd0c0f5831ed46ac54b9795de2d473c"
+      },
+      "text": {
+        "bytes": 647,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Borceux.txt",
+        "sha256": "aa0f864b15e20c58b552928cc65e4266d8630f47f4136be00c98f9ceda7b6eb6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Borceux",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Borceux.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Borceux",
+      "name": "Borceux license",
+      "reference": "https://spdx.org/licenses/Borceux.html",
+      "referenceNumber": 496,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Borceux"
+      ]
+    },
+    "name": "Borceux license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

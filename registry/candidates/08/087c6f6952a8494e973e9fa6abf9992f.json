@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "087c6f6952a8494e973e9fa6abf9992f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 34461,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/etalab-2.0.json",
+        "sha256": "379ce5b9ff623b35a18103e02d32e8c0de18c6854904b47e50da9a1ccb17d9b6"
+      },
+      "template": {
+        "bytes": 8937,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/etalab-2.0.template.txt",
+        "sha256": "4d0ab7dd563f1df0c9efa3d36b6b04339a0982acaadf431d9fdd381441a0e99b"
+      },
+      "text": {
+        "bytes": 8198,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/etalab-2.0.txt",
+        "sha256": "f82596bde5c4abc62b4e63b1a3ba555f6b9203a340765fb178d188958600d111"
+      }
+    },
+    "deprecated": false,
+    "identifier": "etalab-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/etalab-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "etalab-2.0",
+      "name": "Etalab Open License 2.0",
+      "reference": "https://spdx.org/licenses/etalab-2.0.html",
+      "referenceNumber": 196,
+      "seeAlso": [
+        "https://github.com/DISIC/politique-de-contribution-open-source/blob/master/LICENSE.pdf",
+        "https://raw.githubusercontent.com/DISIC/politique-de-contribution-open-source/master/LICENSE"
+      ]
+    },
+    "name": "Etalab Open License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

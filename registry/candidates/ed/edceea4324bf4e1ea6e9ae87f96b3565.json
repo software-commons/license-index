@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "edceea4324bf4e1ea6e9ae87f96b3565",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5668,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-Khronos-old.json",
+        "sha256": "976df48b885a1c7939313b8556beafa133fdb9c9c3e606d8349487ded1ed3039"
+      },
+      "template": {
+        "bytes": 1359,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-Khronos-old.template.txt",
+        "sha256": "8cac6f8dbde996a7823047f1932c846754291e331cfb6d1282890d602ce00826"
+      },
+      "text": {
+        "bytes": 1305,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-Khronos-old.txt",
+        "sha256": "fbeaca472f4f70e276dd1106ca5097435967a22ad6c1d8200aef7ad9f70aaf3f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-Khronos-old",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-Khronos-old.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-Khronos-old",
+      "name": "MIT Khronos - old variant",
+      "reference": "https://spdx.org/licenses/MIT-Khronos-old.html",
+      "referenceNumber": 639,
+      "seeAlso": [
+        "https://github.com/KhronosGroup/SPIRV-Cross/blob/main/LICENSES/LicenseRef-KhronosFreeUse.txt"
+      ]
+    },
+    "name": "MIT Khronos - old variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

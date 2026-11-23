@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e00a5c5bbd0e480484459f582db6cd32",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9498,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/bzip2-1.0.5.json",
+        "sha256": "968f042c0eb1d1f7548fcc2289a856416070ba9719ed8abe88207839bf67a557"
+      },
+      "replacement_source": {
+        "bytes": 3392,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/bzip2-1.0.5.xml",
+        "sha256": "67c4d8c43ea655f07096a2cabb1c12b470b9d25bf042d88b358bddd9544d9547"
+      },
+      "template": {
+        "bytes": 2221,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_bzip2-1.0.5.template.txt",
+        "sha256": "35b1ea175fdb5db9538c19690ea95f0f856463074bd0f99378cd3fa7595e7555"
+      },
+      "text": {
+        "bytes": 1947,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_bzip2-1.0.5.txt",
+        "sha256": "96b2cb9b836969603a820faf06f8e28b0b46809692b791793df291b658540db7"
+      }
+    },
+    "deprecated": true,
+    "identifier": "bzip2-1.0.5",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.16",
+      "detailsUrl": "https://spdx.org/licenses/bzip2-1.0.5.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "bzip2-1.0.5",
+      "name": "bzip2 and libbzip2 License v1.0.5",
+      "reference": "https://spdx.org/licenses/bzip2-1.0.5.html",
+      "referenceNumber": 92,
+      "seeAlso": [
+        "https://sourceware.org/bzip2/1.0.5/bzip2-manual-1.0.5.html",
+        "http://bzip.org/1.0.5/bzip2-manual-1.0.5.html"
+      ]
+    },
+    "name": "bzip2 and libbzip2 License v1.0.5",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

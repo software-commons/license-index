@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f08931a058c6483c88dda31245f1dbe1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3184,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Newsletr.json",
+        "sha256": "98971bb25148c6668de6df27b041726a41a889dbf1315a49b27a27a656a55860"
+      },
+      "template": {
+        "bytes": 662,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Newsletr.template.txt",
+        "sha256": "1a10d72b618ad10375aef762cb54843c01e8203836e70fe7bc88e10d6b7f7802"
+      },
+      "text": {
+        "bytes": 510,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Newsletr.txt",
+        "sha256": "89c9cbe8677d8bd9a748747a6b412a1b03cc242eca241641d9a0f7969b4201c2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Newsletr",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Newsletr.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Newsletr",
+      "name": "Newsletr License",
+      "reference": "https://spdx.org/licenses/Newsletr.html",
+      "referenceNumber": 660,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Newsletr"
+      ]
+    },
+    "name": "Newsletr License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9ac7d1c4d668440aa98f1af068ce2cac",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1811,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/fwlw.json",
+        "sha256": "09870e63fa7820aeac6cd47a0530684359b7a67bd4c1aac4c8e8db410b2342ab"
+      },
+      "template": {
+        "bytes": 259,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/fwlw.template.txt",
+        "sha256": "cd89470e76081c1425440fbd08569d633d24f32a17293f952e99aff3dddd88e0"
+      },
+      "text": {
+        "bytes": 206,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/fwlw.txt",
+        "sha256": "a133cffd1fe5246ae30fb8a14b9e6b68ef2bf2f3f4ebacf73a1d5d3b739a6124"
+      }
+    },
+    "deprecated": false,
+    "identifier": "fwlw",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/fwlw.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "fwlw",
+      "name": "fwlw License",
+      "reference": "https://spdx.org/licenses/fwlw.html",
+      "referenceNumber": 318,
+      "seeAlso": [
+        "https://mirrors.nic.cz/tex-archive/macros/latex/contrib/fwlw/README"
+      ]
+    },
+    "name": "fwlw License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

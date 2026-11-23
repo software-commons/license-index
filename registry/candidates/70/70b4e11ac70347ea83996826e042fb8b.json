@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "70b4e11ac70347ea83996826e042fb8b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 55926,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CERN-OHL-S-2.0.json",
+        "sha256": "28affcc44a86af69b4b45da66a6b00a05a9ed437fd2c8ef4c3c1c4ab267be7a3"
+      },
+      "template": {
+        "bytes": 14975,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CERN-OHL-S-2.0.template.txt",
+        "sha256": "20589649799198b4dd23ec943704c306099deeb70e7ddfe256226d03629889d6"
+      },
+      "text": {
+        "bytes": 13419,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CERN-OHL-S-2.0.txt",
+        "sha256": "d6475a84171f0cf7ff52667dea714df268fc65cea42f0bf328b0b70d4cd0ebab"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CERN-OHL-S-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CERN-OHL-S-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CERN-OHL-S-2.0",
+      "name": "CERN Open Hardware Licence Version 2 - Strongly Reciprocal",
+      "reference": "https://spdx.org/licenses/CERN-OHL-S-2.0.html",
+      "referenceNumber": 136,
+      "seeAlso": [
+        "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2"
+      ]
+    },
+    "name": "CERN Open Hardware Licence Version 2 - Strongly Reciprocal",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2adc13eb4d2448eb983a204d9d888365",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4235,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Cronyx.json",
+        "sha256": "137a06d478185dd0c9ce4eaa01535dfcbc568fac2bcb3f6e086b0403f19f5130"
+      },
+      "template": {
+        "bytes": 722,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Cronyx.template.txt",
+        "sha256": "528c89872f9059824d3de77c8dd3e82467fcfcb95e74ae14e0b07a566e90f488"
+      },
+      "text": {
+        "bytes": 595,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Cronyx.txt",
+        "sha256": "475b84942bba1dbb67bc6d28bc897ad5f9961840d93e4a8f785b3e788462cb1e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Cronyx",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Cronyx.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Cronyx",
+      "name": "Cronyx License",
+      "reference": "https://spdx.org/licenses/Cronyx.html",
+      "referenceNumber": 689,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/font/alias/-/blob/master/COPYING",
+        "https://gitlab.freedesktop.org/xorg/font/cronyx-cyrillic/-/blob/master/COPYING",
+        "https://gitlab.freedesktop.org/xorg/font/misc-cyrillic/-/blob/master/COPYING",
+        "https://gitlab.freedesktop.org/xorg/font/screen-cyrillic/-/blob/master/COPYING"
+      ]
+    },
+    "name": "Cronyx License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

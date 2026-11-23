@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "681efe0f505345da8b296d38b267dd10",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 162407,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LGPL-3.0-or-later.json",
+        "sha256": "8b3121b3fee9998d4a87690ac69f4ec8af5f3c1e4f330abf63034337a8aa4e63"
+      },
+      "template": {
+        "bytes": 44961,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LGPL-3.0-or-later.template.txt",
+        "sha256": "5a2d695d75a998223610f949bd7b686bfe77bc61146a61b085cb04ee6ed6ec86"
+      },
+      "text": {
+        "bytes": 42098,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LGPL-3.0-or-later.txt",
+        "sha256": "996af0513df21f7496288951c41428a03c174e9e4a9d63665c57d670f845ccb1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LGPL-3.0-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LGPL-3.0-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "LGPL-3.0-or-later",
+      "name": "GNU Lesser General Public License v3.0 or later",
+      "reference": "https://spdx.org/licenses/LGPL-3.0-or-later.html",
+      "referenceNumber": 605,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+        "https://www.gnu.org/licenses/lgpl+gpl-3.0.txt",
+        "https://opensource.org/license/LGPL-3.0"
+      ]
+    },
+    "name": "GNU Lesser General Public License v3.0 or later",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bdd739ed73a04fd9aefc1de0785b06a0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12365,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/W3C-20150513.json",
+        "sha256": "e5dc7c223543c83c96c47aef97980425162c9a1317bfbfa4fd87fc4bbeae793b"
+      },
+      "template": {
+        "bytes": 1992,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/W3C-20150513.template.txt",
+        "sha256": "c434139d9f4bb30bb39d26fe5a90c8855cc116455f1bb5ea2148345d1b662cb0"
+      },
+      "text": {
+        "bytes": 1807,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/W3C-20150513.txt",
+        "sha256": "38b688e653a972897f6a875c53abbf867b261cbeba7ded0bdf100ae9907a6c19"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "W3C-20150513",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/W3C-20150513.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "W3C-20150513",
+      "name": "W3C Software Notice and Document License (2015-05-13)",
+      "reference": "https://spdx.org/licenses/W3C-20150513.html",
+      "referenceNumber": 371,
+      "seeAlso": [
+        "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+        "https://www.w3.org/copyright/software-license-2015/",
+        "https://www.w3.org/copyright/software-license-2023/"
+      ]
+    },
+    "name": "W3C Software Notice and Document License (2015-05-13)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "06a65419db9749c1b54b1609a0d15bec",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 38684,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CERN-OHL-P-2.0.json",
+        "sha256": "c9449ce592fd5d38ce6074bebe6c2c407b4690dd4d6cc20d4c2a9f5679432463"
+      },
+      "template": {
+        "bytes": 10158,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CERN-OHL-P-2.0.template.txt",
+        "sha256": "5887c22fc334ce3a3aa218d9c2290c1f1f447dfdb63eada23def2f70f8e2033a"
+      },
+      "text": {
+        "bytes": 8855,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CERN-OHL-P-2.0.txt",
+        "sha256": "eeecc593866fa1c3b80189c7e3dc0ceb77740557fa92f81771f891cc54c579cb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CERN-OHL-P-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CERN-OHL-P-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CERN-OHL-P-2.0",
+      "name": "CERN Open Hardware Licence Version 2 - Permissive",
+      "reference": "https://spdx.org/licenses/CERN-OHL-P-2.0.html",
+      "referenceNumber": 685,
+      "seeAlso": [
+        "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2"
+      ]
+    },
+    "name": "CERN Open Hardware Licence Version 2 - Permissive",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

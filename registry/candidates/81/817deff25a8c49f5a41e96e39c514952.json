@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "817deff25a8c49f5a41e96e39c514952",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1245,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/threeparttable.json",
+        "sha256": "66ef125b38713d44ac4833285c465b8361873ff6fdbc68ad790871d856bb45ab"
+      },
+      "template": {
+        "bytes": 196,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/threeparttable.template.txt",
+        "sha256": "1be7b0ccaf6adaa0430ce535d67f969c84de003b86f79639261bdac4247ea5fc"
+      },
+      "text": {
+        "bytes": 195,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/threeparttable.txt",
+        "sha256": "4a4f8efe9981e6736dedf8330b8674ea65cc3ec47749a7f37f9e97f17f0f7c5a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "threeparttable",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/threeparttable.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "threeparttable",
+      "name": "threeparttable License",
+      "reference": "https://spdx.org/licenses/threeparttable.html",
+      "referenceNumber": 530,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Threeparttable"
+      ]
+    },
+    "name": "threeparttable License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

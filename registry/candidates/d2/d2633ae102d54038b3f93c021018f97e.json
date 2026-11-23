@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d2633ae102d54038b3f93c021018f97e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16091,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TORQUE-1.1.json",
+        "sha256": "05ce1b3b5efc73e4fac61b0f83bd1bdc1ae0cfb1a0f27d0f37964952be24fdef"
+      },
+      "template": {
+        "bytes": 4409,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TORQUE-1.1.template.txt",
+        "sha256": "fc23b215f8ef4eafd9860acd8cff4c7cb25d8623f36494b945411688ddbd62aa"
+      },
+      "text": {
+        "bytes": 3998,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TORQUE-1.1.txt",
+        "sha256": "fa1d8c1d1943bef10710b469f2d0fc95fd790eac9f23f92f805d2e4a07129d2e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TORQUE-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TORQUE-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TORQUE-1.1",
+      "name": "TORQUE v2.5+ Software License v1.1",
+      "reference": "https://spdx.org/licenses/TORQUE-1.1.html",
+      "referenceNumber": 34,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/TORQUEv1.1"
+      ]
+    },
+    "name": "TORQUE v2.5+ Software License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

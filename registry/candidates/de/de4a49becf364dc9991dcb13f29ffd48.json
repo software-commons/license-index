@@ -1,0 +1,64 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "de4a49becf364dc9991dcb13f29ffd48",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7571,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-NetBSD.json",
+        "sha256": "378f1cf3a106f63e73d972e841f3b1f7f35efdc0e8fdb8eef17a54d029d2a92f"
+      },
+      "replacement_source": {
+        "bytes": 2830,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/BSD-2-Clause-NetBSD.xml",
+        "sha256": "edd4b6715ac9a060fafc03ca70c954406a880c7a606a6262d0eb496d5f0331ef"
+      },
+      "template": {
+        "bytes": 1711,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_BSD-2-Clause-NetBSD.template.txt",
+        "sha256": "d9bc49f6cbb5b25406188cdd5f655db67d8afebb8464c75d90addf3d056e6a96"
+      },
+      "text": {
+        "bytes": 1383,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_BSD-2-Clause-NetBSD.txt",
+        "sha256": "f0707f5a9326e57717c11cd0f8ec4af8ee0f65625f4b3cc6ed0d99e375f23be6"
+      }
+    },
+    "deprecated": true,
+    "identifier": "BSD-2-Clause-NetBSD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.9",
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-NetBSD.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-NetBSD",
+      "name": "BSD 2-Clause NetBSD License",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-NetBSD.html",
+      "referenceNumber": 738,
+      "seeAlso": [
+        "http://www.netbsd.org/about/redistribution.html#default"
+      ]
+    },
+    "name": "BSD 2-Clause NetBSD License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "BSD-2-Clause"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

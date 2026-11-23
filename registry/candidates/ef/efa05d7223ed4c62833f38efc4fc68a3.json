@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "efa05d7223ed4c62833f38efc4fc68a3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10267,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GD.json",
+        "sha256": "4f5cc30cee38a3ca2d763860dea4997b902654b40285664c39f08f5734d3a965"
+      },
+      "template": {
+        "bytes": 3079,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GD.template.txt",
+        "sha256": "4b58a2b8e7a0933dfebc52fa9eeb1acc61af92cc05557aa9e594cb3b4f4ff7dd"
+      },
+      "text": {
+        "bytes": 2983,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GD.txt",
+        "sha256": "5294cfc75f9d13209ae8c88ecda14e255d4ce8b27f282e924d33f7e7845ed8d7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GD",
+      "name": "GD License",
+      "reference": "https://spdx.org/licenses/GD.html",
+      "referenceNumber": 71,
+      "seeAlso": [
+        "https://libgd.github.io/manuals/2.3.0/files/license-txt.html"
+      ]
+    },
+    "name": "GD License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

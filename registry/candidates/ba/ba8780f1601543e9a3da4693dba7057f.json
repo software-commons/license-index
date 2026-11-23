@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ba8780f1601543e9a3da4693dba7057f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8884,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AMPAS.json",
+        "sha256": "c97eb2656559f29a19225b7d1154b9b994f940a06682d79d48a19b07c234a2a8"
+      },
+      "template": {
+        "bytes": 2386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AMPAS.template.txt",
+        "sha256": "bda9940d3fd8ef5e1c6f30e38a3b935b20cf8b0be442187bc6b934172a1acdf7"
+      },
+      "text": {
+        "bytes": 2192,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AMPAS.txt",
+        "sha256": "750402327d30ead99395dd862ad388ed18853d99b66d91c5105592b99501a002"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AMPAS",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AMPAS.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AMPAS",
+      "name": "Academy of Motion Picture Arts and Sciences BSD",
+      "reference": "https://spdx.org/licenses/AMPAS.html",
+      "referenceNumber": 219,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/BSD#AMPASBSD"
+      ]
+    },
+    "name": "Academy of Motion Picture Arts and Sciences BSD",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

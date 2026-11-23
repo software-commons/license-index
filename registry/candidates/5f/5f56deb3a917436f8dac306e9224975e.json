@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5f56deb3a917436f8dac306e9224975e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5365,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Xnet.json",
+        "sha256": "6ef01a2bc7093b2bfbb223caa9c4a869a93b5d960ce534fed725c1fbe28a113b"
+      },
+      "template": {
+        "bytes": 1339,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Xnet.template.txt",
+        "sha256": "b6120b3ea07c85b3a53fa17e4b6452b729ce8dc39bc4ed649ace0f08b5b0ea5a"
+      },
+      "text": {
+        "bytes": 1250,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Xnet.txt",
+        "sha256": "55105d933d1afe61d28605a020f065726931fe97e86dd1df5798fba08f6440c1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Xnet",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Xnet.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Xnet",
+      "name": "X.Net License",
+      "reference": "https://spdx.org/licenses/Xnet.html",
+      "referenceNumber": 536,
+      "seeAlso": [
+        "https://opensource.org/license/Xnet"
+      ]
+    },
+    "name": "X.Net License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

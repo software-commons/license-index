@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "16545a2f0d6d430d84cba171f603aab1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1111,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/libpri-OpenH323-exception.json",
+        "sha256": "43b2cf5890a8a8297a492f792e13f59b6fcb31dc9c190e0f2274fcbadae1d1f8"
+      },
+      "template": {
+        "bytes": 230,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/libpri-OpenH323-exception.template.txt",
+        "sha256": "f01cfb53ea90729da331f2faf36559522258adcb751eb9c479f9fef9731acc33"
+      },
+      "text": {
+        "bytes": 229,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/libpri-OpenH323-exception.txt",
+        "sha256": "a5b76fad3e9e4cdcf0d980328309295cfc6d1dd8f66478ff54f0385a6ee3516e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "libpri-OpenH323-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/libpri-OpenH323-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "libpri-OpenH323-exception",
+      "name": "libpri OpenH323 exception",
+      "reference": "https://spdx.org/licenses/libpri-OpenH323-exception.html",
+      "referenceNumber": 46,
+      "seeAlso": [
+        "https://github.com/asterisk/libpri/blob/1.6.0/README#L19-L22"
+      ]
+    },
+    "name": "libpri OpenH323 exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

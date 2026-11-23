@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "94090b68ad5543d998d358729e2504e4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 29775,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SCEA.json",
+        "sha256": "24611450052b5cf41e082624cdd83d6af9602aad5ac0dc0e8f60826851c6ca43"
+      },
+      "template": {
+        "bytes": 7415,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SCEA.template.txt",
+        "sha256": "4be9de1a4ef23f636718c51bc82c4145e5089618121a0c4a6b57e932178c3351"
+      },
+      "text": {
+        "bytes": 6638,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SCEA.txt",
+        "sha256": "0698b27d130fb6f3195e4c50361441398e88e8378a753a13840e1160f5a7e397"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "SCEA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SCEA.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SCEA",
+      "name": "SCEA Shared Source License",
+      "reference": "https://spdx.org/licenses/SCEA.html",
+      "referenceNumber": 108,
+      "seeAlso": [
+        "http://research.scea.com/scea_shared_source_license.html"
+      ]
+    },
+    "name": "SCEA Shared Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

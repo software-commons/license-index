@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6ec67baa318b475dbe6c1fed2ed2767c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7477,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-Attribution.json",
+        "sha256": "dea2b42b08277aca12c3f99c84a420452f05d55dd5ba0ff81ee3d33bd8a16f05"
+      },
+      "template": {
+        "bytes": 1881,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-Attribution.template.txt",
+        "sha256": "cd10fc6dfa3426540a9eed03cd3fbf5437bcb3382f871ea2f9d4bbbcaa6c1765"
+      },
+      "text": {
+        "bytes": 1646,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-Attribution.txt",
+        "sha256": "088b09c3bff4d190ca86eb8742ca494af321e3abd309c1c9ad9ccdd86dc5b3ef"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-Attribution",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-Attribution.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-Attribution",
+      "name": "BSD with attribution",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-Attribution.html",
+      "referenceNumber": 652,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/BSD_with_Attribution"
+      ]
+    },
+    "name": "BSD with attribution",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

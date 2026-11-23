@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7d8ba8ae1fa742ebaf38e80edb90ccb0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 26532,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FTL.json",
+        "sha256": "d9b6bdf0781879fa0ec39ee95263aecf3508d1d394e52ece63f004f6d5afff08"
+      },
+      "template": {
+        "bytes": 6708,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FTL.template.txt",
+        "sha256": "aa163960cbf311a03537f5a582a1496a9fafe8683975c7ce0e48be095a90983f"
+      },
+      "text": {
+        "bytes": 5979,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FTL.txt",
+        "sha256": "ced6622122ce451cb1ea0c3c3f507a640e2a44c075c04900ddd9fae8acb5369f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FTL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FTL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "FTL",
+      "name": "Freetype Project License",
+      "reference": "https://spdx.org/licenses/FTL.html",
+      "referenceNumber": 611,
+      "seeAlso": [
+        "http://freetype.fis.uniroma2.it/FTL.TXT",
+        "http://git.savannah.gnu.org/cgit/freetype/freetype2.git/tree/docs/FTL.TXT",
+        "http://gitlab.freedesktop.org/freetype/freetype/-/raw/master/docs/FTL.TXT"
+      ]
+    },
+    "name": "Freetype Project License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

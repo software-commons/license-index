@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "964b7849d7a54b89bd8ac01e93ea46c7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1603,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/rsync-linking-exception.json",
+        "sha256": "d893475855842a0af64d71d1921bf4bced2524012fc1bd0f8e484de748982d83"
+      },
+      "template": {
+        "bytes": 386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/rsync-linking-exception.template.txt",
+        "sha256": "463773ef7bc755eeeec6725cd1a5c3777a56183f5a38babea408ef0899b3e13c"
+      },
+      "text": {
+        "bytes": 386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/rsync-linking-exception.txt",
+        "sha256": "fef6a3fecd1353887cf2a8a135f937e5bc6b7b828ad55b4941bc39e57120948d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "rsync-linking-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/rsync-linking-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "rsync-linking-exception",
+      "name": "rsync Linking Exception",
+      "reference": "https://spdx.org/licenses/rsync-linking-exception.html",
+      "referenceNumber": 3,
+      "seeAlso": [
+        "https://github.com/RsyncProject/rsync/blob/master/COPYING"
+      ]
+    },
+    "name": "rsync Linking Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

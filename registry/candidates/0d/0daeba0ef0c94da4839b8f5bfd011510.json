@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0daeba0ef0c94da4839b8f5bfd011510",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 60636,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-NC-SA-2.0-DE.json",
+        "sha256": "8b828e48678c361cb88dc08ec1047b67222389e1d3acda45de9d2a83551743f3"
+      },
+      "template": {
+        "bytes": 17323,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-NC-SA-2.0-DE.template.txt",
+        "sha256": "204d2dca0105f94cb1e884d01bcb38fb67a3389c302bdcb8e2e50e3430de7e59"
+      },
+      "text": {
+        "bytes": 15676,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-NC-SA-2.0-DE.txt",
+        "sha256": "b9c8e57ed5574559f0045c116bc4b8e45a31541b1135635564a79462e1d2412d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-NC-SA-2.0-DE",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-NC-SA-2.0-DE.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-NC-SA-2.0-DE",
+      "name": "Creative Commons Attribution Non Commercial Share Alike 2.0 Germany",
+      "reference": "https://spdx.org/licenses/CC-BY-NC-SA-2.0-DE.html",
+      "referenceNumber": 126,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-nc-sa/2.0/de/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Non Commercial Share Alike 2.0 Germany",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

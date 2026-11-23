@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6a73f33f9965407180c6c85559e280d3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6266,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-Festival.json",
+        "sha256": "7ee9e4952a452ba0b121b919d9e7c29557b19d0b661feffb5389d51f375bd934"
+      },
+      "template": {
+        "bytes": 1539,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-Festival.template.txt",
+        "sha256": "17ea4f88a1aded2cbbe5838670b1b465286050799e4c1e657eb4b6ca9e669d75"
+      },
+      "text": {
+        "bytes": 1228,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-Festival.txt",
+        "sha256": "8ae0bc761d5f10ff26a9b13d26e8f81c2eaed5081cf0c62582df3a5aad15fa2f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-Festival",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-Festival.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-Festival",
+      "name": "MIT Festival Variant",
+      "reference": "https://spdx.org/licenses/MIT-Festival.html",
+      "referenceNumber": 244,
+      "seeAlso": [
+        "https://github.com/festvox/flite/blob/master/COPYING",
+        "https://github.com/festvox/speech_tools/blob/master/COPYING"
+      ]
+    },
+    "name": "MIT Festival Variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

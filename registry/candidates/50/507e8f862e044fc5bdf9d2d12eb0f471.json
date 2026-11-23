@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "507e8f862e044fc5bdf9d2d12eb0f471",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9811,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ECL-1.0.json",
+        "sha256": "e089abb04bbda5e8de762fd78ef621696e796689731aae57930dbd2247817ea8"
+      },
+      "template": {
+        "bytes": 2476,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ECL-1.0.template.txt",
+        "sha256": "41e89efa761bf5acdda662f7451f70cbd839591b312e33579fe4c94a40ad2aba"
+      },
+      "text": {
+        "bytes": 2425,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ECL-1.0.txt",
+        "sha256": "c3b96326d1e6bb2e8826af2d25eefb181b3deb5293f2deba3229e3c5ed26df42"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "ECL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ECL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "ECL-1.0",
+      "name": "Educational Community License v1.0",
+      "reference": "https://spdx.org/licenses/ECL-1.0.html",
+      "referenceNumber": 319,
+      "seeAlso": [
+        "https://opensource.org/license/ECL-1.0"
+      ]
+    },
+    "name": "Educational Community License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

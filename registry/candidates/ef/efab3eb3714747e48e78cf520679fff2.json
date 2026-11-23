@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "efab3eb3714747e48e78cf520679fff2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3786,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/stunnel-exception.json",
+        "sha256": "6af861362335d33bb86bc350f0ded26ae7f7a51d3ff8580ffe8a99e338f2423c"
+      },
+      "template": {
+        "bytes": 1048,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/stunnel-exception.template.txt",
+        "sha256": "71dc9d0d23fb02a378d6541d7f90d985b2c8d802e064ad9fac21a7f57955fad3"
+      },
+      "text": {
+        "bytes": 1047,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/stunnel-exception.txt",
+        "sha256": "9d9536ac2a881b5ca24756a338b12f3bf9f213287b2a065b0e23eefef4bdd5d6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "stunnel-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/stunnel-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "stunnel-exception",
+      "name": "stunnel Exception",
+      "reference": "https://spdx.org/licenses/stunnel-exception.html",
+      "referenceNumber": 6,
+      "seeAlso": [
+        "https://github.com/mtrojnar/stunnel/blob/master/COPYING.md"
+      ]
+    },
+    "name": "stunnel Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

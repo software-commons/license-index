@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fe887b08d6af45be899356cb20daa9e3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7161,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OpenVision.json",
+        "sha256": "d3b94766be6966cc81d84f0ffd7062f729686f8bfd356b58860f172f8d5f1c12"
+      },
+      "template": {
+        "bytes": 1732,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OpenVision.template.txt",
+        "sha256": "4848d92464907899ff2597b95ff8b973b323e7664fe1d47951cdc15929e8c2cd"
+      },
+      "text": {
+        "bytes": 1680,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OpenVision.txt",
+        "sha256": "a71e90df5b123331e63b50a498665f032d73c44415c216a79eaf13e15216d390"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OpenVision",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OpenVision.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OpenVision",
+      "name": "OpenVision License",
+      "reference": "https://spdx.org/licenses/OpenVision.html",
+      "referenceNumber": 85,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L66-L98",
+        "https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html",
+        "https://fedoraproject.org/wiki/Licensing:MIT#OpenVision_Variant"
+      ]
+    },
+    "name": "OpenVision License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

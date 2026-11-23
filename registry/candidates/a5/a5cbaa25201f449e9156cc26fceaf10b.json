@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a5cbaa25201f449e9156cc26fceaf10b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6728,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/gnuplot.json",
+        "sha256": "fbb363a185a1643ee2812a977e2413ef0821e16afc003f25e98cf2aeb15b5baa"
+      },
+      "template": {
+        "bytes": 1650,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/gnuplot.template.txt",
+        "sha256": "69c7c90d5a2c1a0080b2deea8023f84f0beac114ccf16bccb6e06ec5f82c51e7"
+      },
+      "text": {
+        "bytes": 1407,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/gnuplot.txt",
+        "sha256": "bf8f6d32101126a5994902c3b66d32c4cdbc1202abe13d6c4ac86d970e7c0a9e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "gnuplot",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/gnuplot.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "gnuplot",
+      "name": "gnuplot License",
+      "reference": "https://spdx.org/licenses/gnuplot.html",
+      "referenceNumber": 194,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Gnuplot"
+      ]
+    },
+    "name": "gnuplot License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

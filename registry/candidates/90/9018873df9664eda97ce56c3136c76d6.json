@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9018873df9664eda97ce56c3136c76d6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 18825,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/O-UDA-1.0.json",
+        "sha256": "5c07c4f942d2299e0369b26e17fe5a73a3c29c385f2343ea993c5e50d6095185"
+      },
+      "template": {
+        "bytes": 4571,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/O-UDA-1.0.template.txt",
+        "sha256": "fc9f901e22a938757f86768b1d3969e6b87ad6472a690fa900393515f9df276a"
+      },
+      "text": {
+        "bytes": 3434,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/O-UDA-1.0.txt",
+        "sha256": "7bf99bb9cff7b91883ff56e1eabbf673dd5d9ce163316735d42a645a5cb1f1b2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "O-UDA-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/O-UDA-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "O-UDA-1.0",
+      "name": "Open Use of Data Agreement v1.0",
+      "reference": "https://spdx.org/licenses/O-UDA-1.0.html",
+      "referenceNumber": 91,
+      "seeAlso": [
+        "https://github.com/microsoft/Open-Use-of-Data-Agreement/blob/v1.0/O-UDA-1.0.md",
+        "https://cdla.dev/open-use-of-data-agreement-v1-0/"
+      ]
+    },
+    "name": "Open Use of Data Agreement v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dd0cd1536b9f464f8d39de055694759c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10883,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Saxpath.json",
+        "sha256": "d9124a1c2e1df358e158cb96274a54f2b940fa087e0e1876df8fb136cb19fdd6"
+      },
+      "template": {
+        "bytes": 2695,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Saxpath.template.txt",
+        "sha256": "a9ac7bce78ae9fc6befb91152d2b81d9eed40287ba720ceed9861e03a986a7e2"
+      },
+      "text": {
+        "bytes": 2133,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Saxpath.txt",
+        "sha256": "a1e209261a4b23b8d8a43208e948e24ea81be4f5a6b4ad726028a0885c3eaaf7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Saxpath",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Saxpath.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Saxpath",
+      "name": "Saxpath License",
+      "reference": "https://spdx.org/licenses/Saxpath.html",
+      "referenceNumber": 574,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Saxpath_License"
+      ]
+    },
+    "name": "Saxpath License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

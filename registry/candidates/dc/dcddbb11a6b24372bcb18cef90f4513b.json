@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dcddbb11a6b24372bcb18cef90f4513b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7841,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BlueOak-1.0.0.json",
+        "sha256": "3cc2f71df061d15d713f96dc38a9eb82c13af76d8455a6ed483a5597dd1aeade"
+      },
+      "template": {
+        "bytes": 1951,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BlueOak-1.0.0.template.txt",
+        "sha256": "ed25ff0a3d7caace676bae18a2d06d6e61311b91b8f705548d91e2c1d5110ed8"
+      },
+      "text": {
+        "bytes": 1552,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BlueOak-1.0.0.txt",
+        "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BlueOak-1.0.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BlueOak-1.0.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "BlueOak-1.0.0",
+      "name": "Blue Oak Model License 1.0.0",
+      "reference": "https://spdx.org/licenses/BlueOak-1.0.0.html",
+      "referenceNumber": 137,
+      "seeAlso": [
+        "https://blueoakcouncil.org/license/1.0.0"
+      ]
+    },
+    "name": "Blue Oak Model License 1.0.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

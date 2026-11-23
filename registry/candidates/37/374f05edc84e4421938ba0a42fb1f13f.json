@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "374f05edc84e4421938ba0a42fb1f13f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3650,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/generic-xts.json",
+        "sha256": "e4b02dd0332c9d514523ec346cf700ad78ad9304614f14b7273db50a6239f2f8"
+      },
+      "template": {
+        "bytes": 835,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/generic-xts.template.txt",
+        "sha256": "af70589cb4f406fd6f3d6feafc645afbe5b6e52f6105da6fa0fea8a0324b20f7"
+      },
+      "text": {
+        "bytes": 779,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/generic-xts.txt",
+        "sha256": "0fd4e61a525b6c64e9e2c2fa2334b6234e1b9cd0e5b58b9f69753b3b9b647642"
+      }
+    },
+    "deprecated": false,
+    "identifier": "generic-xts",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/generic-xts.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "generic-xts",
+      "name": "Generic XTS License",
+      "reference": "https://spdx.org/licenses/generic-xts.html",
+      "referenceNumber": 166,
+      "seeAlso": [
+        "https://github.com/mhogomchungu/zuluCrypt/blob/master/external_libraries/tcplay/generic_xts.c"
+      ]
+    },
+    "name": "Generic XTS License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

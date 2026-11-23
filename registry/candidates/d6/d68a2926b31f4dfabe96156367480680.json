@@ -1,0 +1,61 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d68a2926b31f4dfabe96156367480680",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 45504,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AFL-2.1.json",
+        "sha256": "6984490c8574b49aa886432d93117e245c4ce94396ba11d60aec4cb7880628f0"
+      },
+      "template": {
+        "bytes": 12123,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AFL-2.1.template.txt",
+        "sha256": "54216e54f7594b7e573bfc4fea830133159cb10dcddc9b7a1fd44b6d8d712bcb"
+      },
+      "text": {
+        "bytes": 10602,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AFL-2.1.txt",
+        "sha256": "fbedf33db9a433cf87c6f0974f7e488599ee0c9446ed543235c99785ce7d22e6"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "AFL-2.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AFL-2.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "AFL-2.1",
+      "name": "Academic Free License v2.1",
+      "reference": "https://spdx.org/licenses/AFL-2.1.html",
+      "referenceNumber": 589,
+      "seeAlso": [
+        "http://opensource.linux-mirror.org/licenses/afl-2.1.txt",
+        "https://web.archive.org/web/20061013013632/http://opensource.linux-mirror.org/licenses/afl-2.1.txt",
+        "https://gitlab.freedesktop.org/dbus/dbus/-/blob/789d97ad53044f94351a958e785c2923643b346a/COPYING#L11-207"
+      ]
+    },
+    "name": "Academic Free License v2.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

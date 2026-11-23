@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e0d1fea6ce9f406892235c8653c65c58",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4111,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-feh.json",
+        "sha256": "6f835a04ce266bc45f0ef646db16dba83d409fd098f7be986e782a07f85016f3"
+      },
+      "template": {
+        "bytes": 1106,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-feh.template.txt",
+        "sha256": "754322635d14d0cc43d3c37a820375a54eb9e475b7bb904c69ddf1997335fd9c"
+      },
+      "text": {
+        "bytes": 1105,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-feh.txt",
+        "sha256": "ed74c3623b7953132928e64837175d85d14d28ca1cfe03c35b57c49a2caba448"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-feh",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-feh.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-feh",
+      "name": "feh License",
+      "reference": "https://spdx.org/licenses/MIT-feh.html",
+      "referenceNumber": 438,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MIT#feh"
+      ]
+    },
+    "name": "feh License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

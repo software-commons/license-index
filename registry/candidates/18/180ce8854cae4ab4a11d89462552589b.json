@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "180ce8854cae4ab4a11d89462552589b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 47888,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NPOSL-3.0.json",
+        "sha256": "f2d8158dda92f9772a6425237609cfa678169de8648d18bbced0f801357fa892"
+      },
+      "template": {
+        "bytes": 13185,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NPOSL-3.0.template.txt",
+        "sha256": "cc58ebad4d880adfb9f2d129927ac008392626ccc1405bdb4804e1925f5a52e3"
+      },
+      "text": {
+        "bytes": 11800,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NPOSL-3.0.txt",
+        "sha256": "72bd990f4e37c938dbb54b3063cc8a4500e7ca27410a9988976314e02858f75e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NPOSL-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NPOSL-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "NPOSL-3.0",
+      "name": "Non-Profit Open Software License 3.0",
+      "reference": "https://spdx.org/licenses/NPOSL-3.0.html",
+      "referenceNumber": 648,
+      "seeAlso": [
+        "https://opensource.org/license/NPOSL-3.0"
+      ]
+    },
+    "name": "Non-Profit Open Software License 3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

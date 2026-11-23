@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e217774ea91842ccb084e932a1d6fdc1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2556,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/UnixCrypt.json",
+        "sha256": "7b2fd3be032c04b4d8265d9f94f6215132377919fcc0e99c48d7707ed49a917e"
+      },
+      "template": {
+        "bytes": 304,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/UnixCrypt.template.txt",
+        "sha256": "f8b5d1e95e88172c368eaf31bfa1c91ab81795be9d3fafd7cbb5ce998533d796"
+      },
+      "text": {
+        "bytes": 250,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/UnixCrypt.txt",
+        "sha256": "a3103b41288b9b9831261074cda9be4c8e029b31811fda47ec76d6b59530db23"
+      }
+    },
+    "deprecated": false,
+    "identifier": "UnixCrypt",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/UnixCrypt.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "UnixCrypt",
+      "name": "UnixCrypt License",
+      "reference": "https://spdx.org/licenses/UnixCrypt.html",
+      "referenceNumber": 499,
+      "seeAlso": [
+        "https://foss.heptapod.net/python-libs/passlib/-/blob/branch/stable/LICENSE#L70",
+        "https://opensource.apple.com/source/JBoss/JBoss-737/jboss-all/jetty/src/main/org/mortbay/util/UnixCrypt.java.auto.html",
+        "https://archive.eclipse.org/jetty/8.0.1.v20110908/xref/org/eclipse/jetty/http/security/UnixCrypt.html"
+      ]
+    },
+    "name": "UnixCrypt License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

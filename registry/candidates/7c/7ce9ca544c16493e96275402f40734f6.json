@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7ce9ca544c16493e96275402f40734f6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4219,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Rdisc.json",
+        "sha256": "116e3f302ac766ee4ceb33716b005f8677201bd2a45a8b0e4542d1ab9d29bbab"
+      },
+      "template": {
+        "bytes": 1096,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Rdisc.template.txt",
+        "sha256": "80d18107fd42f77325cc438c79c953a6a7e71ffd53168e0e88ebcb39ffb7cbe2"
+      },
+      "text": {
+        "bytes": 1107,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Rdisc.txt",
+        "sha256": "a389cabf55506a4983df23b75ed34c45affef185e5b670927b914189948035b9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Rdisc",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Rdisc.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Rdisc",
+      "name": "Rdisc License",
+      "reference": "https://spdx.org/licenses/Rdisc.html",
+      "referenceNumber": 386,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Rdisc_License"
+      ]
+    },
+    "name": "Rdisc License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

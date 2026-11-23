@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "46ab3f1e4f3646a686c74ea618be544e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4876,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/openvpn-openssl-exception.json",
+        "sha256": "945b932b347d87027a5948d4e82cef0507fb59cad7994b36277c8714124630f9"
+      },
+      "template": {
+        "bytes": 1213,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/openvpn-openssl-exception.template.txt",
+        "sha256": "f59e9746c71e5d99657d13208733b46d91a461cbbbe4d89a221c30e05ebd864e"
+      },
+      "text": {
+        "bytes": 629,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/openvpn-openssl-exception.txt",
+        "sha256": "0b57e6db161b5f82667b6d0d9b69fab7052b0ce946880f5a5079ff05ed5dcb66"
+      }
+    },
+    "deprecated": false,
+    "identifier": "openvpn-openssl-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/openvpn-openssl-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "openvpn-openssl-exception",
+      "name": "OpenVPN OpenSSL Exception",
+      "reference": "https://spdx.org/licenses/openvpn-openssl-exception.html",
+      "referenceNumber": 77,
+      "seeAlso": [
+        "http://openvpn.net/index.php/license.html",
+        "https://github.com/psycopg/psycopg2/blob/2_9_3/LICENSE#L14"
+      ]
+    },
+    "name": "OpenVPN OpenSSL Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

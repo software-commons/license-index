@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5b637b32930f4baca2255dbf441c0b4d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 18076,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/IJG.json",
+        "sha256": "0676e450a46355ff8f2cb68a483bfd62115a171416cfcce11cf9551ca1688c27"
+      },
+      "template": {
+        "bytes": 4687,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/IJG.template.txt",
+        "sha256": "46cda96ea342a8cbd6fcf0ea7271278f8b45f907a81e52c2b45b6ea43c617a96"
+      },
+      "text": {
+        "bytes": 4244,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/IJG.txt",
+        "sha256": "7658542977bfdced9e1059a6c934ce4281de76d103b831007b825917dc62511a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "IJG",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/IJG.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "IJG",
+      "name": "Independent JPEG Group License",
+      "reference": "https://spdx.org/licenses/IJG.html",
+      "referenceNumber": 177,
+      "seeAlso": [
+        "http://dev.w3.org/cvsweb/Amaya/libjpeg/Attic/README?rev=1.2",
+        "https://github.com/vstroebel/jpeg-encoder/blob/main/src/fdct.rs#L1-L72",
+        "https://github.com/libjpeg-turbo/libjpeg-turbo/blob/main/README.ijg#L117-L161"
+      ]
+    },
+    "name": "Independent JPEG Group License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

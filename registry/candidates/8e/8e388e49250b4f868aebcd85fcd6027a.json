@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8e388e49250b4f868aebcd85fcd6027a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1080,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Bison-exception-1.24.json",
+        "sha256": "4c41c78c0dc7502c0d65a3ca108d27bae10be832560e5c2c4f6338b8b4590953"
+      },
+      "template": {
+        "bytes": 226,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bison-exception-1.24.template.txt",
+        "sha256": "79b4d86911d9f26f8e4da1298c524018e691db7bbff304ef8cb0019c54dded2f"
+      },
+      "text": {
+        "bytes": 225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bison-exception-1.24.txt",
+        "sha256": "24d39d806cc45a8c3fce2b556d8e13bc8cac59a9eb774cf8b03ebb62ba3625ec"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bison-exception-1.24",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bison-exception-1.24.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Bison-exception-1.24",
+      "name": "Bison exception 1.24",
+      "reference": "https://spdx.org/licenses/Bison-exception-1.24.html",
+      "referenceNumber": 15,
+      "seeAlso": [
+        "https://github.com/arineng/rwhoisd/blob/master/rwhoisd/mkdb/y.tab.c#L180"
+      ]
+    },
+    "name": "Bison exception 1.24",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

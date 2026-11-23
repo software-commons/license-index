@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8c9501f9138d408298925857bda4b2b9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10699,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-LBNL.json",
+        "sha256": "feed75ec7fc74cba076ba70afee7b17d2d741f07910002c184d9023b5c78e466"
+      },
+      "template": {
+        "bytes": 2866,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-LBNL.template.txt",
+        "sha256": "9b8170944bc1da7d6cc968acf007fd81b0abe84e5a141e91e5ba2d6831d74844"
+      },
+      "text": {
+        "bytes": 2388,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-LBNL.txt",
+        "sha256": "49d63fdb269af8c5209eb1dee7f6d21d7e790785a8774ca8928ddb1ca47ce2c7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-LBNL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-LBNL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "BSD-3-Clause-LBNL",
+      "name": "Lawrence Berkeley National Labs BSD variant license",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-LBNL.html",
+      "referenceNumber": 273,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/LBNLBSD"
+      ]
+    },
+    "name": "Lawrence Berkeley National Labs BSD variant license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

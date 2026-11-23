@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fe0c5fa7b55f48118cc74629df7423b8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7192,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/IJG-short.json",
+        "sha256": "24778dd105e1044c057870ae754b4c4ff1bf11e2ab99542bd7274f5b16a81edf"
+      },
+      "template": {
+        "bytes": 1787,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/IJG-short.template.txt",
+        "sha256": "31377edeacc553117633bae71f724375da64cfea68054c346a213387e53f2610"
+      },
+      "text": {
+        "bytes": 1640,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/IJG-short.txt",
+        "sha256": "fb29aceaac2fbe300b6d0791b007efb5a54844c971752ffb771779b49106eeae"
+      }
+    },
+    "deprecated": false,
+    "identifier": "IJG-short",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/IJG-short.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "IJG-short",
+      "name": "Independent JPEG Group License - short",
+      "reference": "https://spdx.org/licenses/IJG-short.html",
+      "referenceNumber": 10,
+      "seeAlso": [
+        "https://sourceforge.net/p/xmedcon/code/ci/master/tree/libs/ljpg/"
+      ]
+    },
+    "name": "Independent JPEG Group License - short",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

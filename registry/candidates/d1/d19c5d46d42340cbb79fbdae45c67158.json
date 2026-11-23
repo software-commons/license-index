@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d19c5d46d42340cbb79fbdae45c67158",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12292,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-OpenWebUI.json",
+        "sha256": "de6d36976972d5fef47993ad7f37937700fa47a4a90ed1e4cb38b3abb6b47713"
+      },
+      "template": {
+        "bytes": 3210,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-OpenWebUI.template.txt",
+        "sha256": "38a43f5db1da877f908b7e8b3502ec3b4f94b6495a6bdf3225180ba96d086913"
+      },
+      "text": {
+        "bytes": 2820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-OpenWebUI.txt",
+        "sha256": "53743046c7807b141d0a20c5af57a7ef42cfb6f52199a3db9182ee3337f6e7d3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-OpenWebUI",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-OpenWebUI.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-OpenWebUI",
+      "name": "BSD 3-Clause - OpenWebUI variant",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-OpenWebUI.html",
+      "referenceNumber": 435,
+      "seeAlso": [
+        "https://github.com/open-webui/open-webui/blob/main/LICENSE"
+      ]
+    },
+    "name": "BSD 3-Clause - OpenWebUI variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "25b14071e5624964bd52b85eee2e3da4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2522,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-INRIA-IMAG.json",
+        "sha256": "62a8e73fda26a7d5ce2fb4c13f2ff5cb466f2630351fa37df22206217d951a5b"
+      },
+      "template": {
+        "bytes": 554,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-INRIA-IMAG.template.txt",
+        "sha256": "01ecd20dbc8643fe21bb4d6902a50c3a3493ca03cd6a82e1cc3cef2f752c79fe"
+      },
+      "text": {
+        "bytes": 553,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-INRIA-IMAG.txt",
+        "sha256": "46a10f27acf359b66f98b0a07ff781495d0906380d2bab7c15f38ea658c1938c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-INRIA-IMAG",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-INRIA-IMAG.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-INRIA-IMAG",
+      "name": "Historical Permission Notice and Disclaimer    - INRIA-IMAG variant",
+      "reference": "https://spdx.org/licenses/HPND-INRIA-IMAG.html",
+      "referenceNumber": 422,
+      "seeAlso": [
+        "https://github.com/ppp-project/ppp/blob/master/pppd/ipv6cp.c#L75-L83"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer    - INRIA-IMAG variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

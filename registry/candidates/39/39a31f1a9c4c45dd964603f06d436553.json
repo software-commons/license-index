@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "39a31f1a9c4c45dd964603f06d436553",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3999,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HP-1989.json",
+        "sha256": "2822b57097fcf294a6417b104cd4052904658d031485d410befd431b0b7e5db1"
+      },
+      "template": {
+        "bytes": 1004,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HP-1989.template.txt",
+        "sha256": "ee108a66acbd6bde1c221187df52694260355a3b7e51209c906bcb175e816313"
+      },
+      "text": {
+        "bytes": 947,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HP-1989.txt",
+        "sha256": "9449a02544080235468891055a21335d4f038801a680e510d79989eedcd224ae"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HP-1989",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HP-1989.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HP-1989",
+      "name": "Hewlett-Packard 1989 License",
+      "reference": "https://spdx.org/licenses/HP-1989.html",
+      "referenceNumber": 403,
+      "seeAlso": [
+        "https://github.com/bleargh45/Data-UUID/blob/master/LICENSE"
+      ]
+    },
+    "name": "Hewlett-Packard 1989 License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

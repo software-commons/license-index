@@ -1,0 +1,48 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "87c50159ab034d638263066eaa8b7f74",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4044,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ALGLIB-Documentation.json",
+        "sha256": "cfd9c6d15079eea327d4ca3832c1f260ac4f458863b5fd8a1d4051aec2f3ff9b"
+      },
+      "template": {
+        "bytes": 1133,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ALGLIB-Documentation.template.txt",
+        "sha256": "7358666394a9f1033cdfca4577834b224221e35ddd78ab4e50760fa7f99929e2"
+      },
+      "text": {
+        "bytes": 1078,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ALGLIB-Documentation.txt",
+        "sha256": "e38f858c0805de630817a459e4b77dc1a86523c5a8e831ba63a49876b6ff5223"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ALGLIB-Documentation",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ALGLIB-Documentation.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "ALGLIB-Documentation",
+      "name": "ALGLIB Documentation License",
+      "reference": "https://spdx.org/licenses/ALGLIB-Documentation.html",
+      "referenceNumber": 472,
+      "seeAlso": []
+    },
+    "name": "ALGLIB Documentation License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

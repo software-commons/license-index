@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5ee3993a8eba4acbb82591919416ede8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6584,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/X11-swapped.json",
+        "sha256": "f676d0b295c673b2305caec92ba278291db75d6dbd4d2c163b3208420f2dc4df"
+      },
+      "template": {
+        "bytes": 1614,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/X11-swapped.template.txt",
+        "sha256": "29b909b2a59d98f051aab0b119d20afe2516af040402b423923bdffcbf4a9de3"
+      },
+      "text": {
+        "bytes": 1312,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/X11-swapped.txt",
+        "sha256": "ec1e04944e1afdd2c72ce51fff1e9ec4fde6ef46dfda8ac5662a51a2000549e7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "X11-swapped",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/X11-swapped.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "X11-swapped",
+      "name": "X11 swapped final paragraphs",
+      "reference": "https://spdx.org/licenses/X11-swapped.html",
+      "referenceNumber": 369,
+      "seeAlso": [
+        "https://github.com/fedeinthemix/chez-srfi/blob/master/srfi/LICENSE"
+      ]
+    },
+    "name": "X11 swapped final paragraphs",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

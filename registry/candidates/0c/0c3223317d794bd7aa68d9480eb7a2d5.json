@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0c3223317d794bd7aa68d9480eb7a2d5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10078,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/XFree86-1.1.json",
+        "sha256": "a1f5479b4549eb85d87c54495fc173860837028e341ce2a299a9a9f53a3a0dd7"
+      },
+      "template": {
+        "bytes": 2673,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/XFree86-1.1.template.txt",
+        "sha256": "07cce4580ec8f9d63891c97261def8d6de2c338348a804884f85094d62423c0e"
+      },
+      "text": {
+        "bytes": 2398,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/XFree86-1.1.txt",
+        "sha256": "f87e1172d544674ad152378494a267e8260005b45ecfaf240af8b3bddae1eac8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "XFree86-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/XFree86-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "XFree86-1.1",
+      "name": "XFree86 License 1.1",
+      "reference": "https://spdx.org/licenses/XFree86-1.1.html",
+      "referenceNumber": 420,
+      "seeAlso": [
+        "http://www.xfree86.org/current/LICENSE4.html"
+      ]
+    },
+    "name": "XFree86 License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

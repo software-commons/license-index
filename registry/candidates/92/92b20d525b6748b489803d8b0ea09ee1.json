@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "92b20d525b6748b489803d8b0ea09ee1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 43841,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SHL-0.51.json",
+        "sha256": "8ed29d1d39b745391a0fa26adaa9bb7b812a8be1f8bdd29123592067e72c5944"
+      },
+      "template": {
+        "bytes": 12281,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SHL-0.51.template.txt",
+        "sha256": "07a661e76db50f87dc5c63f0d47f3fa3951a4f746fd4ed7f0dce0cff8e7c9bc2"
+      },
+      "text": {
+        "bytes": 11399,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SHL-0.51.txt",
+        "sha256": "3a8703a66bc3ac9a0c001549499b2528b01bc0e5a12c6fd968f7551e5b320448"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "SHL-0.51",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SHL-0.51.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SHL-0.51",
+      "name": "Solderpad Hardware License, Version 0.51",
+      "reference": "https://spdx.org/licenses/SHL-0.51.html",
+      "referenceNumber": 470,
+      "seeAlso": [
+        "https://solderpad.org/licenses/SHL-0.51/"
+      ]
+    },
+    "name": "Solderpad Hardware License, Version 0.51",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

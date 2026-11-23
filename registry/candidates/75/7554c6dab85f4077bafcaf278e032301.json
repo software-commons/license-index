@@ -1,0 +1,64 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7554c6dab85f4077bafcaf278e032301",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5456,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Nunit.json",
+        "sha256": "46a4d8621b16166916f490664039eba18c0cdfea7f2d3c71e53c895e616fe8f6"
+      },
+      "replacement_source": {
+        "bytes": 1975,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/Nunit.xml",
+        "sha256": "af07f0b51b6dc2a0e27226e0c820655396a24421cd8d19d7151887d5d30f9784"
+      },
+      "template": {
+        "bytes": 1286,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_Nunit.template.txt",
+        "sha256": "9d6c33477ea8386b6fdb71baecab602e60c8453d0c8b4db48fa4e47b4b4f864e"
+      },
+      "text": {
+        "bytes": 1075,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_Nunit.txt",
+        "sha256": "2e87eb09d1a430532e8ccc37ecc7ddad34a3344238047095239e462f147de775"
+      }
+    },
+    "deprecated": true,
+    "identifier": "Nunit",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.0",
+      "detailsUrl": "https://spdx.org/licenses/Nunit.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Nunit",
+      "name": "Nunit License",
+      "reference": "https://spdx.org/licenses/Nunit.html",
+      "referenceNumber": 304,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Nunit"
+      ]
+    },
+    "name": "Nunit License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "zlib-acknowledgement"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "881cbf9dd8b243ba9667318b1c5a3a86",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2103,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Beerware.json",
+        "sha256": "0a3cb9c41d5d351be943e6151469b405d94bbd1844e66784dbff20b7f91f1d02"
+      },
+      "template": {
+        "bytes": 344,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Beerware.template.txt",
+        "sha256": "519f318a8686362194ca006a99dc0e8dafee721c39c664b4e624a5d83a539c18"
+      },
+      "text": {
+        "bytes": 266,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Beerware.txt",
+        "sha256": "991d8a58e0b4be84a174a9bd333a8ca33807a0c1ce6d23a2e25a21f7ece482d0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Beerware",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Beerware.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Beerware",
+      "name": "Beerware License",
+      "reference": "https://spdx.org/licenses/Beerware.html",
+      "referenceNumber": 643,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Beerware",
+        "https://people.freebsd.org/~phk/"
+      ]
+    },
+    "name": "Beerware License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

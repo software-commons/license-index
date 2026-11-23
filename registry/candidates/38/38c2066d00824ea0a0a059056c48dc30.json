@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "38c2066d00824ea0a0a059056c48dc30",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15186,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MS-LPL.json",
+        "sha256": "cc1b69603f8bc6232c6f54d0f2c3094e0ccdcded516c5e22f293e5685cfe8851"
+      },
+      "template": {
+        "bytes": 3450,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MS-LPL.template.txt",
+        "sha256": "d5da606aec8da0e675b5158f6509dd1be8ebc8d7958355f9a298ca0817685977"
+      },
+      "text": {
+        "bytes": 2870,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MS-LPL.txt",
+        "sha256": "2e7e676908e39585fb60e431c629ed01e3c1f52bb8a4b17b83099db68d0253da"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MS-LPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MS-LPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MS-LPL",
+      "name": "Microsoft Limited Public License",
+      "reference": "https://spdx.org/licenses/MS-LPL.html",
+      "referenceNumber": 476,
+      "seeAlso": [
+        "https://www.openhub.net/licenses/mslpl",
+        "https://github.com/gabegundy/atlserver/blob/master/License.txt",
+        "https://en.wikipedia.org/wiki/Shared_Source_Initiative#Microsoft_Limited_Public_License_(Ms-LPL)"
+      ]
+    },
+    "name": "Microsoft Limited Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

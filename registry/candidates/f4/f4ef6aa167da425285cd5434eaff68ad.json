@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f4ef6aa167da425285cd5434eaff68ad",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5933,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/zlib-acknowledgement.json",
+        "sha256": "a8c6f2ed1a64c1842ba0978ca93e1c41e6563cd9c96bc1a2caaf057613f01f77"
+      },
+      "template": {
+        "bytes": 1386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/zlib-acknowledgement.template.txt",
+        "sha256": "19ddfe093e7cc9b774a19752924804527939ecdef4901a0022e9aa3f647f1151"
+      },
+      "text": {
+        "bytes": 1133,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/zlib-acknowledgement.txt",
+        "sha256": "aeb83cf7f4c9076691f72856d3b8f64a152027e9b1a136d399198c683fd26c12"
+      }
+    },
+    "deprecated": false,
+    "identifier": "zlib-acknowledgement",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/zlib-acknowledgement.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "zlib-acknowledgement",
+      "name": "zlib/libpng License with Acknowledgement",
+      "reference": "https://spdx.org/licenses/zlib-acknowledgement.html",
+      "referenceNumber": 263,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/ZlibWithAcknowledgement"
+      ]
+    },
+    "name": "zlib/libpng License with Acknowledgement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

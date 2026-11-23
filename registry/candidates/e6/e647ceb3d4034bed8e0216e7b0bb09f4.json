@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e647ceb3d4034bed8e0216e7b0bb09f4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 26350,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Vim.json",
+        "sha256": "e6172b2bfac5d25418a8a25919464f9cfad1f04668b87559622fb9e21f154ef3"
+      },
+      "template": {
+        "bytes": 6403,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Vim.template.txt",
+        "sha256": "38fbe5144d3671d747c3fac01bda48c7151ecdbe6ebe9ccbf490b049bd239ec3"
+      },
+      "text": {
+        "bytes": 4525,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Vim.txt",
+        "sha256": "2812610ab6a7304edf0282e236f9dd2bd9e47db05f3abed7538c57173d1ed73b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Vim",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Vim.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Vim",
+      "name": "Vim License",
+      "reference": "https://spdx.org/licenses/Vim.html",
+      "referenceNumber": 396,
+      "seeAlso": [
+        "http://vimdoc.sourceforge.net/htmldoc/uganda.html"
+      ]
+    },
+    "name": "Vim License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

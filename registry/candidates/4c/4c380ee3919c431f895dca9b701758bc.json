@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4c380ee3919c431f895dca9b701758bc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 20898,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OPL-UK-3.0.json",
+        "sha256": "bf2cd292bf667e563f53c90aa36e7ce733aa8be75e46e6e971215169fb959058"
+      },
+      "template": {
+        "bytes": 4963,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OPL-UK-3.0.template.txt",
+        "sha256": "fc7b6a21a515e20a32b4abe6af148046e443040202058fcebf76e9a011846925"
+      },
+      "text": {
+        "bytes": 4469,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OPL-UK-3.0.txt",
+        "sha256": "bff83b51ab7d4a231d3d1aae23a08fd83418c6a93c35599624789c5871c5d1ab"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OPL-UK-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OPL-UK-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OPL-UK-3.0",
+      "name": "United    Kingdom Open Parliament Licence v3.0",
+      "reference": "https://spdx.org/licenses/OPL-UK-3.0.html",
+      "referenceNumber": 48,
+      "seeAlso": [
+        "https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/"
+      ]
+    },
+    "name": "United    Kingdom Open Parliament Licence v3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

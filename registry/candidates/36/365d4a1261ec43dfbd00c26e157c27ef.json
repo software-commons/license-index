@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "365d4a1261ec43dfbd00c26e157c27ef",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3823,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/dtoa.json",
+        "sha256": "13946991b901846dafe3b875e3a865f6d964e37f54b53871596838baaae72455"
+      },
+      "template": {
+        "bytes": 781,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/dtoa.template.txt",
+        "sha256": "83d1767fda23d7343303f8be7142328736a219d0bbd9fb20bb7a5762bba8b39c"
+      },
+      "text": {
+        "bytes": 685,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/dtoa.txt",
+        "sha256": "8222bef21419a8734583669c5d94ebe557f8f6309c8c53fcc0bb49953bbc790b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "dtoa",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/dtoa.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "dtoa",
+      "name": "David M. Gay dtoa License",
+      "reference": "https://spdx.org/licenses/dtoa.html",
+      "referenceNumber": 16,
+      "seeAlso": [
+        "https://github.com/SWI-Prolog/swipl-devel/blob/master/src/os/dtoa.c",
+        "https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/stdlib/mprec.h;hb=HEAD"
+      ]
+    },
+    "name": "David M. Gay dtoa License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

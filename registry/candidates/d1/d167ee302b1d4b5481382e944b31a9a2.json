@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d167ee302b1d4b5481382e944b31a9a2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3565,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-sell-MIT-disclaimer-xserver.json",
+        "sha256": "77f4d9067a109ee8fe0864f04fa3c5acffb6f368adb46063c0515df743ebd8aa"
+      },
+      "template": {
+        "bytes": 747,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-sell-MIT-disclaimer-xserver.template.txt",
+        "sha256": "6a481680f5bdc7d35f0f5dcf6027cf2ec5a503684f4373338db7182ae5b1f607"
+      },
+      "text": {
+        "bytes": 748,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-sell-MIT-disclaimer-xserver.txt",
+        "sha256": "3407f7f65c7205db74d8c62b1c93fb2ee420981e399c395a4c53cd55118af292"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-sell-MIT-disclaimer-xserver",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-sell-MIT-disclaimer-xserver.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-sell-MIT-disclaimer-xserver",
+      "name": "Historical Permission Notice and Disclaimer - sell xserver variant with MIT disclaimer",
+      "reference": "https://spdx.org/licenses/HPND-sell-MIT-disclaimer-xserver.html",
+      "referenceNumber": 47,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/xserver/-/blob/master/COPYING?ref_type=heads#L1781"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - sell xserver variant with MIT disclaimer",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

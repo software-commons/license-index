@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "095e2126ea414b98885b1c6af1a8f5fa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3205,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Abstyles.json",
+        "sha256": "d9739daabb151cdf51ee89f52050963b9905c1b8811c60f8a979f27edfb08dc1"
+      },
+      "template": {
+        "bytes": 764,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Abstyles.template.txt",
+        "sha256": "2caa80a7d1bf6248af111517d32c07ce2fcdbde320baad919aa4f160591c66f3"
+      },
+      "text": {
+        "bytes": 731,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Abstyles.txt",
+        "sha256": "4ee039bb373cec057f2cf1e320763e08da25a506b0496a09cda5efc07970f303"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Abstyles",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Abstyles.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Abstyles",
+      "name": "Abstyles License",
+      "reference": "https://spdx.org/licenses/Abstyles.html",
+      "referenceNumber": 115,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Abstyles"
+      ]
+    },
+    "name": "Abstyles License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

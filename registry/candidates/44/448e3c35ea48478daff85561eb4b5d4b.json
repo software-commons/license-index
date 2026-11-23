@@ -1,0 +1,57 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "448e3c35ea48478daff85561eb4b5d4b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 65109,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EUPL-1.2.json",
+        "sha256": "54430b900e58337aab58f2c979e8ab9d5642eb96177f93a33fc93f2cfdf36fe8"
+      },
+      "template": {
+        "bytes": 16266,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EUPL-1.2.template.txt",
+        "sha256": "a20dedefd9e7fbaf873eebb772f00a76e7f757a5e9e248d1bb064bd778c00e7e"
+      },
+      "text": {
+        "bytes": 13792,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EUPL-1.2.txt",
+        "sha256": "57fb42fbcd0b037ce528ed8f72f1ec095d67bc6825ecf1448ff39be1fe68a4b4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EUPL-1.2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EUPL-1.2.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "EUPL-1.2",
+      "name": "European Union Public License 1.2",
+      "reference": "https://spdx.org/licenses/EUPL-1.2.html",
+      "referenceNumber": 474,
+      "seeAlso": [
+        "https://joinup.ec.europa.eu/page/eupl-text-11-12",
+        "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_en.pdf",
+        "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt",
+        "https://joinup.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20EN(1).txt",
+        "http://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32017D0863",
+        "https://opensource.org/license/EUPL-1.2",
+        "https://interoperable-europe.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20EN(1).txt"
+      ]
+    },
+    "name": "European Union Public License 1.2",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b48960e3126b41bdafa1af86e11c2cbd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6541,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-HP.json",
+        "sha256": "2786e5a028f95d95f247efb157605fa813bf2c4dafdd4cd7e2fcd09a65d10af3"
+      },
+      "template": {
+        "bytes": 1535,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-HP.template.txt",
+        "sha256": "77e3903c9eba0e763a1a4be52b43c5438a1c36944f5f84467930cb25e3a1aaa5"
+      },
+      "text": {
+        "bytes": 1393,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-HP.txt",
+        "sha256": "3b5e77f6887af22b1f5dd3c9e5421a9fbc919824bb9440ad3dda126548560923"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-HP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-HP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-HP",
+      "name": "Hewlett-Packard BSD variant license",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-HP.html",
+      "referenceNumber": 504,
+      "seeAlso": [
+        "https://github.com/zdohnal/hplip/blob/master/COPYING#L939"
+      ]
+    },
+    "name": "Hewlett-Packard BSD variant license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

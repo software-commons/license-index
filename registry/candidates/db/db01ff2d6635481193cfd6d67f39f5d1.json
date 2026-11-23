@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "db01ff2d6635481193cfd6d67f39f5d1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17873,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SOFA.json",
+        "sha256": "3ec254600840b53671a27c588161eb1d9eb1e9e9dd7dcfb561fbc08c3a9c7152"
+      },
+      "template": {
+        "bytes": 4198,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SOFA.template.txt",
+        "sha256": "6ff7a53d03e40c7d0ae0cedab07dfd5b1e8ad4cf946011a39fa03d90520c8445"
+      },
+      "text": {
+        "bytes": 3869,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SOFA.txt",
+        "sha256": "b70b0570b9fb41b676d43c96da7911da00483c5ec7a6f50abbd0934f79780e0f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SOFA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SOFA.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SOFA",
+      "name": "SOFA Software License",
+      "reference": "https://spdx.org/licenses/SOFA.html",
+      "referenceNumber": 298,
+      "seeAlso": [
+        "http://www.iausofa.org/tandc.html"
+      ]
+    },
+    "name": "SOFA Software License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

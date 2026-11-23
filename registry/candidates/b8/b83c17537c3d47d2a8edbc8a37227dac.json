@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b83c17537c3d47d2a8edbc8a37227dac",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11190,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Universal-FOSS-exception-1.0.json",
+        "sha256": "49e4223dc21a2fec910a16d3f22c7bf4dd36484cb6e2f1ec2ee4d5040f5500e6"
+      },
+      "template": {
+        "bytes": 3332,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Universal-FOSS-exception-1.0.template.txt",
+        "sha256": "ddade17d2da24a6c28412d57ac47fc94fb34abb9c3f41722440122174d00c46f"
+      },
+      "text": {
+        "bytes": 3154,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Universal-FOSS-exception-1.0.txt",
+        "sha256": "e4ebf1df3a499394b364914467bf088d41e391d8bbc2781ade15d6085f436574"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Universal-FOSS-exception-1.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Universal-FOSS-exception-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Universal-FOSS-exception-1.0",
+      "name": "Universal FOSS Exception, Version 1.0",
+      "reference": "https://spdx.org/licenses/Universal-FOSS-exception-1.0.html",
+      "referenceNumber": 13,
+      "seeAlso": [
+        "https://oss.oracle.com/licenses/universal-foss-exception/"
+      ]
+    },
+    "name": "Universal FOSS Exception, Version 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

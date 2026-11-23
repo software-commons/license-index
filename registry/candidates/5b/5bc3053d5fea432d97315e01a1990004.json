@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5bc3053d5fea432d97315e01a1990004",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/gnu-javamail-exception.json",
+        "sha256": "706a98b5ba6e9406df5b7f85102afede86bf746d7f666da57f195d3565fc5742"
+      },
+      "template": {
+        "bytes": 342,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/gnu-javamail-exception.template.txt",
+        "sha256": "5e9b765c45bf00c688863dad33f33d2085fe278089fa52fd4da8190e39c83f7b"
+      },
+      "text": {
+        "bytes": 341,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/gnu-javamail-exception.txt",
+        "sha256": "b84fab2e47558745f5b77c7047a0178f13d44cbcd9a96f08bc453e2bd64cb609"
+      }
+    },
+    "deprecated": false,
+    "identifier": "gnu-javamail-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/gnu-javamail-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "gnu-javamail-exception",
+      "name": "GNU JavaMail exception",
+      "reference": "https://spdx.org/licenses/gnu-javamail-exception.html",
+      "referenceNumber": 48,
+      "seeAlso": [
+        "http://www.gnu.org/software/classpathx/javamail/javamail.html"
+      ]
+    },
+    "name": "GNU JavaMail exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

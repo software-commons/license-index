@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b74a152970194ae4aeea619c9ba79138",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 75363,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FreeImage.json",
+        "sha256": "b77d9fa757bb2a816c0b1e81c2d7402050c971dda83e2d9c2fce89f2812997b2"
+      },
+      "template": {
+        "bytes": 19933,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FreeImage.template.txt",
+        "sha256": "ad8ea7d31c18da07bd02118f8fc379f1795b4dba631ae95c82f91e70bffd3fb3"
+      },
+      "text": {
+        "bytes": 17656,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FreeImage.txt",
+        "sha256": "eb3a4cb8220bb3cfcb1fde4b07f39481afd93bc7c9eabafdcf06292611ca9b70"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FreeImage",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FreeImage.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FreeImage",
+      "name": "FreeImage Public License v1.0",
+      "reference": "https://spdx.org/licenses/FreeImage.html",
+      "referenceNumber": 659,
+      "seeAlso": [
+        "http://freeimage.sourceforge.net/freeimage-license.txt"
+      ]
+    },
+    "name": "FreeImage Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

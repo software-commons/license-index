@@ -1,0 +1,67 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "62d68f297f464134b4cf2a007b7caf1c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3995,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-2.0-with-classpath-exception.json",
+        "sha256": "da3fb41c96bfce45938bc1e4a8089e5ce9f49372b2a880b5f44e53558bebf2e7"
+      },
+      "replacement_source": {
+        "bytes": 1842,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-2.0-with-classpath-exception.xml",
+        "sha256": "832feaf6844fc5e90d91f1bc23dd1b36163db4f9174a9802db4963eadb489e61"
+      },
+      "template": {
+        "bytes": 975,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-2.0-with-classpath-exception.template.txt",
+        "sha256": "d71012c70a534733d7d14db9e2f71bae05b9513e9879ad01b1455978d3b2ee3a"
+      },
+      "text": {
+        "bytes": 974,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-2.0-with-classpath-exception.txt",
+        "sha256": "b9ca0325abe93d23b07648851fd373aee0d12ef8c42f41803b4f148e1ee4d511"
+      }
+    },
+    "deprecated": true,
+    "identifier": "GPL-2.0-with-classpath-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-with-classpath-exception.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "GPL-2.0-with-classpath-exception",
+      "name": "GNU General Public License v2.0 w/Classpath exception",
+      "reference": "https://spdx.org/licenses/GPL-2.0-with-classpath-exception.html",
+      "referenceNumber": 686,
+      "seeAlso": [
+        "https://www.gnu.org/software/classpath/license.html"
+      ]
+    },
+    "name": "GNU General Public License v2.0 w/Classpath exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-2.0 WITH Classpath-exception-2.0"
+      },
+      {
+        "for_expression": "GPL-2.0-with-classpath-exception+",
+        "target": "GPL-2.0-or-later WITH Classpath-exception-2.0"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

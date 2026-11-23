@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e0bf40309787489aa93cead9535c9fda",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1683,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/fmt-exception.json",
+        "sha256": "498882155ca920345a6cf576012ca63099eb480a753d1e39802bb278743f4990"
+      },
+      "template": {
+        "bytes": 370,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/fmt-exception.template.txt",
+        "sha256": "680483083eabe92f4e44ffcb9afa581e83c89db9ae4c869e7f8dacf681b6d2ac"
+      },
+      "text": {
+        "bytes": 336,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/fmt-exception.txt",
+        "sha256": "4768d807baac73127f8d1234dbb17ad766e243d62eadba17e507742f70a9555f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "fmt-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/fmt-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "fmt-exception",
+      "name": "fmt exception",
+      "reference": "https://spdx.org/licenses/fmt-exception.html",
+      "referenceNumber": 7,
+      "seeAlso": [
+        "https://github.com/fmtlib/fmt/blob/master/LICENSE",
+        "https://github.com/fmtlib/fmt/blob/2eb363297b24cd71a68ccfb20ff755430f17e60f/LICENSE#L22C1-L27C62"
+      ]
+    },
+    "name": "fmt exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

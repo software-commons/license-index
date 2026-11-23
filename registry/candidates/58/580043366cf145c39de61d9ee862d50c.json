@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "580043366cf145c39de61d9ee862d50c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1794,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ssh-keyscan.json",
+        "sha256": "b4a8eb314373c53648be880e16bdc601f88ed80c322f141a3ff4ed1c314cc502"
+      },
+      "template": {
+        "bytes": 297,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ssh-keyscan.template.txt",
+        "sha256": "d9ba9344d1cb54d7106c0e350e5225a13025bf140e4716ba13b47de361c515fe"
+      },
+      "text": {
+        "bytes": 252,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ssh-keyscan.txt",
+        "sha256": "a6572362c496d6ac52f9c6bef79448cb3f689ad21ef8d250cff859addc251360"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ssh-keyscan",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ssh-keyscan.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ssh-keyscan",
+      "name": "ssh-keyscan License",
+      "reference": "https://spdx.org/licenses/ssh-keyscan.html",
+      "referenceNumber": 704,
+      "seeAlso": [
+        "https://github.com/openssh/openssh-portable/blob/master/LICENCE#L82"
+      ]
+    },
+    "name": "ssh-keyscan License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

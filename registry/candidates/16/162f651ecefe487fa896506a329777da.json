@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "162f651ecefe487fa896506a329777da",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 76183,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-SA-3.0-IGO.json",
+        "sha256": "d1373832d0edd436dc751d400ff94d6a775a19f7c0f816439552b422b2dbcf7c"
+      },
+      "template": {
+        "bytes": 22429,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-SA-3.0-IGO.template.txt",
+        "sha256": "ce383e94c96cd364d088de119d57d6b5e346d2bb3ca44963672656602f42db65"
+      },
+      "text": {
+        "bytes": 20189,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-SA-3.0-IGO.txt",
+        "sha256": "f0409ed4e4d66769650b863f1150e7ce9b61be5d4330f97b3975110e733d11ed"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-SA-3.0-IGO",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-SA-3.0-IGO.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-SA-3.0-IGO",
+      "name": "Creative Commons Attribution-ShareAlike 3.0 IGO",
+      "reference": "https://spdx.org/licenses/CC-BY-SA-3.0-IGO.html",
+      "referenceNumber": 635,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-sa/3.0/igo/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution-ShareAlike 3.0 IGO",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

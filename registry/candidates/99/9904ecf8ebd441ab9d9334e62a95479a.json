@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9904ecf8ebd441ab9d9334e62a95479a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5242,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-advertising.json",
+        "sha256": "d65cb8da3f0c378644d8c2dd99efb6d38011ae693d30fac81559ff60dee2a494"
+      },
+      "template": {
+        "bytes": 1326,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-advertising.template.txt",
+        "sha256": "a44c1399ab2bd1efaa79275cf54bcd7646f3d94f4aecb11a1d176558da780021"
+      },
+      "text": {
+        "bytes": 1270,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-advertising.txt",
+        "sha256": "9c81f1a97e353c75c4eb5ea689a88ef72b55eea49ed370729872b96af0ffb1ed"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-advertising",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-advertising.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-advertising",
+      "name": "Enlightenment License (e16)",
+      "reference": "https://spdx.org/licenses/MIT-advertising.html",
+      "referenceNumber": 205,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MIT_With_Advertising"
+      ]
+    },
+    "name": "Enlightenment License (e16)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d9031f3b6980472fbe2e8918fe11f0c0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3930,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/sqlitestudio-OpenSSL-exception.json",
+        "sha256": "7e93cb366dbc676fe6fe89e2633489230f73403358f641b64352f71823bc797a"
+      },
+      "template": {
+        "bytes": 936,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/sqlitestudio-OpenSSL-exception.template.txt",
+        "sha256": "fd2b3ce94259e2060b6bbedbb5ae4e2a646e66c927ac7da9baee529e183a3840"
+      },
+      "text": {
+        "bytes": 578,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/sqlitestudio-OpenSSL-exception.txt",
+        "sha256": "687d723a06b9c78a36a9dc0108e7db489c5d3a3a8ee32f5cb380d30544ddcabe"
+      }
+    },
+    "deprecated": false,
+    "identifier": "sqlitestudio-OpenSSL-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/sqlitestudio-OpenSSL-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "sqlitestudio-OpenSSL-exception",
+      "name": "sqlitestudio OpenSSL exception",
+      "reference": "https://spdx.org/licenses/sqlitestudio-OpenSSL-exception.html",
+      "referenceNumber": 28,
+      "seeAlso": [
+        "https://github.com/pawelsalawa/sqlitestudio/blob/master/LICENSE"
+      ]
+    },
+    "name": "sqlitestudio OpenSSL exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

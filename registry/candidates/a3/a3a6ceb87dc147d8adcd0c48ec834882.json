@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a3a6ceb87dc147d8adcd0c48ec834882",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3828,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MMIXware.json",
+        "sha256": "55e78db94f483453f4d56b3c616be09a20b32553b2339fbb737e20c76e89c044"
+      },
+      "template": {
+        "bytes": 921,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MMIXware.template.txt",
+        "sha256": "4833678c957af45047b38b660fb27695bf98366f690dbda691c780ac4ce9471c"
+      },
+      "text": {
+        "bytes": 865,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MMIXware.txt",
+        "sha256": "40c3f31b74932093092d5754835c7a05c69f901aa9c295d3b819343d9c4bc176"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MMIXware",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MMIXware.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MMIXware",
+      "name": "MMIXware License",
+      "reference": "https://spdx.org/licenses/MMIXware.html",
+      "referenceNumber": 158,
+      "seeAlso": [
+        "https://gitlab.lrz.de/mmix/mmixware/-/blob/master/boilerplate.w"
+      ]
+    },
+    "name": "MMIXware License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

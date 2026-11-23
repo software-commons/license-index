@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b720f60bf6a3400386605ec96209a9b0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12268,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/W3C-19980720.json",
+        "sha256": "6290a5a7c49c909f6b640b1419dc19063e9ecc07e67d1ba81e03f0619824facc"
+      },
+      "template": {
+        "bytes": 3372,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/W3C-19980720.template.txt",
+        "sha256": "36a86ca7b0d88a3f7e29a496beddc64ea14967b7f281d781b13df9eae9ecd178"
+      },
+      "text": {
+        "bytes": 3115,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/W3C-19980720.txt",
+        "sha256": "8b3984236d53eda13af7f1b01078b33e4390608523865aa1ddbc4083e6492c95"
+      }
+    },
+    "deprecated": false,
+    "identifier": "W3C-19980720",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/W3C-19980720.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "W3C-19980720",
+      "name": "W3C Software Notice and License (1998-07-20)",
+      "reference": "https://spdx.org/licenses/W3C-19980720.html",
+      "referenceNumber": 208,
+      "seeAlso": [
+        "http://www.w3.org/Consortium/Legal/copyright-software-19980720.html"
+      ]
+    },
+    "name": "W3C Software Notice and License (1998-07-20)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

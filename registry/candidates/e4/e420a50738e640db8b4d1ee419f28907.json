@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e420a50738e640db8b4d1ee419f28907",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7998,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NCL.json",
+        "sha256": "1ec2626868840d0eb4ad83d13b5efba24095a7ce95be54db876486cfda338f1d"
+      },
+      "template": {
+        "bytes": 1837,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NCL.template.txt",
+        "sha256": "65ceef7193bda13e10cf741c685187d805b71f539cd0374aaeaddf3ecc1c888f"
+      },
+      "text": {
+        "bytes": 1508,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NCL.txt",
+        "sha256": "004758fbde3480a5d5ba92c391449d6380749d55404a508ba217ef32b23a6492"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NCL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NCL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NCL",
+      "name": "NCL Source Code License",
+      "reference": "https://spdx.org/licenses/NCL.html",
+      "referenceNumber": 670,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/pipewire/pipewire/-/blob/master/src/modules/module-filter-chain/pffft.c?ref_type=heads#L1-52"
+      ]
+    },
+    "name": "NCL Source Code License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

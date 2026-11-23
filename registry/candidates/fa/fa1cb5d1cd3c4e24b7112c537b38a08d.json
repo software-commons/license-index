@@ -1,0 +1,77 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fa1cb5d1cd3c4e24b7112c537b38a08d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 127609,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AGPL-3.0.json",
+        "sha256": "c2e444bc27f42a822f94d68f9d5c08cb94d30ba6cee23e5d834bb51d9bb63fed"
+      },
+      "replacement_source": {
+        "bytes": 44378,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/AGPL-3.0.xml",
+        "sha256": "9a282d115e82b9240727658dbaae5f4a033d11defca747faaad0bcbd915cfb2c"
+      },
+      "template": {
+        "bytes": 35788,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_AGPL-3.0.template.txt",
+        "sha256": "a1a73fb0aacec96f004875b687115cd008cf850347e321b73de4b0b09e4effa8"
+      },
+      "text": {
+        "bytes": 34020,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_AGPL-3.0.txt",
+        "sha256": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee"
+      }
+    },
+    "deprecated": true,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "AGPL-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.0",
+      "detailsUrl": "https://spdx.org/licenses/AGPL-3.0.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "AGPL-3.0",
+      "name": "GNU Affero General Public License v3.0",
+      "reference": "https://spdx.org/licenses/AGPL-3.0.html",
+      "referenceNumber": 725,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/agpl.txt",
+        "https://opensource.org/license/AGPL-3.0"
+      ]
+    },
+    "name": "GNU Affero General Public License v3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "AGPL-3.0-only"
+      },
+      {
+        "for_expression": "AGPL-3.0+",
+        "target": "AGPL-3.0-or-later"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

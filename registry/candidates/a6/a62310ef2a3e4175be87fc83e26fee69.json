@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a62310ef2a3e4175be87fc83e26fee69",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 79294,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CAL-1.0-Combined-Work-Exception.json",
+        "sha256": "5cd04e6edcfd7c5b42461bd3da627a46dfebe491188ed47592fed38e1a681f37"
+      },
+      "template": {
+        "bytes": 21046,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CAL-1.0-Combined-Work-Exception.template.txt",
+        "sha256": "2952e4318ec3c0389b12cd775fa87aed291e37902dd5127579e34673ebb537b3"
+      },
+      "text": {
+        "bytes": 16125,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CAL-1.0-Combined-Work-Exception.txt",
+        "sha256": "a24987ff96bf2e331cb7d90989fba6d7f90a37e07ac1b99927025c3fb4a5df36"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CAL-1.0-Combined-Work-Exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CAL-1.0-Combined-Work-Exception.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CAL-1.0-Combined-Work-Exception",
+      "name": "Cryptographic Autonomy License 1.0 (Combined Work Exception)",
+      "reference": "https://spdx.org/licenses/CAL-1.0-Combined-Work-Exception.html",
+      "referenceNumber": 289,
+      "seeAlso": [
+        "http://cryptographicautonomylicense.com/license-text.html",
+        "https://opensource.org/license/CAL-1.0"
+      ]
+    },
+    "name": "Cryptographic Autonomy License 1.0 (Combined Work Exception)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

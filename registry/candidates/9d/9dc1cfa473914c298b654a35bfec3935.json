@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9dc1cfa473914c298b654a35bfec3935",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8350,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TCL.json",
+        "sha256": "82cc8036431b322f068fbe2e93b87e2e1ecace64b9fa5dd763fcd79ff8e3206d"
+      },
+      "template": {
+        "bytes": 2306,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TCL.template.txt",
+        "sha256": "3c4752b4dc90674e73c50af08eca0adc6c87f4eccf858739e883eddf239fbdff"
+      },
+      "text": {
+        "bytes": 2251,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TCL.txt",
+        "sha256": "36fc2d8a56a2a014ded51e298a7e63635eb4ec62e8bedb99c82b892542ac5e7d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TCL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TCL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TCL",
+      "name": "TCL/TK License",
+      "reference": "https://spdx.org/licenses/TCL.html",
+      "referenceNumber": 335,
+      "seeAlso": [
+        "http://www.tcl.tk/software/tcltk/license.html",
+        "https://fedoraproject.org/wiki/Licensing/TCL"
+      ]
+    },
+    "name": "TCL/TK License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

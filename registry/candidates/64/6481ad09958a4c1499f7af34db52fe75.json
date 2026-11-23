@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6481ad09958a4c1499f7af34db52fe75",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2637,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/psfrag.json",
+        "sha256": "fa4dd732339c37c2dc9637e3c64ba0e43e88912146298282c5c513e99a2ac316"
+      },
+      "template": {
+        "bytes": 570,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/psfrag.template.txt",
+        "sha256": "6cf10320556d6fc538e97cd2b41dd9a2441769c44d4ae3ea84bfafc67e316be0"
+      },
+      "text": {
+        "bytes": 480,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/psfrag.txt",
+        "sha256": "b14894fe36001fc867fb48736604e34223b2565448e63fb22476eb8fc02693ec"
+      }
+    },
+    "deprecated": false,
+    "identifier": "psfrag",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/psfrag.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "psfrag",
+      "name": "psfrag License",
+      "reference": "https://spdx.org/licenses/psfrag.html",
+      "referenceNumber": 640,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/psfrag"
+      ]
+    },
+    "name": "psfrag License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

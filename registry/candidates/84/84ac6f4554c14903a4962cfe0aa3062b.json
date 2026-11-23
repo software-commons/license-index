@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "84ac6f4554c14903a4962cfe0aa3062b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7188,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Adobe-Glyph.json",
+        "sha256": "f79380087809bd8d19679d35935a3fc770f42a779e98ea2d7128cdee2a485279"
+      },
+      "template": {
+        "bytes": 1859,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Adobe-Glyph.template.txt",
+        "sha256": "a5d2278cf0bb0a785242c9e7a956ce816d3a4c052ad37e14b4ce33fd7e8af903"
+      },
+      "text": {
+        "bytes": 1608,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Adobe-Glyph.txt",
+        "sha256": "dd79441e1c46483562f10a93fadc7f593f337387d43d3381eb6449534e0117a2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Adobe-Glyph",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Adobe-Glyph.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Adobe-Glyph",
+      "name": "Adobe Glyph List License",
+      "reference": "https://spdx.org/licenses/Adobe-Glyph.html",
+      "referenceNumber": 673,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MIT#AdobeGlyph"
+      ]
+    },
+    "name": "Adobe Glyph List License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

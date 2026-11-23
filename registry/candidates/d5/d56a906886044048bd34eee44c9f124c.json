@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d56a906886044048bd34eee44c9f124c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7909,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/InnoSetup.json",
+        "sha256": "d28f87523c60c6cb24cc495a189c599ba7fcb088f4c3c63235241a4c7eaf7ee6"
+      },
+      "template": {
+        "bytes": 1723,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/InnoSetup.template.txt",
+        "sha256": "c5e491d55536e8019185eec07c172e1a4f8a8455eddfa7d27b8a3d6d5c7371b5"
+      },
+      "text": {
+        "bytes": 1424,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/InnoSetup.txt",
+        "sha256": "e1ecbc1f62a5a32cf44088dfffeb075522bef39eea4bd0f90cd57bf2577cdbbc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "InnoSetup",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/InnoSetup.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "InnoSetup",
+      "name": "Inno Setup License",
+      "reference": "https://spdx.org/licenses/InnoSetup.html",
+      "referenceNumber": 564,
+      "seeAlso": [
+        "https://github.com/jrsoftware/issrc/blob/HEAD/license.txt"
+      ]
+    },
+    "name": "Inno Setup License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

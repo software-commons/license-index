@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f95e290301924ceabe9b4c3a5fbbfc0f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6877,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-first-lines.json",
+        "sha256": "794f28ba2317417af9133dcb3f747ac2cc9d7724c0a095503131edb8e68e86af"
+      },
+      "template": {
+        "bytes": 1478,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause-first-lines.template.txt",
+        "sha256": "157e5576a204f0112949a0ee9e9067b99684cbfe0cd0be58a91f03750b5cadb6"
+      },
+      "text": {
+        "bytes": 1328,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause-first-lines.txt",
+        "sha256": "21a068bc5c91ba13b42a0bc49ca79ddc1c0cd7de22ccefec7439d832f7b05def"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause-first-lines",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-first-lines.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-first-lines",
+      "name": "BSD 2-Clause - first lines requirement",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-first-lines.html",
+      "referenceNumber": 734,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L664-L690",
+        "https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html"
+      ]
+    },
+    "name": "BSD 2-Clause - first lines requirement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

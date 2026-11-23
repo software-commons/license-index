@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "564caf4fdc4748468244f715d7228be8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2836,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/APAFML.json",
+        "sha256": "4f22583968048d6677a7032781309b1885661cdf0c727baa17cc7d0e38eddebc"
+      },
+      "template": {
+        "bytes": 673,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/APAFML.template.txt",
+        "sha256": "bc9c2dfb2b728cdec22f92cc9ce27e30b67aca02d5174e8cf288c5c3ee930ca1"
+      },
+      "text": {
+        "bytes": 617,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/APAFML.txt",
+        "sha256": "708c77776f111da3d7aa6228b78d95e45fb1af359f6144b8655837abb8fc7993"
+      }
+    },
+    "deprecated": false,
+    "identifier": "APAFML",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/APAFML.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "APAFML",
+      "name": "Adobe Postscript AFM License",
+      "reference": "https://spdx.org/licenses/APAFML.html",
+      "referenceNumber": 58,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/AdobePostscriptAFM"
+      ]
+    },
+    "name": "Adobe Postscript AFM License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4b08a94f06124a7e8360f9f7ff7a401a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3519,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Bitstream-Charter.json",
+        "sha256": "997b2d0eec0a794781bf961d43b7ae3e5bbaa5a7d2e590d14d8d2a4eaf61e980"
+      },
+      "template": {
+        "bytes": 658,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bitstream-Charter.template.txt",
+        "sha256": "204af8ed685b192ec818765617ceff4bbe3a1ab377b84b84dda9e31082aa8345"
+      },
+      "text": {
+        "bytes": 572,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bitstream-Charter.txt",
+        "sha256": "fca800e1a135f718196f1207c55183d7bb75ac588d7a58163a0d89a10e1a2efc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bitstream-Charter",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bitstream-Charter.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Bitstream-Charter",
+      "name": "Bitstream Charter Font License",
+      "reference": "https://spdx.org/licenses/Bitstream-Charter.html",
+      "referenceNumber": 314,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Charter#License_Text",
+        "https://raw.githubusercontent.com/blackhole89/notekit/master/data/fonts/Charter%20license.txt"
+      ]
+    },
+    "name": "Bitstream Charter Font License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

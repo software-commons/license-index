@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9cf23bf0e2984aae8ff2b68605b4e48b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2789,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SSH-short.json",
+        "sha256": "c186b29c653f03adcddb622d6ca4a6e51bf19f1356e2f5a267e71cdee54eced1"
+      },
+      "template": {
+        "bytes": 326,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SSH-short.template.txt",
+        "sha256": "2eef36c4323d6ca6f8cd7ef52c3fd908b9ea0e3818e3b0402827329cfe4e8ae4"
+      },
+      "text": {
+        "bytes": 326,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SSH-short.txt",
+        "sha256": "1aa57d2704f6783460f2750a9f3217d083ed5161eb95438ca43a5674213a7128"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SSH-short",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SSH-short.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SSH-short",
+      "name": "SSH short notice",
+      "reference": "https://spdx.org/licenses/SSH-short.html",
+      "referenceNumber": 709,
+      "seeAlso": [
+        "https://github.com/openssh/openssh-portable/blob/1b11ea7c58cd5c59838b5fa574cd456d6047b2d4/pathnames.h",
+        "http://web.mit.edu/kolya/.f/root/athena.mit.edu/sipb.mit.edu/project/openssh/OldFiles/src/openssh-2.9.9p2/ssh-add.1",
+        "https://joinup.ec.europa.eu/svn/lesoll/trunk/italc/lib/src/dsa_key.cpp"
+      ]
+    },
+    "name": "SSH short notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

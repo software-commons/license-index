@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "01a49fdf7f9f493483aaa17e2a17130b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5267,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-0.json",
+        "sha256": "fd0b20c049fa8c284e08cac7c9e65bc97a8abc756cf3b85cb45376bc110767a5"
+      },
+      "template": {
+        "bytes": 1085,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-0.template.txt",
+        "sha256": "c897e948891e3e587ba8e14acb51743a3ec69a671ce5a0f07f25ddf24f73de7a"
+      },
+      "text": {
+        "bytes": 915,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-0.txt",
+        "sha256": "59746d6285ffa44bfc7ecada352aa5d6a20dc8eab418a60ce091cc739012c135"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "MIT-0",
+      "name": "MIT No Attribution",
+      "reference": "https://spdx.org/licenses/MIT-0.html",
+      "referenceNumber": 75,
+      "seeAlso": [
+        "https://github.com/aws/mit-0",
+        "https://romanrm.net/mit-zero",
+        "https://github.com/awsdocs/aws-cloud9-user-guide/blob/master/LICENSE-SAMPLECODE"
+      ]
+    },
+    "name": "MIT No Attribution",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

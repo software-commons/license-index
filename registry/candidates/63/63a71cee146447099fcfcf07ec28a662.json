@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "63a71cee146447099fcfcf07ec28a662",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 28696,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ClArtistic.json",
+        "sha256": "6f2db7fce301574511c6b18a2d00fcb4f1ef898d69bf788a04973247f5be795d"
+      },
+      "template": {
+        "bytes": 7449,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ClArtistic.template.txt",
+        "sha256": "5437daceebf4103ec8897ed373b31b99712a167476b73b2148d4df9ed6732300"
+      },
+      "text": {
+        "bytes": 6389,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ClArtistic.txt",
+        "sha256": "70fbadfe7d99a766987cba5748021824ce261ea6fa6147a1ae6a451f100cb90e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ClArtistic",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ClArtistic.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "ClArtistic",
+      "name": "Clarified Artistic License",
+      "reference": "https://spdx.org/licenses/ClArtistic.html",
+      "referenceNumber": 97,
+      "seeAlso": [
+        "http://gianluca.dellavedova.org/2011/01/03/clarified-artistic-license/",
+        "http://www.ncftp.com/ncftp/doc/LICENSE.txt"
+      ]
+    },
+    "name": "Clarified Artistic License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

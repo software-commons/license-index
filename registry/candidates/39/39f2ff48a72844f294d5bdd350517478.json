@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "39f2ff48a72844f294d5bdd350517478",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9108,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Caldera.json",
+        "sha256": "9b0436f94dfd6b08b660ab00ec783d0a9c2bf2a3d6001d66f460e364274c8369"
+      },
+      "template": {
+        "bytes": 2553,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Caldera.template.txt",
+        "sha256": "3e680c27fd3a51147d7d9a572affec514d9320472d508214092eda2405b98233"
+      },
+      "text": {
+        "bytes": 2577,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Caldera.txt",
+        "sha256": "fc237785d2ebe63d4ff8e52b3ece122afdadacbc187b5d092fc37042d6065c61"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Caldera",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Caldera.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Caldera",
+      "name": "Caldera License",
+      "reference": "https://spdx.org/licenses/Caldera.html",
+      "referenceNumber": 89,
+      "seeAlso": [
+        "http://www.lemis.com/grog/UNIX/ancient-source-all.pdf"
+      ]
+    },
+    "name": "Caldera License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

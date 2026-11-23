@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ef138d4ca2634d21b4c29c6b60f5805c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1693,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/CGAL-linking-exception.json",
+        "sha256": "941dd5fa24cd11d655cc661b19f5510b8bf93e9abab7db8a270ac21221cefa45"
+      },
+      "template": {
+        "bytes": 350,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CGAL-linking-exception.template.txt",
+        "sha256": "fb3d09a64c7e5ca6d6c58b60cc2bee42fd38578bb9d78eefd77a9c40c2d4b8a4"
+      },
+      "text": {
+        "bytes": 259,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CGAL-linking-exception.txt",
+        "sha256": "69d6ec487ad96b249f8682fcf7b4405c38d09a9f50c6defdfe31e2a8a4fa3693"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CGAL-linking-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CGAL-linking-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "CGAL-linking-exception",
+      "name": "CGAL Linking Exception",
+      "reference": "https://spdx.org/licenses/CGAL-linking-exception.html",
+      "referenceNumber": 47,
+      "seeAlso": [
+        "https://github.com/openscad/openscad/blob/openscad-2021.01/COPYING#L3",
+        "https://github.com/floriankirsch/OpenCSG/blob/opencsg-1-4-2-release/license.txt#L3"
+      ]
+    },
+    "name": "CGAL Linking Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

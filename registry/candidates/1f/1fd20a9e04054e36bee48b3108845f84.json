@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1fd20a9e04054e36bee48b3108845f84",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 89720,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SNIA.json",
+        "sha256": "d02f478e7e641b1924d8e5e4d75cd0887028a7a6c73e285fa52aa887f7196a46"
+      },
+      "template": {
+        "bytes": 24689,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SNIA.template.txt",
+        "sha256": "465ccbae679fa558d75d4db22a31d8ff65572584dd57c98e8eaeb580d6181695"
+      },
+      "text": {
+        "bytes": 21717,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SNIA.txt",
+        "sha256": "91d5b2dd186cc5d201f35feba2106703457c4746b3f2cc677587c83887b0de2d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SNIA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SNIA.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SNIA",
+      "name": "SNIA Public License 1.1",
+      "reference": "https://spdx.org/licenses/SNIA.html",
+      "referenceNumber": 432,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/SNIA_Public_License"
+      ]
+    },
+    "name": "SNIA Public License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

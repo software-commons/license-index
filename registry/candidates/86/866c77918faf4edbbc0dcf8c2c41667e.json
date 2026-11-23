@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "866c77918faf4edbbc0dcf8c2c41667e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2539,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/i2p-gpl-java-exception.json",
+        "sha256": "669784131e7e82190578e2d982b58ddcfa4800b05ae236159fe81b5e0bb8c732"
+      },
+      "template": {
+        "bytes": 612,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/i2p-gpl-java-exception.template.txt",
+        "sha256": "ba30646b9015f910dcbada09704fda74606886b79b62ebe9d349b7066602ac2b"
+      },
+      "text": {
+        "bytes": 605,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/i2p-gpl-java-exception.txt",
+        "sha256": "fc6ba35632afecfa4160f6035c4bb52c51347cd71a4ad34c4f5a6f7d8a475c5b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "i2p-gpl-java-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/i2p-gpl-java-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "i2p-gpl-java-exception",
+      "name": "i2p GPL+Java Exception",
+      "reference": "https://spdx.org/licenses/i2p-gpl-java-exception.html",
+      "referenceNumber": 57,
+      "seeAlso": [
+        "http://geti2p.net/en/get-involved/develop/licenses#java_exception"
+      ]
+    },
+    "name": "i2p GPL+Java Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e9e4a9ee6d1d47bc99d3e415cb3b5d64",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8351,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DocBook-XML.json",
+        "sha256": "873aba8fc008a04e86beec4e6997e509c27743e0b2b734df08ff951c05de98e0"
+      },
+      "template": {
+        "bytes": 2086,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DocBook-XML.template.txt",
+        "sha256": "6b4696335c36d2d2d9faaf5419d029be1e7cc6ac1283f37bec6ca32f9b40cea8"
+      },
+      "text": {
+        "bytes": 1999,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DocBook-XML.txt",
+        "sha256": "0505354efe9c3b3d01c49a03bfe5e19358174f112f683c63f36fa2f723368764"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DocBook-XML",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DocBook-XML.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DocBook-XML",
+      "name": "DocBook XML License",
+      "reference": "https://spdx.org/licenses/DocBook-XML.html",
+      "referenceNumber": 220,
+      "seeAlso": [
+        "https://github.com/docbook/xslt10-stylesheets/blob/efd62655c11cc8773708df7a843613fa1e932bf8/xsl/COPYING#L27"
+      ]
+    },
+    "name": "DocBook XML License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

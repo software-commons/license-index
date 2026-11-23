@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "52572400f717469bb77c991eda3751ae",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15110,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MS-RL.json",
+        "sha256": "0c94d9f5bee9e50bad7e95f34f87b70201754a6a700893c4372357110a122ac7"
+      },
+      "template": {
+        "bytes": 3647,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MS-RL.template.txt",
+        "sha256": "497d2a0b81081f8139de070d947b2e6bc4a1ec0911f94082a5b4ea128e940bbc"
+      },
+      "text": {
+        "bytes": 3058,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MS-RL.txt",
+        "sha256": "7c69e20ff8633d1b5135126aa9921a2156f6a52b355e92812a084211afdd5d38"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MS-RL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MS-RL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "MS-RL",
+      "name": "Microsoft Reciprocal License",
+      "reference": "https://spdx.org/licenses/MS-RL.html",
+      "referenceNumber": 356,
+      "seeAlso": [
+        "http://www.microsoft.com/opensource/licenses.mspx",
+        "https://opensource.org/license/MS-RL"
+      ]
+    },
+    "name": "Microsoft Reciprocal License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

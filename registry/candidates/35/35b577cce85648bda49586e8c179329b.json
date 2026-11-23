@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "35b577cce85648bda49586e8c179329b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6164,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-export-US-modify.json",
+        "sha256": "9baf8922780ad90d0762bd39f9344e0107fbb6969ddeb95bd389e8a3e0da8efb"
+      },
+      "template": {
+        "bytes": 1408,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-export-US-modify.template.txt",
+        "sha256": "b27f34b092a17cfb0ad17dc7eac5f306fd36fe7daf6247a6db0a15aff2ed91be"
+      },
+      "text": {
+        "bytes": 1272,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-export-US-modify.txt",
+        "sha256": "9f8636b1c04b96616d14bc2e609606742dd5ed4479fca628f465b94bfb997da7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-export-US-modify",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-export-US-modify.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-export-US-modify",
+      "name": "HPND with US Government export control warning and modification rqmt",
+      "reference": "https://spdx.org/licenses/HPND-export-US-modify.html",
+      "referenceNumber": 286,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L1157-L1182",
+        "https://github.com/pythongssapi/k5test/blob/v0.10.3/K5TEST-LICENSE.txt"
+      ]
+    },
+    "name": "HPND with US Government export control warning and modification rqmt",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b2efe13fe4954ab7867a88c4f8fecb22",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1677,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSFAP.json",
+        "sha256": "5f4e976c23bfb97b40caa352e654e9f93c6daf754daea43d5369152549e0a877"
+      },
+      "template": {
+        "bytes": 303,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSFAP.template.txt",
+        "sha256": "6e0565ba697feb73ca934961dc4075a0ae9608be262a72f0433c810ef1a6950e"
+      },
+      "text": {
+        "bytes": 225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSFAP.txt",
+        "sha256": "99cb91dacd5714a701749ec47239015726beec5fc86a5c94a4873778824b16d7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSFAP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSFAP.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "FSFAP",
+      "name": "FSF All Permissive License",
+      "reference": "https://spdx.org/licenses/FSFAP.html",
+      "referenceNumber": 251,
+      "seeAlso": [
+        "https://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html"
+      ]
+    },
+    "name": "FSF All Permissive License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

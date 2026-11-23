@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1630eca87e1049d9a0e7d695f9ba7476",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 96131,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CECILL-1.1.json",
+        "sha256": "f52dbee906546c0c766d68209cce9bdf0da28c9dfa76b03db88e0d0a08f6928a"
+      },
+      "template": {
+        "bytes": 24922,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CECILL-1.1.template.txt",
+        "sha256": "2a0370358beafb06ea2ff80e6182021e059ec3093a405800732c92cac8b1e266"
+      },
+      "text": {
+        "bytes": 21219,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CECILL-1.1.txt",
+        "sha256": "f6e7067cb4f0ce195cc66767bad5f527aec66be5e29142c9fad984efb7aadc73"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CECILL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CECILL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CECILL-1.1",
+      "name": "CeCILL Free Software License Agreement v1.1",
+      "reference": "https://spdx.org/licenses/CECILL-1.1.html",
+      "referenceNumber": 466,
+      "seeAlso": [
+        "http://www.cecill.info/licences/Licence_CeCILL_V1.1-US.html"
+      ]
+    },
+    "name": "CeCILL Free Software License Agreement v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

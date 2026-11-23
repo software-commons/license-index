@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e64d212f14d54d73981567174ee5684a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3151,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/bcrypt-Solar-Designer.json",
+        "sha256": "2361fc7b069ddb3c9c9bd1c17362aba5b14dc6f8f4299044655cba1cd0262bf4"
+      },
+      "template": {
+        "bytes": 650,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/bcrypt-Solar-Designer.template.txt",
+        "sha256": "b97e1a2e9604edc4b0ab4a4db0237c14e4840ad99c5a42c23509a45907bc80b2"
+      },
+      "text": {
+        "bytes": 543,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/bcrypt-Solar-Designer.txt",
+        "sha256": "29b9403d476147aa0ac0be2c3845c187a25a72c67d6250de823e24ae85b224a7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "bcrypt-Solar-Designer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/bcrypt-Solar-Designer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "bcrypt-Solar-Designer",
+      "name": "bcrypt Solar Designer License",
+      "reference": "https://spdx.org/licenses/bcrypt-Solar-Designer.html",
+      "referenceNumber": 360,
+      "seeAlso": [
+        "https://github.com/bcrypt-ruby/bcrypt-ruby/blob/master/ext/mri/crypt_blowfish.c"
+      ]
+    },
+    "name": "bcrypt Solar Designer License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

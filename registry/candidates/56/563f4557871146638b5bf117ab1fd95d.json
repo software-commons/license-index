@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "563f4557871146638b5bf117ab1fd95d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 63479,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-SA-2.1-JP.json",
+        "sha256": "d87e7b06843aadecaff1d2a08008d2d97170f1d390f89cbe1089abf35ec3be02"
+      },
+      "template": {
+        "bytes": 18391,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-SA-2.1-JP.template.txt",
+        "sha256": "ec19bd34fb95cf87f1f4e72515a8142fc598fe9f68e566fa41b91a6ef516138a"
+      },
+      "text": {
+        "bytes": 16303,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-SA-2.1-JP.txt",
+        "sha256": "3149d336715b0a15e7dbc6454efd13a363ceab2e60c15264cb48252da0b03736"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-SA-2.1-JP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-SA-2.1-JP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-SA-2.1-JP",
+      "name": "Creative Commons Attribution Share Alike 2.1 Japan",
+      "reference": "https://spdx.org/licenses/CC-BY-SA-2.1-JP.html",
+      "referenceNumber": 566,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-sa/2.1/jp/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Share Alike 2.1 Japan",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

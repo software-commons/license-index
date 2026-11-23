@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8d72d60dd13640599dc32c015ae63433",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8703,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ngrep.json",
+        "sha256": "0b47dc0b36f0beac22a72e31636d81a1ec058c4d32cb3ef942912254c330a718"
+      },
+      "template": {
+        "bytes": 2119,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ngrep.template.txt",
+        "sha256": "7dcddb90ddce37d7b2ec3f69bf725f9e0758739f77b67a9b0e340a47841afc2d"
+      },
+      "text": {
+        "bytes": 1840,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ngrep.txt",
+        "sha256": "a995449178fc587d652efb9a300d2db482a376c800ca3ce7346d8eeb613ba4dc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ngrep",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ngrep.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ngrep",
+      "name": "ngrep License",
+      "reference": "https://spdx.org/licenses/ngrep.html",
+      "referenceNumber": 719,
+      "seeAlso": [
+        "https://github.com/jpr5/ngrep/blob/master/LICENSE"
+      ]
+    },
+    "name": "ngrep License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

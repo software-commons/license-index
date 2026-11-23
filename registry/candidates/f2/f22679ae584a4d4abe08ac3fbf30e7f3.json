@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f22679ae584a4d4abe08ac3fbf30e7f3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13757,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EUDatagrid.json",
+        "sha256": "613abbcd3bd4f198f982fc5766dfe6b8c6406c513738711b52e8c679c1011948"
+      },
+      "template": {
+        "bytes": 3598,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EUDatagrid.template.txt",
+        "sha256": "6d707c796fce0c7dbefd70a7e9cf8e589c12166b24e739493d12e5debfd050da"
+      },
+      "text": {
+        "bytes": 3199,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EUDatagrid.txt",
+        "sha256": "6508739a64a180fd64de79d04b3b297bca7a9f10d34e18da5b2502101c3a0dad"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EUDatagrid",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EUDatagrid.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "EUDatagrid",
+      "name": "EU DataGrid Software License",
+      "reference": "https://spdx.org/licenses/EUDatagrid.html",
+      "referenceNumber": 210,
+      "seeAlso": [
+        "http://eu-datagrid.web.cern.ch/eu-datagrid/license.html",
+        "https://opensource.org/license/EUDatagrid"
+      ]
+    },
+    "name": "EU DataGrid Software License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

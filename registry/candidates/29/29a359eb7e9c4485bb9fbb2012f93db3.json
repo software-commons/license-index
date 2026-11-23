@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "29a359eb7e9c4485bb9fbb2012f93db3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 88914,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/RSCPL.json",
+        "sha256": "dd3b8510baa32eef792030aa38922e39f89223630e257e0c1c45045cbfb5572d"
+      },
+      "template": {
+        "bytes": 23855,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/RSCPL.template.txt",
+        "sha256": "721ff3b6034aedfe3ac5172a9a46dd6b2bda2e525570186968ba625053a9b4d8"
+      },
+      "text": {
+        "bytes": 21050,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/RSCPL.txt",
+        "sha256": "190ee7c947dc7f20be4345d5fa9ea09e6fceaa5df0b02e87c6689cfbc3b6ee13"
+      }
+    },
+    "deprecated": false,
+    "identifier": "RSCPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/RSCPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "RSCPL",
+      "name": "Ricoh Source Code Public License",
+      "reference": "https://spdx.org/licenses/RSCPL.html",
+      "referenceNumber": 554,
+      "seeAlso": [
+        "http://wayback.archive.org/web/20060715140826/http://www.risource.org/RPL/RPL-1.0A.shtml",
+        "https://opensource.org/license/RSCPL"
+      ]
+    },
+    "name": "Ricoh Source Code Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "11eb5f2479124ec8a5802f2522166db7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8004,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Unicode-3.0.json",
+        "sha256": "d76cb673e645f944a2fb3255be1772525761653fb6b529818b5ec2ea30581b6a"
+      },
+      "template": {
+        "bytes": 2081,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Unicode-3.0.template.txt",
+        "sha256": "023b64221a50fa3ea90d2dbedb7dc5af07c2920ecb2ee465d7dbdb900a63b677"
+      },
+      "text": {
+        "bytes": 1995,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Unicode-3.0.txt",
+        "sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Unicode-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Unicode-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Unicode-3.0",
+      "name": "Unicode License v3",
+      "reference": "https://spdx.org/licenses/Unicode-3.0.html",
+      "referenceNumber": 147,
+      "seeAlso": [
+        "https://www.unicode.org/license.txt"
+      ]
+    },
+    "name": "Unicode License v3",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4534c49cd42c457f96d5d0e51a996539",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 21321,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OGTSL.json",
+        "sha256": "b4866f20b5ac89115043bcec9d083b72e914cb94c268f4daba9a28b7794072f7"
+      },
+      "template": {
+        "bytes": 5753,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OGTSL.template.txt",
+        "sha256": "906bb8c77b2816089ee578b412519cd287ac360ba73ab0b235d5d35af23ebb3e"
+      },
+      "text": {
+        "bytes": 5277,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OGTSL.txt",
+        "sha256": "1866b77e78b70d1ef5dfd7768fac63ea25e31837c4520be4eed553c9af792908"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OGTSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OGTSL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "OGTSL",
+      "name": "Open Group Test Suite License",
+      "reference": "https://spdx.org/licenses/OGTSL.html",
+      "referenceNumber": 279,
+      "seeAlso": [
+        "http://www.opengroup.org/testing/downloads/The_Open_Group_TSL.txt",
+        "https://opensource.org/license/OGTSL"
+      ]
+    },
+    "name": "Open Group Test Suite License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0b1a2b715b6e4fd6a3864f8bd9dac978",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 22038,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Parity-7.0.0.json",
+        "sha256": "38dcddbae667107b888cdd077119741a475444e7aff4a95d6e1686dd25ea9d84"
+      },
+      "template": {
+        "bytes": 5774,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Parity-7.0.0.template.txt",
+        "sha256": "cc9013ea701154464669ae85225db3bbaf804f169f960559550af29f09eecec4"
+      },
+      "text": {
+        "bytes": 3524,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Parity-7.0.0.txt",
+        "sha256": "5b3bf2359dfb9f95483270da7833be8fcc9e1758abffabb045991ec7c51ef796"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Parity-7.0.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Parity-7.0.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Parity-7.0.0",
+      "name": "The Parity Public License 7.0.0",
+      "reference": "https://spdx.org/licenses/Parity-7.0.0.html",
+      "referenceNumber": 456,
+      "seeAlso": [
+        "https://paritylicense.com/versions/7.0.0.html"
+      ]
+    },
+    "name": "The Parity Public License 7.0.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

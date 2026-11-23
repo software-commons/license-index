@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4a8c210611d04ad1beb67bff9d15184c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1766,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSFUL.json",
+        "sha256": "347b5120063c781601b42c08feeb5c9e8a1e0c139f8af39a7b9ad2b385b43599"
+      },
+      "template": {
+        "bytes": 296,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSFUL.template.txt",
+        "sha256": "7b5c16749586e682b730805b49bee9f9bf06ad4f564ae170dbd213ba186346c2"
+      },
+      "text": {
+        "bytes": 198,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSFUL.txt",
+        "sha256": "a5e99f55b10212abd954f092b65ef5d4cf4047071fe20be307406a148a342c35"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSFUL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSFUL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSFUL",
+      "name": "FSF Unlimited License",
+      "reference": "https://spdx.org/licenses/FSFUL.html",
+      "referenceNumber": 154,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/FSF_Unlimited_License"
+      ]
+    },
+    "name": "FSF Unlimited License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "948429e4d0604780960e6530293ca743",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8630,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NCSA.json",
+        "sha256": "320db949a05fad4804e07fc3c52a6860784b0640f8c3bbea90715e45a3faadab"
+      },
+      "template": {
+        "bytes": 2036,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NCSA.template.txt",
+        "sha256": "0e021a87da89f75875f834eaeb784e37836ea283025652671054bf7c23235e14"
+      },
+      "text": {
+        "bytes": 1700,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NCSA.txt",
+        "sha256": "b31bbfd06e221b39e1a877fb3f91b32fe9e88c87c1b46d11cd2bd5c822ec71e3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NCSA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NCSA.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "NCSA",
+      "name": "University of Illinois/NCSA Open Source License",
+      "reference": "https://spdx.org/licenses/NCSA.html",
+      "referenceNumber": 483,
+      "seeAlso": [
+        "http://otm.illinois.edu/uiuc_openSource",
+        "https://opensource.org/license/NCSA"
+      ]
+    },
+    "name": "University of Illinois/NCSA Open Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

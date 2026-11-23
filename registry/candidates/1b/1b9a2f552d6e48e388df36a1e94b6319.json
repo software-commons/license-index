@@ -1,0 +1,76 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1b9a2f552d6e48e388df36a1e94b6319",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 78896,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GFDL-1.2.json",
+        "sha256": "688710f1ffc284802e90dd23b983961cd9637df7c5185278c3327d8add8c8540"
+      },
+      "replacement_source": {
+        "bytes": 27306,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GFDL-1.2.xml",
+        "sha256": "b5029e0d13deb4464c712ca8189e0d17abc9b35d655f072eeeac85ec5161403c"
+      },
+      "template": {
+        "bytes": 21760,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GFDL-1.2.template.txt",
+        "sha256": "511a468b7e2e5dca6937999aa5ff46dd4e2e47cdee52948af710312e211f6954"
+      },
+      "text": {
+        "bytes": 20272,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GFDL-1.2.txt",
+        "sha256": "1118a91a3290bc8981f922dfcffc1a619592c007aa31b7a98cee694d933c86ce"
+      }
+    },
+    "deprecated": true,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GFDL-1.2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.0",
+      "detailsUrl": "https://spdx.org/licenses/GFDL-1.2.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "GFDL-1.2",
+      "name": "GNU Free Documentation License v1.2",
+      "reference": "https://spdx.org/licenses/GFDL-1.2.html",
+      "referenceNumber": 296,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"
+      ]
+    },
+    "name": "GNU Free Documentation License v1.2",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GFDL-1.2-only"
+      },
+      {
+        "for_expression": "GFDL-1.2+",
+        "target": "GFDL-1.2-or-later"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

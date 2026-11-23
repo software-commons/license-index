@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1923f716a2514f53a0cef7ed90204738",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14929,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NICTA-1.0.json",
+        "sha256": "d20607c6360a6651c1d158696c2e3467757e48b5ddefd97826eae57f1e3fd21d"
+      },
+      "template": {
+        "bytes": 3611,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NICTA-1.0.template.txt",
+        "sha256": "562f7a8b812eb3fb7cd86de38d6fb360d281e73e249abc8509e932ee6ada35d2"
+      },
+      "text": {
+        "bytes": 2977,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NICTA-1.0.txt",
+        "sha256": "a55d054f273794f1f2f2d2abbdb6c1dded02878df1d5cf1c81a81649e1b41381"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NICTA-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NICTA-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NICTA-1.0",
+      "name": "NICTA Public Software License, Version 1.0",
+      "reference": "https://spdx.org/licenses/NICTA-1.0.html",
+      "referenceNumber": 395,
+      "seeAlso": [
+        "https://opensource.apple.com/source/mDNSResponder/mDNSResponder-320.10/mDNSPosix/nss_ReadMe.txt"
+      ]
+    },
+    "name": "NICTA Public Software License, Version 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

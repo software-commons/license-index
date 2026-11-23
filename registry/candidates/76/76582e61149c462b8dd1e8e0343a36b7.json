@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "76582e61149c462b8dd1e8e0343a36b7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 36372,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSL-1.0.json",
+        "sha256": "531fc661b5117c4d7cc74bb683b2a04f1caf2f9bc305d303f7f87445ae659776"
+      },
+      "template": {
+        "bytes": 9922,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSL-1.0.template.txt",
+        "sha256": "85995c06aaa5ce2c93d2687ba2e81b3fc8e06267b947aed95e60cd41accf5a1d"
+      },
+      "text": {
+        "bytes": 8921,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSL-1.0.txt",
+        "sha256": "cce19c78a02ab21b89016dcefcb0fd6ce82a52593ce2ca19d83b82a8ea347884"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "OSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "OSL-1.0",
+      "name": "Open Software License 1.0",
+      "reference": "https://spdx.org/licenses/OSL-1.0.html",
+      "referenceNumber": 405,
+      "seeAlso": [
+        "https://opensource.org/license/OSL-1.0"
+      ]
+    },
+    "name": "Open Software License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "10843620b9d941e6bb946d43a22f3bdd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 65914,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Community-Spec-1.0.json",
+        "sha256": "622514a98cbecf029f182bef99cc9b233f3f2843edb66825a2ba5934d793a25e"
+      },
+      "template": {
+        "bytes": 18150,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Community-Spec-1.0.template.txt",
+        "sha256": "53ecb59f45bdde25dc419fdcee1af64787b0c35df3c47f6423075887a661ada2"
+      },
+      "text": {
+        "bytes": 15885,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Community-Spec-1.0.txt",
+        "sha256": "3291598ecec867f166a20e7538e173b05fbe0af9d739a6cabfb27121d93fb96e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Community-Spec-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Community-Spec-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Community-Spec-1.0",
+      "name": "Community Specification License 1.0",
+      "reference": "https://spdx.org/licenses/Community-Spec-1.0.html",
+      "referenceNumber": 182,
+      "seeAlso": [
+        "https://github.com/CommunitySpecification/1.0/blob/master/1._Community_Specification_License-v1.md"
+      ]
+    },
+    "name": "Community Specification License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

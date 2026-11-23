@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "755a550b222342218a4da2e05fa6b4aa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3703,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/URT-RLE.json",
+        "sha256": "7c1bdbfab6dc8e2965eed53e53617b1439b6c72b7d5f1a4bd28b4a5ee9b9a5d5"
+      },
+      "template": {
+        "bytes": 728,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/URT-RLE.template.txt",
+        "sha256": "eb7e241ed8710760caaea4cfbf8fb2d577a38e6678ef432e9d29a9f90ba21a75"
+      },
+      "text": {
+        "bytes": 771,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/URT-RLE.txt",
+        "sha256": "affc7d6f1d5ccf0531ce43ba66615784a3b53311f16a8e957a068049e62e8e65"
+      }
+    },
+    "deprecated": false,
+    "identifier": "URT-RLE",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/URT-RLE.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "URT-RLE",
+      "name": "Utah Raster Toolkit Run Length Encoded License",
+      "reference": "https://spdx.org/licenses/URT-RLE.html",
+      "referenceNumber": 257,
+      "seeAlso": [
+        "https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/converter/other/pnmtorle.c",
+        "https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/converter/other/rletopnm.c"
+      ]
+    },
+    "name": "Utah Raster Toolkit Run Length Encoded License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

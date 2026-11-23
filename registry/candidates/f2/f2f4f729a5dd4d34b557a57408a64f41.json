@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f2f4f729a5dd4d34b557a57408a64f41",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1672,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIPS.json",
+        "sha256": "b52d7649765a7d3b908212ec483086fcaa4abb338e1f084b8cccd8f3af75445a"
+      },
+      "template": {
+        "bytes": 247,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIPS.template.txt",
+        "sha256": "828e6c4736f74e945a27e0c1c94bc62b08acd3ea3dad3b6042da392a8bec61d3"
+      },
+      "text": {
+        "bytes": 192,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIPS.txt",
+        "sha256": "069e5ec36954a2a76ef6dca92c0843418fc552f5243439020aeb3956e3d9a124"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIPS",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIPS.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIPS",
+      "name": "MIPS License",
+      "reference": "https://spdx.org/licenses/MIPS.html",
+      "referenceNumber": 645,
+      "seeAlso": [
+        "https://sourceware.org/cgit/binutils-gdb/tree/include/coff/sym.h#n11"
+      ]
+    },
+    "name": "MIPS License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

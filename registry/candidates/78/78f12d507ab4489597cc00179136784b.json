@@ -1,0 +1,48 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "78f12d507ab4489597cc00179136784b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2296,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-Netrek.json",
+        "sha256": "72de1727be06b632842f76ca2e265355466d25a6245e23c50656fcefc52a4e63"
+      },
+      "template": {
+        "bytes": 550,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-Netrek.template.txt",
+        "sha256": "2d5ce6c36ab60f3159ae4f85b341118864e1e2cbff4a96a93a0296ba72209f14"
+      },
+      "text": {
+        "bytes": 496,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-Netrek.txt",
+        "sha256": "f64ff9591b7369fdeb9d52ea7966121b81176155d95001b3a41b5fac553891ec"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-Netrek",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-Netrek.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-Netrek",
+      "name": "Historical Permission Notice and Disclaimer - Netrek variant",
+      "reference": "https://spdx.org/licenses/HPND-Netrek.html",
+      "referenceNumber": 24,
+      "seeAlso": []
+    },
+    "name": "Historical Permission Notice and Disclaimer - Netrek variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

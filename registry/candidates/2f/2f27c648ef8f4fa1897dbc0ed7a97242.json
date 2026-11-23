@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2f27c648ef8f4fa1897dbc0ed7a97242",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5488,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Source-alt-GPL.json",
+        "sha256": "9a7c91dcd994c5fadda78b949ccbb79630d02315e97c9aff206e1d09e104bc1f"
+      },
+      "template": {
+        "bytes": 1420,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Source-alt-GPL.template.txt",
+        "sha256": "67e395c92d597af1add9ef1454e365715ff44f4a28f0b30d1e1c3627b02413e4"
+      },
+      "text": {
+        "bytes": 1284,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Source-alt-GPL.txt",
+        "sha256": "b6ceeba659f0216eba2fa9807dcca606141a93dcc9d13d65c439f0a4d27a61d3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Source-alt-GPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Source-alt-GPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Source-alt-GPL",
+      "name": "BSD Source Code Attribution - GPL alternative",
+      "reference": "https://spdx.org/licenses/BSD-Source-alt-GPL.html",
+      "referenceNumber": 690,
+      "seeAlso": [
+        "https://cgit.freebsd.org/src/plain/sys/dev/aic7xxx/aic7xxx_osm.c"
+      ]
+    },
+    "name": "BSD Source Code Attribution - GPL alternative",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

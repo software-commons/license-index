@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b82ec7c6f8354446bec756f36c857a2f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11896,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TrustedQSL.json",
+        "sha256": "d6d9d5c137214d4da2c75b501a5b0854e69ce21659f591282af201818ef3e8a6"
+      },
+      "template": {
+        "bytes": 2835,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TrustedQSL.template.txt",
+        "sha256": "f1ce27ec94d7c8a7acaf34310217103de79099c0c14d26036ac46a99e2f16bdc"
+      },
+      "text": {
+        "bytes": 2446,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TrustedQSL.txt",
+        "sha256": "40599f56c582671a552e64fb616fbb7710f3169be0b4ddd724f80a5546d1cc66"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TrustedQSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TrustedQSL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TrustedQSL",
+      "name": "TrustedQSL License",
+      "reference": "https://spdx.org/licenses/TrustedQSL.html",
+      "referenceNumber": 665,
+      "seeAlso": [
+        "https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/LICENSE.txt"
+      ]
+    },
+    "name": "TrustedQSL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

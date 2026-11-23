@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2a51a3c2868841138486f975361335c9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16770,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OGL-Canada-2.0.json",
+        "sha256": "58410026822a5383178e06588ae269129353f7cd89a974f5e0fc597febb25596"
+      },
+      "template": {
+        "bytes": 4229,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OGL-Canada-2.0.template.txt",
+        "sha256": "005ac0ce5fd5c781b1d1a58148d3cb56532bc7cdbed10e7ff8cbbe67bd539604"
+      },
+      "text": {
+        "bytes": 3679,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OGL-Canada-2.0.txt",
+        "sha256": "05c8b379c2fc4c491ac5899cd937a8c21176feba572c52811de0de7329b4cb7c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OGL-Canada-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OGL-Canada-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OGL-Canada-2.0",
+      "name": "Open Government Licence - Canada",
+      "reference": "https://spdx.org/licenses/OGL-Canada-2.0.html",
+      "referenceNumber": 587,
+      "seeAlso": [
+        "https://open.canada.ca/en/open-government-licence-canada"
+      ]
+    },
+    "name": "Open Government Licence - Canada",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

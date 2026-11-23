@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "38d865a8d0fe4198bf76d7f441600e6a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 62785,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SISSL-1.2.json",
+        "sha256": "d2a6433fc69de11467b6c1a76473cb016a4e7f4d4b41fcb8564109b098198b92"
+      },
+      "template": {
+        "bytes": 15010,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SISSL-1.2.template.txt",
+        "sha256": "c207b63df83714557bfea76b320e3d965122a3c98e75e23ddf5d1fcb5b813a4c"
+      },
+      "text": {
+        "bytes": 12474,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SISSL-1.2.txt",
+        "sha256": "fc21555cebeb4ce3f92ca353c149bbeab7a6abb7bc049cbbdc82a5fdcf8e4c60"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "SISSL-1.2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SISSL-1.2.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SISSL-1.2",
+      "name": "Sun Industry Standards Source License v1.2",
+      "reference": "https://spdx.org/licenses/SISSL-1.2.html",
+      "referenceNumber": 129,
+      "seeAlso": [
+        "http://gridscheduler.sourceforge.net/Gridengine_SISSL_license.html"
+      ]
+    },
+    "name": "Sun Industry Standards Source License v1.2",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

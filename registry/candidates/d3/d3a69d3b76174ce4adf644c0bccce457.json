@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d3a69d3b76174ce4adf644c0bccce457",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5970,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/WordNet.json",
+        "sha256": "d46fc89282b32fca54ec9775591c96d8ffb3de1659f57d6121931705bce5fab1"
+      },
+      "template": {
+        "bytes": 1598,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/WordNet.template.txt",
+        "sha256": "eaac24f418e87772fd30e52cf745956b2ef155eabd3b3b31196b4005815a4cc3"
+      },
+      "text": {
+        "bytes": 1563,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/WordNet.txt",
+        "sha256": "3cafea2fc6288483d7de5501d00f4e7d6aea5077dafeecdd1bb2fa492ab7f774"
+      }
+    },
+    "deprecated": false,
+    "identifier": "WordNet",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/WordNet.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "WordNet",
+      "name": "WordNet License",
+      "reference": "https://spdx.org/licenses/WordNet.html",
+      "referenceNumber": 424,
+      "seeAlso": [
+        "https://wordnet.princeton.edu/license-and-commercial-use"
+      ]
+    },
+    "name": "WordNet License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

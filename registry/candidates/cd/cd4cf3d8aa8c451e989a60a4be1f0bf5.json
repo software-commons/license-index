@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "cd4cf3d8aa8c451e989a60a4be1f0bf5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1620,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Asterisk-exception.json",
+        "sha256": "b860a4efbf4a3e73b4bdbdb91cd78274631ec2a19fa502e445380bc2ca7108f6"
+      },
+      "template": {
+        "bytes": 329,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Asterisk-exception.template.txt",
+        "sha256": "ce63c49b57981af186cbfaa6bd5b23ecd5a56e0cd3fe73c659d438c71420c17e"
+      },
+      "text": {
+        "bytes": 332,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Asterisk-exception.txt",
+        "sha256": "b35fdf6f46b0d195de5f32fd3ebd34debea5532fafed348fbf236f462fef0b32"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Asterisk-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Asterisk-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Asterisk-exception",
+      "name": "Asterisk exception",
+      "reference": "https://spdx.org/licenses/Asterisk-exception.html",
+      "referenceNumber": 18,
+      "seeAlso": [
+        "https://github.com/asterisk/libpri/blob/7f91151e6bd10957c746c031c1f4a030e8146e9a/pri.c#L22",
+        "https://github.com/asterisk/libss7/blob/03e81bcd0d28ff25d4c77c78351ddadc82ff5c3f/ss7.c#L24"
+      ]
+    },
+    "name": "Asterisk exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

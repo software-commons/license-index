@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0e293aa2f98e4426a88c465e6f9f994b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16286,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EPICS.json",
+        "sha256": "d4b771efcbdbc3d664366cb22001f1c225b379f76984b609c20ee6c1e083153b"
+      },
+      "template": {
+        "bytes": 4124,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EPICS.template.txt",
+        "sha256": "954459e9a7e742df375979e0c120a6e9a571e235c2670fe3effc76fe99caeb6e"
+      },
+      "text": {
+        "bytes": 3439,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EPICS.txt",
+        "sha256": "89235e921d859ba6130b584a6ec0ced3151167623207fc03ce95513adad009c9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EPICS",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EPICS.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "EPICS",
+      "name": "EPICS Open License",
+      "reference": "https://spdx.org/licenses/EPICS.html",
+      "referenceNumber": 394,
+      "seeAlso": [
+        "https://epics.anl.gov/license/open.php"
+      ]
+    },
+    "name": "EPICS Open License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

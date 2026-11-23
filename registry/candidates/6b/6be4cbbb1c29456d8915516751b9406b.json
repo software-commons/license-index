@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6be4cbbb1c29456d8915516751b9406b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4453,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/libselinux-1.0.json",
+        "sha256": "c41f9281ba48ea83ca1157e35f3760c8b4337340373440c549c75136b4d996b6"
+      },
+      "template": {
+        "bytes": 1105,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/libselinux-1.0.template.txt",
+        "sha256": "181676cbb72fb1db2f6f93cbac7c6d3fa23c5db77aa1f398e2e692b7f3afb2e5"
+      },
+      "text": {
+        "bytes": 1034,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/libselinux-1.0.txt",
+        "sha256": "86657b4c0fe868d7cbd977cb04c63b6c667e08fa51595a7bc846ad4bed8fc364"
+      }
+    },
+    "deprecated": false,
+    "identifier": "libselinux-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/libselinux-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "libselinux-1.0",
+      "name": "libselinux public domain notice",
+      "reference": "https://spdx.org/licenses/libselinux-1.0.html",
+      "referenceNumber": 313,
+      "seeAlso": [
+        "https://github.com/SELinuxProject/selinux/blob/master/libselinux/LICENSE"
+      ]
+    },
+    "name": "libselinux public domain notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

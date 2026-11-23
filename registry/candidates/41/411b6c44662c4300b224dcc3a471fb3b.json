@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "411b6c44662c4300b224dcc3a471fb3b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3608,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/any-OSI-perl-modules.json",
+        "sha256": "51d9b37f0e5141071e0c08447a32df056a758a3a9e9a845e6d989275aa981b27"
+      },
+      "template": {
+        "bytes": 628,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/any-OSI-perl-modules.template.txt",
+        "sha256": "3dd045d4902de8b63d1cc58ee3e25d19dec0da3f367fc844ea4109ab571a97fa"
+      },
+      "text": {
+        "bytes": 627,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/any-OSI-perl-modules.txt",
+        "sha256": "f01f22c40e1899689b7d2a3ad300683c9f9f9d912b9e2b745275669a91ba204a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "any-OSI-perl-modules",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/any-OSI-perl-modules.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "any-OSI-perl-modules",
+      "name": "Any OSI License - Perl Modules",
+      "reference": "https://spdx.org/licenses/any-OSI-perl-modules.html",
+      "referenceNumber": 491,
+      "seeAlso": [
+        "https://metacpan.org/release/JUERD/Exporter-Tidy-0.09/view/Tidy.pm#LICENSE",
+        "https://metacpan.org/pod/Qmail::Deliverable::Client#LICENSE",
+        "https://metacpan.org/pod/Net::MQTT::Simple#LICENSE"
+      ]
+    },
+    "name": "Any OSI License - Perl Modules",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

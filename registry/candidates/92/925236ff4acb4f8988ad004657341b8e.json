@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "925236ff4acb4f8988ad004657341b8e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3117,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Furuseth.json",
+        "sha256": "f12b04b8dfe0385479ab6f8ecf11059d43c2ba99e1087005840e6e6022c7a41a"
+      },
+      "template": {
+        "bytes": 679,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Furuseth.template.txt",
+        "sha256": "f340dd0d4d38838403f115f4c7223e3d9c2a12859145d6c4d4b40fe7eba1ca62"
+      },
+      "text": {
+        "bytes": 626,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Furuseth.txt",
+        "sha256": "66514ca238436e5566b8caa40426fe5f939e00f306a30d4a0ea4f1ea92087d65"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Furuseth",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Furuseth.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Furuseth",
+      "name": "Furuseth License",
+      "reference": "https://spdx.org/licenses/Furuseth.html",
+      "referenceNumber": 271,
+      "seeAlso": [
+        "https://git.openldap.org/openldap/openldap/-/blob/master/COPYRIGHT?ref_type=heads#L39-51"
+      ]
+    },
+    "name": "Furuseth License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d61c366bf4414d0f8ad80ff7b9c101ac",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3899,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MirOS.json",
+        "sha256": "44dd06fef2207e93e00111dac4be10d2213186af7b4183474144aa45ec805d11"
+      },
+      "template": {
+        "bytes": 976,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MirOS.template.txt",
+        "sha256": "3970e541fe523ba983e0c92c65f42614fbce07ed095facced9d3625cb8b5fc62"
+      },
+      "text": {
+        "bytes": 887,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MirOS.txt",
+        "sha256": "79da9e5c37adc25a27cfa41f1f64cc93cf2d6be8e52cba3fbaf02b9e8fafd3d9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MirOS",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MirOS.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "MirOS",
+      "name": "The MirOS Licence",
+      "reference": "https://spdx.org/licenses/MirOS.html",
+      "referenceNumber": 8,
+      "seeAlso": [
+        "https://opensource.org/license/MirOS"
+      ]
+    },
+    "name": "The MirOS Licence",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

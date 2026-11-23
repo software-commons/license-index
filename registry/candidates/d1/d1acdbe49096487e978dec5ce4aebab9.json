@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d1acdbe49096487e978dec5ce4aebab9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10509,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Minpack.json",
+        "sha256": "74ce98d27275eec7698c704a3329b4d643b2078d465033f78bf494908edd72a1"
+      },
+      "template": {
+        "bytes": 2471,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Minpack.template.txt",
+        "sha256": "30e03d1448fb08411ef689094099ee830fea36a2c6705ac82b7e59bdcbc9a18b"
+      },
+      "text": {
+        "bytes": 2193,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Minpack.txt",
+        "sha256": "c87b7f8ee88f6195e91743820c00354833583aef091b72e2d4a49c8e28e798a0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Minpack",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Minpack.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Minpack",
+      "name": "Minpack License",
+      "reference": "https://spdx.org/licenses/Minpack.html",
+      "referenceNumber": 181,
+      "seeAlso": [
+        "http://www.netlib.org/minpack/disclaimer",
+        "https://gitlab.com/libeigen/eigen/-/blob/master/COPYING.MINPACK"
+      ]
+    },
+    "name": "Minpack License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

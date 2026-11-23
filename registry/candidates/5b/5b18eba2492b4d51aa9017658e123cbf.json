@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5b18eba2492b4d51aa9017658e123cbf",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1633,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/vsftpd-openssl-exception.json",
+        "sha256": "2d8641de53fb9cdefa9bd1393f68cd25634decdd41a175086c5b5e027b1b9e58"
+      },
+      "template": {
+        "bytes": 328,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/vsftpd-openssl-exception.template.txt",
+        "sha256": "7bd106b407510a371fc4c854f64ddf0eea7563855d70ea4fd659a4d2c7ee805c"
+      },
+      "text": {
+        "bytes": 295,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/vsftpd-openssl-exception.txt",
+        "sha256": "e75418ebdb3003280c6d38a660b62d3d1ad9e6013a2557740127102de1a9c01f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "vsftpd-openssl-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/vsftpd-openssl-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "vsftpd-openssl-exception",
+      "name": "vsftpd OpenSSL exception",
+      "reference": "https://spdx.org/licenses/vsftpd-openssl-exception.html",
+      "referenceNumber": 20,
+      "seeAlso": [
+        "https://git.stg.centos.org/source-git/vsftpd/blob/f727873674d9c9cd7afcae6677aa782eb54c8362/f/LICENSE",
+        "https://launchpad.net/debian/squeeze/+source/vsftpd/+copyright",
+        "https://github.com/richardcochran/vsftpd/blob/master/COPYING"
+      ]
+    },
+    "name": "vsftpd OpenSSL exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

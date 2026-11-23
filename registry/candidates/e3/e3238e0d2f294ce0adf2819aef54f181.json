@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e3238e0d2f294ce0adf2819aef54f181",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4521,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Leptonica.json",
+        "sha256": "589d0c20fb2054a43403b231968e3bc7d712319570a30c2498a597c071fd2694"
+      },
+      "template": {
+        "bytes": 942,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Leptonica.template.txt",
+        "sha256": "33157739fab11dbd57c3ee92f3add12fb5ac7ac0ee40d0f82d2021c7a838818c"
+      },
+      "text": {
+        "bytes": 734,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Leptonica.txt",
+        "sha256": "74fbc283706af770c44448ec1c1fe27d44e03eabf4f6b6cb9ff62c5facdcc70d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Leptonica",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Leptonica.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Leptonica",
+      "name": "Leptonica License",
+      "reference": "https://spdx.org/licenses/Leptonica.html",
+      "referenceNumber": 109,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Leptonica"
+      ]
+    },
+    "name": "Leptonica License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

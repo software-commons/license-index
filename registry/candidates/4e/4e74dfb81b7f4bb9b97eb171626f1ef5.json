@@ -1,0 +1,64 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4e74dfb81b7f4bb9b97eb171626f1ef5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/StandardML-NJ.json",
+        "sha256": "0c28355069882e07eff34dd454fa72e89f0830ec1d986e11185546e848afe9b2"
+      },
+      "replacement_source": {
+        "bytes": 1948,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/StandardML-NJ.xml",
+        "sha256": "518a194fb9f6568de8870de688c07d56714a0b25cf7e497ec5b2b6c5e3208c14"
+      },
+      "template": {
+        "bytes": 1211,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_StandardML-NJ.template.txt",
+        "sha256": "ea7271a36734283211d22c8c511c12fab1280c54d095925ccdf24753c69d4178"
+      },
+      "text": {
+        "bytes": 1122,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_StandardML-NJ.txt",
+        "sha256": "c35bddcb8705f0ca115a6916bace6ea6e2131d00cb7b186e2fb142746ce751f8"
+      }
+    },
+    "deprecated": true,
+    "identifier": "StandardML-NJ",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/StandardML-NJ.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "StandardML-NJ",
+      "name": "Standard ML of New Jersey License",
+      "reference": "https://spdx.org/licenses/StandardML-NJ.html",
+      "referenceNumber": 682,
+      "seeAlso": [
+        "https://www.smlnj.org/license.html"
+      ]
+    },
+    "name": "Standard ML of New Jersey License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "SMLNJ"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

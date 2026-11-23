@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "37fe42d8bdb243879a81792993f22d2b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 43569,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Apache-2.0.json",
+        "sha256": "b0f85bc041014e63212f71924bf154e0fae058c03356b3185b092028a74811b4"
+      },
+      "template": {
+        "bytes": 11178,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Apache-2.0.template.txt",
+        "sha256": "5567209d3a634ebd6ed122a7302563b9668ab141941149a4e30d9c7b887f41b9"
+      },
+      "text": {
+        "bytes": 10280,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Apache-2.0.txt",
+        "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "Apache-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Apache-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Apache-2.0",
+      "name": "Apache License 2.0",
+      "reference": "https://spdx.org/licenses/Apache-2.0.html",
+      "referenceNumber": 488,
+      "seeAlso": [
+        "https://www.apache.org/licenses/LICENSE-2.0",
+        "https://opensource.org/license/apache-2.0"
+      ]
+    },
+    "name": "Apache License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

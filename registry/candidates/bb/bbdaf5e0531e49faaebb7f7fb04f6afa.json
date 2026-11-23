@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bbdaf5e0531e49faaebb7f7fb04f6afa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3396,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CMU-Mach-nodoc.json",
+        "sha256": "5491a2d8ea28fe423ceb573df73870b5f66d0aa18d13d7487c93c6dbd375811a"
+      },
+      "template": {
+        "bytes": 553,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CMU-Mach-nodoc.template.txt",
+        "sha256": "5213cd74cb3369201ad38b65959a25b82b2fd0db6467e41979d6dea81d891f2b"
+      },
+      "text": {
+        "bytes": 499,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CMU-Mach-nodoc.txt",
+        "sha256": "4f3142a42aec8694327191d7edbdec2896ba62f076ed6876232076563f1c16c2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CMU-Mach-nodoc",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CMU-Mach-nodoc.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CMU-Mach-nodoc",
+      "name": "CMU    Mach - no notices-in-documentation variant",
+      "reference": "https://spdx.org/licenses/CMU-Mach-nodoc.html",
+      "referenceNumber": 165,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L718-L728",
+        "https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html"
+      ]
+    },
+    "name": "CMU    Mach - no notices-in-documentation variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}
