@@ -4,8 +4,12 @@ Separate Codex research and verification executions supported six claims about t
 
 The SPDX crosswalk records documentary correspondence. The OSI canonical path and the SPDX-listed path use different capitalization. The claims leave redirect behavior, exact text equivalence to other license forms, and a particular work’s actual grant for separate evidence. A particular excerpt’s status as a substantial portion, implied patent rights, and the effect of separate warranties or mandatory law remain provisional.
 
-Exact SPDX representation and installer observations are tracked separately. The CLI continues to retrieve its verified SPDX input through a local archive or explicit retrieval. Copying the form into a work requires an authorized grant for the material in scope. Standalone redistribution of the complete generated SPDX representation remains unresolved.
+Two further eligible claims compare the pinned SPDX representations as bytes. The 1,078-byte `text/MIT.txt` is identical to the UTF-8 encoding of the decoded `licenseText` field. The 1,958-byte `template/MIT.template.txt` is identical to the UTF-8 encoding of the decoded `standardLicenseTemplate` field and differs from the plaintext. Both executions compared the original pinned sources and reproduced the byte measurements. [SPDX plaintext](https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/MIT.txt) · [SPDX matching template](https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/template/MIT.template.txt)
+
+The specific CLI installation observation remains provisional pending independent execution. The CLI retrieves its verified SPDX input through a local archive or explicit retrieval. Copying the form into a work requires an authorized grant for the material in scope. Standalone redistribution of the complete generated SPDX representation remains unresolved.
 
 - [Research source receipts](../../sces/artifacts/mit-public-reference-campaign/research-receipts.jsonl)
 - [Independent verification receipts](../../sces/artifacts/mit-public-reference-campaign/independent-review-receipts.jsonl)
 - [Exact public source and claim manifest](../../sces/artifacts/mit-public-reference-campaign/public-source-manifest.json)
+- [SPDX comparison research receipts](../../sces/artifacts/mit-spdx-representation/research-receipts.jsonl) · [Independent verification receipts](../../sces/artifacts/mit-spdx-representation/independent-review-receipts.jsonl)
+- [SPDX comparison research reproduction](../../sces/artifacts/mit-spdx-representation/research-reproduction.json) · [Independent reproduction](../../sces/artifacts/mit-spdx-representation/independent-review-reproduction.json)
