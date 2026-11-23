@@ -2,6 +2,14 @@
 
 Run `license-index review-plan` to enumerate the provisional profiles or pass SPDX identifiers to narrow the output. The plan lists facets and source leads with stable SHA-256 fingerprints of the profile and each draft facet. The fingerprints identify research inputs. A verification receipt must bind the bytes of the eventual SCES claim record.
 
+## Plan candidate admission
+
+Run `license-index review-plan --admission` to account for every discovery candidate, including publisher leads and records retained only for history. Pass exact identifiers or opaque candidate IDs to generate a focused set, for example `license-index review-plan --admission LLVM-exception GPL-2.0-with-classpath-exception`.
+
+Each packet gives the candidate path and `record_json_sha256`, a fingerprint of the tool's stable JSON serialization. The envelope identifies the current SPDX census and its list and archive digests. A packet's `origin_membership_list` can differ from the current census list when reconciliation carried an unchanged record forward. Use the current list for present membership and compare former listing and current absence for historical-only records. Match the pinned artifact digests before using the content. SPDX list records, generated texts, matching templates and replacement XML document upstream representations. Treat SPDX's `seeAlso` links as source leads. Open the controlling primary instrument and relevant publisher guidance separately. Reopen publisher leads and record the edition and bytes or a supported preservation limit.
+
+Use the packet's planning labels to separate instrument identity, authority, text representation and permitted reuse. Choose the applicable predicate from the adoption policy when drafting each claim. For exceptions, establish the applicable base editions and scope. For deprecated identifiers, preserve the upstream replacement expression and check the actual grant before drawing conclusions about equivalence or migration. Each recorded disposition describes the discovery candidate. Canonical admission and qualified selection require separate SCES evidence and review.
+
 ## Draft and verify one claim
 
 1. Use the pinned [SCES task brief](https://github.com/software-commons/.github/blob/ab26f278422772f2d9e5d4dd016407d14372a710/templates/SCES_RESEARCH_TASK.md) for an individual material assertion. State its instrument, edition, actor, activity, and triggering facts. Choose a predicate from `sces/adoption.json`. Claims about normative terms should identify the text of the applicable clause and any relevant definitions, exceptions or successor editions.

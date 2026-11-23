@@ -12,7 +12,7 @@ Use the launcher from the project where you want to create a license file. Use `
 | `compare ID ID ...` | Compare cited dimensions, including unresolved fields. |
 | `sources ID` | Upstream location, byte fingerprints, archived discovery origins and explanation citations. |
 | `coverage` | Report catalog, text, installation and research counts. Supply `--policy PATH` to include validated active publication counts. |
-| `review-plan [ID ...]` | List provisional facets, source leads and draft fingerprints for [claim-by-claim review](PROFILE_QUALIFICATION.md). |
+| `review-plan [ID ...]` | List provisional facets, source leads and draft fingerprints for [claim-by-claim review](PROFILE_QUALIFICATION.md). Add `--admission` to plan source and identity review for catalog candidates, including entries without a profile. |
 | `expression EXPRESSION` | Parse SPDX 3.0.1 syntax and show unresolved document-local references. |
 | `--version` | Print the software version. |
 

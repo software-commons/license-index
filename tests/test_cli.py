@@ -10,7 +10,8 @@ from tempfile import TemporaryDirectory
 import unittest
 from zipfile import ZipFile
 
-from tools.records import ROOT
+from tools.records import ROOT, Catalog, encode
+from tools.review_plan import admission_packet
 
 
 def command(*args, root=ROOT):
@@ -124,6 +125,65 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(patent["next_step"], "resolve-scope")
         self.assertEqual(len(patent["draft_sha256"]), 64)
 
+    def test_admission_plan_accounts_for_the_full_discovery_ledger(self):
+        plan = self.json_output("review-plan", "--admission")
+        self.assertEqual(plan["status"], "discovery-admission-plan")
+        self.assertEqual(plan["selected"], len({item["candidate_id"] for item in plan["candidates"]}))
+        coverage = self.json_output("coverage")["catalog"]
+        self.assertEqual(plan["by_population"]["listed"], coverage["spdx_licenses"] + coverage["spdx_exceptions"])
+        self.assertEqual(plan["by_population"]["publisher-lead"], coverage["beyond_spdx_leads"])
+        self.assertEqual(plan["by_population"].get("historical-only", 0), coverage["spdx_historical_only"])
+        self.assertEqual(plan["listed_deprecated"],
+                         coverage["spdx_deprecated_licenses"] + coverage["spdx_deprecated_exceptions"])
+        observed = plan["current_census"]
+        manifest_bytes = (ROOT / observed["manifest_path"]).read_bytes()
+        self.assertEqual(observed["manifest_sha256"], hashlib.sha256(manifest_bytes).hexdigest())
+        for name, descriptor in observed["membership_lists"].items():
+            expected = json.loads(manifest_bytes)["manifests"][name]
+            self.assertEqual({key: value for key, value in descriptor.items() if key != "url"}, expected)
+            self.assertIn(f"/{observed['data_commit']}/{expected['path']}", descriptor["url"])
+
+    def test_admission_plan_preserves_legacy_scope_and_unprofiled_leads(self):
+        identifiers = ("GPL-2.0-with-classpath-exception", "LLVM-exception", "Commons Clause License Condition v1.0",
+                       "GCC-exception-3.1", "Zlib")
+        plan = self.json_output("review-plan", "--admission", *identifiers)
+        self.assertEqual(plan, self.json_output("review-plan", "--admission", *reversed(identifiers), "llvm-exception"))
+        packets = {item["identifier"]: item for item in plan["candidates"]}
+        legacy = packets[identifiers[0]]
+        record = json.loads((ROOT / legacy["record_path"]).read_bytes())
+        self.assertEqual(legacy["record_json_sha256"], hashlib.sha256(encode(record)).hexdigest())
+        self.assertEqual(legacy["upstream"]["replacement_guidance"], record["origin"]["upstream_replacements"])
+        replacement = legacy["upstream"]["artifacts"]["replacement_source"]
+        self.assertIn(legacy["upstream"]["data_commit"], replacement["url"])
+        self.assertTrue(replacement["url"].endswith(replacement["path"]))
+        self.assertIn("identifier-deprecation", legacy["work"])
+        llvm = packets[identifiers[1]]
+        self.assertEqual(llvm["kind"], "exception")
+        self.assertIn("exception-relationship", llvm["work"])
+        self.assertEqual(llvm["explanation_status"], "provisional")
+        publisher = packets[identifiers[2]]
+        self.assertEqual(publisher["disposition"], "non-license")
+        publisher_record = json.loads((ROOT / publisher["record_path"]).read_bytes())
+        self.assertEqual(publisher["record_json_sha256"], hashlib.sha256(encode(publisher_record)).hexdigest())
+        self.assertNotIn("upstream", publisher)
+        self.assertIn("scope-disposition", publisher["work"])
+        self.assertEqual(packets[identifiers[3]]["explanation_status"], "unresearched")
+        self.assertEqual(packets[identifiers[4]]["kind"], "license")
+        self.assertEqual(packets[identifiers[4]]["explanation_status"], "unresearched")
+
+    def test_admission_packet_distinguishes_older_origin_and_removal(self):
+        catalog = Catalog(ROOT)
+        current = catalog.resolve("LLVM-exception")
+        older = {**current, "origin": {**current["origin"], "source": "a" * 40}}
+        listed = admission_packet(catalog, older)
+        self.assertEqual(listed["population"], "listed")
+        self.assertIn("/" + "a" * 40 + "/", listed["upstream"]["origin_membership_list"])
+        self.assertIn("current census", listed["work"]["spdx-membership"])
+        removed = admission_packet(catalog, {**older, "membership": {"status": "removed"}})
+        self.assertEqual(removed["population"], "historical-only")
+        self.assertIn("former membership", removed["work"]["spdx-membership"])
+        self.assertIn("for absence", removed["work"]["spdx-membership"])
+
     def test_offline_zip_is_reproducible_and_usable(self):
         with TemporaryDirectory() as temporary:
             folder = Path(temporary).resolve()
@@ -176,6 +236,11 @@ class ToolTests(unittest.TestCase):
                 self.assertIn(b"installation is unsupported", rejected.stderr)
                 self.assertFalse((folder / "LICENSE").exists())
             self.assertEqual(command("coverage", root=unpacked).returncode, 0)
+            planned = command("review-plan", "--admission", "GCC-exception-3.1", root=unpacked)
+            self.assertEqual(planned.returncode, 0, planned.stderr.decode())
+            candidate, = json.loads(planned.stdout)["candidates"]
+            self.assertEqual(candidate["identifier"], "GCC-exception-3.1")
+            self.assertIn("exception-relationship", candidate["work"])
             selection = unpacked / "sces" / "publication.json"
             selection.parent.mkdir()
             selection.write_text("invalid selection", encoding="utf-8")

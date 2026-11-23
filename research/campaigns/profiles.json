@@ -763,21 +763,39 @@
     "dimensions": {
       "exception_relationship": {
         "state": "documented",
-        "text": "SPDX lists this as an exception. Review the project’s grant and base GPL terms for the relevant library.",
+        "text": "Inspect the project’s grant for the relevant library, including the GPL version election and any required file designation. GNU Classpath 0.95’s Package.java and OpenJDK jdk-25+36 illustrate distinct project notices.",
         "sources": [
           {
             "url": "https://spdx.org/licenses/Classpath-exception-2.0.html",
             "locator": "Exception text and notes"
+          },
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 7–10 and 22–37"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/LICENSE",
+            "locator": "Classpath exception, file designation paragraph"
           }
         ]
       },
       "linking_permission": {
         "state": "permission",
-        "text": "The exception permits specified linking with independent modules and distribution of the resulting executable while maintaining each module’s applicable terms.",
+        "text": "The grant permits linking the covered library with independent modules and copying and distributing the resulting executable under chosen terms, subject to the terms of each linked independent module. The definition of independence excludes a module derived from or based on the library.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/Classpath-exception-2.0.html",
-            "locator": "Exception text"
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 27–34"
+          }
+        ]
+      },
+      "modification": {
+        "state": "permission",
+        "text": "The grant lets a modifier extend the exception to their version of the library. It directs a modifier who chooses to omit it to remove the exception statement from that version.",
+        "sources": [
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 34–37"
           }
         ]
       },
@@ -795,11 +813,19 @@
     "scenarios": [
       {
         "situation": "Distributing an executable using the exception",
-        "text": "Verify that the library’s actual licensing adds this exception, and that each separate module satisfies the definition and its own license terms.",
+        "text": "Verify the library’s actual grant and the terms and independence of each linked module. For Oracle’s exception in OpenJDK jdk-25+36, compare the express designation in Object.java with the java.cpp header, which lacks that designation. Check modified copies separately.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/Classpath-exception-2.0.html",
-            "locator": "Exception text"
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/LICENSE",
+            "locator": "Classpath exception, lines 285–303"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/src/java.base/share/classes/java/lang/Object.java",
+            "locator": "License header lines 5–9"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/src/hotspot/share/runtime/java.cpp",
+            "locator": "License header lines 1–22"
           }
         ]
       }
@@ -1213,6 +1239,61 @@
       }
     ]
   },
+  "GPL-2.0-with-classpath-exception": {
+    "summary": "SPDX deprecates this composite identifier and records separate replacement guidance for the identifier and for a legacy expression with a trailing plus. Check the original grant when applying either SPDX expression to a file.",
+    "dimensions": {
+      "identifier_status": {
+        "state": "documented",
+        "text": "This identifier remains listed as deprecated in SPDX 3.29.0.",
+        "sources": [
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0-with-classpath-exception.xml#L3-L8",
+            "locator": "Legacy identifier and deprecated version"
+          }
+        ]
+      },
+      "replacement_guidance": {
+        "state": "documented",
+        "text": "The bare identifier’s recorded replacement is GPL-2.0 WITH Classpath-exception-2.0. Applying SPDX’s separate replacement for the bare GPL-2.0 base yields GPL-2.0-only WITH Classpath-exception-2.0. The legacy trailing-plus expression maps directly to GPL-2.0-or-later WITH Classpath-exception-2.0.",
+        "sources": [
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0-with-classpath-exception.xml#L3-L8",
+            "locator": "Separate replacement entries"
+          },
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0.xml#L3-L9",
+            "locator": "Bare GPL-2.0 replacement"
+          }
+        ]
+      },
+      "application_scope": {
+        "state": "documented",
+        "text": "Confirm the base-version election and the exception in the notice covering the actual file. GNU Classpath 0.95’s Package.java declares GPL version 2 or later with the Classpath exception.",
+        "sources": [
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 7–10 and 22–37"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Migrating a legacy Classpath identifier in an SPDX document",
+        "text": "Preserve the original token and whether it carried a plus. Record the SPDX replacement path separately from the licensing conclusion for each component. Check original license notices before recording a version election or changing a file-level declaration.",
+        "sources": [
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0-with-classpath-exception.xml#L3-L8",
+            "locator": "Bare and trailing-plus replacement entries"
+          },
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source header, base election and exception"
+          }
+        ]
+      }
+    ]
+  },
   "GPL-3.0-only": {
     "summary": "GPLv3 provides copying and modification permissions. Conveying covered works carries requirements that depend on the form and circumstances of the transfer. The only identifier refers to a version 3 declaration.",
     "dimensions": {
@@ -1594,6 +1675,77 @@
           {
             "url": "https://spdx.org/licenses/GPL-3.0-only.html",
             "locator": "§6"
+          }
+        ]
+      }
+    ]
+  },
+  "LLVM-exception": {
+    "summary": "The LLVM exceptions modify specified Apache 2.0 terms for compiler-embedded Object code and for a defined combination with GPLv2-licensed software when the court condition applies.",
+    "dimensions": {
+      "exception_relationship": {
+        "state": "documented",
+        "text": "The exception accompanies Apache License 2.0 when the applicable grant includes it. SPDX represents that combination as Apache-2.0 WITH LLVM-exception. Identify the covered material and any separately licensed third-party or legacy code in the release.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT",
+            "locator": "License statement, exception and separately licensed material"
+          },
+          {
+            "url": "https://github.com/spdx/license-list-XML/blob/b1dbeb5c8bca21af860a90e187f71d60b84a7a40/src/exceptions/LLVM-exception.xml",
+            "locator": "Exception metadata and base-license note"
+          }
+        ]
+      },
+      "embedded_object": {
+        "state": "permission",
+        "text": "When compiling your source embeds portions of the covered software in the Object form of that source, the exception permits redistribution of those embedded portions in that form without the conditions in Apache §§4(a), 4(b) and 4(d).",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L210-L213",
+            "locator": "LLVM exception, embedded Object paragraph"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Apache §4(c) has its own trigger for pertinent notices in distributed Source-form Derivative Works. The compiler-embedded Object permission names the license-copy, modified-file notice and applicable upstream NOTICE conditions in §§4(a), 4(b) and 4(d).",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT",
+            "locator": "Apache §4 and LLVM exception, embedded Object paragraph"
+          }
+        ]
+      },
+      "combined_software": {
+        "state": "permission",
+        "text": "If compiled forms of the covered software are combined or linked with GPLv2-licensed software and a competent court finds an Apache section conflicts with GPLv2 conditions, the distributor may elect to waive or exclude the affected sections in full, retroactively and prospectively, solely for that combination. The text specifically names §§3 and 9.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L215-L222",
+            "locator": "LLVM exception, Combined Software paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing output that embeds covered LLVM portions",
+        "text": "Identify portions embedded as a result of compiling your own source. Check the scope separately for a standalone tool or runtime shipped alongside the output, for source distributions, and for third-party parts under other terms.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L208-L235",
+            "locator": "LLVM exception and separately licensed third-party material"
+          }
+        ]
+      },
+      {
+        "situation": "Linking a compiled component to GPLv2-licensed software",
+        "text": "Check the actual GPL version governing the component, the compiled combination and any competent court finding. If the trigger applies, record which complete sections the permitted election covers and which artifacts form the Combined Software.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L215-L222",
+            "locator": "LLVM Combined Software definition and conditions"
           }
         ]
       }

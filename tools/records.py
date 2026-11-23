@@ -16,6 +16,7 @@ OPAQUE_ID = re.compile(r"[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}")
 HEX_256 = re.compile(r"[0-9a-f]{64}")
 DATA_COMMIT = re.compile(r"[0-9a-f]{40}")
 SPDX_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9.-]*\+?")
+SPDX_DATA_RAW = "https://raw.githubusercontent.com/spdx/license-list-data"
 VERSION = "0.1.0.dev0"
 
 
@@ -179,8 +180,7 @@ class Catalog:
         text_path = descriptor["path"]
         require(re.fullmatch(r"text/(?:deprecated_)?[A-Za-z0-9][A-Za-z0-9.+-]*\.txt", text_path),
                 f"invalid source text path: {text_path}")
-        upstream = (f"https://raw.githubusercontent.com/spdx/license-list-data/"
-                    f"{origin['source']}/{text_path}")
+        upstream = f"{SPDX_DATA_RAW}/{origin['source']}/{text_path}"
         material = {**descriptor, "source": upstream, "representation": "SPDX generated plain text"}
         if for_installation:
             require(identifier == "MIT", f"installation is unsupported for {identifier}")

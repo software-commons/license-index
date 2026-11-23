@@ -32,7 +32,7 @@ def parser():
         "validate": "validate repository data and history",
         "export": "write an offline JSON discovery view or qualified payload to stdout",
         "bundle": "write a deterministic offline ZIP",
-        "review-plan": "identify provisional facets for individual evidence review",
+        "review-plan": "plan evidence review for provisional facets or catalog admission",
     }
     for command, help_text in descriptions.items():
         sub = commands.add_parser(command, help=help_text, description=help_text)
@@ -66,7 +66,8 @@ def parser():
         if command == "bundle":
             sub.add_argument("output", type=Path)
         if command == "review-plan":
-            sub.add_argument("identifiers", nargs="*", metavar="ID", help="omit to plan all provisional profiles")
+            sub.add_argument("identifiers", nargs="*", metavar="ID", help="omit to plan the entire selected population")
+            sub.add_argument("--admission", action="store_true", help="plan canonical admission from discovery records")
     return cli
 
 
@@ -160,7 +161,9 @@ def execute(catalog, args):
             sections.append("\n".join(bullets))
         return result, "\n\n".join(sections)
     if command == "review-plan":
-        from .review_plan import build_plan
+        from .review_plan import build_admission_plan, build_plan
+        if args.admission:
+            return build_admission_plan(catalog, args.identifiers), None
         return build_plan(catalog, args.identifiers), None
     if command in {"validate", "export", "bundle"}:
         from .distribution import bundle, discovery_export, validate, validate_discovery
