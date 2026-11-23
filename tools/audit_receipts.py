@@ -76,6 +76,17 @@ def seconds(value):
     return value.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def legacy_assessment(row, batched):
+    checks = row.get("checks")
+    if isinstance(checks, dict) and checks.keys() == CHECKS and CHALLENGE_FIELDS <= row.keys():
+        return True
+    assessments = row.get("assessments")
+    return (not batched and isinstance(assessments, list) and bool(assessments)
+            and all(isinstance(item, dict) and item.keys() == {"dependency_id", "outcome", "reasoning", "checks"}
+                    and isinstance(item["checks"], dict) and item["checks"].keys() == CHECKS
+                    for item in assessments))
+
+
 def execution(events_path, session_path):
     events, events_digest = jsonl(events_path, cli_event)
     session, session_digest = jsonl(session_path)
@@ -101,10 +112,8 @@ def execution(events_path, session_path):
                 and isinstance(row.get("conclusion"), str) and digest not in assessments,
                 "Codex claim assessments are incomplete or ambiguous")
         assessments[digest] = row
-    # Earlier batched assessments put checks directly on each claim.
-    structured = "claims" in parsed and any(
-        "dependencies" in row or ("checks" not in row and CHALLENGE_FIELDS & row.keys()) for row in rows
-    )
+    # A missing dependency list cannot turn a current assessment into an archived format.
+    structured = any("dependencies" in row or not legacy_assessment(row, batched="claims" in parsed) for row in rows)
     require(not structured or all("dependencies" in row for row in rows),
             "structured Codex claim assessments are incomplete")
 

@@ -38,7 +38,10 @@ class ReceiptAuditTests(unittest.TestCase):
         turn = f"fixture-turn-{phase}"
         capture = f"exec-{phase}"
         result = "turn1view0" if phase == "research" else "turn2view0"
-        message = json.dumps({"claim_sha256": CLAIM_DIGEST, "conclusion": "supported"})
+        message = json.dumps({"claim_sha256": CLAIM_DIGEST, "conclusion": "supported",
+                              "checks": dict.fromkeys(CHECK_NAMES, "pass"), "reasoning": "Claim reasoning.",
+                              "limitations": ["Exact edition only."], "challenge_method": "Compare editions.",
+                              "challenge_result": "Claim holds for this edition."})
         events = [
             {"type": "thread.started", "thread_id": thread},
             {"type": "turn.started"},
@@ -159,6 +162,15 @@ class ReceiptAuditTests(unittest.TestCase):
         self.write_final_assessment(self.second, {"claims": [legacy]})
         self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
 
+    def test_preserves_archived_flat_assessments_with_dependency_checks(self):
+        legacy = {"claim_sha256": CLAIM_DIGEST, "conclusion": "supported", "reasoning": "Claim reasoning.",
+                  "limitations": ["Exact edition only."], "assessments": [
+                      {"dependency_id": "fixture", "outcome": "supports", "reasoning": "Clause applies.",
+                       "checks": dict.fromkeys(CHECK_NAMES, "pass")}
+                  ]}
+        self.write_final_assessment(self.first, legacy)
+        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+
     def test_compares_structured_claim_reasoning_limitations_and_independent_challenge(self):
         _, original = self.use_structured_assessments()
         for field, error in (
@@ -216,10 +228,24 @@ class ReceiptAuditTests(unittest.TestCase):
                     audit_receipts(self.registry, [self.first, self.second])
 
     def test_rejects_missing_dependencies_in_single_structured_claim(self):
+        originals = self.use_structured_assessments()
+        for paths, original in zip((self.first, self.second), originals):
+            with self.subTest(paths=paths):
+                modified = deepcopy(original)
+                del modified["claims"][0]["dependencies"]
+                self.write_final_assessment(paths, modified)
+                with self.assertRaisesRegex(DataError, "structured Codex claim assessments are incomplete"):
+                    audit_receipts(self.registry, [self.first, self.second])
+                self.write_final_assessment(paths, original)
+
+    def test_retains_checks_for_unwrapped_structured_assessment(self):
         _, original = self.use_structured_assessments()
-        del original["claims"][0]["dependencies"]
-        self.write_final_assessment(self.second, original)
-        with self.assertRaisesRegex(DataError, "structured Codex claim assessments are incomplete"):
+        claim = original["claims"][0]
+        self.write_final_assessment(self.second, claim)
+        self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+        claim["dependencies"][0]["outcome"] = "insufficient"
+        self.write_final_assessment(self.second, claim)
+        with self.assertRaisesRegex(DataError, "dependency outcome, reasoning or checks"):
             audit_receipts(self.registry, [self.first, self.second])
 
     def test_cli_does_not_echo_structured_assessment_content(self):
