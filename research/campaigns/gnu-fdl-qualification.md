@@ -4,7 +4,7 @@ Independent Codex executions supported the identity of editions 1.1, 1.2, and 1.
 
 The publisher’s permission covers verbatim copies of the license document. A particular work’s authorized grant and notices determine the actual edition choice, Invariant Sections, and required Cover Texts. The Addendum gives an example notice. All 18 supported FDL identifiers were exercised offline and produced exact publisher bytes for the selected edition. The CLI preserved existing files, rejected substitutions, and created no files in dry runs.
 
-The terms review verified the GNU FDL 1.3 Opaque-copy rule and the §9 cessation-based reinstatement provisions. Five additional statements have superseded first revisions. Their successor revisions clarify Cover Text overflow, the first-notice cure route, and the scope of proxy designation. Those exact successor revisions await their own verification. Historical assessments and acquisition records remain in the original terms bundle.
+Seven verified terms distinguish the Cover Text triggers and overflow guidance across the three editions, the GNU FDL 1.3 Opaque-copy rule, two distinct §9 reinstatement routes, and the §10 proxy provision. The first five affected revisions remain superseded. Their verified successors preserve the difference between a required Cover Text condition and placement guidance, the particular copyright holder’s first-notice condition under §9, and the Document’s authorized proxy designation. The remaining profile interpretations and project-specific scenarios are provisional.
 
 | Scope | Source and verification receipts |
 | --- | --- |
@@ -12,3 +12,4 @@ The terms review verified the GNU FDL 1.3 Opaque-copy rule and the §9 cessation
 | GNU FDL 1.2 documentary and copying evidence | [Research](../../sces/artifacts/gnu-fdl-v1-2-public-campaign/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-v1-2-public-campaign/independent-review-receipts.jsonl) |
 | GNU FDL 1.3 documentary and copying evidence | [Research](../../sces/artifacts/gnu-fdl-v1-3-public-campaign/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-v1-3-public-campaign/independent-review-receipts.jsonl) |
 | Terms and prior revisions | [Research](../../sces/artifacts/gnu-fdl-terms-qualification/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-terms-qualification/independent-review-receipts.jsonl) |
+| Five corrected terms | [Research](../../sces/artifacts/gnu-fdl-terms-revision-2/research-receipts.jsonl) · [Independent review](../../sces/artifacts/gnu-fdl-terms-revision-2/independent-review-receipts.jsonl) |
