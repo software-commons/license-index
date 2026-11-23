@@ -1207,7 +1207,7 @@
       },
       "source_availability": {
         "state": "condition",
-        "text": "Distribution of more than 100 Opaque copies requires a machine-readable Transparent copy with each copy or a network location for a complete Transparent copy. The network option includes anonymous access without charge and reasonably prudent steps to keep it accessible for at least one year after the last public distribution of that edition.",
+        "text": "Publishing or distributing more than 100 Opaque copies requires a machine-readable Transparent copy with each, or naming in or with each copy a network location for the complete Transparent copy without added material. The network option requires anonymous access without charge through public-standard protocols. When distribution starts, take reasonably prudent steps to keep it accessible for at least one year after the last public distribution of that edition.",
         "sources": [
           {
             "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
@@ -1351,7 +1351,7 @@
       },
       "termination": {
         "state": "condition",
-        "text": "Section 9 automatically terminates rights for the specified acts outside the license. After all violations cease, reinstatement is assessed by copyright holder. It is provisional unless and until the holder explicitly and finally terminates. It may become permanent if that holder fails to give reasonable notice before 60 days after cessation, or when the first reasonable notice for any work under this license from that holder is cured before 30 days after receipt.",
+        "text": "Section 9 automatically terminates rights for the specified acts outside the license. After all violations cease, reinstatement is assessed by copyright holder. It is provisional unless and until the holder explicitly and finally terminates. It becomes permanent if the holder fails to give reasonable notice before 60 days after cessation. It is also permanent if reasonable notice is the first from that holder for any work under this license and you cure the violation before 30 days have passed after receiving the notice.",
         "sources": [
           {
             "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
@@ -1373,7 +1373,7 @@
     "scenarios": [
       {
         "situation": "Assessing reinstatement after a breach",
-        "text": "Record when all violations ceased. Check each copyright holder’s notice history, any final termination, and when a first notice was cured before assessing the corresponding rights.",
+        "text": "Record when all violations ceased. Check each copyright holder’s notice history, any final termination, and whether you cured the violation before the first-notice deadline.",
         "sources": [
           {
             "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
