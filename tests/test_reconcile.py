@@ -151,6 +151,17 @@ class ReconcileTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "SHA-256 mismatch"):
             spdx_replay.replay(None, changed, self.archive, None)
 
+    def test_online_replay_resolves_the_separate_xml_release_pin(self):
+        fixture(self.archive)
+        _, source = self.read()
+        source["xml_commit"] = NEXT
+        with (patch.object(spdx_replay, "resolve_tag", return_value=XML) as resolve,
+              patch.object(spdx_replay, "fetch_archive") as fetch):
+            with self.assertRaisesRegex(DataError, "XML release tag differs from the committed XML pin"):
+                spdx_replay.replay_download(None, source, None)
+            resolve.assert_called_once_with("spdx/license-list-XML", "v3.29.0")
+            fetch.assert_not_called()
+
     def test_fingerprints_and_deprecated_text_fallback(self):
         fixture(self.archive, deprecated=True)
         origins, provenance = self.read(expected_sha=sha256(self.archive.read_bytes()).hexdigest())

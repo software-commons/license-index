@@ -7,7 +7,7 @@ from urllib.request import Request, build_opener
 from xml.etree.ElementTree import ParseError
 
 from .qualification import _blob_hash, _git, _git_blobs
-from .reconcile import DATA_REPOSITORY, load_release, reconcile
+from .reconcile import DATA_REPOSITORY, RELEASE, SOURCE_REPOSITORY, load_release, reconcile, resolve_tag
 from .records import DATA_COMMIT, HEX_256, DataError, NoRedirects, decode, encode, require
 
 CHUNK_BYTES = 1024 * 1024
@@ -106,6 +106,13 @@ def replay(catalog, source, archive, base):
 
 
 def replay_download(catalog, source, base):
+    release = source["release"]
+    require(RELEASE.fullmatch(release), "invalid SPDX release version")
+    try:
+        xml_commit = resolve_tag(SOURCE_REPOSITORY, f"v{release}")
+    except ValueError as error:
+        raise DataError(f"could not resolve the SPDX XML release tag: {error}") from error
+    require(xml_commit == source["xml_commit"], "SPDX XML release tag differs from the committed XML pin")
     with TemporaryDirectory(prefix="license-index-spdx-") as directory:
         archive = Path(directory) / "spdx.tar.gz"
         fetch_archive(source, archive)
