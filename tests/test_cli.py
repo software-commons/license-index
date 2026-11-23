@@ -136,6 +136,7 @@ class ToolTests(unittest.TestCase):
             unpacked = folder / "unpacked"
             with ZipFile(archive) as package:
                 self.assertNotIn("sces/publication.json", package.namelist())
+                self.assertNotIn("tools/review_gate.py", package.namelist())
                 package.extractall(unpacked)
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())

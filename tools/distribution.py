@@ -136,6 +136,7 @@ def bundle(catalog, output):
                      for path in (catalog.root / folder).rglob(pattern) if path.is_file())
     if catalog.profiles:
         files.add("research/campaigns/profiles.json")
+    files.difference_update({"tools/review_gate.py", "tools/review_snapshot.py"})
     data = BytesIO()
     with ZipFile(data, "w") as archive:
         archive_entry(archive, "catalog.json", encode(discovery_export(catalog)))
