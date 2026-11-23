@@ -32,6 +32,7 @@ def parser():
         "validate": "validate repository data and history",
         "export": "write an offline JSON discovery view or qualified payload to stdout",
         "bundle": "write a deterministic offline ZIP",
+        "review-plan": "identify provisional facets for individual evidence review",
     }
     for command, help_text in descriptions.items():
         sub = commands.add_parser(command, help=help_text, description=help_text)
@@ -56,7 +57,7 @@ def parser():
             sub.add_argument("identifiers", nargs="+")
         if command == "expression":
             sub.add_argument("expression")
-        if command in {"validate", "export"}:
+        if command in {"validate", "export", "coverage"}:
             sub.add_argument("--policy", type=Path, help="checkout at the pinned SCES commit")
         if command == "validate":
             sub.add_argument("--base", help="full SHA of a trusted prior commit")
@@ -64,6 +65,8 @@ def parser():
             sub.add_argument("--qualified", action="store_true", help="require a current SCES-qualified selection")
         if command == "bundle":
             sub.add_argument("output", type=Path)
+        if command == "review-plan":
+            sub.add_argument("identifiers", nargs="*", metavar="ID", help="omit to plan all provisional profiles")
     return cli
 
 
@@ -139,8 +142,9 @@ def execute(catalog, args):
         return [catalog.describe(row) for row in rows], "\n".join(
             f"{row['origin']['identifier']}  {row['origin']['name']}" for row in rows)
     if command == "coverage":
-        report = catalog.coverage()
-        return report, None
+        from .distribution import validate
+        claims = validate(catalog, policy=args.policy)[1] if args.policy else ()
+        return catalog.coverage(claims), None
     if command == "expression":
         return expression(catalog, args.expression), None
     if command in {"text", "add"}:
@@ -155,17 +159,24 @@ def execute(catalog, args):
                 bullets.extend(f"    {source['locator']} · {source['url']}" for source in value["sources"])
             sections.append("\n".join(bullets))
         return result, "\n\n".join(sections)
+    if command == "review-plan":
+        from .review_plan import build_plan
+        return build_plan(catalog, args.identifiers), None
     if command in {"validate", "export", "bundle"}:
-        from .distribution import bundle, discovery_export, validate
+        from .distribution import bundle, discovery_export, validate, validate_discovery
         if command == "bundle":
             return bundle(catalog, args.output), None
+        if command == "export" and not args.qualified:
+            if args.policy is None:
+                validate_discovery(catalog)
+            else:
+                validate(catalog, policy=args.policy)
+            return discovery_export(catalog), None
         report, claims = validate(catalog, getattr(args, "base", None), args.policy)
         if command == "validate":
-            return {"valid": True, "qualification": report, "coverage": catalog.coverage()}, "Valid registry"
-        if args.qualified:
-            require(report, "no active SCES-qualified release")
-            return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}, None
-        return discovery_export(catalog), None
+            return {"valid": True, "qualification": report, "coverage": catalog.coverage(claims)}, "Valid registry"
+        require(report, "no active SCES-qualified release")
+        return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}, None
     row = catalog.resolve(args.identifier)
     item = catalog.describe(row)
     profile = catalog.profile(row)

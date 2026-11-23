@@ -1627,6 +1627,113 @@
       }
     ]
   },
+  "MPL-1.1": {
+    "summary": "MPL 1.1 permits distributing Covered Code within a larger product. Distributing its executable triggers source availability and notice conditions, including specific retention periods for electronic delivery of modifications.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The Initial Developer grants specified rights in Original Code. Each contributor grants specified rights in that contributor's Modifications. Both grants are subject to third-party intellectual property claims and exclude patent and trademark rights from this part of the grant.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§2.1(a), 2.2(a)"
+          }
+        ]
+      },
+      "larger_work": {
+        "state": "permission",
+        "text": "You may distribute a Larger Work combining Covered Code with other code as one product if you meet the requirements for the Covered Code. A separate executable license has its own conditions, including preserving recipients' rights to the source.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.7, 3.6–3.7"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "For Covered Code released as a series of files, edits to a file containing Original Code or earlier Modifications and new files containing any of that material can be Modifications. The license requires a file documenting changes and their dates for Covered Code to which you contribute.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.9, 3.1, 3.3"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Include the license with distributed source, reproduce the Exhibit A notice in each source file or in a discoverable place if the file structure prevents it, and give executable recipients a conspicuous notice explaining source availability as specified.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§3.1, 3.5–3.6 and Exhibit A"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The Initial Developer's patent grant addresses Original Code. A contributor's grant addresses that contributor's Modifications and specified combinations with the Contributor Version. The exclusions depend on the grant and cover some alterations or combinations.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.2, 1.10.1, 2.1(b)–(d), 2.2(b)–(d)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Make your Modifications available as source to anyone to whom you made an executable available. The source may accompany that executable or use an accepted electronic distribution mechanism. The electronic route specifies at least 12 months from first availability or at least six months after a subsequent version of that particular Modification becomes available to those recipients. You are responsible for availability through a third-party host.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.4, 3.2, 3.6"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "The noncompliance clause provides automatic termination if a breach remains uncured 30 days after you become aware of it. Separate patent-litigation rules distinguish the allegation, the affected grants and the applicable notice or effective date.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§8.1–8.4"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "The license contains a later-version option and separately allows the Initial Developer to designate portions for alternative licensing in their notices. The applicable source notice and the specific combination matter when evaluating an alternative license.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§5, 6.1–6.2, 13 and Exhibit A"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping a modified binary from a short-lived download URL",
+        "text": "Check whether each recipient can obtain the source for the Modifications. If you use electronic delivery, account for the applicable minimum availability period and the conspicuous executable notice. An external hosting service leaves the source-availability obligation with you.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§3.2, 3.6"
+          }
+        ]
+      },
+      {
+        "situation": "Putting copied code in a new file in a larger product",
+        "text": "When Covered Code was released as files, the new file can be a Modification if it contains part of the Original Code or earlier Modifications. A separate file containing only independently written material does not meet that criterion merely by shipping alongside Covered Code. Check the actual code and its license notices before relying on alternative terms.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.7, 1.9, 3.7, 13 and Exhibit A"
+          }
+        ]
+      }
+    ]
+  },
   "MPL-2.0": {
     "summary": "MPL 2.0 requires source licensing and access for covered files under specified distribution conditions. A larger work may contain separate material governed by other terms.",
     "dimensions": {
@@ -1766,6 +1873,103 @@
           {
             "url": "https://opendatacommons.org/licenses/odbl/1-0/",
             "locator": "§§1 and 4.3–4.6"
+          }
+        ]
+      }
+    ]
+  },
+  "PolyForm-Noncommercial-1.0.0": {
+    "summary": "PolyForm Noncommercial 1.0.0 grants copyright permission for permitted purposes and has separate clauses for distribution and changes. Its personal-use and institutional-use clauses identify different ways a purpose can qualify.",
+    "dimensions": {
+      "commercial_use": {
+        "state": "restriction",
+        "text": "The general copyright grant and the permission to make changes or new works depend on a permitted purpose. Noncommercial purposes qualify, and two further clauses describe covered personal uses and use by specified organizations.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Copyright License, Changes and New Works License, Noncommercial Purposes, Personal Uses and Noncommercial Organizations"
+          }
+        ]
+      },
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The copyright grant covers acts that otherwise infringe the licensor's copyright in the software when done for a permitted purpose. The instrument sets out the grants for distribution and for changes or new works in separate clauses.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Copyright License, Distribution License and Changes and New Works License"
+          }
+        ]
+      },
+      "distribution": {
+        "state": "permission",
+        "text": "The distribution clause grants permission to distribute copies, including copies with changes and new works allowed by the changes clause. Each recipient of any part must receive the stated notices. The instrument expressly bars sublicensing or transferring the licenses it grants you.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Distribution License, Notices and No Other Rights"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Give anyone receiving a copy of any part the terms or the specified URL, together with copies of any plain-text Required Notice lines the licensor provided with the software.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Notices"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The grant covers patent claims the licensor can or becomes able to license that your use of the software would infringe.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Patent License"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "After first written notice of a violation, licenses can continue if you fully comply and take practical corrective steps within 32 days of receipt. A written patent claim about the software can end the patent license immediately, with a distinct scope for claims made by your company.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Patent Defense, Violations and Definitions"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The instrument disclaims warranties and conditions and excludes the licensor's liability to the extent the law allows.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "No Liability"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Running a grant-funded university research project",
+        "text": "Use by an educational institution is a permitted purpose under the institutional clause regardless of the funding source or obligations from that funding. Verify who uses the software. A for-profit partner's separate use requires its own assessment. An institutional purpose leaves the distribution notice conditions in place.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Noncommercial Organizations, Distribution License and Notices"
+          }
+        ]
+      },
+      {
+        "situation": "Moving a no-charge prototype into a paid service",
+        "text": "Reassess the actual purpose before relying on this grant. A project with an anticipated commercial application falls outside the stated personal-use clause, even if the prototype has no price. Assess other permitted-purpose grounds, separate permission and any acts that require a copyright license. Whether the service distributes a copy is a separate factual question.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Copyright License, Distribution License, Noncommercial Purposes, Personal Uses, Noncommercial Organizations and Definitions"
           }
         ]
       }

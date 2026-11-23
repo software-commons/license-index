@@ -7,10 +7,11 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from tools.index import execute, parser
 from tools.qualification import (
     POLICY_COMMIT, _bind_payload, _claim_value, _validate_policy, check_history, qualified,
 )
-from tools.records import DataError, encode
+from tools.records import Catalog, DataError, encode
 
 
 MIT = "123456789abc4def8123456789abcdef"
@@ -33,7 +34,8 @@ def entity(identifier=MIT, kind="license", name="Fixture License"):
 
 def claim(ref, identifier, predicate, value, scope=None):
     return {
-        "claim": {**ref, "subject": f"e-{identifier}", "predicate": predicate, "value": value, "scope": scope or {}},
+        "claim": {**ref, "subject": f"e-{identifier}", "predicate": predicate, "value": value, "scope": scope or {},
+                  "polarity": "affirmative"},
         "dependencies": [],
     }
 
@@ -71,6 +73,7 @@ class BindingsTests(unittest.TestCase):
             (evidence[2], "scope", {"target-revision": "2.0.0"}),
             (evidence[3], "scope", {"data-revision": "b" * 40}),
             (evidence[3], "predicate", "instrument-identity"),
+            (evidence[0], "polarity", "documented-absence"),
         ):
             with self.subTest(field=field, value=invalid_value), patch.dict(entry["claim"], {field: invalid_value}):
                 with self.assertRaisesRegex(DataError, "does not bind"):
@@ -183,6 +186,46 @@ class GitHistoryTests(unittest.TestCase):
             self.write("sces/releases/synthetic-fixture/qualification.json", {**report, "synthetic": True})
             with self.assertRaisesRegex(DataError, "synthetic"):
                 qualified(self.catalog, self.root)
+
+    def test_discovery_and_checked_release_views_report_separate_counts(self):
+        self.write(f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json", {
+            "id": CANDIDATE, "disposition": "unresolved", "reason": "Synthetic test lead",
+            "origin": {"kind": "publisher", "identifier": "fixture", "name": "Fixture", "source": "https://example.invalid"},
+            "history": [],
+        })
+        catalog = Catalog(self.root)
+        source = "research/sources/fixture.json"
+        snapshot = "registry/coverage/snapshots/discovery.json"
+        self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+                            "population": dict.fromkeys((
+                                "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                "missing_text", "missing_template",
+                            ), 0)})
+        saved = {"source_manifest": source, "snapshot": snapshot, "assessment": catalog.coverage()}
+        self.write(snapshot, saved)
+        self.write("registry/coverage/current.json", saved)
+        self.write("sces/publication.json", {"release": "synthetic-fixture"})
+        report = {"repository": "software-commons/license-index", "dataset": "license-index",
+                  "schema_version": "1.0.0", "synthetic": False, "source_commit": self.base}
+        self.write("sces/releases/synthetic-fixture/qualification.json", report)
+        self.write("sces/releases/synthetic-fixture/claims.json", [identity_claim(self.row)])
+
+        def invoke(*arguments):
+            return execute(catalog, parser().parse_args(arguments))[0]
+
+        policy_flag = ("--policy", str(self.root))
+        with patch("tools.qualification._validate_policy") as check:
+            self.assertEqual(invoke("coverage")["catalog"]["accepted_entities"], 0)
+            self.assertEqual(invoke("export")["status"], "development-discovery")
+            check.assert_not_called()
+            validated = invoke("validate", *policy_flag)
+            self.assertEqual(validated["coverage"]["catalog"]["accepted_entities"], 1)
+            self.assertEqual(validated["coverage"]["qualification"]["independently_verified_claims"], 1)
+            self.assertEqual(invoke("coverage", *policy_flag), validated["coverage"])
+            self.assertEqual(invoke("export", "--qualified", *policy_flag)["entities"], [self.row])
+            check.side_effect = DataError("fixture policy rejected")
+            with self.assertRaisesRegex(DataError, "fixture policy rejected"):
+                invoke("export", *policy_flag)
 
     def test_untrusted_policy_bytes_are_not_executed(self):
         self.write("evidence/v1/policy.json", {"policy": "SCES-1.0", "files": {}})

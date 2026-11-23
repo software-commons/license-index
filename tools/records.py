@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections import Counter
+from functools import cached_property
 from hashlib import sha256
 import json
 from pathlib import Path, PurePosixPath
@@ -76,8 +77,6 @@ class Catalog:
     def __init__(self, root=ROOT):
         self.root = Path(root).resolve()
         self.candidates = self._read_sharded("candidates")
-        self.entities = self._read_sharded("entities")
-        require(not self.candidates.keys() & self.entities.keys(), "candidate and entity IDs overlap")
         self.spdx = {}
         self.non_spdx = []
         for candidate in self.candidates.values():
@@ -95,6 +94,12 @@ class Catalog:
             self.spdx[key] = candidate
         self.packaged = self._optional("legal-texts/manifest.json")
         self.profiles = self._optional("research/campaigns/profiles.json")
+
+    @cached_property
+    def entities(self):
+        records = self._read_sharded("entities")
+        require(not self.candidates.keys() & records.keys(), "candidate and entity IDs overlap")
+        return records
 
     def _optional(self, relative):
         path = self.root / relative
@@ -208,7 +213,7 @@ class Catalog:
                     bool(row["origin"].get("upstream_replacements")) for row in active),
                 "beyond_spdx_leads": len(self.non_spdx),
                 "beyond_spdx_dispositions": dict(Counter(row["disposition"] for row in self.non_spdx)),
-                "accepted_entities": len(self.entities),
+                "accepted_entities": len(self.entities) if qualified_claims else 0,
             },
             "authentic_text": {
                 "spdx_text_references": sum(bool(row["origin"]["artifacts"].get("text")) for row in active),

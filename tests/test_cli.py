@@ -111,7 +111,18 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(json.loads(first.stdout)["status"], "development-discovery")
         rejected = command("export", "--qualified")
         self.assertEqual(rejected.returncode, 1)
-        self.assertIn(b"no active SCES-qualified release", rejected.stderr)
+        diagnostic = (b"requires --policy" if (ROOT / "sces/publication.json").exists()
+                      else b"no active SCES-qualified release")
+        self.assertIn(diagnostic, rejected.stderr)
+
+    def test_review_plan_is_deterministic_and_keeps_uncertainty(self):
+        first = self.json_output("review-plan", "MIT")
+        self.assertEqual(first, self.json_output("review-plan", "mit"))
+        self.assertEqual(first["status"], "provisional-review-plan")
+        profile, = first["profiles"]
+        patent = next(item for item in profile["facets"] if item["facet"] == "patent_grant")
+        self.assertEqual(patent["next_step"], "resolve-scope")
+        self.assertEqual(len(patent["draft_sha256"]), 64)
 
     def test_offline_zip_is_reproducible_and_usable(self):
         with TemporaryDirectory() as temporary:
@@ -129,6 +140,17 @@ class ToolTests(unittest.TestCase):
             self.assertEqual(command("text", "Apache-2.0", root=unpacked).stdout,
                              (ROOT / "LICENSE").read_bytes())
             self.assertEqual(command("coverage", root=unpacked).returncode, 0)
+            selection = unpacked / "sces" / "publication.json"
+            selection.parent.mkdir()
+            selection.write_text("invalid selection", encoding="utf-8")
+            entity = unpacked / "registry" / "entities" / "ab" / "invalid.json"
+            entity.parent.mkdir(parents=True)
+            entity.write_text("invalid entity", encoding="utf-8")
+            self.assertEqual(command("export", root=unpacked).returncode, 0)
+            self.assertEqual(command("bundle", folder / "discovery.zip", root=unpacked).returncode, 0)
+            self.assertEqual(command("validate", root=unpacked).returncode, 1)
+            selection.unlink()
+            self.assertEqual(command("validate", root=unpacked).returncode, 1)
 
 
 if __name__ == "__main__":

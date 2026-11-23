@@ -83,17 +83,21 @@ def validate_profiles(catalog):
                         f"invalid evidence locator for {identifier}")
 
 
-def validate(catalog, base=None, policy=None):
+def validate_discovery(catalog):
     saved = read(catalog.root / COVERAGE)
     source = read(local_path(catalog.root, saved["source_manifest"]))
     validate_source(catalog, source)
     validate_texts(catalog)
     validate_profiles(catalog)
-    _, claims = result = qualified(catalog, policy, base=base)
-    require(saved["assessment"] == catalog.coverage(claims), "coverage snapshot differs from the live ledger")
+    require(saved["assessment"] == catalog.coverage(), "discovery coverage snapshot differs from the live ledger")
     snapshot = local_path(catalog.root, saved["snapshot"])
     require(snapshot.read_bytes() == (catalog.root / COVERAGE).read_bytes(),
             "current coverage differs from its immutable snapshot")
+
+
+def validate(catalog, base=None, policy=None):
+    validate_discovery(catalog)
+    result = qualified(catalog, policy, base=base)
     if base:
         check_history(catalog, base)
     return result
@@ -121,7 +125,7 @@ def archive_entry(archive, name, data):
 
 
 def bundle(catalog, output):
-    validate(catalog)
+    validate_discovery(catalog)
     files = {"LICENSE", "README.md", "license-index", "license-index.cmd", COVERAGE}
     for folder, pattern in (
         ("registry/candidates", "*.json"), ("registry/coverage/snapshots", "*.json"),
