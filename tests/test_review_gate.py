@@ -292,7 +292,8 @@ class ReviewGateTests(unittest.TestCase):
             profile, = [arg for arg in invocation.args[0] if arg.startswith("permissions.review-inputs=")]
             permissions = tomllib.loads(profile)["permissions"]["review-inputs"]
             self.assertEqual(permissions, {
-                "network": {"enabled": False}, "filesystem": {":minimal": "read", str(root / "inputs"): "read"},
+                "network": {"enabled": False},
+                "filesystem": {":minimal": "read", str(root / "inputs"): "read", str(root / "codex"): "read"},
             })
 
     def test_protected_rehearsal_records_a_review_without_reading_a_token_or_writing_a_check(self):

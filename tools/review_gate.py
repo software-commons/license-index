@@ -122,7 +122,10 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
         environment = {key: value for key, value in os.environ.items() if key.upper() in REVIEWER_ENV}
     else:
         input_key = json.dumps(str(input_dir), ensure_ascii=False)
-        permissions = (f'permissions.review-inputs={{filesystem={{":minimal"="read", {input_key}="read"}}, '
+        executable_key = json.dumps(str(codex), ensure_ascii=False)
+        # On Linux, the sandbox invokes the same binary inside its namespace to set up seccomp.
+        permissions = (f'permissions.review-inputs={{filesystem={{":minimal"="read", {input_key}="read", '
+                       f'{executable_key}="read"}}, '
                        'network={enabled=false}}')
         arguments.extend((
             "--strict-config", "--ephemeral", "-c", 'default_permissions="review-inputs"',
