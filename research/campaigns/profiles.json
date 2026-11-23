@@ -1058,65 +1058,69 @@
     ]
   },
   "GPL-2.0-only": {
-    "summary": "GPLv2 provides sharing and modification rights with source and redistribution conditions. This SPDX identifier specifies the version 2 only application.",
+    "summary": "This SPDX identifier describes a grant restricted to GNU GPL version 2. The project's authorized license notices establish where that grant applies.",
     "dimensions": {
       "copyright_grant": {
         "state": "permission",
         "text": "The text allows verbatim copying and distribution and permits modified distributions subject to §§1–2.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§§1–2"
           }
         ]
       },
       "modification": {
         "state": "condition",
-        "text": "Section 2 includes changed-file notices and conditions for distributing works based on the Program.",
+        "text": "Section 2(a) requires prominent notices of changes and their dates in modified files. Section 2(b) applies to distribution or publication of a work containing or derived from the Program and requires licensing the work as a whole under GPLv2 at no charge to third parties. Section 2 separately addresses independent works distributed separately and mere aggregation.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§2"
           }
         ]
       },
       "notices": {
         "state": "condition",
-        "text": "Verbatim source copies carry specified copyright, warranty and license notices and a copy of the license.",
+        "text": "For verbatim source distribution, §1 requires appropriate copyright and warranty-disclaimer notices on each copy, retention of the license and no-warranty notices, and a copy of GPLv2 for recipients.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§1"
           }
         ]
       },
       "source_availability": {
         "state": "condition",
-        "text": "Object-code distributions require an applicable corresponding-source mechanism listed in §3.",
+        "text": "For object code or executables, §3(a) provides for accompanying complete machine-readable corresponding source on a customary medium under §§1–2. Section 3(b) provides for an accompanying written offer valid for at least three years to supply the source to any third party at up to the distributor's physical source-distribution cost. Section 3(c) allows passing along the received offer information only for noncommercial distribution after receiving the binary with a compliant §3(b) offer.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
-            "locator": "§3"
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§3(a)–(c)"
           }
         ]
       },
       "termination": {
         "state": "condition",
-        "text": "Section 4 provides for automatic termination of the rights of the party whose covered conduct is outside the license, and addresses downstream licenses.",
+        "text": "Section 4 makes attempted unauthorized copying, modification, sublicensing or distribution void and automatically terminates the actor's GPLv2 rights. Downstream parties who received copies or rights under the license retain their licenses while in full compliance.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§4"
           }
         ]
       },
       "version_choice": {
         "state": "documented",
-        "text": "The identifier describes an application restricted to version 2. Check the actual grant or project notices for evidence.",
+        "text": "An explicit version 2 only grant limits the recipient to that version. Check the authorized notice or other grant for the relevant files and release. Section 9 has a separate rule for a program covered by a GNU GPL grant that omits the version number.",
         "sources": [
           {
             "url": "https://spdx.org/licenses/GPL-2.0-only.html",
-            "locator": "SPDX identifier notes and §9"
+            "locator": "Notes"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§0 and 9"
           }
         ]
       }
@@ -1124,90 +1128,94 @@
     "scenarios": [
       {
         "situation": "Acquiring a GPLv2 codebase",
-        "text": "Check whether the copyright holder granted the later-version option. The common GPLv2 terms alone do not resolve the question.",
+        "text": "Inspect the actual copyright holder's license declaration for the exact project version and component. Use the shared GPLv2 document to read version 2 terms and the authorized declaration to establish the permitted version choices.",
         "sources": [
           {
             "url": "https://spdx.org/licenses/GPL-2.0-only.html",
-            "locator": "SPDX identifier notes and §9"
+            "locator": "Notes and Standard License Header"
           },
           {
-            "url": "https://www.gnu.org/licenses/gpl-howto.en.html",
-            "locator": "Identify which versions of the license users can use"
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "The license notices"
           }
         ]
       },
       {
-        "situation": "Shipping a compiled application",
-        "text": "Determine which of §3’s alternatives fits how the program is distributed and preserve the required license and notices.",
+        "situation": "Offering a GPLv2 executable for download",
+        "text": "When the executable is distributed through copy access from a designated place, §3 counts equivalent copy access to the corresponding source from the same place as distributing the source. Check the required license and notices under §§1–2 and the scope of corresponding source under §3.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
-            "locator": "§§1–3"
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§1–2 and §3, final three paragraphs"
           }
         ]
       }
     ]
   },
   "GPL-2.0-or-later": {
-    "summary": "GPLv2 provides sharing and modification rights with source and redistribution conditions. This SPDX identifier also communicates the later-version choice granted by the project.",
+    "summary": "This SPDX identifier describes a grant allowing the recipient to follow GNU GPL version 2 or a later FSF version. The following distribution terms describe the version 2 election.",
     "dimensions": {
       "copyright_grant": {
         "state": "permission",
         "text": "The text allows verbatim copying and distribution and permits modified distributions subject to §§1–2.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§§1–2"
           }
         ]
       },
       "modification": {
         "state": "condition",
-        "text": "Section 2 includes changed-file notices and conditions for distributing works based on the Program.",
+        "text": "Under GPLv2, §2(a) requires prominent notices of changes and their dates in modified files. Section 2(b) applies to distribution or publication of a work containing or derived from the Program and requires licensing the work as a whole under GPLv2 at no charge to third parties. Section 2 separately addresses independent works distributed separately and mere aggregation.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§2"
           }
         ]
       },
       "notices": {
         "state": "condition",
-        "text": "Verbatim source copies carry specified copyright, warranty and license notices and a copy of the license.",
+        "text": "For verbatim source distribution under GPLv2, §1 requires appropriate copyright and warranty-disclaimer notices on each copy, retention of the license and no-warranty notices, and a copy of GPLv2 for recipients.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§1"
           }
         ]
       },
       "source_availability": {
         "state": "condition",
-        "text": "Object-code distributions require an applicable corresponding-source mechanism listed in §3.",
+        "text": "Under GPLv2, §3(a) provides for accompanying complete machine-readable corresponding source on a customary medium under §§1–2. Section 3(b) provides for an accompanying written offer valid for at least three years to supply the source to any third party at up to the distributor's physical source-distribution cost. Section 3(c) allows passing along the received offer information only for noncommercial distribution after receiving the binary with a compliant §3(b) offer.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
-            "locator": "§3"
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§3(a)–(c)"
           }
         ]
       },
       "termination": {
         "state": "condition",
-        "text": "Section 4 provides for automatic termination of the rights of the party whose covered conduct is outside the license, and addresses downstream licenses.",
+        "text": "Section 4 makes attempted unauthorized copying, modification, sublicensing or distribution void and automatically terminates the actor's GPLv2 rights. Downstream parties who received copies or rights under the license retain their licenses while in full compliance.",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
             "locator": "§4"
           }
         ]
       },
       "version_choice": {
         "state": "documented",
-        "text": "The identifier describes the application granting the option to follow GPLv2 or a later version published by FSF.",
+        "text": "Where the applicable grant specifies version 2 or any later version, §9 permits following version 2 or a later GPL version published by the FSF. An applicable GNU GPL grant with no version number uses the separate rule in §9.",
         "sources": [
           {
             "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
-            "locator": "SPDX identifier notes and §9"
+            "locator": "Notes"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§0 and 9"
           }
         ]
       }
@@ -1215,25 +1223,25 @@
     "scenarios": [
       {
         "situation": "Acquiring a GPLv2 codebase",
-        "text": "Check whether the copyright holder granted the later-version option. The common GPLv2 terms alone do not resolve the question.",
+        "text": "Check the copyright holder's declaration for the exact release and component. When the grant permits a later edition and you elect it, use that edition's terms for the covered conduct.",
         "sources": [
           {
             "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
-            "locator": "SPDX identifier notes and §9"
+            "locator": "Notes and Standard License Header"
           },
           {
-            "url": "https://www.gnu.org/licenses/gpl-howto.en.html",
-            "locator": "Identify which versions of the license users can use"
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "The license notices"
           }
         ]
       },
       {
-        "situation": "Shipping a compiled application",
-        "text": "Determine which of §3’s alternatives fits how the program is distributed and preserve the required license and notices.",
+        "situation": "Redistributing a received executable under GPLv2",
+        "text": "To pass along the received source-offer information under §3(c), confirm that the redistribution is noncommercial and that you received the executable or object code with a compliant §3(b) offer. If either condition is absent, assess the applicable alternatives in §3(a) and (b).",
         "sources": [
           {
-            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
-            "locator": "§§1–3"
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§3(a)–(c)"
           }
         ]
       }
