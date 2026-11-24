@@ -386,7 +386,8 @@ def check_assessment(run, review):
     rows = review["assessments"]
     recorded = {row["dependency"]["id"]: row for row in rows}
     require(len(recorded) == len(rows), "recorded dependency assessments have ambiguous IDs")
-    if structured or "assessments" in assessment:
+    has_dependency_findings = structured or "assessments" in assessment
+    if has_dependency_findings:
         dependencies = assessment["dependencies" if structured else "assessments"]
         identifier_field = "id" if structured else "dependency_id"
         require(isinstance(dependencies, list) and dependencies, "Codex dependency assessments are incomplete")
@@ -418,6 +419,7 @@ def check_assessment(run, review):
                     for native_field, recorded_field in (("challenge_method", "method"), ("challenge_result", "results"))
                     if structured or native_field in assessment),
                 "Codex challenge method or results differ from the recorded assessment")
+    return [] if has_dependency_findings else sorted(recorded)
 
 
 def audit_receipts(registry, executions):
@@ -433,6 +435,7 @@ def audit_receipts(registry, executions):
     acquisitions = 0
     methods = set()
     byte_bindings = {}
+    unverified_dependency_findings = []
     for row in registry["claims"]:
         reviews = row.get("recorded_reviews", ())
         dependencies = row.get("recorded_dependencies", ())
@@ -449,7 +452,14 @@ def audit_receipts(registry, executions):
                     and recorded["started"] == seconds(run["started"])
                     and recorded["completed"] == seconds(run["completed"]),
                     "recorded execution metadata differs from the Codex session")
-            check_assessment(run, review)
+            unverified = check_assessment(run, review)
+            if unverified:
+                unverified_dependency_findings.append({
+                    "claim": row["claim"],
+                    "phase": review["phase"],
+                    "dependency_ids": unverified,
+                    "fields": ["outcome", "reasoning"],
+                })
             require(review["acquisitions"], "the recorded execution has no source acquisitions to compare")
             for acquisition in review["acquisitions"]:
                 methods.add(check_acquisition(run, acquisition, dependencies, byte_bindings))
@@ -458,10 +468,14 @@ def audit_receipts(registry, executions):
             used.add(run["execution"])
         claims.append(row["claim"])
     require(claims and used == runs.keys(), "supplied executions must form complete recorded eligible claim pairs")
+    status = ("recorded-source-receipts-match-supplied-codex-logs" if "source-bytes" in methods
+              else "recorded-web-receipts-match-supplied-codex-logs")
+    if unverified_dependency_findings:
+        status = "source-receipts-match-with-unverified-dependency-findings"
     return {
-        "status": ("recorded-source-receipts-match-supplied-codex-logs" if "source-bytes" in methods
-                   else "recorded-web-receipts-match-supplied-codex-logs"),
+        "status": status,
         "claims": claims,
+        "unverified_dependency_findings": unverified_dependency_findings,
         "acquisition_bindings": acquisitions,
         "unique_acquisitions": len(captures),
         "executions": [{field: run[field] for field in ("execution", "events_sha256", "session_sha256")}

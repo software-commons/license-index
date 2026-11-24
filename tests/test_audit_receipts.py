@@ -172,6 +172,7 @@ class ReceiptAuditTests(unittest.TestCase):
         report = audit_receipts(self.registry, [self.first, self.second])
         self.assertEqual(report["claims"], [CLAIM])
         self.assertEqual(report["acquisition_bindings"], 2)
+        self.assertEqual(report["unverified_dependency_findings"], [])
         self.assertNotIn("Rationale", json.dumps(report))
 
     def test_preserves_archived_batched_assessments_with_claim_level_checks(self):
@@ -181,8 +182,19 @@ class ReceiptAuditTests(unittest.TestCase):
         self.write_final_assessment(self.first, {"claims": [legacy]})
         self.write_final_assessment(self.second, {"claims": [legacy]})
         with self.pin_legacy(self.first, self.second):
-            self.assertEqual(audit_receipts(self.registry, [self.first, self.second])["claims"], [CLAIM])
+            report = audit_receipts(self.registry, [self.first, self.second])
+        self.assertEqual(report["claims"], [CLAIM])
+        self.assertEqual(report["status"], "source-receipts-match-with-unverified-dependency-findings")
+        self.assertEqual(report["unverified_dependency_findings"], [
+            {"claim": CLAIM, "phase": phase, "dependency_ids": ["fixture"], "fields": ["outcome", "reasoning"]}
+            for phase in ("research", "independent-review")
+        ])
         review = self.registry["claims"][0]["recorded_reviews"][1]
+        with patch.dict(review["assessments"][0], {"reasoning": "Different dependency rationale."}):
+            with self.pin_legacy(self.first, self.second):
+                changed = audit_receipts(self.registry, [self.first, self.second])
+        self.assertEqual(changed["status"], report["status"])
+        self.assertEqual(changed["unverified_dependency_findings"], report["unverified_dependency_findings"])
         for changed, expected in (
             ({"reasoning": "A different rationale."}, "claim reasoning or limitations"),
             ({"limitations": ["A different limitation."]}, "claim reasoning or limitations"),
