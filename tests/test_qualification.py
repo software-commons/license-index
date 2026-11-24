@@ -651,10 +651,10 @@ class GitHistoryTests(unittest.TestCase):
         assessment["catalog"]["beyond_spdx_leads"] = 99
         self.write(archive, snapshot)
         self.write(COVERAGE, snapshot)
-        self.commit("Introduce a false historical archive")
+        self.commit("Change an already introduced historical archive")
         select_current()
         validate_discovery(Catalog(self.root))
-        with self.assertRaisesRegex(DataError, "archived.json: coverage differs from historical"):
+        with self.assertRaisesRegex(DataError, "archived.json: incoming snapshot bytes changed"):
             validate(Catalog(self.root), base=base)
 
     def test_strict_validation_replays_each_incoming_snapshot_at_its_own_source_pins(self):
