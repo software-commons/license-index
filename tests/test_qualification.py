@@ -67,7 +67,8 @@ class BindingsTests(unittest.TestCase):
         alias = {"name": "Fixture Alternate", "claim": reference("alias"), "scope": identity_scope}
         crosswalk = {"origin": "spdx", "revision": SOURCE, "key": "MIT"}
         crosswalk_scope = {"upstream-release": "3.2.0"}
-        external = {"index": "software-commons/specification-index", "id": OTHER, "revision": "1.2.0"}
+        target_revision = "b" * 40
+        external = {"index": "software-commons/specification-index", "id": OTHER, "revision": target_revision}
         relationship_scope = {"owning-revision": SOURCE}
         row["aliases"].append(alias)
         row["crosswalks"].append({**crosswalk, "claim": reference("crosswalk"), "scope": crosswalk_scope})
@@ -77,7 +78,7 @@ class BindingsTests(unittest.TestCase):
             identity_claim(row),
             claim(alias["claim"], MIT, "instrument-identity", alias["name"], identity_scope),
             claim(reference("external"), MIT, "cross-index-relationship",
-                  "related-to:" + _claim_value(external), {**relationship_scope, "target-revision": "1.2.0"}),
+                  "related-to:" + _claim_value(external), {**relationship_scope, "target-revision": target_revision}),
             claim(reference("crosswalk"), MIT, "spdx-membership", _claim_value(crosswalk),
                   {**crosswalk_scope, "data-revision": SOURCE}),
         ]
@@ -89,7 +90,7 @@ class BindingsTests(unittest.TestCase):
         for entry, field, invalid_value in (
             (evidence[0], "value", "invented"),
             (evidence[1], "revision", 2),
-            (evidence[2], "scope", {**relationship_scope, "target-revision": "2.0.0"}),
+            (evidence[2], "scope", {**relationship_scope, "target-revision": "c" * 40}),
             (evidence[3], "scope", {**crosswalk_scope, "data-revision": "b" * 40}),
             (evidence[3], "predicate", "instrument-identity"),
             (evidence[0], "polarity", "documented-absence"),
@@ -177,20 +178,42 @@ class BindingsTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "duplicates"):
             _bind_payload({MIT: first, OTHER: second}, [])
 
-    def test_rejects_circular_lineage_and_unpinned_external_target(self):
+    def test_rejects_circular_lineage(self):
         first = entity()
         second = entity(OTHER)
         first["relations"] = [{"type": "derived-from", "target": {"id": OTHER}, "claim": reference("first")}]
         second["relations"] = [{"type": "derived-from", "target": {"id": MIT}, "claim": reference("second")}]
         with self.assertRaisesRegex(DataError, "cyclic"):
             _bind_payload({MIT: first, OTHER: second}, [])
-        second["relations"] = [{
-            "type": "related-to",
-            "target": {"index": "software-commons/specification-index", "id": OTHER, "revision": "main"},
-            "claim": reference("second"),
+
+    def test_external_relationship_requires_immutable_target_and_exact_claim(self):
+        record = entity()
+        digest = "sha256:" + "b" * 64
+        target = {"index": "software-commons/specification-index", "id": OTHER, "revision": digest}
+        reference_key = reference("external-edge")
+        scope = {"owning-revision": SOURCE}
+        record["relations"] = [{
+            "type": "related-to", "target": target, "claim": reference_key, "scope": scope,
         }]
-        with self.assertRaisesRegex(DataError, "immutable revision"):
-            _bind_payload({MIT: first, OTHER: second}, [])
+        exact = claim(reference_key, MIT, "cross-index-relationship", "related-to:" + _claim_value(target),
+                      {**scope, "target-revision": digest})
+        self.assertIn(exact, _bind_payload({MIT: record}, [identity_claim(record), exact]))
+
+        for revision in ("main", "v1.2", "1.2.0", "v1.2.3-rc1", "b" * 64, digest[:-1]):
+            with self.subTest(revision=revision):
+                changed = {**target, "revision": revision}
+                record["relations"][0]["target"] = changed
+                matching = claim(reference_key, MIT, "cross-index-relationship", "related-to:" + _claim_value(changed),
+                                 {**scope, "target-revision": revision})
+                with self.assertRaisesRegex(DataError, "immutable revision"):
+                    _bind_payload({MIT: record}, [identity_claim(record), matching])
+
+        record["relations"][0]["target"] = target
+        changed_index = {**target, "index": "software-commons/language-index"}
+        differently_owned = claim(reference_key, MIT, "cross-index-relationship",
+                                  "related-to:" + _claim_value(changed_index), {**scope, "target-revision": digest})
+        with self.assertRaisesRegex(DataError, "does not bind the canonical field"):
+            _bind_payload({MIT: record}, [identity_claim(record), differently_owned])
 
     def test_rejects_unresolved_and_mistyped_exception_relationship(self):
         base = entity()

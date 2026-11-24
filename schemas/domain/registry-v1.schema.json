@@ -132,7 +132,9 @@
               "target": {"type": "object", "required": ["id"], "additionalProperties": false,
                 "dependentRequired": {"index": ["revision"], "revision": ["index"]},
                 "properties": {"id": {"$ref": "#/$defs/text"}, "index": {"$ref": "#/$defs/text"},
-                  "revision": {"$ref": "#/$defs/text"}}},
+                  "revision": {"anyOf": [
+                    {"$ref": "#/$defs/commit"}, {"$ref": "#/$defs/content_revision"}
+                  ]}}},
               "claim": {"$ref": "#/$defs/claim"},
               "scope": {"$ref": "#/$defs/claim_scope"}
             }}

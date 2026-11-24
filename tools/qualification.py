@@ -22,7 +22,6 @@ _INDEX = re.compile(r"software-commons/[a-z0-9]+(?:-[a-z0-9]+)*-index")
 _GIT_ORIGIN = re.compile(r"git\+https://[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?(/[A-Za-z0-9][A-Za-z0-9._-]*)+")
 _CONTENT_REVISION = re.compile(r"sha256:[0-9a-f]{64}")
 _SCOPE_VALUE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+:-]*")
-_VERSION = re.compile(r"v?[0-9]+\.[0-9]+(?:\.[0-9]+)?(?:-[a-z0-9]+(?:[.-][a-z0-9]+)*)?")
 _KINDS = {"license", "exception", "related-instrument", "family"}
 _STATES = {"active", "historical", "retired"}
 _LINEAGE = {"edition-of", "member-of", "derived-from", "supersedes", "merged-from", "split-from"}
@@ -218,7 +217,7 @@ def _validate_target(target, owner, relation, entities):
     require(
         _fields(target, {"index", "id", "revision"})
         and _matches(_INDEX, target["index"]) and target["index"] != REPOSITORY and _text(target["id"])
-        and (_matches(DATA_COMMIT, target["revision"]) or _matches(_VERSION, target["revision"])),
+        and (_matches(DATA_COMMIT, target["revision"]) or _matches(_CONTENT_REVISION, target["revision"])),
         f"{entity_id}: external relationship requires an owning index and immutable revision",
     )
     return None
