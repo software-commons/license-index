@@ -386,6 +386,23 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(list(self.directory.iterdir()), [self.output])
 
     @unittest.skipUnless(os.name == "posix", "POSIX destination validation")
+    def test_posix_force_respects_an_edit_to_the_open_destination(self):
+        self.output.write_bytes(b"original")
+        original = self.output.lstat()
+
+        def finish_after_an_editor_saves(descriptor, content):
+            _complete_file(descriptor, content)
+            self.output.write_bytes(b"my edits")
+
+        with patch("tools.li_install._complete_file", side_effect=finish_after_an_editor_saves):
+            with self.assertRaisesRegex(InstallError, "Output changed during replacement"):
+                write_license(self.output, b"license", force=True)
+
+        self.assertTrue(os.path.samestat(original, self.output.lstat()))
+        self.assertEqual(self.output.read_bytes(), b"my edits")
+        self.assertEqual(list(self.directory.iterdir()), [self.output])
+
+    @unittest.skipUnless(os.name == "posix", "POSIX destination validation")
     def test_posix_force_rechecks_destination_after_staging(self):
         referent = self.directory / "referent"
         referent.write_bytes(b"preserve")
@@ -483,6 +500,36 @@ class InstallTests(unittest.TestCase):
                     self.assertEqual(output.readlink(), Path(referent.name))
                 self.assertEqual(referent.read_bytes(), b"preserve")
                 self.assertEqual(list(self.directory.glob(".license-index-*.tmp")), [])
+
+    @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
+    def test_posix_force_preserves_same_inode_edit_at_exchange(self):
+        from tools.li_install import _exchange_posix
+
+        self.output.write_bytes(b"original")
+        original = self.output.stat()
+        edited = b"modified"
+        observations = []
+
+        def edit_once(stage, temporary, directory, name):
+            if not observations:
+                with self.output.open("r+b") as writer:
+                    writer.write(edited)
+                os.utime(self.output, ns=(original.st_atime_ns, original.st_mtime_ns))
+                observed = self.output.stat()
+                self.assertTrue(os.path.samestat(observed, original))
+                self.assertEqual((observed.st_size, observed.st_mtime_ns),
+                                 (original.st_size, original.st_mtime_ns))
+                observations.append(observed)
+            return _exchange_posix(stage, temporary, directory, name)
+
+        with patch("tools.li_install._exchange_posix", side_effect=edit_once):
+            with self.assertRaisesRegex(InstallError, "Output changed during replacement"):
+                write_license(self.output, b"new license", force=True)
+
+        observed, = observations
+        self.assertTrue(os.path.samestat(self.output.stat(), observed))
+        self.assertEqual(self.output.read_bytes(), edited)
+        self.assertEqual(list(self.directory.iterdir()), [self.output])
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange recovery")
     def test_posix_force_retains_the_displaced_entry_if_the_published_name_moves(self):

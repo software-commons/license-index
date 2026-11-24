@@ -2,6 +2,7 @@
 
 from contextlib import ExitStack, contextmanager
 import errno
+from hashlib import sha256
 import os
 from pathlib import Path
 import re
@@ -389,12 +390,46 @@ def _exchange_posix(source_directory, source, target_directory, target):
         raise OSError(error, os.strerror(error))
 
 
+def _posix_file_metadata(info):
+    return info.st_size, info.st_mtime_ns, info.st_mode, info.st_uid, info.st_gid
+
+
+def _posix_file_fingerprint(descriptor):
+    before = os.fstat(descriptor)
+    digest = sha256()
+    offset = 0
+    while offset < before.st_size:
+        chunk = os.pread(descriptor, min(1024 * 1024, before.st_size - offset), offset)
+        if not chunk:
+            break
+        digest.update(chunk)
+        offset += len(chunk)
+    after = os.fstat(descriptor)
+    if (offset != before.st_size or _posix_file_metadata(before) != _posix_file_metadata(after)
+            or before.st_ctime_ns != after.st_ctime_ns):
+        raise InstallError("Output changed while checking its bytes")
+    return before, digest.digest()
+
+
+class _PinnedPosixTarget(NamedTuple):
+    descriptor: int
+    info: os.stat_result
+    digest: bytes
+
+
 def _replace_posix_regular(stage, temporary, directory, output, previous, staged, recovery):
     _exchange_posix(stage, temporary, directory, output.name)
     displaced = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
-    if stat.S_ISREG(displaced.st_mode) and os.path.samestat(previous, displaced):
-        os.unlink(temporary, dir_fd=stage)
-        return
+    if stat.S_ISREG(displaced.st_mode) and os.path.samestat(previous.info, displaced):
+        try:
+            latest, digest = _posix_file_fingerprint(previous.descriptor)
+        except (InstallError, OSError):
+            pass  # Treat an unstable or unreadable displaced file as changed.
+        else:
+            # Exchange itself can update ctime. Compare the content and stable metadata.
+            if _posix_file_metadata(latest) == _posix_file_metadata(previous.info) and digest == previous.digest:
+                os.unlink(temporary, dir_fd=stage)
+                return
 
     restored = False
     try:
@@ -410,10 +445,9 @@ def _replace_posix_regular(stage, temporary, directory, output, previous, staged
 
 
 def _pin_posix_target(directory, name, output, handles):
-    # O_PATH and O_EVTONLY can hold an identity without opening the file for reading.
-    access = getattr(os, "O_PATH", getattr(os, "O_EVTONLY", os.O_RDONLY))
+    # Open without following a link or waiting on a concurrently substituted FIFO.
     try:
-        descriptor = os.open(name, access | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
+        descriptor = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
     except FileNotFoundError:
         return None
     except OSError as error:
@@ -421,7 +455,9 @@ def _pin_posix_target(directory, name, output, handles):
             raise InstallError(f"Output must be a regular file path: {output}") from error
         raise
     handles.callback(os.close, descriptor)
-    return _check_target(lambda: os.fstat(descriptor), output, force=True, dry_run=False)
+    _check_target(lambda: os.fstat(descriptor), output, force=True, dry_run=False)
+    info, digest = _posix_file_fingerprint(descriptor)
+    return _PinnedPosixTarget(descriptor, info, digest)
 
 
 def _write_posix(output, content, force, dry_run, before_publish):
@@ -466,7 +502,9 @@ def _write_posix(output, content, force, dry_run, before_publish):
                     before_publish(stat_target)
                 if previous is not None:
                     current = _check_target(stat_target, output, force=True, dry_run=False)
-                    if current is None or not os.path.samestat(previous, current):
+                    if (current is None or not os.path.samestat(previous.info, current)
+                            or _posix_file_metadata(previous.info) != _posix_file_metadata(current)
+                            or previous.info.st_ctime_ns != current.st_ctime_ns):
                         raise InstallError(f"Output changed during replacement: {output}")
                     _replace_posix_regular(stage, temporary, directory, output, previous, staged,
                                            staging_path / stage_name / temporary)
@@ -760,7 +798,7 @@ def _write_windows(output, content, force, dry_run, before_publish):
 
 def write_license(output: Path, content: bytes, *, force: bool = False, dry_run: bool = False,
                   before_publish=None) -> None:
-    """Write the selected target without creating directories or clobbering a concurrent writer."""
+    """Write the selected target while checking its existing identity and contents."""
     output = _validate_path(output)
     writer = _write_windows if os.name == "nt" else _write_posix
     try:
