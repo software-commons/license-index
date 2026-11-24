@@ -10,7 +10,7 @@ import re
 import sys
 from zipfile import ZipFile
 
-from .distribution import COVERAGE, archive_entry, validate
+from .distribution import COVERAGE, DATA_DIRECTORIES, archive_entry, validate, validate_build_destination
 from .li_install import InstallError, write_license
 from .qualification import POLICY_COMMIT, POLICY_DIGEST, _blob_hash, _canonical, _exact_file, _git, _git_blobs
 from .records import Catalog, DATA_COMMIT, DataError, ROOT, decode, encode, local_path, require
@@ -19,7 +19,6 @@ CONTRACTS_PATH = "evidence/v1/contracts.schema.json"
 CONTRACTS_SHA256 = "574956395247de677332da8e2cec19453bd34cf0497b40c31280b202cfd8630c"
 CONTRACTS_ASSET = "sces-contracts.schema.json"
 SELECTION_PATH = "sces/publication.json"
-DATA_DIRECTORIES = ("sces", "registry", "research", "legal-texts")
 REPORT_FIELDS = ("repository", "release", "dataset", "dataset_version", "schema_version", "source_commit",
                  "policy_sha256", "selection_sha256")
 REQUEST_STATUS = "awaiting-separate-release-authorization"
@@ -139,10 +138,7 @@ def collect(catalog, policy, base):
 def stage(catalog, policy, output, base):
     target = Path(output)
     require(valid_archive_name(target.name), "release staging requires a GitHub-safe ZIP filename")
-    root = catalog.root.resolve()
-    output_parent = target.parent.resolve()
-    require(not any(output_parent.is_relative_to(root / section) for section in DATA_DIRECTORIES),
-            "release archive must be staged outside the validated input directories")
+    validate_build_destination(catalog.root, target)
     assets, metadata = collect(catalog, policy, base)
     archive = BytesIO()
     with ZipFile(archive, "w") as bundle:

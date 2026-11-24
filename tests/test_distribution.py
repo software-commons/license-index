@@ -15,6 +15,23 @@ from tools.records import Catalog, DataError, NoRedirects, decode, encode
 
 
 class DistributionTests(unittest.TestCase):
+    def test_bundle_rejects_nested_registry_inputs_before_validation_or_writes(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            catalog = Catalog(root)
+            with (patch("tools.distribution.validate_discovery",
+                        side_effect=AssertionError("discovery validation should not start")) as validate,
+                  patch("tools.distribution.write_license") as write):
+                for section in ("registry", "sces", "research", "legal-texts"):
+                    with self.subTest(section=section):
+                        output = root / section / "nested" / "discovery.zip"
+                        output.parent.mkdir(parents=True)
+                        with self.assertRaisesRegex(DataError, "outside.*input"):
+                            bundle(catalog, output)
+                        self.assertFalse(output.exists())
+                validate.assert_not_called()
+                write.assert_not_called()
+
     def test_bundle_retains_removed_and_historical_spdx_origin_manifests(self):
         with TemporaryDirectory() as directory:
             root = Path(directory).resolve()

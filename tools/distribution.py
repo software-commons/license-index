@@ -18,6 +18,7 @@ from .records import (
     NoRedirects, checked_bytes, decode, encode, is_removed, local_path, read, require,
 )
 
+DATA_DIRECTORIES = ("sces", "registry", "research", "legal-texts")
 COVERAGE = "registry/coverage/current.json"
 SNAPSHOTS = "registry/coverage/snapshots"
 DISCOVERY_EXPORT = "catalog.json"
@@ -468,7 +469,15 @@ def _bundle_path(root, value, folder, suffixes):
     return value
 
 
+def validate_build_destination(root, output):
+    parent = Path(output).parent.resolve()
+    root = root.resolve()
+    require(not any(parent.is_relative_to(root / section) for section in DATA_DIRECTORIES),
+            "build output must be outside the validated input directories")
+
+
 def bundle(catalog, output):
+    validate_build_destination(catalog.root, output)
     coverage, retained_sources = validate_discovery(catalog)
     root = catalog.root
     files = BUNDLE_SUPPORT | {
