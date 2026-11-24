@@ -842,6 +842,32 @@ class GitHistoryTests(unittest.TestCase):
             self.assertEqual(replay.call_args.args[1:], (second_pin, None))
             replay.assert_called_once()
 
+    def test_frozen_disposition_reason_cannot_be_repaired_only_at_tip(self):
+        (self.root / f"registry/entities/{MIT[:2]}/{MIT}.json").unlink()
+        self.commit("Set the protected baseline")
+        base = self.git("rev-parse", "HEAD").strip()
+        lead = {**self.lead, "disposition": "excluded", "reason": "Fixture is outside the registry scope"}
+        self.write(self.lead_path, lead)
+        source_path = "research/sources/spdx-3.29.0.json"
+        self.write(source_path, {
+            "release": "3.29.0", "data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+            "population": dict.fromkeys(("licenses", "exceptions", "deprecated_licenses",
+                                         "deprecated_exceptions", "missing_text", "missing_template"), 0),
+        })
+        archive = "registry/coverage/snapshots/reasonless-cutoff.json"
+        snapshot = {"schema_version": COVERAGE_VERSION_V3, "source_manifest": source_path, "snapshot": archive,
+                    "assessment": Catalog(self.root).coverage(schema_version=COVERAGE_VERSION_V3)}
+        self.write(COVERAGE, snapshot)
+        self.write(archive, snapshot)
+        self.write(self.lead_path, {key: value for key, value in lead.items() if key != "reason"})
+        self.commit("Record a coverage cutoff without a disposition reason")
+        self.write(self.lead_path, lead)
+        self.commit("Repair the tip candidate without changing the frozen cutoff")
+
+        validate_discovery(Catalog(self.root))
+        with self.assertRaisesRegex(DataError, "candidate disposition requires a recorded reason"):
+            validate(Catalog(self.root), base=base)
+
     @unittest.skipUnless(os.name == "nt", "requires Git for Windows")
     def test_validator_reads_committed_evidence_with_a_long_git_path(self):
         self.git("config", "core.longpaths", "false")

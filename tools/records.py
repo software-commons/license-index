@@ -185,6 +185,11 @@ class Catalog:
             require(path == f"registry/{kind}/{identifier[:2]}/{identifier}.json",
                     f"incorrect shard or filename: {path}")
             require(identifier not in rows, f"duplicate permanent ID: {identifier}")
+            if kind == "candidates":
+                disposition, reason = row.get("disposition"), row.get("reason")
+                require(isinstance(disposition, str) and disposition.strip()
+                        and isinstance(reason, str) and reason.strip(),
+                        f"{path}: candidate disposition requires a recorded reason")
             rows[identifier] = row
         return rows
 
