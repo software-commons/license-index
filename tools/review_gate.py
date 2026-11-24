@@ -579,9 +579,10 @@ def run(args, github, *, token_input=None, publisher=write_check):
         if expected_head is not None:
             require(admission_identity.head == expected_head, "live admission head differs from the expected review head")
         previous = passing_checks(github, admission_identity, admission_identity.head, args.app_id)
-        if previous:
+        if previous or not revoke_only:
             with TemporaryDirectory(prefix="head-", dir=state) as directory:
                 head_tree = capture_admission_head(admission_identity, Path(directory))
+        if previous:
             proof = {"tree": head_tree, "phase": "queue-admission"}
         if expected_merge is not None and (previous or revoke_only):
             pinned_identity = github.get_queue_pull(args.pull)
@@ -718,6 +719,15 @@ def run(args, github, *, token_input=None, publisher=write_check):
         if observation is not None:
             current = capture_queue_observation(github, pull, run_id, actions_app_id=ACTIONS_APP_ID)
             require(current == observation, "merge queue candidate or CI evidence changed after review")
+        if args.app_id is not None:
+            phase = "merge queue" if observation is not None else "test merge"
+            with TemporaryDirectory(prefix="fresh-git-", dir=state) as directory:
+                require(capture_candidate_tree(snapshot, Path(directory), **capture_options) == tree,
+                        f"live {phase} tree changed before issuance")
+            if admission_identity is not None:
+                with TemporaryDirectory(prefix="head-", dir=state) as directory:
+                    require(capture_admission_head(admission_identity, Path(directory)) == head_tree,
+                            "live admission head tree changed before issuance")
 
     token = secrets.token_hex(32)
     bound_fields = bound_review_verdict_fields(binding)

@@ -285,6 +285,7 @@ class ReviewGateTests(unittest.TestCase):
                     credential = Mock()
                     with (patch("tools.review_gate.require_queue_rules", return_value=ADDITIVE.approval),
                           patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                          patch("tools.review_gate.capture_admission_head", return_value="f" * 40),
                           patch("tools.review_gate.capture_control_paths", return_value=["sces/publication.json"]) as capture,
                           patch("tools.review_gate.capture_queue_observation", return_value=QUEUE),
                           patch("tools.review_gate.protected_staging", return_value=root),
@@ -326,6 +327,7 @@ class ReviewGateTests(unittest.TestCase):
 
             with (patch("tools.review_gate.require_queue_rules", return_value=ADDITIVE.approval),
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                  patch("tools.review_gate.capture_admission_head", return_value="f" * 40),
                   patch("tools.review_gate.capture_control_paths", return_value=["sces/publication.json"]),
                   patch("tools.review_gate.protected_staging", return_value=root),
                   patch("tools.review_gate.share_reviewer_inputs"),
@@ -349,6 +351,7 @@ class ReviewGateTests(unittest.TestCase):
             credential = Mock()
             with (patch("tools.review_gate.require_queue_rules", return_value=policy.approval),
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                  patch("tools.review_gate.capture_admission_head", return_value="f" * 40),
                   patch("tools.review_gate.capture_control_paths", return_value=[".github/workflows/domain.yml"]),
                   patch("tools.review_gate.protected_staging", return_value=root),
                   patch("tools.review_gate.share_reviewer_inputs"),
@@ -579,12 +582,17 @@ class ReviewGateTests(unittest.TestCase):
 
             with (patch("tools.review_gate.GitHub", return_value=scope) as client,
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                  patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40) as fresh_tree,
                   patch("tools.review_gate.capture_queue_observation", return_value=QUEUE) as observed,
                   patch("tools.review_gate.protected_staging", return_value=state),
                   patch("tools.review_gate.share_reviewer_inputs"),
                   patch("tools.review_gate.launch_review", side_effect=fake_launch)):
                 result = run(args, github, token_input=lambda: STATELESS_TOKEN, publisher=publisher)
                 self.assertEqual(result["status"], "check-issued")
+                self.assertEqual(fresh_tree.call_count, 3)
+                for capture in fresh_tree.call_args_list:
+                    self.assertEqual(capture.args[0], replace(SNAPSHOT, merge=QUEUE["merge"]))
+                    self.assertEqual(capture.kwargs, {"queue_ref": QUEUE["queue_ref"]})
                 client.assert_called_once_with(STATELESS_TOKEN)
                 scope._get_json.assert_called_once_with(SCOPE_PATH)
                 first, last = publisher.call_args_list
@@ -641,6 +649,70 @@ class ReviewGateTests(unittest.TestCase):
                     run(args, github, token_input=credential, publisher=publisher)
                 credential.assert_not_called()
                 publisher.assert_not_called()
+
+    def test_issuance_rechecks_live_git_refs_when_rest_still_reports_the_reviewed_candidate(self):
+        scenarios = (("admission", "merge", False), ("admission", "head", True),
+                     ("queue", "merge", True), ("admission", None, False))
+        for phase, stale_ref, after_pending in scenarios:
+            with self.subTest(phase=phase, stale_ref=stale_ref), TemporaryDirectory() as directory:
+                state = Path(directory)
+                admission = phase == "admission"
+                args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
+                                       app_id=123, reviewer=Reviewer(4001, 4002, state), queue_admission=admission,
+                                       queue_run=None if admission else 321, commissioning_policy=ADDITIVE)
+                github = Mock(get_pull=Mock(return_value=SNAPSHOT), get_admission_head=Mock(return_value=ADMISSION),
+                              get_queue_pull=Mock(return_value=QUEUE_PULL))
+                candidate = SNAPSHOT if admission else replace(SNAPSHOT, merge=QUEUE["merge"])
+                git_moved = False
+                checked_sha = candidate.head if admission else candidate.merge
+
+                def fresh_merge(snapshot, _directory, **options):
+                    self.assertEqual(snapshot, candidate)
+                    self.assertEqual(options, {"linear_head": True} if admission else {"queue_ref": QUEUE["queue_ref"]})
+                    if git_moved and stale_ref == "merge":
+                        raise SnapshotError("Fixture Git ref moved")
+                    return "e" * 40
+
+                def fresh_head(identity, _directory):
+                    self.assertEqual(identity, ADMISSION)
+                    if git_moved and stale_ref == "head":
+                        raise SnapshotError("Fixture Git ref moved")
+                    return "f" * 40
+
+                def inspect(_codex, _model, input_dir, _schema, _audit, *, reviewer):
+                    nonlocal git_moved
+                    git_moved = not after_pending
+                    bound = json.loads((input_dir / "review-input.json").read_bytes())
+                    return make_trace(bound["inspection_token"], verdict={"merge_sha": candidate.merge})
+
+                def publish(_token, payload, *, check_id=None):
+                    nonlocal git_moved
+                    if check_id is None:
+                        git_moved = True
+                        return api_check(payload)
+                    return api_check({"name": CHECK_NAME, "head_sha": checked_sha,
+                                      "external_id": publisher.call_args_list[0].args[1]["external_id"], **payload})
+
+                publisher = Mock(side_effect=publish)
+                with (patch("tools.review_gate.require_queue_rules", return_value=ADDITIVE.approval),
+                      patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                      patch("tools.review_gate.capture_queue_observation", return_value=QUEUE),
+                      patch("tools.review_gate.capture_candidate_tree", side_effect=fresh_merge),
+                      patch("tools.review_gate.capture_admission_head", side_effect=fresh_head),
+                      patch("tools.review_gate.token_is_target_only", return_value=True),
+                      patch("tools.review_gate.protected_staging", return_value=state),
+                      patch("tools.review_gate.share_reviewer_inputs"),
+                      patch("tools.review_gate.launch_review", side_effect=inspect)):
+                    if stale_ref is None:
+                        self.assertEqual(run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                                         ["status"], "check-issued")
+                    else:
+                        with self.assertRaisesRegex(SnapshotError, "Fixture Git ref moved"):
+                            run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+
+                expected = (["in_progress", "completed"] if stale_ref is None else
+                            ["in_progress"] if after_pending else [])
+                self.assertEqual([call.args[1]["status"] for call in publisher.call_args_list], expected)
 
     def test_queue_admission_targets_only_the_head_and_records_its_purpose(self):
         checks = []
@@ -1091,6 +1163,7 @@ class ReviewGateTests(unittest.TestCase):
             credential = Mock()
             publisher = Mock()
             with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                  patch("tools.review_gate.capture_admission_head", return_value="f" * 40),
                   patch("tools.review_gate.protected_staging", return_value=state),
                   patch("tools.review_gate.share_reviewer_inputs"),
                   patch("tools.review_gate.launch_review", return_value=b"")):
@@ -1119,6 +1192,7 @@ class ReviewGateTests(unittest.TestCase):
                                           inspect=disposition != "inconclusive")
 
                     with (patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
+                          patch("tools.review_gate.capture_admission_head", return_value="f" * 40),
                           patch("tools.review_gate.protected_staging", return_value=state),
                           patch("tools.review_gate.share_reviewer_inputs"),
                           patch("tools.review_gate.launch_review", side_effect=fake_launch)):
