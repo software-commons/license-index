@@ -212,6 +212,9 @@ class Catalog:
         require(origin["kind"] == "spdx", f"only a source locator is recorded for {identifier}")
         package = self.packaged.get(identifier)
         if package:
+            from .distribution import validate_publisher_package
+
+            validate_publisher_package(identifier, package)
             return checked_bytes(local_path(self.root, package["path"]).read_bytes(), package), package
         descriptor = origin["artifacts"].get("text")
         require(descriptor, f"no SPDX text artifact is recorded for {identifier}")

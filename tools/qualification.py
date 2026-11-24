@@ -406,7 +406,7 @@ def _validate_frozen_provenance(root, frozen, entities, retained_candidates):
                 require(len(matched) == 1,
                         f"{identity}: ambiguous SPDX crosswalk matches multiple linked discovery candidates: "
                         f"{crosswalk['key']}")
-            elif "discovery-origin" in crosswalk.get("scope", {}):
+            elif crosswalk["origin"].startswith("https://") or "discovery-origin" in crosswalk.get("scope", {}):
                 require(len(matched) == 1,
                         f"{identity}: publisher crosswalk does not match one linked frozen discovery origin: "
                         f"{crosswalk['key']}")

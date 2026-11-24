@@ -486,13 +486,16 @@ class GitHistoryTests(unittest.TestCase):
 
         unrelated = {**self.publisher_crosswalk(candidate_id=OTHER), "revision": "sha256:" + "d" * 64,
                      "claim": reference("second-publisher-crosswalk")}
-        proposed["crosswalks"].append(unrelated)
-        self.write(self.path.relative_to(self.root), proposed)
-        self.commit("Freeze the matching crosswalk alongside the unrelated locator assertion")
-        self.select_fixture(self.git("rev-parse", "HEAD").strip(), [*payload, self.publisher_binding(unrelated)])
-        with patch("tools.qualification._validate_policy"):
-            with self.assertRaisesRegex(DataError, "publisher crosswalk"):
-                qualified(Catalog(self.root), self.root)
+        missing_scope = {key: value for key, value in unrelated.items() if key != "scope"}
+        for second in (unrelated, missing_scope):
+            with self.subTest(crosswalk=second):
+                proposed["crosswalks"] = [matching, second]
+                self.write(self.path.relative_to(self.root), proposed)
+                self.commit("Freeze the matching crosswalk alongside the unrelated locator assertion")
+                self.select_fixture(self.git("rev-parse", "HEAD").strip(), [*payload, self.publisher_binding(second)])
+                with patch("tools.qualification._validate_policy"):
+                    with self.assertRaisesRegex(DataError, "publisher crosswalk"):
+                        qualified(Catalog(self.root), self.root)
 
     def test_active_publisher_crosswalk_cannot_use_another_edition_from_history(self):
         crosswalk = self.publisher_crosswalk()
@@ -669,6 +672,59 @@ class GitHistoryTests(unittest.TestCase):
         select_current()
         validate_discovery(Catalog(self.root))
         with self.assertRaisesRegex(DataError, "archived.json: incoming snapshot bytes changed"):
+            validate(Catalog(self.root), base=base)
+
+    def test_trusted_archive_cannot_be_overwritten_and_restored_in_incoming_history(self):
+        self.path.unlink()
+        source = "research/sources/fixture.json"
+        self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+                            "population": dict.fromkeys((
+                                "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                "missing_text", "missing_template",
+                            ), 0)})
+        archive = self.snapshot.relative_to(self.root).as_posix()
+        older = {"schema_version": "2.0.0", "source_manifest": source, "snapshot": archive,
+                 "method": "Synthetic older assessment", "assessment": Catalog(self.root).coverage()}
+
+        def record(ledger):
+            self.write(ledger["snapshot"], ledger)
+            self.write(COVERAGE, ledger)
+
+        record(older)
+        self.commit("Record the older fixture assessment")
+        boundary = self.git("rev-parse", "HEAD").strip()
+        trusted = {**older, "method": "Synthetic trusted assessment"}
+        record(trusted)
+        self.commit("Record the trusted base assessment")
+        base = self.git("rev-parse", "HEAD").strip()
+
+        def checkout_test_merge():
+            head = self.git("rev-parse", "HEAD").strip()
+            self.git("add", "-A")
+            tree = self.git("write-tree").strip()
+            merge = self.git("commit-tree", tree, "-p", base, "-p", head, "-m", "Synthetic test merge").strip()
+            self.git("checkout", "--quiet", "--detach", merge)
+
+        self.git("checkout", "--quiet", "--detach", boundary)
+        self.write("unrelated.json", {"fixture": "ordinary work from the older parent"})
+        self.commit("Leave the older snapshot unchanged")
+        record(trusted)
+        checkout_test_merge()
+        validate(Catalog(self.root), base=base)
+
+        self.git("checkout", "--quiet", "--detach", base)
+        self.write(self.lead_path, {**self.lead, "disposition": "excluded"})
+        rewritten = {**trusted, "assessment": Catalog(self.root).coverage()}
+        record(rewritten)
+        self.commit("Overwrite the trusted archive")
+        overwrite = self.git("rev-parse", "HEAD").strip()
+
+        self.write(archive, trusted)
+        record({**rewritten, "snapshot": "registry/coverage/snapshots/subsequent.json"})
+        self.commit("Restore the trusted bytes and record the next assessment")
+        checkout_test_merge()
+        validate_discovery(Catalog(self.root))
+        with self.assertRaisesRegex(DataError, f"prior coverage snapshot was modified or removed.*{overwrite}"):
             validate(Catalog(self.root), base=base)
 
     def test_strict_validation_replays_each_incoming_snapshot_at_its_own_source_pins(self):

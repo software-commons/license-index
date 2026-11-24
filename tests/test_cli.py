@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 from shutil import copytree
 import subprocess
 import sys
@@ -44,6 +45,23 @@ class ToolTests(unittest.TestCase):
             with self.assertRaisesRegex(DataError, "incorrect GPLv3 companion requirement"):
                 text_or_add(catalog, args)
             self.assertFalse(output.exists())
+
+    def test_install_refuses_another_edition_or_version_notice(self):
+        catalog = Catalog(ROOT)
+        with TemporaryDirectory() as temporary:
+            output = Path(temporary).resolve() / "LICENSE"
+            for requested, different in (
+                ("EPL-1.0", "EPL-2.0"),
+                ("GPL-1.0-only", "GPL-3.0-only"),
+                ("GPL-2.0-only", "GPL-2.0-or-later"),
+            ):
+                with self.subTest(requested=requested), patch.dict(
+                    catalog.packaged, {requested: catalog.packaged[different]}
+                ):
+                    args = parser().parse_args(["add", requested, "--output", str(output)])
+                    with self.assertRaisesRegex(DataError, re.escape(requested)):
+                        text_or_add(catalog, args)
+                    self.assertFalse(output.exists())
 
     def test_installation_coverage_respects_spdx_lifecycle(self):
         catalog = Catalog(ROOT)

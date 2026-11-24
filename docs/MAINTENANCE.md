@@ -26,3 +26,5 @@ The initial SPDX snapshot is reproducible from the archive at the pinned data co
 ## Preserve provenance
 
 Add publisher and research origins with an exact edition, date or immutable source when available. Record the difference between text bytes and display representations. Use the SCES task brief and immutable source and verification records for new factual claims. Add upheld findings with their exact revision, scope and evidence. Provisional notes remain available for research and correction.
+
+When adding an offline publisher text, record the admitted identifiers and exact edition, acquisition digest, representation, source and redistribution evidence. Update the publisher binding used by Registry CI and the CLI for those identifiers. List any SPDX variants that share the same publisher bytes explicitly. For GNU variants that share bytes, retain each identifier's own installation guidance so an installer can distinguish version elections and notice options. Preserve previous bindings needed to replay historical snapshots.
