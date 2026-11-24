@@ -82,9 +82,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 120,
+      "recorded_claim_revisions": 121,
       "recorded_independently_reviewed_claims": 99,
-      "recorded_invalidated_claim_revisions": 21,
+      "recorded_invalidated_claim_revisions": 22,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
@@ -105,12 +105,12 @@
     },
     "scope": "SPDX discovery and publisher leads"
   },
-  "cutoff": "2026-11-23",
+  "cutoff": "2026-11-24",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "71f9b3eda071bffbe8dd768f1d07cc966d5f7875",
-    "sha256": "c32a9c1b3d8db03bb24c30e3bf02cad01a126b2c88353fe44ed99cb74ac3993d",
-    "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-scope.json"
+    "commit": "a6cc13660edc51a25171c0662c605047259e9180",
+    "sha256": "426172362907a846c20e00b75875dbbe990ed66b42b89da720f0670ce622915c",
+    "snapshot": "registry/coverage/snapshots/2026-11-24-mit-reference-initial-selection.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -133,10 +133,11 @@
       "Keep exact SPDX identifiers and deprecated entries distinct, preserving upstream replacement advice as provenance.",
       "Keep publisher leads with their individual dispositions and reasons. The blank Countdown form is excluded as a standalone license.",
       "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence.",
-      "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate."
+      "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate.",
+      "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-24-mit-reference-initial-selection.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-24-mit-installer-causal-evidence.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
