@@ -27,9 +27,11 @@ def add_file(tar, path, raw):
 
 
 def fixture(archive_path, *, release="3.29.0", data=DATA, licenses=("Example",),
-            deprecated=False, text=TEXT, mismatch=False):
+            deprecated=False, text=TEXT, mismatch=False, extra_members=()):
     with tarfile.open(archive_path, "w:gz") as tar:
         prefix = f"license-list-data-{data}/"
+        for path, raw in extra_members:
+            add_file(tar, f"{prefix}{path}", raw)
         for kind, (label, id_field, detail_folder) in reconcile.KINDS.items():
             ids = licenses if kind == "license" else ("Example-exception",)
             manifest = []
@@ -549,6 +551,66 @@ class ReconcileTests(unittest.TestCase):
         report = reconcile.prepare(self.repo, self.root / "metadata", second, source)
         self.assertEqual(report["events"]["changed"], ["MIT"])
         self.assertEqual(report["dependency_review"], [])
+
+    def test_generated_archive_member_changes_review_exact_claim_without_candidate_events(self):
+        identifier = "GFDL-1.1-invariants-or-later"
+        prefix = "SPDXv3/v3jsonld/"
+        target = f"{prefix}{identifier}.json"
+        neighbor = f"{prefix}GFDL-1.1-invariants-only.json"
+        before = b'{"fixture":"retained upstream field"}\n'
+        nearby = b'{"fixture":"different SPDX variant"}\n'
+        fixture(self.archive, licenses=(identifier,), extra_members=((target, before), (neighbor, nearby)))
+        reconcile.prepare_archive(self.repo, self.repo, self.archive, "3.29.0", DATA, XML, initial=True)
+
+        def record(kind, name, revision, **fields):
+            ref = {"kind": kind, "id": name, "revision": revision}
+            path = self.repo / f"sces/records/{kind}/{name}--{revision}.json"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(reconcile.json_bytes({**ref, **fields}))
+            return ref
+
+        raw = f"https://raw.githubusercontent.com/spdx/license-list-data/{DATA}/"
+        for revision, member, payload in ((1, target, before), (2, neighbor, nearby)):
+            source = record("source", "gfdl-generated", revision, locator=raw + member,
+                            captured_sha256=sha256(payload).hexdigest(), release=DATA)
+            claim = record("claim", "gfdl-membership", revision)
+            record("dependency", "gfdl-source-basis", revision, basis=source, claim=claim)
+            record("verification", "gfdl-source-review", revision, claim=claim)
+
+        expected_paths = {
+            "sces/records/source/gfdl-generated--1.json",
+            "sces/records/dependency/gfdl-source-basis--1.json",
+            "sces/records/claim/gfdl-membership--1.json",
+            "sces/records/verification/gfdl-source-review--1.json",
+        }
+        upstream = {"release": "3.29.0", "data_commit": NEXT, "xml_commit": XML,
+                    "archive_url": f"https://codeload.github.com/spdx/license-list-data/tar.gz/{NEXT}"}
+        for status, incoming in (("identical", before), ("changed", b'{"fixture":"revised upstream field"}\n'),
+                                 ("removed", None)):
+            members = [(neighbor, nearby)]
+            if incoming is not None:
+                members.append((target, incoming))
+            fixture(self.archive, data=NEXT, licenses=(identifier,), extra_members=members)
+            archive_bytes = self.archive.read_bytes()
+            digest = sha256(archive_bytes).hexdigest()
+
+            def download(url, destination):
+                self.assertEqual(url, upstream["archive_url"])
+                destination.write_bytes(archive_bytes)
+
+            for route in ("local", "fetched"):
+                with self.subTest(status=status, route=route):
+                    output = self.root / f"{status}-{route}"
+                    if route == "local":
+                        report = reconcile.prepare_archive(self.repo, output, self.archive, "3.29.0", NEXT, XML, digest)
+                    else:
+                        with (patch.object(reconcile, "discover", return_value=upstream),
+                              patch.object(reconcile, "acquire_archive", side_effect=download)):
+                            report = reconcile.prepare_latest(self.repo, output, digest)
+                    self.assertEqual(report["candidate_changes"], 0)
+                    self.assertFalse(any(report["events"].values()))
+                    selected = {row["path"] for row in report["dependency_review"]}
+                    self.assertEqual(selected, set() if status == "identical" else expected_paths)
 
     def test_case_only_spdx_change_reviews_both_exact_spellings(self):
         fixture(self.archive)

@@ -14,7 +14,7 @@ from shutil import copyfileobj
 import sys
 import tarfile
 from tempfile import NamedTemporaryFile, TemporaryDirectory
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 from urllib.request import Request, urlopen
 from uuid import uuid4
 from xml.etree import ElementTree
@@ -22,6 +22,13 @@ from xml.etree import ElementTree
 
 DATA_REPOSITORY = "spdx/license-list-data"
 SOURCE_REPOSITORY = "spdx/license-list-XML"
+DATA_LOCATORS = (f"https://raw.githubusercontent.com/{DATA_REPOSITORY}/",
+                 f"https://github.com/{DATA_REPOSITORY}/blob/")
+CATALOG_PATHS = ("json/", "text/", "template/", "license-list-XML/")
+GENERATED_PATH = re.compile(
+    r"(?:json|text|template|license-list-XML|SPDXv3)/"
+    r"(?:[A-Za-z0-9][A-Za-z0-9._+-]*/)*[A-Za-z0-9][A-Za-z0-9._+-]*\Z"
+)
 KINDS = {
     "license": ("licenses", "licenseId", "details"),
     "exception": ("exceptions", "licenseExceptionId", "exceptions"),
@@ -68,21 +75,33 @@ def describe_text(path, raw):
 
 
 class Archive:
-    def __init__(self, tar, data_commit):
+    def __init__(self, tar, data_commit, cited_paths=()):
         prefix = f"license-list-data-{data_commit}/"
         self.files = {}
+        self.cited_digests = {}
         for member in tar:
-            if not member.isfile():
-                continue
             if not member.name.startswith(prefix):
-                raise ValueError("Archive files must be rooted at the pinned data commit")
-            path = member.name[len(prefix):]
-            if not path.startswith(("json/", "text/", "template/", "license-list-XML/")):
+                if member.isfile():
+                    raise ValueError("Archive files must be rooted at the pinned data commit")
                 continue
-            if path in self.files:
+            path = member.name[len(prefix):]
+            cited = path in cited_paths
+            if not member.isfile():
+                if cited:
+                    raise ValueError(f"Cited archive path is not a regular file: {path}")
+                continue
+            catalogued = path.startswith(CATALOG_PATHS)
+            if not catalogued and not cited:
+                continue
+            if path in self.files or path in self.cited_digests:
                 raise ValueError(f"Duplicate archive path: {path}")
             with tar.extractfile(member) as file:
-                self.files[path] = file.read()
+                if catalogued:
+                    self.files[path] = file.read()
+                    if cited:
+                        self.cited_digests[path] = sha256(self.files[path]).hexdigest()
+                else:
+                    self.cited_digests[path] = file_digest(file, "sha256").hexdigest()
 
     def read(self, path, *, required=True):
         raw = self.files.get(path)
@@ -186,6 +205,11 @@ def origin_summary(origins):
 
 
 def load_release(archive_path, version, data_commit, source_commit, expected_sha256=None):
+    origins, manifest, _ = _load_release(archive_path, version, data_commit, source_commit, expected_sha256)
+    return origins, manifest
+
+
+def _load_release(archive_path, version, data_commit, source_commit, expected_sha256, *, cited_paths=()):
     if not RELEASE.fullmatch(version) or not all(
         COMMIT.fullmatch(commit) for commit in (data_commit, source_commit)
     ):
@@ -204,7 +228,7 @@ def load_release(archive_path, version, data_commit, source_commit, expected_sha
         origins, manifests, release_dates = {}, {}, set()
         known_ids = set()
         with tarfile.open(fileobj=file, mode="r|*") as tar:
-            archive = Archive(tar, data_commit)
+            archive = Archive(tar, data_commit, cited_paths)
             for kind, (key, id_field, _) in KINDS.items():
                 manifest_path = f"json/{key}.json"
                 raw = archive.read(manifest_path)
@@ -228,7 +252,7 @@ def load_release(archive_path, version, data_commit, source_commit, expected_sha
     if len(release_dates) != 1:
         raise ValueError("SPDX manifests disagree on the release date")
 
-    return origins, {
+    manifest = {
         "kind": "spdx",
         "release": version,
         "release_date": release_dates.pop(),
@@ -244,6 +268,7 @@ def load_release(archive_path, version, data_commit, source_commit, expected_sha
         "manifests": manifests,
         "population": origin_summary(origins),
     }
+    return origins, manifest, archive.cited_digests
 
 
 def read_candidates(repo):
@@ -355,10 +380,7 @@ def changed_artifact_locators(previous, incoming):
             if not COMMIT.fullmatch(revision):
                 raise ValueError("Expected an exact SPDX artifact origin commit")
             for path in {artifact["path"], quote(artifact["path"])}:
-                locators.update((
-                    f"https://raw.githubusercontent.com/{DATA_REPOSITORY}/{revision}/{path}",
-                    f"https://github.com/{DATA_REPOSITORY}/blob/{revision}/{path}",
-                ))
+                locators.update(f"{base}{revision}/{path}" for base in DATA_LOCATORS)
     return locators
 
 
@@ -380,6 +402,65 @@ def record_refs(value):
     elif isinstance(value, list):
         for item in value:
             yield from record_refs(item)
+
+
+def generated_artifact(locator):
+    if not isinstance(locator, str):
+        return None
+    for base in DATA_LOCATORS:
+        if not locator.startswith(base):
+            continue
+        revision, _, path = locator[len(base):].partition("/")
+        if not COMMIT.fullmatch(revision):
+            return None
+        try:
+            decoded = unquote(path, errors="strict")
+        except UnicodeError:
+            return None
+        if GENERATED_PATH.fullmatch(decoded) and path in (decoded, quote(decoded)):
+            return revision, decoded
+    return None
+
+
+def cited_artifacts(repo):
+    records = repo / "sces/records"
+    citations = {}
+    for path in sorted((records / "source").glob("*.json")):
+        source = read_json(path.read_bytes())
+        identity = record_key(source)
+        if identity is None or identity[0] != "source":
+            continue
+        locator = source.get("locator")
+        artifact = generated_artifact(locator)
+        if artifact is None:
+            continue
+        retained = source.get("artifact")
+        retained_digest = retained.get("sha256") if isinstance(retained, dict) else None
+        digests = {digest for digest in (source.get("captured_sha256"), retained_digest)
+                   if isinstance(digest, str) and DIGEST.fullmatch(digest)}
+        citations[identity] = (locator, *artifact, digests)
+
+    missing = {identity for identity, (_, _, _, digests) in citations.items() if not digests}
+    if missing:
+        dependencies = {}
+        for path in sorted((records / "dependency").glob("*.json")):
+            dependency = read_json(path.read_bytes())
+            if dependency.get("kind") == "dependency" and (identity := record_key(dependency)):
+                dependencies[identity] = (record_key(dependency.get("claim")), record_key(dependency.get("basis")))
+        for path in sorted((records / "verification").glob("*.json")):
+            verification = read_json(path.read_bytes())
+            claim = record_key(verification.get("claim"))
+            if verification.get("kind") != "verification" or claim is None or claim[0] != "claim":
+                continue
+            for receipt in verification.get("acquisitions", []):
+                identity = record_key(receipt.get("source"))
+                if identity not in missing or dependencies.get(record_key(receipt.get("dependency"))) != (claim, identity):
+                    continue
+                locator, _, _, digests = citations[identity]
+                digest = receipt.get("sha256")
+                if receipt.get("locator") == locator and isinstance(digest, str) and DIGEST.fullmatch(digest):
+                    digests.add(digest)
+    return citations.values()
 
 
 def artifact_dependencies(records, locators):
@@ -499,7 +580,7 @@ def candidate_path(candidate_id):
     return Path("registry", "candidates", candidate_id[:2], f"{candidate_id}.json")
 
 
-def prepare(repo, out, origins, manifest, *, initial=False):
+def prepare(repo, out, origins, manifest, *, initial=False, cited_locators=()):
     repo, out = Path(repo).resolve(), Path(out).resolve()
     existing = read_candidates(repo)
     if initial:
@@ -515,7 +596,7 @@ def prepare(repo, out, origins, manifest, *, initial=False):
     prior_keys = {identifier.casefold(): identifier for identifier in existing}
     # Affected membership claims can still cite the exact prior key spelling.
     review_keys = affected | {prior_keys.get(identifier.casefold(), identifier) for identifier in affected}
-    artifact_locators = set()
+    artifact_locators = set(cited_locators)
     for identifier in affected:
         prior = existing.get(prior_keys.get(identifier.casefold()), {})
         artifact_locators.update(changed_artifact_locators(prior.get("origin", {}), origins.get(identifier, {})))
@@ -553,6 +634,20 @@ def prepare(repo, out, origins, manifest, *, initial=False):
     for path, raw in pending_files.items():
         write_new(out / path, raw)
     return report
+
+
+def prepare_archive(repo, out, archive_path, version, data_commit, source_commit, expected_sha256=None, *, initial=False):
+    citations = () if initial else cited_artifacts(Path(repo).resolve())
+    paths = {path for _, _, path, _ in citations}
+    origins, manifest, observed = _load_release(
+        archive_path, version, data_commit, source_commit, expected_sha256, cited_paths=paths,
+    )
+    # Conflicting prior digests require review. Without an exact prior digest,
+    # a new source pin or an unavailable member also requires reinspection.
+    locators = {locator for locator, revision, path, digests in citations
+                if (digests and digests != {observed.get(path)})
+                or (not digests and (revision != data_commit or path not in observed))}
+    return prepare(repo, out, origins, manifest, initial=initial, cited_locators=locators)
 
 
 def github_json(path):
@@ -606,10 +701,9 @@ def prepare_latest(repo, out, expected_sha256=None):
     with TemporaryDirectory() as directory:
         archive = Path(directory) / "spdx.tar.gz"
         acquire_archive(upstream["archive_url"], archive)
-        origins, manifest = load_release(
-            archive, upstream["release"], upstream["data_commit"], upstream["xml_commit"], expected_sha256
+        return prepare_archive(
+            repo, out, archive, upstream["release"], upstream["data_commit"], upstream["xml_commit"], expected_sha256,
         )
-    return prepare(repo, out, origins, manifest)
 
 
 def main(argv=None):
@@ -634,12 +728,10 @@ def main(argv=None):
         elif args.command == "prepare-latest":
             report = prepare_latest(args.repo, args.output, args.sha256)
         else:
-            origins, manifest = load_release(
-                args.archive, args.release, args.data_commit, args.source_commit, args.sha256
-            )
             initial = args.command == "initial"
-            report = prepare(
-                args.repo, args.repo if initial else args.output, origins, manifest, initial=initial
+            report = prepare_archive(
+                args.repo, args.repo if initial else args.output, args.archive,
+                args.release, args.data_commit, args.source_commit, args.sha256, initial=initial,
             )
     except (KeyError, TypeError, ValueError, OSError, tarfile.TarError, ElementTree.ParseError) as error:
         parser.exit(1, f"SPDX reconciliation failed: {error}\n")
