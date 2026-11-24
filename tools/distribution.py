@@ -7,11 +7,13 @@ from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
 import re
+from tempfile import TemporaryDirectory
 from urllib.request import Request, build_opener
 from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
+from .coverage_context import COVERAGE, SNAPSHOTS, validate_coverage_context
 from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
-from .qualification import _blob_hash, _exact_file, _git, _git_blobs, check_history, qualified
+from .qualification import _blob_hash, _exact_file, _git, _git_blobs, _qualified_historical, check_history, qualified
 from .reconcile import RELEASE
 from .records import (
     COVERAGE_VERSION, COVERAGE_VERSIONS, DATA_COMMIT, DIMENSION_STATES, HEX_256, LEGACY_COVERAGE_VERSION,
@@ -20,9 +22,8 @@ from .records import (
 )
 
 DATA_DIRECTORIES = ("sces", "registry", "research", "legal-texts")
-COVERAGE = "registry/coverage/current.json"
-SNAPSHOTS = "registry/coverage/snapshots"
 DISCOVERY_EXPORT = "catalog.json"
+SCES_PUBLICATION = "sces/publication.json"
 COVERAGE_SCES_SECTIONS = ("sces/records/claim", "sces/records/disposition", "sces/records/verification")
 RECORDED_EVIDENCE_COUNTS = ("recorded_claim_revisions", "recorded_independently_reviewed_claims",
                             "recorded_invalidated_claim_revisions")
@@ -164,7 +165,7 @@ BUNDLE_SUPPORT = {
     "docs/CLI.md", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md", "docs/MAINTENANCE.md",
     "docs/PROFILE_QUALIFICATION.md", "docs/PUBLICATION.md", "docs/RESEARCH_STATUS.md", "docs/SCOPE.md",
     "research/sources/predecessor-assessment.md", "schemas/domain/registry-v1.schema.json",
-    "tools/__init__.py", "tools/distribution.py", "tools/index.py", "tools/li_install.py",
+    "tools/__init__.py", "tools/coverage_context.py", "tools/distribution.py", "tools/index.py", "tools/li_install.py",
     "tools/qualification.py", "tools/reconcile.py", "tools/records.py", "tools/review_plan.py",
     "tools/run_isolated.py", "tools/schema_check.py", "tools/spdx_replay.py",
 }
@@ -354,6 +355,8 @@ def _current_snapshot(catalog):
             "current coverage must name a JSON archive under registry/coverage/snapshots")
     require(_exact_file(snapshot) == current,
             "current coverage differs from its immutable snapshot")
+    if saved["schema_version"] == "4.0.0":
+        validate_coverage_context(catalog.root, saved)
     return saved
 
 
@@ -361,7 +364,13 @@ def _is_evidence_omitting_bundle(catalog, base, policy):
     root = catalog.root
     return (base is None and policy is None and (root / DISCOVERY_EXPORT).is_file()
             and not any((root / name).exists() or (root / name).is_symlink()
-                        for name in (".git", ".github", "sces/adoption.json", "sces/records")))
+                        for name in (".git", ".github", "sces/adoption.json", "sces/records",
+                                     SCES_PUBLICATION, "sces/releases", "registry/entities")))
+
+
+def _has_active_selection(catalog):
+    path = catalog.root / SCES_PUBLICATION
+    return path.exists() or path.is_symlink()
 
 
 def _apply_bundle_evidence(catalog, assessment, snapshot):
@@ -375,25 +384,55 @@ def _apply_bundle_evidence(catalog, assessment, snapshot):
     assessment["qualification"].update(counts)
 
 
+def _bundle_recorded_selection(snapshot):
+    assessment = snapshot["assessment"]
+    qualification = assessment["qualification"]
+    accepted = assessment["catalog"].get("accepted_entities")
+    selected = qualification.get("selected_claims")
+    status = qualification.get("status")
+    require(type(accepted) is int and type(selected) is int
+            and (status == "development" and accepted == selected == 0
+                 or status == "qualified-selection" and 0 < accepted <= selected <= qualification["recorded_claim_revisions"]),
+            "invalid recorded selection counts in offline coverage")
+    return {"accepted_entities": accepted, "selected_claims": selected, "status": status}
+
+
 def coverage_assessment(catalog, qualified_claims=(), *, base=None, policy=None):
     """Report recorded evidence separately from policy-validated active selection."""
+    require(policy is not None or not _has_active_selection(catalog),
+            "active SCES publication requires --policy with the pinned bundle")
     assessment = catalog.coverage(qualified_claims)
     if not qualified_claims and _is_evidence_omitting_bundle(catalog, base, policy):
-        _apply_bundle_evidence(catalog, assessment, _current_snapshot(catalog))
-        assessment["qualification"]["recorded_evidence_basis"] = "distribution-snapshot"
+        saved = _current_snapshot(catalog)
+        _apply_bundle_evidence(catalog, assessment, saved)
+        assessment["qualification"].update(
+            recorded_evidence_basis="distribution-snapshot",
+            selection_basis="unverified-distribution-snapshot",
+            recorded_selection=_bundle_recorded_selection(saved),
+        )
     return assessment
 
 
 def validate_discovery(catalog, *, base=None, policy=None, spdx_archive=None, fetch_spdx_archive=False,
                        rights_reader=None):
+    claims = qualified(catalog, policy, base=base)[1] if _has_active_selection(catalog) else ()
+    return _validate_discovery(catalog, claims, base=base, policy=policy, spdx_archive=spdx_archive,
+                               fetch_spdx_archive=fetch_spdx_archive, rights_reader=rights_reader)
+
+
+def _validate_discovery(catalog, checked_claims, *, base=None, policy=None, spdx_archive=None,
+                        fetch_spdx_archive=False, rights_reader=None):
     saved = _current_snapshot(catalog)
     source = read(local_path(catalog.root, saved["source_manifest"]))
     retained_sources = validate_source(catalog, source)
     validate_texts(catalog, rights_reader=rights_reader)
     validate_profiles(catalog)
-    expected = catalog.coverage()
+    expected = catalog.coverage(checked_claims, schema_version=saved["schema_version"])
     if _is_evidence_omitting_bundle(catalog, base, policy):
         _apply_bundle_evidence(catalog, expected, saved)
+        recorded = _bundle_recorded_selection(saved)
+        expected["catalog"]["accepted_entities"] = recorded["accepted_entities"]
+        expected["qualification"].update(selected_claims=recorded["selected_claims"], status=recorded["status"])
     require(encode(saved["assessment"]) == encode(expected),
             "discovery coverage snapshot differs from the live ledger")
     if spdx_archive is not None or fetch_spdx_archive:
@@ -508,7 +547,38 @@ def _incoming_snapshot_origins(root, base, head, tracked, prior):
     return origins
 
 
-def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=None):
+def _checked_historical_claims(root, base, commit, policy, cache):
+    require(policy is not None, "historical SCES selection requires --policy with the pinned bundle")
+    predecessor = _git(root, "merge-base", base, commit).decode("ascii").strip()
+    algorithm = _git(root, "rev-parse", "--show-object-format").decode("ascii").strip()
+    object_store = Path(_git(root, "rev-parse", "--path-format=absolute", "--git-path", "objects")
+                        .decode("utf-8").strip()).resolve(strict=True)
+    alternate = object_store.as_posix()
+    require(object_store.is_dir() and "\n" not in alternate and "\r" not in alternate,
+            "invalid historical Git object store")
+    inventory = _git_blobs(root, commit, "sces", "registry/candidates", "registry/entities")
+    blobs = _read_git_blobs(root, inventory, cache)
+
+    # The pinned validator sees a private, data-only checkout with the exact original HEAD.
+    with TemporaryDirectory(prefix="license-index-history-") as directory:
+        view = Path(directory).resolve()
+        _git(view, "init", "--quiet", "--template=", f"--object-format={algorithm}")
+        info = view / ".git/objects/info"
+        (info / "alternates").write_bytes(f"{alternate}\n".encode("utf-8"))
+        (view / ".git/HEAD").write_bytes(f"{commit}\n".encode("ascii"))
+        for name, raw in blobs.items():
+            path = local_path(view, name)
+            require(path.relative_to(view).as_posix() == name and _blob_hash(raw, algorithm) == inventory[name],
+                    f"{commit}: invalid historical SCES data blob: {name}")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with path.open("xb") as stream:
+                stream.write(raw)
+        report, claims = _qualified_historical(Catalog(view), policy, base=predecessor, commit=commit)
+        require(report and claims, f"{commit}: historical SCES selection was not qualified")
+        return claims
+
+
+def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=None, policy=None):
     head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
     prior = _git_blobs(root, base, SNAPSHOTS)
     _git(root, "merge-base", "--is-ancestor", base, head)
@@ -534,15 +604,18 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
     for name, commit in snapshots.items():
         archived = decode(_read_git_blobs(root, {name: tracked[name]}, cache)[name])
         require(archived["snapshot"] == name, f"{name}: invalid snapshot self-reference")
+        if archived.get("schema_version") == "4.0.0":
+            validate_coverage_context(root, archived, origin=commit)
         source = archived["source_manifest"]
-        inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", PACKAGED_TEXTS, PROFILES)
+        inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", "registry/entities", PACKAGED_TEXTS,
+                            PROFILES, SCES_PUBLICATION)
         require(isinstance(source, str) and source.startswith(f"{SOURCES}/") and source in inputs,
                 f"{name}: source manifest missing from historical Git tree {commit}")
         require(tracked_sources.get(source) == inputs[source],
                 f"{name}: historical source manifest was dropped or changed at the candidate tip")
         data = _read_git_blobs(root, {path: oid for path, oid in inputs.items()
-                                     if path == source or SPDX_SOURCE.fullmatch(path)
-                                     or not path.startswith(f"{SOURCES}/")}, cache)
+                                     if path != SCES_PUBLICATION and (path == source or SPDX_SOURCE.fullmatch(path)
+                                         or not path.startswith(f"{SOURCES}/"))}, cache)
         rows = {path: decode(payload) for path, payload in data.items()}
         version = archived.get("schema_version")
         require(version in COVERAGE_VERSIONS, f"{name}: unsupported coverage schema")
@@ -558,7 +631,8 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
         historical_texts = _read_git_blobs(root, {path: texts[path] for path in text_paths}, cache)
         validate_texts(historic, historical_texts.__getitem__, rights_reader=rights_reader, archived=True)
         validate_profiles(historic)
-        expected = historic.coverage(schema_version=version)
+        claims = _checked_historical_claims(root, base, commit, policy, cache) if SCES_PUBLICATION in inputs else ()
+        expected = historic.coverage(claims, schema_version=version)
         installation = expected["installation"]
         # The v1 discovery format originally omitted this field when there were no companions.
         if (version == LEGACY_COVERAGE_VERSION and not installation["requires_verified_companion"]
@@ -582,7 +656,8 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
 def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
     if rights_reader is not None:
         rights_reader = cache(rights_reader)
-    saved, _ = validate_discovery(catalog, base=base, policy=policy, rights_reader=rights_reader)
+    result = qualified(catalog, policy, base=base)
+    saved, _ = _validate_discovery(catalog, result[1], base=base, policy=policy, rights_reader=rights_reader)
     replay_history = None
     if spdx_archive is not None or fetch_spdx_archive:
         source = read(local_path(catalog.root, saved["source_manifest"]))
@@ -602,12 +677,11 @@ def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_a
 
         archives = {}
         replay_history = partial(replay_download, archives=archives, historical=True)
-    result = qualified(catalog, policy, base=base)
     predecessor = base
     if base:
         check_history(catalog, base)
         verified_predecessor = validate_incoming_snapshots(catalog.root, base, rights_reader=rights_reader,
-                                                           replay_spdx=replay_history)
+                                                           replay_spdx=replay_history, policy=policy)
         predecessor = verified_predecessor or base
     if spdx_archive is not None:
         compare_registry(catalog, origins, source, predecessor)
@@ -680,9 +754,9 @@ def validate_build_destination(root, output):
             "build output must be outside the validated input directories")
 
 
-def bundle(catalog, output):
+def bundle(catalog, output, *, policy=None):
     validate_build_destination(catalog.root, output)
-    coverage, retained_sources = validate_discovery(catalog)
+    coverage, retained_sources = validate_discovery(catalog, policy=policy)
     root = catalog.root
     files = BUNDLE_SUPPORT | {
         _bundle_path(root, coverage["source_manifest"], SOURCES, {".json"}),
@@ -690,6 +764,8 @@ def bundle(catalog, output):
         *retained_sources,
         *(f"registry/candidates/{identity[:2]}/{identity}.json" for identity in catalog.candidates),
     }
+    if coverage["schema_version"] == "4.0.0":
+        files.add(coverage["predecessor"]["snapshot"])
     if catalog.packaged:
         files.add(PACKAGED_TEXTS)
         files.update(_bundle_path(root, row["path"], "legal-texts", {".txt", ".md"})

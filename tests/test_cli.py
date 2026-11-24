@@ -13,6 +13,7 @@ import unittest
 from unittest.mock import patch
 from zipfile import ZipFile
 
+from tools.distribution import discovery_export
 from tools.index import install_target, parser, text_or_add
 from tools.records import ROOT, Catalog, DataError, encode
 from tools.review_plan import admission_packet
@@ -32,6 +33,14 @@ class ToolTests(unittest.TestCase):
         process = command("--json", *args)
         self.assertEqual(process.returncode, 0, process.stderr.decode())
         return json.loads(process.stdout)
+
+    def discovery_counts(self):
+        if (ROOT / "sces/publication.json").is_file():
+            rejected = command("coverage")
+            self.assertEqual(rejected.returncode, 1)
+            self.assertIn(b"requires --policy", rejected.stderr)
+            return Catalog(ROOT).coverage()
+        return self.json_output("coverage")
 
     def test_lgplv3_recipe_cannot_bypass_companion_gate(self):
         catalog = Catalog(ROOT)
@@ -84,7 +93,7 @@ class ToolTests(unittest.TestCase):
                     self.assertNotIn(identifier, catalog.coverage()["installation"][coverage_field])
 
     def test_population_search_and_historical_identity(self):
-        coverage = self.json_output("coverage")
+        coverage = self.discovery_counts()
         source = json.loads((ROOT / "research/sources/spdx-3.29.0.json").read_bytes())
         self.assertEqual(coverage["catalog"]["spdx_licenses"], source["population"]["licenses"])
         self.assertEqual(coverage["catalog"]["spdx_exceptions"], source["population"]["exceptions"])
@@ -251,6 +260,12 @@ class ToolTests(unittest.TestCase):
             self.assertEqual(dimension["sources"], [])
 
     def test_development_export_is_deterministic_and_qualified_export_fails_closed(self):
+        if (ROOT / "sces/publication.json").is_file():
+            for flags in ((), ("--qualified",)):
+                rejected = command("export", *flags)
+                self.assertEqual(rejected.returncode, 1)
+                self.assertIn(b"requires --policy", rejected.stderr)
+            return
         first = command("export")
         second = command("export")
         self.assertEqual(first.returncode, 0, first.stderr.decode())
@@ -258,9 +273,7 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(json.loads(first.stdout)["status"], "development-discovery")
         rejected = command("export", "--qualified")
         self.assertEqual(rejected.returncode, 1)
-        diagnostic = (b"requires --policy" if (ROOT / "sces/publication.json").exists()
-                      else b"no active SCES-qualified release")
-        self.assertIn(diagnostic, rejected.stderr)
+        self.assertIn(b"no active SCES-qualified release", rejected.stderr)
 
     def test_review_plan_is_deterministic_and_keeps_uncertainty(self):
         first = self.json_output("review-plan", "MIT")
@@ -275,7 +288,7 @@ class ToolTests(unittest.TestCase):
         plan = self.json_output("review-plan", "--admission")
         self.assertEqual(plan["status"], "discovery-admission-plan")
         self.assertEqual(plan["selected"], len({item["candidate_id"] for item in plan["candidates"]}))
-        coverage = self.json_output("coverage")["catalog"]
+        coverage = self.discovery_counts()["catalog"]
         self.assertEqual(plan["by_population"]["listed"], coverage["spdx_licenses"] + coverage["spdx_exceptions"])
         self.assertEqual(plan["by_population"]["publisher-lead"], coverage["beyond_spdx_leads"])
         self.assertEqual(plan["by_population"].get("historical-only", 0), coverage["spdx_historical_only"])
@@ -335,12 +348,22 @@ class ToolTests(unittest.TestCase):
             folder = Path(temporary).resolve()
             archive = folder / "a.zip"
             duplicate = folder / "b.zip"
+            if (ROOT / "sces/publication.json").is_file():
+                rejected = command("bundle", archive)
+                self.assertEqual(rejected.returncode, 1)
+                self.assertIn(b"requires --policy", rejected.stderr)
+                self.assertFalse(archive.exists())
+                return
             for path in (archive, duplicate):
                 result = command("bundle", path)
                 self.assertEqual(result.returncode, 0, result.stderr.decode())
             self.assertEqual(archive.read_bytes(), duplicate.read_bytes())
             unpacked = folder / "unpacked"
             with ZipFile(archive) as package:
+                snapshot = json.loads(package.read("registry/coverage/current.json"))
+                predecessor = snapshot["predecessor"]
+                self.assertEqual(hashlib.sha256(package.read(predecessor["snapshot"])).hexdigest(),
+                                 predecessor["sha256"])
                 self.assertNotIn("sces/publication.json", package.namelist())
                 self.assertFalse(any(name.startswith("sces/records/") for name in package.namelist()))
                 self.assertNotIn("tools/audit_claims.py", package.namelist())
@@ -526,7 +549,30 @@ class ToolTests(unittest.TestCase):
                              frozen_counts["catalog"]["candidate_dispositions"])
             bundled_evidence = bundled_counts["qualification"]
             self.assertEqual(bundled_evidence.pop("recorded_evidence_basis"), "distribution-snapshot")
+            self.assertEqual(bundled_evidence.pop("selection_basis"), "unverified-distribution-snapshot")
+            self.assertEqual(bundled_evidence.pop("recorded_selection"), {
+                "accepted_entities": frozen_counts["catalog"]["accepted_entities"],
+                "selected_claims": frozen_counts["qualification"]["selected_claims"],
+                "status": frozen_counts["qualification"]["status"],
+            })
             self.assertEqual(bundled_evidence, frozen_counts["qualification"])
+            # This fixture checks how an offline reader labels recorded counts from an active source.
+            current = unpacked / "registry/coverage/current.json"
+            recorded = json.loads(current.read_bytes())
+            recorded["assessment"]["catalog"]["accepted_entities"] = 1
+            recorded["assessment"]["qualification"].update(selected_claims=1, status="qualified-selection")
+            revised_snapshot = encode(recorded)
+            current.write_bytes(revised_snapshot)
+            (unpacked / recorded["snapshot"]).write_bytes(revised_snapshot)
+            (unpacked / "catalog.json").write_bytes(encode(discovery_export(Catalog(unpacked))))
+            observed = command("validate", "--json", root=unpacked)
+            self.assertEqual(observed.returncode, 0, observed.stderr.decode())
+            assessment = json.loads(observed.stdout)["coverage"]
+            self.assertEqual(assessment["catalog"]["accepted_entities"], 0)
+            self.assertEqual(assessment["qualification"]["selected_claims"], 0)
+            self.assertEqual(assessment["qualification"]["recorded_selection"], {
+                "accepted_entities": 1, "selected_claims": 1, "status": "qualified-selection",
+            })
             planned = command("review-plan", "--admission", "GCC-exception-3.1", root=unpacked)
             self.assertEqual(planned.returncode, 0, planned.stderr.decode())
             candidate, = json.loads(planned.stdout)["candidates"]
@@ -538,8 +584,8 @@ class ToolTests(unittest.TestCase):
             entity = unpacked / "registry" / "entities" / "ab" / "invalid.json"
             entity.parent.mkdir(parents=True)
             entity.write_text("invalid entity", encoding="utf-8")
-            self.assertEqual(command("export", root=unpacked).returncode, 0)
-            self.assertEqual(command("bundle", folder / "discovery.zip", root=unpacked).returncode, 0)
+            self.assertEqual(command("export", root=unpacked).returncode, 1)
+            self.assertEqual(command("bundle", folder / "discovery.zip", root=unpacked).returncode, 1)
             self.assertEqual(command("validate", root=unpacked).returncode, 1)
             selection.unlink()
             self.assertEqual(command("validate", root=unpacked).returncode, 1)

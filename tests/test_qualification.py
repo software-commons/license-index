@@ -12,12 +12,13 @@ import unittest
 from unittest.mock import patch
 
 from tools.audit_claims import audit_claims
-from tools.distribution import COVERAGE, validate, validate_discovery
+from tools.coverage_context import validate_coverage_context
+from tools.distribution import COVERAGE, validate, validate_discovery, validate_incoming_snapshots
 from tools.index import execute, parser
 from tools.qualification import (
     POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _run, _validate_policy, check_history, qualified,
 )
-from tools.records import COVERAGE_VERSION, ROOT, Catalog, DataError, encode
+from tools.records import COVERAGE_VERSION_V3, ROOT, Catalog, DataError, encode
 
 
 MIT = "123456789abc4def8123456789abcdef"
@@ -277,6 +278,7 @@ class BindingsTests(unittest.TestCase):
 
 class GitHistoryTests(unittest.TestCase):
     def setUp(self):
+        self.enterContext(patch("tools.distribution.COVERAGE_VERSION", COVERAGE_VERSION_V3))
         directory = TemporaryDirectory()
         self.addCleanup(directory.cleanup)
         self.root = Path(directory.name).resolve()
@@ -598,7 +600,7 @@ class GitHistoryTests(unittest.TestCase):
         self.commit("Set discovery baseline")
         base = self.git("rev-parse", "HEAD").strip()
         catalog = Catalog(self.root)
-        ledger = {"schema_version": COVERAGE_VERSION, "source_manifest": source, "snapshot": COVERAGE,
+        ledger = {"schema_version": COVERAGE_VERSION_V3, "source_manifest": source, "snapshot": COVERAGE,
                   "assessment": catalog.coverage()}
         self.write(COVERAGE, ledger)
         with self.assertRaisesRegex(DataError, "must name a JSON archive"):
@@ -640,7 +642,7 @@ class GitHistoryTests(unittest.TestCase):
 
         def select_current():
             self.write(self.lead_path, {**self.lead, "disposition": "excluded"})
-            current = {"schema_version": COVERAGE_VERSION, "source_manifest": source,
+            current = {"schema_version": COVERAGE_VERSION_V3, "source_manifest": source,
                        "snapshot": "registry/coverage/snapshots/current.json",
                        "assessment": Catalog(self.root).coverage()}
             self.write(current["snapshot"], current)
@@ -674,6 +676,32 @@ class GitHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "archived.json: incoming snapshot bytes changed"):
             validate(Catalog(self.root), base=base)
 
+    def test_coverage_predecessor_must_match_the_first_parent_ledger(self):
+        earlier = "registry/coverage/snapshots/earlier-fixture.json"
+        middle = "registry/coverage/snapshots/middle-fixture.json"
+        latest = "registry/coverage/snapshots/latest-fixture.json"
+
+        def record_archive(path, version, **extra):
+            row = {"snapshot": path, "schema_version": version, **extra}
+            self.write(path, row)
+            self.write(COVERAGE, row)
+            self.commit("Record a synthetic coverage snapshot")
+            return {"snapshot": path, "commit": self.git("rev-parse", "HEAD").strip(),
+                    "sha256": sha256(encode(row)).hexdigest()}
+
+        old_pin = record_archive(earlier, COVERAGE_VERSION_V3)
+        middle_pin = record_archive(middle, COVERAGE_VERSION_V3)
+        scope = dict.fromkeys(("included_ecosystems", "discovery_paths", "exclusions", "inaccessible_areas",
+                               "reconciliation_choices"), ["Synthetic fixture scope"])
+        current_pin = record_archive(latest, "4.0.0", predecessor=middle_pin, research_scope=scope)
+        current = {"snapshot": latest, "predecessor": middle_pin, "research_scope": scope}
+        self.assertEqual(validate_coverage_context(self.root, current, origin=current_pin["commit"]), middle)
+        self.assertEqual(validate_coverage_context(self.root, current), middle)
+        with self.assertRaisesRegex(DataError, "not the exact first-parent coverage ledger"):
+            validate_coverage_context(self.root, {**current, "predecessor": old_pin}, origin=current_pin["commit"])
+        with self.assertRaisesRegex(DataError, "predecessor SHA-256 mismatch"):
+            validate_coverage_context(self.root, {**current, "predecessor": {**middle_pin, "sha256": "0" * 64}})
+
     def test_trusted_archive_cannot_be_overwritten_and_restored_in_incoming_history(self):
         self.path.unlink()
         source = "research/sources/fixture.json"
@@ -694,7 +722,7 @@ class GitHistoryTests(unittest.TestCase):
         record(older)
         self.commit("Record the older fixture assessment")
         boundary = self.git("rev-parse", "HEAD").strip()
-        trusted = {**older, "schema_version": COVERAGE_VERSION, "method": "Synthetic trusted assessment",
+        trusted = {**older, "schema_version": COVERAGE_VERSION_V3, "method": "Synthetic trusted assessment",
                    "assessment": Catalog(self.root).coverage()}
         record(trusted)
         self.commit("Record the trusted base assessment")
@@ -743,7 +771,7 @@ class GitHistoryTests(unittest.TestCase):
                                                   "deprecated_exceptions", "missing_text", "missing_template"), 0)}
             self.write(source_path, source)
             path = f"registry/coverage/snapshots/{release}.json"
-            schema_version = "2.0.0" if release == "3.28.0" else COVERAGE_VERSION
+            schema_version = "2.0.0" if release == "3.28.0" else COVERAGE_VERSION_V3
             snapshot = {"schema_version": schema_version, "source_manifest": source_path, "snapshot": path,
                         "assessment": Catalog(self.root).coverage(schema_version=schema_version)}
             self.write(COVERAGE, snapshot)
@@ -861,7 +889,7 @@ class GitHistoryTests(unittest.TestCase):
                                 "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
                                 "missing_text", "missing_template",
                             ), 0)})
-        saved = {"schema_version": COVERAGE_VERSION, "source_manifest": source, "snapshot": snapshot,
+        saved = {"schema_version": COVERAGE_VERSION_V3, "source_manifest": source, "snapshot": snapshot,
                  "assessment": catalog.coverage()}
         self.write(snapshot, saved)
         self.write("registry/coverage/current.json", saved)
@@ -874,20 +902,33 @@ class GitHistoryTests(unittest.TestCase):
         policy_flag = ("--policy", str(self.root))
         with self.assertRaisesRegex(DataError, "requires --policy"):
             invoke("show", "--qualified", alias["name"])
-        self.select_fixture(frozen, selected)
         with patch("tools.qualification._validate_policy") as check:
             self.assertEqual(invoke("coverage")["catalog"]["accepted_entities"], 0)
             self.assertEqual(invoke("export")["status"], "development-discovery")
+            check.assert_not_called()
+
+            self.select_fixture(frozen, selected)
             self.assertEqual(invoke("show", "Fixture Field Terms 1.0")["record"]["id"], CANDIDATE)
             with self.assertRaisesRegex(DataError, "unknown catalog identifier"):
                 invoke("show", alias["name"])
+            for command in ("coverage", "export"):
+                with self.subTest(command=command), self.assertRaisesRegex(DataError, "requires --policy"):
+                    invoke(command)
             check.assert_not_called()
+
+            with self.assertRaisesRegex(DataError, "coverage snapshot differs"):
+                invoke("validate", *policy_flag)
+            saved["assessment"] = catalog.coverage(selected)
+            self.write(snapshot, saved)
+            self.write(COVERAGE, saved)
+
             validated = invoke("validate", *policy_flag)
             self.assertEqual(validated["coverage"]["catalog"]["accepted_entities"], 1)
             counters = validated["coverage"]["qualification"]
             self.assertEqual(counters["selected_claims"], 3)
             self.assertEqual(counters["recorded_independently_reviewed_claims"], 0)
             self.assertEqual(invoke("coverage", *policy_flag), validated["coverage"])
+            self.assertEqual(invoke("export", *policy_flag)["coverage"]["assessment"], saved["assessment"])
             exported = invoke("export", "--qualified", *policy_flag)
             self.assertEqual(set(exported), {"release", "entities", "claims"})
             self.assertEqual(exported["entities"], [row])
@@ -899,6 +940,47 @@ class GitHistoryTests(unittest.TestCase):
                 invoke("export", *policy_flag)
             with self.assertRaisesRegex(DataError, "fixture policy rejected"):
                 invoke("show", "--qualified", *policy_flag, alias["name"])
+
+    def test_historical_coverage_checks_the_selection_from_its_recording_commit(self):
+        crosswalk = self.publisher_crosswalk()
+        row = {**self.row, "crosswalks": [crosswalk]}
+        self.write(self.path.relative_to(self.root), row)
+        source = "research/sources/fixture.json"
+        self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+                            "population": dict.fromkeys((
+                                "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                "missing_text", "missing_template",
+                            ), 0)})
+        self.commit("Freeze the synthetic binding and catalog inputs")
+        frozen = self.git("rev-parse", "HEAD").strip()
+        selected = [identity_claim(row), self.publisher_binding(crosswalk)]
+
+        def record_coverage(label, claims):
+            path = f"registry/coverage/snapshots/{label}.json"
+            row = {"schema_version": COVERAGE_VERSION_V3, "source_manifest": source, "snapshot": path,
+                   "assessment": Catalog(self.root).coverage(claims)}
+            self.write(path, row)
+            self.write(COVERAGE, row)
+            self.commit(f"Record synthetic {label} coverage")
+
+        self.select_fixture(frozen, selected)
+        record_coverage("active", selected)
+        active = self.git("rev-parse", "HEAD").strip()
+        timestamp = int(self.git("show", "-s", "--format=%ct", active))
+        (self.root / "sces/publication.json").unlink()
+        record_coverage("inactive", [])
+
+        def check_policy(view, policy, base, *, historical_timestamp):
+            self.assertNotEqual(view, self.root)
+            self.assertEqual((view / ".git/HEAD").read_text(encoding="ascii").strip(), active)
+            self.assertTrue((view / "sces/publication.json").is_file())
+            self.assertEqual((policy, base, historical_timestamp), (self.root, frozen, timestamp))
+
+        with self.assertRaisesRegex(DataError, "historical SCES selection requires --policy"):
+            validate_incoming_snapshots(self.root, frozen)
+        with patch("tools.qualification._validate_policy", side_effect=check_policy) as check:
+            validate_incoming_snapshots(self.root, frozen, policy=self.root)
+            check.assert_called_once()
 
     def test_recorded_coverage_uses_exact_current_review_state(self):
         claim = {"kind": "claim", "id": "fixture", "revision": 1}

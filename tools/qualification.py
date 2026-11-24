@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+from time import time
 
 from .records import DATA_COMMIT, OPAQUE_ID, DataError, decode, require
 
@@ -163,13 +164,37 @@ def _pinned_validator(policy):
     return root / "tools/sces/validate.py"
 
 
-def _validate_policy(catalog_root, policy, base):
+_HISTORICAL_POLICY = """
+from datetime import datetime, timezone
+from pathlib import Path
+import runpy
+import sys
+
+validator, root, repository, expected_policy, base, timestamp = sys.argv[1:]
+policy = runpy.run_path(validator)
+if policy["policy_bundle"]() != expected_policy:
+    raise ValueError("SCES history policy differs from the adopted digest")
+as_of = datetime.fromtimestamp(int(timestamp), timezone.utc)
+registry = policy["Registry"](Path(root), expected_policy, as_of, repository=repository)
+registry.validate_publication(base=base or None)
+"""
+
+
+def _validate_policy(catalog_root, policy, base, *, historical_timestamp=None):
+    if base is not None:
+        require(_matches(DATA_COMMIT, base), "use a full Git commit for the history base")
+    validator = _pinned_validator(policy)
+    if historical_timestamp is not None:
+        require(type(historical_timestamp) is int and 0 <= historical_timestamp <= time(),
+                "invalid or future SCES historical commit time")
+        _run([sys.executable, "-I", "-B", "-c", _HISTORICAL_POLICY, str(validator), str(catalog_root),
+              REPOSITORY, POLICY_DIGEST, base or "", str(historical_timestamp)])
+        return
     arguments = [
-        sys.executable, "-I", "-B", str(_pinned_validator(policy)),
+        sys.executable, "-I", "-B", str(validator),
         "--repo", str(catalog_root), "--repository", REPOSITORY,
     ]
     if base is not None:
-        require(_matches(DATA_COMMIT, base), "use a full Git commit for the history base")
         arguments.extend(["--base", base])
     _run(arguments)
 
@@ -456,10 +481,26 @@ def _check_withdrawn_entities(root, entities, base):
 
 def qualified(catalog, policy: Path | None, *, base: str | None = None) -> tuple[dict | None, list]:
     """Return the active validated report and domain-bound claims, if present."""
+    return _qualified(catalog, policy, base=base)
+
+
+def _qualified_historical(catalog, policy: Path, *, base: str, commit: str) -> tuple[dict | None, list]:
+    root = catalog.root.resolve()
+    require(_git(root, "rev-parse", "--verify", "HEAD").decode("ascii").strip() == commit,
+            "historical SCES checkout is outside the exact coverage commit")
+    timestamp = _git(root, "show", "-s", "--format=%ct", commit).decode("ascii").strip()
+    require(timestamp.isdecimal(), f"{commit}: invalid historical Git commit time")
+    return _qualified(catalog, policy, base=base, historical_timestamp=int(timestamp))
+
+
+def _qualified(catalog, policy, *, base=None, historical_timestamp=None):
     root = catalog.root.resolve()
     selection = root / "sces/publication.json"
     if policy is not None:
-        _validate_policy(root, policy, base)
+        if historical_timestamp is None:
+            _validate_policy(root, policy, base)
+        else:
+            _validate_policy(root, policy, base, historical_timestamp=historical_timestamp)
 
     if not selection.exists() and not selection.is_symlink():
         if catalog.entities:

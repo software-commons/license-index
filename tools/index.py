@@ -62,7 +62,7 @@ def parser():
             sub.add_argument("identifiers", nargs="+")
         if command == "expression":
             sub.add_argument("expression")
-        if command in {"validate", "export", "coverage", "show"}:
+        if command in {"validate", "export", "coverage", "show", "bundle"}:
             sub.add_argument("--policy", type=Path, help="checkout at the pinned SCES commit")
         if command == "validate":
             sub.add_argument("--base", help="full SHA of a trusted prior commit")
@@ -216,7 +216,7 @@ def execute(catalog, args):
             bundle, coverage_assessment, discovery_export, read_rights_document, validate, validate_discovery,
         )
         if command == "bundle":
-            return bundle(catalog, args.output), None
+            return bundle(catalog, args.output, policy=args.policy), None
         if command == "export":
             if args.policy is None:
                 validate_discovery(catalog)

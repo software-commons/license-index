@@ -20,10 +20,11 @@ DATA_COMMIT = re.compile(r"[0-9a-f]{40}")
 SPDX_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9.-]*\+?")
 SPDX_DATA_RAW = "https://raw.githubusercontent.com/spdx/license-list-data"
 VERSION = "0.1.0.dev0"
-COVERAGE_VERSION = "3.0.0"
+COVERAGE_VERSION = "4.0.0"
+COVERAGE_VERSION_V3 = "3.0.0"
 COVERAGE_VERSION_V2 = "2.0.0"
 LEGACY_COVERAGE_VERSION = "1.0.0"
-COVERAGE_VERSIONS = (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION_V2, COVERAGE_VERSION)
+COVERAGE_VERSIONS = (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION_V2, COVERAGE_VERSION_V3, COVERAGE_VERSION)
 DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
                     "inapplicable", "explicit-absence"}
 _SCES_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
@@ -350,7 +351,7 @@ class Catalog:
                 Counter(row["disposition"] for row in self.candidates.values())
             )
             qualification.update(self._recorded_qualification(), selected_claims=len(qualified_claims))
-        if schema_version == COVERAGE_VERSION:
+        if schema_version in (COVERAGE_VERSION_V3, COVERAGE_VERSION):
             assessment["research"].update(self._research_depth())
         return assessment
 

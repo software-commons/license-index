@@ -12,7 +12,7 @@ from tools.distribution import (
     CC_LEGAL_TEXTS, CC_RIGHTS, CC_RIGHTS_SHA256, COVERAGE, POLYFORM_RIGHTS, RIGHTS_DOCUMENTS, RIGHTS_MAX_BYTES,
     bundle, read_rights_document, validate_discovery, validate_incoming_snapshots, validate_texts,
 )
-from tools.records import COVERAGE_VERSION, Catalog, DataError, NoRedirects, decode, encode
+from tools.records import COVERAGE_VERSION_V3, Catalog, DataError, NoRedirects, decode, encode
 
 
 class DistributionTests(unittest.TestCase):
@@ -33,6 +33,7 @@ class DistributionTests(unittest.TestCase):
                 validate.assert_not_called()
                 write.assert_not_called()
 
+    @patch("tools.distribution.COVERAGE_VERSION", COVERAGE_VERSION_V3)
     def test_bundle_retains_removed_and_historical_spdx_origin_manifests(self):
         with TemporaryDirectory() as directory:
             root = Path(directory).resolve()
@@ -70,15 +71,16 @@ class DistributionTests(unittest.TestCase):
                 ), 0),
             })
             catalog = Catalog(root)
-            counts = catalog.coverage()["catalog"]
+            assessment = catalog.coverage(schema_version=COVERAGE_VERSION_V3)
+            counts = assessment["catalog"]
             self.assertEqual(counts["spdx_licenses"], 0)
             self.assertEqual(counts["spdx_historical_only"], 1)
             self.assertEqual(counts["candidate_dispositions"], {"historical": 1})
             snapshot = "registry/coverage/snapshots/3.29.0.json"
             coverage = {
-                "schema_version": COVERAGE_VERSION, "cutoff": "2026-11-23", "method": "Synthetic removal fixture",
+                "schema_version": COVERAGE_VERSION_V3, "cutoff": "2026-11-23", "method": "Synthetic removal fixture",
                 "source_manifest": current_source, "snapshot": snapshot,
-                "assessment": catalog.coverage(),
+                "assessment": assessment,
             }
             write(COVERAGE, coverage)
             write(snapshot, coverage)
@@ -106,6 +108,7 @@ class DistributionTests(unittest.TestCase):
                 self.assertEqual(exported["coverage"], coverage)
 
 
+    @patch("tools.distribution.COVERAGE_VERSION", COVERAGE_VERSION_V3)
     def test_snapshot_restoration_replays_the_original_archival_inputs(self):
         for original_matches in (False, True):
             with self.subTest(original_matches=original_matches), TemporaryDirectory() as directory:
@@ -139,9 +142,10 @@ class DistributionTests(unittest.TestCase):
                     write(candidate_path, {**candidate, "disposition": disposition})
 
                 def snapshot(name, *, assessment=None):
-                    row = {"schema_version": COVERAGE_VERSION, "cutoff": "2026-11-23", "method": "Synthetic coverage fixture",
+                    row = {"schema_version": COVERAGE_VERSION_V3, "cutoff": "2026-11-23", "method": "Synthetic coverage fixture",
                            "source_manifest": source_path, "snapshot": f"registry/coverage/snapshots/{name}.json",
-                           "assessment": Catalog(root).coverage() if assessment is None else assessment}
+                           "assessment": (Catalog(root).coverage(schema_version=COVERAGE_VERSION_V3)
+                                          if assessment is None else assessment)}
                     write(row["snapshot"], row)
                     write(COVERAGE, row)
                     return row
@@ -154,7 +158,7 @@ class DistributionTests(unittest.TestCase):
                                         "missing_text", "missing_template",
                                     ), 0)})
                 set_disposition("excluded")
-                restored_assessment = Catalog(root).coverage()
+                restored_assessment = Catalog(root).coverage(schema_version=COVERAGE_VERSION_V3)
                 set_disposition("unresolved")
                 base = commit("Set a synthetic discovery baseline")
 

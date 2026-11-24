@@ -106,7 +106,35 @@
   },
   "cutoff": "2026-11-23",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
-  "schema_version": "3.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-depth.json",
+  "predecessor": {
+    "commit": "8bcffdcad019f3f234b4608fb90df5035bc9c3de",
+    "sha256": "a10291e3b21cca9369f915bf0769faa2a5f50fd6f2dfbd599ec17b83fa0bdec5",
+    "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-depth.json"
+  },
+  "research_scope": {
+    "discovery_paths": [
+      "The exact SPDX License List 3.29.0 data archive and XML revision identified by the source manifest.",
+      "Publisher sources named in the retained candidate records and beyond-SPDX reconciliation notes.",
+      "Provisional profiles and exact SCES records retained at the research cutoff."
+    ],
+    "exclusions": [
+      "The broader beyond-SPDX population outside the targeted publisher leads.",
+      "Project-specific compliance determinations, blanket compatibility conclusions and custom contract drafting."
+    ],
+    "inaccessible_areas": [
+      "Private, unpublished or access-restricted terms outside the public-source discovery method."
+    ],
+    "included_ecosystems": [
+      "Software licensing instruments and exceptions listed in SPDX License List 3.29.0.",
+      "Fourteen targeted publisher leads for software, documentation, data and related terms outside SPDX."
+    ],
+    "reconciliation_choices": [
+      "Keep exact SPDX identifiers and deprecated entries distinct, preserving upstream replacement advice as provenance.",
+      "Keep publisher leads with their individual dispositions and reasons. The blank Countdown form is excluded as a standalone license.",
+      "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence."
+    ]
+  },
+  "schema_version": "4.0.0",
+  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-scope.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

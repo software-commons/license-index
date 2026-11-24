@@ -11,7 +11,7 @@ from unittest.mock import call, patch
 
 from tools import reconcile, spdx_replay
 from tools.distribution import COVERAGE, validate, validate_discovery
-from tools.records import COVERAGE_VERSION, Catalog, DataError, encode
+from tools.records import COVERAGE_VERSION_V3, Catalog, DataError, encode
 
 
 DATA = "a" * 40
@@ -137,6 +137,7 @@ class ReconcileTests(unittest.TestCase):
             with self.assertRaisesRegex(DataError, "candidate ID mismatch: Example"):
                 spdx_replay.replay(changed, source, self.archive, DATA)
 
+    @patch("tools.distribution.COVERAGE_VERSION", COVERAGE_VERSION_V3)
     def test_two_releases_validate_current_membership_and_retained_origins(self):
         def git(*args):
             return subprocess.run(["git", "-C", str(self.repo), *args], check=True,
@@ -145,9 +146,9 @@ class ReconcileTests(unittest.TestCase):
         def snapshot(release):
             archive = f"registry/coverage/snapshots/{release}.json"
             saved = {
-                "schema_version": COVERAGE_VERSION, "cutoff": "2026-11-23", "method": "Synthetic SPDX replay fixture",
+                "schema_version": COVERAGE_VERSION_V3, "cutoff": "2026-11-23", "method": "Synthetic SPDX replay fixture",
                 "source_manifest": f"research/sources/spdx-{release}.json", "snapshot": archive,
-                "assessment": Catalog(self.repo).coverage(),
+                "assessment": Catalog(self.repo).coverage(schema_version=COVERAGE_VERSION_V3),
             }
             (self.repo / archive).parent.mkdir(parents=True, exist_ok=True)
             for name in (archive, COVERAGE):
@@ -202,6 +203,7 @@ class ReconcileTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "unregistered retained SPDX source pin"):
             validate_discovery(current)
 
+    @patch("tools.distribution.COVERAGE_VERSION", COVERAGE_VERSION_V3)
     def test_local_archive_replay_preserves_identity_from_a_legacy_incoming_predecessor(self):
         def git(*args):
             return subprocess.run(["git", "-C", str(self.repo), *args], check=True,
@@ -212,7 +214,7 @@ class ReconcileTests(unittest.TestCase):
             git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
                 "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m", label)
 
-        def snapshot(label, *, schema_version=COVERAGE_VERSION):
+        def snapshot(label, *, schema_version=COVERAGE_VERSION_V3):
             archive = f"registry/coverage/snapshots/{label}.json"
             saved = {
                 "schema_version": schema_version, "cutoff": "2026-11-23", "method": "Synthetic SPDX replay fixture",

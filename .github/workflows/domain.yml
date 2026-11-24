@@ -76,6 +76,14 @@ jobs:
             python -I -B tools/run_isolated.py stage_release "$1/candidate.zip" --policy ../policy "${args[@]}" > "$1/REQUEST.json"
           }
           if [[ -f sces/publication.json ]]; then
+            python -I -B tools/run_isolated.py index bundle "$staging/first/development.zip" --policy ../policy
+            python -I -B tools/run_isolated.py index bundle "$staging/second/development.zip" --policy ../policy
+            cmp "$staging/first/development.zip" "$staging/second/development.zip"
+            python -I -B -m zipfile -e "$staging/first/development.zip" "$staging/offline"
+            (
+              cd "$staging/offline"
+              python -I -B tools/run_isolated.py index validate
+            )
             stage_candidate "$staging/first"
             stage_candidate "$staging/second"
             cmp "$staging/first/candidate.zip" "$staging/second/candidate.zip"
