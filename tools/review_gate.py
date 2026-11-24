@@ -26,7 +26,8 @@ from .review_evidence import capture_selected_evidence
 from .review_protection import commissioning_policy, observed_approval
 from .review_queue import capture_queue_observation, capture_queue_target
 from .review_snapshot import (
-    BASE_REF, REPOSITORY, GitHub, capture_candidate_patch, capture_candidate_tree, capture_control_paths, capture_diff,
+    BASE_REF, REPOSITORY, GitHub, capture_admission_head, capture_candidate_patch, capture_candidate_tree,
+    capture_control_paths, capture_diff,
     token_is_target_only,
 )
 
@@ -407,17 +408,69 @@ def run(args, github, *, token_input=None, publisher=write_check):
     run_id = getattr(args, "queue_run", None)
     revoke_only = getattr(args, "revoke_only", False)
     expected_merge = getattr(args, "expected_merge", None)
+    expected_head = getattr(args, "expected_head", None)
     require(not (admission and run_id is not None), "select one review phase")
-    require(not revoke_only or expected_merge is not None, "revocation requires an exact expected merge SHA")
+    require(not revoke_only or expected_merge is not None or expected_head is not None,
+            "revocation requires an exact expected head or merge SHA")
     require(expected_merge is None or (args.app_id is not None and args.mode == "review"
             and isinstance(expected_merge, str) and re.fullmatch(r"[0-9a-f]{40}", expected_merge)),
             "an expected merge requires a protected issuer and an exact SHA")
+    require(expected_head is None or (admission and args.app_id is not None and args.mode == "review"
+            and isinstance(expected_head, str) and re.fullmatch(r"[0-9a-f]{40}", expected_head)
+            and (revoke_only or expected_merge is not None)),
+            "an expected head requires protected queue admission and an exact SHA, plus an expected merge for approval")
     policy = getattr(args, "commissioning_policy", None)
     approval = None
     if args.app_id is not None:
         require(args.mode == "review", "protected App writes require review mode")
         require(admission or run_id is not None, "check issuance requires a mandatory merge-queue phase")
-    pull = github.get_pull(args.pull)
+    audit = state / str(uuid4())
+    audit.mkdir(mode=0o700)
+
+    def retire_previous(identity, checked_sha, previous, proof, verify_target):
+        save(audit / "revocation-target.json", encode({**asdict(identity), "checked_sha": checked_sha,
+                                                        "app_id": args.app_id, **proof}))
+        save(audit / "superseded-checks.json", encode(previous))
+        credential = token_input().strip()
+        supersede_checks(github, identity, checked_sha, args.app_id, credential, previous, publisher, verify_target)
+        save(audit / "revocation-result.json", encode({"checked_sha": checked_sha,
+                                                       "revoked_check_ids": [check["id"] for check in previous]}))
+        return credential
+
+    def denial_result(checked_sha, previous):
+        return {"audit": str(audit), "status": "revocation-only", "checked_sha": checked_sha,
+                "revoked_check_ids": [check["id"] for check in previous]}
+
+    installation_token, admission_identity, pinned_pull = None, None, None
+    if admission and args.app_id is not None:
+        admission_identity = github.get_admission_head(args.pull)
+        if expected_head is not None:
+            require(admission_identity.head == expected_head, "live admission head differs from the expected review head")
+        if expected_head is None or expected_merge is not None:
+            pinned_pull = github.get_pull(args.pull)
+            require(pinned_pull.head == admission_identity.head
+                    and (expected_merge is None or pinned_pull.merge == expected_merge),
+                    "live review target differs from the expected review merge")
+        previous = successful_checks(github, admission_identity, admission_identity.head, args.app_id)
+        if previous:
+            with TemporaryDirectory(prefix="head-", dir=state) as directory:
+                head_tree = capture_admission_head(admission_identity, Path(directory))
+
+            def verify_admission_target():
+                require(github.get_admission_head(args.pull) == admission_identity,
+                        "live admission head changed before revocation")
+                if pinned_pull is not None:
+                    require(github.get_pull(args.pull) == pinned_pull, "live test merge changed before revocation")
+
+            installation_token = retire_previous(admission_identity, admission_identity.head, previous,
+                                                 {"tree": head_tree, "phase": "queue-admission"},
+                                                 verify_admission_target)
+        if revoke_only:
+            return denial_result(admission_identity.head, previous)
+
+    pull = pinned_pull if pinned_pull is not None else github.get_pull(args.pull)
+    if admission_identity is not None:
+        require(pull.head == admission_identity.head, "live admission head changed before review")
     observation, queue_target = None, None
     snapshot = pull
     capture_options = {"linear_head": True} if admission else {}
@@ -427,8 +480,6 @@ def run(args, github, *, token_input=None, publisher=write_check):
         capture_options["queue_ref"] = queue_target["queue_ref"]
     if expected_merge is not None:
         require(snapshot.merge == expected_merge, "live review target differs from the expected review merge")
-    audit = state / str(uuid4())
-    audit.mkdir(mode=0o700)
 
     def verify_current_pull():
         require(github.get_pull(pull.number) == pull, "pull request changed after review target capture")
@@ -439,30 +490,20 @@ def run(args, github, *, token_input=None, publisher=write_check):
             require(capture_queue_target(github, pull, run_id) == queue_target,
                     "merge queue target changed before revocation")
 
-    installation_token = None
     with TemporaryDirectory(prefix="git-", dir=state) as directory:
         checkout = Path(directory)
         tree = None
         if args.app_id is not None:
-            check_target = snapshot.head if admission else snapshot.merge
-            previous = successful_checks(github, snapshot, check_target, args.app_id)
-            if previous:
-                # Denial needs exact target and writer authentication. Approval rules are evaluated below.
-                tree = capture_candidate_tree(snapshot, checkout, **capture_options)
-                save(audit / "revocation-target.json", encode({
-                    **asdict(snapshot), "checked_sha": check_target, "app_id": args.app_id, "tree": tree,
-                    "queue_target": queue_target, "phase": "queue-admission" if admission else "queue-merge",
-                }))
-                save(audit / "superseded-checks.json", encode(previous))
-                installation_token = token_input().strip()
-                supersede_checks(github, snapshot, check_target, args.app_id, installation_token, previous, publisher,
-                                 verify_revocation_target)
-                save(audit / "revocation-result.json", encode({
-                    "checked_sha": check_target, "revoked_check_ids": [check["id"] for check in previous],
-                }))
-            if revoke_only:
-                return {"audit": str(audit), "status": "revocation-only", "checked_sha": check_target,
-                        "revoked_check_ids": [check["id"] for check in previous]}
+            if not admission:
+                previous = successful_checks(github, snapshot, snapshot.merge, args.app_id)
+                if previous:
+                    tree = capture_candidate_tree(snapshot, checkout, **capture_options)
+                    installation_token = retire_previous(
+                        snapshot, snapshot.merge, previous, {"tree": tree, "queue_target": queue_target, "phase": "queue-merge"},
+                        verify_revocation_target,
+                    )
+                if revoke_only:
+                    return denial_result(snapshot.merge, previous)
             require(policy is not None, "check issuance requires a protected commissioning policy")
             approval = require_queue_rules(github, args.app_id, policy=policy)
         if run_id is not None:
@@ -712,13 +753,17 @@ def main(argv=None):
     phase.add_argument("--queue-run", type=int, help="review the exact candidate for a GitHub merge-group Actions run")
     parser.add_argument("--revoke-only", action="store_true", help="supersede prior success without starting a review")
     parser.add_argument("--expected-merge", help="assert the exact merge SHA for a protected review or revocation")
+    parser.add_argument("--expected-head", help="assert the exact admission head independently of the test merge")
     config = parser.add_mutually_exclusive_group()
     config.add_argument("--issuer-config", type=Path, help="protected issuer configuration, installation token read from stdin")
     config.add_argument("--rehearsal-config", type=Path, help="protected reviewer configuration without App access")
     args = parser.parse_args(argv)
-    if (args.revoke_only and args.expected_merge is None
-            or args.expected_merge is not None and (not args.issuer_config or not re.fullmatch(r"[0-9a-f]{40}", args.expected_merge))):
-        parser.error("expected merge checks require --issuer-config and an exact SHA, and revocation requires --expected-merge")
+    if (args.revoke_only and args.expected_merge is None and args.expected_head is None
+            or any(pin is not None and (not args.issuer_config or not re.fullmatch(r"[0-9a-f]{40}", pin))
+                   for pin in (args.expected_merge, args.expected_head))
+            or args.expected_head is not None
+            and (not args.queue_admission or not args.revoke_only and args.expected_merge is None)):
+        parser.error("an exact head pin requires protected queue admission and an expected merge unless revoking only")
     args.app_id = None
     args.reviewer = None
     args.commissioning_policy = None

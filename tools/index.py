@@ -217,9 +217,10 @@ def execute(catalog, args):
             report, claims = validate(catalog, args.base, args.policy, spdx_archive=args.spdx_archive,
                                       fetch_spdx_archive=args.fetch_spdx_archive, rights_reader=rights_reader)
             rights_status = "verified" if rights_reader is not None else "references-only"
-            message = f"Valid registry (pinned publisher rights digests: {rights_status})"
+            spdx_status = "upstream" if args.fetch_spdx_archive else ("local-current" if args.spdx_archive else "references-only")
+            message = f"Valid registry (SPDX replay: {spdx_status}, pinned publisher rights digests: {rights_status})"
             return {"valid": True, "qualification": report, "coverage": catalog.coverage(claims),
-                    "pinned_publisher_rights_digests": rights_status}, message
+                    "spdx_replay": spdx_status, "pinned_publisher_rights_digests": rights_status}, message
         report, claims = validate(catalog, policy=args.policy)
         require(report, "no active SCES-qualified release")
         return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}, None

@@ -79,6 +79,19 @@ class PullSnapshot:
             raise SnapshotError("Expected distinct full base, head, and test-merge SHAs")
 
 
+@dataclass(frozen=True)
+class AdmissionHead:
+    repository_id: int
+    number: int
+    head: str
+
+    def __post_init__(self):
+        if type(self.repository_id) is not int or self.repository_id != REPOSITORY_ID:
+            raise SnapshotError("GitHub returned an unexpected repository identifier")
+        if type(self.number) is not int or self.number < 1 or not _is_sha(self.head):
+            raise SnapshotError("Expected an exact pull-request number and full admission head SHA")
+
+
 class _NoRedirects(HTTPRedirectHandler):
     def redirect_request(self, request, file, code, message, headers, new_url):
         return None
@@ -114,24 +127,34 @@ class GitHub:
         except (ValueError, UnicodeError):
             raise SnapshotError("GitHub supplied invalid review-target JSON") from None
 
-    def get_pull(self, number):
+    def _open_pull(self, number):
         if type(number) is not int or number < 1:
             raise SnapshotError("Expected a positive pull-request number")
         item = self._get_json(f"/repos/{REPOSITORY}/pulls/{number}")
         if not isinstance(item, dict) or type(item.get("number")) is not int or item["number"] != number:
             raise SnapshotError("GitHub returned a different pull request")
-        if item.get("state") != "open" or item.get("draft") is not False:
-            raise SnapshotError("Review requires an open, non-draft pull request")
+        if item.get("state") != "open":
+            raise SnapshotError("Review requires an open pull request")
         base, head = item.get("base"), item.get("head")
         if not isinstance(base, dict) or not isinstance(head, dict) or base.get("ref") != BASE_REF:
             raise SnapshotError("Pull request does not target the configured base branch")
         repository = base.get("repo")
         if not isinstance(repository, dict) or repository.get("full_name") != REPOSITORY:
             raise SnapshotError("Pull request does not target the configured repository")
+        return item, base, AdmissionHead(repository.get("id"), number, head.get("sha"))
+
+    def get_admission_head(self, number):
+        """Read the current open PR head without requiring merge or approval eligibility."""
+        return self._open_pull(number)[2]
+
+    def get_pull(self, number):
+        item, base, identity = self._open_pull(number)
+        if item.get("draft") is not False:
+            raise SnapshotError("Review requires a non-draft pull request")
         if item.get("mergeable") is not True:
             raise SnapshotError("GitHub has not established a mergeable test commit")
         return PullSnapshot(
-            repository.get("id"), number, base.get("sha"), head.get("sha"), item.get("merge_commit_sha"),
+            identity.repository_id, identity.number, base.get("sha"), identity.head, item.get("merge_commit_sha"),
         )
 
 
@@ -205,22 +228,23 @@ def _merge_tree(directory, snapshot):
     parents = _parents(headers)
     if parents != [snapshot.base.encode("ascii"), snapshot.head.encode("ascii")]:
         raise SnapshotError("Test merge commit does not have the exact ordered base and head parents")
+    return _tree(headers)
+
+
+def _tree(headers):
     trees = [line.removeprefix(b"tree ") for line in headers if line.startswith(b"tree ")]
     if len(trees) != 1 or re.fullmatch(rb"[0-9a-f]{40}", trees[0]) is None:
-        raise SnapshotError("Test merge commit does not identify an exact tree")
+        raise SnapshotError("Review commit does not identify an exact tree")
     return trees[0].decode("ascii")
 
 
-def capture_candidate_tree(snapshot, directory: Path, *, queue_ref=None, linear_head=False) -> str:
-    """Fetch the exact candidate ref and verify its ordered parents without making a patch."""
-    if not isinstance(snapshot, PullSnapshot):
-        raise SnapshotError("Expected a validated pull-request snapshot")
-    ref = f"refs/pull/{snapshot.number}/merge"
-    if queue_ref is not None:
-        prefix = f"refs/heads/gh-readonly-queue/{BASE_REF}/pr-{snapshot.number}-"
-        if not isinstance(queue_ref, str) or not queue_ref.startswith(prefix) or not _is_sha(queue_ref[len(prefix):]):
-            raise SnapshotError("Expected the exact GitHub merge-queue branch for this pull request")
-        ref = queue_ref
+def _require_linear_head(headers):
+    parents = _parents(headers)
+    if len(parents) != 1 or re.fullmatch(rb"[0-9a-f]{40}", parents[0]) is None:
+        raise SnapshotError("Queue admission requires a single-parent pull-request head")
+
+
+def _fetch_ref(directory, ref):
     directory = Path(directory)
     if directory.is_symlink() or (directory.exists() and (not directory.is_dir() or any(directory.iterdir()))):
         raise SnapshotError("Review capture requires an empty, unlinked directory")
@@ -233,14 +257,37 @@ def capture_candidate_tree(snapshot, directory: Path, *, queue_ref=None, linear_
         "--no-auto-maintenance", _REMOTE_URL, ref,
         config=("http.followRedirects=false", "fetch.fsckObjects=true"),
     )
-    fetched = _git(directory, "rev-parse", "--verify", "FETCH_HEAD^{commit}").strip()
+    return _git(directory, "rev-parse", "--verify", "FETCH_HEAD^{commit}").strip()
+
+
+def capture_admission_head(identity, directory: Path) -> str:
+    """Authenticate the live GitHub PR head ref and its single parent for denial-only use."""
+    if not isinstance(identity, AdmissionHead):
+        raise SnapshotError("Expected a validated pull-request admission head")
+    fetched = _fetch_ref(directory, f"refs/pull/{identity.number}/head")
+    if fetched != identity.head.encode("ascii"):
+        raise SnapshotError("GitHub admission head changed during capture")
+    headers = _commit_headers(directory, identity.head)
+    _require_linear_head(headers)
+    return _tree(headers)
+
+
+def capture_candidate_tree(snapshot, directory: Path, *, queue_ref=None, linear_head=False) -> str:
+    """Fetch the exact candidate ref and verify its ordered parents without making a patch."""
+    if not isinstance(snapshot, PullSnapshot):
+        raise SnapshotError("Expected a validated pull-request snapshot")
+    ref = f"refs/pull/{snapshot.number}/merge"
+    if queue_ref is not None:
+        prefix = f"refs/heads/gh-readonly-queue/{BASE_REF}/pr-{snapshot.number}-"
+        if not isinstance(queue_ref, str) or not queue_ref.startswith(prefix) or not _is_sha(queue_ref[len(prefix):]):
+            raise SnapshotError("Expected the exact GitHub merge-queue branch for this pull request")
+        ref = queue_ref
+    fetched = _fetch_ref(directory, ref)
     if fetched != snapshot.merge.encode("ascii"):
         raise SnapshotError("GitHub merge candidate changed during capture")
     tree = _merge_tree(directory, snapshot)
     if linear_head:
-        parents = _parents(_commit_headers(directory, snapshot.head))
-        if len(parents) != 1 or re.fullmatch(rb"[0-9a-f]{40}", parents[0]) is None:
-            raise SnapshotError("Queue admission requires a single-parent pull-request head")
+        _require_linear_head(_commit_headers(directory, snapshot.head))
     return tree
 
 

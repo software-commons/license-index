@@ -9,7 +9,8 @@ from unittest.mock import patch
 
 from tools.review_authorization import GRANT_PATH
 from tools.review_snapshot import (
-    REPOSITORY, REPOSITORY_ID, GitHub, PullSnapshot, SnapshotError, capture_control_paths, capture_diff,
+    REPOSITORY, REPOSITORY_ID, AdmissionHead, GitHub, PullSnapshot, SnapshotError, capture_admission_head,
+    capture_control_paths, capture_diff,
 )
 
 
@@ -36,6 +37,18 @@ class PullTests(unittest.TestCase):
             self.read(pull_response()),
             PullSnapshot(REPOSITORY_ID, 1, "a" * 40, "b" * 40, "c" * 40),
         )
+
+    def test_open_admission_head_does_not_require_positive_review_availability(self):
+        github = GitHub()
+        for draft, mergeable in ((True, True), (False, False), (False, None)):
+            response = {**pull_response(), "draft": draft, "mergeable": mergeable, "merge_commit_sha": None}
+            with self.subTest(draft=draft, mergeable=mergeable), patch.object(github, "_get_json", return_value=response):
+                self.assertEqual(github.get_admission_head(1), AdmissionHead(REPOSITORY_ID, 1, "b" * 40))
+                with self.assertRaises(SnapshotError):
+                    github.get_pull(1)
+                response["base"]["ref"] = "unknown-branch"
+                with self.assertRaisesRegex(SnapshotError, "configured base branch"):
+                    github.get_admission_head(1)
 
     def test_rejects_wrong_repository_and_retargeting(self):
         response = pull_response()
@@ -111,6 +124,17 @@ class CaptureTests(unittest.TestCase):
     def test_rejects_changed_merge_ref(self):
         with self.assertRaisesRegex(SnapshotError, "changed during capture"):
             self.capture(merge="c" * 40)
+
+    def test_admission_denial_checks_the_exact_live_head_and_its_single_parent(self):
+        identity = AdmissionHead(REPOSITORY_ID, 1, self.head)
+        self.git("update-ref", "refs/pull/1/head", self.head)
+        with patch("tools.review_snapshot._REMOTE_URL", self.source.as_uri()):
+            self.assertEqual(capture_admission_head(identity, self.root / "head"), self.tree)
+            self.git("update-ref", "refs/pull/1/head", self.merge)
+            with self.assertRaisesRegex(SnapshotError, "admission head changed during capture"):
+                capture_admission_head(identity, self.root / "stale")
+            with self.assertRaisesRegex(SnapshotError, "single-parent pull-request head"):
+                capture_admission_head(AdmissionHead(REPOSITORY_ID, 1, self.merge), self.root / "two-parent")
 
     def test_grant_only_change_is_a_protected_control(self):
         grant = self.source / GRANT_PATH

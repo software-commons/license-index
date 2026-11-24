@@ -7,12 +7,58 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from tools.distribution import (
-    CC_RIGHTS, POLYFORM_RIGHTS, RIGHTS_DOCUMENTS, RIGHTS_MAX_BYTES, read_rights_document, validate_texts,
+    CC_LEGAL_TEXTS, CC_RIGHTS, CC_RIGHTS_SHA256, POLYFORM_RIGHTS, RIGHTS_DOCUMENTS, RIGHTS_MAX_BYTES,
+    read_rights_document, validate_texts,
 )
 from tools.records import Catalog, DataError, NoRedirects
 
 
 class RightsTests(unittest.TestCase):
+    def test_approved_cc_installers_require_exact_current_publisher_pins(self):
+        for identifier in ("CC-BY-4.0", "CC0-1.0"):
+            with self.subTest(identifier=identifier):
+                catalog = Catalog()
+                original = catalog.packaged[identifier]
+                self.assertEqual((original["rights"], original["rights_sha256"]), (CC_RIGHTS, CC_RIGHTS_SHA256))
+                catalog.packaged = {identifier: original}
+                validate_texts(catalog)
+
+                missing = {key: value for key, value in original.items() if key != "rights_sha256"}
+                catalog.packaged[identifier] = missing
+                with self.assertRaisesRegex(DataError, f"invalid rights digest for {identifier}"):
+                    validate_texts(catalog)
+
+                catalog.packaged[identifier] = {**original, "rights_sha256": "0" * 64}
+                with self.assertRaisesRegex(DataError, f"invalid rights digest for {identifier}"):
+                    validate_texts(catalog)
+                catalog.packaged[identifier] = missing
+                with self.assertRaisesRegex(DataError, f"unverified archival publisher reference for {identifier}"):
+                    validate_texts(catalog, archived=True)
+
+                catalog.packaged[identifier] = original
+                with self.assertRaisesRegex(DataError, f"publisher rights SHA-256 mismatch for {identifier}"):
+                    validate_texts(catalog, rights_reader=lambda _: b"Tampered publisher archive")
+
+    def test_legacy_cc_bindings_are_only_for_exact_archived_publisher_editions(self):
+        for identifier in ("CC-BY-4.0", "CC0-1.0"):
+            with self.subTest(identifier=identifier):
+                catalog = Catalog()
+                row = dict(catalog.packaged[identifier])
+                del row["rights_sha256"]
+                row["rights"] = "https://creativecommons.org/policies/"
+                row["source"] = f"https://creativecommons.org/{CC_LEGAL_TEXTS[identifier][0]}"
+                catalog.packaged = {identifier: row}
+                validate_texts(catalog, archived=True)
+                with self.assertRaisesRegex(DataError, f"unapproved publisher text locator for {identifier}"):
+                    validate_texts(catalog)
+                with self.assertRaisesRegex(DataError, f"publisher rights SHA-256 mismatch for {identifier}"):
+                    validate_texts(catalog, archived=True, rights_reader=lambda _: b"Tampered publisher archive")
+
+                changed = (catalog.root / row["path"]).read_bytes() + b"\nChanged example\n"
+                catalog.packaged[identifier] = {**row, "bytes": len(changed), "sha256": sha256(changed).hexdigest()}
+                with self.assertRaisesRegex(DataError, f"unexpected admitted publisher text digest for {identifier}"):
+                    validate_texts(catalog, lambda _: changed, archived=True)
+
     def test_custody_reader_rejects_wrong_bytes_locator_and_missing_digest(self):
         catalog = Catalog()
         identifier = "CC-BY-SA-4.0"

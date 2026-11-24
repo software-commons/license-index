@@ -95,7 +95,7 @@ def compare_registry(catalog, origins, source, base):
                 f"SPDX replay found an unsupported origin or membership transition: {identifier}")
 
 
-def replay(catalog, source, archive, base):
+def archive_origins(source, archive):
     _, size = archive_pin(source)
     require(Path(archive).stat().st_size == size, "SPDX archive size differs from the committed pin")
     try:
@@ -104,13 +104,20 @@ def replay(catalog, source, archive, base):
     except (ValueError, tarfile.TarError, ParseError) as error:
         raise DataError(f"could not replay pinned SPDX archive: {error}") from error
     require(encode(observed) == encode(source), "replayed SPDX source manifest differs from the committed pin")
-    compare_registry(catalog, origins, source, base)
+    return origins
+
+
+def replay(catalog, source, archive, base):
+    compare_registry(catalog, archive_origins(source, archive), source, base)
 
 
 def resolve_release_tag(repository, release, directory):
     """Confirm the publisher's exact tag and peel it to a commit without the REST API."""
-    tag = f"refs/tags/v{release}"
-    description = f"SPDX release tag v{release} in {repository}"
+    return resolve_upstream_ref(repository, f"refs/tags/v{release}", directory,
+                                f"SPDX release tag v{release} in {repository}")
+
+
+def resolve_upstream_ref(repository, ref, directory, description):
     url = f"https://github.com/{repository}.git"
     environment = {key: value for key, value in os.environ.items() if not key.upper().startswith("GIT_")}
     environment.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull, GIT_TERMINAL_PROMPT="0",
@@ -130,21 +137,35 @@ def resolve_release_tag(repository, release, directory):
 
     git("init", "--quiet", "--template=")
     git("fetch", "--quiet", "--no-tags", "--no-recurse-submodules", "--no-auto-maintenance",
-        "--depth=1", "--filter=tree:0", "--", url, tag)
+        "--depth=1", "--filter=tree:0", "--", url, ref)
     commit = git("rev-parse", "--verify", "FETCH_HEAD^{commit}").decode("ascii").strip()
     require(DATA_COMMIT.fullmatch(commit), f"invalid commit for {description}")
     return commit
 
 
-def replay_download(catalog, source, base):
+def replay_download(catalog, source, base, *, archives=None, historical=False):
     release = source["release"]
     require(RELEASE.fullmatch(release), "invalid SPDX release version")
-    with TemporaryDirectory(prefix="license-index-spdx-") as directory:
-        root = Path(directory)
-        xml_commit = resolve_release_tag(SOURCE_REPOSITORY, release, root)
-        require(xml_commit == source["xml_commit"], "SPDX XML release tag differs from the committed XML pin")
-        data_commit = resolve_release_tag(DATA_REPOSITORY, release, root)
-        require(data_commit == source["data_commit"], "SPDX data release tag differs from the committed data pin")
-        archive = root / "spdx.tar.gz"
-        fetch_archive(source, archive)
-        replay(catalog, source, archive, base)
+    require(all(DATA_COMMIT.fullmatch(source[field]) for field in ("xml_commit", "data_commit")),
+            "invalid SPDX upstream commit pin")
+    if archives is None:
+        archives = {}
+    pin = encode(source)
+    if pin not in archives or not historical:
+        with TemporaryDirectory(prefix="license-index-spdx-") as directory:
+            root = Path(directory)
+            for repository, field, label in ((SOURCE_REPOSITORY, "xml_commit", "XML"),
+                                              (DATA_REPOSITORY, "data_commit", "data")):
+                expected = source[field]
+                if historical:
+                    # A managed tag can move after a historical capture. Verify the exact retained upstream object.
+                    observed = resolve_upstream_ref(repository, expected, root, f"SPDX historical {label} commit")
+                    require(observed == expected, f"SPDX historical {label} commit differs from the committed pin")
+                else:
+                    observed = resolve_release_tag(repository, release, root)
+                    require(observed == expected, f"SPDX {label} release tag differs from the committed {label} pin")
+            if pin not in archives:
+                archive = root / "spdx.tar.gz"
+                fetch_archive(source, archive)
+                archives[pin] = archive_origins(source, archive)
+    compare_registry(catalog, archives[pin], source, base)

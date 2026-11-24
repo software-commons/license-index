@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from functools import cache
+from functools import cache, partial
 from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
@@ -27,12 +27,20 @@ PROFILES = "research/campaigns/profiles.json"
 QUALIFICATION_SCOPE = "development-discovery"
 DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
                     "inapplicable", "explicit-absence"}
-CC_RIGHTS = ("https://raw.githubusercontent.com/creativecommons/cc-legal-tools-data/"
-             "91780e140892982eb3e0d530591ccbbca0d4690d/README.md")
+CC_REVISION = "91780e140892982eb3e0d530591ccbbca0d4690d"
+CC_PUBLISHER_TREE = f"https://raw.githubusercontent.com/creativecommons/cc-legal-tools-data/{CC_REVISION}"
+CC_RIGHTS = f"{CC_PUBLISHER_TREE}/README.md"
+CC_RIGHTS_SHA256 = "76eac782e1d4ea9bdcd0b88686f315fe42076b70af238a44114e87f024fe096f"
+CC_LEGAL_TEXTS = {
+    "CC-BY-4.0": ("licenses/by/4.0/legalcode.txt", "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"),
+    "CC0-1.0": ("publicdomain/zero/1.0/legalcode.txt", "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"),
+}
+CC_LEGACY_RIGHTS = {"https://creativecommons.org/policies/", "https://creativecommons.org/policies/#cc-licensing-statement"}
 POLYFORM_RIGHTS = ("https://raw.githubusercontent.com/polyformproject/polyform-licenses/"
                    "a2316cfa35d3947fdc5af4bcc1f321662bfd79d8/LICENSE.md")
 RIGHTS_DOCUMENTS = {CC_RIGHTS: "cc-rights-exact.md", POLYFORM_RIGHTS: "polyform-rights-exact.md"}
 RIGHTS_BY_IDENTIFIER = {
+    **dict.fromkeys(CC_LEGAL_TEXTS, CC_RIGHTS),
     **dict.fromkeys(("CC-BY-NC-4.0", "CC-BY-NC-ND-4.0", "CC-BY-NC-SA-4.0",
                      "CC-BY-ND-4.0", "CC-BY-SA-4.0"), CC_RIGHTS),
     **dict.fromkeys(("PolyForm-Noncommercial-1.0.0", "PolyForm-Small-Business-1.0.0"), POLYFORM_RIGHTS),
@@ -111,7 +119,31 @@ def read_rights_document(url, *, root=None):
     return data
 
 
-def validate_texts(catalog, read_bytes=None, *, rights_reader=None):
+def _validate_text_rights(identifier, package, rights_reader, *, archived):
+    expected_url = RIGHTS_BY_IDENTIFIER.get(identifier)
+    if expected_url is None and "rights_sha256" not in package:
+        return
+    url, digest = package["rights"], package.get("rights_sha256")
+    if identifier in CC_LEGAL_TEXTS:
+        publisher_path, text_digest = CC_LEGAL_TEXTS[identifier]
+        require(package["sha256"] == text_digest, f"unexpected admitted publisher text digest for {identifier}")
+        if archived and "rights_sha256" not in package:
+            # Bind the exact legacy edition already in Git to the same publisher statement without rewriting it.
+            require(url in CC_LEGACY_RIGHTS and package["source"] == f"https://creativecommons.org/{publisher_path}",
+                    f"unverified archival publisher reference for {identifier}")
+            url, digest = CC_RIGHTS, CC_RIGHTS_SHA256
+        else:
+            require(package["source"] == f"{CC_PUBLISHER_TREE}/docs/{publisher_path}" and package["revision"] == CC_REVISION,
+                    f"unapproved publisher text locator for {identifier}")
+            require(digest == CC_RIGHTS_SHA256, f"invalid rights digest for {identifier}")
+    require(url in RIGHTS_DOCUMENTS and (expected_url is None or url == expected_url),
+            f"unapproved publisher rights locator for {identifier}")
+    require(isinstance(digest, str) and HEX_256.fullmatch(digest), f"invalid rights digest for {identifier}")
+    if rights_reader is not None:
+        require(sha256(rights_reader(url)).hexdigest() == digest, f"publisher rights SHA-256 mismatch for {identifier}")
+
+
+def validate_texts(catalog, read_bytes=None, *, rights_reader=None, archived=False):
     for identifier, package in catalog.packaged.items():
         row = catalog.resolve(identifier)
         origin = row["origin"]
@@ -123,16 +155,7 @@ def validate_texts(catalog, read_bytes=None, *, rights_reader=None):
         content.decode("utf-8")
         require(package["source"].startswith("https://") and package["rights"].startswith("https://"),
                 f"missing publication provenance for {identifier}")
-        expected_url = RIGHTS_BY_IDENTIFIER.get(identifier)
-        if expected_url is not None or "rights_sha256" in package:
-            url = package["rights"]
-            require(url in RIGHTS_DOCUMENTS and (expected_url is None or url == expected_url),
-                    f"unapproved publisher rights locator for {identifier}")
-            digest = package.get("rights_sha256")
-            require(isinstance(digest, str) and HEX_256.fullmatch(digest), f"invalid rights digest for {identifier}")
-            if rights_reader is not None:
-                require(sha256(rights_reader(url)).hexdigest() == digest,
-                        f"publisher rights SHA-256 mismatch for {identifier}")
+        _validate_text_rights(identifier, package, rights_reader, archived=archived)
         recipe = package.get("install")
         require(recipe in {None, "unchanged", LGPL_V3_SUPPLEMENT}, f"unexpected bundle treatment: {identifier}")
         if recipe:
@@ -224,7 +247,15 @@ def _read_git_blobs(root, paths, cache):
     return {path: cache[oid] for path, oid in paths.items()}
 
 
-def validate_incoming_snapshots(root, base, *, rights_reader=None):
+def _historical_spdx_base(root, base, commit, verified):
+    ancestors = _git(root, "rev-list", "--topo-order", f"{commit}^@", f"^{base}").decode().splitlines()
+    previous = next((ancestor for ancestor in ancestors if ancestor in verified), None)
+    if previous is not None:
+        return previous
+    return _git(root, "merge-base", base, commit).decode().strip()
+
+
+def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=None):
     head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
     prior = _git_blobs(root, base, SNAPSHOTS)
     _git(root, "merge-base", "--is-ancestor", base, head)
@@ -246,55 +277,78 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None):
                 f"{name}: incoming coverage differs from the committed snapshot")
 
     cache = {}
-    commits = _git(root, "log", "--full-history", "--format=%H", f"{base}..{head}",
+    commits = _git(root, "log", "--full-history", "--topo-order", "--format=%H", f"{base}..{head}",
                    "--", COVERAGE).decode().splitlines()
+    snapshots = {}
     for commit in commits:
         blobs = _git_blobs(root, commit, COVERAGE, SNAPSHOTS)
         matches = sorted(name for name in pending if blobs.get(COVERAGE) == blobs.get(name) == tracked[name])
         for name in matches:
-            archived = decode(_read_git_blobs(root, {name: tracked[name]}, cache)[name])
-            require(archived["snapshot"] == name, f"{name}: invalid snapshot self-reference")
-            source = archived["source_manifest"]
-            inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", PACKAGED_TEXTS, PROFILES)
-            require(isinstance(source, str) and source.startswith(f"{SOURCES}/") and source in inputs,
-                    f"{name}: source manifest missing from historical Git tree {commit}")
-            require(tracked_sources.get(source) == inputs[source],
-                    f"{name}: historical source manifest was dropped or changed at the candidate tip")
-            data = _read_git_blobs(root, {path: oid for path, oid in inputs.items()
-                                         if path == source or SPDX_SOURCE.fullmatch(path)
-                                         or not path.startswith(f"{SOURCES}/")}, cache)
-            rows = {path: decode(payload) for path, payload in data.items()}
-            historic = _HistoricalCatalog(root, rows)
-            validate_source(historic, rows[source])
-            text_paths = {package["path"] for package in historic.packaged.values()}
-            texts = _git_blobs(root, commit, "legal-texts", "LICENSE")
-            require(text_paths <= texts.keys(), f"{name}: publisher text missing from historical Git tree {commit}")
-            historical_texts = _read_git_blobs(root, {path: texts[path] for path in text_paths}, cache)
-            validate_texts(historic, historical_texts.__getitem__, rights_reader=rights_reader)
-            validate_profiles(historic)
-            expected = historic.coverage()
-            installation = expected["installation"]
-            # The v1 discovery format originally omitted this field when there were no companions.
-            if not installation["requires_verified_companion"] and (
-                    "requires_verified_companion" not in archived["assessment"]["installation"]):
-                del installation["requires_verified_companion"]
-            require(encode(archived["assessment"]) == encode(expected),
-                    f"{name}: coverage differs from historical registry inputs at {commit}")
+            snapshots[name] = commit
             pending.remove(name)
         if not pending:
-            return
+            break
     require(not pending, f"coverage snapshots lack a matching historical current ledger: {', '.join(sorted(pending))}")
+
+    verified = set()
+    for name, commit in reversed(snapshots.items()):
+        archived = decode(_read_git_blobs(root, {name: tracked[name]}, cache)[name])
+        require(archived["snapshot"] == name, f"{name}: invalid snapshot self-reference")
+        source = archived["source_manifest"]
+        inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", PACKAGED_TEXTS, PROFILES)
+        require(isinstance(source, str) and source.startswith(f"{SOURCES}/") and source in inputs,
+                f"{name}: source manifest missing from historical Git tree {commit}")
+        require(tracked_sources.get(source) == inputs[source],
+                f"{name}: historical source manifest was dropped or changed at the candidate tip")
+        data = _read_git_blobs(root, {path: oid for path, oid in inputs.items()
+                                     if path == source or SPDX_SOURCE.fullmatch(path)
+                                     or not path.startswith(f"{SOURCES}/")}, cache)
+        rows = {path: decode(payload) for path, payload in data.items()}
+        historic = _HistoricalCatalog(root, rows)
+        validate_source(historic, rows[source])
+        text_paths = {package["path"] for package in historic.packaged.values()}
+        texts = _git_blobs(root, commit, "legal-texts", "LICENSE")
+        require(text_paths <= texts.keys(), f"{name}: publisher text missing from historical Git tree {commit}")
+        historical_texts = _read_git_blobs(root, {path: texts[path] for path in text_paths}, cache)
+        validate_texts(historic, historical_texts.__getitem__, rights_reader=rights_reader, archived=True)
+        validate_profiles(historic)
+        expected = historic.coverage()
+        installation = expected["installation"]
+        # The v1 discovery format originally omitted this field when there were no companions.
+        if not installation["requires_verified_companion"] and (
+                "requires_verified_companion" not in archived["assessment"]["installation"]):
+            del installation["requires_verified_companion"]
+        require(encode(archived["assessment"]) == encode(expected),
+                f"{name}: coverage differs from historical registry inputs at {commit}")
+        if replay_spdx is not None:
+            predecessor = _historical_spdx_base(root, base, commit, verified)
+            try:
+                replay_spdx(historic, rows[source], predecessor)
+            except DataError as error:
+                raise DataError(f"{name}: {error}") from error
+            verified.add(commit)
+    return snapshots.get(selected)
 
 
 def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
     if rights_reader is not None:
         rights_reader = cache(rights_reader)
-    validate_discovery(catalog, base=base, spdx_archive=spdx_archive, fetch_spdx_archive=fetch_spdx_archive,
-                       rights_reader=rights_reader)
+    saved, _ = validate_discovery(catalog, base=base, spdx_archive=spdx_archive, rights_reader=rights_reader)
+    replay_history = None
+    if spdx_archive is None and fetch_spdx_archive:
+        from .spdx_replay import replay_download
+
+        archives = {}
+        replay_history = partial(replay_download, archives=archives, historical=True)
     result = qualified(catalog, policy, base=base)
+    archived = None
     if base:
         check_history(catalog, base)
-        validate_incoming_snapshots(catalog.root, base, rights_reader=rights_reader)
+        archived = validate_incoming_snapshots(catalog.root, base, rights_reader=rights_reader,
+                                               replay_spdx=replay_history)
+    if replay_history is not None:
+        source = read(local_path(catalog.root, saved["source_manifest"]))
+        replay_download(catalog, source, archived or base, archives=archives)
     return result
 
 

@@ -325,6 +325,43 @@ class GitHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "archived.json: coverage differs from historical"):
             validate(Catalog(self.root), base=base)
 
+    def test_strict_validation_replays_each_incoming_snapshot_at_its_own_source_pins(self):
+        (self.root / f"registry/entities/{MIT[:2]}/{MIT}.json").unlink()
+        candidate_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
+        self.write(candidate_path, {"id": CANDIDATE, "disposition": "unresolved", "origin": {"kind": "publisher"}})
+        self.commit("Set the protected baseline")
+        base = self.git("rev-parse", "HEAD").strip()
+        checkpoints = []
+        for release, pin in (("3.28.0", SOURCE), ("3.29.0", "b" * 40)):
+            source_path = f"research/sources/spdx-{release}.json"
+            source = {"release": release, "data_commit": pin, "xml_commit": pin, "manifests": {},
+                      "population": dict.fromkeys(("licenses", "exceptions", "deprecated_licenses",
+                                                  "deprecated_exceptions", "missing_text", "missing_template"), 0)}
+            self.write(source_path, source)
+            path = f"registry/coverage/snapshots/{release}.json"
+            snapshot = {"source_manifest": source_path, "snapshot": path, "assessment": Catalog(self.root).coverage()}
+            self.write(COVERAGE, snapshot)
+            self.write(path, snapshot)
+            self.commit(f"Retain {release} coverage")
+            checkpoints.append((source, self.git("rev-parse", "HEAD").strip()))
+        (first_pin, first), (second_pin, second) = checkpoints
+
+        with patch("tools.spdx_replay.replay_download") as replay:
+            validate(Catalog(self.root), base=base)
+            replay.assert_not_called()
+            validate(Catalog(self.root), base=base, fetch_spdx_archive=True)
+            calls = replay.call_args_list
+            self.assertEqual([call.args[1:] for call in calls],
+                             [(first_pin, base), (second_pin, first), (second_pin, second)])
+            self.assertEqual([call.kwargs.get("historical", False) for call in calls], [True, True, False])
+            archive_cache = calls[0].kwargs["archives"]
+            self.assertTrue(all(call.kwargs["archives"] is archive_cache for call in calls))
+
+        with patch("tools.spdx_replay.replay_download", side_effect=DataError("SPDX replay origin mismatch")) as replay:
+            with self.assertRaisesRegex(DataError, "3.28.0.json: SPDX replay origin mismatch"):
+                validate(Catalog(self.root), base=base, fetch_spdx_archive=True)
+            replay.assert_called_once()
+
     @unittest.skipUnless(os.name == "nt", "requires Git for Windows")
     def test_validator_reads_committed_evidence_with_a_long_git_path(self):
         self.git("config", "core.longpaths", "false")

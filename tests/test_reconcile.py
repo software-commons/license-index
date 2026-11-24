@@ -248,6 +248,41 @@ class ReconcileTests(unittest.TestCase):
                              [reconcile.SOURCE_REPOSITORY, reconcile.DATA_REPOSITORY])
             fetch.assert_called_once()
 
+    def test_historical_replay_uses_exact_upstream_revisions_and_caches_full_pins(self):
+        fixture(self.archive)
+        _, first = self.read()
+        second_archive = self.root / "second.tar.gz"
+        fixture(second_archive, data=NEXT)
+        _, second = reconcile.load_release(second_archive, "3.29.0", NEXT, XML)
+        archives = {}
+
+        def download(pin, destination):
+            original = self.archive if pin == first else second_archive
+            destination.write_bytes(original.read_bytes())
+
+        with (patch.object(spdx_replay, "resolve_upstream_ref", side_effect=lambda repo, revision, *_: revision) as resolve,
+              patch.object(spdx_replay, "resolve_release_tag", side_effect=(XML, NEXT)) as tag,
+              patch.object(spdx_replay, "fetch_archive", side_effect=download) as fetch,
+              patch.object(spdx_replay, "compare_registry") as compare):
+            spdx_replay.replay_download(None, first, None, archives=archives, historical=True)
+            spdx_replay.replay_download(None, first, None, archives=archives, historical=True)
+            spdx_replay.replay_download(None, second, None, archives=archives, historical=True)
+            tag.assert_not_called()
+            spdx_replay.replay_download(None, second, None, archives=archives)
+            self.assertEqual([call.args[:2] for call in resolve.call_args_list], [
+                (reconcile.SOURCE_REPOSITORY, XML), (reconcile.DATA_REPOSITORY, DATA),
+                (reconcile.SOURCE_REPOSITORY, XML), (reconcile.DATA_REPOSITORY, NEXT),
+            ])
+            self.assertEqual([call.args[0] for call in fetch.call_args_list], [first, second])
+            self.assertEqual([call.args[2] for call in compare.call_args_list], [first, first, second, second])
+            self.assertEqual(tag.call_count, 2)
+
+        with (patch.object(spdx_replay, "resolve_upstream_ref", return_value=NEXT),
+              patch.object(spdx_replay, "fetch_archive") as fetch):
+            with self.assertRaisesRegex(DataError, "historical XML commit differs from the committed pin"):
+                spdx_replay.replay_download(None, first, None, historical=True)
+            fetch.assert_not_called()
+
     def test_fingerprints_and_deprecated_text_fallback(self):
         fixture(self.archive, deprecated=True)
         origins, provenance = self.read(expected_sha=sha256(self.archive.read_bytes()).hexdigest())
