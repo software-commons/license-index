@@ -18,7 +18,7 @@ from urllib.parse import parse_qs, urlsplit
 from tools.records import DataError
 from tools.review_gate import (
     ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, AuthorizationPaths, Reviewer, capture_reviewer_streams, create_check, launch_review,
-    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, successful_checks, supersede_checks,
+    load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, passing_checks, supersede_checks,
     verify_issued_check,
 )
 from tools.review_protection import commissioning_policy
@@ -152,7 +152,7 @@ class CheckHistoryTests(unittest.TestCase):
         prior = {**runs[101][-1], "conclusion": "success"}
         runs[101][-1] = prior
         github = self.github(suites, runs)
-        self.assertEqual(successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [prior])
+        self.assertEqual(passing_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [prior])
 
         def publish(token, payload, *, check_id):
             self.assertEqual((token, payload["conclusion"], check_id), (LEGACY_TOKEN, "failure", prior["id"]))
@@ -164,13 +164,13 @@ class CheckHistoryTests(unittest.TestCase):
         with patch("tools.review_gate.token_is_target_only", return_value=True):
             supersede_checks(github, SNAPSHOT, SNAPSHOT.head, 123, LEGACY_TOKEN, [prior], publish, freshness)
         freshness.assert_called_once()
-        self.assertEqual(successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
+        self.assertEqual(passing_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
 
     def test_does_not_apply_a_per_suite_limit_globally(self):
         suites = [self.suite(1), self.suite(2)]
         runs = {1: [self.check(check_id, 1) for check_id in range(1, 1001)],
                 2: [self.check(1001, 2, "success")]}
-        self.assertEqual(successful_checks(self.github(suites, runs), SNAPSHOT, SNAPSHOT.head, 123), runs[2])
+        self.assertEqual(passing_checks(self.github(suites, runs), SNAPSHOT, SNAPSHOT.head, 123), runs[2])
 
     def test_denial_revokes_an_authenticated_success_without_an_approval_digest(self):
         for digest in (None, "legacy-unstructured-identifier"):
@@ -188,9 +188,48 @@ class CheckHistoryTests(unittest.TestCase):
 
                 with patch("tools.review_gate.token_is_target_only", return_value=True):
                     supersede_checks(github, SNAPSHOT, SNAPSHOT.head, 123, LEGACY_TOKEN, [prior], publish, Mock())
-                self.assertEqual(successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
+                self.assertEqual(passing_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
                 with self.assertRaisesRegex(DataError, "wrong-source review check"):
                     verify_issued_check(prior, SNAPSHOT.head, 123, "a" * 64, "completed", "success")
+
+    def test_admission_revocation_retires_neutral_and_skipped_checks(self):
+        for retained in (None, "neutral", "skipped"):
+            with self.subTest(retained=retained), TemporaryDirectory() as directory:
+                state = Path(directory)
+                args = SimpleNamespace(state_dir=state, mode="review", pull=1, app_id=123,
+                                       reviewer=Reviewer(4001, 4002, state), queue_admission=True,
+                                       revoke_only=True, expected_head=SNAPSHOT.head)
+                rows = [self.check(1, 1, "neutral"), self.check(2, 1, "skipped"), self.check(3, 1, "cancelled")]
+                github = self.github([self.suite(1)], {1: rows})
+                github.get_admission_head.return_value = ADMISSION
+
+                def publish(token, payload, *, check_id):
+                    self.assertEqual((token, payload["status"], payload["conclusion"]),
+                                     (LEGACY_TOKEN, "completed", "failure"))
+                    prior = rows[check_id - 1]
+                    replacement = {**prior, "conclusion": "failure"}
+                    if prior["conclusion"] != retained:
+                        rows[check_id - 1] = replacement
+                    return replacement
+
+                for prior in rows[:2]:
+                    with self.assertRaisesRegex(DataError, "wrong-source review check"):
+                        verify_issued_check(prior, SNAPSHOT.head, 123, "a" * 64, "completed", "success")
+                publisher = Mock(side_effect=publish)
+                with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
+                      patch("tools.review_gate.token_is_target_only", return_value=True),
+                      patch("tools.review_gate.launch_review") as reviewer):
+                    if retained is None:
+                        result = run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                        self.assertEqual(result["revoked_check_ids"], [1, 2])
+                        self.assertEqual(passing_checks(github, SNAPSHOT, SNAPSHOT.head, 123), [])
+                    else:
+                        with self.assertRaisesRegex(DataError, "superseded passing check remains visible"):
+                            run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                self.assertEqual([call.kwargs["check_id"] for call in publisher.call_args_list], [1, 2])
+                self.assertEqual(rows[2]["conclusion"], "cancelled")
+                github.get_pull.assert_not_called()
+                reviewer.assert_not_called()
 
     def test_unstable_partial_duplicate_or_wrong_scope_history_is_rejected(self):
         runs = [self.check(check_id, 12) for check_id in range(1, 102)]
@@ -203,13 +242,13 @@ class CheckHistoryTests(unittest.TestCase):
                 github = Mock(_get_json=Mock(side_effect=[{"total_count": 1, "check_suites": [self.suite(12)]},
                                                           {"total_count": 101, "check_runs": runs[:100]}, page]))
                 with self.assertRaises(DataError):
-                    successful_checks(github, SNAPSHOT, SNAPSHOT.head, 123)
+                    passing_checks(github, SNAPSHOT, SNAPSHOT.head, 123)
 
         for suites, runs in (([{**self.suite(12), "repository": {"id": 1468265981, "full_name": "software-commons/language-index"}}], {12: []}),
                              ([self.suite(12), self.suite(13)], {12: [self.check(1, 12)], 13: [self.check(1, 13)]})):
             with self.subTest(suites=suites):
                 with self.assertRaises(DataError):
-                    successful_checks(self.github(suites, runs), SNAPSHOT, SNAPSHOT.head, 123)
+                    passing_checks(self.github(suites, runs), SNAPSHOT, SNAPSHOT.head, 123)
 
 
 class ReviewGateTests(unittest.TestCase):
@@ -217,8 +256,8 @@ class ReviewGateTests(unittest.TestCase):
         capture = patch("tools.review_gate.capture_selected_evidence", return_value={})
         self.capture_evidence = capture.start()
         self.addCleanup(capture.stop)
-        checks = patch("tools.review_gate.successful_checks", return_value=[])
-        self.successful_checks = checks.start()
+        checks = patch("tools.review_gate.passing_checks", return_value=[])
+        self.passing_checks = checks.start()
         self.addCleanup(checks.stop)
         targets = patch("tools.review_gate.capture_queue_target", return_value=QUEUE_TARGET)
         self.capture_queue_target = targets.start()
@@ -653,7 +692,7 @@ class ReviewGateTests(unittest.TestCase):
             github.get_admission_head.return_value = ADMISSION
             prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
                                "status": "completed", "conclusion": "success"})
-            self.successful_checks.side_effect = [[prior], [prior], []]
+            self.passing_checks.side_effect = [[prior], [prior], []]
             publisher = Mock(return_value={**prior, "conclusion": "failure"})
 
             def negative(_codex, _model, input_dir, _schema, _audit, *, reviewer):
@@ -699,7 +738,7 @@ class ReviewGateTests(unittest.TestCase):
                 check_target = QUEUE["merge"] if queue else SNAPSHOT.head
                 prior = api_check({"name": CHECK_NAME, "head_sha": check_target, "external_id": "a" * 64,
                                    "status": "completed", "conclusion": "success"})
-                self.successful_checks.side_effect = [[prior], [prior], []]
+                self.passing_checks.side_effect = [[prior], [prior], []]
                 publisher = Mock(return_value={**prior, "conclusion": "failure"})
 
                 def reject(*_args, **_kwargs):
@@ -750,14 +789,14 @@ class ReviewGateTests(unittest.TestCase):
             prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
                                "status": "completed", "conclusion": "success"})
             args.expected_merge = SNAPSHOT.merge
-            self.successful_checks.side_effect = [[prior]]
+            self.passing_checks.side_effect = [[prior]]
             with patch("tools.review_gate.capture_admission_head", side_effect=SnapshotError("single-parent")):
                 with self.assertRaisesRegex(SnapshotError, "single-parent"):
                     run(args, github, token_input=credential, publisher=publisher)
             credential.assert_not_called()
             publisher.assert_not_called()
 
-            self.successful_checks.side_effect = [[prior], [prior], []]
+            self.passing_checks.side_effect = [[prior], [prior], []]
             publisher.return_value = {**prior, "conclusion": "failure"}
             github._get_json.side_effect = AssertionError("denial-only must not read issuance protection policy")
             with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
@@ -791,7 +830,7 @@ class ReviewGateTests(unittest.TestCase):
                               get_admission_head=Mock(return_value=ADMISSION))
                 prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head,
                                    "status": "completed", "conclusion": "success"})
-                self.successful_checks.side_effect = [[prior], [prior]]
+                self.passing_checks.side_effect = [[prior], [prior]]
                 publisher = Mock()
                 credential = Mock(return_value=LEGACY_TOKEN)
                 with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
@@ -829,12 +868,12 @@ class ReviewGateTests(unittest.TestCase):
 
                     args.expected_head = SNAPSHOT.head
                     github.get_admission_head.side_effect = [ADMISSION, replace(ADMISSION, head="f" * 40)]
-                    self.successful_checks.side_effect = [[prior], [prior]]
+                    self.passing_checks.side_effect = [[prior], [prior]]
                     with self.assertRaisesRegex(DataError, "live admission head changed before revocation"):
                         run(args, github, token_input=credential, publisher=publisher)
                     publisher.assert_not_called()
                     github.get_admission_head.side_effect = None
-                    self.successful_checks.side_effect = [[prior], [prior], []]
+                    self.passing_checks.side_effect = [[prior], [prior], []]
                     result = run(args, github, token_input=credential, publisher=publisher)
                     self.assertEqual(result["checked_sha"], ADMISSION.head)
                     self.assertEqual(result["revoked_check_ids"], [prior["id"]])
@@ -854,7 +893,7 @@ class ReviewGateTests(unittest.TestCase):
                     publisher.assert_not_called()
 
                     github.get_pull.side_effect = [SNAPSHOT, replace(SNAPSHOT, merge="f" * 40)]
-                    self.successful_checks.side_effect = [[prior], [prior]]
+                    self.passing_checks.side_effect = [[prior], [prior]]
                     with self.assertRaisesRegex(DataError, "live test merge changed before revocation"):
                         run(args, github, token_input=credential, publisher=publisher)
                     publisher.assert_not_called()
@@ -886,7 +925,7 @@ class ReviewGateTests(unittest.TestCase):
                                        revoke_only=True, expected_merge=QUEUE["merge"])
                 github = Mock(get_queue_pull=Mock(side_effect=[identity, replace(identity, base="f" * 40) if drift else identity]),
                               get_pull=Mock(side_effect=SnapshotError("GitHub has not established a mergeable test commit")))
-                self.successful_checks.side_effect = [[prior], [prior], []]
+                self.passing_checks.side_effect = [[prior], [prior], []]
                 publisher = Mock(return_value={**prior, "conclusion": "failure"})
                 with (patch("tools.review_gate.capture_queue_target", return_value=QUEUE_TARGET) as queue,
                       patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40) as tree,

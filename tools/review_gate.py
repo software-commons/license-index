@@ -37,6 +37,7 @@ from .review_snapshot import (
 )
 
 CHECK_NAME = "Software Commons / Codex technical review"
+_PASSING_CHECK_CONCLUSIONS = ("success", "neutral", "skipped")
 ACTIONS_APP_ID = 15368
 CI_CONTEXTS = ("Evidence / SCES validation", "Registry validation")
 VERDICT_KEYS = {"decision", "inspection_token", "merge_sha", "diff_sha256", "findings", "rationale"}
@@ -409,12 +410,12 @@ def _exact_check_author(row, target, app_id):
             and type(app.get("id")) is int and app["id"] == app_id)
 
 
-def successful_checks(github, snapshot, target, app_id):
+def passing_checks(github, snapshot, target, app_id):
     # The reference check-runs endpoint only covers the newest 1,000 suites. Enumerate App suites explicitly.
     repo = f"/repos/{REPOSITORY}"
     suite_path = f"{repo}/commits/{target}/check-suites"
     suites = _check_history_rows(github, suite_path, "check_suites", app_id=app_id)
-    seen, successes = set(), []
+    seen, passing = set(), []
     for suite in suites:
         repository = suite.get("repository")
         require(_exact_check_author(suite, target, app_id) and isinstance(repository, dict)
@@ -430,9 +431,10 @@ def successful_checks(github, snapshot, target, app_id):
                     and check_suite["id"] == suite_id and row["id"] not in seen,
                     "GitHub returned an invalid or duplicate exact review check")
             seen.add(row["id"])
-            if row.get("conclusion") == "success":
-                successes.append(row)
-    return sorted(successes, key=lambda row: row["id"])
+            if row.get("conclusion") in _PASSING_CHECK_CONCLUSIONS:
+                require(row.get("status") == "completed", "GitHub returned an incomplete passing review check")
+                passing.append(row)
+    return sorted(passing, key=lambda row: row["id"])
 
 
 def supersede_checks(github, snapshot, target, app_id, token, previous, publisher, verify_fresh):
@@ -440,11 +442,13 @@ def supersede_checks(github, snapshot, target, app_id, token, previous, publishe
     scope = GitHub(token)
     require(token_is_target_only(scope, snapshot.repository_id, REPOSITORY),
             "the installation token must list only the configured review repository")
-    require(successful_checks(github, snapshot, target, app_id) == previous,
+    require(passing_checks(github, snapshot, target, app_id) == previous,
             "prior review changes during the supersession preflight")
     for check in previous:
-        # GitHub can accept a legacy success without a decision digest. Its authenticated identity is enough to deny it.
-        _verify_check_state(check, target, app_id, "completed", "success")
+        # A legacy passing check can satisfy protection without a decision digest.
+        conclusion = check.get("conclusion")
+        require(conclusion in _PASSING_CHECK_CONCLUSIONS, "invalid prior passing review check")
+        _verify_check_state(check, target, app_id, "completed", conclusion)
         require(type(check.get("id")) is int and check["id"] > 0, "invalid prior review check ID")
     for check in previous:
         verify_fresh()
@@ -454,7 +458,7 @@ def supersede_checks(github, snapshot, target, app_id, token, previous, publishe
         }}, check_id=check["id"])
         _verify_check_state(result, target, app_id, "completed", "failure")
         require(type(result.get("id")) is int and result["id"] == check["id"], "GitHub superseded a different review check")
-    require(not successful_checks(github, snapshot, target, app_id), "a superseded success remains visible on GitHub")
+    require(not passing_checks(github, snapshot, target, app_id), "a superseded passing check remains visible on GitHub")
 
 
 def run(args, github, *, token_input=None, publisher=write_check):
@@ -510,7 +514,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
             require(pinned_pull.head == admission_identity.head
                     and (expected_merge is None or pinned_pull.merge == expected_merge),
                     "live review target differs from the expected review merge")
-        previous = successful_checks(github, admission_identity, admission_identity.head, args.app_id)
+        previous = passing_checks(github, admission_identity, admission_identity.head, args.app_id)
         if previous:
             with TemporaryDirectory(prefix="head-", dir=state) as directory:
                 head_tree = capture_admission_head(admission_identity, Path(directory))
@@ -565,7 +569,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
         tree = None
         if args.app_id is not None:
             if not admission:
-                previous = successful_checks(github, snapshot, snapshot.merge, args.app_id)
+                previous = passing_checks(github, snapshot, snapshot.merge, args.app_id)
                 if previous:
                     tree = capture_candidate_tree(snapshot, checkout, **capture_options)
                     installation_token = retire_previous(
