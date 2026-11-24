@@ -52,12 +52,18 @@ CC_LEGAL_TEXTS = {
 }
 CC_LEGACY_EDITIONS = {"CC-BY-4.0", "CC0-1.0"}
 CC_LEGACY_RIGHTS = {"https://creativecommons.org/policies/", "https://creativecommons.org/policies/#cc-licensing-statement"}
-POLYFORM_RIGHTS = ("https://raw.githubusercontent.com/polyformproject/polyform-licenses/"
-                   "a2316cfa35d3947fdc5af4bcc1f321662bfd79d8/LICENSE.md")
+POLYFORM_REVISION = "a2316cfa35d3947fdc5af4bcc1f321662bfd79d8"
+POLYFORM_PUBLISHER_TREE = f"https://raw.githubusercontent.com/polyformproject/polyform-licenses/{POLYFORM_REVISION}"
+POLYFORM_RIGHTS = f"{POLYFORM_PUBLISHER_TREE}/LICENSE.md"
+POLYFORM_RIGHTS_SHA256 = "d04a8527e90a7f7fe36083fa1fd25db16b0e43c2244f4f6880f7a2c5d18c631e"
+POLYFORM_LEGAL_TEXTS = {
+    "PolyForm-Noncommercial-1.0.0": "c0ea4a896d2c8c394b29f9427589996db826cd501c512279ff0ed3ef48fabbe5",
+    "PolyForm-Small-Business-1.0.0": "03eea824bff13316b767424b3e8f49538b46e52d897aecc87d6344343364aa56",
+}
 RIGHTS_DOCUMENTS = {CC_RIGHTS: "cc-rights-exact.md", POLYFORM_RIGHTS: "polyform-rights-exact.md"}
 RIGHTS_BY_IDENTIFIER = {
     **dict.fromkeys(CC_LEGAL_TEXTS, CC_RIGHTS),
-    **dict.fromkeys(("PolyForm-Noncommercial-1.0.0", "PolyForm-Small-Business-1.0.0"), POLYFORM_RIGHTS),
+    **dict.fromkeys(POLYFORM_LEGAL_TEXTS, POLYFORM_RIGHTS),
 }
 RIGHTS_MAX_BYTES = 64 * 1024
 BUNDLE_SUPPORT = {
@@ -155,6 +161,13 @@ def _validate_text_rights(identifier, package, rights_reader, *, archived):
             require(package["source"] == f"{CC_PUBLISHER_TREE}/docs/{publisher_path}" and package["revision"] == CC_REVISION,
                     f"unapproved publisher text locator for {identifier}")
             require(digest == CC_RIGHTS_SHA256, f"invalid rights digest for {identifier}")
+    elif identifier in POLYFORM_LEGAL_TEXTS:
+        require(package["sha256"] == POLYFORM_LEGAL_TEXTS[identifier],
+                f"unexpected admitted publisher text digest for {identifier}")
+        require(package["source"] == f"{POLYFORM_PUBLISHER_TREE}/{identifier}.md"
+                and package.get("revision") == POLYFORM_REVISION,
+                f"unapproved publisher text locator for {identifier}")
+        require(digest == POLYFORM_RIGHTS_SHA256, f"invalid rights digest for {identifier}")
     require(url in RIGHTS_DOCUMENTS and (expected_url is None or url == expected_url),
             f"unapproved publisher rights locator for {identifier}")
     require(isinstance(digest, str) and HEX_256.fullmatch(digest), f"invalid rights digest for {identifier}")
@@ -328,7 +341,7 @@ _FOUNDATION_DRAFT_BLOB = "894aa11bc1193640994d8a840b0bed42fd635367"
 _FOUNDATION_RECORDED_BLOB = "f4de218b0cdaf2c98e57da63cfc2b5302171f303"
 
 
-def _incoming_snapshot_origins(root, base, head, tracked, pending):
+def _incoming_snapshot_origins(root, base, head, tracked, prior):
     revisions = _git(root, "rev-list", "--topo-order", "--reverse", "--parents",
                      f"{base}..{head}").decode().splitlines()
     coverage_by_commit = {}
@@ -336,7 +349,7 @@ def _incoming_snapshot_origins(root, base, head, tracked, pending):
     for revision in revisions:
         commit, *parents = revision.split()
         blobs = _git_blobs(root, commit, COVERAGE, SNAPSHOTS)
-        present = pending & blobs.keys()
+        present = blobs.keys() - prior.keys() - {COVERAGE}
         if (commit in _FOUNDATION_DRAFT_COMMITS
                 and blobs.get(_FOUNDATION_SNAPSHOT) == _FOUNDATION_DRAFT_BLOB
                 and tracked.get(_FOUNDATION_SNAPSHOT) == _FOUNDATION_RECORDED_BLOB):
@@ -345,6 +358,7 @@ def _incoming_snapshot_origins(root, base, head, tracked, pending):
         removed = inherited - present
         require(not removed, f"{commit}: incoming coverage snapshots were removed: {', '.join(sorted(removed))}")
         for name in sorted(present):
+            require(name in tracked, f"{name}: incoming coverage snapshot is missing at the candidate tip")
             require(blobs[name] == tracked[name], f"{name}: incoming snapshot bytes changed in history at {commit}")
         for name in sorted(present - inherited):
             require(name not in origins, f"{name}: incoming coverage snapshot has multiple original commits")
@@ -352,7 +366,7 @@ def _incoming_snapshot_origins(root, base, head, tracked, pending):
                     f"{name}: incoming snapshot was not the exact current ledger when recorded at {commit}")
             origins[name] = commit
         coverage_by_commit[commit] = present
-    missing = pending - origins.keys()
+    missing = tracked.keys() - prior.keys() - origins.keys()
     require(not missing, f"coverage snapshots lack an original recorded cutoff: {', '.join(sorted(missing))}")
     return origins
 
@@ -370,15 +384,14 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
     require(tracked.get(selected) == current_oid, "current coverage does not name an exact committed archive")
     worktree = {path.relative_to(root).as_posix() for path in (root / SNAPSHOTS).rglob("*.json")}
     require(worktree == tracked.keys(), "coverage snapshots must be committed JSON files")
-    pending = tracked.keys() - prior.keys()
-    if not pending:
+    snapshots = _incoming_snapshot_origins(root, base, head, tracked, prior)
+    if not snapshots:
         return
     tracked_sources = _git_blobs(root, head, SOURCES)
-    for name in sorted(pending):
+    for name in snapshots:
         require(_blob_hash(_exact_file(root / name), algorithm) == tracked[name],
                 f"{name}: incoming coverage differs from the committed snapshot")
 
-    snapshots = _incoming_snapshot_origins(root, base, head, tracked, pending)
     cache = {}
     verified = set()
     for name, commit in snapshots.items():

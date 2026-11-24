@@ -643,9 +643,23 @@ class GitHistoryTests(unittest.TestCase):
             self.write(current["snapshot"], current)
             self.write(COVERAGE, current)
             self.commit("Publish a different truthful current assessment")
+            return current
 
-        select_current()
+        current = select_current()
         validate(Catalog(self.root), base=base)
+
+        current_base = self.git("rev-parse", "HEAD").strip()
+        dropped = "registry/coverage/snapshots/transient.json"
+        transient = {**current, "snapshot": dropped}
+        self.write(dropped, transient)
+        self.write(COVERAGE, transient)
+        self.commit("Record an intervening archive")
+        (self.root / dropped).unlink()
+        self.write(COVERAGE, current)
+        self.commit("Restore the baseline ledger and drop the intervening archive")
+        validate_discovery(Catalog(self.root))
+        with self.assertRaisesRegex(DataError, "transient.json: incoming coverage snapshot is missing at the candidate tip"):
+            validate(Catalog(self.root), base=current_base)
 
         self.git("reset", "--hard", archived_commit)
         assessment["catalog"]["beyond_spdx_leads"] = 99

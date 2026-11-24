@@ -229,6 +229,24 @@ class RightsTests(unittest.TestCase):
                 with self.assertRaisesRegex(DataError, f"unapproved publisher text locator for {wanted}"):
                     validate_texts(catalog)
 
+    def test_polyform_installation_cannot_exchange_publisher_editions(self):
+        catalog = Catalog()
+        noncommercial = "PolyForm-Noncommercial-1.0.0"
+        small_business = "PolyForm-Small-Business-1.0.0"
+        originals = {name: catalog.packaged[name] for name in (noncommercial, small_business)}
+        catalog.packaged = originals
+        self.assertNotEqual(originals[noncommercial]["sha256"], originals[small_business]["sha256"])
+        self.assertEqual({row["rights"] for row in originals.values()}, {POLYFORM_RIGHTS})
+        self.assertEqual(len({row["rights_sha256"] for row in originals.values()}), 1)
+        validate_texts(catalog)
+        validate_texts(catalog, archived=True)
+
+        for identifier, other in ((noncommercial, small_business), (small_business, noncommercial)):
+            with self.subTest(identifier=identifier):
+                catalog.packaged = {identifier: originals[other], other: originals[identifier]}
+                with self.assertRaisesRegex(DataError, f"unexpected admitted publisher text digest for {identifier}"):
+                    validate_texts(catalog)
+
     def test_legacy_cc_bindings_are_only_for_exact_archived_publisher_editions(self):
         for identifier in ("CC-BY-4.0", "CC0-1.0"):
             with self.subTest(identifier=identifier):
