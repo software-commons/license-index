@@ -97,6 +97,25 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(old["catalog_status"], "discovery")
         self.assertIsNone(self.json_output("show", "llvm-exception")["text_package"])
 
+    def test_coverage_binds_individual_dimension_assessments(self):
+        catalog = Catalog(ROOT)
+        permissions = {"state": "unresolved", "text": "Fixture permission", "sources": []}
+        restrictions = {"state": "inapplicable", "text": "Fixture restriction", "sources": []}
+        catalog.profiles = {
+            "MIT": {"dimensions": {"permissions": permissions, "restrictions": restrictions},
+                    "scenarios": [{"text": "One fixture scenario"}]},
+        }
+        legacy = catalog.coverage(schema_version="2.0.0")["research"]
+        original = catalog.coverage()["research"]
+        self.assertEqual(original["dimensions"], 2)
+        self.assertEqual(original["scenarios"], 1)
+        self.assertEqual(original["dimension_states"], {"inapplicable": 1, "unresolved": 1})
+        with patch.dict(permissions, {"state": "inapplicable"}), patch.dict(restrictions, {"state": "unresolved"}):
+            reassessed = catalog.coverage()["research"]
+            self.assertEqual(catalog.coverage(schema_version="2.0.0")["research"], legacy)
+        self.assertEqual(reassessed["dimension_states"], original["dimension_states"])
+        self.assertNotEqual(reassessed["dimension_assessments_sha256"], original["dimension_assessments_sha256"])
+
     def test_launcher_runs_from_another_project(self):
         with TemporaryDirectory() as temporary:
             if os.name == "nt":

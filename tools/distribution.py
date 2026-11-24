@@ -14,7 +14,8 @@ from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
 from .qualification import _blob_hash, _exact_file, _git, _git_blobs, check_history, qualified
 from .reconcile import RELEASE
 from .records import (
-    COVERAGE_VERSION, DATA_COMMIT, HEX_256, LEGACY_COVERAGE_VERSION, VERSION, Catalog, DataError,
+    COVERAGE_VERSION, COVERAGE_VERSIONS, DATA_COMMIT, DIMENSION_STATES, HEX_256, LEGACY_COVERAGE_VERSION,
+    VERSION, Catalog, DataError,
     NoRedirects, checked_bytes, decode, encode, is_removed, local_path, read, require,
 )
 
@@ -30,8 +31,6 @@ SPDX_SOURCE = re.compile(rf"{SOURCES}/spdx-[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-f]{{4
 PACKAGED_TEXTS = "legal-texts/manifest.json"
 PROFILES = "research/campaigns/profiles.json"
 QUALIFICATION_SCOPE = "development-discovery"
-DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
-                    "inapplicable", "explicit-absence"}
 CC_REVISION = "91780e140892982eb3e0d530591ccbbca0d4690d"
 CC_PUBLISHER_TREE = f"https://raw.githubusercontent.com/creativecommons/cc-legal-tools-data/{CC_REVISION}"
 CC_RIGHTS = f"{CC_PUBLISHER_TREE}/README.md"
@@ -546,9 +545,9 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
                                      or not path.startswith(f"{SOURCES}/")}, cache)
         rows = {path: decode(payload) for path, payload in data.items()}
         version = archived.get("schema_version")
-        require(version in {LEGACY_COVERAGE_VERSION, COVERAGE_VERSION}, f"{name}: unsupported coverage schema")
+        require(version in COVERAGE_VERSIONS, f"{name}: unsupported coverage schema")
         sces_rows = {}
-        if version == COVERAGE_VERSION:
+        if version != LEGACY_COVERAGE_VERSION:
             evidence = _git_blobs(root, commit, *COVERAGE_SCES_SECTIONS)
             sces_rows = _read_git_blobs(root, evidence, cache)
         historic = _HistoricalCatalog(root, rows, sces_rows)

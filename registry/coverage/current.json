@@ -88,14 +88,25 @@
       "status": "development"
     },
     "research": {
+      "dimension_assessments_sha256": "eeba8532b9ef820748f001eb5025fc49f400bfb10c31a62adca36bef7ef280dd",
+      "dimension_states": {
+        "condition": 94,
+        "documented": 34,
+        "inapplicable": 2,
+        "permission": 48,
+        "restriction": 10,
+        "unresolved": 9
+      },
+      "dimensions": 197,
       "provisional_explanations": 41,
+      "scenarios": 55,
       "spdx_without_provisional_explanation": 785
     },
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-23",
-  "method": "Reconcile exact upstream manifests and per-ID artifacts. Count all discovery dispositions, text, installation, provisional research, recorded claim review states, and selection separately.",
-  "schema_version": "2.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-disposition-accounting.json",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
+  "schema_version": "3.0.0",
+  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-depth.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

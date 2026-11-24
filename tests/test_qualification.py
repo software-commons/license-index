@@ -17,7 +17,7 @@ from tools.index import execute, parser
 from tools.qualification import (
     POLICY_COMMIT, POLICY_DIGEST, _bind_payload, _claim_value, _run, _validate_policy, check_history, qualified,
 )
-from tools.records import ROOT, Catalog, DataError, encode
+from tools.records import COVERAGE_VERSION, ROOT, Catalog, DataError, encode
 
 
 MIT = "123456789abc4def8123456789abcdef"
@@ -598,7 +598,7 @@ class GitHistoryTests(unittest.TestCase):
         self.commit("Set discovery baseline")
         base = self.git("rev-parse", "HEAD").strip()
         catalog = Catalog(self.root)
-        ledger = {"schema_version": "2.0.0", "source_manifest": source, "snapshot": COVERAGE,
+        ledger = {"schema_version": COVERAGE_VERSION, "source_manifest": source, "snapshot": COVERAGE,
                   "assessment": catalog.coverage()}
         self.write(COVERAGE, ledger)
         with self.assertRaisesRegex(DataError, "must name a JSON archive"):
@@ -640,7 +640,7 @@ class GitHistoryTests(unittest.TestCase):
 
         def select_current():
             self.write(self.lead_path, {**self.lead, "disposition": "excluded"})
-            current = {"schema_version": "2.0.0", "source_manifest": source,
+            current = {"schema_version": COVERAGE_VERSION, "source_manifest": source,
                        "snapshot": "registry/coverage/snapshots/current.json",
                        "assessment": Catalog(self.root).coverage()}
             self.write(current["snapshot"], current)
@@ -684,7 +684,8 @@ class GitHistoryTests(unittest.TestCase):
                             ), 0)})
         archive = self.snapshot.relative_to(self.root).as_posix()
         older = {"schema_version": "2.0.0", "source_manifest": source, "snapshot": archive,
-                 "method": "Synthetic older assessment", "assessment": Catalog(self.root).coverage()}
+                 "method": "Synthetic older assessment",
+                 "assessment": Catalog(self.root).coverage(schema_version="2.0.0")}
 
         def record(ledger):
             self.write(ledger["snapshot"], ledger)
@@ -693,7 +694,8 @@ class GitHistoryTests(unittest.TestCase):
         record(older)
         self.commit("Record the older fixture assessment")
         boundary = self.git("rev-parse", "HEAD").strip()
-        trusted = {**older, "method": "Synthetic trusted assessment"}
+        trusted = {**older, "schema_version": COVERAGE_VERSION, "method": "Synthetic trusted assessment",
+                   "assessment": Catalog(self.root).coverage()}
         record(trusted)
         self.commit("Record the trusted base assessment")
         base = self.git("rev-parse", "HEAD").strip()
@@ -741,8 +743,9 @@ class GitHistoryTests(unittest.TestCase):
                                                   "deprecated_exceptions", "missing_text", "missing_template"), 0)}
             self.write(source_path, source)
             path = f"registry/coverage/snapshots/{release}.json"
-            snapshot = {"schema_version": "2.0.0", "source_manifest": source_path, "snapshot": path,
-                        "assessment": Catalog(self.root).coverage()}
+            schema_version = "2.0.0" if release == "3.28.0" else COVERAGE_VERSION
+            snapshot = {"schema_version": schema_version, "source_manifest": source_path, "snapshot": path,
+                        "assessment": Catalog(self.root).coverage(schema_version=schema_version)}
             self.write(COVERAGE, snapshot)
             self.write(path, snapshot)
             self.commit(f"Retain {release} coverage")
@@ -858,7 +861,7 @@ class GitHistoryTests(unittest.TestCase):
                                 "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
                                 "missing_text", "missing_template",
                             ), 0)})
-        saved = {"schema_version": "2.0.0", "source_manifest": source, "snapshot": snapshot,
+        saved = {"schema_version": COVERAGE_VERSION, "source_manifest": source, "snapshot": snapshot,
                  "assessment": catalog.coverage()}
         self.write(snapshot, saved)
         self.write("registry/coverage/current.json", saved)

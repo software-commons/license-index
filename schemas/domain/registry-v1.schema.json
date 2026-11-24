@@ -211,7 +211,7 @@
       "additionalProperties": false,
       "required": ["schema_version", "cutoff", "source_manifest", "snapshot", "method", "assessment"],
       "properties": {
-        "schema_version": {"enum": ["1.0.0", "2.0.0"]},
+        "schema_version": {"enum": ["1.0.0", "2.0.0", "3.0.0"]},
         "cutoff": {"type": "string", "format": "date"},
         "source_manifest": {"$ref": "#/$defs/path"},
         "snapshot": {"$ref": "#/$defs/path"},
@@ -222,7 +222,7 @@
         }
       },
       "allOf": [{
-        "if": {"properties": {"schema_version": {"const": "2.0.0"}}},
+        "if": {"properties": {"schema_version": {"enum": ["2.0.0", "3.0.0"]}}},
         "then": {"properties": {"assessment": {"properties": {
           "catalog": {
             "type": "object",
@@ -246,6 +246,29 @@
               "recorded_invalidated_claim_revisions": {"type": "integer", "minimum": 0},
               "selected_claims": {"type": "integer", "minimum": 0},
               "status": {"enum": ["development", "qualified-selection"]}
+            }
+          }
+        }}}}
+      }, {
+        "if": {"properties": {"schema_version": {"const": "3.0.0"}}},
+        "then": {"properties": {"assessment": {"properties": {
+          "research": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provisional_explanations", "spdx_without_provisional_explanation",
+                         "dimensions", "dimension_states", "dimension_assessments_sha256", "scenarios"],
+            "properties": {
+              "provisional_explanations": {"type": "integer", "minimum": 0},
+              "spdx_without_provisional_explanation": {"type": "integer", "minimum": 0},
+              "dimensions": {"type": "integer", "minimum": 0},
+              "dimension_states": {
+                "type": "object",
+                "propertyNames": {"enum": ["permission", "condition", "restriction", "documented",
+                                            "unresolved", "inapplicable", "explicit-absence"]},
+                "additionalProperties": {"type": "integer", "minimum": 0}
+              },
+              "dimension_assessments_sha256": {"$ref": "#/$defs/sha256"},
+              "scenarios": {"type": "integer", "minimum": 0}
             }
           }
         }}}}

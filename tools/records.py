@@ -20,8 +20,12 @@ DATA_COMMIT = re.compile(r"[0-9a-f]{40}")
 SPDX_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9.-]*\+?")
 SPDX_DATA_RAW = "https://raw.githubusercontent.com/spdx/license-list-data"
 VERSION = "0.1.0.dev0"
-COVERAGE_VERSION = "2.0.0"
+COVERAGE_VERSION = "3.0.0"
+COVERAGE_VERSION_V2 = "2.0.0"
 LEGACY_COVERAGE_VERSION = "1.0.0"
+COVERAGE_VERSIONS = (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION_V2, COVERAGE_VERSION)
+DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
+                    "inapplicable", "explicit-absence"}
 _SCES_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 _SCES_COVERAGE_KINDS = ("claim", "disposition", "source", "verification")
 
@@ -284,8 +288,19 @@ class Catalog:
             ),
         }
 
+    def _research_depth(self):
+        dimensions = {identifier: profile["dimensions"] for identifier, profile in self.profiles.items()}
+        states = Counter(value["state"] for profile in dimensions.values() for value in profile.values())
+        require(states.keys() <= DIMENSION_STATES, "invalid research dimension state")
+        return {
+            "dimensions": sum(states.values()),
+            "dimension_states": dict(states),
+            "dimension_assessments_sha256": sha256(encode(dimensions)).hexdigest(),
+            "scenarios": sum(len(profile["scenarios"]) for profile in self.profiles.values()),
+        }
+
     def coverage(self, qualified_claims=(), *, schema_version=COVERAGE_VERSION):
-        require(schema_version in (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION),
+        require(schema_version in COVERAGE_VERSIONS,
                 f"unknown coverage assessment schema version: {schema_version!r}")
         active = self.active_spdx
         installable = {row["origin"]["identifier"] for row in active if is_installation_target(row)}
@@ -335,6 +350,8 @@ class Catalog:
                 Counter(row["disposition"] for row in self.candidates.values())
             )
             qualification.update(self._recorded_qualification(), selected_claims=len(qualified_claims))
+        if schema_version == COVERAGE_VERSION:
+            assessment["research"].update(self._research_depth())
         return assessment
 
 
