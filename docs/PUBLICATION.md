@@ -22,7 +22,7 @@ Use `license-index coverage --policy PATH` to check the pinned policy and any ac
 
 ## Stage the exact release candidate
 
-From a trusted checkout of the checked publication commit, run `python -B -m tools.stage_release /path/to/new-candidate.zip --policy /path/to/pinned-policy --base TRUSTED_PREDECESSOR_SHA`. Substitute paths appropriate to the operating system. Staging and the pinned validator read the recorded Git objects and parent links with local replacements and grafts disabled. The command requires the evidence and registry data used in validation to match the commit. It stages only the exact SCES payload and qualification report, the pinned SCES schema and their checksums. Discovery records, extra entity projections, raw source captures and verification traces stay outside the ZIP.
+From a trusted checkout of the checked publication commit, run `python -I -B tools/run_isolated.py stage_release /path/to/new-candidate.zip --policy /path/to/pinned-policy --base TRUSTED_PREDECESSOR_SHA`. Substitute paths appropriate to the operating system. Staging and the pinned validator read the recorded Git objects and parent links with local replacements and grafts disabled. The command requires the evidence and registry data used in validation to match the commit. It stages only the exact SCES payload and qualification report, the pinned SCES schema and their checksums. Discovery records, extra entity projections, raw source captures and verification traces stay outside the ZIP.
 
 Registry CI exercises staging against the trusted predecessor. With an active selection it builds twice, compares the ZIP and request bytes, and verifies the local archive and pinned schema digest. Without a selection it checks that staging refuses to produce an archive. The workflow writes its test artifacts to a temporary directory. Production staging and owner authorization follow integration on the protected branch.
 
@@ -59,8 +59,8 @@ The verifier checks the supplied decision digest and its bindings to the exact r
 Verify the staged bytes locally before attaching them. After publication, verify the public asset and tag without credentials.
 
 ```text
-python -B -m tools.verify_release REQUEST.json --authorization AUTHORIZATION.json --authorization-sha256 AUTHORIZATION_DIGEST --zip CANDIDATE.zip
-python -B -m tools.verify_release REQUEST.json --authorization AUTHORIZATION.json --authorization-sha256 AUTHORIZATION_DIGEST
+python -I -B tools/run_isolated.py verify_release REQUEST.json --authorization AUTHORIZATION.json --authorization-sha256 AUTHORIZATION_DIGEST --zip CANDIDATE.zip
+python -I -B tools/run_isolated.py verify_release REQUEST.json --authorization AUTHORIZATION.json --authorization-sha256 AUTHORIZATION_DIGEST
 ```
 
 Preserve the exact GitHub title and body, including whitespace, in `notes`. The verifier matches the published notes, resolves the public tag to the integrated commit, checks the downloaded ZIP and each asset digest, and compares the report’s claim list and policy result. For an integrity-only check, use `--request-sha256 REQUEST_DIGEST` with `--zip CANDIDATE.zip`, or with `--tag TAG --notes-sha256 NOTES_DIGEST`. Calculate the notes digest from `tools.records.encode({"name": title, "body": body})`.
