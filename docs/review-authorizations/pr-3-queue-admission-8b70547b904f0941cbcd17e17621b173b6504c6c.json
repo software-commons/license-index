@@ -1,0 +1,23 @@
+{
+  "candidate": {
+    "base": "71f9b3eda071bffbe8dd768f1d07cc966d5f7875",
+    "base_ref": "main",
+    "diff_sha256": "5f871d552bb58c8d52f3f6df1bf679169e3d604c7cffa29154a25767a45b4e69",
+    "head": "152a8beac91545c61e8c53d6153419bb458a8156",
+    "merge": "8b70547b904f0941cbcd17e17621b173b6504c6c",
+    "number": 3,
+    "phase": "queue-admission",
+    "protected_paths": [
+      "sces/publication.json",
+      "sces/releases/mit-reference-0-1-0/claims.json",
+      "sces/releases/mit-reference-0-1-0/qualification.json"
+    ],
+    "repository": "software-commons/license-index",
+    "repository_id": 1468281504,
+    "sces_evidence_sha256": "f27e3529d84692925fd0dd87d7bd546a17a903a0515fb516293e694660e7b032"
+  },
+  "decision": "authorize-protected-review",
+  "kind": "exact-protected-review-owner-authorization",
+  "publication_authorization": "required-separately",
+  "version": 1
+}
