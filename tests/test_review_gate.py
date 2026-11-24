@@ -482,6 +482,28 @@ class ReviewGateTests(unittest.TestCase):
                 execution, verdict = review_result(make_trace(diff=diff, displayed=displayed), binding, "abc", diff)
                 self.assertEqual((execution, verdict["decision"]), (EXECUTION, "approve"))
 
+    def test_only_lf_delimits_patch_and_displayed_records(self):
+        header = b"diff --git a/file b/file\n--- a/file\n+++ b/file\n@@ -1,2 +1,2 @@\n"
+        for separator in ("\r", "\f", "\u2028"):
+            context = f" unchanged{separator}+context material\n".encode()
+            changed = f"+real{separator}value"
+            diff = header + context + b"-old value\n" + changed.encode() + b"\n"
+            binding = {**BINDING, "diff_sha256": sha256(diff).hexdigest()}
+            for displayed in ("+context material", "+real", f"other output{separator}-old value"):
+                with self.subTest(separator=separator, displayed=displayed):
+                    with self.assertRaisesRegex(DataError, "patch body inspection"):
+                        review_result(make_trace(diff=diff, displayed=displayed), binding, "abc", diff)
+            execution, verdict = review_result(make_trace(diff=diff, displayed=changed), binding, "abc", diff)
+            self.assertEqual((execution, verdict["decision"]), (EXECUTION, "approve"))
+
+    def test_patch_record_proof_preserves_trailing_carriage_return(self):
+        diff = b"diff --git a/file b/file\n--- a/file\n+++ b/file\n@@ -1 +1 @@\n-old\r\n+new\r\n"
+        binding = {**BINDING, "diff_sha256": sha256(diff).hexdigest()}
+        with self.assertRaisesRegex(DataError, "patch body inspection"):
+            review_result(make_trace(diff=diff, displayed="+new\n"), binding, "abc", diff)
+        execution, verdict = review_result(make_trace(diff=diff, displayed="+new\r\n"), binding, "abc", diff)
+        self.assertEqual((execution, verdict["decision"]), (EXECUTION, "approve"))
+
     def test_mode_only_and_binary_patches_require_their_own_content(self):
         cases = (
             (b"diff --git a/file b/file\nold mode 100644\nnew mode 100755\n",
