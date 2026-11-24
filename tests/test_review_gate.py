@@ -1104,8 +1104,9 @@ class ReviewGateTests(unittest.TestCase):
             self.assertNotIn("--sandbox", invocation.args[0])
             for feature in {"apps", "plugins", "remote_plugin", "computer_use", "browser_use",
                             "browser_use_external", "in_app_browser", "image_generation", "view_image",
-                            "multi_agent_v2"}:
+                            "multi_agent", "multi_agent_v2", "goals"}:
                 self.assertIn(("--disable", feature), zip(invocation.args[0], invocation.args[0][1:]))
+            self.assertIn("tools.experimental_request_user_input.enabled=false", invocation.args[0])
             self.assertIn('default_permissions="review-inputs"', invocation.args[0])
             profile, = [arg for arg in invocation.args[0] if arg.startswith("permissions.review-inputs=")]
             permissions = tomllib.loads(profile)["permissions"]["review-inputs"]

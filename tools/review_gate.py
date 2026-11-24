@@ -82,7 +82,7 @@ class AuthorizationPaths:
 
 PROTECTED_DISABLED_TOOLS = (
     "apps", "plugins", "remote_plugin", "computer_use", "browser_use", "browser_use_external",
-    "in_app_browser", "image_generation", "view_image", "multi_agent_v2",
+    "in_app_browser", "image_generation", "view_image", "multi_agent", "multi_agent_v2", "goals",
 )
 LOCAL_REVIEW_ITEM_TYPES = {"agent_message", "command_execution", "reasoning", "todo_list"}
 
@@ -250,7 +250,8 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
                        'network={enabled=false}}')
         arguments.extend((
             "--strict-config", "--ephemeral",
-            *(flag for feature in PROTECTED_DISABLED_TOOLS for flag in ("--disable", feature)), "-c", 'default_permissions="review-inputs"',
+            *(flag for feature in PROTECTED_DISABLED_TOOLS for flag in ("--disable", feature)),
+            "-c", "tools.experimental_request_user_input.enabled=false", "-c", 'default_permissions="review-inputs"',
             "-c", permissions,
         ))
         environment = {"PATH": os.defpath, "HOME": str(reviewer.home), "CODEX_HOME": str(reviewer.home / ".codex")}
