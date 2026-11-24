@@ -702,6 +702,42 @@ class GitHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "predecessor SHA-256 mismatch"):
             validate_coverage_context(self.root, {**current, "predecessor": {**middle_pin, "sha256": "0" * 64}})
 
+    def test_legacy_checkpoint_cannot_be_introduced_after_coverage_v4_adoption(self):
+        self.path.unlink()
+        source = "research/sources/fixture.json"
+        self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
+                            "population": dict.fromkeys((
+                                "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                "missing_text", "missing_template",
+                            ), 0)})
+        scope = dict.fromkeys(("included_ecosystems", "discovery_paths", "exclusions", "inaccessible_areas",
+                               "reconciliation_choices"), ["Synthetic fixture scope"])
+
+        def checkpoint(label, version, **context):
+            path = f"registry/coverage/snapshots/{label}.json"
+            row = {"snapshot": path, "schema_version": version, "source_manifest": source,
+                   "assessment": Catalog(self.root).coverage(schema_version=version), **context}
+            self.write(path, row)
+            self.write(COVERAGE, row)
+            self.commit(f"Record synthetic coverage checkpoint {label}")
+            return row, {"snapshot": path, "commit": self.git("rev-parse", "HEAD").strip(),
+                         "sha256": sha256(encode(row)).hexdigest()}
+
+        _, predecessor = checkpoint("before-adoption", COVERAGE_VERSION_V3)
+        _, adoption = checkpoint("adopt-v4", "4.0.0", predecessor=predecessor, research_scope=scope)
+        _, legacy = checkpoint("legacy-after-adoption", "1.0.0")
+        current, tip = checkpoint("valid-v4-successor", "4.0.0", predecessor=legacy, research_scope=scope)
+
+        catalog = Catalog(self.root)
+        with (patch("tools.distribution.COVERAGE_VERSION", "4.0.0"),
+              patch("tools.distribution._COVERAGE_V4_ADOPTION", adoption["commit"])):
+            validate_discovery(catalog)
+            self.assertEqual(validate_coverage_context(self.root, current, origin=tip["commit"]),
+                             legacy["snapshot"])
+            with self.assertRaisesRegex(DataError, r"(?i)(?:schema|v4)") as error:
+                validate(catalog, base=adoption["commit"])
+        self.assertIn(legacy["snapshot"], str(error.exception))
+
     def test_trusted_archive_cannot_be_overwritten_and_restored_in_incoming_history(self):
         self.path.unlink()
         source = "research/sources/fixture.json"

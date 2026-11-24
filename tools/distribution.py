@@ -499,6 +499,8 @@ _FOUNDATION_DRAFT_COMMITS = {
 _FOUNDATION_SNAPSHOT = f"{SNAPSHOTS}/2026-11-22-spdx-3.29.0.json"
 _FOUNDATION_DRAFT_BLOB = "894aa11bc1193640994d8a840b0bed42fd635367"
 _FOUNDATION_RECORDED_BLOB = "f4de218b0cdaf2c98e57da63cfc2b5302171f303"
+# The first scope-aware checkpoint fixes the end of the legacy coverage formats.
+_COVERAGE_V4_ADOPTION = "b9d2a140337d441730ece18a1c65aa8e213d661b"
 
 
 def _incoming_snapshot_origins(root, base, head, tracked, prior):
@@ -582,6 +584,10 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
     head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
     prior = _git_blobs(root, base, SNAPSHOTS)
     _git(root, "merge-base", "--is-ancestor", base, head)
+    legacy_origins = None
+    if COVERAGE_VERSION == "4.0.0":
+        _git(root, "merge-base", "--is-ancestor", _COVERAGE_V4_ADOPTION, head)
+        legacy_origins = set(_git(root, "rev-list", _COVERAGE_V4_ADOPTION).decode("ascii").splitlines())
     tracked = _git_blobs(root, head, COVERAGE, SNAPSHOTS)
     current_oid = tracked.pop(COVERAGE, None)
     algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
@@ -604,8 +610,12 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
     for name, commit in snapshots.items():
         archived = decode(_read_git_blobs(root, {name: tracked[name]}, cache)[name])
         require(archived["snapshot"] == name, f"{name}: invalid snapshot self-reference")
-        if archived.get("schema_version") == "4.0.0":
+        version = archived.get("schema_version")
+        require(version in COVERAGE_VERSIONS, f"{name}: unsupported coverage schema")
+        if version == "4.0.0":
             validate_coverage_context(root, archived, origin=commit)
+        elif legacy_origins is not None:
+            require(commit in legacy_origins, f"{name}: legacy coverage snapshot was recorded after v4 adoption")
         source = archived["source_manifest"]
         inputs = _git_blobs(root, commit, SOURCES, "registry/candidates", "registry/entities", PACKAGED_TEXTS,
                             PROFILES, SCES_PUBLICATION)
@@ -617,8 +627,6 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
                                      if path != SCES_PUBLICATION and (path == source or SPDX_SOURCE.fullmatch(path)
                                          or not path.startswith(f"{SOURCES}/"))}, cache)
         rows = {path: decode(payload) for path, payload in data.items()}
-        version = archived.get("schema_version")
-        require(version in COVERAGE_VERSIONS, f"{name}: unsupported coverage schema")
         sces_rows = {}
         if version != LEGACY_COVERAGE_VERSION:
             evidence = _git_blobs(root, commit, *COVERAGE_SCES_SECTIONS)
