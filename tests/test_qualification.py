@@ -702,7 +702,9 @@ class GitHistoryTests(unittest.TestCase):
             head = self.git("rev-parse", "HEAD").strip()
             self.git("add", "-A")
             tree = self.git("write-tree").strip()
-            merge = self.git("commit-tree", tree, "-p", base, "-p", head, "-m", "Synthetic test merge").strip()
+            merge = self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                             "-c", "commit.gpgsign=false",
+                             "commit-tree", tree, "-p", base, "-p", head, "-m", "Synthetic test merge").strip()
             self.git("checkout", "--quiet", "--detach", merge)
 
         self.git("checkout", "--quiet", "--detach", boundary)
