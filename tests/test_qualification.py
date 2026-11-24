@@ -1,5 +1,7 @@
 """Synthetic domain fixtures. They do not supply SCES research or verification."""
 
+from hashlib import sha256
+import json
 import os
 from pathlib import Path
 import subprocess
@@ -295,6 +297,21 @@ class GitHistoryTests(unittest.TestCase):
         }
         return {**self.lead, "id": OTHER, "origin": origin, "history": []}
 
+    def publisher_crosswalk(self, candidate_id=CANDIDATE):
+        origin = self.lead["origin"]
+        provenance = {"candidate_id": candidate_id, "origin": origin}
+        exact_json = json.dumps(provenance, sort_keys=True, ensure_ascii=False, separators=(",", ":")) + "\n"
+        return {
+            "origin": origin["source"], "revision": "sha256:" + "c" * 64, "key": origin["identifier"],
+            "claim": reference("publisher-crosswalk"),
+            "scope": {"discovery-origin": "sha256:" + sha256(exact_json.encode("utf-8")).hexdigest()},
+        }
+
+    def publisher_binding(self, crosswalk):
+        value = {field: crosswalk[field] for field in ("origin", "revision", "key")}
+        scope = {**crosswalk.get("scope", {}), "revision": crosswalk["revision"]}
+        return claim(crosswalk["claim"], MIT, "instrument-identity", _claim_value(value), scope)
+
     def test_active_admission_cannot_use_a_candidate_added_after_freeze(self):
         payload = self.spdx_admission()
         self.commit("Freeze the entity without its named discovery record")
@@ -317,9 +334,118 @@ class GitHistoryTests(unittest.TestCase):
                     with self.assertRaisesRegex(DataError, "candidate|provenance|origin"):
                         qualified(Catalog(self.root), self.root)
 
+    def test_active_admission_rejects_an_unrelated_exported_candidate_id(self):
+        self.write(f"registry/candidates/{OTHER[:2]}/{OTHER}.json", self.spdx_lead())
+        payload = self.spdx_admission()
+        self.commit("Freeze the entity with its only qualified discovery lead")
+        report = self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+
+        with patch("tools.qualification._validate_policy"):
+            self.assertEqual(qualified(Catalog(self.root), self.root), (report, payload))
+
+        mixed_payload = self.spdx_admission(candidate_ids=(OTHER, CANDIDATE))
+        self.assertEqual(mixed_payload, payload)
+        self.commit("Freeze the same claims with another unrelated publisher lead")
+        self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+
+        with patch("tools.qualification._validate_policy"):
+            with self.assertRaisesRegex(DataError, f"discovery candidate {CANDIDATE}.*crosswalk"):
+                qualified(Catalog(self.root), self.root)
+
+    def test_active_spdx_crosswalk_cannot_support_two_linked_candidate_ids(self):
+        original = self.spdx_lead()
+        alias_id = "456789abcdef4012b123456789abcdef"
+        alias = {**self.spdx_lead(identifier="mit", revision="b" * 40, release="3.3.0"), "id": alias_id,
+                 "history": [{"origin": original["origin"]}]}
+        candidates = {OTHER: original, alias_id: alias}
+        for candidate_id, candidate in candidates.items():
+            self.write(f"registry/candidates/{candidate_id[:2]}/{candidate_id}.json", candidate)
+        payload = self.spdx_admission(candidate_ids=(OTHER, alias_id))
+        self.commit("Freeze two candidate IDs that share one exact SPDX origin")
+        self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+
+        # Catalog loading ordinarily rejects these duplicate current identifiers too.
+        catalog = SimpleNamespace(root=self.root, entities={MIT: json.loads(self.path.read_bytes())},
+                                  candidates=candidates)
+        with patch("tools.qualification._validate_policy"):
+            with self.assertRaisesRegex(DataError, "ambiguous SPDX crosswalk"):
+                qualified(catalog, self.root)
+
+    def test_active_admission_rejects_incompatible_discovery_history(self):
+        borrowed = self.spdx_lead()["origin"]
+        cases = (
+            {**self.lead, "history": [{"origin": borrowed}]},
+            {**self.spdx_lead(identifier="Other-License"), "id": CANDIDATE, "history": [{"origin": borrowed}]},
+            {**self.spdx_lead(), "id": CANDIDATE,
+             "origin": {**borrowed, "list_kind": "exception"}, "history": [{"origin": borrowed}]},
+        )
+        payload = self.spdx_admission(candidate_ids=(CANDIDATE,))
+        for candidate in cases:
+            with self.subTest(origin=candidate["origin"]):
+                self.write(self.lead_path, candidate)
+                self.commit("Freeze a lead with a borrowed historical origin")
+                self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+                with patch("tools.qualification._validate_policy"):
+                    with self.assertRaisesRegex(DataError, "does not match a linked frozen discovery origin"):
+                        qualified(Catalog(self.root), self.root)
+
+    def test_active_admission_accepts_independently_bound_spdx_and_publisher_leads(self):
+        self.write(f"registry/candidates/{OTHER[:2]}/{OTHER}.json", self.spdx_lead())
+        payload = self.spdx_admission(candidate_ids=(OTHER, CANDIDATE))
+        row = json.loads(self.path.read_bytes())
+        crosswalk = self.publisher_crosswalk()
+        row["crosswalks"].append(crosswalk)
+        self.write(self.path.relative_to(self.root), row)
+        payload.append(self.publisher_binding(crosswalk))
+        self.commit("Freeze two discovery leads with their own qualified crosswalks")
+        report = self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+
+        origin = self.lead["origin"]
+        updated = {**self.lead, "origin": {**origin, "name": "Publisher's revised description"},
+                   "history": [*self.lead["history"], {"origin": origin}]}
+        self.write(self.lead_path, updated)
+        with patch("tools.qualification._validate_policy"):
+            exported_report, bound = qualified(Catalog(self.root), self.root)
+            self.assertEqual(exported_report, report)
+            self.assertCountEqual(bound, payload)
+
+    def test_active_publisher_candidate_requires_exact_origin_and_candidate_fingerprint(self):
+        crosswalk = self.publisher_crosswalk()
+        for case in (
+            {**crosswalk, "scope": {}},
+            self.publisher_crosswalk(candidate_id=OTHER),
+            {**crosswalk, "origin": "https://elsewhere.invalid/terms"},
+            {**crosswalk, "key": self.lead["origin"]["identifier"] + " alternate edition"},
+        ):
+            with self.subTest(crosswalk=case):
+                row = {**self.row, "crosswalks": [case]}
+                self.write(self.path.relative_to(self.root), row)
+                self.commit("Freeze a publisher claim without the exact associated discovery provenance")
+                payload = [identity_claim(row), self.publisher_binding(case)]
+                self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+                with patch("tools.qualification._validate_policy"):
+                    with self.assertRaisesRegex(DataError, f"discovery candidate {CANDIDATE}.*crosswalk"):
+                        qualified(Catalog(self.root), self.root)
+
+    def test_active_publisher_crosswalk_cannot_use_another_edition_from_history(self):
+        crosswalk = self.publisher_crosswalk()
+        row = {**self.row, "crosswalks": [crosswalk]}
+        self.write(self.path.relative_to(self.root), row)
+        origin = self.lead["origin"]
+        other_edition = {**self.lead, "origin": {**origin, "revision": "2.0"},
+                         "history": [{"origin": origin}]}
+        self.write(self.lead_path, other_edition)
+        self.commit("Freeze a publisher lead whose history includes a conflicting edition")
+        payload = [identity_claim(row), self.publisher_binding(crosswalk)]
+        self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+
+        with patch("tools.qualification._validate_policy"):
+            with self.assertRaisesRegex(DataError, f"discovery candidate {CANDIDATE}.*crosswalk"):
+                qualified(Catalog(self.root), self.root)
+
     def test_active_admission_preserves_exact_historical_spdx_origin(self):
         historical = self.spdx_lead()
-        later = self.spdx_lead(revision="b" * 40, release="3.3.0")
+        later = self.spdx_lead(identifier="mit", revision="b" * 40, release="3.3.0")
         later["history"] = [{"origin": historical["origin"]}]
         later["membership"] = {"status": "removed", "source": "c" * 40, "release": "3.4.0"}
         path = f"registry/candidates/{OTHER[:2]}/{OTHER}.json"
@@ -554,12 +680,18 @@ class GitHistoryTests(unittest.TestCase):
                 qualified(self.catalog, self.root, base=self.base)
 
     def test_mocked_policy_boundary_accepts_only_frozen_exact_registry_bytes(self):
-        report = self.select_fixture(self.base, [identity_claim(self.row)])
+        crosswalk = self.publisher_crosswalk()
+        row = {**self.row, "crosswalks": [crosswalk]}
+        self.write(self.path.relative_to(self.root), row)
+        self.commit("Freeze a qualified publisher discovery link")
+        frozen = self.git("rev-parse", "HEAD").strip()
+        payload = [identity_claim(row), self.publisher_binding(crosswalk)]
+        report = self.select_fixture(frozen, payload)
         with self.assertRaisesRegex(DataError, "requires --policy"):
             qualified(self.catalog, None)
         with patch("tools.qualification._validate_policy") as validate:
             result = qualified(self.catalog, self.root, base=self.base)
-            self.assertEqual(result, (report, [identity_claim(self.row)]))
+            self.assertEqual(result, (report, payload))
             validate.assert_called_once_with(self.root, self.root, self.base)
             self.path.write_bytes(self.path.read_bytes() + b"\n")
             with self.assertRaisesRegex(DataError, "bytes differ"):
@@ -569,6 +701,11 @@ class GitHistoryTests(unittest.TestCase):
                 qualified(self.catalog, self.root)
 
     def test_discovery_and_checked_release_views_report_separate_counts(self):
+        crosswalk = self.publisher_crosswalk()
+        row = {**self.row, "crosswalks": [crosswalk]}
+        self.write(self.path.relative_to(self.root), row)
+        self.commit("Freeze a qualified publisher discovery link")
+        frozen = self.git("rev-parse", "HEAD").strip()
         catalog = Catalog(self.root)
         source = "research/sources/fixture.json"
         snapshot = "registry/coverage/snapshots/discovery.json"
@@ -580,11 +717,7 @@ class GitHistoryTests(unittest.TestCase):
         saved = {"source_manifest": source, "snapshot": snapshot, "assessment": catalog.coverage()}
         self.write(snapshot, saved)
         self.write("registry/coverage/current.json", saved)
-        self.write("sces/publication.json", {"release": "synthetic-fixture"})
-        report = {"repository": "software-commons/license-index", "dataset": "license-index",
-                  "schema_version": "1.0.0", "synthetic": False, "source_commit": self.base}
-        self.write("sces/releases/synthetic-fixture/qualification.json", report)
-        self.write("sces/releases/synthetic-fixture/claims.json", [identity_claim(self.row)])
+        self.select_fixture(frozen, [identity_claim(row), self.publisher_binding(crosswalk)])
 
         def invoke(*arguments):
             return execute(catalog, parser().parse_args(arguments))[0]
@@ -596,9 +729,9 @@ class GitHistoryTests(unittest.TestCase):
             check.assert_not_called()
             validated = invoke("validate", *policy_flag)
             self.assertEqual(validated["coverage"]["catalog"]["accepted_entities"], 1)
-            self.assertEqual(validated["coverage"]["qualification"]["independently_verified_claims"], 1)
+            self.assertEqual(validated["coverage"]["qualification"]["independently_verified_claims"], 2)
             self.assertEqual(invoke("coverage", *policy_flag), validated["coverage"])
-            self.assertEqual(invoke("export", "--qualified", *policy_flag)["entities"], [self.row])
+            self.assertEqual(invoke("export", "--qualified", *policy_flag)["entities"], [row])
             check.side_effect = DataError("fixture policy rejected")
             with self.assertRaisesRegex(DataError, "fixture policy rejected"):
                 invoke("export", *policy_flag)

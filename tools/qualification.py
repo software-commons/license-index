@@ -328,10 +328,41 @@ def _bind_payload(entities, payload):
 
 
 def _discovery_origins(candidate):
-    yield candidate["origin"]
+    current = candidate["origin"]
+    yield current
     for note in candidate["history"]:
-        if isinstance(note, dict) and isinstance(note.get("origin"), dict):
-            yield note["origin"]
+        origin = note.get("origin") if isinstance(note, dict) else None
+        if not isinstance(origin, dict) or origin.get("kind") != current["kind"]:
+            continue
+        identifier = origin.get("identifier")
+        if current["kind"] == "spdx":
+            if (_text(identifier) and identifier.casefold() == current["identifier"].casefold()
+                    and origin.get("list_kind") == current.get("list_kind")):
+                yield origin
+        elif (identifier == current["identifier"]
+              and ("revision" not in origin or "revision" not in current or origin["revision"] == current["revision"])):
+            yield origin
+
+
+def _matches_discovery_crosswalk(crosswalk, candidate_id, origin, list_kind):
+    if crosswalk["origin"] == "spdx":
+        release = crosswalk.get("scope", {}).get("upstream-release")
+        return (
+            list_kind is not None and _text(release)
+            and origin.get("kind") == "spdx" and origin.get("identifier") == crosswalk["key"]
+            and origin.get("source") == crosswalk["revision"] and origin.get("release") == release
+            and origin.get("list_kind") == list_kind
+        )
+
+    if not (
+        origin.get("kind") == "publisher" and origin.get("identifier") == crosswalk["key"]
+        and origin.get("source") == crosswalk["origin"] and crosswalk["origin"].startswith("https://")
+        and _matches(_CONTENT_REVISION, crosswalk["revision"])
+    ):
+        return False
+    provenance = {"candidate_id": candidate_id, "origin": origin}
+    digest = sha256(_canonical(provenance)).hexdigest()
+    return crosswalk.get("scope", {}).get("discovery-origin") == f"sha256:{digest}"
 
 
 def _validate_frozen_provenance(root, frozen, entities, retained_candidates):
@@ -339,7 +370,6 @@ def _validate_frozen_provenance(root, frozen, entities, retained_candidates):
     candidate_blobs = _git_blobs(root, frozen, "registry/candidates")
     candidates = {}
     for identity, entity in entities.items():
-        origins = []
         for candidate_id in entity["candidate_ids"]:
             if candidate_id not in candidates:
                 path = f"registry/candidates/{candidate_id[:2]}/{candidate_id}.json"
@@ -359,17 +389,24 @@ def _validate_frozen_provenance(root, frozen, entities, retained_candidates):
                 shared = [origin for origin in _discovery_origins(candidate) if origin in retained]
                 require(shared, f"{identity}: frozen discovery origin is absent from the retained ledger")
                 candidates[candidate_id] = shared
-            origins.extend(candidates[candidate_id])
+
+        unmatched = set(entity["candidate_ids"])
         list_kind = {"license": "license", "related-instrument": "license", "exception": "exception"}.get(entity["kind"])
         for crosswalk in entity["crosswalks"]:
-            if crosswalk["origin"] != "spdx":
-                continue
-            release = crosswalk.get("scope", {}).get("upstream-release")
-            require(list_kind is not None and _text(release) and any(
-                origin.get("kind") == "spdx" and origin.get("identifier") == crosswalk["key"]
-                and origin.get("source") == crosswalk["revision"] and origin.get("release") == release
-                and origin.get("list_kind") == list_kind for origin in origins
-            ), f"{identity}: SPDX crosswalk does not match a linked frozen discovery origin: {crosswalk['key']}")
+            matched = {
+                candidate_id for candidate_id in entity["candidate_ids"]
+                if any(_matches_discovery_crosswalk(crosswalk, candidate_id, origin, list_kind)
+                       for origin in candidates[candidate_id])
+            }
+            if crosswalk["origin"] == "spdx":
+                require(matched,
+                        f"{identity}: SPDX crosswalk does not match a linked frozen discovery origin: {crosswalk['key']}")
+                require(len(matched) == 1,
+                        f"{identity}: ambiguous SPDX crosswalk matches multiple linked discovery candidates: "
+                        f"{crosswalk['key']}")
+            unmatched.difference_update(matched)
+        require(not unmatched,
+                f"{identity}: discovery candidate {', '.join(sorted(unmatched))} has no qualified crosswalk for its frozen origin")
 
 
 def _report(root, name):
