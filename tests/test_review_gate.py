@@ -27,6 +27,7 @@ from tools.review_snapshot import AdmissionHead, PullSnapshot, QueuePull, REPOSI
 EXECUTION = "90c3284d-c009-4e34-bc00-beb41319adad"
 SNAPSHOT = PullSnapshot(repository_id=1468281504, number=1, base="a" * 40, head="b" * 40, merge="c" * 40)
 ADMISSION = AdmissionHead(SNAPSHOT.repository_id, SNAPSHOT.number, SNAPSHOT.head)
+QUEUE_PULL = QueuePull(SNAPSHOT.repository_id, SNAPSHOT.number, SNAPSHOT.base, SNAPSHOT.head)
 DOMAIN = ".github/workflows/domain.yml"
 QUEUE = {"merge": "d" * 40, "queue_ref": "refs/heads/gh-readonly-queue/main/pr-1-" + "c" * 40,
          "workflows": {DOMAIN: {"workflow_id": 123, "id": 321}}}
@@ -273,7 +274,8 @@ class ReviewGateTests(unittest.TestCase):
                 with (self.subTest(admission=admission, authorized=authorized, has_record=has_record),
                       TemporaryDirectory() as directory):
                     root = Path(directory)
-                    github = Mock(get_pull=Mock(return_value=SNAPSHOT), get_admission_head=Mock(return_value=ADMISSION))
+                    github = Mock(get_pull=Mock(return_value=SNAPSHOT), get_admission_head=Mock(return_value=ADMISSION),
+                                  get_queue_pull=Mock(return_value=QUEUE_PULL))
                     paths = AuthorizationPaths(root / "auth.json", root / "grant.json") if has_record else None
                     args = SimpleNamespace(state_dir=root, mode="review", pull=1, app_id=123, model="fixture",
                                            codex=Path("fixture"), reviewer=Reviewer(4001, 4002, root),
@@ -504,6 +506,7 @@ class ReviewGateTests(unittest.TestCase):
             scope._get_json.return_value = {"total_count": 1, "repositories": [TOKEN_REPOSITORY]}
             github.get_pull.return_value = SNAPSHOT
             github.get_admission_head.return_value = ADMISSION
+            github.get_queue_pull.return_value = QUEUE_PULL
 
             def fake_launch(_codex, _model, input_dir, _schema, _audit, *, reviewer):
                 bound = json.loads((input_dir / "review-input.json").read_bytes())
@@ -725,6 +728,7 @@ class ReviewGateTests(unittest.TestCase):
                 args = SimpleNamespace(state_dir=state, mode="review", pull=1, model="fixture", codex=Path("fixture"),
                                        app_id=123, reviewer=Reviewer(4001, 4002, state),
                                        queue_admission=not queue, queue_run=321 if queue else None,
+                                       expected_merge=QUEUE["merge"] if queue else SNAPSHOT.merge,
                                        commissioning_policy=ADDITIVE, authorized_control_merge=SNAPSHOT.merge,
                                        authorization_paths=AuthorizationPaths(state / "record", state / "grant"))
                 github = Mock()
@@ -735,6 +739,7 @@ class ReviewGateTests(unittest.TestCase):
                     use_queue_rules(github, drifted)
                 github.get_pull.return_value = SNAPSHOT
                 github.get_admission_head.return_value = ADMISSION
+                github.get_queue_pull.return_value = QUEUE_PULL
                 check_target = QUEUE["merge"] if queue else SNAPSHOT.head
                 prior = api_check({"name": CHECK_NAME, "head_sha": check_target, "external_id": "a" * 64,
                                    "status": "completed", "conclusion": "success"})
@@ -779,16 +784,29 @@ class ReviewGateTests(unittest.TestCase):
             use_queue_rules(github)
             github.get_pull.return_value = SNAPSHOT
             github.get_admission_head.return_value = ADMISSION
+            github.get_queue_pull.return_value = QUEUE_PULL
             credential = Mock(return_value=LEGACY_TOKEN)
             publisher = Mock()
-            with self.assertRaisesRegex(DataError, "expected review merge"):
-                run(args, github, token_input=credential, publisher=publisher)
+            with patch("tools.review_gate.capture_candidate_tree",
+                       side_effect=SnapshotError("GitHub merge candidate changed during capture")) as wrong_pin:
+                with self.assertRaisesRegex(SnapshotError, "merge candidate changed during capture"):
+                    run(args, github, token_input=credential, publisher=publisher)
+            wrong_pin.assert_called_once()
+            self.assertEqual(wrong_pin.call_args.args[0], replace(SNAPSHOT, merge=args.expected_merge))
+            self.assertEqual(wrong_pin.call_args.kwargs, {"linear_head": True})
             credential.assert_not_called()
             publisher.assert_not_called()
 
             prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head, "external_id": "a" * 64,
                                "status": "completed", "conclusion": "success"})
             args.expected_merge = SNAPSHOT.merge
+            with patch("tools.review_gate.capture_candidate_tree", return_value="f" * 40) as merge_tree:
+                result = run(args, github, token_input=credential, publisher=publisher)
+            self.assertEqual(result["revoked_check_ids"], [])
+            merge_tree.assert_called_once()
+            credential.assert_not_called()
+            publisher.assert_not_called()
+
             self.passing_checks.side_effect = [[prior]]
             with patch("tools.review_gate.capture_admission_head", side_effect=SnapshotError("single-parent")):
                 with self.assertRaisesRegex(SnapshotError, "single-parent"):
@@ -815,6 +833,7 @@ class ReviewGateTests(unittest.TestCase):
             diff.assert_not_called()
             grant.assert_not_called()
             reviewer.assert_not_called()
+            github.get_pull.assert_not_called()
 
     def test_admission_merges_must_bind_fresh_git_ref_and_ordered_parents_before_revocation(self):
         for captures, expected_token_reads in (
@@ -827,7 +846,8 @@ class ReviewGateTests(unittest.TestCase):
                                        reviewer=Reviewer(4001, 4002, state), expected_head=SNAPSHOT.head,
                                        expected_merge=SNAPSHOT.merge, commissioning_policy=ADDITIVE)
                 github = Mock(get_pull=Mock(return_value=SNAPSHOT),
-                              get_admission_head=Mock(return_value=ADMISSION))
+                              get_admission_head=Mock(return_value=ADMISSION),
+                              get_queue_pull=Mock(return_value=QUEUE_PULL))
                 prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head,
                                    "status": "completed", "conclusion": "success"})
                 self.passing_checks.side_effect = [[prior], [prior]]
@@ -843,6 +863,7 @@ class ReviewGateTests(unittest.TestCase):
                 self.assertEqual(credential.call_count, expected_token_reads)
                 publisher.assert_not_called()
                 launch.assert_not_called()
+                github.get_pull.assert_not_called()
 
     def test_protected_admission_can_deny_an_exact_head_without_a_mergeable_test_commit(self):
         for reason in ("Review requires a non-draft pull request", "GitHub has not established a mergeable test commit"):
@@ -883,6 +904,7 @@ class ReviewGateTests(unittest.TestCase):
                     publisher.reset_mock()
                     args.revoke_only = False
                     args.expected_merge = SNAPSHOT.merge
+                    self.passing_checks.side_effect = None
                     with self.assertRaisesRegex(SnapshotError, reason):
                         run(args, github, token_input=credential, publisher=publisher)
                     publisher.assert_not_called()
@@ -892,13 +914,58 @@ class ReviewGateTests(unittest.TestCase):
                         run(args, github, token_input=credential, publisher=publisher)
                     publisher.assert_not_called()
 
-                    github.get_pull.side_effect = [SNAPSHOT, replace(SNAPSHOT, merge="f" * 40)]
+                    github.get_pull.reset_mock()
+                    github.get_queue_pull.side_effect = [QUEUE_PULL, replace(QUEUE_PULL, base="f" * 40)]
                     self.passing_checks.side_effect = [[prior], [prior]]
                     with self.assertRaisesRegex(DataError, "live test merge changed before revocation"):
                         run(args, github, token_input=credential, publisher=publisher)
                     publisher.assert_not_called()
+                    github.get_pull.assert_not_called()
                     diff.assert_not_called()
                     reviewer.assert_not_called()
+
+    def test_rerun_retires_prior_check_before_pending_pull_eligibility(self):
+        for admission in (True, False):
+            with self.subTest(admission=admission), TemporaryDirectory() as directory:
+                state = Path(directory)
+                merge = SNAPSHOT.merge if admission else QUEUE["merge"]
+                target = SNAPSHOT.head if admission else merge
+                prior = api_check({"name": CHECK_NAME, "head_sha": target,
+                                   "status": "completed", "conclusion": "neutral"})
+                args = SimpleNamespace(state_dir=state, mode="review", pull=1, app_id=123,
+                                       reviewer=Reviewer(4001, 4002, state), queue_admission=admission,
+                                       queue_run=None if admission else 321, commissioning_policy=ADDITIVE,
+                                       expected_head=SNAPSHOT.head if admission else None, expected_merge=merge)
+                self.passing_checks.side_effect = [[prior], [prior], []]
+                publisher = Mock(return_value={**prior, "conclusion": "failure"})
+
+                def eligible(_number):
+                    publisher.assert_called_once()
+                    self.assertEqual(publisher.call_args.kwargs["check_id"], prior["id"])
+                    self.assertEqual(publisher.call_args.args[1]["conclusion"], "failure")
+                    raise SnapshotError("GitHub has not established a mergeable test commit")
+
+                github = Mock(get_admission_head=Mock(return_value=ADMISSION),
+                              get_queue_pull=Mock(return_value=QUEUE_PULL), get_pull=Mock(side_effect=eligible))
+                with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
+                      patch("tools.review_gate.capture_candidate_tree", return_value="f" * 40) as tree,
+                      patch("tools.review_gate.token_is_target_only", return_value=True),
+                      patch("tools.review_gate.require_queue_rules") as rules,
+                      patch("tools.review_gate.capture_queue_observation") as ci,
+                      patch("tools.review_gate.launch_review") as launch):
+                    with self.assertRaisesRegex(SnapshotError, "has not established a mergeable test commit"):
+                        run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                self.assertEqual(tree.call_count, 2 if admission else 1)
+                options = {"linear_head": True} if admission else {"queue_ref": QUEUE["queue_ref"]}
+                self.assertTrue(all(call.args[0] == QUEUE_PULL.bind_merge(merge) and call.kwargs == options
+                                    for call in tree.call_args_list))
+                github.get_pull.assert_called_once_with(1)
+                result, = state.glob("*/revocation-result.json")
+                self.assertEqual(json.loads(result.read_bytes())["revoked_check_ids"], [prior["id"]])
+                self.assertEqual(list(state.glob("*/issued-check.json")), [])
+                rules.assert_not_called()
+                ci.assert_not_called()
+                launch.assert_not_called()
 
     def test_issuer_without_reviewer_fails_before_capture_or_credential_read(self):
         with TemporaryDirectory() as directory:

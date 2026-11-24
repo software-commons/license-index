@@ -509,26 +509,29 @@ def run(args, github, *, token_input=None, publisher=write_check):
         admission_identity = github.get_admission_head(args.pull)
         if expected_head is not None:
             require(admission_identity.head == expected_head, "live admission head differs from the expected review head")
-        if expected_head is None or expected_merge is not None:
-            pinned_pull = github.get_pull(args.pull)
-            require(pinned_pull.head == admission_identity.head
-                    and (expected_merge is None or pinned_pull.merge == expected_merge),
-                    "live review target differs from the expected review merge")
         previous = passing_checks(github, admission_identity, admission_identity.head, args.app_id)
         if previous:
             with TemporaryDirectory(prefix="head-", dir=state) as directory:
                 head_tree = capture_admission_head(admission_identity, Path(directory))
             proof = {"tree": head_tree, "phase": "queue-admission"}
-            if pinned_pull is not None:
-                with TemporaryDirectory(prefix="test-merge-", dir=state) as directory:
-                    pinned_tree = capture_candidate_tree(pinned_pull, Path(directory), linear_head=True)
+        if expected_merge is not None and (previous or revoke_only):
+            pinned_identity = github.get_queue_pull(args.pull)
+            require((pinned_identity.repository_id, pinned_identity.number, pinned_identity.head)
+                    == (admission_identity.repository_id, admission_identity.number, admission_identity.head),
+                    "live admission head changed before test merge capture")
+            pinned_pull = pinned_identity.bind_merge(expected_merge)
+            with TemporaryDirectory(prefix="test-merge-", dir=state) as directory:
+                pinned_tree = capture_candidate_tree(pinned_pull, Path(directory), linear_head=True)
+            if previous:
                 proof.update(base=pinned_pull.base, test_merge=pinned_pull.merge, test_merge_tree=pinned_tree)
 
+        if previous:
             def verify_admission_target():
                 require(github.get_admission_head(args.pull) == admission_identity,
                         "live admission head changed before revocation")
                 if pinned_pull is not None:
-                    require(github.get_pull(args.pull) == pinned_pull, "live test merge changed before revocation")
+                    require(github.get_queue_pull(args.pull) == pinned_identity,
+                            "live test merge changed before revocation")
                     with TemporaryDirectory(prefix="test-merge-", dir=state) as directory:
                         require(capture_candidate_tree(pinned_pull, Path(directory), linear_head=True) == pinned_tree,
                                 "live test merge tree changed before revocation")
@@ -538,46 +541,49 @@ def run(args, github, *, token_input=None, publisher=write_check):
         if revoke_only:
             return denial_result(admission_identity.head, previous)
 
-    queue_denial_only = revoke_only and run_id is not None
-    read_pull = github.get_queue_pull if queue_denial_only else github.get_pull
-    pull = pinned_pull if pinned_pull is not None else read_pull(args.pull)
-    if admission_identity is not None:
-        require(pull.head == admission_identity.head, "live admission head changed before review")
-    observation, queue_target = None, None
-    evidence, staged, controls = None, {}, []
-    snapshot = pull
+    observation, queue_target, queue_identity = None, None, None
     capture_options = {"linear_head": True} if admission else {}
-    if run_id is not None and args.app_id is not None:
-        queue_target = capture_queue_target(github, pull, run_id)
-        merge = queue_target["merge"]
-        snapshot = pull.bind_merge(merge) if queue_denial_only else replace(pull, merge=merge)
-        capture_options["queue_ref"] = queue_target["queue_ref"]
-    if expected_merge is not None:
-        require(snapshot.merge == expected_merge, "live review target differs from the expected review merge")
-
-    def verify_current_pull():
-        require(read_pull(pull.number) == pull, "pull request changed after review target capture")
-
-    def verify_revocation_target():
-        verify_current_pull()
-        if queue_target is not None:
-            require(capture_queue_target(github, pull, run_id) == queue_target,
-                    "merge queue target changed before revocation")
-
     with TemporaryDirectory(prefix="git-", dir=state) as directory:
         checkout = Path(directory)
         tree = None
+        if run_id is not None and args.app_id is not None:
+            queue_identity = github.get_queue_pull(args.pull)
+            queue_target = capture_queue_target(github, queue_identity, run_id)
+            queue_snapshot = queue_identity.bind_merge(queue_target["merge"])
+            require(expected_merge is None or queue_snapshot.merge == expected_merge,
+                    "live review target differs from the expected review merge")
+            capture_options["queue_ref"] = queue_target["queue_ref"]
+            previous = passing_checks(github, queue_snapshot, queue_snapshot.merge, args.app_id)
+            if previous:
+                tree = capture_candidate_tree(queue_snapshot, checkout, **capture_options)
+
+                def verify_revocation_target():
+                    require(github.get_queue_pull(args.pull) == queue_identity,
+                            "pull request changed after review target capture")
+                    require(capture_queue_target(github, queue_identity, run_id) == queue_target,
+                            "merge queue target changed before revocation")
+
+                installation_token = retire_previous(
+                    queue_snapshot, queue_snapshot.merge, previous,
+                    {"tree": tree, "queue_target": queue_target, "phase": "queue-merge"}, verify_revocation_target,
+                )
+            if revoke_only:
+                return denial_result(queue_snapshot.merge, previous)
+
+        # Approval requires normal eligibility after any prior passing check is retired.
+        pull = github.get_pull(args.pull)
+        if admission_identity is not None:
+            require((pull.repository_id, pull.number, pull.head)
+                    == (admission_identity.repository_id, admission_identity.number, admission_identity.head),
+                    "live admission head changed before review")
+        if pinned_pull is not None:
+            require(pull == pinned_pull, "live test merge changed before review")
+        if queue_identity is not None:
+            require(pull == queue_identity.bind_merge(pull.merge), "live pull request differs from the authenticated queue identity")
+        elif expected_merge is not None:
+            require(pull.merge == expected_merge, "live review target differs from the expected review merge")
+        snapshot = pull
         if args.app_id is not None:
-            if not admission:
-                previous = passing_checks(github, snapshot, snapshot.merge, args.app_id)
-                if previous:
-                    tree = capture_candidate_tree(snapshot, checkout, **capture_options)
-                    installation_token = retire_previous(
-                        snapshot, snapshot.merge, previous, {"tree": tree, "queue_target": queue_target, "phase": "queue-merge"},
-                        verify_revocation_target,
-                    )
-                if revoke_only:
-                    return denial_result(snapshot.merge, previous)
             require(policy is not None, "check issuance requires a protected commissioning policy")
             approval = require_queue_rules(github, args.app_id, policy=policy)
         if run_id is not None:
@@ -631,7 +637,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
                 github, binding, paths.record, paths.grant_state, protected_path,
             )
             require(current_authorization == authorization, "protected owner authorization changed after review")
-        verify_current_pull()
+        require(github.get_pull(pull.number) == pull, "pull request changed after review target capture")
         if args.app_id is not None:
             current = require_queue_rules(github, args.app_id, policy=policy)
             require(current == approval, "live approval rules changed after review target capture")
