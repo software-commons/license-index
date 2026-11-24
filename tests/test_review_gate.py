@@ -1199,17 +1199,35 @@ class ReviewGateTests(unittest.TestCase):
             github.get_admission_head.return_value = ADMISSION
             stdout = BytesIO()
             stdin = Mock()
+            policy_files = {"policy-00001.data": b"fixture protected policy"}
+            policy_sources = {"policy-00001.data": {"path": "policy.md"}}
+            policy_manifest = json.dumps({"files": policy_sources}).encode()
+            policy_digest = sha256(policy_manifest).hexdigest()
 
             def fake_launch(_codex, _model, input_dir, _schema, _audit, *, reviewer):
                 self.assertEqual(reviewer.uid, 4001)
                 self.assertEqual((input_dir / "review.diff").read_bytes(), PATCH)
-                token = json.loads((input_dir / "review-input.json").read_bytes())["inspection_token"]
-                return make_trace(token)
+                review_input = json.loads((input_dir / "review-input.json").read_bytes())
+                token = review_input["inspection_token"]
+                self.assertEqual(review_input["review_policy"], policy_sources)
+                self.assertEqual(review_input["review_policy_sha256"], policy_digest)
+                raw = (input_dir / "policy-00001.data").read_bytes()
+                self.assertEqual(raw, policy_files["policy-00001.data"])
+                line = f"policy-00001.data {sha256(token.encode() + raw).hexdigest()}\n"
+                proof = f"policy-proof 0 {sha256(line.encode()).hexdigest()}"
+                events = make_trace(token, verdict={"review_policy_sha256": policy_digest}).splitlines()
+                events.insert(-2, json.dumps({"type": "item.completed", "item": {
+                    "type": "command_execution", "status": "completed", "exit_code": 0,
+                    "command": "read policy listed in review-input.json", "aggregated_output": proof,
+                }}).encode())
+                return b"\n".join(events) + b"\n"
 
             with (patch("tools.review_gate.load_issuer",
                         return_value=(root, root / "codex", "fixture", None, reviewer, None, None, None)) as load,
                   patch("tools.review_gate.GitHub", return_value=github),
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)) as capture,
+                  patch("tools.review_gate.load_review_policy",
+                        return_value=(policy_manifest, policy_sources, policy_files)),
                   patch("tools.review_gate.protected_staging", return_value=root),
                   patch("tools.review_gate.share_reviewer_inputs") as share,
                   patch("tools.review_gate.launch_review", side_effect=fake_launch) as launch,
@@ -1228,6 +1246,8 @@ class ReviewGateTests(unittest.TestCase):
             issuer.assert_not_called()
             result = json.loads(stdout.getvalue())
             self.assertEqual(result["status"], "protected-rehearsal")
+            self.assertEqual(result["binding"]["review_policy_sha256"], policy_digest)
+            self.assertEqual((Path(result["audit"]) / "review-policy-manifest.json").read_bytes(), policy_manifest)
             decision = (Path(result["audit"]) / "decision.json").read_bytes()
             self.assertTrue(json.loads(decision)["rehearsal"])
             self.assertEqual(result["decision_sha256"], sha256(decision).hexdigest())
