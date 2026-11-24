@@ -29,7 +29,7 @@ CONTROL_PATHS = (
     ".github", ".gitattributes", "AGENTS.md", "LICENSE", "docs/CODEX_GATE.md", "docs/GOVERNANCE_REVIEW.md",
     "docs/PUBLICATION.md", GRANT_PATH, "legal-texts", "license-index", "license-index.cmd", "research/review",
     "research/reviews", "research/sources", "research/tools", "schemas", "sces/adoption.json",
-    "sces/advisories", "sces/publication.json", "sces/releases", "tests", "tools",
+    "sces/advisories", "sces/publication.json", "sces/releases", ":(glob,top)sces/**/.gitattributes", "tests", "tools",
 )
 
 

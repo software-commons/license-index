@@ -175,6 +175,22 @@ class CaptureTests(unittest.TestCase):
         snapshot = PullSnapshot(REPOSITORY_ID, 1, self.head, head, merge)
         self.assertEqual(capture_control_paths(self.source, snapshot), ["LICENSE"])
 
+    def test_sces_attribute_only_changes_are_protected_controls(self):
+        for name in ("sces/.gitattributes", "sces/records/verification/.gitattributes"):
+            with self.subTest(name=name):
+                base = self.git("rev-parse", "HEAD")
+                attributes = self.source / name
+                attributes.parent.mkdir(parents=True, exist_ok=True)
+                attributes.write_bytes(b"*.json -text\n")
+                self.git("add", "--", name)
+                self.git("commit", "--quiet", "-m", "Change only an SCES attributes file")
+                head = self.git("rev-parse", "HEAD")
+                tree = self.git("rev-parse", "HEAD^{tree}")
+                merge = self.git("commit-tree", tree, "-p", base, "-p", head, "-m", "SCES attributes merge")
+                self.assertEqual(self.git("diff", "--name-only", base, merge), name)
+                snapshot = PullSnapshot(REPOSITORY_ID, 1, base, head, merge)
+                self.assertEqual(capture_control_paths(self.source, snapshot), [name])
+
     def test_rejects_ordered_parent_mismatch(self):
         with self.assertRaisesRegex(SnapshotError, "ordered base and head parents"):
             self.capture(head="d" * 40)

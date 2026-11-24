@@ -9,6 +9,8 @@
 /license-index @TheCyberLocal
 /license-index.cmd @TheCyberLocal
 /sces/adoption.json @TheCyberLocal
+/sces/.gitattributes @TheCyberLocal
+/sces/**/.gitattributes @TheCyberLocal
 /sces/publication.json @TheCyberLocal
 /sces/releases/ @TheCyberLocal
 /sces/advisories/ @TheCyberLocal
