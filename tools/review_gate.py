@@ -88,6 +88,8 @@ PROTECTED_DISABLED_TOOLS = (
     "in_app_browser", "image_generation", "view_image", "multi_agent", "multi_agent_v2", "goals",
 )
 LOCAL_REVIEW_ITEM_TYPES = {"agent_message", "command_execution", "reasoning", "todo_list"}
+PROTECTED_POLICY_ROOT = Path("/opt/software-commons-review/license-review-policy-v1")
+PROTECTED_POLICY_MANIFEST_SHA256 = "433c2892c3702dcf885e74910c17b3b94d82f2b4a09cf32345a6b21c0529c1b0"
 
 
 def save(path, data):
@@ -102,14 +104,14 @@ def valid_execution(value):
         return False
 
 
-def evidence_proofs(inspection_token, files):
+def evidence_proofs(inspection_token, files, *, label="sces-proof"):
     """Commit each ordered batch to every exact input through a separate nonce-bound hash."""
     names = sorted(files)
     token = inspection_token.encode("ascii")
     for start in range(0, len(names), EVIDENCE_PROOF_BATCH):
         batch = names[start:start + EVIDENCE_PROOF_BATCH]
         entries = "".join(f"{name} {sha256(token + files[name]).hexdigest()}\n" for name in batch)
-        yield f"sces-proof {start // EVIDENCE_PROOF_BATCH} {sha256(entries.encode('ascii')).hexdigest()}"
+        yield f"{label} {start // EVIDENCE_PROOF_BATCH} {sha256(entries.encode('ascii')).hexdigest()}"
 
 
 def patch_body_lines(diff):
@@ -133,7 +135,11 @@ def patch_body_lines(diff):
     return changed or text or binary or metadata
 
 
-def review_result(trace, binding, inspection_token, diff, evidence_files=None):
+def bound_review_verdict_fields(binding):
+    return {field for field in ("sces_evidence_sha256", "review_policy_sha256") if field in binding}
+
+
+def review_result(trace, binding, inspection_token, diff, evidence_files=None, *, policy_files=None):
     """Accept a verdict only from one complete captured Codex execution."""
     require(len(trace) <= MAX_TRACE_BYTES, "review trace exceeds the configured limit")
     events = [decode(line) for line in trace.splitlines() if line.strip()]
@@ -152,13 +158,12 @@ def review_result(trace, binding, inspection_token, diff, evidence_files=None):
     require(messages, "Codex review did not return a verdict")
     final_position = messages[-1]
     verdict = decode(items[final_position]["text"].encode("utf-8"))
-    evidence = binding.get("sces_evidence_sha256")
-    fields = VERDICT_KEYS | ({"sces_evidence_sha256"} if evidence else set())
-    require(isinstance(verdict, dict) and verdict.keys() == fields
+    bound_fields = bound_review_verdict_fields(binding)
+    require(isinstance(verdict, dict) and verdict.keys() == (VERDICT_KEYS | bound_fields)
             and verdict["inspection_token"] == inspection_token
             and verdict["merge_sha"] == binding["merge"]
             and verdict["diff_sha256"] == binding["diff_sha256"]
-            and verdict.get("sces_evidence_sha256") == evidence,
+            and all(verdict[field] == binding[field] for field in bound_fields),
             "review verdict does not bind the exact inspected inputs")
     require(verdict["decision"] in {"approve", "changes-required", "inconclusive"}
             and isinstance(verdict["findings"], list)
@@ -174,11 +179,15 @@ def review_result(trace, binding, inspection_token, diff, evidence_files=None):
     require(any(witness in output.casefold() for output in inspections)
             and any(any(line in patch_lines for line in output.splitlines()) for output in inspections),
             "review trace lacks a successful exact-byte proof and patch body inspection")
-    if evidence:
+    if bound_fields:
         observed = {line for item in commands if "review-input.json" in item.get("command", "")
                     for line in item.get("aggregated_output", "").splitlines()}
-        require(evidence_files and set(evidence_proofs(inspection_token, evidence_files)) <= observed,
-                "review trace lacks exact selected SCES evidence inspection")
+        if "sces_evidence_sha256" in bound_fields:
+            require(evidence_files and set(evidence_proofs(inspection_token, evidence_files)) <= observed,
+                    "review trace lacks exact selected SCES evidence inspection")
+        if "review_policy_sha256" in bound_fields:
+            require(policy_files and set(evidence_proofs(inspection_token, policy_files, label="policy-proof")) <= observed,
+                    "review trace lacks exact protected policy inspection")
     require(verdict["decision"] != "approve" or not verdict["findings"], "approval contains material findings")
     return execution, verdict
 
@@ -236,6 +245,33 @@ def capture_reviewer_streams(arguments, prompt, stdout, stderr, *, cwd, env, **p
                 process.wait(timeout=5)
 
 
+def load_review_policy():
+    """Read the independently pinned public policy inputs for a protected review."""
+    manifest_path = PROTECTED_POLICY_ROOT / "manifest.json"
+    protected_path(manifest_path, directory=False)
+    with manifest_path.open("rb") as source:
+        raw = source.read(32 * 1024 + 1)
+    require(len(raw) <= 32 * 1024 and sha256(raw).hexdigest() == PROTECTED_POLICY_MANIFEST_SHA256,
+            "review policy manifest differs from the protected issuer pin")
+    manifest = decode(raw)["files"]
+    require(isinstance(manifest, dict) and manifest, "empty protected review policy")
+    remaining = 2 * 1024 * 1024
+    files = {}
+    for name, descriptor in manifest.items():
+        require(re.fullmatch(r"policy-[0-9]{5}\.data", name), "invalid protected review policy filename")
+        size = descriptor["size"]
+        require(type(size) is int and 0 < size <= remaining, "protected review policy exceeds its size limit")
+        path = PROTECTED_POLICY_ROOT / name
+        protected_path(path, directory=False)
+        with path.open("rb") as source:
+            contents = source.read(size + 1)
+        require(len(contents) == size and sha256(contents).hexdigest() == descriptor["sha256"],
+                "protected review policy file differs from its manifest")
+        files[name] = contents
+        remaining -= size
+    return raw, manifest, files
+
+
 def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
     arguments = [str(codex), "exec", "--ignore-user-config", "--ignore-rules", "--skip-git-repo-check",
                  "--json", "--color", "never", "--model", model,
@@ -270,6 +306,14 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
     arguments.extend(("--output-schema", str(schema), "-"))
     prompt = (
         "Perform an independent technical review for a protected public GitHub pull request. "
+        "If review_policy_sha256 is present, echo it verbatim in the verdict. Every key in review_policy "
+        "names a staged public policy file. Use the metadata to identify its repository, revision, and path. "
+        "Inspect the exact normative text, workflow and validator code needed to judge material conformance. "
+        "Compare the candidate's policy references with the supplied root-pinned sources. "
+        "Do not execute any policy or candidate code. In successful commands mentioning review-input.json, "
+        "read all review_policy files and produce nonce-bound proof using the batching and hash scheme below "
+        "with the prefix policy-proof and its own batch numbering starting at zero. "
+        "These files provide technical policy context and do not qualify any scientific claim. "
         "Open review-input.json and inspect the exact patch through read-only tools. "
         "In a successful command mentioning review.diff, read its exact bytes and print the lowercase SHA-256 "
         "of the ASCII inspection_token concatenated with the complete review.diff bytes. "
@@ -639,6 +683,11 @@ def run(args, github, *, token_input=None, publisher=write_check):
     if evidence:
         files = {path: sha256(blob).hexdigest() for path, blob in evidence.items()}
         binding.update(sces_evidence=files, sces_evidence_sha256=sha256(encode(files)).hexdigest())
+    policy_files = {}
+    if getattr(args, "review_policy_required", False):
+        policy_manifest, policy_sources, policy_files = load_review_policy()
+        binding.update(review_policy=policy_sources, review_policy_sha256=sha256(policy_manifest).hexdigest())
+        save(audit / "review-policy-manifest.json", policy_manifest)
     save(audit / "review.diff", diff)
     authorization = None
     try:
@@ -669,10 +718,10 @@ def run(args, github, *, token_input=None, publisher=write_check):
             require(current == observation, "merge queue candidate or CI evidence changed after review")
 
     token = secrets.token_hex(32)
-    verdict_schema = VERDICT_SCHEMA
-    if evidence:
-        verdict_schema = {**VERDICT_SCHEMA, "required": sorted(VERDICT_KEYS | {"sces_evidence_sha256"}),
-                          "properties": {**VERDICT_SCHEMA["properties"], "sces_evidence_sha256": {"type": "string"}}}
+    bound_fields = bound_review_verdict_fields(binding)
+    verdict_schema = {**VERDICT_SCHEMA, "required": sorted(VERDICT_KEYS | bound_fields),
+                      "properties": {**VERDICT_SCHEMA["properties"],
+                                     **{field: {"type": "string"} for field in bound_fields}}}
     # The review work directory contains no Git checkout, PR code, or issuer credentials.
     staging = state if reviewer is None else protected_staging()
     with TemporaryDirectory(prefix="reviewer-", dir=staging) as directory:
@@ -685,6 +734,8 @@ def run(args, github, *, token_input=None, publisher=write_check):
             evidence_files = {name: evidence[path] for name, path in names.items()}
             for name, blob in evidence_files.items():
                 save(input_dir / name, blob)
+        for name, content in policy_files.items():
+            save(input_dir / name, content)
         save(input_dir / "review-input.json", encode(review_input))
         save(input_dir / "review.diff", diff)
         schema = input_dir / "verdict-schema.json"
@@ -694,7 +745,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
         started_at = datetime.now(timezone.utc).isoformat()
         trace = launch_review(args.codex, args.model, input_dir, schema, audit, reviewer=reviewer)
         completed_at = datetime.now(timezone.utc).isoformat()
-    execution, verdict = review_result(trace, binding, token, diff, evidence_files)
+    execution, verdict = review_result(trace, binding, token, diff, evidence_files, policy_files=policy_files)
     decision = {"binding": binding, "execution": execution, "model": args.model,
                 "started_at": started_at, "completed_at": completed_at,
                 "trace_sha256": sha256(trace).hexdigest(), "decision": verdict["decision"],
@@ -874,6 +925,7 @@ def main(argv=None):
     args.authorization_paths = None
     try:
         config_path = args.issuer_config or args.rehearsal_config
+        args.review_policy_required = config_path is not None and not args.revoke_only
         if config_path:
             if args.mode != "review" or args.state_dir or args.codex or args.model:
                 parser.error("protected configuration is exclusive to review and supplies all deployment options")

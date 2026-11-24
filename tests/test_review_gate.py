@@ -399,6 +399,38 @@ class ReviewGateTests(unittest.TestCase):
         _, decision = review_result(make_trace(verdict=verdict, evidence=evidence), binding, "abc", PATCH, evidence)
         self.assertEqual(decision["decision"], "approve")
 
+    def test_approval_requires_bound_policies_and_a_complete_nonce_proof(self):
+        token = "abc"
+        binding = {**BINDING, "review_policy_sha256": "1" * 64}
+        policies = {"policy-00001.data": b"fixture evidence standard",
+                    "policy-00002.data": b"fixture registry standard"}
+        verdict = {"review_policy_sha256": binding["review_policy_sha256"]}
+
+        def trace(echo, inspected=None):
+            events = make_trace(token, verdict=echo).splitlines()
+            if inspected is not None:
+                statement = "".join(f"{name} {sha256(token.encode() + data).hexdigest()}\n"
+                                    for name, data in sorted(inspected.items()))
+                proof = f"policy-proof 0 {sha256(statement.encode()).hexdigest()}"
+                events.insert(-2, json.dumps({"type": "item.completed", "item": {
+                    "type": "command_execution", "status": "completed", "exit_code": 0,
+                    "command": "inspect policies listed in review-input.json",
+                    "aggregated_output": proof,
+                }}).encode())
+            return b"\n".join(events) + b"\n"
+
+        execution, approved = review_result(trace(verdict, policies), binding, token, PATCH, policy_files=policies)
+        self.assertEqual((execution, approved["decision"]), (EXECUTION, "approve"))
+        for label, candidate, error in (
+            ("missing digest", trace({}, policies), "does not bind"),
+            ("wrong digest", trace({"review_policy_sha256": "2" * 64}, policies), "does not bind"),
+            ("missing proof", trace(verdict), "lacks.*polic"),
+            ("partial proof", trace(verdict, {"policy-00001.data": policies["policy-00001.data"]}), "lacks.*polic"),
+            ("wrong bytes", trace(verdict, {**policies, "policy-00002.data": b"changed standard"}), "lacks.*polic"),
+        ):
+            with self.subTest(label=label), self.assertRaisesRegex(DataError, error):
+                review_result(candidate, binding, token, PATCH, policy_files=policies)
+
     def test_truncated_multiple_batch_proof_cannot_authorize_approval(self):
         binding = {**BINDING, "sces_evidence_sha256": "e" * 64}
         evidence = {f"sces-{index:05}.data": f"fixture {index}".encode() for index in range(129)}
