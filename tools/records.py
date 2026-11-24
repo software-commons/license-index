@@ -203,6 +203,8 @@ class Catalog:
 
     def coverage(self, qualified_claims=()):
         active = self.active_spdx
+        installable = {row["origin"]["identifier"] for row in active if is_installation_target(row)}
+        mit_text = self.spdx["mit"]["origin"]["artifacts"].get("text") if "MIT" in installable else None
         return {
             "scope": "SPDX discovery and publisher leads",
             "catalog": {
@@ -228,10 +230,11 @@ class Catalog:
                 "bundled_publisher_text_files": len({item["path"] for item in self.packaged.values()}),
             },
             "installation": {
-                "offline": sorted(key for key, package in self.packaged.items() if package.get("install") == "unchanged"),
+                "offline": sorted(key for key, package in self.packaged.items()
+                                  if key in installable and package.get("install") == "unchanged"),
                 "requires_verified_companion": sorted(key for key, package in self.packaged.items()
-                                                      if package.get("install") == LGPL_V3_SUPPLEMENT),
-                "requires_verified_spdx_input": ["MIT"] if "mit" in self.spdx else [],
+                                                      if key in installable and package.get("install") == LGPL_V3_SUPPLEMENT),
+                "requires_verified_spdx_input": ["MIT"] if mit_text and not self.packaged.get("MIT") else [],
             },
             "research": {
                 "provisional_explanations": len(self.profiles),
@@ -246,3 +249,9 @@ class Catalog:
 
 def is_removed(row):
     return row.get("membership", {}).get("status") == "removed"
+
+
+def is_installation_target(row):
+    origin = row["origin"]
+    return (origin["kind"] == "spdx" and origin.get("list_kind") == "license"
+            and origin.get("deprecated") is False and not is_removed(row))

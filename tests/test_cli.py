@@ -9,9 +9,10 @@ import subprocess
 import sys
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 from zipfile import ZipFile
 
-from tools.index import parser, text_or_add
+from tools.index import install_target, parser, text_or_add
 from tools.records import ROOT, Catalog, DataError, encode
 from tools.review_plan import admission_packet
 
@@ -43,6 +44,26 @@ class ToolTests(unittest.TestCase):
             with self.assertRaisesRegex(DataError, "incorrect GPLv3 companion requirement"):
                 text_or_add(catalog, args)
             self.assertFalse(output.exists())
+
+    def test_installation_coverage_respects_spdx_lifecycle(self):
+        catalog = Catalog(ROOT)
+        for identifier, coverage_field in (
+            ("MIT", "requires_verified_spdx_input"),
+            ("Apache-2.0", "offline"),
+            ("LGPL-3.0-only", "requires_verified_companion"),
+        ):
+            row = catalog.resolve(identifier)
+            with self.subTest(identifier=identifier, status="current"):
+                self.assertIs(install_target(catalog, identifier), row)
+                self.assertIn(identifier, catalog.coverage()["installation"][coverage_field])
+            for status, changed, update in (
+                ("removed", row, {"membership": {"status": "removed"}}),
+                ("deprecated", row["origin"], {"deprecated": True}),
+            ):
+                with self.subTest(identifier=identifier, status=status), patch.dict(changed, update):
+                    with self.assertRaisesRegex(DataError, "current, nondeprecated identifier"):
+                        install_target(catalog, identifier)
+                    self.assertNotIn(identifier, catalog.coverage()["installation"][coverage_field])
 
     def test_population_search_and_historical_identity(self):
         coverage = self.json_output("coverage")

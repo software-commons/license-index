@@ -12,7 +12,7 @@ import sys
 from .li_install import (
     LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, InstallError, parse_expression, render, verify_gplv3_companion, write_license,
 )
-from .records import Catalog, DataError, ROOT, VERSION, encode, is_removed, require
+from .records import Catalog, DataError, ROOT, VERSION, encode, is_installation_target, require
 
 
 def parser():
@@ -99,8 +99,7 @@ def install_target(catalog, value):
         exact = catalog.resolve(identifier)
     origin = exact["origin"]
     require(origin.get("list_kind") == "license", "choose a supported standalone license for installation")
-    require(not origin["deprecated"] and not is_removed(exact),
-            "installation requires a current, nondeprecated identifier")
+    require(is_installation_target(exact), "installation requires a current, nondeprecated identifier")
     return exact
 
 
