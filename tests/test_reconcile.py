@@ -1,4 +1,5 @@
 from copy import deepcopy
+import gzip
 from hashlib import sha256
 import io
 from pathlib import Path
@@ -457,6 +458,30 @@ class ReconcileTests(unittest.TestCase):
         revision_manifest = staging / f"research/sources/spdx-3.29.0-{NEXT}.json"
         self.assertEqual(reconcile.read_json(revision_manifest.read_bytes())["data_commit"], NEXT)
         self.assertEqual(prior_manifest.read_bytes(), before)
+
+        retained = prior_manifest.parent / revision_manifest.name
+        retained_bytes = revision_manifest.read_bytes()
+        retained.write_bytes(retained_bytes)
+        tar = gzip.decompress(self.archive.read_bytes())
+        self.archive.write_bytes(gzip.compress(tar, mtime=0))
+        replacement, replacement_manifest = self.read(data=NEXT)
+        self.assertEqual(replacement, second)
+        self.assertNotEqual(replacement_manifest["archive"]["sha256"], new_manifest["archive"]["sha256"])
+        replacement_bytes = reconcile.json_bytes(replacement_manifest)
+        digest = sha256(replacement_bytes).hexdigest()
+        name = f"research/sources/spdx-3.29.0-sha256-{digest}.json"
+        staged = self.root / "replacement"
+        reconcile.prepare(self.repo, staged, replacement, replacement_manifest)
+        self.assertEqual((staged / name).read_bytes(), replacement_bytes)
+        self.assertEqual(retained.read_bytes(), retained_bytes)
+        self.assertEqual(prior_manifest.read_bytes(), before)
+        (self.repo / name).write_bytes(replacement_bytes)
+        repeated = self.root / "replacement-repeat"
+        reconcile.prepare(self.repo, repeated, replacement, replacement_manifest)
+        self.assertEqual((repeated / name).read_bytes(), replacement_bytes)
+        (self.repo / name).write_bytes(retained_bytes)
+        with self.assertRaisesRegex(ValueError, "Digest-addressed source manifest contains different bytes"):
+            reconcile.prepare(self.repo, self.root / "collision", replacement, replacement_manifest)
 
     def test_dependency_review_includes_claims_for_matching_entities(self):
         identity = "123456789abc4def8123456789abcdef"

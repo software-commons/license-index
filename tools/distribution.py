@@ -28,7 +28,9 @@ COVERAGE_SCES_SECTIONS = ("sces/records/claim", "sces/records/disposition", "sce
 RECORDED_EVIDENCE_COUNTS = ("recorded_claim_revisions", "recorded_independently_reviewed_claims",
                             "recorded_invalidated_claim_revisions")
 SOURCES = "research/sources"
-SPDX_SOURCE = re.compile(rf"{SOURCES}/spdx-[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-f]{{40}})?\.json")
+SPDX_SOURCE = re.compile(
+    rf"{SOURCES}/spdx-[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-f]{{40}}|-sha256-[0-9a-f]{{64}})?\.json"
+)
 PACKAGED_TEXTS = "legal-texts/manifest.json"
 PROFILES = "research/campaigns/profiles.json"
 QUALIFICATION_SCOPE = "development-discovery"

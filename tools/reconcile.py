@@ -578,6 +578,12 @@ def candidate_path(candidate_id):
     return Path("registry", "candidates", candidate_id[:2], f"{candidate_id}.json")
 
 
+def _existing_manifest(path):
+    if path.is_symlink() or (path.exists() and not path.is_file()):
+        raise ValueError(f"Retained source manifest must be a regular file: {path.name}")
+    return path.read_bytes() if path.is_file() else None
+
+
 def prepare(repo, out, origins, manifest, *, initial=False, cited_locators=()):
     repo, out = Path(repo).resolve(), Path(out).resolve()
     existing = read_candidates(repo)
@@ -616,12 +622,19 @@ def prepare(repo, out, origins, manifest, *, initial=False, cited_locators=()):
         pending_files[candidate_path(candidate["id"])] = json_bytes(candidate)
     manifest_path = Path("research", "sources", f"spdx-{manifest['release']}.json")
     manifest_bytes = json_bytes(manifest)
-    current_manifest = repo / manifest_path
-    manifest_exists = current_manifest.is_file()
-    manifest_matches = manifest_exists and current_manifest.read_bytes() == manifest_bytes
-    if not initial and manifest_exists and not manifest_matches:
-        suffix = manifest["data_commit"]
-        manifest_path = manifest_path.with_name(f"{manifest_path.stem}-{suffix}.json")
+    base_manifest = _existing_manifest(repo / manifest_path)
+    manifest_matches = base_manifest == manifest_bytes
+    if not initial and base_manifest is not None and not manifest_matches:
+        stem = manifest_path.stem
+        revision = manifest["data_commit"]
+        manifest_path = manifest_path.with_name(f"{stem}-{revision}.json")
+        retained = _existing_manifest(repo / manifest_path)
+        if retained is not None and retained != manifest_bytes:
+            digest = sha256(manifest_bytes).hexdigest()
+            manifest_path = manifest_path.with_name(f"{stem}-sha256-{digest}.json")
+            retained = _existing_manifest(repo / manifest_path)
+            if retained is not None and retained != manifest_bytes:
+                raise ValueError(f"Digest-addressed source manifest contains different bytes: {manifest_path}")
     if not initial or not manifest_matches:
         pending_files[manifest_path] = manifest_bytes
     if not initial:
