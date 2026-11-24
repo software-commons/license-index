@@ -128,7 +128,9 @@ def text_or_add(catalog, args):
     installed = render(text, mode, holder=args.holder, year=args.year, preview=args.dry_run)
     before_publish = None
     if supplement:
-        base, descriptor = catalog.text(catalog.resolve("GPL-3.0-only"))
+        companion_record = catalog.spdx_exact("GPL-3.0-only")
+        require(companion_record is not None, "missing exact GPLv3 companion record")
+        base, descriptor = catalog.text(companion_record)
 
         def before_publish(stat_output):
             verify_gplv3_companion(args.output, companion, base, stat_output=stat_output)

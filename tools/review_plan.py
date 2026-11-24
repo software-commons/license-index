@@ -19,7 +19,12 @@ def _facet(kind, name, value):
 
 
 def build_plan(catalog, identifiers):
-    requested = {catalog.resolve(item)["origin"]["identifier"] for item in identifiers}
+    requested = set()
+    for item in identifiers:
+        row = catalog.resolve(item)
+        identifier = row["origin"]["identifier"]
+        require(catalog.profile(row), f"no provisional profile to review for {identifier}")
+        requested.add(identifier)
     selected = sorted(requested or catalog.profiles.keys(), key=str.casefold)
     profiles = []
     for identifier in selected:

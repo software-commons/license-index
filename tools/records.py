@@ -212,6 +212,10 @@ class Catalog:
         require(match is not None, f"unknown catalog identifier: {value}")
         return match
 
+    def spdx_exact(self, identifier):
+        row = self.spdx.get(identifier.casefold())
+        return row if row is not None and row["origin"]["identifier"] == identifier else None
+
     def search(self, token="", *, include_history=False, kind=None):
         target = token.casefold()
         rows = (self.candidates.values() if include_history

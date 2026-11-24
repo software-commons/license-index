@@ -13,10 +13,10 @@ import unittest
 from unittest.mock import patch
 from zipfile import ZipFile
 
-from tools.distribution import discovery_export
+from tools.distribution import discovery_export, validate_profiles, validate_texts
 from tools.index import install_target, parser, text_or_add
 from tools.records import ROOT, Catalog, DataError, encode
-from tools.review_plan import admission_packet
+from tools.review_plan import admission_packet, build_plan
 
 
 def command(*args, root=ROOT):
@@ -123,17 +123,24 @@ class ToolTests(unittest.TestCase):
     def test_shared_spdx_and_publisher_identifier_requires_a_candidate_uuid(self):
         catalog = Catalog(ROOT)
         spdx = catalog.resolve("MIT")
-        publisher = next(row for row in catalog.non_spdx if row["origin"]["kind"] == "publisher")
-        colliding = {**publisher, "origin": {**publisher["origin"], "identifier": "mit"}}
-        catalog.candidates[colliding["id"]] = colliding
-        catalog.non_spdx[catalog.non_spdx.index(publisher)] = colliding
+        publishers = [row for row in catalog.non_spdx if row["origin"]["kind"] == "publisher"]
+        for publisher, identifier in zip(publishers[:2], ("mit", "gpl-3.0-only"), strict=True):
+            colliding = {**publisher, "origin": {**publisher["origin"], "identifier": identifier}}
+            catalog.candidates[colliding["id"]] = colliding
+            catalog.non_spdx[catalog.non_spdx.index(publisher)] = colliding
+        publisher_mit = catalog.candidates[publishers[0]["id"]]
 
         with self.assertRaisesRegex(DataError, "ambiguous candidate identifier: MIT"):
             catalog.resolve("MIT")
         with self.assertRaisesRegex(DataError, "ambiguous candidate identifier: mit"):
             install_target(catalog, "mit")
-        self.assertIs(catalog.resolve(colliding["id"]), colliding)
+        self.assertIs(catalog.resolve(publisher_mit["id"]), publisher_mit)
         self.assertIs(install_target(catalog, spdx["id"]), spdx)
+        with self.assertRaisesRegex(DataError, "no provisional profile to review"):
+            build_plan(catalog, [publisher_mit["id"]])
+        self.assertIsNone(catalog.spdx_exact("mit"))
+        validate_profiles(catalog)
+        validate_texts(catalog)
 
     def test_coverage_binds_individual_dimension_assessments(self):
         catalog = Catalog(ROOT)

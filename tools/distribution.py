@@ -299,10 +299,9 @@ def _validate_text_rights(identifier, package, rights_reader, *, archived):
 
 def validate_texts(catalog, read_bytes=None, *, rights_reader=None, archived=False):
     for identifier, package in catalog.packaged.items():
-        row = catalog.resolve(identifier)
+        row = catalog.spdx_exact(identifier)
+        require(row is not None, f"missing exact SPDX text binding: {identifier}")
         origin = row["origin"]
-        require(origin["identifier"] == identifier and origin["kind"] == "spdx",
-                f"ambiguous text binding: {identifier}")
         descriptor(package)
         path = local_path(catalog.root, package["path"])
         content = checked_bytes(path.read_bytes() if read_bytes is None else read_bytes(package["path"]), package)
@@ -325,8 +324,7 @@ def validate_texts(catalog, read_bytes=None, *, rights_reader=None, archived=Fal
 
 def validate_profiles(catalog):
     for identifier, profile in catalog.profiles.items():
-        row = catalog.resolve(identifier)
-        require(row["origin"]["kind"] == "spdx" and row["origin"]["identifier"] == identifier,
+        require(catalog.spdx_exact(identifier) is not None,
                 f"missing exact profile subject for {identifier}")
         require(profile["summary"] and profile["dimensions"] and profile["scenarios"],
                 f"incomplete provisional profile for {identifier}")
