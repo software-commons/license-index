@@ -317,6 +317,24 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(neighbor.read_bytes(), b"keep")
 
     @unittest.skipUnless(os.name == "nt", "Windows rename interruption")
+    def test_windows_interruption_after_parking_restores_the_original(self):
+        self.output.write_bytes(b"prior")
+        original = self.output.stat()
+        rename = _WindowsInstall.rename
+
+        def interrupt_after_parking(native, handle, name):
+            rename(native, handle, name)
+            if name.endswith(".previous"):
+                raise KeyboardInterrupt
+
+        with patch.object(_WindowsInstall, "rename", interrupt_after_parking):
+            with self.assertRaises(KeyboardInterrupt):
+                write_license(self.output, b"uncommitted", force=True)
+        self.assertTrue(os.path.samestat(self.output.stat(), original))
+        self.assertEqual(self.output.read_bytes(), b"prior")
+        self.assertEqual(list(self.directory.iterdir()), [self.output])
+
+    @unittest.skipUnless(os.name == "nt", "Windows rename interruption")
     def test_windows_interruption_after_rename_keeps_the_committed_output(self):
         self.output.write_bytes(b"prior")
         publish = _WindowsInstall.publish
@@ -330,6 +348,34 @@ class InstallTests(unittest.TestCase):
                 write_license(self.output, b"committed", force=True)
         self.assertEqual(self.output.read_bytes(), b"committed")
         self.assertEqual(list(self.directory.iterdir()), [self.output])
+
+    @unittest.skipUnless(os.name == "nt", "Windows no-clobber replacement")
+    def test_windows_force_preserves_a_concurrent_destination_and_the_original(self):
+        self.output.write_bytes(b"original")
+        original = self.output.stat()
+        publish = _WindowsInstall.publish
+        concurrent = []
+
+        def publish_with_new_destination(native, handle, name, force):
+            self.assertFalse(force, "Windows replacement publication must not clobber")
+            if not concurrent:
+                self.assertEqual(name, self.output.name)
+                with self.output.open("xb") as other_writer:
+                    other_writer.write(b"concurrent")
+                concurrent.append(self.output.stat())
+            return publish(native, handle, name, force)
+
+        with patch.object(_WindowsInstall, "publish", publish_with_new_destination):
+            with self.assertRaises(InstallError) as failure:
+                write_license(self.output, b"new license", force=True)
+
+        identity, = concurrent
+        self.assertTrue(os.path.samestat(self.output.stat(), identity))
+        self.assertEqual(self.output.read_bytes(), b"concurrent")
+        recovered, = set(self.directory.iterdir()) - {self.output}
+        self.assertTrue(os.path.samestat(recovered.stat(), original))
+        self.assertEqual(recovered.read_bytes(), b"original")
+        self.assertIn(recovered.name, str(failure.exception))
 
     def test_failed_sync_leaves_existing_target_and_cleans_temporary(self):
         self.output.write_bytes(b"existing")
@@ -356,6 +402,41 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(self.output.readlink(), Path(referent.name))
         self.assertEqual(referent.read_bytes(), b"preserve")
         self.assertEqual(set(self.directory.iterdir()), {self.output, referent})
+
+    @unittest.skipUnless(os.name == "posix", "POSIX replacement descriptor")
+    def test_posix_force_holds_the_original_descriptor_through_exchange(self):
+        from tools.li_install import _exchange_posix
+
+        self.output.write_bytes(b"original")
+        original = self.output.stat()
+        open_file = os.open
+        target_fds = []
+        exchanged = []
+
+        def remember_target(name, flags, *args, **kwargs):
+            descriptor = open_file(name, flags, *args, **kwargs)
+            if name == self.output.name and kwargs.get("dir_fd") is not None:
+                target_fds.append(descriptor)
+            return descriptor
+
+        def verify_pin(stage, temporary, directory, name):
+            self.assertEqual(len(target_fds), 1)
+            descriptor = target_fds[0]
+            self.assertTrue(os.path.samestat(os.fstat(descriptor), original))
+            _exchange_posix(stage, temporary, directory, name)
+            self.assertTrue(os.path.samestat(os.fstat(descriptor), original))
+            exchanged.append(descriptor)
+
+        with (patch("tools.li_install.os.open", side_effect=remember_target),
+              patch("tools.li_install._exchange_posix", side_effect=verify_pin)):
+            write_license(self.output, b"new license", force=True)
+
+        descriptor, = exchanged
+        with self.assertRaises(OSError) as closed:
+            os.fstat(descriptor)
+        self.assertEqual(closed.exception.errno, errno.EBADF)
+        self.assertEqual(self.output.read_bytes(), b"new license")
+        self.assertEqual(list(self.directory.iterdir()), [self.output])
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
     def test_posix_force_preserves_nonregular_entries_at_the_exchange_boundary(self):

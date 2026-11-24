@@ -409,6 +409,21 @@ def _replace_posix_regular(stage, temporary, directory, output, previous, staged
     raise InstallError(f"Output changed during replacement. A displaced entry was preserved at {recovery}")
 
 
+def _pin_posix_target(directory, name, output, handles):
+    # O_PATH and O_EVTONLY can hold an identity without opening the file for reading.
+    access = getattr(os, "O_PATH", getattr(os, "O_EVTONLY", os.O_RDONLY))
+    try:
+        descriptor = os.open(name, access | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
+    except FileNotFoundError:
+        return None
+    except OSError as error:
+        if error.errno == errno.ELOOP:
+            raise InstallError(f"Output must be a regular file path: {output}") from error
+        raise
+    handles.callback(os.close, descriptor)
+    return _check_target(lambda: os.fstat(descriptor), output, force=True, dry_run=False)
+
+
 def _write_posix(output, content, force, dry_run, before_publish):
     with ExitStack() as handles:
         directory = _open_posix_parent(output)
@@ -417,9 +432,14 @@ def _write_posix(output, content, force, dry_run, before_publish):
         def stat_target():
             return os.stat(output.name, dir_fd=directory, follow_symlinks=False)
 
-        _check_target(stat_target, output, force, dry_run)
         if dry_run:
+            _check_target(stat_target, output, force, dry_run)
             return
+        if force:
+            previous = _pin_posix_target(directory, output.name, output, handles)
+        else:
+            _check_target(stat_target, output, force, dry_run=False)
+            previous = None
 
         staging_parent, staging_path = _posix_staging_parent(directory, output.parent, handles)
         with _private_posix_stage(staging_parent) as (stage, stage_name):
@@ -431,10 +451,12 @@ def _write_posix(output, content, force, dry_run, before_publish):
             try:
                 _complete_file(descriptor, content)
                 staged = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
-                previous = _check_target(stat_target, output, force, dry_run=False) if force else None
                 if before_publish is not None:
                     before_publish(stat_target)
                 if previous is not None:
+                    current = _check_target(stat_target, output, force=True, dry_run=False)
+                    if current is None or not os.path.samestat(previous, current):
+                        raise InstallError(f"Output changed during replacement: {output}")
                     _replace_posix_regular(stage, temporary, directory, output, previous, staged,
                                            staging_path / stage_name / temporary)
                 else:
@@ -531,6 +553,7 @@ class _WindowsInstall:
     _NAME_INFO = 2
     _DISPOSITION_INFO = 4
     _ATTRIBUTE_TAG_INFO = 9
+    _DISK_FILE = 1
     _DUPLICATE_SAME_ACCESS = 0x00000002
 
     def __init__(self):
@@ -552,6 +575,9 @@ class _WindowsInstall:
         self._get_info = native.GetFileInformationByHandleEx
         self._get_info.argtypes = (handle, ctypes.c_int, pointer, word)
         self._get_info.restype = wintypes.BOOL
+        self._get_type = native.GetFileType
+        self._get_type.argtypes = (handle,)
+        self._get_type.restype = word
         self._set_info = native.SetFileInformationByHandle
         self._set_info.argtypes = (handle, ctypes.c_int, pointer, word)
         self._set_info.restype = wintypes.BOOL
@@ -588,6 +614,22 @@ class _WindowsInstall:
         if not attributes & stat.FILE_ATTRIBUTE_DIRECTORY or attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT:
             raise InstallError(f"Output parent must be a regular directory path: {path}")
 
+    def pin_replacement(self, path, handles):
+        try:
+            handle = self._open(path, self._READ_ATTRIBUTES | self._DELETE, self._OPEN_EXISTING,
+                                self._OPEN_REPARSE_POINT)
+        except FileNotFoundError:
+            return None
+        handles.callback(self.close, handle)
+        info = (self._types.DWORD * 2)()
+        self._check(self._get_info(handle, self._ATTRIBUTE_TAG_INFO, info, self._ctypes.sizeof(info)))
+        if (self._get_type(handle) != self._DISK_FILE
+                or info[0] & (stat.FILE_ATTRIBUTE_DIRECTORY | stat.FILE_ATTRIBUTE_REPARSE_POINT)):
+            raise InstallError(f"Output must be a regular file path: {path}")
+        if info[0] & stat.FILE_ATTRIBUTE_READONLY:
+            raise InstallError(f"Read-only output cannot be replaced: {path}")
+        return handle
+
     def stage(self, path, handles):
         handle = self._open(path, self._GENERIC_WRITE | self._DELETE, self._CREATE_NEW, self._OPEN_REPARSE_POINT)
         handles.callback(self.close, handle)
@@ -606,7 +648,7 @@ class _WindowsInstall:
             raise
         _complete_file(descriptor, content)
 
-    def publish(self, handle, name, force):
+    def rename(self, handle, name):
         ctypes, wintypes = self._ctypes, self._types
 
         class RenameInfo(ctypes.Structure):
@@ -617,20 +659,22 @@ class _WindowsInstall:
         size = ctypes.sizeof(RenameInfo) + len(encoded) + 2
         buffer = ctypes.create_string_buffer(size)
         info = RenameInfo.from_buffer(buffer)
-        info.replace = int(force)
         info.length = len(encoded)
         ctypes.memmove(ctypes.addressof(buffer) + RenameInfo.name.offset, encoded, len(encoded))
         # Native FileRenameInformation with a simple name and a null RootDirectory
-        # renames within the opened source file's directory.
+        # renames within the opened source file's directory. Zero rejects an occupied name.
         status = (ctypes.c_void_p * 2)()
         result = self._set_nt_info(handle, status, buffer, size, self._RENAME_INFORMATION)
         if result < 0:
             raise ctypes.WinError(self._dos_error(result))
 
-    def discard_stage(self, handle, temporary_name):
+    def publish(self, handle, name, force):
+        if force:
+            raise InstallError("Windows publication requires an unoccupied output path")
+        self.rename(handle, name)
+
+    def current_name(self, handle):
         ctypes = self._ctypes
-        # An interruption can arrive just after rename succeeds. Check the
-        # handle's current name before marking the staged object for deletion.
         word = self._types.DWORD
         offset = ctypes.sizeof(word)
         buffer = ctypes.create_string_buffer(offset + 65536)
@@ -638,10 +682,27 @@ class _WindowsInstall:
         length = word.from_buffer(buffer).value
         if not length or length % 2 or length > len(buffer) - offset:
             raise OSError(errno.EIO, "Invalid staged-file name returned by Windows")
-        current_name = buffer[offset:offset + length].decode("utf-16-le").rsplit("\\", 1)[-1]
-        if current_name.casefold() == temporary_name.casefold():
+        return buffer[offset:offset + length].decode("utf-16-le").rsplit("\\", 1)[-1]
+
+    def discard_stage(self, handle, temporary_name):
+        # An interruption can arrive just after rename succeeds. Verify the live handle name before deletion.
+        ctypes = self._ctypes
+        if self.current_name(handle).casefold() == temporary_name.casefold():
             delete = ctypes.c_ubyte(1)
             self._check(self._set_info(handle, self._DISPOSITION_INFO, ctypes.byref(delete), ctypes.sizeof(delete)))
+
+
+def _finish_windows_replacement(native, previous, backup_name, output, published):
+    if previous is None or native.current_name(previous).casefold() != backup_name.casefold():
+        return
+    try:
+        if published:
+            native.discard_stage(previous, backup_name)
+        else:
+            native.rename(previous, output.name)
+    except OSError as error:
+        location = output.parent / backup_name
+        raise InstallError(f"Previous output was preserved at {location}: {error.strerror or error}") from error
 
 
 def _write_windows(output, content, force, dry_run, before_publish):
@@ -650,31 +711,45 @@ def _write_windows(output, content, force, dry_run, before_publish):
         # Deny write and delete sharing on each verified component before opening its child.
         for parent in reversed(output.parents):
             native.pin_directory(parent, handles)
-        _check_target(output.lstat, output, force, dry_run)
         if dry_run:
+            _check_target(output.lstat, output, force, dry_run)
             return
+        if force:
+            previous = native.pin_replacement(output, handles)
+        else:
+            _check_target(output.lstat, output, force, dry_run=False)
+            previous = None
 
         temporary_name = f".license-index-{secrets.token_hex(16)}.tmp"
         if output.name.casefold() == temporary_name.casefold():
             temporary_name += ".stage"
         temporary = output.parent / temporary_name
+        backup_name = f"{temporary_name}.previous"
+        if backup_name.casefold() == output.name.casefold():
+            backup_name += ".retained"
         handle = native.stage(temporary, handles)
         published = False
         try:
             native.write(handle, content)
             if before_publish is not None:
                 before_publish(output.lstat)
-            _check_target(output.lstat, output, force, dry_run=False)
-            native.publish(handle, output.name, force)
+            if previous is not None:
+                native.rename(previous, backup_name)
+            native.publish(handle, output.name, False)
             published = True
         finally:
-            if not published:
-                native.discard_stage(handle, temporary_name)
+            try:
+                if previous is not None and not published:
+                    published = native.current_name(handle).casefold() == output.name.casefold()
+                _finish_windows_replacement(native, previous, backup_name, output, published)
+            finally:
+                if not published:
+                    native.discard_stage(handle, temporary_name)
 
 
 def write_license(output: Path, content: bytes, *, force: bool = False, dry_run: bool = False,
                   before_publish=None) -> None:
-    """Atomically write the selected target without creating directories."""
+    """Write the selected target without creating directories or clobbering a concurrent writer."""
     output = _validate_path(output)
     writer = _write_windows if os.name == "nt" else _write_posix
     try:
@@ -682,6 +757,8 @@ def write_license(output: Path, content: bytes, *, force: bool = False, dry_run:
             before_publish(output.lstat)
         writer(output, content, force, dry_run, before_publish)
     except FileExistsError as failure:
+        if force:
+            raise InstallError(f"Output changed during replacement: {output}") from failure
         raise InstallError(f"Output already exists: {output}. Use --force to replace it.") from failure
     except OSError as failure:
         if failure.errno in (errno.ELOOP, errno.ENOTDIR):
