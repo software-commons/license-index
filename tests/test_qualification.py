@@ -1022,14 +1022,23 @@ class GitHistoryTests(unittest.TestCase):
         claim = {"kind": "claim", "id": "fixture", "revision": 1}
         record = self.write("sces/records/claim/fixture--1.json", claim)
         review_refs = {}
-        completed = "2026-01-01T00:00:00Z"
+        review_path = "sces/records/verification/fixture-review--1.json"
+        research_completed = "2026-01-01T00:01:00Z"
+        review_completed = "2026-01-01T00:02:00Z"
+        fixtures = {}
         for field, phase in (("research", "research"), ("review", "independent-review")):
             ref = {"kind": "verification", "id": f"fixture-{field}", "revision": 1}
-            self.write(f"sces/records/verification/fixture-{field}--1.json", {
+            fixture = {
                 **ref, "claim": claim, "claim_sha256": sha256(record.read_bytes()).hexdigest(),
-                "phase": phase, "run": {"execution": f"execution-{field}", "completed": completed},
-                "conclusion": "supported",
-            })
+                "phase": phase,
+                "run": {"execution": f"execution-{field}",
+                        "started": "2026-01-01T00:00:00Z" if field == "research" else research_completed,
+                        "completed": research_completed if field == "research" else review_completed,
+                        "trace": {"path": f"fixture/{field}.jsonl", "sha256": sha256(field.encode()).hexdigest()}},
+                "conclusion": "supported", "acquisitions": [{"capture": f"capture-{field}"}],
+            }
+            self.write(f"sces/records/verification/fixture-{field}--1.json", fixture)
+            fixtures[field] = fixture
             review_refs[field] = ref
         disposition = {"kind": "disposition", "id": "fixture-status", "revision": 1, "target": claim,
                        "evidence": "supported", "verification": "independently-reviewed", **review_refs}
@@ -1037,6 +1046,23 @@ class GitHistoryTests(unittest.TestCase):
         counters = Catalog(self.root).coverage()["qualification"]
         self.assertEqual((counters["recorded_claim_revisions"], counters["recorded_independently_reviewed_claims"],
                           counters["recorded_invalidated_claim_revisions"], counters["selected_claims"]), (1, 1, 0, 0))
+
+        first_run, second_run = (fixtures[field]["run"] for field in ("research", "review"))
+        for label, change in (
+            ("capture", {"acquisitions": fixtures["research"]["acquisitions"]}),
+            ("trace path", {"run": {**second_run, "trace": {**second_run["trace"],
+                                                            "path": first_run["trace"]["path"]}}}),
+            ("trace digest", {"run": {**second_run, "trace": {**second_run["trace"],
+                                                              "sha256": first_run["trace"]["sha256"]}}}),
+            ("execution", {"run": {**second_run, "execution": first_run["execution"]}}),
+            ("order", {"run": {**second_run, "started": first_run["started"]}}),
+        ):
+            with self.subTest(independence=label):
+                self.write(review_path, {**fixtures["review"], **change})
+                self.assertEqual(
+                    Catalog(self.root).coverage()["qualification"]["recorded_independently_reviewed_claims"], 0,
+                )
+        self.write(review_path, fixtures["review"])
 
         original = record.read_bytes()
         record.write_bytes(original + b"\n")
@@ -1056,7 +1082,7 @@ class GitHistoryTests(unittest.TestCase):
                           counters["recorded_invalidated_claim_revisions"]), (0, 0))
 
         later_review["conclusion"] = "supported"
-        later_review["run"]["completed"] = completed
+        later_review["run"]["completed"] = review_completed
         self.write(later_path, later_review)
         self.assertEqual(Catalog(self.root).coverage()["qualification"]["recorded_independently_reviewed_claims"], 0)
 

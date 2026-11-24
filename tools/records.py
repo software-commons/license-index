@@ -28,7 +28,7 @@ COVERAGE_VERSIONS = (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION_V2, COVERAGE_VERS
 DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
                     "inapplicable", "explicit-absence"}
 _SCES_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
-_SCES_COMPLETION = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
+_SCES_TIMESTAMP = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
 _SCES_COVERAGE_KINDS = ("claim", "disposition", "source", "verification")
 
 
@@ -95,7 +95,7 @@ def _supported_independent_review(target, disposition, claim_bytes, verification
     if disposition.get("evidence") != "supported" or disposition.get("verification") != "independently-reviewed":
         return False
     claim_digest = sha256(claim_bytes).hexdigest()
-    executions = set()
+    pair = []
     for field, phase in (("research", "research"), ("review", "independent-review")):
         ref = _sces_reference(disposition.get(field))
         current = latest_verifications.get((target, phase))
@@ -108,8 +108,32 @@ def _supported_independent_review(target, disposition, claim_bytes, verification
                 or review.get("claim_sha256") != claim_digest or review.get("conclusion") != "supported"
                 or not isinstance(execution, str) or not execution.strip()):
             return False
-        executions.add(execution)
-    return len(executions) == 2
+        pair.append(review)
+    research, review = pair
+    first, second = research["run"], review["run"]
+    try:
+        first_trace, second_trace = first["trace"], second["trace"]
+        first_acquisitions, second_acquisitions = research["acquisitions"], review["acquisitions"]
+        if not isinstance(first_acquisitions, list) or not isinstance(second_acquisitions, list):
+            return False
+        first_captures = {item["capture"] for item in first_acquisitions}
+        second_captures = {item["capture"] for item in second_acquisitions}
+        # A recorded review pair must satisfy SCES review independence even with no selection.
+        return (
+            first["execution"] != second["execution"]
+            and HEX_256.fullmatch(first_trace["sha256"]) is not None
+            and HEX_256.fullmatch(second_trace["sha256"]) is not None
+            and first_trace["sha256"] != second_trace["sha256"]
+            and all(isinstance(trace["path"], str) and trace["path"].strip()
+                    for trace in (first_trace, second_trace))
+            and first_trace["path"] != second_trace["path"]
+            and _SCES_TIMESTAMP.fullmatch(second["started"]) is not None
+            and first["completed"] <= second["started"]
+            and all(isinstance(capture, str) and capture.strip() for capture in first_captures | second_captures)
+            and first_captures.isdisjoint(second_captures)
+        )
+    except (KeyError, TypeError):
+        return False
 
 
 class NoRedirects(HTTPRedirectHandler):
@@ -273,7 +297,7 @@ class Catalog:
             run = row.get("run")
             completed = run.get("completed") if isinstance(run, dict) else None
             require(target in claims and phase in ("research", "independent-review")
-                    and isinstance(completed, str) and _SCES_COMPLETION.fullmatch(completed),
+                    and isinstance(completed, str) and _SCES_TIMESTAMP.fullmatch(completed),
                     f"{row['id']}: invalid SCES coverage verification completion")
             slot = target, phase
             previous = latest_verifications.get(slot)
