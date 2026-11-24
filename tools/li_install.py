@@ -261,6 +261,7 @@ def _check_target(get_stat, output, force, dry_run):
         raise InstallError(f"Output must be a regular file path: {output}")
     if not force and not dry_run:
         raise InstallError(f"Output already exists: {output}. Use --force to replace it.")
+    return info
 
 
 def _complete_file(descriptor, content):
@@ -314,10 +315,10 @@ def _trusted_posix_staging_parent(directory, owner):
             and _without_darwin_acl(directory))
 
 
-def _posix_staging_parent(directory, handles):
+def _posix_staging_parent(directory, output_parent, handles):
     owner = os.geteuid()
     if _trusted_posix_staging_parent(directory, owner):
-        return directory
+        return directory, output_parent
     # A shared output directory may be a valid destination. Stage under a
     # protected parent on the same filesystem so publication remains atomic.
     device = os.fstat(directory).st_dev
@@ -334,7 +335,7 @@ def _posix_staging_parent(directory, handles):
                     and _trusted_posix_staging_parent(staging_parent, owner)
                     and os.access(".", os.W_OK | os.X_OK, dir_fd=staging_parent)):
                 handles.callback(candidate.pop_all().close)
-                return staging_parent
+                return staging_parent, path
     raise InstallError("No trusted same-filesystem staging directory is available for the shared output directory")
 
 
@@ -354,7 +355,7 @@ def _private_posix_stage(parent):
             if (identity.st_uid != os.geteuid() or identity.st_mode & 0o077
                     or not _without_darwin_acl(directory)):
                 raise InstallError("The license staging directory is not private")
-            yield directory
+            yield directory, name
         finally:
             try:
                 current = os.stat(name, dir_fd=parent, follow_symlinks=False)
@@ -362,6 +363,50 @@ def _private_posix_stage(parent):
                     os.rmdir(name, dir_fd=parent)
             except FileNotFoundError:
                 pass
+            except OSError as error:
+                if error.errno not in {errno.ENOTEMPTY, errno.EEXIST}:
+                    raise
+
+
+def _exchange_posix(source_directory, source, target_directory, target):
+    """Atomically exchange two names without deleting either entry."""
+    import ctypes
+
+    if sys.platform.startswith("linux"):
+        name = "renameat2"
+    elif sys.platform == "darwin":
+        name = "renameatx_np"
+    else:
+        raise InstallError("Replacing a file requires an atomic exchange on this platform")
+    exchange = getattr(ctypes.CDLL(None, use_errno=True), name, None)
+    if exchange is None:
+        raise InstallError("Replacing a file requires an atomic exchange on this platform")
+    exchange.argtypes = (ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint)
+    exchange.restype = ctypes.c_int
+    # RENAME_EXCHANGE on Linux and RENAME_SWAP on macOS use the same flag.
+    if exchange(source_directory, os.fsencode(source), target_directory, os.fsencode(target), 0x2):
+        error = ctypes.get_errno()
+        raise OSError(error, os.strerror(error))
+
+
+def _replace_posix_regular(stage, temporary, directory, output, previous, staged, recovery):
+    _exchange_posix(stage, temporary, directory, output.name)
+    displaced = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+    if stat.S_ISREG(displaced.st_mode) and os.path.samestat(previous, displaced):
+        os.unlink(temporary, dir_fd=stage)
+        return
+
+    restored = False
+    try:
+        published = os.stat(output.name, dir_fd=directory, follow_symlinks=False)
+        if os.path.samestat(published, staged):
+            _exchange_posix(stage, temporary, directory, output.name)
+            restored = os.path.samestat(os.stat(temporary, dir_fd=stage, follow_symlinks=False), staged)
+    except OSError:
+        pass
+    if restored:
+        raise InstallError(f"Output changed during replacement and the displaced entry was restored: {output}")
+    raise InstallError(f"Output changed during replacement. A displaced entry was preserved at {recovery}")
 
 
 def _write_posix(output, content, force, dry_run, before_publish):
@@ -376,20 +421,22 @@ def _write_posix(output, content, force, dry_run, before_publish):
         if dry_run:
             return
 
-        staging_parent = _posix_staging_parent(directory, handles)
-        with _private_posix_stage(staging_parent) as stage:
+        staging_parent, staging_path = _posix_staging_parent(directory, output.parent, handles)
+        with _private_posix_stage(staging_parent) as (stage, stage_name):
             temporary = "license"
             descriptor = os.open(
                 temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o666, dir_fd=stage
             )
+            staged = None
             try:
                 _complete_file(descriptor, content)
+                staged = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+                previous = _check_target(stat_target, output, force, dry_run=False) if force else None
                 if before_publish is not None:
                     before_publish(stat_target)
-                if force:
-                    # Recheck after staging. POSIX rename cannot check the target type atomically.
-                    _check_target(stat_target, output, force, dry_run=False)
-                    os.replace(temporary, output.name, src_dir_fd=stage, dst_dir_fd=directory)
+                if previous is not None:
+                    _replace_posix_regular(stage, temporary, directory, output, previous, staged,
+                                           staging_path / stage_name / temporary)
                 else:
                     os.link(
                         temporary,
@@ -400,7 +447,9 @@ def _write_posix(output, content, force, dry_run, before_publish):
                     )
             finally:
                 try:
-                    os.unlink(temporary, dir_fd=stage)
+                    remaining = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+                    if staged is None or os.path.samestat(staged, remaining):
+                        os.unlink(temporary, dir_fd=stage)
                 except FileNotFoundError:
                     pass
 

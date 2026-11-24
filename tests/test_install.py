@@ -357,6 +357,73 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(referent.read_bytes(), b"preserve")
         self.assertEqual(set(self.directory.iterdir()), {self.output, referent})
 
+    @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
+    def test_posix_force_preserves_nonregular_entries_at_the_exchange_boundary(self):
+        from tools.li_install import _exchange_posix
+
+        referent = self.directory / "referent"
+        referent.write_bytes(b"preserve")
+        for kind in ("fifo", "symlink"):
+            with self.subTest(kind=kind):
+                output = self.directory / kind
+                output.write_bytes(b"existing")
+                identities = []
+
+                def substitute_once(stage, temporary, directory, name):
+                    if not identities:
+                        output.unlink()
+                        if kind == "fifo":
+                            os.mkfifo(output)
+                        else:
+                            output.symlink_to(referent.name)
+                        identities.append(output.lstat())
+                    return _exchange_posix(stage, temporary, directory, name)
+
+                with patch("tools.li_install._exchange_posix", side_effect=substitute_once):
+                    with self.assertRaises(InstallError):
+                        write_license(output, b"new", force=True)
+                identity, = identities
+                final = output.lstat()
+                self.assertTrue(os.path.samestat(identity, final))
+                self.assertEqual(final.st_mode, identity.st_mode)
+                if kind == "symlink":
+                    self.assertEqual(output.readlink(), Path(referent.name))
+                self.assertEqual(referent.read_bytes(), b"preserve")
+                self.assertEqual(list(self.directory.glob(".license-index-*.tmp")), [])
+
+    @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange recovery")
+    def test_posix_force_retains_the_displaced_entry_if_the_published_name_moves(self):
+        from tools.li_install import _exchange_posix
+
+        self.output.write_bytes(b"existing")
+        referent = self.directory / "referent"
+        referent.write_bytes(b"preserve")
+        exchanged = False
+
+        def move_published_name(stage, temporary, directory, name):
+            nonlocal exchanged
+            if exchanged:
+                return _exchange_posix(stage, temporary, directory, name)
+            self.output.unlink()
+            self.output.symlink_to(referent.name)
+            _exchange_posix(stage, temporary, directory, name)
+            exchanged = True
+            self.output.unlink()
+
+        with patch("tools.li_install._exchange_posix", side_effect=move_published_name):
+            with self.assertRaises(InstallError) as failure:
+                write_license(self.output, b"new", force=True)
+        if not exchanged:
+            self.skipTest("Atomic exchange of the synthetic regular file and symlink is unavailable")
+        stage, = self.directory.glob(".license-index-*.tmp")
+        retained, = stage.iterdir()
+        self.assertEqual(stat.S_IMODE(stage.stat().st_mode), 0o700)
+        self.assertEqual(retained.readlink(), Path(referent.name))
+        self.assertIn(stage.name, str(failure.exception))
+        self.assertFalse(self.output.exists())
+        self.assertFalse(self.output.is_symlink())
+        self.assertEqual(referent.read_bytes(), b"preserve")
+
     @unittest.skipUnless(os.name == "posix", "POSIX directory descriptor staging")
     def test_shared_posix_output_uses_a_private_same_filesystem_stage(self):
         shared = self.directory / "shared"
