@@ -318,6 +318,45 @@ def _historical_spdx_base(root, base, commit, verified):
     return _git(root, "merge-base", base, commit).decode().strip()
 
 
+# The foundation's first snapshot was a draft until the header count was corrected.
+_FOUNDATION_DRAFT_COMMITS = {
+    "0401697e3e641a6611380d213c1ac67be6422d7c",
+    "fc28454a9c689ca9583ce1c6d02ce5b4a4e15673",
+}
+_FOUNDATION_SNAPSHOT = f"{SNAPSHOTS}/2026-11-22-spdx-3.29.0.json"
+_FOUNDATION_DRAFT_BLOB = "894aa11bc1193640994d8a840b0bed42fd635367"
+_FOUNDATION_RECORDED_BLOB = "f4de218b0cdaf2c98e57da63cfc2b5302171f303"
+
+
+def _incoming_snapshot_origins(root, base, head, tracked, pending):
+    revisions = _git(root, "rev-list", "--topo-order", "--reverse", "--parents",
+                     f"{base}..{head}").decode().splitlines()
+    coverage_by_commit = {}
+    origins = {}
+    for revision in revisions:
+        commit, *parents = revision.split()
+        blobs = _git_blobs(root, commit, COVERAGE, SNAPSHOTS)
+        present = pending & blobs.keys()
+        if (commit in _FOUNDATION_DRAFT_COMMITS
+                and blobs.get(_FOUNDATION_SNAPSHOT) == _FOUNDATION_DRAFT_BLOB
+                and tracked.get(_FOUNDATION_SNAPSHOT) == _FOUNDATION_RECORDED_BLOB):
+            present.discard(_FOUNDATION_SNAPSHOT)
+        inherited = set().union(*(coverage_by_commit.get(parent, ()) for parent in parents))
+        removed = inherited - present
+        require(not removed, f"{commit}: incoming coverage snapshots were removed: {', '.join(sorted(removed))}")
+        for name in sorted(present):
+            require(blobs[name] == tracked[name], f"{name}: incoming snapshot bytes changed in history at {commit}")
+        for name in sorted(present - inherited):
+            require(name not in origins, f"{name}: incoming coverage snapshot has multiple original commits")
+            require(blobs.get(COVERAGE) == tracked[name],
+                    f"{name}: incoming snapshot was not the exact current ledger when recorded at {commit}")
+            origins[name] = commit
+        coverage_by_commit[commit] = present
+    missing = pending - origins.keys()
+    require(not missing, f"coverage snapshots lack an original recorded cutoff: {', '.join(sorted(missing))}")
+    return origins
+
+
 def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=None):
     head = _git(root, "rev-parse", "--verify", "HEAD").decode().strip()
     prior = _git_blobs(root, base, SNAPSHOTS)
@@ -339,22 +378,10 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
         require(_blob_hash(_exact_file(root / name), algorithm) == tracked[name],
                 f"{name}: incoming coverage differs from the committed snapshot")
 
+    snapshots = _incoming_snapshot_origins(root, base, head, tracked, pending)
     cache = {}
-    commits = _git(root, "log", "--full-history", "--topo-order", "--format=%H", f"{base}..{head}",
-                   "--", COVERAGE).decode().splitlines()
-    snapshots = {}
-    for commit in commits:
-        blobs = _git_blobs(root, commit, COVERAGE, SNAPSHOTS)
-        matches = sorted(name for name in pending if blobs.get(COVERAGE) == blobs.get(name) == tracked[name])
-        for name in matches:
-            snapshots[name] = commit
-            pending.remove(name)
-        if not pending:
-            break
-    require(not pending, f"coverage snapshots lack a matching historical current ledger: {', '.join(sorted(pending))}")
-
     verified = set()
-    for name, commit in reversed(snapshots.items()):
+    for name, commit in snapshots.items():
         archived = decode(_read_git_blobs(root, {name: tracked[name]}, cache)[name])
         require(archived["snapshot"] == name, f"{name}: invalid snapshot self-reference")
         source = archived["source_manifest"]

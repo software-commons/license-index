@@ -2,6 +2,7 @@
 
 from hashlib import sha256
 from pathlib import Path
+import subprocess
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import MagicMock, patch
@@ -9,7 +10,7 @@ from zipfile import ZipFile
 
 from tools.distribution import (
     CC_LEGAL_TEXTS, CC_RIGHTS, CC_RIGHTS_SHA256, COVERAGE, POLYFORM_RIGHTS, RIGHTS_DOCUMENTS, RIGHTS_MAX_BYTES,
-    bundle, read_rights_document, validate_texts,
+    bundle, read_rights_document, validate_discovery, validate_incoming_snapshots, validate_texts,
 )
 from tools.records import Catalog, DataError, NoRedirects, decode, encode
 
@@ -103,6 +104,85 @@ class DistributionTests(unittest.TestCase):
                 exported = decode(archive.read("catalog.json"))
                 self.assertEqual(exported["candidates"][0]["record"], candidate)
                 self.assertEqual(exported["coverage"], coverage)
+
+
+    def test_snapshot_restoration_replays_the_original_archival_inputs(self):
+        for original_matches in (False, True):
+            with self.subTest(original_matches=original_matches), TemporaryDirectory() as directory:
+                root = Path(directory).resolve()
+
+                def git(*arguments):
+                    return subprocess.run(["git", "-C", str(root), *arguments], check=True,
+                                          capture_output=True, text=True).stdout.strip()
+
+                def commit(message):
+                    git("add", "-A")
+                    git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                        "-c", "commit.gpgsign=false", "commit", "--quiet", "-m", message)
+                    return git("rev-parse", "HEAD")
+
+                def write(name, value):
+                    path = root / name
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_bytes(encode(value))
+
+                identity = "123456789abc4def8123456789abcdef"
+                candidate_path = f"registry/candidates/{identity[:2]}/{identity}.json"
+                source_path = "research/sources/spdx-3.29.0.json"
+                candidate = {
+                    "id": identity, "reason": "Synthetic restoration fixture", "history": [],
+                    "origin": {"kind": "publisher", "identifier": "Fixture", "name": "Fixture",
+                               "source": "https://example.invalid/fixture"},
+                }
+
+                def set_disposition(disposition):
+                    write(candidate_path, {**candidate, "disposition": disposition})
+
+                def snapshot(name, *, assessment=None):
+                    row = {"schema_version": "2.0.0", "cutoff": "2026-11-23", "method": "Synthetic coverage fixture",
+                           "source_manifest": source_path, "snapshot": f"registry/coverage/snapshots/{name}.json",
+                           "assessment": Catalog(root).coverage() if assessment is None else assessment}
+                    write(row["snapshot"], row)
+                    write(COVERAGE, row)
+                    return row
+
+                git("init", "--quiet")
+                git("config", "core.autocrlf", "false")
+                write(source_path, {"release": "3.29.0", "data_commit": "a" * 40, "xml_commit": "b" * 40,
+                                    "manifests": {}, "population": dict.fromkeys((
+                                        "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                                        "missing_text", "missing_template",
+                                    ), 0)})
+                set_disposition("excluded")
+                restored_assessment = Catalog(root).coverage()
+                set_disposition("unresolved")
+                base = commit("Set a synthetic discovery baseline")
+
+                if original_matches:
+                    set_disposition("excluded")
+                archived = snapshot("original", assessment=restored_assessment)
+                original = commit("Archive the first assessment")
+
+                set_disposition("unresolved")
+                snapshot("intervening")
+                commit("Select a second assessment")
+
+                set_disposition("excluded")
+                write(COVERAGE, archived)
+                commit("Restore the first assessment after the registry changes")
+                validate_discovery(Catalog(root))
+
+                if original_matches:
+                    replays = []
+
+                    def replay(catalog, _source, predecessor):
+                        replays.append((catalog.candidates[identity]["disposition"], predecessor))
+
+                    validate_incoming_snapshots(root, base, replay_spdx=replay)
+                    self.assertEqual(replays, [("excluded", base), ("unresolved", original)])
+                else:
+                    with self.assertRaisesRegex(DataError, f"original.json: coverage differs.*{original}"):
+                        validate_incoming_snapshots(root, base)
 
 
 class RightsTests(unittest.TestCase):
