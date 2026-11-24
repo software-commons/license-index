@@ -404,13 +404,15 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(set(self.directory.iterdir()), {self.output, referent})
 
     @unittest.skipUnless(os.name == "posix", "POSIX replacement descriptor")
-    def test_posix_force_holds_the_original_descriptor_through_exchange(self):
+    def test_posix_force_holds_both_file_descriptors_through_exchange(self):
         from tools.li_install import _exchange_posix
 
         self.output.write_bytes(b"original")
         original = self.output.stat()
         open_file = os.open
+        dup_file = os.dup
         target_fds = []
+        stage_fds = []
         exchanged = []
 
         def remember_target(name, flags, *args, **kwargs):
@@ -419,22 +421,32 @@ class InstallTests(unittest.TestCase):
                 target_fds.append(descriptor)
             return descriptor
 
+        def remember_stage(descriptor):
+            pinned = dup_file(descriptor)
+            stage_fds.append(pinned)
+            return pinned
+
         def verify_pin(stage, temporary, directory, name):
-            self.assertEqual(len(target_fds), 1)
-            descriptor = target_fds[0]
-            self.assertTrue(os.path.samestat(os.fstat(descriptor), original))
+            target_fd, = target_fds
+            stage_fd, = stage_fds
+            self.assertTrue(os.path.samestat(os.fstat(target_fd), original))
+            fresh = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+            self.assertTrue(os.path.samestat(os.fstat(stage_fd), fresh))
             _exchange_posix(stage, temporary, directory, name)
-            self.assertTrue(os.path.samestat(os.fstat(descriptor), original))
-            exchanged.append(descriptor)
+            self.assertTrue(os.path.samestat(os.fstat(target_fd), original))
+            self.assertTrue(os.path.samestat(os.fstat(stage_fd), fresh))
+            exchanged.append((target_fd, stage_fd))
 
         with (patch("tools.li_install.os.open", side_effect=remember_target),
+              patch("tools.li_install.os.dup", side_effect=remember_stage),
               patch("tools.li_install._exchange_posix", side_effect=verify_pin)):
             write_license(self.output, b"new license", force=True)
 
-        descriptor, = exchanged
-        with self.assertRaises(OSError) as closed:
-            os.fstat(descriptor)
-        self.assertEqual(closed.exception.errno, errno.EBADF)
+        descriptors, = exchanged
+        for descriptor in descriptors:
+            with self.assertRaises(OSError) as closed:
+                os.fstat(descriptor)
+            self.assertEqual(closed.exception.errno, errno.EBADF)
         self.assertEqual(self.output.read_bytes(), b"new license")
         self.assertEqual(list(self.directory.iterdir()), [self.output])
 

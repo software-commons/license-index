@@ -449,8 +449,19 @@ def _write_posix(output, content, force, dry_run, before_publish):
             )
             staged = None
             try:
+                stage_pin = None
+                if previous is not None:
+                    try:
+                        stage_pin = os.dup(descriptor)
+                    except BaseException:
+                        os.close(descriptor)
+                        raise
+                    handles.callback(os.close, stage_pin)
                 _complete_file(descriptor, content)
-                staged = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+                if stage_pin is not None:
+                    staged = os.fstat(stage_pin)
+                else:
+                    staged = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
                 if before_publish is not None:
                     before_publish(stat_target)
                 if previous is not None:
