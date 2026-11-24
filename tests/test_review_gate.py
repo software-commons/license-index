@@ -1084,13 +1084,27 @@ class ReviewGateTests(unittest.TestCase):
             root = Path(directory)
             reviewer = Reviewer(4001, 4002, root / "reviewer-home")
             original = {"HOME": "issuer-home", "CODEX_HOME": "issuer-codex-home", "GH_TOKEN": "fixture"}
+            catalog = root / "model-catalog.json"
+            catalog.write_bytes(b'{"models":[{"slug":"fixture"}]}')
+            catalog_digest = sha256(catalog.read_bytes()).hexdigest()
 
             def fake_run(*_args, **kwargs):
                 _args[2].write(b"fixture trace")
                 return 0
 
             with (patch.dict(os.environ, original, clear=True),
+                  patch("tools.review_gate.PROTECTED_MODEL_CATALOG", catalog),
+                  patch("tools.review_gate.PROTECTED_CATALOG_SHA256", catalog_digest),
+                  patch("tools.review_gate.trusted_executable"),
                   patch("tools.review_gate.capture_reviewer_streams", side_effect=fake_run) as process):
+                with patch("tools.review_gate.PROTECTED_CATALOG_SHA256", "0" * 64):
+                    with self.assertRaisesRegex(DataError, "catalog differs from the protected issuer pin"):
+                        launch_review(root / "codex", "fixture", root / "inputs", root / "schema.json", root,
+                                      reviewer=reviewer)
+                with self.assertRaisesRegex(DataError, "reviewer model differs from the pinned catalog"):
+                    launch_review(root / "codex", "other-model", root / "inputs", root / "schema.json", root,
+                                  reviewer=reviewer)
+                process.assert_not_called()
                 trace = launch_review(root / "codex", "fixture", root / "inputs", root / "schema.json", root,
                                       reviewer=reviewer)
             self.assertEqual(trace, b"fixture trace")
@@ -1107,6 +1121,7 @@ class ReviewGateTests(unittest.TestCase):
                             "multi_agent", "multi_agent_v2", "goals"}:
                 self.assertIn(("--disable", feature), zip(invocation.args[0], invocation.args[0][1:]))
             self.assertIn("tools.experimental_request_user_input.enabled=false", invocation.args[0])
+            self.assertIn(f"model_catalog_json={json.dumps(str(catalog))}", invocation.args[0])
             self.assertIn('default_permissions="review-inputs"', invocation.args[0])
             profile, = [arg for arg in invocation.args[0] if arg.startswith("permissions.review-inputs=")]
             permissions = tomllib.loads(profile)["permissions"]["review-inputs"]

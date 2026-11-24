@@ -66,6 +66,9 @@ EVIDENCE_PROOF_BATCH = 128
 APP_TOKEN = re.compile(r"ghs_[A-Za-z0-9._-]{36,}")
 RUNTIME_KEYS = {"audit_dir", "codex", "codex_sha256", "model", "reviewer_uid", "reviewer_gid", "reviewer_home"}
 
+PROTECTED_MODEL_CATALOG = Path("/opt/software-commons-review/bin/license-review-model-catalog-v40.json")
+PROTECTED_CATALOG_SHA256 = "e153d2a63030ea7017b4cf97d7fde3bda8cb21878a66592a5129362962e08810"
+
 
 @dataclass(frozen=True)
 class Reviewer:
@@ -242,6 +245,12 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
         arguments.extend(("--sandbox", "read-only"))
         environment = {key: value for key, value in os.environ.items() if key.upper() in REVIEWER_ENV}
     else:
+        trusted_executable(PROTECTED_MODEL_CATALOG)
+        catalog = PROTECTED_MODEL_CATALOG.read_bytes()
+        require(sha256(catalog).hexdigest() == PROTECTED_CATALOG_SHA256,
+                "Codex model catalog differs from the protected issuer pin")
+        require([entry["slug"] for entry in decode(catalog)["models"]] == [model],
+                "Codex reviewer model differs from the pinned catalog")
         input_key = json.dumps(str(input_dir), ensure_ascii=False)
         executable_key = json.dumps(str(codex), ensure_ascii=False)
         # On Linux, the sandbox invokes the same binary inside its namespace to set up seccomp.
@@ -251,7 +260,9 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
         arguments.extend((
             "--strict-config", "--ephemeral",
             *(flag for feature in PROTECTED_DISABLED_TOOLS for flag in ("--disable", feature)),
-            "-c", "tools.experimental_request_user_input.enabled=false", "-c", 'default_permissions="review-inputs"',
+            "-c", "tools.experimental_request_user_input.enabled=false",
+            "-c", f"model_catalog_json={json.dumps(str(PROTECTED_MODEL_CATALOG))}",
+            "-c", 'default_permissions="review-inputs"',
             "-c", permissions,
         ))
         environment = {"PATH": os.defpath, "HOME": str(reviewer.home), "CODEX_HOME": str(reviewer.home / ".codex")}
