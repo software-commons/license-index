@@ -149,6 +149,34 @@ class ReleaseStageTests(unittest.TestCase):
                 self.assertFalse(self.output.exists())
                 local.unlink()
 
+    def assert_protected_output_rejected(self, output):
+        with patch("tools.stage_release.collect") as collect:
+            with self.assertRaisesRegex(DataError, "outside the validated input directories"):
+                stage(self.catalog, self.root, output, base=self.base)
+        collect.assert_not_called()
+        self.validate.assert_not_called()
+        self.assertFalse(output.exists())
+
+    def test_output_under_validated_input_directory_is_rejected_before_collection(self):
+        for section in ("sces", "registry", "research", "legal-texts"):
+            with self.subTest(section=section):
+                parent = self.root / section / "staging"
+                parent.mkdir(parents=True)
+                self.assert_protected_output_rejected(parent / "candidate.zip")
+                self.assertEqual(list(parent.iterdir()), [])
+
+    def test_output_parent_symlink_into_validated_inputs_is_rejected_before_collection(self):
+        destination = self.root / "registry"
+        destination.mkdir()
+        with TemporaryDirectory() as outside:
+            alias = Path(outside).resolve() / "alias"
+            try:
+                alias.symlink_to(destination, target_is_directory=True)
+            except (OSError, NotImplementedError) as error:
+                self.skipTest(f"directory symlinks unavailable: {error}")
+            self.assert_protected_output_rejected(alias / "candidate.zip")
+            self.assertEqual(list(destination.iterdir()), [])
+
     def test_checked_views_cannot_be_replaced_with_a_different_payload(self):
         self.validate.return_value = (self.report, [{"claim": {"id": "different"}}])
         with self.assertRaisesRegex(DataError, "differ from the checked release"):

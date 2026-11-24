@@ -139,6 +139,10 @@ def collect(catalog, policy, base):
 def stage(catalog, policy, output, base):
     target = Path(output)
     require(valid_archive_name(target.name), "release staging requires a GitHub-safe ZIP filename")
+    root = catalog.root.resolve()
+    output_parent = target.parent.resolve()
+    require(not any(output_parent.is_relative_to(root / section) for section in DATA_DIRECTORIES),
+            "release archive must be staged outside the validated input directories")
     assets, metadata = collect(catalog, policy, base)
     archive = BytesIO()
     with ZipFile(archive, "w") as bundle:
