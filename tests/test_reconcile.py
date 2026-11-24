@@ -554,12 +554,14 @@ class ReconcileTests(unittest.TestCase):
 
     def test_generated_archive_member_changes_review_exact_claim_without_candidate_events(self):
         identifier = "GFDL-1.1-invariants-or-later"
-        prefix = "SPDXv3/v3jsonld/"
-        target = f"{prefix}{identifier}.json"
-        neighbor = f"{prefix}GFDL-1.1-invariants-only.json"
-        before = b'{"fixture":"retained upstream field"}\n'
+        targets = {
+            "generated": (f"SPDXv3/v3jsonld/{identifier}.json", b'{"fixture":"retained upstream field"}\n'),
+            "jsonld": (f"jsonld/{identifier}.jsonld", b'{"@id":"https://example.invalid/license"}\n'),
+            "rdfxml": (f"rdfxml/{identifier}.rdf", b'<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>\n'),
+        }
+        neighbor = "SPDXv3/v3jsonld/GFDL-1.1-invariants-only.json"
         nearby = b'{"fixture":"different SPDX variant"}\n'
-        fixture(self.archive, licenses=(identifier,), extra_members=((target, before), (neighbor, nearby)))
+        fixture(self.archive, licenses=(identifier,), extra_members=(*targets.values(), (neighbor, nearby)))
         reconcile.prepare_archive(self.repo, self.repo, self.archive, "3.29.0", DATA, XML, initial=True)
 
         def record(kind, name, revision, **fields):
@@ -570,26 +572,31 @@ class ReconcileTests(unittest.TestCase):
             return ref
 
         raw = f"https://raw.githubusercontent.com/spdx/license-list-data/{DATA}/"
-        for revision, member, payload in ((1, target, before), (2, neighbor, nearby)):
-            source = record("source", "gfdl-generated", revision, locator=raw + member,
-                            captured_sha256=sha256(payload).hexdigest(), release=DATA)
-            claim = record("claim", "gfdl-membership", revision)
-            record("dependency", "gfdl-source-basis", revision, basis=source, claim=claim)
-            record("verification", "gfdl-source-review", revision, claim=claim)
-
         expected_paths = {
-            "sces/records/source/gfdl-generated--1.json",
-            "sces/records/dependency/gfdl-source-basis--1.json",
             "sces/records/claim/gfdl-membership--1.json",
             "sces/records/verification/gfdl-source-review--1.json",
         }
+        claim = record("claim", "gfdl-membership", 1)
+        record("verification", "gfdl-source-review", 1, claim=claim)
+        for name, (member, payload) in targets.items():
+            source = record("source", f"gfdl-{name}", 1, locator=raw + member,
+                            captured_sha256=sha256(payload).hexdigest(), release=DATA)
+            record("dependency", f"gfdl-{name}-basis", 1, basis=source, claim=claim)
+            expected_paths.update({f"sces/records/source/gfdl-{name}--1.json",
+                                   f"sces/records/dependency/gfdl-{name}-basis--1.json"})
+
+        other_source = record("source", "gfdl-generated", 2, locator=raw + neighbor,
+                              captured_sha256=sha256(nearby).hexdigest(), release=DATA)
+        other_claim = record("claim", "gfdl-membership", 2)
+        record("dependency", "gfdl-generated-basis", 2, basis=other_source, claim=other_claim)
+        record("verification", "gfdl-source-review", 2, claim=other_claim)
+
         upstream = {"release": "3.29.0", "data_commit": NEXT, "xml_commit": XML,
                     "archive_url": f"https://codeload.github.com/spdx/license-list-data/tar.gz/{NEXT}"}
-        for status, incoming in (("identical", before), ("changed", b'{"fixture":"revised upstream field"}\n'),
-                                 ("removed", None)):
+        for status, suffix in (("identical", b""), ("changed", b"\n"), ("removed", None)):
             members = [(neighbor, nearby)]
-            if incoming is not None:
-                members.append((target, incoming))
+            if suffix is not None:
+                members.extend((member, payload + suffix) for member, payload in targets.values())
             fixture(self.archive, data=NEXT, licenses=(identifier,), extra_members=members)
             archive_bytes = self.archive.read_bytes()
             digest = sha256(archive_bytes).hexdigest()

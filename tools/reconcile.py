@@ -25,10 +25,7 @@ SOURCE_REPOSITORY = "spdx/license-list-XML"
 DATA_LOCATORS = (f"https://raw.githubusercontent.com/{DATA_REPOSITORY}/",
                  f"https://github.com/{DATA_REPOSITORY}/blob/")
 CATALOG_PATHS = ("json/", "text/", "template/", "license-list-XML/")
-GENERATED_PATH = re.compile(
-    r"(?:json|text|template|license-list-XML|SPDXv3)/"
-    r"(?:[A-Za-z0-9][A-Za-z0-9._+-]*/)*[A-Za-z0-9][A-Za-z0-9._+-]*\Z"
-)
+ARTIFACT_URI_PATH = re.compile(r"(?:[A-Za-z0-9._~!$&'()*+,;=:@/-]|%[0-9A-Fa-f]{2})+\Z")
 KINDS = {
     "license": ("licenses", "licenseId", "details"),
     "exception": ("exceptions", "licenseExceptionId", "exceptions"),
@@ -411,13 +408,14 @@ def generated_artifact(locator):
         if not locator.startswith(base):
             continue
         revision, _, path = locator[len(base):].partition("/")
-        if not COMMIT.fullmatch(revision):
+        if not COMMIT.fullmatch(revision) or not ARTIFACT_URI_PATH.fullmatch(path):
             return None
         try:
             decoded = unquote(path, errors="strict")
         except UnicodeError:
             return None
-        if GENERATED_PATH.fullmatch(decoded) and path in (decoded, quote(decoded)):
+        if (decoded.isprintable() and "\\" not in decoded and decoded.count("/") == path.count("/")
+                and all(part not in ("", ".", "..") for part in decoded.split("/"))):
             return revision, decoded
     return None
 
