@@ -11,6 +11,8 @@ Software Commons License Index owns records for software licensing instruments, 
 
 Discovery uses `registry/candidates/<shard>/<id>.json`. Accepted entities use `registry/entities/<shard>/<id>.json`. Both allocate independent UUIDv4 values represented as 32 lowercase hexadecimal characters, sharded by the first two characters. A discovery ID stays attached to its original lead. An accepted entity needs a new opaque ID and an exact independently supported identity claim. Keep the candidate as a provenance link. Names, editions, classifications, SPDX identifiers, aliases, and relationships never determine a file path.
 
+A retained publisher lead keeps its origin kind, exact identifier, and any already recorded revision. Enrich a lead by appending the previous origin to its history and recording the more precise source or description. Allocate a separate discovery ID for a different lead.
+
 Accept or merge identities only with qualified evidence for the instrument boundary, authority, edition, and applicable external identifiers. Clarify whether a deprecated SPDX identifier denotes a distinct text, an expression, or an identifier reassignment. Preserve earlier identifiers and decisions. A candidate lookup returns the upstream assertion and identifies its status. Factual canonical attributes require exact SCES claim revisions.
 
 SPDX governs membership and identifiers in its own list. License publishers govern their instruments and can issue guidance. OSI and FSF own their respective approval and classification decisions. A source reference from SPDX is a discovery lead. Membership, source availability, approval, redistribution rights, and installation eligibility require separate assessments.

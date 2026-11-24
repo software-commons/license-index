@@ -514,15 +514,22 @@ def run(args, github, *, token_input=None, publisher=write_check):
         if previous:
             with TemporaryDirectory(prefix="head-", dir=state) as directory:
                 head_tree = capture_admission_head(admission_identity, Path(directory))
+            proof = {"tree": head_tree, "phase": "queue-admission"}
+            if pinned_pull is not None:
+                with TemporaryDirectory(prefix="test-merge-", dir=state) as directory:
+                    pinned_tree = capture_candidate_tree(pinned_pull, Path(directory), linear_head=True)
+                proof.update(base=pinned_pull.base, test_merge=pinned_pull.merge, test_merge_tree=pinned_tree)
 
             def verify_admission_target():
                 require(github.get_admission_head(args.pull) == admission_identity,
                         "live admission head changed before revocation")
                 if pinned_pull is not None:
                     require(github.get_pull(args.pull) == pinned_pull, "live test merge changed before revocation")
+                    with TemporaryDirectory(prefix="test-merge-", dir=state) as directory:
+                        require(capture_candidate_tree(pinned_pull, Path(directory), linear_head=True) == pinned_tree,
+                                "live test merge tree changed before revocation")
 
-            installation_token = retire_previous(admission_identity, admission_identity.head, previous,
-                                                 {"tree": head_tree, "phase": "queue-admission"},
+            installation_token = retire_previous(admission_identity, admission_identity.head, previous, proof,
                                                  verify_admission_target)
         if revoke_only:
             return denial_result(admission_identity.head, previous)

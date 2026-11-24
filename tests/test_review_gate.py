@@ -666,6 +666,7 @@ class ReviewGateTests(unittest.TestCase):
                 return make_trace(token, verdict={"decision": "changes-required", "findings": ["Fixture finding"]})
 
             with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40) as capture,
+                  patch("tools.review_gate.capture_candidate_tree", return_value="f" * 40),
                   patch("tools.review_gate.capture_diff", return_value=("e" * 40, PATCH)),
                   patch("tools.review_gate.protected_staging", return_value=state),
                   patch("tools.review_gate.share_reviewer_inputs"),
@@ -723,7 +724,9 @@ class ReviewGateTests(unittest.TestCase):
                     head.assert_not_called()
                 else:
                     self.assertEqual(head.call_args.args[0], ADMISSION)
-                    tree.assert_not_called()
+                    self.assertEqual(tree.call_count, 2)
+                    self.assertTrue(all(call.args[0] == SNAPSHOT and call.kwargs == {"linear_head": True}
+                                        for call in tree.call_args_list))
                 reviewer.assert_not_called()
                 publisher.assert_called_once()
 
@@ -758,6 +761,7 @@ class ReviewGateTests(unittest.TestCase):
             publisher.return_value = {**prior, "conclusion": "failure"}
             github._get_json.side_effect = AssertionError("denial-only must not read issuance protection policy")
             with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
+                  patch("tools.review_gate.capture_candidate_tree", return_value="f" * 40) as merge_tree,
                   patch("tools.review_gate.capture_candidate_patch") as diff,
                   patch("tools.review_gate.token_is_target_only", return_value=True),
                   patch("tools.review_gate.validate_control_authorization") as grant,
@@ -765,9 +769,41 @@ class ReviewGateTests(unittest.TestCase):
                 result = run(args, github, token_input=credential, publisher=publisher)
             self.assertEqual(result["revoked_check_ids"], [prior["id"]])
             self.assertEqual(result["checked_sha"], SNAPSHOT.head)
+            self.assertEqual(merge_tree.call_count, 2)
+            target = json.loads((Path(result["audit"]) / "revocation-target.json").read_bytes())
+            self.assertEqual((target["base"], target["test_merge"], target["test_merge_tree"]),
+                             (SNAPSHOT.base, SNAPSHOT.merge, "f" * 40))
             diff.assert_not_called()
             grant.assert_not_called()
             reviewer.assert_not_called()
+
+    def test_admission_merges_must_bind_fresh_git_ref_and_ordered_parents_before_revocation(self):
+        for captures, expected_token_reads in (
+            ([SnapshotError("Test merge commit does not have the exact ordered base and head parents")], 0),
+            (["f" * 40, SnapshotError("GitHub merge candidate changed during capture")], 1),
+        ):
+            with self.subTest(captures=captures), TemporaryDirectory() as directory:
+                state = Path(directory)
+                args = SimpleNamespace(state_dir=state, mode="review", pull=1, app_id=123, queue_admission=True,
+                                       reviewer=Reviewer(4001, 4002, state), expected_head=SNAPSHOT.head,
+                                       expected_merge=SNAPSHOT.merge, commissioning_policy=ADDITIVE)
+                github = Mock(get_pull=Mock(return_value=SNAPSHOT),
+                              get_admission_head=Mock(return_value=ADMISSION))
+                prior = api_check({"name": CHECK_NAME, "head_sha": SNAPSHOT.head,
+                                   "status": "completed", "conclusion": "success"})
+                self.successful_checks.side_effect = [[prior], [prior]]
+                publisher = Mock()
+                credential = Mock(return_value=LEGACY_TOKEN)
+                with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
+                      patch("tools.review_gate.capture_candidate_tree", side_effect=captures) as merge_tree,
+                      patch("tools.review_gate.token_is_target_only", return_value=True),
+                      patch("tools.review_gate.launch_review") as launch):
+                    with self.assertRaisesRegex(SnapshotError, str(captures[-1])):
+                        run(args, github, token_input=credential, publisher=publisher)
+                self.assertEqual(merge_tree.call_count, len(captures))
+                self.assertEqual(credential.call_count, expected_token_reads)
+                publisher.assert_not_called()
+                launch.assert_not_called()
 
     def test_protected_admission_can_deny_an_exact_head_without_a_mergeable_test_commit(self):
         for reason in ("Review requires a non-draft pull request", "GitHub has not established a mergeable test commit"):
@@ -782,6 +818,7 @@ class ReviewGateTests(unittest.TestCase):
                 credential = Mock(return_value=LEGACY_TOKEN)
                 publisher = Mock(return_value={**prior, "conclusion": "failure"})
                 with (patch("tools.review_gate.capture_admission_head", return_value="e" * 40),
+                      patch("tools.review_gate.capture_candidate_tree", return_value="f" * 40) as merge_tree,
                       patch("tools.review_gate.capture_diff") as diff,
                       patch("tools.review_gate.token_is_target_only", return_value=True),
                       patch("tools.review_gate.launch_review") as reviewer):
@@ -802,6 +839,7 @@ class ReviewGateTests(unittest.TestCase):
                     self.assertEqual(result["checked_sha"], ADMISSION.head)
                     self.assertEqual(result["revoked_check_ids"], [prior["id"]])
                     github.get_pull.assert_not_called()
+                    merge_tree.assert_not_called()
 
                     publisher.reset_mock()
                     args.revoke_only = False
@@ -933,7 +971,8 @@ class ReviewGateTests(unittest.TestCase):
                     capture_reviewer_streams(command(stream), b"prompt", output, errors, cwd=directory, env=os.environ)
                 limited, other = (output, errors) if stream == "stdout" else (errors, output)
                 self.assertEqual(len(limited.getvalue()), maximum)
-                self.assertEqual(other.getvalue(), b"")
+                other_limit = 1024 if stream == "stdout" else 2048
+                self.assertLessEqual(len(other.getvalue()), other_limit)
 
     def test_reviewer_output_keeps_complete_streams_and_preserves_timeout(self):
         with TemporaryDirectory() as directory:

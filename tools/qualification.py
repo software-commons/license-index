@@ -385,17 +385,44 @@ def qualified(catalog, policy: Path | None, *, base: str | None = None) -> tuple
     return report, _bind_payload(catalog.entities, payload)
 
 
+def _check_publisher_history(root, previous, candidates, algorithm):
+    for name, oid in previous.items():
+        if _blob_hash(_exact_file(root / name), algorithm) == oid:
+            continue
+        old = decode(_git(root, "cat-file", "blob", oid))
+        current = candidates[name]
+        previous_origin, origin = old["origin"], current["origin"]
+        if previous_origin["kind"] != "publisher" and origin["kind"] != "publisher":
+            continue
+        require(previous_origin["kind"] == origin["kind"]
+                and previous_origin["identifier"] == origin["identifier"]
+                and ("revision" not in previous_origin or previous_origin["revision"] == origin.get("revision")),
+                f"{name}: cannot reassign a permanent publisher lead")
+        history, inherited = current["history"], old["history"]
+        require(history[:len(inherited)] == inherited, f"{name}: publisher lead history must remain append-only")
+        if previous_origin != origin:
+            require(any(isinstance(note, dict) and note.get("origin") == previous_origin
+                        for note in history[len(inherited):]),
+                    f"{name}: publisher lead origin enrichment must retain the previous origin in history")
+
+
 def check_history(catalog, base: str) -> None:
-    """Keep permanent paths, earlier coverage snapshots and their source manifests."""
+    """Keep permanent paths and leads, earlier coverage snapshots and source manifests."""
     root = catalog.root.resolve()
     _validate_entities(catalog.entities)
-    for section, records in (("entities", catalog.entities), ("candidates", catalog.candidates)):
-        old = _git_blobs(root, base, f"registry/{section}")
-        require(old.keys() <= _record_paths(section, records).keys(),
-                f"prior registry/{section} records must remain at their permanent paths")
+    entities = _git_blobs(root, base, "registry/entities")
+    require(entities.keys() <= _record_paths("entities", catalog.entities).keys(),
+            "prior registry/entities records must remain at their permanent paths")
+    previous_candidates = _git_blobs(root, base, "registry/candidates")
+    candidates = _record_paths("candidates", catalog.candidates)
+    require(previous_candidates.keys() <= candidates.keys(),
+            "prior registry/candidates records must remain at their permanent paths")
     prior = _git_blobs(root, base, "registry/coverage/snapshots")
+    if not prior and not previous_candidates:
+        return
+    algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
+    _check_publisher_history(root, previous_candidates, candidates, algorithm)
     if prior:
-        algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
         sources = _git_blobs(root, base, "research/sources")
         referenced = set()
         for name, oid in prior.items():

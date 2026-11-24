@@ -201,14 +201,20 @@ class GitHistoryTests(unittest.TestCase):
         self.git("config", "core.autocrlf", "false")
         self.row = entity()
         self.path = self.write(f"registry/entities/{MIT[:2]}/{MIT}.json", self.row)
-        self.write(f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json", {"id": CANDIDATE})
+        self.lead = {"id": CANDIDATE, "disposition": "unresolved", "reason": "Publisher fixture",
+                     "origin": {"kind": "publisher", "identifier": "Fixture Field Terms 1.0",
+                                "name": "Fixture Field Terms", "revision": "1.0",
+                                "source": "https://example.invalid/terms"},
+                     "history": [{"reason": "Preserved discovery note"}]}
+        self.lead_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
+        self.write(self.lead_path, self.lead)
         self.source = self.write("research/sources/first.json", {"source": "first"})
         self.snapshot = self.write("registry/coverage/snapshots/first.json", {
             "snapshot": "first", "source_manifest": "research/sources/first.json",
         })
         self.commit("Synthetic domain snapshot")
         self.base = self.git("rev-parse", "HEAD").strip()
-        self.catalog = SimpleNamespace(root=self.root, entities={MIT: self.row}, candidates={CANDIDATE: {}})
+        self.catalog = Catalog(self.root)
 
     def git(self, *arguments):
         return subprocess.run(["git", "-C", str(self.root), *arguments], check=True,
@@ -233,6 +239,33 @@ class GitHistoryTests(unittest.TestCase):
         self.catalog.entities.clear()
         with self.assertRaisesRegex(DataError, "entities"):
             check_history(self.catalog, self.base)
+
+    def test_permanent_publisher_lead_cannot_be_reassigned(self):
+        for change in (dict(identifier="Another publisher's terms", source="https://elsewhere.invalid/terms"),
+                       dict(revision="2.0"),
+                       dict(kind="spdx", identifier="MIT", source=SOURCE, list_kind="license", deprecated=False)):
+            with self.subTest(change=change):
+                current = {**self.lead, "origin": {**self.lead["origin"], **change},
+                           "history": [*self.lead["history"], {"origin": self.lead["origin"]}]}
+                self.write(self.lead_path, current)
+                with self.assertRaisesRegex(DataError, "cannot reassign a permanent publisher lead"):
+                    check_history(Catalog(self.root), self.base)
+
+    def test_publisher_lead_allows_enrichment_and_new_leads_with_preserved_provenance(self):
+        origin = {**self.lead["origin"], "name": "Exact title of Fixture Field Terms",
+                  "source": "https://example.invalid/terms/1.0.txt"}
+        current = {**self.lead, "origin": origin, "reason": "Pinned exact publisher text",
+                   "history": [*self.lead["history"], {"origin": self.lead["origin"], "reason": self.lead["reason"]}]}
+        other = {**self.lead, "id": OTHER, "origin": {**origin, "identifier": "Fixture Field Terms 2.0", "revision": "2.0"}}
+        self.write(f"registry/candidates/{OTHER[:2]}/{OTHER}.json", other)
+        self.write(self.lead_path, current)
+        check_history(Catalog(self.root), self.base)
+        for history, message in ((self.lead["history"], "must retain the previous origin"),
+                                 (current["history"][1:], "history must remain append-only")):
+            with self.subTest(history=history):
+                self.write(self.lead_path, {**current, "history": history})
+                with self.assertRaisesRegex(DataError, message):
+                    check_history(Catalog(self.root), self.base)
 
     def test_history_preserves_snapshots_byte_for_byte(self):
         self.snapshot.write_bytes(self.snapshot.read_bytes() + b"\n")
