@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 0,
+      "accepted_entities": 1,
       "beyond_spdx_dispositions": {
         "excluded": 1,
         "non-license": 1,
@@ -16,9 +16,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
+        "accepted": 1,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 838
+        "unresolved": 837
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -84,8 +85,8 @@
       "recorded_claim_revisions": 120,
       "recorded_independently_reviewed_claims": 99,
       "recorded_invalidated_claim_revisions": 21,
-      "selected_claims": 0,
-      "status": "development"
+      "selected_claims": 8,
+      "status": "qualified-selection"
     },
     "research": {
       "dimension_assessments_sha256": "eeba8532b9ef820748f001eb5025fc49f400bfb10c31a62adca36bef7ef280dd",
@@ -107,9 +108,9 @@
   "cutoff": "2026-11-23",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "8bcffdcad019f3f234b4608fb90df5035bc9c3de",
-    "sha256": "a10291e3b21cca9369f915bf0769faa2a5f50fd6f2dfbd599ec17b83fa0bdec5",
-    "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-depth.json"
+    "commit": "71f9b3eda071bffbe8dd768f1d07cc966d5f7875",
+    "sha256": "c32a9c1b3d8db03bb24c30e3bf02cad01a126b2c88353fe44ed99cb74ac3993d",
+    "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-scope.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -131,10 +132,11 @@
     "reconciliation_choices": [
       "Keep exact SPDX identifiers and deprecated entries distinct, preserving upstream replacement advice as provenance.",
       "Keep publisher leads with their individual dispositions and reasons. The blank Countdown form is excluded as a standalone license.",
-      "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence."
+      "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence.",
+      "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-research-scope.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-24-mit-reference-initial-selection.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
