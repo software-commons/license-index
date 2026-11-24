@@ -28,6 +28,7 @@ COVERAGE_VERSIONS = (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION_V2, COVERAGE_VERS
 DIMENSION_STATES = {"permission", "condition", "restriction", "documented", "unresolved",
                     "inapplicable", "explicit-absence"}
 _SCES_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
+_SCES_COMPLETION = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
 _SCES_COVERAGE_KINDS = ("claim", "disposition", "source", "verification")
 
 
@@ -90,14 +91,15 @@ def _sces_reference(value):
     return None
 
 
-def _supported_independent_review(target, disposition, claim_bytes, verifications):
+def _supported_independent_review(target, disposition, claim_bytes, verifications, latest_verifications):
     if disposition.get("evidence") != "supported" or disposition.get("verification") != "independently-reviewed":
         return False
     claim_digest = sha256(claim_bytes).hexdigest()
     executions = set()
     for field, phase in (("research", "research"), ("review", "independent-review")):
         ref = _sces_reference(disposition.get(field))
-        if ref not in verifications:
+        current = latest_verifications.get((target, phase))
+        if current is None or ref is None or ref != current[1]:
             return False
         review, _ = verifications[ref]
         run = review.get("run")
@@ -264,6 +266,22 @@ class Catalog:
         claims = self._sces_records("claim")
         dispositions = self._sces_records("disposition")
         verifications = self._sces_records("verification")
+        latest_verifications = {}
+        for reference, (row, _) in verifications.items():
+            target = _sces_reference(row.get("claim"))
+            phase = row.get("phase")
+            run = row.get("run")
+            completed = run.get("completed") if isinstance(run, dict) else None
+            require(target in claims and phase in ("research", "independent-review")
+                    and isinstance(completed, str) and _SCES_COMPLETION.fullmatch(completed),
+                    f"{row['id']}: invalid SCES coverage verification completion")
+            slot = target, phase
+            previous = latest_verifications.get(slot)
+            if previous is None or completed > previous[0]:
+                latest_verifications[slot] = completed, reference
+            elif completed == previous[0]:
+                # SCES does not select a review when multiple executions tie at the latest completion.
+                latest_verifications[slot] = completed, None
         latest = {}
         for row, _ in dispositions.values():
             target = _sces_reference(row.get("target"))
@@ -281,7 +299,7 @@ class Catalog:
         return {
             "recorded_claim_revisions": len(claims),
             "recorded_independently_reviewed_claims": sum(
-                _supported_independent_review(target, disposition, claims[target][1], verifications)
+                _supported_independent_review(target, disposition, claims[target][1], verifications, latest_verifications)
                 for target, disposition in latest.items()
             ),
             "recorded_invalidated_claim_revisions": sum(

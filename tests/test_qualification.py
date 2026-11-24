@@ -1022,11 +1022,13 @@ class GitHistoryTests(unittest.TestCase):
         claim = {"kind": "claim", "id": "fixture", "revision": 1}
         record = self.write("sces/records/claim/fixture--1.json", claim)
         review_refs = {}
+        completed = "2026-01-01T00:00:00Z"
         for field, phase in (("research", "research"), ("review", "independent-review")):
             ref = {"kind": "verification", "id": f"fixture-{field}", "revision": 1}
             self.write(f"sces/records/verification/fixture-{field}--1.json", {
                 **ref, "claim": claim, "claim_sha256": sha256(record.read_bytes()).hexdigest(),
-                "phase": phase, "run": {"execution": f"execution-{field}"}, "conclusion": "supported",
+                "phase": phase, "run": {"execution": f"execution-{field}", "completed": completed},
+                "conclusion": "supported",
             })
             review_refs[field] = ref
         disposition = {"kind": "disposition", "id": "fixture-status", "revision": 1, "target": claim,
@@ -1040,6 +1042,23 @@ class GitHistoryTests(unittest.TestCase):
         record.write_bytes(original + b"\n")
         self.assertEqual(Catalog(self.root).coverage()["qualification"]["recorded_independently_reviewed_claims"], 0)
         record.write_bytes(original)
+
+        later_path = "sces/records/verification/fixture-review--2.json"
+        later_review = {
+            **review_refs["review"], "revision": 2, "claim": claim,
+            "claim_sha256": sha256(original).hexdigest(), "phase": "independent-review",
+            "run": {"execution": "follow-up-review", "completed": "2026-01-02T00:00:00Z"},
+            "conclusion": "insufficient",
+        }
+        self.write(later_path, later_review)
+        counters = Catalog(self.root).coverage()["qualification"]
+        self.assertEqual((counters["recorded_independently_reviewed_claims"],
+                          counters["recorded_invalidated_claim_revisions"]), (0, 0))
+
+        later_review["conclusion"] = "supported"
+        later_review["run"]["completed"] = completed
+        self.write(later_path, later_review)
+        self.assertEqual(Catalog(self.root).coverage()["qualification"]["recorded_independently_reviewed_claims"], 0)
 
         self.write("sces/records/disposition/fixture-status--2.json", {
             **disposition, "revision": 2, "evidence": "insufficient", "verification": "invalidated",
