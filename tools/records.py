@@ -201,10 +201,10 @@ class Catalog:
         key = value.casefold()
         if key in self.candidates:
             return self.candidates[key]
-        if key in self.spdx:
-            return self.spdx[key]
         matches = [row for row in self.non_spdx if row["origin"]["identifier"].casefold() == key]
-        require(len(matches) <= 1, f"ambiguous candidate identifier: {value}")
+        if key in self.spdx:
+            matches.append(self.spdx[key])
+        require(len(matches) <= 1, f"ambiguous candidate identifier: {value}. Use the candidate UUID.")
         return matches[0] if matches else None
 
     def resolve(self, value):

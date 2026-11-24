@@ -120,6 +120,21 @@ class ToolTests(unittest.TestCase):
         self.assertGreater(len(rows), 1)
         self.assertTrue(all("[discovery candidate, " in row for row in rows))
 
+    def test_shared_spdx_and_publisher_identifier_requires_a_candidate_uuid(self):
+        catalog = Catalog(ROOT)
+        spdx = catalog.resolve("MIT")
+        publisher = next(row for row in catalog.non_spdx if row["origin"]["kind"] == "publisher")
+        colliding = {**publisher, "origin": {**publisher["origin"], "identifier": "mit"}}
+        catalog.candidates[colliding["id"]] = colliding
+        catalog.non_spdx[catalog.non_spdx.index(publisher)] = colliding
+
+        with self.assertRaisesRegex(DataError, "ambiguous candidate identifier: MIT"):
+            catalog.resolve("MIT")
+        with self.assertRaisesRegex(DataError, "ambiguous candidate identifier: mit"):
+            install_target(catalog, "mit")
+        self.assertIs(catalog.resolve(colliding["id"]), colliding)
+        self.assertIs(install_target(catalog, spdx["id"]), spdx)
+
     def test_coverage_binds_individual_dimension_assessments(self):
         catalog = Catalog(ROOT)
         permissions = {"state": "unresolved", "text": "Fixture permission", "sources": []}

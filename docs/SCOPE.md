@@ -17,6 +17,8 @@ A retained publisher lead keeps its origin kind, exact identifier, and any alrea
 
 Accept or merge identities only with qualified evidence for the instrument boundary, authority, edition, and applicable external identifiers. Clarify whether a deprecated SPDX identifier denotes a distinct text, an expression, or an identifier reassignment. Preserve earlier identifiers and decisions. A candidate lookup returns the upstream assertion and identifies its status. Factual canonical attributes require exact SCES claim revisions.
 
+Discovery lookup matches case-insensitive identifiers across SPDX and publisher leads. When an identifier matches multiple records, find the exact candidate UUID with `license-index --json search QUERY` and use it for lookup or installation.
+
 SPDX governs membership and identifiers in its own list. License publishers govern their instruments and can issue guidance. OSI and FSF own their respective approval and classification decisions. A source reference from SPDX is a discovery lead. Membership, source availability, approval, redistribution rights, and installation eligibility require separate assessments.
 
 The index owns its data model and crosswalk decisions. External Software Commons targets specify the owning repository in `index`, the owner's exact canonical identifier in `id`, and an immutable `revision`. Resolve a target using the owning repository's published schema and record layout.
