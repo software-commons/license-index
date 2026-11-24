@@ -153,8 +153,13 @@ class ReconcileTests(unittest.TestCase):
 
         git("init", "--quiet")
         git("config", "core.autocrlf", "false")
+        git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+            "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m", "Protected baseline")
+        protected = git("rev-parse", "HEAD")
         fixture(self.archive, licenses=("Example", "Removed"))
         first, source = self.read()
+        first_archive = self.root / "first.tar.gz"
+        first_archive.write_bytes(self.archive.read_bytes())
         reconcile.prepare(self.repo, self.repo, first, source, initial=True)
         snapshot("3.29.0")
         base = git("rev-parse", "HEAD")
@@ -175,10 +180,63 @@ class ReconcileTests(unittest.TestCase):
         self.assertEqual(current.spdx["example"]["origin"]["source"], DATA)
         self.assertEqual(validate(current, base=base, spdx_archive=self.archive), (None, []))
 
+        def download(pin, destination):
+            original = first_archive if pin["data_commit"] == DATA else self.archive
+            destination.write_bytes(original.read_bytes())
+
+        with (patch.object(spdx_replay, "resolve_upstream_ref", side_effect=lambda repo, commit, *_: commit),
+              patch.object(spdx_replay, "resolve_release_tag", side_effect=(XML, NEXT)),
+              patch.object(spdx_replay, "fetch_archive", side_effect=download)):
+            self.assertEqual(validate(current, base=protected, fetch_spdx_archive=True), (None, []))
+        # The first exact archive is unavailable to a one-archive offline invocation.
+        with self.assertRaisesRegex(DataError, "3.30.0.json: SPDX replay inventory mismatch"):
+            validate(current, base=protected, spdx_archive=self.archive)
+
         prior = self.repo / "research/sources/spdx-3.29.0.json"
         prior.unlink()
         with self.assertRaisesRegex(DataError, "unregistered retained SPDX source pin"):
             validate_discovery(current)
+
+    def test_local_archive_replay_preserves_identity_from_an_incoming_predecessor(self):
+        def git(*args):
+            return subprocess.run(["git", "-C", str(self.repo), *args], check=True,
+                                  capture_output=True, text=True).stdout.strip()
+
+        def commit(label):
+            git("add", "-A")
+            git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m", label)
+
+        def snapshot(label):
+            archive = f"registry/coverage/snapshots/{label}.json"
+            saved = {"source_manifest": "research/sources/spdx-3.29.0.json",
+                     "snapshot": archive, "assessment": Catalog(self.repo).coverage()}
+            (self.repo / archive).parent.mkdir(parents=True, exist_ok=True)
+            for name in (archive, COVERAGE):
+                (self.repo / name).write_bytes(encode(saved))
+            commit(label)
+
+        git("init", "--quiet")
+        git("config", "core.autocrlf", "false")
+        commit("Protected baseline")
+        base = git("rev-parse", "HEAD")
+        fixture(self.archive)
+        origins, source = self.read()
+        reconcile.prepare(self.repo, self.repo, origins, source, initial=True)
+        snapshot("first")
+        snapshot("second")
+        self.assertEqual(validate(Catalog(self.repo), base=base, spdx_archive=self.archive), (None, []))
+
+        original = Catalog(self.repo).spdx["example"]
+        candidate_path = self.repo / "registry/candidates" / original["id"][:2] / f"{original['id']}.json"
+        candidate_path.unlink()
+        different = "123456789abc4def8123456789abcdef"
+        path = self.repo / "registry/candidates" / different[:2] / f"{different}.json"
+        path.parent.mkdir(exist_ok=True)
+        path.write_bytes(encode({**original, "id": different}))
+        snapshot("untrusted")
+        with self.assertRaisesRegex(DataError, "untrusted.json: SPDX replay candidate ID mismatch"):
+            validate(Catalog(self.repo), base=base, spdx_archive=self.archive)
 
     def test_archive_replay_requires_exact_committed_acquisition(self):
         fixture(self.archive)

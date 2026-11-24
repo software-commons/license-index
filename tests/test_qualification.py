@@ -352,7 +352,7 @@ class GitHistoryTests(unittest.TestCase):
             validate(Catalog(self.root), base=base, fetch_spdx_archive=True)
             calls = replay.call_args_list
             self.assertEqual([call.args[1:] for call in calls],
-                             [(first_pin, base), (second_pin, first), (second_pin, second)])
+                             [(first_pin, base), (second_pin, first), (second_pin, first)])
             self.assertEqual([call.kwargs.get("historical", False) for call in calls], [True, True, False])
             archive_cache = calls[0].kwargs["archives"]
             self.assertTrue(all(call.kwargs["archives"] is archive_cache for call in calls))
@@ -360,6 +360,16 @@ class GitHistoryTests(unittest.TestCase):
         with patch("tools.spdx_replay.replay_download", side_effect=DataError("SPDX replay origin mismatch")) as replay:
             with self.assertRaisesRegex(DataError, "3.28.0.json: SPDX replay origin mismatch"):
                 validate(Catalog(self.root), base=base, fetch_spdx_archive=True)
+            replay.assert_called_once()
+
+        self.write("fixture.json", {"change": "after the verified archive"})
+        self.commit("Keep the current archive beside unrelated work")
+        with patch("tools.spdx_replay.replay_download") as replay:
+            validate(Catalog(self.root), base=base, fetch_spdx_archive=True)
+            self.assertEqual(replay.call_args.args[1:], (second_pin, second))
+            replay.reset_mock()
+            validate(Catalog(self.root), fetch_spdx_archive=True)
+            self.assertEqual(replay.call_args.args[1:], (second_pin, None))
             replay.assert_called_once()
 
     @unittest.skipUnless(os.name == "nt", "requires Git for Windows")

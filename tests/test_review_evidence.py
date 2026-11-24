@@ -127,6 +127,36 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         self.assertEqual(staged, {**inputs, **publication})
         self.assertNotIn(UNSELECTED, staged)
 
+    def test_large_candidate_and_frozen_registries_stage_only_the_small_selected_closure(self):
+        inputs, make_publication = fixture()
+        unrelated = {}
+        for serial in range(6):
+            name = f"unrelated-{serial}"
+            path = f"sces/records/claim/{name}--1.json"
+            unrelated[path] = _canonical({**ref("claim", name), "fixture": "x" * (3 * 1024 * 1024)})
+        self.assertGreater(sum(map(len, unrelated.values())), 16 * 1024 * 1024)
+        source = self.commit({**inputs, **unrelated}, "freeze small selected evidence in a large registry")
+        publication = make_publication(source)
+        changed_path = "sces/records/claim/unrelated-0--1.json"
+        candidate = self.commit({**publication, changed_path: unrelated[changed_path].replace(b"xxxx", b"yyyy", 1)},
+                                "select the frozen closure and change an unrelated record")
+        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=source), {**inputs, **publication})
+
+    def test_selected_record_bytes_still_obey_the_staging_cap(self):
+        inputs, make_publication = fixture()
+        source_path = "sces/records/source/original--1.json"
+        inputs[source_path] = _canonical({**decode(inputs[source_path]), "fixture": "x" * 32768})
+        source = self.commit(inputs, "freeze a large selected source in a small registry")
+        publication = make_publication(source)
+        report_path = RELEASE + "qualification.json"
+        report = decode(publication[report_path])
+        report["inputs_sha256"] = digest(_canonical({path: digest(raw) for path, raw in inputs.items()}))
+        candidate = self.commit({**publication, report_path: _canonical(report)}, "select the verified large source")
+        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=source)[source_path], inputs[source_path])
+        with patch("tools.review_evidence._MAX_EVIDENCE", 16384):
+            with self.assertRaisesRegex(DataError, "SCES selected evidence exceeds the review capture limit"):
+                capture_selected_evidence(self.root, candidate, REPOSITORY, base=source)
+
     def test_uppercase_history_path_stays_outside_selected_evidence(self):
         inputs, make_publication = fixture()
         readme = "sces/artifacts/candidate-history/README.md"

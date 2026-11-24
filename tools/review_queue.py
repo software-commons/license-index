@@ -98,7 +98,7 @@ def _verify_ref(github, branch, merge):
              "GitHub merge-queue ref no longer names the observed commit")
 
 
-def _jobs(github, path, run, branch, merge, checks, actions_app_id):
+def _jobs(github, path, run, branch, merge, selected_checks, actions_app_id):
     name, expected = _WORKFLOWS[path]
     run_id, attempt = run["id"], run["run_attempt"]
     listing = f"{_REPO_PATH}/actions/runs/{run_id}/attempts/{attempt}/jobs?per_page=100"
@@ -117,12 +117,17 @@ def _jobs(github, path, run, branch, merge, checks, actions_app_id):
         link = _CHECK_RUN_URL.fullmatch(check_url) if isinstance(check_url, str) else None
         _require(link is not None, f"GitHub {path} job has no exact repository check-run link")
         check_id = int(link[1])
-        check = checks.get(check_id, {})
+        _require(check_id not in selected_checks, "GitHub linked the same check run to multiple required jobs")
+        # Fetch only the check ID from the validated repository-qualified Actions job link.
+        check = github._get_json(f"{_REPO_PATH}/check-runs/{check_id}")
+        _require(isinstance(check, dict) and _positive_id(check.get("id")) and check["id"] == check_id,
+                 f"GitHub {path} returned a different check run than the exact job link")
         app, suite = check.get("app"), check.get("check_suite")
         _require(check.get("name") == job["name"] and check.get("head_sha") == merge and _successful(check)
-                 and isinstance(app, dict) and app.get("id") == actions_app_id
-                 and isinstance(suite, dict) and suite.get("id") == run["check_suite_id"],
+                 and isinstance(app, dict) and _positive_id(app.get("id")) and app["id"] == actions_app_id
+                 and isinstance(suite, dict) and _positive_id(suite.get("id")) and suite["id"] == run["check_suite_id"],
                  f"GitHub {path} job has no matching successful GitHub Actions check on the exact merge group")
+        selected_checks.add(check_id)
         evidence[job["name"]] = {"job_id": job["id"], "check_run_id": check_id}
     return evidence
 
@@ -163,9 +168,8 @@ def capture_queue_observation(github, pull_snapshot, run_id, *, actions_app_id):
     listing = f"{_REPO_PATH}/actions/runs?{query}"
     runs = _selected_runs(github, listing, pull_snapshot, branch, merge)
     _require(runs[path] == verified_anchor, "The selected GitHub workflow run is no longer the latest exact run")
-    check_path = f"{_REPO_PATH}/commits/{merge}/check-runs?filter=all&per_page=100"
-    checks = {check["id"]: check for check in _rows(github._get_json(check_path), "check_runs")}
-    workflows = {path: {**run, "jobs": _jobs(github, path, run, branch, merge, checks, actions_app_id)}
+    selected_checks = set()
+    workflows = {path: {**run, "jobs": _jobs(github, path, run, branch, merge, selected_checks, actions_app_id)}
                  for path, run in runs.items()}
 
     _require(_selected_runs(github, listing, pull_snapshot, branch, merge) == runs,

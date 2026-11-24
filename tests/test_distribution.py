@@ -15,7 +15,7 @@ from tools.records import Catalog, DataError, NoRedirects
 
 class RightsTests(unittest.TestCase):
     def test_approved_cc_installers_require_exact_current_publisher_pins(self):
-        for identifier in ("CC-BY-4.0", "CC0-1.0"):
+        for identifier in CC_LEGAL_TEXTS:
             with self.subTest(identifier=identifier):
                 catalog = Catalog()
                 original = catalog.packaged[identifier]
@@ -32,12 +32,30 @@ class RightsTests(unittest.TestCase):
                 with self.assertRaisesRegex(DataError, f"invalid rights digest for {identifier}"):
                     validate_texts(catalog)
                 catalog.packaged[identifier] = missing
-                with self.assertRaisesRegex(DataError, f"unverified archival publisher reference for {identifier}"):
+                with self.assertRaisesRegex(DataError, f"(?:unverified archival publisher reference|invalid rights digest) for {identifier}"):
                     validate_texts(catalog, archived=True)
 
                 catalog.packaged[identifier] = original
                 with self.assertRaisesRegex(DataError, f"publisher rights SHA-256 mismatch for {identifier}"):
                     validate_texts(catalog, rights_reader=lambda _: b"Tampered publisher archive")
+
+    def test_one_cc_edition_cannot_supply_another_edition(self):
+        catalog = Catalog()
+        wanted = "CC-BY-NC-SA-4.0"
+        original = catalog.packaged[wanted]
+        other = catalog.packaged["CC-BY-SA-4.0"]
+        alternate = (catalog.root / other["path"]).read_bytes()
+        catalog.packaged = {wanted: {**original, "bytes": len(alternate), "sha256": sha256(alternate).hexdigest(),
+                                    "source": other["source"]}}
+        with self.assertRaisesRegex(DataError, f"unexpected admitted publisher text digest for {wanted}"):
+            validate_texts(catalog, lambda _: alternate)
+        wrong_locator = {**original, "source": other["source"]}
+        wrong_revision = {**original, "revision": "0" * 40}
+        for attempted in (wrong_locator, wrong_revision):
+            with self.subTest(attempted=attempted):
+                catalog.packaged[wanted] = attempted
+                with self.assertRaisesRegex(DataError, f"unapproved publisher text locator for {wanted}"):
+                    validate_texts(catalog)
 
     def test_legacy_cc_bindings_are_only_for_exact_archived_publisher_editions(self):
         for identifier in ("CC-BY-4.0", "CC0-1.0"):
@@ -65,7 +83,7 @@ class RightsTests(unittest.TestCase):
         fixture = b"Synthetic rights statement.\n"
         row = {**catalog.packaged[identifier], "rights_sha256": sha256(fixture).hexdigest()}
         catalog.packaged = {identifier: row}
-        with TemporaryDirectory() as directory:
+        with TemporaryDirectory() as directory, patch("tools.distribution.CC_RIGHTS_SHA256", row["rights_sha256"]):
             root = Path(directory).resolve()
             path = root / RIGHTS_DOCUMENTS[CC_RIGHTS]
             path.write_bytes(fixture)

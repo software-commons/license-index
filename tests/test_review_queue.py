@@ -27,6 +27,10 @@ SCES_JOBS = f"{SCES_RUN}/attempts/1/jobs?per_page=100"
 CHECKS = f"{ROOT}/commits/{QUEUE_SHA}/check-runs?filter=all&per_page=100"
 
 
+def _check_path(identifier):
+    return f"{ROOT}/check-runs/{identifier}"
+
+
 def _rows(key, values):
     return {key: values, "total_count": len(values)}
 
@@ -64,7 +68,7 @@ def _responses():
     return {DOMAIN_RUN: deepcopy(domain), SCES_RUN: deepcopy(sces),
             REF_API: {"ref": REF, "object": {"type": "commit", "sha": QUEUE_SHA}},
             RUN_LIST: _rows("workflow_runs", [domain, sces]), DOMAIN_JOBS: _rows("jobs", domain_jobs),
-            SCES_JOBS: _rows("jobs", [sces_job]), CHECKS: _rows("check_runs", checks)}
+            SCES_JOBS: _rows("jobs", [sces_job]), **{_check_path(check["id"]): check for check in checks}}
 
 
 class FixtureGitHub:
@@ -97,8 +101,25 @@ class QueueObservationTests(unittest.TestCase):
         self.assertEqual(result["workflows"][SCES_PATH]["jobs"], {
             "Evidence / SCES validation": {"job_id": 301, "check_run_id": 301},
         })
-        self.assertEqual(github.calls, [SCES_RUN, REF_API, RUN_LIST, CHECKS, DOMAIN_JOBS, SCES_JOBS, RUN_LIST, REF_API])
+        self.assertEqual(github.calls, [SCES_RUN, REF_API, RUN_LIST, DOMAIN_JOBS,
+                                        *(_check_path(number) for number in range(201, 205)),
+                                        SCES_JOBS, _check_path(301), RUN_LIST, REF_API])
         self.assertIsInstance(dumps(result), str)
+
+    def test_fetches_the_linked_named_check_even_off_the_first_100_commit_checks(self):
+        responses = _responses()
+        linked = 950001
+        responses[DOMAIN_JOBS]["jobs"][0]["check_run_url"] = f"https://api.github.com{_check_path(linked)}"
+        responses[_check_path(linked)] = {**responses.pop(_check_path(201)), "id": linked}
+        decoy = responses[_check_path(991)]
+        responses[CHECKS] = {"check_runs": [{**decoy, "id": number} for number in range(1000, 1100)],
+                             "total_count": 101}
+        github = FixtureGitHub(responses)
+        result = capture_queue_observation(github, PULL, 12, actions_app_id=APP)
+        self.assertEqual(result["workflows"][DOMAIN_PATH]["jobs"]["Registry validation"],
+                         {"job_id": 201, "check_run_id": linked})
+        self.assertNotIn(CHECKS, github.calls)
+        self.assertIn(_check_path(linked), github.calls)
 
     def test_target_authentication_does_not_require_successful_ci(self):
         responses = _responses()
@@ -183,10 +204,19 @@ class QueueObservationTests(unittest.TestCase):
             self.capture(responses)
 
     def test_rejects_wrong_or_failed_linked_check_despite_other_contexts(self):
-        for changes in ({"id": 801}, {"head_sha": PULL.merge}, {"app": {"id": 18}}, {"app": None},
-                        {"check_suite": {"id": 1002}}, {"conclusion": "skipped"}, {"conclusion": "failure"},
+        for changes in ({"id": 801}, {"id": 201.0}, {"head_sha": PULL.merge}, {"app": {"id": 18}}, {"app": None},
+                        {"app": {"id": float(APP)}}, {"check_suite": {"id": 1002}}, {"check_suite": {"id": 1001.0}},
+                        {"conclusion": "skipped"}, {"conclusion": "failure"},
                         {"status": "in_progress"}, {"name": "Tests on ubuntu-24.04"}):
             with self.subTest(changes=changes), self.assertRaises(SnapshotError):
                 responses = _responses()
-                responses[CHECKS]["check_runs"][0].update(changes)
+                responses[_check_path(201)].update(changes)
                 self.capture(responses)
+
+    def test_rejects_a_check_run_linked_to_multiple_required_jobs(self):
+        for job_path, index in ((DOMAIN_JOBS, 1), (SCES_JOBS, 0)):
+            with self.subTest(job_path=job_path):
+                responses = _responses()
+                responses[job_path]["jobs"][index]["check_run_url"] = responses[DOMAIN_JOBS]["jobs"][0]["check_run_url"]
+                with self.assertRaisesRegex(SnapshotError, "same check run to multiple required jobs"):
+                    self.capture(responses)

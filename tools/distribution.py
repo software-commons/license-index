@@ -33,16 +33,25 @@ CC_RIGHTS = f"{CC_PUBLISHER_TREE}/README.md"
 CC_RIGHTS_SHA256 = "76eac782e1d4ea9bdcd0b88686f315fe42076b70af238a44114e87f024fe096f"
 CC_LEGAL_TEXTS = {
     "CC-BY-4.0": ("licenses/by/4.0/legalcode.txt", "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"),
+    "CC-BY-NC-4.0": ("licenses/by-nc/4.0/legalcode.txt",
+                     "41003d4a74749c0220e33dd415042164b5a1093ed401f36277234f772d22d3d0"),
+    "CC-BY-NC-ND-4.0": ("licenses/by-nc-nd/4.0/legalcode.txt",
+                        "38762e3777f4ec00a6f769062a7c3f704fb78ce08303ecff88558da4c49cf9ea"),
+    "CC-BY-NC-SA-4.0": ("licenses/by-nc-sa/4.0/legalcode.txt",
+                        "e66c269d4819aaab34b49ef5220c4ddab6756f21bb5180761a4eb8561f2b7bbd"),
+    "CC-BY-ND-4.0": ("licenses/by-nd/4.0/legalcode.txt",
+                     "9cc97638cf0185884ac800144b6246c7772f94ff2cc70686afa9574aaea4fa2b"),
+    "CC-BY-SA-4.0": ("licenses/by-sa/4.0/legalcode.txt",
+                     "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"),
     "CC0-1.0": ("publicdomain/zero/1.0/legalcode.txt", "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"),
 }
+CC_LEGACY_EDITIONS = {"CC-BY-4.0", "CC0-1.0"}
 CC_LEGACY_RIGHTS = {"https://creativecommons.org/policies/", "https://creativecommons.org/policies/#cc-licensing-statement"}
 POLYFORM_RIGHTS = ("https://raw.githubusercontent.com/polyformproject/polyform-licenses/"
                    "a2316cfa35d3947fdc5af4bcc1f321662bfd79d8/LICENSE.md")
 RIGHTS_DOCUMENTS = {CC_RIGHTS: "cc-rights-exact.md", POLYFORM_RIGHTS: "polyform-rights-exact.md"}
 RIGHTS_BY_IDENTIFIER = {
     **dict.fromkeys(CC_LEGAL_TEXTS, CC_RIGHTS),
-    **dict.fromkeys(("CC-BY-NC-4.0", "CC-BY-NC-ND-4.0", "CC-BY-NC-SA-4.0",
-                     "CC-BY-ND-4.0", "CC-BY-SA-4.0"), CC_RIGHTS),
     **dict.fromkeys(("PolyForm-Noncommercial-1.0.0", "PolyForm-Small-Business-1.0.0"), POLYFORM_RIGHTS),
 }
 RIGHTS_MAX_BYTES = 64 * 1024
@@ -127,7 +136,7 @@ def _validate_text_rights(identifier, package, rights_reader, *, archived):
     if identifier in CC_LEGAL_TEXTS:
         publisher_path, text_digest = CC_LEGAL_TEXTS[identifier]
         require(package["sha256"] == text_digest, f"unexpected admitted publisher text digest for {identifier}")
-        if archived and "rights_sha256" not in package:
+        if archived and identifier in CC_LEGACY_EDITIONS and "rights_sha256" not in package:
             # Bind the exact legacy edition already in Git to the same publisher statement without rewriting it.
             require(url in CC_LEGACY_RIGHTS and package["source"] == f"https://creativecommons.org/{publisher_path}",
                     f"unverified archival publisher reference for {identifier}")
@@ -323,32 +332,50 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
         if replay_spdx is not None:
             predecessor = _historical_spdx_base(root, base, commit, verified)
             try:
-                replay_spdx(historic, rows[source], predecessor)
+                confirmed = replay_spdx(historic, rows[source], predecessor)
             except DataError as error:
                 raise DataError(f"{name}: {error}") from error
-            verified.add(commit)
-    return snapshots.get(selected)
+            if confirmed is not False:
+                verified.add(commit)
+    if verified:
+        # HEAD may itself contain the selected archive. Replaying HEAD must use an earlier verified tree.
+        return _historical_spdx_base(root, base, head, verified)
 
 
 def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
     if rights_reader is not None:
         rights_reader = cache(rights_reader)
-    saved, _ = validate_discovery(catalog, base=base, spdx_archive=spdx_archive, rights_reader=rights_reader)
+    saved, _ = validate_discovery(catalog, rights_reader=rights_reader)
     replay_history = None
-    if spdx_archive is None and fetch_spdx_archive:
+    if spdx_archive is not None or fetch_spdx_archive:
+        source = read(local_path(catalog.root, saved["source_manifest"]))
+    if spdx_archive is not None:
+        from .spdx_replay import archive_origins, compare_registry
+
+        origins = archive_origins(source, spdx_archive)
+        pin = encode(source)
+
+        def replay_history(historic, historic_source, predecessor):
+            if encode(historic_source) != pin:
+                return False
+            compare_registry(historic, origins, historic_source, predecessor)
+            return True
+    elif fetch_spdx_archive:
         from .spdx_replay import replay_download
 
         archives = {}
         replay_history = partial(replay_download, archives=archives, historical=True)
     result = qualified(catalog, policy, base=base)
-    archived = None
+    predecessor = base
     if base:
         check_history(catalog, base)
-        archived = validate_incoming_snapshots(catalog.root, base, rights_reader=rights_reader,
-                                               replay_spdx=replay_history)
-    if replay_history is not None:
-        source = read(local_path(catalog.root, saved["source_manifest"]))
-        replay_download(catalog, source, archived or base, archives=archives)
+        verified_predecessor = validate_incoming_snapshots(catalog.root, base, rights_reader=rights_reader,
+                                                           replay_spdx=replay_history)
+        predecessor = verified_predecessor or base
+    if spdx_archive is not None:
+        compare_registry(catalog, origins, source, predecessor)
+    elif fetch_spdx_archive:
+        replay_download(catalog, source, predecessor, archives=archives)
     return result
 
 

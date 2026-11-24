@@ -23,9 +23,12 @@ _SLUG = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 _ARTIFACT_PATH = re.compile(r"sces/(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9._-]*")
 _TREE_PATH = re.compile(r"sces/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*")
 _MAX_INVENTORY = 2 * 1024 * 1024
-_MAX_RECORDS = 16 * 1024 * 1024
 _MAX_EVIDENCE = 16 * 1024 * 1024
 _MAX_BLOB = 4 * 1024 * 1024
+_RECORD_SCAN_PAGE = 256
+_FROZEN_BATCH_COUNT = 4
+_MAX_FROZEN_BATCH = _FROZEN_BATCH_COUNT * _MAX_BLOB
+_MAX_RECORD_BATCH = _FROZEN_BATCH_COUNT * (_MAX_BLOB + 64)
 _SELECTION = "sces/publication.json"
 _BASE_SELECTION_REVIEW_PATH = "base:sces/publication.json"
 _ADOPTION = "sces/adoption.json"
@@ -122,20 +125,21 @@ def _blobs(directory, paths, ordered, *, limit):
     return result
 
 
-def _missing_record_oids(directory, oids):
-    if not oids:
-        return set()
-    ordered = sorted(oids)
-    rows = _git(directory, "cat-file", "--batch-check=%(objectname) %(objecttype)",
-                input_data=("\n".join(ordered) + "\n").encode("ascii"), limit=60 * len(ordered)).splitlines()
-    require(len(rows) == len(ordered), "incomplete local frozen SCES object inventory")
-    missing = set()
-    for oid, row in zip(ordered, rows, strict=True):
-        expected = oid.encode("ascii") + b" "
-        require(row in (expected + b"blob", expected + b"missing"), "invalid local frozen SCES object inventory")
-        if row.endswith(b" missing"):
-            missing.add(oid)
-    return missing
+def _record_sizes(directory, paths, ordered):
+    oids = [paths[path].encode("ascii") for path in ordered]
+    rows = _git(directory, "cat-file", "--batch-check=%(objectname) %(objecttype) %(objectsize)",
+                input_data=b"\n".join(oids) + b"\n", limit=64 * len(ordered)).splitlines()
+    require(len(rows) == len(ordered), "incomplete local SCES record inventory")
+    sizes = {}
+    for path, oid, row in zip(ordered, oids, rows, strict=True):
+        if row == oid + b" missing":
+            sizes[path] = None
+            continue
+        match = re.fullmatch(rb"([0-9a-f]{40}) blob ([0-9]{1,10})", row)
+        require(match is not None and match[1] == oid and 0 < int(match[2]) <= _MAX_BLOB,
+                f"invalid or oversized local SCES record: {path}")
+        sizes[path] = int(match[2])
+    return sizes
 
 
 def _retrieve_frozen_records():
@@ -143,7 +147,7 @@ def _retrieve_frozen_records():
     request = decode(sys.stdin.buffer.read())
     repository, commit, paths, remaining = (request[key] for key in ("repository", "commit", "paths", "limit"))
     require(repository == REPOSITORY and re.fullmatch(r"[0-9a-f]{40}", commit)
-            and type(remaining) is int and 0 < remaining <= _MAX_RECORDS, "unapproved frozen record retrieval")
+            and type(remaining) is int and 0 < remaining <= _MAX_FROZEN_BATCH, "unapproved frozen record retrieval")
     opener = build_opener(ProxyHandler({}), NoRedirects())
     outputs = {}
     for path in paths:
@@ -166,10 +170,10 @@ def _retrieve_frozen_records():
 
 
 def _fetch_frozen_records(repository, commit, paths, limit):
-    require(0 < limit <= _MAX_RECORDS, "frozen SCES registry exceeds the review capture limit")
+    require(0 < limit <= _MAX_FROZEN_BATCH, "frozen SCES registry exceeds the review capture limit")
     package_root = Path(__file__).resolve().parents[1]
     request = encode({"repository": repository, "commit": commit, "paths": sorted(paths), "limit": limit})
-    environment = {name: value for name, value in os.environ.items() if name.upper() in {"SYSTEMROOT", "WINDIR"}}
+    environment = {name.upper(): value for name, value in os.environ.items() if name.upper() in {"SYSTEMROOT", "WINDIR"}}
     try:
         fetched = subprocess.run([sys.executable, "-I", "-S", "-B", "-c", _READ_FROZEN_RECORDS, str(package_root)],
                                  input=request, capture_output=True, timeout=_GIT_TIMEOUT, check=False, env=environment)
@@ -186,46 +190,74 @@ def _fetch_frozen_records(repository, commit, paths, limit):
     return blobs
 
 
-def _record_blobs(directory, paths, cache, *, frozen_source=None):
-    records = {path: oid for path, oid in paths.items() if path.startswith("sces/records/")}
-    uncached = {oid: path for path, oid in records.items() if oid not in cache}
-    missing = _missing_record_oids(directory, uncached) if frozen_source is not None else set()
-    local = sorted(path for oid, path in uncached.items() if oid not in missing)
-    for path, payload in _blobs(directory, paths, local, limit=_MAX_RECORDS).items():
-        cache[records[path]] = payload
-    if missing:
-        remaining = _MAX_RECORDS - sum(len(cache[oid]) for oid in records.values() if oid in cache)
-        # Fetch only inventoried missing records. The incoming data tree is never checked out.
-        wanted = {uncached[oid]: oid for oid in missing}
-        repository, commit = frozen_source
-        for path, payload in _fetch_frozen_records(repository, commit, wanted, remaining).items():
-            cache[records[path]] = payload
-    blobs = {path: cache[oid] for path, oid in records.items()}
-    require(sum(map(len, blobs.values())) <= _MAX_RECORDS, "SCES registry exceeds the review capture limit")
-    return blobs
+def _record_blobs(directory, paths, ordered, *, frozen_source=None):
+    """Read bounded Git batches and separately bound missing raw publisher blobs."""
+    for offset in range(0, len(ordered), _RECORD_SCAN_PAGE):
+        page = ordered[offset:offset + _RECORD_SCAN_PAGE]
+        sizes = _record_sizes(directory, paths, page)
+        local, missing, size = [], [], 0
+        for path in page:
+            if sizes[path] is None:
+                missing.append(path)
+                continue
+            weight = sizes[path] + 64
+            if size + weight > _MAX_RECORD_BATCH:
+                yield from _blobs(directory, paths, local, limit=size).items()
+                local, size = [], 0
+            local.append(path)
+            size += weight
+        yield from _blobs(directory, paths, local, limit=size).items()
+        if missing:
+            require(frozen_source is not None, "an exact candidate SCES record is missing")
+            repository, commit = frozen_source
+            for start in range(0, len(missing), _FROZEN_BATCH_COUNT):
+                group = missing[start:start + _FROZEN_BATCH_COUNT]
+                wanted = {path: paths[path] for path in group}
+                # Fetch only inventoried frozen records. No upstream tree is checked out.
+                yield from _fetch_frozen_records(repository, commit, wanted, len(group) * _MAX_BLOB).items()
 
 
-def _registry(blobs):
-    records = {}
+def _reverse_record(blob):
+    row = decode(blob)
+    identity = _key(row)
+    reverse = None
+    if identity[0] in ("dependency", "conflict"):
+        reverse = _key(row["claim"], "claim")
+    elif identity[0] == "verification":
+        phase, completed = row["phase"], row["run"]["completed"]
+        require(phase in _PHASES and isinstance(completed, str)
+                and re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", completed),
+                "invalid SCES verification phase or completion timestamp")
+        reverse = (_key(row["claim"], "claim"), phase), completed
+    elif identity[0] == "disposition":
+        reverse = _key(row["target"], "claim", "source")
+    return identity, reverse
+
+
+def _registry(directory, paths, reverse_cache, *, frozen_source=None):
+    registry = sorted(path for path in paths if path.startswith("sces/records/"))
+    uncached = [path for path in registry if paths[path] not in reverse_cache]
+    for path, blob in _record_blobs(directory, paths, uncached, frozen_source=frozen_source):
+        reverse_cache[paths[path]] = _reverse_record(blob)
     edges = defaultdict(list)
-    reviews = defaultdict(list)
-    dispositions = {}
-    conflicts = {}
-    for path, blob in blobs.items():
-        row = decode(blob)
-        identity = _key(row)
-        require(path == _record_path(identity) and identity not in records, "invalid SCES record path")
-        records[identity] = row
+    reviews = {}
+    dispositions, conflicts = {}, {}
+    for path in registry:
+        identity, reverse = reverse_cache[paths[path]]
+        require(path == _record_path(identity), "invalid SCES record path")
         kind = identity[0]
         if kind == "dependency":
-            edges[_key(row["claim"], "claim")].append(identity)
+            edges[reverse].append(identity)
         if kind == "verification":
-            require(row["phase"] in _PHASES, "invalid SCES verification phase")
-            reviews[_key(row["claim"], "claim"), row["phase"]].append(identity)
-        if kind in {"disposition", "conflict"}:
+            key, completed = reverse
+            prior = reviews.get(key)
+            if prior is None or completed > prior[0]:
+                reviews[key] = (completed, identity, True)
+            elif completed == prior[0]:
+                reviews[key] = (completed, identity, False)
+        if kind in ("disposition", "conflict"):
             latest = dispositions if kind == "disposition" else conflicts
-            target = (_key(row["target"], "claim", "source") if kind == "disposition"
-                      else (_key(row["claim"], "claim"), identity[1]))
+            target = reverse if kind == "disposition" else (reverse, identity[1])
             prior = latest.get(target)
             require(prior is None or prior[2] != identity[2], "ambiguous SCES record revision")
             if prior is None or prior[2] < identity[2]:
@@ -233,7 +265,36 @@ def _registry(blobs):
     conflicts_by_claim = defaultdict(list)
     for (claim, _), identity in conflicts.items():
         conflicts_by_claim[claim].append(identity)
-    return records, edges, reviews, dispositions, conflicts_by_claim
+    return edges, reviews, dispositions, conflicts_by_claim
+
+
+class _SelectedRecords:
+    def __init__(self, directory, paths, *, limit, frozen_source=None, reuse=None):
+        self.directory, self.paths = directory, paths
+        self.remaining, self.frozen_source = limit, frozen_source
+        self.reuse = {} if reuse is None else reuse
+        self.raw, self.rows = {}, {}
+
+    def load(self, keys):
+        missing = []
+        for identity in sorted(set(keys) - self.rows.keys()):
+            path = _record_path(identity)
+            existing = self.reuse.get(self.paths[path])
+            if existing is None:
+                missing.append(path)
+            else:
+                self._store(path, existing)
+        for path, blob in _record_blobs(self.directory, self.paths, missing, frozen_source=self.frozen_source):
+            self._store(path, blob)
+
+    def _store(self, path, blob):
+        self.remaining -= len(blob)
+        require(self.remaining >= 0, "SCES selected evidence exceeds the review capture limit")
+        row = decode(blob)
+        identity = _key(row)
+        require(path == _record_path(identity), "invalid SCES record path")
+        self.raw[path] = blob
+        self.rows[identity] = row
 
 
 def _check_review_pair(claim_digest, research, review):
@@ -252,73 +313,82 @@ def _check_review_pair(claim_digest, research, review):
             "SCES research and independent review share an acquisition capture")
 
 
-def _active_reviews(selected, records, edges, reviews, dispositions, blobs):
+def _active_reviews(selected, captured, edges, reviews, dispositions):
     active = {}
-    pending = list(selected)
+    pending = set(selected)
     while pending:
-        identity = pending.pop()
-        if identity in active:
-            continue
-        disposition = records[dispositions[identity]]
-        require(disposition["evidence"] == "supported" and disposition["verification"] == "independently-reviewed",
-                "selected SCES claim or supporting premise is unqualified")
-        current = []
-        for phase, field in zip(_PHASES, ("research", "review"), strict=True):
-            candidates = sorted(reviews[identity, phase], key=lambda key: records[key]["run"]["completed"])
-            chosen = _key(disposition[field], "verification")
-            require(candidates and candidates[-1] == chosen and records[chosen]["conclusion"] == "supported"
-                    and (len(candidates) == 1
-                         or records[candidates[-2]]["run"]["completed"] != records[chosen]["run"]["completed"]),
+        frontier = pending - active.keys()
+        pending = set()
+        captured.load(frontier | {dispositions[identity] for identity in frontier})
+        needed = set()
+        for identity in frontier:
+            disposition = captured.rows[dispositions[identity]]
+            require(disposition["evidence"] == "supported" and disposition["verification"] == "independently-reviewed",
+                    "selected SCES claim or supporting premise is unqualified")
+            current = []
+            for phase, field in zip(_PHASES, ("research", "review"), strict=True):
+                latest = reviews.get((identity, phase))
+                chosen = _key(disposition[field], "verification")
+                require(latest is not None and latest[1:] == (chosen, True),
+                        "selected SCES claim lacks current independent verification")
+                current.append(chosen)
+            active[identity] = current
+            needed.update(current)
+            needed.update(edges[identity])
+        captured.load(needed)
+        for identity in frontier:
+            research, review = (captured.rows[key] for key in active[identity])
+            require(research["conclusion"] == review["conclusion"] == "supported",
                     "selected SCES claim lacks current independent verification")
-            current.append(chosen)
-        research, review = (records[key] for key in current)
-        _check_review_pair(_digest(blobs[_record_path(identity)]), research, review)
-        active[identity] = current
-        for dependency in edges[identity]:
-            row = records[dependency]
-            if row["relation"] in _SUPPORT:
-                basis = _key(row["basis"], "claim", "source")
-                if basis[0] == "claim":
-                    pending.append(basis)
+            _check_review_pair(_digest(captured.raw[_record_path(identity)]), research, review)
+            for dependency in edges[identity]:
+                row = captured.rows[dependency]
+                if row["relation"] in _SUPPORT:
+                    basis = _key(row["basis"], "claim", "source")
+                    if basis[0] == "claim":
+                        pending.add(basis)
     return active
 
 
-def _closure(selected, records, edges, active, dispositions, conflicts):
+def _closure(selected, captured, edges, active, dispositions, conflicts):
     used = set()
     artifacts = {}
-    pending = list(selected)
+    pending = set(selected)
     while pending:
-        identity = pending.pop()
-        if identity in used:
-            continue
-        used.add(identity)
-        row = records[identity]
-        kind = identity[0]
-        if identity in dispositions and (kind != "claim" or identity in active):
-            pending.append(dispositions[identity])
-        if identity in active:
-            pending.extend(edges[identity] + active[identity] + conflicts[identity])
-        if kind == "dependency":
-            pending.append(_key(row["basis"], "claim", "source"))
-        if kind == "source":
-            pending.extend(_key(source, "source") for source in row["upstream"])
-        for descriptor in (row.get("artifact"), row.get("method"), row.get("run", {}).get("trace"),
-                           row.get("reproduction", {}).get("artifact")):
-            if descriptor is not None:
-                path, checksum = descriptor["path"], descriptor["sha256"]
-                require(isinstance(path, str) and path.startswith("sces/artifacts/") and _ARTIFACT_PATH.fullmatch(path)
-                        and artifacts.setdefault(path, checksum) == checksum, "invalid SCES artifact reference")
-        for field in ("replaces", "previous"):
-            if field in row:
-                pending.append(_key(row[field], kind))
+        frontier = pending - used
+        captured.load(frontier)
+        used.update(frontier)
+        pending = set()
+        for identity in frontier:
+            row = captured.rows[identity]
+            kind = identity[0]
+            if identity in dispositions and (kind != "claim" or identity in active):
+                pending.add(dispositions[identity])
+            if identity in active:
+                pending.update(edges[identity] + active[identity] + conflicts[identity])
+            if kind == "dependency":
+                pending.add(_key(row["basis"], "claim", "source"))
+            if kind == "source":
+                pending.update(_key(source, "source") for source in row["upstream"])
+            for descriptor in (row.get("artifact"), row.get("method"), row.get("run", {}).get("trace"),
+                               row.get("reproduction", {}).get("artifact")):
+                if descriptor is not None:
+                    path, checksum = descriptor["path"], descriptor["sha256"]
+                    require(isinstance(path, str) and path.startswith("sces/artifacts/") and _ARTIFACT_PATH.fullmatch(path)
+                            and artifacts.setdefault(path, checksum) == checksum, "invalid SCES artifact reference")
+            for field in ("replaces", "previous"):
+                if field in row:
+                    pending.add(_key(row[field], kind))
     return used, artifacts
 
 
-def _selected_registry(selected, blobs):
-    records, edges, reviews, dispositions, conflicts = _registry(blobs)
-    active = _active_reviews(selected, records, edges, reviews, dispositions, blobs)
-    used, artifacts = _closure(selected, records, edges, active, dispositions, conflicts)
-    return records, edges, active, used, artifacts
+def _selected_registry(selected, captured, reverse_cache):
+    edges, reviews, dispositions, conflicts = _registry(
+        captured.directory, captured.paths, reverse_cache, frozen_source=captured.frozen_source,
+    )
+    active = _active_reviews(selected, captured, edges, reviews, dispositions)
+    used, artifacts = _closure(selected, captured, edges, active, dispositions, conflicts)
+    return edges, active, used, artifacts
 
 
 def _selection_tree(directory, commit):
@@ -575,9 +645,11 @@ def _selected_evidence(directory, paths, base, base_selection_tree, inherited):
     require(selected and len({identity[:2] for identity in selected}) == len(selected)
             and [_key(ref, "claim") for ref in report["claims"]] == sorted(selected),
             "SCES publication claim selection does not match the report")
-    blob_cache = {}
-    record_blobs = _record_blobs(directory, paths, blob_cache)
-    records, edges, active, used, artifacts = _selected_registry(selected, record_blobs)
+    reverse_cache = {}
+    record_limit = _MAX_EVIDENCE - sum(map(len, metadata.values()))
+    captured = _SelectedRecords(directory, paths, limit=record_limit)
+    edges, active, used, artifacts = _selected_registry(selected, captured, reverse_cache)
+    records, record_blobs = captured.rows, captured.raw
     expected_claims = [{"claim": records[identity],
                         "dependencies": [records[edge] for edge in sorted(edges[identity])]}
                        for identity in sorted(selected)]
@@ -592,7 +664,7 @@ def _selected_evidence(directory, paths, base, base_selection_tree, inherited):
     require(report["verifications"] == expected_reviews, "SCES report omits or changes selected verification records")
 
     evidence = {**{_record_path(key): record_blobs[_record_path(key)] for key in used},
-                **_blobs(directory, paths, sorted(artifacts), limit=_MAX_EVIDENCE)}
+                **_blobs(directory, paths, sorted(artifacts), limit=captured.remaining + 64 * len(artifacts))}
     require(all(_digest(evidence[path]) == checksum for path, checksum in artifacts.items()),
             "SCES selected artifact digest mismatch")
     inputs = {path: _digest(blob) for path, blob in evidence.items()}
@@ -600,9 +672,11 @@ def _selected_evidence(directory, paths, base, base_selection_tree, inherited):
     require(report["inputs_sha256"] == _digest(_canonical(inputs)), "SCES selected input digest mismatch")
     frozen = _frozen_inputs(directory, selection["source_commit"])
     # The same selected roots must reach the same records when reverse links come from the frozen tree.
-    frozen_records = _record_blobs(directory, frozen, blob_cache,
-                                   frozen_source=(REPOSITORY, selection["source_commit"]))
-    *_, frozen_used, frozen_artifacts = _selected_registry(selected, frozen_records)
+    frozen_records = _SelectedRecords(
+        directory, frozen, limit=record_limit, frozen_source=(REPOSITORY, selection["source_commit"]),
+        reuse={paths[path]: blob for path, blob in record_blobs.items()},
+    )
+    *_, frozen_used, frozen_artifacts = _selected_registry(selected, frozen_records, reverse_cache)
     require(used == frozen_used, "SCES selected record membership differs from the frozen source commit")
     require(artifacts == frozen_artifacts, "SCES selected artifact descriptors differ from the frozen source commit")
     for path in sorted(inputs):
