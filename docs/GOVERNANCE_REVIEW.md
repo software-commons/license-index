@@ -1,6 +1,6 @@
 # Codex review governance decision
 
-**Status: Conditional owner authorization. Current GitHub approval controls are active.**
+**Status: The authenticated Codex review gate is active on the default branch.**
 
 The Software Commons owner authorized a Codex-only review process conditional on a compliant enforced replacement. The owner excluded adding collaborators or creating a second GitHub account. Software Commons will retain mandatory pull requests, the pinned SCES check, the registry check and its three-platform test jobs. Default-branch deletion, force-push and unauthorized bypass stay prohibited. Publication requires a separate exact-artifact authorization.
 
@@ -14,9 +14,9 @@ Verify the authenticated source of the successful check and exercise missing, st
 
 ## Current deployment
 
-The [candidate issuer and activation procedure](CODEX_GATE.md) implement exact GitHub merge-object capture, separate Codex execution, transcript binding, and conditional issuance from a dedicated App. The proposed mandatory singleton merge queue requires an admission check and a separate final decision on the distinct checked group commit. Replay tests prevent an admission decision from satisfying the final role based on the Git object shape. Activation still requires an isolated runner, signing-key custody, an installed App, and a live enforcement trial that includes the existing required checks.
+On November 24, 2026, the owner-authorized cutover followed a successful isolated License Index trial. Production ruleset `27875276` requires the organization-controlled **Software Commons / Codex technical review** check from App `5893334` and a singleton, ancestry-preserving merge queue. The protected issuer binds the admission decision to the exact pull-request head, base, and test merge. A separate Codex execution reviews the live merge-group commit after the required CI checks pass. The issuer retains both decisions and their execution evidence outside the pull request. [Commissioning PR](https://github.com/software-commons/license-index/pull/2) · [Issuer procedure](CODEX_GATE.md)
 
-Software Commons uses GitHub Free. Its repository ruleset can require authenticated status checks. GitHub organization rulesets require an eligible organization plan. License Index has no installed dedicated review App or separately controlled review-key issuer. The current ruleset therefore still requires an eligible non-author approval and CODEOWNERS review where applicable. [License Index ruleset](https://github.com/software-commons/license-index/rules/27875276), [organization rulesets](https://docs.github.com/en/organizations/managing-organization-settings/creating-rulesets-for-repositories-in-your-organization), [authenticated status checks](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets#require-status-checks-to-pass-before-merging).
+Production requires pull requests and both source-pinned Actions checks, **Evidence / SCES validation** and **Registry validation**. The registry check requires all three platform tests. The ruleset blocks deletion and force-pushes and has no bypass actors. Before the cutover, it required one eligible approving review and Code Owner review. The commissioned ruleset requires zero GitHub approving reviews and has Code Owner review disabled. The isolated issuer requires exact-merge authority for changes to protected controls, including evidence policies, validation workflows, and publication code. [License Index ruleset](https://github.com/software-commons/license-index/rules/27875276)
 
 ## Release authorization
 

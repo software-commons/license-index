@@ -1,6 +1,6 @@
 # Codex technical review issuer
 
-The candidate issuer implements public pull-request capture, a fresh Codex technical review, and optional issuance of a GitHub App check. The existing approval rules still apply. This code has no authority to merge a pull request, publish a release, or select scientific claims.
+The protected issuer captures the exact public pull-request candidate, runs a fresh Codex technical review, and posts the required GitHub App check when the review and evidence pass. GitHub enforces the production merge queue. Scientific selection and release authorization require separate decisions. [Current deployment](GOVERNANCE_REVIEW.md#current-deployment)
 
 ## Trust boundary
 
