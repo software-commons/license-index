@@ -434,6 +434,45 @@ class ReviewGateTests(unittest.TestCase):
             with self.subTest(label=label), self.assertRaisesRegex(DataError, error):
                 review_result(candidate, binding, token, PATCH, policy_files=policies)
 
+    def test_approval_requires_a_separate_review_history_digest_and_proof(self):
+        token = "abc"
+        history_name = "review-history.zip"
+        history = b"synthetic review history archive"
+        history_files = {history_name: history}
+        evidence = {"sces-00001.data": b"synthetic selected evidence"}
+        policies = {"policy-00001.data": b"synthetic policy"}
+        other_digests = {"sces_evidence_sha256": "1" * 64, "review_policy_sha256": "2" * 64}
+        history_digest = {"review_history_sha256": sha256(history).hexdigest()}
+        binding = {**BINDING, **other_digests, **history_digest}
+
+        def proof(label, files):
+            entries = "".join(f"{name} {sha256(token.encode() + raw).hexdigest()}\n"
+                              for name, raw in sorted(files.items()))
+            return f"{label} 0 {sha256(entries.encode()).hexdigest()}"
+
+        def result(echo, inspected, label="history-proof"):
+            events = make_trace(token, verdict={**other_digests, **echo}, evidence=evidence).splitlines()
+            outputs = [proof("policy-proof", policies)]
+            if inspected is not None:
+                outputs.append(proof(label, {history_name: inspected}))
+            events.insert(-2, json.dumps({"type": "item.completed", "item": {
+                "type": "command_execution", "status": "completed", "exit_code": 0,
+                "command": "inspect policy and history listed in review-input.json",
+                "aggregated_output": "\n".join(outputs),
+            }}).encode())
+            return review_result(b"\n".join(events), binding, token, PATCH, evidence,
+                                 policy_files=policies, history_files=history_files)
+
+        execution, approved = result(history_digest, history)
+        self.assertEqual((execution, approved["decision"]), (EXECUTION, "approve"))
+        for echo in ({}, {"review_history_sha256": "3" * 64}):
+            with self.subTest(echo=echo), self.assertRaisesRegex(DataError, "does not bind"):
+                result(echo, history)
+        for inspected, label in ((None, "history-proof"), (b"other archive", "history-proof"),
+                                 (history, "policy-proof")):
+            with self.subTest(inspected=inspected, label=label), self.assertRaisesRegex(DataError, "lacks.*histor"):
+                result(history_digest, inspected, label)
+
     def test_truncated_multiple_batch_proof_cannot_authorize_approval(self):
         binding = {**BINDING, "sces_evidence_sha256": "e" * 64}
         evidence = {f"sces-{index:05}.data": f"fixture {index}".encode() for index in range(129)}

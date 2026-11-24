@@ -89,6 +89,10 @@ PROTECTED_DISABLED_TOOLS = (
 )
 LOCAL_REVIEW_ITEM_TYPES = {"agent_message", "command_execution", "reasoning", "todo_list"}
 PROTECTED_POLICY_ROOT = Path("/opt/software-commons-review/license-review-policy-v1")
+PROTECTED_HISTORY_ROOT = Path("/opt/software-commons-review/license-review-history-v1")
+MAX_HISTORY_BYTES = 16 * 1024 * 1024
+REVIEW_HISTORY_NAME = "review-history.zip"
+_COVERAGE_PATCH_PATH = re.compile(rb'^diff --git "?a/registry/coverage/snapshots/', re.MULTILINE)
 PROTECTED_POLICY_MANIFEST_SHA256 = "433c2892c3702dcf885e74910c17b3b94d82f2b4a09cf32345a6b21c0529c1b0"
 
 
@@ -137,10 +141,12 @@ def patch_body_lines(diff):
 
 
 def bound_review_verdict_fields(binding):
-    return {field for field in ("sces_evidence_sha256", "review_policy_sha256") if field in binding}
+    fields = ("sces_evidence_sha256", "review_policy_sha256", "review_history_sha256")
+    return set(fields) & binding.keys()
 
 
-def review_result(trace, binding, inspection_token, diff, evidence_files=None, *, policy_files=None):
+def review_result(trace, binding, inspection_token, diff, evidence_files=None, *,
+                  policy_files=None, history_files=None):
     """Accept a verdict only from one complete captured Codex execution."""
     require(len(trace) <= MAX_TRACE_BYTES, "review trace exceeds the configured limit")
     events = [decode(line) for line in trace.splitlines() if line.strip()]
@@ -189,6 +195,9 @@ def review_result(trace, binding, inspection_token, diff, evidence_files=None, *
         if "review_policy_sha256" in bound_fields:
             require(policy_files and set(evidence_proofs(inspection_token, policy_files, label="policy-proof")) <= observed,
                     "review trace lacks exact protected policy inspection")
+        if "review_history_sha256" in bound_fields:
+            require(history_files and set(evidence_proofs(inspection_token, history_files, label="history-proof")) <= observed,
+                    "review trace lacks exact protected history inspection")
     require(verdict["decision"] != "approve" or not verdict["findings"], "approval contains material findings")
     return execution, verdict
 
@@ -273,6 +282,30 @@ def load_review_policy():
     return raw, manifest, files
 
 
+def load_review_history(base, head):
+    """Read a protected, independently collected exact Git object archive."""
+    require(all(re.fullmatch(r"[0-9a-f]{40}", oid) for oid in (base, head)), "invalid review history ancestry")
+    receipt_path = PROTECTED_HISTORY_ROOT / f"{head}.json"
+    protected_path(receipt_path, directory=False)
+    with receipt_path.open("rb") as source:
+        raw = source.read(4097)
+    require(len(raw) <= 4096, "protected review history receipt exceeds its size limit")
+    receipt = decode(raw)
+    require(isinstance(receipt, dict) and receipt.keys() == {"repository", "base", "head", "bytes", "sha256"}
+            and receipt["repository"] == "software-commons/license-index"
+            and receipt["base"] == base and receipt["head"] == head,
+            "protected review history receipt does not match the exact candidate ancestry")
+    size = receipt["bytes"]
+    require(type(size) is int and 0 < size <= MAX_HISTORY_BYTES, "invalid protected review history archive size")
+    path = PROTECTED_HISTORY_ROOT / f"{head}.zip"
+    protected_path(path, directory=False)
+    with path.open("rb") as source:
+        content = source.read(size + 1)
+    require(len(content) == size and sha256(content).hexdigest() == receipt["sha256"],
+            "protected review history archive differs from its receipt")
+    return raw, receipt, {REVIEW_HISTORY_NAME: content}
+
+
 def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
     arguments = [str(codex), "exec", "--ignore-user-config", "--ignore-rules", "--skip-git-repo-check",
                  "--json", "--color", "never", "--model", model,
@@ -315,6 +348,13 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
         "read all review_policy files and produce nonce-bound proof using the batching and hash scheme below "
         "with the prefix policy-proof and its own batch numbering starting at zero. "
         "These files provide technical policy context and do not qualify any scientific claim. "
+        "If review_history_sha256 is present, echo it in the verdict and inspect review-history.zip "
+        "as read-only data using the Python standard library without extracting it or executing candidate code. "
+        "Its manifest.json maps Git commit, tree and blob IDs to objects/<oid> containing their raw bytes. "
+        "Verify the object IDs and ancestry, resolve each coverage snapshot and its inputs at the frozen commit, "
+        "and compare its recorded counts against those exact inputs. Record the number and versions checked. "
+        "Use the same nonce and hash scheme in a successful command mentioning review-input.json "
+        "to print history-proof 0 for the single archive as an independent proof. "
         "Open review-input.json and inspect the exact patch through read-only tools. "
         "In a successful command mentioning review.diff, read its exact bytes and print the lowercase SHA-256 "
         "of the ASCII inspection_token concatenated with the complete review.diff bytes. "
@@ -691,6 +731,11 @@ def run(args, github, *, token_input=None, publisher=write_check):
         policy_manifest, policy_sources, policy_files = load_review_policy()
         binding.update(review_policy=policy_sources, review_policy_sha256=sha256(policy_manifest).hexdigest())
         save(audit / "review-policy-manifest.json", policy_manifest)
+    history_files = {}
+    if getattr(args, "review_policy_required", False) and len(_COVERAGE_PATCH_PATH.findall(diff)) > 1:
+        history_receipt, history, history_files = load_review_history(snapshot.base, snapshot.head)
+        binding.update(review_history=history, review_history_sha256=history["sha256"])
+        save(audit / "review-history-receipt.json", history_receipt)
     save(audit / "review.diff", diff)
     authorization = None
     try:
@@ -746,7 +791,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
             evidence_files = {name: evidence[path] for name, path in names.items()}
             for name, blob in evidence_files.items():
                 save(input_dir / name, blob)
-        for name, content in policy_files.items():
+        for name, content in (policy_files | history_files).items():
             save(input_dir / name, content)
         save(input_dir / "review-input.json", encode(review_input))
         save(input_dir / "review.diff", diff)
@@ -757,7 +802,8 @@ def run(args, github, *, token_input=None, publisher=write_check):
         started_at = datetime.now(timezone.utc).isoformat()
         trace = launch_review(args.codex, args.model, input_dir, schema, audit, reviewer=reviewer)
         completed_at = datetime.now(timezone.utc).isoformat()
-    execution, verdict = review_result(trace, binding, token, diff, evidence_files, policy_files=policy_files)
+    execution, verdict = review_result(trace, binding, token, diff, evidence_files,
+                                       policy_files=policy_files, history_files=history_files)
     decision = {"binding": binding, "execution": execution, "model": args.model,
                 "started_at": started_at, "completed_at": completed_at,
                 "trace_sha256": sha256(trace).hexdigest(), "decision": verdict["decision"],
