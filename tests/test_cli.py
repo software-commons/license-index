@@ -174,6 +174,11 @@ class ToolTests(unittest.TestCase):
             self.assertEqual(command("add", "Apache-2.0", "--output", target).returncode, 1)
             self.assertEqual(target.read_bytes(), baseline)
             self.assertEqual(other.read_bytes(), b"keep me")
+            if os.name == "posix":
+                target.write_bytes(b"original notice")
+                replaced = self.json_output("add", "Apache-2.0", "--output", target, "--force")
+                self.assertEqual(Path(replaced["preserved_output"]).read_bytes(), b"original notice")
+                self.assertEqual(target.read_bytes(), baseline)
 
     def test_compound_exception_and_corrupt_input_refused(self):
         with TemporaryDirectory() as temporary:

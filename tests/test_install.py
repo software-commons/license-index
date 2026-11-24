@@ -143,15 +143,23 @@ class InstallTests(unittest.TestCase):
     def test_atomic_install_no_overwrite_and_explicit_force(self):
         sibling = self.directory / "other.txt"
         sibling.write_bytes(b"preserve")
-        write_license(self.output, b"first\r\n")
+        self.assertIsNone(write_license(self.output, b"first\r\n"))
         self.assertEqual(self.output.read_bytes(), b"first\r\n")
         with self.assertRaisesRegex(InstallError, "already exists"):
             write_license(self.output, b"second\n")
         self.assertEqual(self.output.read_bytes(), b"first\r\n")
-        write_license(self.output, b"second\n", force=True)
+        previous = write_license(self.output, b"second\n", force=True)
         self.assertEqual(self.output.read_bytes(), b"second\n")
         self.assertEqual(sibling.read_bytes(), b"preserve")
-        self.assertEqual(set(self.directory.iterdir()), {self.output, sibling})
+        expected = {self.output, sibling}
+        if os.name == "posix":
+            self.assertIsInstance(previous, Path)
+            self.assertEqual(previous.read_bytes(), b"first\r\n")
+            self.assertEqual(stat.S_IMODE(previous.parent.stat().st_mode), 0o700)
+            expected.add(previous.parent)
+        else:
+            self.assertIsNone(previous)
+        self.assertEqual(set(self.directory.iterdir()), expected)
 
     def test_dry_run_creates_nothing_and_preserves_existing_file(self):
         write_license(self.output, b"preview", dry_run=True)
@@ -457,7 +465,7 @@ class InstallTests(unittest.TestCase):
         with (patch("tools.li_install.os.open", side_effect=remember_target),
               patch("tools.li_install.os.dup", side_effect=remember_stage),
               patch("tools.li_install._exchange_posix", side_effect=verify_pin)):
-            write_license(self.output, b"new license", force=True)
+            previous = write_license(self.output, b"new license", force=True)
 
         descriptors, = exchanged
         for descriptor in descriptors:
@@ -465,7 +473,9 @@ class InstallTests(unittest.TestCase):
                 os.fstat(descriptor)
             self.assertEqual(closed.exception.errno, errno.EBADF)
         self.assertEqual(self.output.read_bytes(), b"new license")
-        self.assertEqual(list(self.directory.iterdir()), [self.output])
+        self.assertTrue(os.path.samestat(previous.stat(), original))
+        self.assertEqual(previous.read_bytes(), b"original")
+        self.assertEqual(set(self.directory.iterdir()), {self.output, previous.parent})
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
     def test_posix_force_preserves_nonregular_entries_at_the_exchange_boundary(self):
@@ -478,6 +488,8 @@ class InstallTests(unittest.TestCase):
                 output = self.directory / kind
                 output.write_bytes(b"existing")
                 identities = []
+                exchanges = []
+                previous_stages = set(self.directory.glob(".license-index-*.tmp"))
 
                 def substitute_once(stage, temporary, directory, name):
                     if not identities:
@@ -487,10 +499,11 @@ class InstallTests(unittest.TestCase):
                         else:
                             output.symlink_to(referent.name)
                         identities.append(output.lstat())
-                    return _exchange_posix(stage, temporary, directory, name)
+                    _exchange_posix(stage, temporary, directory, name)
+                    exchanges.append(name)
 
                 with patch("tools.li_install._exchange_posix", side_effect=substitute_once):
-                    with self.assertRaises(InstallError):
+                    with self.assertRaises(InstallError) as failure:
                         write_license(output, b"new", force=True)
                 identity, = identities
                 final = output.lstat()
@@ -499,7 +512,14 @@ class InstallTests(unittest.TestCase):
                 if kind == "symlink":
                     self.assertEqual(output.readlink(), Path(referent.name))
                 self.assertEqual(referent.read_bytes(), b"preserve")
-                self.assertEqual(list(self.directory.glob(".license-index-*.tmp")), [])
+                new_stages = set(self.directory.glob(".license-index-*.tmp")) - previous_stages
+                if exchanges:
+                    recovered_dir, = new_stages
+                    recovered, = recovered_dir.iterdir()
+                    self.assertEqual(recovered.read_bytes(), b"new")
+                    self.assertIn(str(recovered), str(failure.exception))
+                else:
+                    self.assertEqual(new_stages, set())
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
     def test_posix_force_preserves_same_inode_edit_at_exchange(self):
@@ -508,10 +528,12 @@ class InstallTests(unittest.TestCase):
         self.output.write_bytes(b"original")
         original = self.output.stat()
         edited = b"modified"
+        edited_replacement = b"editor saved after publication"
         observations = []
 
         def edit_once(stage, temporary, directory, name):
-            if not observations:
+            publishing = not observations
+            if publishing:
                 with self.output.open("r+b") as writer:
                     writer.write(edited)
                 os.utime(self.output, ns=(original.st_atime_ns, original.st_mtime_ns))
@@ -520,16 +542,22 @@ class InstallTests(unittest.TestCase):
                 self.assertEqual((observed.st_size, observed.st_mtime_ns),
                                  (original.st_size, original.st_mtime_ns))
                 observations.append(observed)
-            return _exchange_posix(stage, temporary, directory, name)
+            _exchange_posix(stage, temporary, directory, name)
+            if publishing:
+                self.output.write_bytes(edited_replacement)
 
         with patch("tools.li_install._exchange_posix", side_effect=edit_once):
-            with self.assertRaisesRegex(InstallError, "Output changed during replacement"):
+            with self.assertRaisesRegex(InstallError, "Output changed during replacement") as failure:
                 write_license(self.output, b"new license", force=True)
 
         observed, = observations
         self.assertTrue(os.path.samestat(self.output.stat(), observed))
         self.assertEqual(self.output.read_bytes(), edited)
-        self.assertEqual(list(self.directory.iterdir()), [self.output])
+        stage, = set(self.directory.iterdir()) - {self.output}
+        self.assertEqual(stat.S_IMODE(stage.stat().st_mode), 0o700)
+        recovered, = stage.iterdir()
+        self.assertEqual(recovered.read_bytes(), edited_replacement)
+        self.assertIn(str(recovered), str(failure.exception))
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange recovery")
     def test_posix_force_retains_the_displaced_entry_if_the_published_name_moves(self):
@@ -586,10 +614,12 @@ class InstallTests(unittest.TestCase):
 
         with patch.dict(os.environ, {"TMPDIR": str(controlled)}):
             with patch("tools.li_install._complete_file", side_effect=inspect_stage):
-                write_license(output, b"initial")
-                write_license(output, b"replacement", force=True)
+                self.assertIsNone(write_license(output, b"initial"))
+                previous = write_license(output, b"replacement", force=True)
         self.assertEqual(len(staged), 2)
-        self.assertEqual(list(controlled.iterdir()), [])
+        self.assertEqual(list(controlled.iterdir()), [staged[1]])
+        self.assertEqual(previous.parent, staged[1])
+        self.assertEqual(previous.read_bytes(), b"initial")
         self.assertEqual(output.read_bytes(), b"replacement")
         self.assertEqual(foreign.read_bytes(), b"a separate writer's file")
 

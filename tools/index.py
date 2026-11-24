@@ -134,7 +134,8 @@ def text_or_add(catalog, args):
             verify_gplv3_companion(args.output, companion, base, stat_output=stat_output)
 
         result["gplv3_text"] = {"path": str(companion), "sha256": descriptor["sha256"]}
-    write_license(args.output, installed, force=args.force, dry_run=args.dry_run, before_publish=before_publish)
+    preserved = write_license(args.output, installed, force=args.force, dry_run=args.dry_run,
+                              before_publish=before_publish)
     result.update({
         "output": str(args.output),
         "dry_run": args.dry_run,
@@ -145,7 +146,11 @@ def text_or_add(catalog, args):
     if args.dry_run:
         result["text"] = installed.decode("utf-8")
         return result, installed
-    return result, f"Wrote {args.output}\n{result['application']}"
+    message = f"Wrote {args.output}\n{result['application']}"
+    if preserved is not None:
+        result["preserved_output"] = str(preserved)
+        message += f"\nPrevious output preserved at {preserved}"
+    return result, message
 
 
 def comparison(catalog, identifiers):

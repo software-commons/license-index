@@ -418,18 +418,22 @@ class _PinnedPosixTarget(NamedTuple):
 
 
 def _replace_posix_regular(stage, temporary, directory, output, previous, staged, recovery):
-    _exchange_posix(stage, temporary, directory, output.name)
-    displaced = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
-    if stat.S_ISREG(displaced.st_mode) and os.path.samestat(previous.info, displaced):
-        try:
+    try:
+        _exchange_posix(stage, temporary, directory, output.name)
+    except (InstallError, OSError):
+        # A rejected atomic exchange leaves the staged file private.
+        os.unlink(temporary, dir_fd=stage)
+        raise
+    try:
+        displaced = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+        if stat.S_ISREG(displaced.st_mode) and os.path.samestat(previous.info, displaced):
             latest, digest = _posix_file_fingerprint(previous.descriptor)
-        except (InstallError, OSError):
-            pass  # Treat an unstable or unreadable displaced file as changed.
-        else:
             # Exchange itself can update ctime. Compare the content and stable metadata.
             if _posix_file_metadata(latest) == _posix_file_metadata(previous.info) and digest == previous.digest:
-                os.unlink(temporary, dir_fd=stage)
-                return
+                # A writer may still hold the previous file open. Preserve its directory entry.
+                return recovery
+    except (InstallError, OSError):
+        pass  # Treat an unstable or unreadable displaced file as changed.
 
     restored = False
     try:
@@ -440,7 +444,7 @@ def _replace_posix_regular(stage, temporary, directory, output, previous, staged
     except OSError:
         pass
     if restored:
-        raise InstallError(f"Output changed during replacement and the displaced entry was restored: {output}")
+        raise InstallError(f"Output changed during replacement. Restored {output}. Preserved a copy at {recovery}")
     raise InstallError(f"Output changed during replacement. A displaced entry was preserved at {recovery}")
 
 
@@ -483,7 +487,7 @@ def _write_posix(output, content, force, dry_run, before_publish):
             descriptor = os.open(
                 temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o666, dir_fd=stage
             )
-            staged = None
+            exchange_attempted = False
             try:
                 stage_pin = None
                 if previous is not None:
@@ -494,10 +498,6 @@ def _write_posix(output, content, force, dry_run, before_publish):
                         raise
                     handles.callback(os.close, stage_pin)
                 _complete_file(descriptor, content)
-                if stage_pin is not None:
-                    staged = os.fstat(stage_pin)
-                else:
-                    staged = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
                 if before_publish is not None:
                     before_publish(stat_target)
                 if previous is not None:
@@ -506,8 +506,10 @@ def _write_posix(output, content, force, dry_run, before_publish):
                             or _posix_file_metadata(previous.info) != _posix_file_metadata(current)
                             or previous.info.st_ctime_ns != current.st_ctime_ns):
                         raise InstallError(f"Output changed during replacement: {output}")
-                    _replace_posix_regular(stage, temporary, directory, output, previous, staged,
-                                           staging_path / stage_name / temporary)
+                    staged = os.fstat(stage_pin)
+                    exchange_attempted = True
+                    return _replace_posix_regular(stage, temporary, directory, output, previous, staged,
+                                                  staging_path / stage_name / temporary)
                 else:
                     os.link(
                         temporary,
@@ -517,12 +519,11 @@ def _write_posix(output, content, force, dry_run, before_publish):
                         follow_symlinks=False,
                     )
             finally:
-                try:
-                    remaining = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
-                    if staged is None or os.path.samestat(staged, remaining):
+                if not exchange_attempted:
+                    try:
                         os.unlink(temporary, dir_fd=stage)
-                except FileNotFoundError:
-                    pass
+                    except FileNotFoundError:
+                        pass
 
 
 def _check_windows_parent(output):
@@ -797,14 +798,14 @@ def _write_windows(output, content, force, dry_run, before_publish):
 
 
 def write_license(output: Path, content: bytes, *, force: bool = False, dry_run: bool = False,
-                  before_publish=None) -> None:
-    """Write the selected target while checking its existing identity and contents."""
+                  before_publish=None) -> Path | None:
+    """Write the selected target and return the preserved previous POSIX file, if any."""
     output = _validate_path(output)
     writer = _write_windows if os.name == "nt" else _write_posix
     try:
         if before_publish is not None:
             before_publish(output.lstat)
-        writer(output, content, force, dry_run, before_publish)
+        return writer(output, content, force, dry_run, before_publish)
     except FileExistsError as failure:
         if force:
             raise InstallError(f"Output changed during replacement: {output}") from failure
