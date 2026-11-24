@@ -305,9 +305,16 @@ class GitHistoryTests(unittest.TestCase):
         self.commit("Freeze the exact earlier membership under the retained discovery UUID")
         frozen = self.git("rev-parse", "HEAD").strip()
         report = self.select_fixture(frozen, payload)
-        self.write(path, {**later, "history": []})
+        restored = self.spdx_lead(revision="d" * 40, release="3.5.0")
+        restored["history"] = [*later["history"], {"origin": later["origin"]},
+                               {"membership": later["membership"]},
+                               {"membership": {"status": "restored", "source": "d" * 40, "release": "3.5.0"}}]
+        self.write(path, restored)
         with patch("tools.qualification._validate_policy"):
             self.assertEqual(qualified(Catalog(self.root), self.root), (report, payload))
+            self.write(path, {**restored, "history": restored["history"][1:]})
+            with self.assertRaisesRegex(DataError, "candidate|provenance|origin"):
+                qualified(Catalog(self.root), self.root)
 
     def test_candidate_and_canonical_paths_are_never_reused_or_dropped(self):
         check_history(self.catalog, self.base)

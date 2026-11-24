@@ -328,8 +328,15 @@ def _bind_payload(entities, payload):
     return [by_key[key] for key in sorted(by_key)]
 
 
-def _validate_frozen_provenance(root, frozen, entities):
-    """Resolve canonical discovery links in the same Git snapshot as the selected claims."""
+def _discovery_origins(candidate):
+    yield candidate["origin"]
+    for note in candidate["history"]:
+        if isinstance(note, dict) and isinstance(note.get("origin"), dict):
+            yield note["origin"]
+
+
+def _validate_frozen_provenance(root, frozen, entities, retained_candidates):
+    """Resolve canonical links against the source snapshot and retained discovery history."""
     candidate_blobs = _git_blobs(root, frozen, "registry/candidates")
     candidates = {}
     for identity, entity in entities.items():
@@ -347,11 +354,13 @@ def _validate_frozen_provenance(root, frozen, entities):
                 require(origin.get("kind") in {"spdx", "publisher"}
                         and all(_text(origin.get(field)) for field in ("identifier", "name", "source")),
                         f"{path}: missing frozen discovery origin")
-                candidates[candidate_id] = candidate
-            candidate = candidates[candidate_id]
-            origins.append(candidate["origin"])
-            origins.extend(note["origin"] for note in candidate["history"]
-                           if isinstance(note, dict) and isinstance(note.get("origin"), dict))
+                require(candidate_id in retained_candidates,
+                        f"{identity}: canonical provenance requires retained discovery records")
+                retained = list(_discovery_origins(retained_candidates[candidate_id]))
+                shared = [origin for origin in _discovery_origins(candidate) if origin in retained]
+                require(shared, f"{identity}: frozen discovery origin is absent from the retained ledger")
+                candidates[candidate_id] = shared
+            origins.extend(candidates[candidate_id])
         list_kind = {"license": "license", "related-instrument": "license", "exception": "exception"}.get(entity["kind"])
         for crosswalk in entity["crosswalks"]:
             if crosswalk["origin"] != "spdx":
@@ -426,10 +435,7 @@ def qualified(catalog, policy: Path | None, *, base: str | None = None) -> tuple
     require(expected == current, "canonical record bytes differ from the frozen SCES source")
     payload = decode(_exact_file(root / "sces/releases" / name / "claims.json"))
     bound = _bind_payload(catalog.entities, payload)
-    for entity in catalog.entities.values():
-        require(all(candidate_id in catalog.candidates for candidate_id in entity["candidate_ids"]),
-                f"{entity['id']}: canonical provenance requires retained discovery records")
-    _validate_frozen_provenance(root, report["source_commit"], catalog.entities)
+    _validate_frozen_provenance(root, report["source_commit"], catalog.entities, catalog.candidates)
     return report, bound
 
 
