@@ -127,13 +127,20 @@ class ToolTests(unittest.TestCase):
 
     def test_launcher_runs_from_another_project(self):
         with TemporaryDirectory() as temporary:
+            environment = None
+            project = Path(temporary)
             if os.name == "nt":
-                launcher = ROOT / "license-index.cmd"
+                install = project / "License Index!"
+                install.mkdir()
+                (install / "license-index.cmd").write_bytes((ROOT / "license-index.cmd").read_bytes())
+                copytree(ROOT / "tools", install / "tools")
+                python_home = Path(sys.executable).parent
+                environment = dict(os.environ, PATH=os.pathsep.join(map(str, (install, python_home))))
                 shell = os.environ.get("COMSPEC", "cmd.exe")
-                invocation = f'"{shell}" /d /s /c ""{launcher}" --version"'
+                invocation = [shell, "/d", "/v:on", "/c", "license-index.cmd", "--version"]
             else:
                 invocation = ["/bin/sh", str(ROOT / "license-index"), "--version"]
-            result = subprocess.run(invocation, cwd=temporary, capture_output=True, check=False)
+            result = subprocess.run(invocation, cwd=project, env=environment, capture_output=True, check=False)
             self.assertEqual(result.returncode, 0, result.stderr.decode())
             self.assertTrue(result.stdout.startswith(b"license-index "))
 

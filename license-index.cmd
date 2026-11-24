@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal DisableDelayedExpansion
 set "LICENSE_INDEX_PYTHON="
 set "LICENSE_INDEX_PYTHON_ARGS="
 for %%P in (python.exe) do set "LICENSE_INDEX_PYTHON=%%~$PATH:P"
