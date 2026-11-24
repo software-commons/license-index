@@ -14,12 +14,16 @@ from .li_install import LGPL_V3_IDS, LGPL_V3_SUPPLEMENT, write_license
 from .qualification import _blob_hash, _exact_file, _git, _git_blobs, check_history, qualified
 from .reconcile import RELEASE
 from .records import (
-    DATA_COMMIT, HEX_256, VERSION, Catalog, DataError, NoRedirects, checked_bytes, decode, encode, is_removed,
-    local_path, read, require,
+    COVERAGE_VERSION, DATA_COMMIT, HEX_256, LEGACY_COVERAGE_VERSION, VERSION, Catalog, DataError,
+    NoRedirects, checked_bytes, decode, encode, is_removed, local_path, read, require,
 )
 
 COVERAGE = "registry/coverage/current.json"
 SNAPSHOTS = "registry/coverage/snapshots"
+DISCOVERY_EXPORT = "catalog.json"
+COVERAGE_SCES_SECTIONS = ("sces/records/claim", "sces/records/disposition", "sces/records/verification")
+RECORDED_EVIDENCE_COUNTS = ("recorded_claim_revisions", "recorded_independently_reviewed_claims",
+                            "recorded_invalidated_claim_revisions")
 SOURCES = "research/sources"
 SPDX_SOURCE = re.compile(rf"{SOURCES}/spdx-[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9a-f]{{40}})?\.json")
 PACKAGED_TEXTS = "legal-texts/manifest.json"
@@ -77,7 +81,7 @@ def validate_source(catalog, source):
     for value in source["manifests"].values():
         descriptor(value)
     expected = source["population"]
-    catalog_counts = catalog.coverage()["catalog"]
+    catalog_counts = catalog.coverage(schema_version=LEGACY_COVERAGE_VERSION)["catalog"]
     for field in ("licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions"):
         require(expected[field] == catalog_counts[f"spdx_{field}"], f"SPDX population mismatch: {field}")
     for key in ("text", "template"):
@@ -203,15 +207,11 @@ def validate_profiles(catalog):
                         f"invalid evidence locator for {identifier}")
 
 
-def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
+def _current_snapshot(catalog):
     current = _exact_file(catalog.root / COVERAGE)
     saved = decode(current)
-    source = read(local_path(catalog.root, saved["source_manifest"]))
-    retained_sources = validate_source(catalog, source)
-    validate_texts(catalog, rights_reader=rights_reader)
-    validate_profiles(catalog)
-    require(encode(saved["assessment"]) == encode(catalog.coverage()),
-            "discovery coverage snapshot differs from the live ledger")
+    require(saved.get("schema_version") == COVERAGE_VERSION,
+            f"current coverage must use schema {COVERAGE_VERSION}")
     name = saved["snapshot"]
     snapshot = local_path(catalog.root, name)
     require(name.startswith(f"{SNAPSHOTS}/") and snapshot.suffix == ".json"
@@ -219,6 +219,48 @@ def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_arch
             "current coverage must name a JSON archive under registry/coverage/snapshots")
     require(_exact_file(snapshot) == current,
             "current coverage differs from its immutable snapshot")
+    return saved
+
+
+def _is_evidence_omitting_bundle(catalog, base, policy):
+    root = catalog.root
+    return (base is None and policy is None and (root / DISCOVERY_EXPORT).is_file()
+            and not any((root / name).exists() or (root / name).is_symlink()
+                        for name in (".git", ".github", "sces")))
+
+
+def _apply_bundle_evidence(catalog, assessment, snapshot):
+    require(_exact_file(catalog.root / DISCOVERY_EXPORT) == encode(discovery_export(catalog)),
+            "offline catalog export differs from the complete discovery data and coverage snapshot digest")
+    recorded = snapshot["assessment"]["qualification"]
+    counts = {key: recorded.get(key) for key in RECORDED_EVIDENCE_COUNTS}
+    require(all(type(value) is int and value >= 0 for value in counts.values())
+            and counts["recorded_independently_reviewed_claims"] + counts["recorded_invalidated_claim_revisions"]
+            <= counts["recorded_claim_revisions"], "invalid recorded evidence counts in offline coverage")
+    assessment["qualification"].update(counts)
+
+
+def coverage_assessment(catalog, qualified_claims=(), *, base=None, policy=None):
+    """Report recorded evidence separately from policy-validated active selection."""
+    assessment = catalog.coverage(qualified_claims)
+    if not qualified_claims and _is_evidence_omitting_bundle(catalog, base, policy):
+        _apply_bundle_evidence(catalog, assessment, _current_snapshot(catalog))
+        assessment["qualification"]["recorded_evidence_basis"] = "distribution-snapshot"
+    return assessment
+
+
+def validate_discovery(catalog, *, base=None, policy=None, spdx_archive=None, fetch_spdx_archive=False,
+                       rights_reader=None):
+    saved = _current_snapshot(catalog)
+    source = read(local_path(catalog.root, saved["source_manifest"]))
+    retained_sources = validate_source(catalog, source)
+    validate_texts(catalog, rights_reader=rights_reader)
+    validate_profiles(catalog)
+    expected = catalog.coverage()
+    if _is_evidence_omitting_bundle(catalog, base, policy):
+        _apply_bundle_evidence(catalog, expected, saved)
+    require(encode(saved["assessment"]) == encode(expected),
+            "discovery coverage snapshot differs from the live ledger")
     if spdx_archive is not None or fetch_spdx_archive:
         from .spdx_replay import replay, replay_download
         if spdx_archive is not None:
@@ -231,8 +273,9 @@ def validate_discovery(catalog, *, base=None, spdx_archive=None, fetch_spdx_arch
 class _HistoricalCatalog(Catalog):
     """Replay current discovery logic over immutable JSON from one Git tree."""
 
-    def __init__(self, root, rows):
+    def __init__(self, root, rows, sces_rows):
         self._rows = rows
+        self._historical_sces = sces_rows
         super().__init__(root)
 
     def _optional(self, relative):
@@ -242,6 +285,11 @@ class _HistoricalCatalog(Catalog):
         prefix = f"registry/{kind}/"
         return ((name, row) for name, row in self._rows.items()
                 if name.startswith(prefix) and name.endswith(".json"))
+
+    def _sces_rows(self, kind):
+        prefix = f"sces/records/{kind}/"
+        return ((name, raw) for name, raw in self._historical_sces.items()
+                if name.startswith(prefix) and name.endswith(".json") and "/" not in name[len(prefix):])
 
 
 def _read_git_blobs(root, paths, cache):
@@ -318,7 +366,13 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
                                      if path == source or SPDX_SOURCE.fullmatch(path)
                                      or not path.startswith(f"{SOURCES}/")}, cache)
         rows = {path: decode(payload) for path, payload in data.items()}
-        historic = _HistoricalCatalog(root, rows)
+        version = archived.get("schema_version")
+        require(version in {LEGACY_COVERAGE_VERSION, COVERAGE_VERSION}, f"{name}: unsupported coverage schema")
+        sces_rows = {}
+        if version == COVERAGE_VERSION:
+            evidence = _git_blobs(root, commit, *COVERAGE_SCES_SECTIONS)
+            sces_rows = _read_git_blobs(root, evidence, cache)
+        historic = _HistoricalCatalog(root, rows, sces_rows)
         validate_source(historic, rows[source])
         text_paths = {package["path"] for package in historic.packaged.values()}
         texts = _git_blobs(root, commit, "legal-texts", "LICENSE")
@@ -326,11 +380,11 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
         historical_texts = _read_git_blobs(root, {path: texts[path] for path in text_paths}, cache)
         validate_texts(historic, historical_texts.__getitem__, rights_reader=rights_reader, archived=True)
         validate_profiles(historic)
-        expected = historic.coverage()
+        expected = historic.coverage(schema_version=version)
         installation = expected["installation"]
         # The v1 discovery format originally omitted this field when there were no companions.
-        if not installation["requires_verified_companion"] and (
-                "requires_verified_companion" not in archived["assessment"]["installation"]):
+        if (version == LEGACY_COVERAGE_VERSION and not installation["requires_verified_companion"]
+                and "requires_verified_companion" not in archived["assessment"]["installation"]):
             del installation["requires_verified_companion"]
         require(encode(archived["assessment"]) == encode(expected),
                 f"{name}: coverage differs from historical registry inputs at {commit}")
@@ -350,7 +404,7 @@ def validate_incoming_snapshots(root, base, *, rights_reader=None, replay_spdx=N
 def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_archive=False, rights_reader=None):
     if rights_reader is not None:
         rights_reader = cache(rights_reader)
-    saved, _ = validate_discovery(catalog, rights_reader=rights_reader)
+    saved, _ = validate_discovery(catalog, base=base, policy=policy, rights_reader=rights_reader)
     replay_history = None
     if spdx_archive is not None or fetch_spdx_archive:
         source = read(local_path(catalog.root, saved["source_manifest"]))
@@ -385,13 +439,15 @@ def validate(catalog, base=None, policy=None, *, spdx_archive=None, fetch_spdx_a
 
 
 def discovery_export(catalog):
-    snapshot = read(catalog.root / COVERAGE)
+    coverage_bytes = _exact_file(catalog.root / COVERAGE)
+    snapshot = decode(coverage_bytes)
     return {
         "dataset": "software-commons/license-index",
         "schema_version": "1.0.0",
         "software_version": VERSION,
         "status": QUALIFICATION_SCOPE,
         "coverage": snapshot,
+        "coverage_snapshot_sha256": sha256(coverage_bytes).hexdigest(),
         "source": read(local_path(catalog.root, snapshot["source_manifest"])),
         "candidates": [catalog.describe(row) for row in catalog.search(include_history=True)],
         "provisional_profiles": catalog.profiles,
@@ -429,7 +485,7 @@ def bundle(catalog, output):
         files.add(PROFILES)
     data = BytesIO()
     with ZipFile(data, "w") as archive:
-        archive_entry(archive, "catalog.json", encode(discovery_export(catalog)))
+        archive_entry(archive, DISCOVERY_EXPORT, encode(discovery_export(catalog)))
         for name in sorted(files):
             archive_entry(archive, name, _exact_file(local_path(root, name)))
     write_license(Path(output), data.getvalue())

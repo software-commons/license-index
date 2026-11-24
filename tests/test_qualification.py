@@ -528,7 +528,8 @@ class GitHistoryTests(unittest.TestCase):
         self.commit("Set discovery baseline")
         base = self.git("rev-parse", "HEAD").strip()
         catalog = Catalog(self.root)
-        ledger = {"source_manifest": source, "snapshot": COVERAGE, "assessment": catalog.coverage()}
+        ledger = {"schema_version": "2.0.0", "source_manifest": source, "snapshot": COVERAGE,
+                  "assessment": catalog.coverage()}
         self.write(COVERAGE, ledger)
         with self.assertRaisesRegex(DataError, "must name a JSON archive"):
             validate_discovery(catalog)
@@ -559,8 +560,9 @@ class GitHistoryTests(unittest.TestCase):
         self.commit("Set the pre-admission baseline without qualified entities")
         base = self.git("rev-parse", "HEAD").strip()
         archive = "registry/coverage/snapshots/archived.json"
-        assessment = Catalog(self.root).coverage()
-        snapshot = {"source_manifest": source, "snapshot": archive, "assessment": assessment}
+        assessment = Catalog(self.root).coverage(schema_version="1.0.0")
+        snapshot = {"schema_version": "1.0.0", "source_manifest": source, "snapshot": archive,
+                    "assessment": assessment}
         self.write(archive, snapshot)
         self.write(COVERAGE, snapshot)
         self.commit("Introduce a truthful archive")
@@ -568,7 +570,8 @@ class GitHistoryTests(unittest.TestCase):
 
         def select_current():
             self.write(self.lead_path, {**self.lead, "disposition": "excluded"})
-            current = {"source_manifest": source, "snapshot": "registry/coverage/snapshots/current.json",
+            current = {"schema_version": "2.0.0", "source_manifest": source,
+                       "snapshot": "registry/coverage/snapshots/current.json",
                        "assessment": Catalog(self.root).coverage()}
             self.write(current["snapshot"], current)
             self.write(COVERAGE, current)
@@ -599,7 +602,8 @@ class GitHistoryTests(unittest.TestCase):
                                                   "deprecated_exceptions", "missing_text", "missing_template"), 0)}
             self.write(source_path, source)
             path = f"registry/coverage/snapshots/{release}.json"
-            snapshot = {"source_manifest": source_path, "snapshot": path, "assessment": Catalog(self.root).coverage()}
+            snapshot = {"schema_version": "2.0.0", "source_manifest": source_path, "snapshot": path,
+                        "assessment": Catalog(self.root).coverage()}
             self.write(COVERAGE, snapshot)
             self.write(path, snapshot)
             self.commit(f"Retain {release} coverage")
@@ -714,7 +718,8 @@ class GitHistoryTests(unittest.TestCase):
                                 "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
                                 "missing_text", "missing_template",
                             ), 0)})
-        saved = {"source_manifest": source, "snapshot": snapshot, "assessment": catalog.coverage()}
+        saved = {"schema_version": "2.0.0", "source_manifest": source, "snapshot": snapshot,
+                 "assessment": catalog.coverage()}
         self.write(snapshot, saved)
         self.write("registry/coverage/current.json", saved)
         self.select_fixture(frozen, [identity_claim(row), self.publisher_binding(crosswalk)])
@@ -729,12 +734,44 @@ class GitHistoryTests(unittest.TestCase):
             check.assert_not_called()
             validated = invoke("validate", *policy_flag)
             self.assertEqual(validated["coverage"]["catalog"]["accepted_entities"], 1)
-            self.assertEqual(validated["coverage"]["qualification"]["independently_verified_claims"], 2)
+            counters = validated["coverage"]["qualification"]
+            self.assertEqual(counters["selected_claims"], 2)
+            self.assertEqual(counters["recorded_independently_reviewed_claims"], 0)
             self.assertEqual(invoke("coverage", *policy_flag), validated["coverage"])
             self.assertEqual(invoke("export", "--qualified", *policy_flag)["entities"], [row])
             check.side_effect = DataError("fixture policy rejected")
             with self.assertRaisesRegex(DataError, "fixture policy rejected"):
                 invoke("export", *policy_flag)
+
+    def test_recorded_coverage_uses_exact_current_review_state(self):
+        claim = {"kind": "claim", "id": "fixture", "revision": 1}
+        record = self.write("sces/records/claim/fixture--1.json", claim)
+        review_refs = {}
+        for field, phase in (("research", "research"), ("review", "independent-review")):
+            ref = {"kind": "verification", "id": f"fixture-{field}", "revision": 1}
+            self.write(f"sces/records/verification/fixture-{field}--1.json", {
+                **ref, "claim": claim, "claim_sha256": sha256(record.read_bytes()).hexdigest(),
+                "phase": phase, "run": {"execution": f"execution-{field}"}, "conclusion": "supported",
+            })
+            review_refs[field] = ref
+        disposition = {"kind": "disposition", "id": "fixture-status", "revision": 1, "target": claim,
+                       "evidence": "supported", "verification": "independently-reviewed", **review_refs}
+        self.write("sces/records/disposition/fixture-status--1.json", disposition)
+        counters = Catalog(self.root).coverage()["qualification"]
+        self.assertEqual((counters["recorded_claim_revisions"], counters["recorded_independently_reviewed_claims"],
+                          counters["recorded_invalidated_claim_revisions"], counters["selected_claims"]), (1, 1, 0, 0))
+
+        original = record.read_bytes()
+        record.write_bytes(original + b"\n")
+        self.assertEqual(Catalog(self.root).coverage()["qualification"]["recorded_independently_reviewed_claims"], 0)
+        record.write_bytes(original)
+
+        self.write("sces/records/disposition/fixture-status--2.json", {
+            **disposition, "revision": 2, "evidence": "insufficient", "verification": "invalidated",
+        })
+        counters = Catalog(self.root).coverage()["qualification"]
+        self.assertEqual((counters["recorded_independently_reviewed_claims"],
+                          counters["recorded_invalidated_claim_revisions"], counters["selected_claims"]), (0, 1, 0))
 
     def test_untrusted_policy_bytes_are_not_executed(self):
         self.write("evidence/v1/policy.json", {"policy": "SCES-1.0", "files": {}})

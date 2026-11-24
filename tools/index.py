@@ -176,9 +176,9 @@ def execute(catalog, args):
         return [catalog.describe(row) for row in rows], "\n".join(
             f"{row['origin']['identifier']}  {row['origin']['name']}" for row in rows)
     if command == "coverage":
-        from .distribution import validate
+        from .distribution import coverage_assessment, validate
         claims = validate(catalog, policy=args.policy)[1] if args.policy else ()
-        return catalog.coverage(claims), None
+        return coverage_assessment(catalog, claims, policy=args.policy), None
     if command == "expression":
         return expression(catalog, args.expression), None
     if command in {"text", "add"}:
@@ -199,7 +199,9 @@ def execute(catalog, args):
             return build_admission_plan(catalog, args.identifiers), None
         return build_plan(catalog, args.identifiers), None
     if command in {"validate", "export", "bundle"}:
-        from .distribution import bundle, discovery_export, read_rights_document, validate, validate_discovery
+        from .distribution import (
+            bundle, coverage_assessment, discovery_export, read_rights_document, validate, validate_discovery,
+        )
         if command == "bundle":
             return bundle(catalog, args.output), None
         if command == "export" and not args.qualified:
@@ -218,7 +220,8 @@ def execute(catalog, args):
             rights_status = "verified" if rights_reader is not None else "references-only"
             spdx_status = "upstream" if args.fetch_spdx_archive else ("local-current" if args.spdx_archive else "references-only")
             message = f"Valid registry (SPDX replay: {spdx_status}, pinned publisher rights digests: {rights_status})"
-            return {"valid": True, "qualification": report, "coverage": catalog.coverage(claims),
+            coverage = coverage_assessment(catalog, claims, base=args.base, policy=args.policy)
+            return {"valid": True, "qualification": report, "coverage": coverage,
                     "spdx_replay": spdx_status, "pinned_publisher_rights_digests": rights_status}, message
         report, claims = validate(catalog, policy=args.policy)
         require(report, "no active SCES-qualified release")

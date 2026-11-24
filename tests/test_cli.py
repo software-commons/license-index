@@ -300,6 +300,7 @@ class ToolTests(unittest.TestCase):
             unpacked = folder / "unpacked"
             with ZipFile(archive) as package:
                 self.assertNotIn("sces/publication.json", package.namelist())
+                self.assertFalse(any(name.startswith("sces/records/") for name in package.namelist()))
                 self.assertNotIn("tools/audit_claims.py", package.namelist())
                 self.assertNotIn("tools/audit_receipts.py", package.namelist())
                 self.assertNotIn("tools/capture_source.py", package.namelist())
@@ -475,7 +476,15 @@ class ToolTests(unittest.TestCase):
             self.assertFalse((folder / "LICENSE").exists())
             self.assertEqual(base_output.read_bytes(), base)
             self.assertEqual(base_output.stat().st_mtime_ns, base_mtime)
-            self.assertEqual(command("coverage", root=unpacked).returncode, 0)
+            frozen_counts = json.loads((unpacked / "registry/coverage/current.json").read_bytes())["assessment"]
+            coverage = command("coverage", "--json", root=unpacked)
+            self.assertEqual(coverage.returncode, 0, coverage.stderr.decode())
+            bundled_counts = json.loads(coverage.stdout)
+            self.assertEqual(bundled_counts["catalog"]["candidate_dispositions"],
+                             frozen_counts["catalog"]["candidate_dispositions"])
+            bundled_evidence = bundled_counts["qualification"]
+            self.assertEqual(bundled_evidence.pop("recorded_evidence_basis"), "distribution-snapshot")
+            self.assertEqual(bundled_evidence, frozen_counts["qualification"])
             planned = command("review-plan", "--admission", "GCC-exception-3.1", root=unpacked)
             self.assertEqual(planned.returncode, 0, planned.stderr.decode())
             candidate, = json.loads(planned.stdout)["candidates"]

@@ -20,6 +20,10 @@ DATA_COMMIT = re.compile(r"[0-9a-f]{40}")
 SPDX_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9.-]*\+?")
 SPDX_DATA_RAW = "https://raw.githubusercontent.com/spdx/license-list-data"
 VERSION = "0.1.0.dev0"
+COVERAGE_VERSION = "2.0.0"
+LEGACY_COVERAGE_VERSION = "1.0.0"
+_SCES_ID = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
+_SCES_COVERAGE_KINDS = ("claim", "disposition", "source", "verification")
 
 
 class DataError(ValueError):
@@ -69,6 +73,36 @@ def checked_bytes(data, descriptor):
     require(len(data) == size and sha256(data).hexdigest() == descriptor["sha256"],
             f"artifact size or SHA-256 mismatch: {descriptor['path']}")
     return data
+
+
+def _sces_reference(value):
+    if not isinstance(value, dict):
+        return None
+    kind, identifier, revision = (value.get(field) for field in ("kind", "id", "revision"))
+    if (kind in _SCES_COVERAGE_KINDS and isinstance(identifier, str) and _SCES_ID.fullmatch(identifier)
+            and type(revision) is int and 1 <= revision <= 2147483647):
+        return kind, identifier, revision
+    return None
+
+
+def _supported_independent_review(target, disposition, claim_bytes, verifications):
+    if disposition.get("evidence") != "supported" or disposition.get("verification") != "independently-reviewed":
+        return False
+    claim_digest = sha256(claim_bytes).hexdigest()
+    executions = set()
+    for field, phase in (("research", "research"), ("review", "independent-review")):
+        ref = _sces_reference(disposition.get(field))
+        if ref not in verifications:
+            return False
+        review, _ = verifications[ref]
+        run = review.get("run")
+        execution = run.get("execution") if isinstance(run, dict) else None
+        if (review.get("phase") != phase or _sces_reference(review.get("claim")) != target
+                or review.get("claim_sha256") != claim_digest or review.get("conclusion") != "supported"
+                or not isinstance(execution, str) or not execution.strip()):
+            return False
+        executions.add(execution)
+    return len(executions) == 2
 
 
 class NoRedirects(HTTPRedirectHandler):
@@ -201,11 +235,59 @@ class Catalog:
             raise DataError(f"could not retrieve the pinned SPDX text: {error.reason}") from error
         return checked_bytes(content, descriptor), material
 
-    def coverage(self, qualified_claims=()):
+    def _sces_rows(self, kind):
+        directory = self.root / "sces" / "records" / kind
+        for path in sorted(directory.glob("*.json")):
+            require(path.is_file() and path.resolve() == path, f"missing or linked SCES coverage record: {path}")
+            yield path.relative_to(self.root).as_posix(), path.read_bytes()
+
+    def _sces_records(self, kind):
+        records = {}
+        for path, raw in self._sces_rows(kind):
+            row = decode(raw)
+            reference = _sces_reference(row)
+            require(reference is not None and reference[0] == kind
+                    and path == f"sces/records/{kind}/{reference[1]}--{reference[2]}.json"
+                    and reference not in records, f"{path}: invalid SCES coverage record identity")
+            records[reference] = row, raw
+        return records
+
+    def _recorded_qualification(self):
+        claims = self._sces_records("claim")
+        dispositions = self._sces_records("disposition")
+        verifications = self._sces_records("verification")
+        latest = {}
+        for row, _ in dispositions.values():
+            target = _sces_reference(row.get("target"))
+            require(target is not None and target[0] in {"claim", "source"},
+                    f"{row['id']}: invalid SCES coverage disposition target")
+            if target[0] == "source":
+                continue
+            require(target in claims, f"{row['id']}: SCES coverage disposition targets a missing claim")
+            previous = latest.get(target)
+            require(previous is None or previous["id"] == row["id"],
+                    f"{row['id']}: ambiguous SCES coverage disposition")
+            if previous is None or row["revision"] > previous["revision"]:
+                latest[target] = row
+        # Report the retained evidence state. SCES eligibility still requires the pinned validator.
+        return {
+            "recorded_claim_revisions": len(claims),
+            "recorded_independently_reviewed_claims": sum(
+                _supported_independent_review(target, disposition, claims[target][1], verifications)
+                for target, disposition in latest.items()
+            ),
+            "recorded_invalidated_claim_revisions": sum(
+                disposition.get("verification") == "invalidated" for disposition in latest.values()
+            ),
+        }
+
+    def coverage(self, qualified_claims=(), *, schema_version=COVERAGE_VERSION):
+        require(schema_version in (LEGACY_COVERAGE_VERSION, COVERAGE_VERSION),
+                f"unknown coverage assessment schema version: {schema_version!r}")
         active = self.active_spdx
         installable = {row["origin"]["identifier"] for row in active if is_installation_target(row)}
         mit_text = self.spdx["mit"]["origin"]["artifacts"].get("text") if "MIT" in installable else None
-        return {
+        assessment = {
             "scope": "SPDX discovery and publisher leads",
             "catalog": {
                 "spdx_licenses": sum(row["origin"]["list_kind"] == "license" for row in active),
@@ -240,11 +322,17 @@ class Catalog:
                 "provisional_explanations": len(self.profiles),
                 "spdx_without_provisional_explanation": sum(self.profile(row) is None for row in active),
             },
-            "qualification": {
-                "independently_verified_claims": len(qualified_claims),
-                "status": "qualified-selection" if qualified_claims else "development",
-            },
+            "qualification": {"status": "qualified-selection" if qualified_claims else "development"},
         }
+        qualification = assessment["qualification"]
+        if schema_version == LEGACY_COVERAGE_VERSION:
+            qualification["independently_verified_claims"] = len(qualified_claims)
+        else:
+            assessment["catalog"]["candidate_dispositions"] = dict(
+                Counter(row["disposition"] for row in self.candidates.values())
+            )
+            qualification.update(self._recorded_qualification(), selected_claims=len(qualified_claims))
+        return assessment
 
 
 def is_removed(row):

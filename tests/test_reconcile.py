@@ -144,8 +144,11 @@ class ReconcileTests(unittest.TestCase):
 
         def snapshot(release):
             archive = f"registry/coverage/snapshots/{release}.json"
-            saved = {"source_manifest": f"research/sources/spdx-{release}.json",
-                     "snapshot": archive, "assessment": Catalog(self.repo).coverage()}
+            saved = {
+                "schema_version": "2.0.0", "cutoff": "2026-11-23", "method": "Synthetic SPDX replay fixture",
+                "source_manifest": f"research/sources/spdx-{release}.json", "snapshot": archive,
+                "assessment": Catalog(self.repo).coverage(schema_version="2.0.0"),
+            }
             (self.repo / archive).parent.mkdir(parents=True, exist_ok=True)
             for name in (archive, COVERAGE):
                 (self.repo / name).write_bytes(encode(saved))
@@ -199,7 +202,7 @@ class ReconcileTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "unregistered retained SPDX source pin"):
             validate_discovery(current)
 
-    def test_local_archive_replay_preserves_identity_from_an_incoming_predecessor(self):
+    def test_local_archive_replay_preserves_identity_from_a_legacy_incoming_predecessor(self):
         def git(*args):
             return subprocess.run(["git", "-C", str(self.repo), *args], check=True,
                                   capture_output=True, text=True).stdout.strip()
@@ -209,14 +212,18 @@ class ReconcileTests(unittest.TestCase):
             git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
                 "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m", label)
 
-        def snapshot(label):
+        def snapshot(label, *, schema_version="2.0.0"):
             archive = f"registry/coverage/snapshots/{label}.json"
-            saved = {"source_manifest": "research/sources/spdx-3.29.0.json",
-                     "snapshot": archive, "assessment": Catalog(self.repo).coverage()}
+            saved = {
+                "schema_version": schema_version, "cutoff": "2026-11-23", "method": "Synthetic SPDX replay fixture",
+                "source_manifest": "research/sources/spdx-3.29.0.json", "snapshot": archive,
+                "assessment": Catalog(self.repo).coverage(schema_version=schema_version),
+            }
             (self.repo / archive).parent.mkdir(parents=True, exist_ok=True)
             for name in (archive, COVERAGE):
                 (self.repo / name).write_bytes(encode(saved))
             commit(label)
+            return self.repo / archive
 
         git("init", "--quiet")
         git("config", "core.autocrlf", "false")
@@ -225,9 +232,13 @@ class ReconcileTests(unittest.TestCase):
         fixture(self.archive)
         origins, source = self.read()
         reconcile.prepare(self.repo, self.repo, origins, source, initial=True)
-        snapshot("first")
+        historical = snapshot("first", schema_version="1.0.0")
+        historical_bytes = historical.read_bytes()
+        with self.assertRaisesRegex(DataError, "current coverage must use schema 2[.]0[.]0"):
+            validate_discovery(Catalog(self.repo))
         snapshot("second")
         self.assertEqual(validate(Catalog(self.repo), base=base, spdx_archive=self.archive), (None, []))
+        self.assertEqual(historical.read_bytes(), historical_bytes)
 
         original = Catalog(self.repo).spdx["example"]
         candidate_path = self.repo / "registry/candidates" / original["id"][:2] / f"{original['id']}.json"

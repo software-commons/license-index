@@ -146,7 +146,7 @@
       "additionalProperties": false,
       "required": ["schema_version", "cutoff", "source_manifest", "snapshot", "method", "assessment"],
       "properties": {
-        "schema_version": {"const": "1.0.0"},
+        "schema_version": {"enum": ["1.0.0", "2.0.0"]},
         "cutoff": {"type": "string", "format": "date"},
         "source_manifest": {"$ref": "#/$defs/path"},
         "snapshot": {"$ref": "#/$defs/path"},
@@ -155,7 +155,36 @@
           "type": "object",
           "required": ["scope", "catalog", "authentic_text", "installation", "research", "qualification"]
         }
-      }
+      },
+      "allOf": [{
+        "if": {"properties": {"schema_version": {"const": "2.0.0"}}},
+        "then": {"properties": {"assessment": {"properties": {
+          "catalog": {
+            "type": "object",
+            "required": ["candidate_dispositions"],
+            "properties": {
+              "candidate_dispositions": {
+                "type": "object",
+                "propertyNames": {"$ref": "#/$defs/candidate/properties/disposition"},
+                "additionalProperties": {"type": "integer", "minimum": 0}
+              }
+            }
+          },
+          "qualification": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["recorded_claim_revisions", "recorded_independently_reviewed_claims",
+                         "recorded_invalidated_claim_revisions", "selected_claims", "status"],
+            "properties": {
+              "recorded_claim_revisions": {"type": "integer", "minimum": 0},
+              "recorded_independently_reviewed_claims": {"type": "integer", "minimum": 0},
+              "recorded_invalidated_claim_revisions": {"type": "integer", "minimum": 0},
+              "selected_claims": {"type": "integer", "minimum": 0},
+              "status": {"enum": ["development", "qualified-selection"]}
+            }
+          }
+        }}}}
+      }]
     },
     "source": {
       "type": "object",
@@ -184,13 +213,15 @@
     },
     "export": {
       "type": "object",
-      "required": ["dataset", "schema_version", "software_version", "status", "coverage", "source", "candidates", "provisional_profiles"],
+      "required": ["dataset", "schema_version", "software_version", "status", "coverage",
+                   "coverage_snapshot_sha256", "source", "candidates", "provisional_profiles"],
       "properties": {
         "dataset": {"const": "software-commons/license-index"},
         "schema_version": {"const": "1.0.0"},
         "software_version": {"$ref": "#/$defs/text"},
         "status": {"const": "development-discovery"},
         "coverage": {"$ref": "#/$defs/coverage"},
+        "coverage_snapshot_sha256": {"$ref": "#/$defs/sha256"},
         "source": {"$ref": "#/$defs/source"},
         "candidates": {"type": "array", "items": {
           "type": "object", "required": ["record", "catalog_status", "legal_interpretation_qualification"],

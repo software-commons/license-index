@@ -55,8 +55,13 @@ class DistributionTests(unittest.TestCase):
             counts = catalog.coverage()["catalog"]
             self.assertEqual(counts["spdx_licenses"], 0)
             self.assertEqual(counts["spdx_historical_only"], 1)
+            self.assertEqual(counts["candidate_dispositions"], {"historical": 1})
             snapshot = "registry/coverage/snapshots/3.29.0.json"
-            coverage = {"source_manifest": current_source, "snapshot": snapshot, "assessment": catalog.coverage()}
+            coverage = {
+                "schema_version": "2.0.0", "cutoff": "2026-11-23", "method": "Synthetic removal fixture",
+                "source_manifest": current_source, "snapshot": snapshot,
+                "assessment": catalog.coverage(schema_version="2.0.0"),
+            }
             write(COVERAGE, coverage)
             write(snapshot, coverage)
             older_sources = {
@@ -78,7 +83,9 @@ class DistributionTests(unittest.TestCase):
                 for name, source in older_sources.items():
                     self.assertEqual(archive.read(name), encode(source))
                 self.assertEqual(archive.read(candidate_path), encode(candidate))
-                self.assertEqual(decode(archive.read("catalog.json"))["candidates"][0]["record"], candidate)
+                exported = decode(archive.read("catalog.json"))
+                self.assertEqual(exported["candidates"][0]["record"], candidate)
+                self.assertEqual(exported["coverage"], coverage)
 
 
 class RightsTests(unittest.TestCase):

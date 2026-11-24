@@ -1,6 +1,6 @@
 # Registry maintenance
 
-The sharded candidate and entity files are authoritative registry inputs. `research/sources/` stores exact upstream revision and checksum manifests. `research/campaigns/` stores provisional review material. `registry/coverage/current.json` matches a retained snapshot byte-for-byte. Exact SCES sources, claims and dispositions belong in `sces/records/`. Add permitted source bytes under `sces/artifacts/` and use `legal-texts/` for documented redistributed developer copies.
+The sharded candidate and entity files are authoritative registry inputs. `research/sources/` stores exact upstream revision and checksum manifests. `research/campaigns/` stores provisional review material. `registry/coverage/current.json` matches a retained snapshot byte-for-byte. Version 2 counts dispositions across the complete discovery ledger and records evidence status separately from the selected claims reported by policy-backed validation. Older version 1 snapshots retain their original bytes and replay under their original assessment format. The development ZIP identifies its evidence totals as a frozen distribution snapshot because the SCES records stay in the source repository. Exact SCES sources, claims and dispositions belong in `sces/records/`. Add permitted source bytes under `sces/artifacts/` and use `legal-texts/` for documented redistributed developer copies.
 
 ## Reconcile an SPDX release
 
