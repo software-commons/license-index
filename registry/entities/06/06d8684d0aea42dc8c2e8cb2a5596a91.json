@@ -1,0 +1,37 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "63d7de23bf5d4c13b52375f9428a82f0"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "mit-osi-reference-spdx-3290-crosswalk",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "MIT",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "osi-mit-reference-form",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "06d8684d0aea42dc8c2e8cb2a5596a91",
+  "identity_claim": {
+    "id": "mit-osi-reference-form-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-source-initiative",
+    "edition": "osi-mit-reference-form",
+    "revision": "osi-record-395-2026-03-30T18:26:23Z"
+  },
+  "kind": "license",
+  "name": "The MIT License",
+  "relations": [],
+  "state": "active"
+}
