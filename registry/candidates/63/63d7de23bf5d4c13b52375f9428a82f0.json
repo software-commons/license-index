@@ -1,6 +1,11 @@
 {
-  "disposition": "unresolved",
-  "history": [],
+  "disposition": "accepted",
+  "history": [
+    {
+      "disposition": "unresolved",
+      "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+    }
+  ],
   "id": "63d7de23bf5d4c13b52375f9428a82f0",
   "origin": {
     "artifacts": {
@@ -48,5 +53,5 @@
     "release": "3.29.0",
     "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
   },
-  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+  "reason": "Admit the named OSI MIT reference form through the scoped SPDX 3.29.0 crosswalk."
 }
