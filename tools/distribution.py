@@ -226,7 +226,7 @@ def _is_evidence_omitting_bundle(catalog, base, policy):
     root = catalog.root
     return (base is None and policy is None and (root / DISCOVERY_EXPORT).is_file()
             and not any((root / name).exists() or (root / name).is_symlink()
-                        for name in (".git", ".github", "sces")))
+                        for name in (".git", ".github", "sces/adoption.json", "sces/records")))
 
 
 def _apply_bundle_evidence(catalog, assessment, snapshot):
