@@ -481,6 +481,30 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(set(self.directory.iterdir()), {self.output, previous.parent})
 
     @unittest.skipUnless(sys.platform.startswith("linux") or sys.platform == "darwin", "POSIX recovery path")
+    def test_posix_new_file_reports_verified_location_when_output_parent_moves(self):
+        parent = self.directory / "original"
+        parent.mkdir()
+        output = parent / "LICENSE"
+        moved = self.directory / "moved"
+        link = os.link
+
+        def move_before_link(*args, **kwargs):
+            parent.rename(moved)
+            parent.mkdir()
+            output.write_bytes(b"unrelated license")
+            return link(*args, **kwargs)
+
+        with patch("tools.li_install.os.link", side_effect=move_before_link):
+            with self.assertRaisesRegex(InstallError, "Output changed during publication") as failure:
+                write_license(output, b"new license")
+
+        self.assertEqual(output.read_bytes(), b"unrelated license")
+        installed = moved / output.name
+        self.assertEqual(installed.read_bytes(), b"new license")
+        self.assertIn(f"The linked license is at {installed}", str(failure.exception))
+        self.assertEqual(list(moved.iterdir()), [installed])
+
+    @unittest.skipUnless(sys.platform.startswith("linux") or sys.platform == "darwin", "POSIX recovery path")
     def test_posix_force_reports_verified_recovery_when_output_parent_moves(self):
         from tools.li_install import _exchange_posix
 

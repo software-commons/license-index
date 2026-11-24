@@ -548,6 +548,7 @@ def _write_posix(output, content, force, dry_run, before_publish):
                     return _replace_posix_regular(stage, temporary, directory, output, previous, staged,
                                                   staging_path / stage_name / temporary)
                 else:
+                    staged = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
                     os.link(
                         temporary,
                         output.name,
@@ -555,6 +556,12 @@ def _write_posix(output, content, force, dry_run, before_publish):
                         dst_dir_fd=directory,
                         follow_symlinks=False,
                     )
+                    if not _posix_path_matches(output, directory, staged):
+                        location = _posix_recovery_location(directory, output, staged)
+                        message = f"Output changed during publication: {output}."
+                        if location is not None:
+                            message += f" The linked license is at {location}"
+                        raise InstallError(message)
             finally:
                 if not exchange_attempted:
                     try:
