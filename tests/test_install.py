@@ -396,6 +396,8 @@ class InstallTests(unittest.TestCase):
     @unittest.skipUnless(os.name == "posix", "POSIX destination validation")
     def test_posix_force_respects_an_edit_to_the_open_destination(self):
         self.output.write_bytes(b"original")
+        initial = self.output.lstat()
+        os.utime(self.output, ns=(initial.st_atime_ns, initial.st_mtime_ns - 2_000_000_000))
         original = self.output.lstat()
 
         def finish_after_an_editor_saves(descriptor, content):
