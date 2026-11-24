@@ -3,18 +3,23 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import suppress
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from hashlib import file_digest, sha256
 import json
 import os
 from pathlib import Path
+from queue import SimpleQueue
 import re
 import secrets
+import signal
 import stat
 import subprocess
 import sys
-from tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory, TemporaryFile
+from threading import Thread
+from time import monotonic
 from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import Request, build_opener
@@ -54,6 +59,8 @@ REVIEWER_ENV = {
     "SYSTEMROOT", "TEMP", "TMP", "TMPDIR", "USERPROFILE", "WINDIR",
 }
 MAX_TRACE_BYTES = 32 * 1024 * 1024
+MAX_REVIEW_STDERR_BYTES = 1024 * 1024
+REVIEW_TIMEOUT = 1800
 EVIDENCE_PROOF_BATCH = 128
 APP_TOKEN = re.compile(r"ghs_[A-Za-z0-9._-]{36,}")
 RUNTIME_KEYS = {"audit_dir", "codex", "codex_sha256", "model", "reviewer_uid", "reviewer_gid", "reviewer_home"}
@@ -162,6 +169,59 @@ def review_result(trace, binding, inspection_token, diff, evidence_files=None):
     return execution, verdict
 
 
+def capture_reviewer_streams(arguments, prompt, stdout, stderr, *, cwd, env, **process_options):
+    """Bound both audit streams as bytes arrive, and abort the reviewer on overflow."""
+    separate_group = os.name == "posix"
+    if separate_group:
+        process_options["start_new_session"] = True
+    errors = SimpleQueue()
+    with TemporaryFile() as source:
+        source.write(prompt)
+        source.seek(0)
+        process = subprocess.Popen(arguments, cwd=cwd, env=env, stdin=source,
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0, **process_options)
+
+        def stop():
+            with suppress(ProcessLookupError):
+                if separate_group:
+                    os.killpg(process.pid, signal.SIGKILL)
+                elif process.poll() is None:
+                    process.kill()
+
+        def drain(pipe, destination, remaining, label):
+            try:
+                with pipe:
+                    while data := pipe.read(min(65536, remaining + 1)):
+                        destination.write(data[:remaining])
+                        require(len(data) <= remaining, f"review {label} exceeds the configured capture limit")
+                        remaining -= len(data)
+            except (OSError, ValueError) as error:
+                errors.put(error)
+                stop()
+
+        workers = [Thread(target=drain, args=(pipe, output, limit, label), daemon=True)
+                   for pipe, output, limit, label in (
+                       (process.stdout, stdout, MAX_TRACE_BYTES, "trace"),
+                       (process.stderr, stderr, MAX_REVIEW_STDERR_BYTES, "stderr"),
+                   )]
+        deadline = monotonic() + REVIEW_TIMEOUT
+        try:
+            for worker in workers:
+                worker.start()
+            result = process.wait(timeout=REVIEW_TIMEOUT)
+            for worker in workers:
+                worker.join(max(0, deadline - monotonic()))
+            if any(worker.is_alive() for worker in workers):
+                raise subprocess.TimeoutExpired(arguments, REVIEW_TIMEOUT)
+            if not errors.empty():
+                raise errors.get()
+            return result
+        finally:
+            if process.poll() is None or any(worker.is_alive() for worker in workers):
+                stop()
+                process.wait(timeout=5)
+
+
 def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
     arguments = [str(codex), "exec", "--ignore-user-config", "--ignore-rules", "--skip-git-repo-check",
                  "--json", "--color", "never", "--model", model,
@@ -209,12 +269,11 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
         "This is technical review only. You have no authority to verify scientific claims or "
         "authorize a release."
     )
-    with (audit_dir / "codex-events.jsonl").open("xb") as stdout, (audit_dir / "codex-stderr.txt").open("xb") as stderr:
-        result = subprocess.run(arguments, cwd=input_dir, env=environment, input=prompt.encode("utf-8"),
-                                stdout=stdout, stderr=stderr, timeout=1800, check=False, **process_options)
-    require(result.returncode == 0, f"Codex process failed with exit code {result.returncode}")
     path = audit_dir / "codex-events.jsonl"
-    require(path.stat().st_size <= MAX_TRACE_BYTES, "review trace exceeds the configured limit")
+    with path.open("xb") as stdout, (audit_dir / "codex-stderr.txt").open("xb") as stderr:
+        result = capture_reviewer_streams(arguments, prompt.encode("utf-8"), stdout, stderr,
+                                          cwd=input_dir, env=environment, **process_options)
+    require(result == 0, f"Codex process failed with exit code {result}")
     return path.read_bytes()
 
 

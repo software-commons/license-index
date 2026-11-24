@@ -12,7 +12,10 @@ from unittest.mock import MagicMock, patch
 
 from tools.qualification import POLICY_DIGEST, _blob_hash, _canonical
 from tools.records import DataError, NoRedirects, decode, encode
-from tools.review_evidence import _fetch_frozen_records, _frozen_inputs, _retrieve_frozen_records, capture_selected_evidence
+from tools.review_evidence import (
+    _RecordBudget, _fetch_frozen_records, _frozen_inputs, _record_blobs,
+    _retrieve_frozen_records, capture_selected_evidence,
+)
 from tools.review_snapshot import REPOSITORY, SnapshotError, _GIT_TIMEOUT, _git, _isolated_git_environment
 
 
@@ -141,6 +144,10 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         candidate = self.commit({**publication, changed_path: unrelated[changed_path].replace(b"xxxx", b"yyyy", 1)},
                                 "select the frozen closure and change an unrelated record")
         self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=source), {**inputs, **publication})
+
+        with patch("tools.review_evidence._MAX_REGISTRY_BYTES", 20 * 1024 * 1024):
+            with self.assertRaisesRegex(DataError, "cumulative processing byte limit"):
+                capture_selected_evidence(self.root, candidate, REPOSITORY, base=source)
 
     def test_selected_record_bytes_still_obey_the_staging_cap(self):
         inputs, make_publication = fixture()
@@ -614,6 +621,32 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, f"differs from its frozen source commit: {path}"):
             capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
 
+    def test_reversed_or_future_execution_intervals_fail_for_selected_claims_and_premises(self):
+        baseline = self.commit({"sces/artifacts/fixture.txt": b"fixture\n"}, "prepare independent fixtures")
+        for name, phase, field, stamp in (
+            ("selected", "research", "started", "2026-10-01T00:01:59Z"),
+            ("premise", "review", "completed", "2026-10-01T00:00:59Z"),
+            ("premise", "review", "completed", "9999-01-01T00:00:00Z"),
+        ):
+            with self.subTest(name=name, phase=phase, field=field, stamp=stamp):
+                _git(self.root, "switch", "--quiet", "--detach", baseline)
+                inputs, make_publication = fixture()
+                path = f"sces/records/verification/{name}-{phase}--1.json"
+                row = decode(inputs[path])
+                row["run"][field] = stamp
+                inputs[path] = _canonical(row)
+                frozen = self.commit(inputs, "freeze inconsistent execution chronology")
+                publication = make_publication(frozen)
+                report_path = RELEASE + "qualification.json"
+                report = decode(publication[report_path])
+                report["inputs_sha256"] = digest(_canonical({name: digest(blob) for name, blob in inputs.items()}))
+                for summary in report["verifications"]:
+                    if summary["record"]["id"] == row["id"]:
+                        summary["record_sha256"] = digest(inputs[path])
+                candidate = self.commit({**publication, report_path: _canonical(report)}, "attempt to qualify invalid chronology")
+                with self.assertRaisesRegex(DataError, "SCES verification interval starts after it completes or completes after"):
+                    capture_selected_evidence(self.root, candidate, REPOSITORY, base=frozen)
+
     def test_frozen_source_commit_cannot_be_a_tree_object(self):
         inputs, make_publication = fixture()
         base = self.commit(inputs, "freeze selected evidence")
@@ -643,7 +676,8 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
                 config = (*config, "protocol.file.allow=always")
             return _git(directory, operation, *arguments, config=config, **options)
 
-        def obtain_missing(repository, commit, paths, limit):
+        def obtain_missing(repository, commit, paths, limit, *, timeout):
+            self.assertGreater(timeout, 0)
             self.assertEqual((repository, commit, paths), (REPOSITORY, baseline, {UNSELECTED: unrelated_oid}))
             self.assertGreaterEqual(limit, len(unrelated))
             with self.assertRaises(SnapshotError):
@@ -673,7 +707,7 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         responses = [SnapshotError("object missing"), b"", b"", b"a" * 40 + b"\n"]
         with patch("tools.review_evidence._git", side_effect=responses):
             with self.assertRaisesRegex(DataError, "did not fetch the exact frozen SCES source commit"):
-                _frozen_inputs(self.root, "b" * 40)
+                _frozen_inputs(self.root, "b" * 40, _RecordBudget())
 
     def test_directory_at_selection_path_is_not_silently_treated_as_absence(self):
         candidate = self.commit({SELECTION + "/marker": b"not a publication selection"}, "unsupported selection path")
@@ -682,6 +716,54 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
 
 
 class FrozenRecordTransportTests(unittest.TestCase):
+    def test_frozen_retrieval_cumulative_budgets_stop_later_batches(self):
+        bodies = {f"sces/records/claim/missing-{i}--1.json": b"{}" for i in range(6)}
+        paths = {path: "a" * 40 for path in bodies}
+        frozen = (REPOSITORY, "b" * 40)
+
+        def fetch(_repository, _commit, wanted, limit, *, timeout):
+            self.assertGreater(timeout, 0)
+            result = {path: bodies[path] for path in wanted}
+            self.assertLessEqual(sum(map(len, result.values())), limit)
+            return result
+
+        for setting, value, diagnostic in (
+            ("_MAX_FROZEN_REQUESTS", 5, "cumulative retrieval request limit"),
+            ("_MAX_FROZEN_BYTES", 8, "cumulative retrieval byte limit"),
+        ):
+            with (self.subTest(setting=setting), patch(f"tools.review_evidence.{setting}", value),
+                  patch("tools.review_evidence._record_sizes", return_value=dict.fromkeys(paths)),
+                  patch("tools.review_evidence._fetch_frozen_records", side_effect=fetch) as captured):
+                budget = _RecordBudget()
+                with self.assertRaisesRegex(DataError, diagnostic):
+                    list(_record_blobs(Path("unused"), paths, list(paths), budget, frozen_source=frozen))
+                self.assertEqual(len(captured.call_args.args[2]), 4)
+                captured.assert_called_once()
+
+    def test_frozen_worker_receives_remaining_elapsed_budget(self):
+        raw = b"{}\n"
+        result = CompletedProcess([], 0, encode({UNSELECTED: b64encode(raw).decode("ascii")}))
+        with patch("tools.review_evidence.subprocess.run", return_value=result) as worker:
+            _fetch_frozen_records(REPOSITORY, "b" * 40, {UNSELECTED: _blob_hash(raw, "sha1")}, len(raw), timeout=1.5)
+        self.assertEqual(worker.call_args.kwargs["timeout"], 1.5)
+
+    def test_elapsed_registry_deadline_rejects_a_late_frozen_batch(self):
+        paths = {UNSELECTED: "a" * 40}
+        now = [100.0]
+
+        def late(_repository, _commit, _wanted, _limit, *, timeout):
+            self.assertEqual(timeout, 2.0)
+            now[0] += 2.5
+            return {UNSELECTED: b"{}"}
+
+        with (patch("tools.review_evidence.monotonic", side_effect=lambda: now[0]),
+              patch("tools.review_evidence._REGISTRY_SECONDS", 2.0),
+              patch("tools.review_evidence._record_sizes", return_value=dict.fromkeys(paths)),
+              patch("tools.review_evidence._fetch_frozen_records", side_effect=late)):
+            with self.assertRaisesRegex(DataError, "registry traversal exceeded its elapsed-time limit"):
+                list(_record_blobs(Path("unused"), paths, list(paths), _RecordBudget(),
+                                   frozen_source=(REPOSITORY, "b" * 40)))
+
     def test_worker_reads_only_the_fixed_https_path_with_no_proxy_redirects_or_oversize(self):
         commit, raw = "b" * 40, b"{}\n"
         payload = encode({"repository": REPOSITORY, "commit": commit, "paths": [UNSELECTED], "limit": len(raw)})

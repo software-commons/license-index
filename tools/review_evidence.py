@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+from time import monotonic
 from urllib.request import ProxyHandler, Request, build_opener
 
 from .qualification import POLICY_DIGEST, _blob_hash, _canonical
@@ -29,6 +30,11 @@ _RECORD_SCAN_PAGE = 256
 _FROZEN_BATCH_COUNT = 4
 _MAX_FROZEN_BATCH = _FROZEN_BATCH_COUNT * _MAX_BLOB
 _MAX_RECORD_BATCH = _FROZEN_BATCH_COUNT * (_MAX_BLOB + 64)
+# These per-candidate traversal and transport limits are separate from the 16 MiB staged evidence limit.
+_MAX_REGISTRY_BYTES = 256 * 1024 * 1024
+_MAX_FROZEN_BYTES = 64 * 1024 * 1024
+_MAX_FROZEN_REQUESTS = 256
+_REGISTRY_SECONDS = 300
 _SELECTION = "sces/publication.json"
 _BASE_SELECTION_REVIEW_PATH = "base:sces/publication.json"
 _ADOPTION = "sces/adoption.json"
@@ -75,32 +81,40 @@ def _inventory(directory, commit, *prefixes):
     return paths
 
 
-def _forget_promisor_remotes(directory):
+def _forget_promisor_remotes(directory, budget):
     # A direct URL plus --filter still auto-registers a promisor. Older Git ignores
     # GIT_NO_LAZY_FETCH, so remove that local configuration in the bare capture.
+    budget.time_remaining()
     keys = _git(directory, "config", "--local", "--null", "--name-only", "--list").decode("utf-8").split("\0")
     sections = sorted({key.rsplit(".", 1)[0] for key in keys
                        if key.startswith("remote.") and key.endswith((".promisor", ".partialclonefilter"))})
     for section in sections:
+        budget.time_remaining()
         _git(directory, "config", "--local", "--remove-section", section)
     if "extensions.partialclone" in keys:
+        budget.time_remaining()
         _git(directory, "config", "--local", "--unset-all", "extensions.partialclone")
 
 
-def _frozen_inputs(directory, commit):
+def _frozen_inputs(directory, commit, budget):
+    budget.time_remaining()
     try:
         object_type = _git(directory, "cat-file", "-t", commit).strip()
     except SnapshotError:
+        budget.time_remaining()
         _git(directory, "fetch", "--quiet", "--depth=1", "--filter=blob:none", "--no-tags",
              "--no-recurse-submodules", "--no-auto-maintenance", "--", _REMOTE_URL, commit,
              config=("http.followRedirects=false", "fetch.fsckObjects=true",
                      "protocol.allow=never", "protocol.https.allow=always"))
-        _forget_promisor_remotes(directory)
+        _forget_promisor_remotes(directory, budget)
+        budget.time_remaining()
         fetched = _git(directory, "rev-parse", "--verify", "FETCH_HEAD").strip()
         require(fetched == commit.encode("ascii"), "Git did not fetch the exact frozen SCES source commit")
+        budget.time_remaining()
         object_type = _git(directory, "cat-file", "-t", commit).strip()
     require(object_type == b"commit", "the frozen SCES source is not a commit object")
     # The pinned SCES validator separately checks source ancestry in CI.
+    budget.time_remaining()
     return _inventory(directory, commit, _ADOPTION, "sces/records", "sces/artifacts")
 
 
@@ -147,6 +161,7 @@ def _retrieve_frozen_records():
     request = decode(sys.stdin.buffer.read())
     repository, commit, paths, remaining = (request[key] for key in ("repository", "commit", "paths", "limit"))
     require(repository == REPOSITORY and re.fullmatch(r"[0-9a-f]{40}", commit)
+            and isinstance(paths, list) and 0 < len(paths) <= _FROZEN_BATCH_COUNT
             and type(remaining) is int and 0 < remaining <= _MAX_FROZEN_BATCH, "unapproved frozen record retrieval")
     opener = build_opener(ProxyHandler({}), NoRedirects())
     outputs = {}
@@ -169,14 +184,15 @@ def _retrieve_frozen_records():
     sys.stdout.buffer.write(encode(outputs))
 
 
-def _fetch_frozen_records(repository, commit, paths, limit):
+def _fetch_frozen_records(repository, commit, paths, limit, *, timeout=_GIT_TIMEOUT):
     require(0 < limit <= _MAX_FROZEN_BATCH, "frozen SCES registry exceeds the review capture limit")
     package_root = Path(__file__).resolve().parents[1]
     request = encode({"repository": repository, "commit": commit, "paths": sorted(paths), "limit": limit})
     environment = {name.upper(): value for name, value in os.environ.items() if name.upper() in {"SYSTEMROOT", "WINDIR"}}
     try:
         fetched = subprocess.run([sys.executable, "-I", "-S", "-B", "-c", _READ_FROZEN_RECORDS, str(package_root)],
-                                 input=request, capture_output=True, timeout=_GIT_TIMEOUT, check=False, env=environment)
+                                 input=request, capture_output=True, timeout=min(timeout, _GIT_TIMEOUT), check=False,
+                                 env=environment)
     except (OSError, subprocess.TimeoutExpired) as error:
         raise DataError("bounded frozen SCES record retrieval could not complete") from error
     require(fetched.returncode == 0, "frozen SCES record retrieval failed")
@@ -190,9 +206,40 @@ def _fetch_frozen_records(repository, commit, paths, limit):
     return blobs
 
 
-def _record_blobs(directory, paths, ordered, *, frozen_source=None):
+class _RecordBudget:
+    def __init__(self):
+        self.remaining = _MAX_REGISTRY_BYTES
+        self.frozen_bytes = _MAX_FROZEN_BYTES
+        self.frozen_requests = _MAX_FROZEN_REQUESTS
+        self.deadline = monotonic() + _REGISTRY_SECONDS
+
+    def time_remaining(self):
+        remaining = self.deadline - monotonic()
+        require(remaining > 0, "SCES registry traversal exceeded its elapsed-time limit")
+        return remaining
+
+    def charge(self, size):
+        self.time_remaining()
+        require(size <= self.remaining, "SCES registry exceeds its cumulative processing byte limit")
+        self.remaining -= size
+
+    def frozen_limit(self, count):
+        require(count <= self.frozen_requests, "SCES frozen registry exceeds its cumulative retrieval request limit")
+        require(self.frozen_bytes > 0, "SCES frozen registry exceeds its cumulative retrieval byte limit")
+        require(self.remaining > 0, "SCES registry exceeds its cumulative processing byte limit")
+        self.frozen_requests -= count
+        return min(count * _MAX_BLOB, self.frozen_bytes, self.remaining)
+
+    def charge_frozen(self, size):
+        require(size <= self.frozen_bytes, "SCES frozen registry exceeds its cumulative retrieval byte limit")
+        self.frozen_bytes -= size
+        self.charge(size)
+
+
+def _record_blobs(directory, paths, ordered, budget, *, frozen_source=None):
     """Read bounded Git batches and separately bound missing raw publisher blobs."""
     for offset in range(0, len(ordered), _RECORD_SCAN_PAGE):
+        budget.time_remaining()
         page = ordered[offset:offset + _RECORD_SCAN_PAGE]
         sizes = _record_sizes(directory, paths, page)
         local, missing, size = [], [], 0
@@ -202,11 +249,14 @@ def _record_blobs(directory, paths, ordered, *, frozen_source=None):
                 continue
             weight = sizes[path] + 64
             if size + weight > _MAX_RECORD_BATCH:
+                budget.charge(size - 64 * len(local))
                 yield from _blobs(directory, paths, local, limit=size).items()
                 local, size = [], 0
             local.append(path)
             size += weight
-        yield from _blobs(directory, paths, local, limit=size).items()
+        if local:
+            budget.charge(size - 64 * len(local))
+            yield from _blobs(directory, paths, local, limit=size).items()
         if missing:
             require(frozen_source is not None, "an exact candidate SCES record is missing")
             repository, commit = frozen_source
@@ -214,7 +264,11 @@ def _record_blobs(directory, paths, ordered, *, frozen_source=None):
                 group = missing[start:start + _FROZEN_BATCH_COUNT]
                 wanted = {path: paths[path] for path in group}
                 # Fetch only inventoried frozen records. No upstream tree is checked out.
-                yield from _fetch_frozen_records(repository, commit, wanted, len(group) * _MAX_BLOB).items()
+                limit = budget.frozen_limit(len(group))
+                blobs = _fetch_frozen_records(repository, commit, wanted, limit, timeout=budget.time_remaining())
+                budget.charge_frozen(sum(map(len, blobs.values())))
+                yield from blobs.items()
+        budget.time_remaining()
 
 
 def _reverse_record(blob):
@@ -234,10 +288,10 @@ def _reverse_record(blob):
     return identity, reverse
 
 
-def _registry(directory, paths, reverse_cache, *, frozen_source=None):
+def _registry(directory, paths, reverse_cache, budget, *, frozen_source=None):
     registry = sorted(path for path in paths if path.startswith("sces/records/"))
     uncached = [path for path in registry if paths[path] not in reverse_cache]
-    for path, blob in _record_blobs(directory, paths, uncached, frozen_source=frozen_source):
+    for path, blob in _record_blobs(directory, paths, uncached, budget, frozen_source=frozen_source):
         reverse_cache[paths[path]] = _reverse_record(blob)
     edges = defaultdict(list)
     reviews = {}
@@ -269,8 +323,9 @@ def _registry(directory, paths, reverse_cache, *, frozen_source=None):
 
 
 class _SelectedRecords:
-    def __init__(self, directory, paths, *, limit, frozen_source=None, reuse=None):
+    def __init__(self, directory, paths, budget, *, limit, frozen_source=None, reuse=None):
         self.directory, self.paths = directory, paths
+        self.budget = budget
         self.remaining, self.frozen_source = limit, frozen_source
         self.reuse = {} if reuse is None else reuse
         self.raw, self.rows = {}, {}
@@ -283,8 +338,9 @@ class _SelectedRecords:
             if existing is None:
                 missing.append(path)
             else:
+                self.budget.charge(len(existing))
                 self._store(path, existing)
-        for path, blob in _record_blobs(self.directory, self.paths, missing, frozen_source=self.frozen_source):
+        for path, blob in _record_blobs(self.directory, self.paths, missing, self.budget, frozen_source=self.frozen_source):
             self._store(path, blob)
 
     def _store(self, path, blob):
@@ -297,14 +353,18 @@ class _SelectedRecords:
         self.rows[identity] = row
 
 
-def _check_review_pair(claim_digest, research, review):
+def _check_review_pair(claim_digest, research, review, now):
     require(research["claim_sha256"] == review["claim_sha256"] == claim_digest,
             "SCES verification pair does not bind the exact claim revision bytes")
     first, second = research["run"], review["run"]
     executions = (first["execution"], second["execution"])
     require(all(isinstance(value, str) and value and value == value.strip() for value in executions)
             and executions[0] != executions[1], "selected SCES claim requires distinct nonempty research and review executions")
-    require(_timestamp(first["completed"], "verification") <= _timestamp(second["started"], "verification"),
+    research_start, research_end = (_timestamp(first[field], "verification") for field in ("started", "completed"))
+    review_start, review_end = (_timestamp(second[field], "verification") for field in ("started", "completed"))
+    require(research_start <= research_end <= now and review_start <= review_end <= now,
+            "SCES verification interval starts after it completes or completes after the current UTC time")
+    require(research_end <= review_start,
             "SCES independent review started before the latest research execution completed")
     first_trace, second_trace = first["trace"], second["trace"]
     require(first_trace["path"] != second_trace["path"] and first_trace["sha256"] != second_trace["sha256"],
@@ -313,7 +373,7 @@ def _check_review_pair(claim_digest, research, review):
             "SCES research and independent review share an acquisition capture")
 
 
-def _active_reviews(selected, captured, edges, reviews, dispositions):
+def _active_reviews(selected, captured, edges, reviews, dispositions, now):
     active = {}
     pending = set(selected)
     while pending:
@@ -340,7 +400,7 @@ def _active_reviews(selected, captured, edges, reviews, dispositions):
             research, review = (captured.rows[key] for key in active[identity])
             require(research["conclusion"] == review["conclusion"] == "supported",
                     "selected SCES claim lacks current independent verification")
-            _check_review_pair(_digest(captured.raw[_record_path(identity)]), research, review)
+            _check_review_pair(_digest(captured.raw[_record_path(identity)]), research, review, now)
             for dependency in edges[identity]:
                 row = captured.rows[dependency]
                 if row["relation"] in _SUPPORT:
@@ -382,11 +442,11 @@ def _closure(selected, captured, edges, active, dispositions, conflicts):
     return used, artifacts
 
 
-def _selected_registry(selected, captured, reverse_cache):
+def _selected_registry(selected, captured, reverse_cache, now):
     edges, reviews, dispositions, conflicts = _registry(
-        captured.directory, captured.paths, reverse_cache, frozen_source=captured.frozen_source,
+        captured.directory, captured.paths, reverse_cache, captured.budget, frozen_source=captured.frozen_source,
     )
-    active = _active_reviews(selected, captured, edges, reviews, dispositions)
+    active = _active_reviews(selected, captured, edges, reviews, dispositions, now)
     used, artifacts = _closure(selected, captured, edges, active, dispositions, conflicts)
     return edges, active, used, artifacts
 
@@ -646,9 +706,11 @@ def _selected_evidence(directory, paths, base, base_selection_tree, inherited):
             and [_key(ref, "claim") for ref in report["claims"]] == sorted(selected),
             "SCES publication claim selection does not match the report")
     reverse_cache = {}
+    budget = _RecordBudget()
+    now = datetime.now(timezone.utc)
     record_limit = _MAX_EVIDENCE - sum(map(len, metadata.values()))
-    captured = _SelectedRecords(directory, paths, limit=record_limit)
-    edges, active, used, artifacts = _selected_registry(selected, captured, reverse_cache)
+    captured = _SelectedRecords(directory, paths, budget, limit=record_limit)
+    edges, active, used, artifacts = _selected_registry(selected, captured, reverse_cache, now)
     records, record_blobs = captured.rows, captured.raw
     expected_claims = [{"claim": records[identity],
                         "dependencies": [records[edge] for edge in sorted(edges[identity])]}
@@ -670,13 +732,14 @@ def _selected_evidence(directory, paths, base, base_selection_tree, inherited):
     inputs = {path: _digest(blob) for path, blob in evidence.items()}
     inputs[_ADOPTION] = _digest(metadata[_ADOPTION])
     require(report["inputs_sha256"] == _digest(_canonical(inputs)), "SCES selected input digest mismatch")
-    frozen = _frozen_inputs(directory, selection["source_commit"])
+    frozen = _frozen_inputs(directory, selection["source_commit"], budget)
     # The same selected roots must reach the same records when reverse links come from the frozen tree.
     frozen_records = _SelectedRecords(
-        directory, frozen, limit=record_limit, frozen_source=(REPOSITORY, selection["source_commit"]),
+        directory, frozen, budget, limit=record_limit, frozen_source=(REPOSITORY, selection["source_commit"]),
         reuse={paths[path]: blob for path, blob in record_blobs.items()},
     )
-    *_, frozen_used, frozen_artifacts = _selected_registry(selected, frozen_records, reverse_cache)
+    *_, frozen_used, frozen_artifacts = _selected_registry(selected, frozen_records, reverse_cache, now)
+    budget.time_remaining()
     require(used == frozen_used, "SCES selected record membership differs from the frozen source commit")
     require(artifacts == frozen_artifacts, "SCES selected artifact descriptors differ from the frozen source commit")
     for path in sorted(inputs):

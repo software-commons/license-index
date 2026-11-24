@@ -6,6 +6,8 @@ from io import BytesIO
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 from tempfile import TemporaryDirectory
 import tomllib
 from types import SimpleNamespace
@@ -15,7 +17,7 @@ from urllib.parse import parse_qs, urlsplit
 
 from tools.records import DataError
 from tools.review_gate import (
-    ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, AuthorizationPaths, Reviewer, create_check, launch_review,
+    ACTIONS_APP_ID, APP_TOKEN, CHECK_NAME, CI_CONTEXTS, AuthorizationPaths, Reviewer, capture_reviewer_streams, create_check, launch_review,
     load_issuer, load_reviewer, main, protected_path, require_queue_rules, review_result, run, successful_checks, supersede_checks,
     verify_issued_check,
 )
@@ -896,11 +898,11 @@ class ReviewGateTests(unittest.TestCase):
             original = {"HOME": "issuer-home", "CODEX_HOME": "issuer-codex-home", "GH_TOKEN": "fixture"}
 
             def fake_run(*_args, **kwargs):
-                kwargs["stdout"].write(b"fixture trace")
-                return SimpleNamespace(returncode=0)
+                _args[2].write(b"fixture trace")
+                return 0
 
             with (patch.dict(os.environ, original, clear=True),
-                  patch("tools.review_gate.subprocess.run", side_effect=fake_run) as process):
+                  patch("tools.review_gate.capture_reviewer_streams", side_effect=fake_run) as process):
                 trace = launch_review(root / "codex", "fixture", root / "inputs", root / "schema.json", root,
                                       reviewer=reviewer)
             self.assertEqual(trace, b"fixture trace")
@@ -919,6 +921,32 @@ class ReviewGateTests(unittest.TestCase):
                 "network": {"enabled": False},
                 "filesystem": {":minimal": "read", str(root / "inputs"): "read", str(root / "codex"): "read"},
             })
+
+    def test_reviewer_output_caps_both_streams_while_the_process_is_running(self):
+        command = lambda stream: [sys.executable, "-c", "import sys,time; "
+                                  f"sys.{stream}.buffer.write(b'x' * 65536); sys.{stream}.flush(); time.sleep(30)"]
+        with (TemporaryDirectory() as directory, patch("tools.review_gate.MAX_TRACE_BYTES", 2048),
+              patch("tools.review_gate.MAX_REVIEW_STDERR_BYTES", 1024), patch("tools.review_gate.REVIEW_TIMEOUT", 5)):
+            for stream, message, maximum in (("stdout", "trace", 2048), ("stderr", "stderr", 1024)):
+                output, errors = BytesIO(), BytesIO()
+                with self.subTest(stream=stream), self.assertRaisesRegex(DataError, f"{message} exceeds .* capture limit"):
+                    capture_reviewer_streams(command(stream), b"prompt", output, errors, cwd=directory, env=os.environ)
+                limited, other = (output, errors) if stream == "stdout" else (errors, output)
+                self.assertEqual(len(limited.getvalue()), maximum)
+                self.assertEqual(other.getvalue(), b"")
+
+    def test_reviewer_output_keeps_complete_streams_and_preserves_timeout(self):
+        with TemporaryDirectory() as directory:
+            command = [sys.executable, "-c", "import sys; "
+                       "sys.stdout.buffer.write(sys.stdin.buffer.read()); sys.stderr.buffer.write(b'notice')"]
+            output, errors = BytesIO(), BytesIO()
+            self.assertEqual(capture_reviewer_streams(command, b"exact prompt", output, errors,
+                                                      cwd=directory, env=os.environ), 0)
+            self.assertEqual(output.getvalue(), b"exact prompt")
+            self.assertEqual(errors.getvalue(), b"notice")
+            with patch("tools.review_gate.REVIEW_TIMEOUT", 0.2), self.assertRaises(subprocess.TimeoutExpired):
+                capture_reviewer_streams([sys.executable, "-c", "import time; time.sleep(30)"], b"", BytesIO(),
+                                         BytesIO(), cwd=directory, env=os.environ)
 
     def test_protected_rehearsal_records_a_review_without_reading_a_token_or_writing_a_check(self):
         with TemporaryDirectory() as directory:
