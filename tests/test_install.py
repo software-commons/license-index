@@ -503,12 +503,11 @@ class InstallTests(unittest.TestCase):
                 write_license(output, b"replacement license", force=True)
 
         self.assertEqual(output.read_bytes(), b"unrelated license")
-        restored = moved / output.name
-        self.assertTrue(os.path.samestat(restored.stat(), original))
-        self.assertEqual(restored.read_bytes(), b"previous license")
+        self.assertEqual((moved / output.name).read_bytes(), b"replacement license")
         recovery, = moved.glob(".license-index-*.tmp/license")
-        self.assertEqual(recovery.read_bytes(), b"replacement license")
-        self.assertIn(f"Preserved a copy at {recovery}", str(failure.exception))
+        self.assertTrue(os.path.samestat(recovery.stat(), original))
+        self.assertEqual(recovery.read_bytes(), b"previous license")
+        self.assertIn(f"Preserved the displaced entry at {recovery}", str(failure.exception))
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
     def test_posix_force_preserves_nonregular_entries_at_the_exchange_boundary(self):
@@ -539,20 +538,21 @@ class InstallTests(unittest.TestCase):
                     with self.assertRaises(InstallError) as failure:
                         write_license(output, b"new", force=True)
                 identity, = identities
-                final = output.lstat()
-                self.assertTrue(os.path.samestat(identity, final))
-                self.assertEqual(final.st_mode, identity.st_mode)
-                if kind == "symlink":
-                    self.assertEqual(output.readlink(), Path(referent.name))
-                self.assertEqual(referent.read_bytes(), b"preserve")
                 new_stages = set(self.directory.glob(".license-index-*.tmp")) - previous_stages
                 if exchanges:
+                    self.assertEqual(exchanges, [output.name])
                     recovered_dir, = new_stages
-                    recovered, = recovered_dir.iterdir()
-                    self.assertEqual(recovered.read_bytes(), b"new")
-                    self.assertIn(str(recovered), str(failure.exception))
+                    preserved, = recovered_dir.iterdir()
+                    self.assertEqual(output.read_bytes(), b"new")
+                    self.assertIn(str(preserved), str(failure.exception))
                 else:
+                    preserved = output
                     self.assertEqual(new_stages, set())
+                self.assertTrue(os.path.samestat(identity, preserved.lstat()))
+                self.assertEqual(preserved.lstat().st_mode, identity.st_mode)
+                if kind == "symlink":
+                    self.assertEqual(preserved.readlink(), Path(referent.name))
+                self.assertEqual(referent.read_bytes(), b"preserve")
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
     def test_posix_force_preserves_same_inode_edit_at_exchange(self):
@@ -584,12 +584,12 @@ class InstallTests(unittest.TestCase):
                 write_license(self.output, b"new license", force=True)
 
         observed, = observations
-        self.assertTrue(os.path.samestat(self.output.stat(), observed))
-        self.assertEqual(self.output.read_bytes(), edited)
+        self.assertEqual(self.output.read_bytes(), edited_replacement)
         stage, = set(self.directory.iterdir()) - {self.output}
         self.assertEqual(stat.S_IMODE(stage.stat().st_mode), 0o700)
         recovered, = stage.iterdir()
-        self.assertEqual(recovered.read_bytes(), edited_replacement)
+        self.assertTrue(os.path.samestat(recovered.stat(), observed))
+        self.assertEqual(recovered.read_bytes(), edited)
         self.assertIn(str(recovered), str(failure.exception))
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange recovery")

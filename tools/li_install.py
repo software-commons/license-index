@@ -470,25 +470,16 @@ def _replace_posix_regular(stage, temporary, directory, output, previous, staged
     except (InstallError, OSError):
         pass  # Treat an unstable or unreadable displaced file as changed.
 
-    restored = False
-    try:
-        published = os.stat(output.name, dir_fd=directory, follow_symlinks=False)
-        if os.path.samestat(published, staged):
-            _exchange_posix(stage, temporary, directory, output.name)
-            restored = os.path.samestat(os.stat(temporary, dir_fd=stage, follow_symlinks=False), staged)
-    except OSError:
-        pass
+    # A second exchange cannot be conditioned on the destination's inode.
+    # Preserve the displaced entry and leave the current destination alone.
     try:
         entry = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
         location = _posix_recovery_location(stage, recovery, entry)
     except OSError:
         location = None
     message = "Output changed during replacement."
-    if restored:
-        message += " Restored the displaced directory entry."
     if location is not None:
-        preserved = "a copy" if restored else "the displaced entry"
-        message += f" Preserved {preserved} at {location}"
+        message += f" Preserved the displaced entry at {location}"
     else:
         message += f" Unable to verify a recovery path for staging directory {recovery.parent.name}."
     raise InstallError(message)
