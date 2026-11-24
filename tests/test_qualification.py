@@ -217,6 +217,19 @@ class BindingsTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "does not bind the canonical field"):
             _bind_payload({MIT: record}, [identity_claim(record), differently_owned])
 
+    def test_external_exception_for_requires_an_exception_owner(self):
+        exception = entity(kind="exception")
+        target = {"index": "software-commons/external-license-index", "id": OTHER, "revision": SOURCE}
+        binding = reference("external-exception-for")
+        exception["relations"] = [{"type": "exception-for", "target": target, "claim": binding}]
+        exact = claim(binding, MIT, "cross-index-relationship", "exception-for:" + _claim_value(target),
+                      {"target-revision": SOURCE})
+        self.assertIn(exact, _bind_payload({MIT: exception}, [identity_claim(exception), exact]))
+
+        license_owner = {**exception, "kind": "license"}
+        with self.assertRaisesRegex(DataError, "exception-for"):
+            _bind_payload({MIT: license_owner}, [identity_claim(license_owner), exact])
+
     def test_rejects_unresolved_and_mistyped_exception_relationship(self):
         base = entity()
         child = entity(OTHER, "exception")
@@ -424,8 +437,28 @@ class GitHistoryTests(unittest.TestCase):
                 payload = [identity_claim(row), self.publisher_binding(case)]
                 self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
                 with patch("tools.qualification._validate_policy"):
-                    with self.assertRaisesRegex(DataError, f"discovery candidate {CANDIDATE}.*crosswalk"):
+                    with self.assertRaisesRegex(DataError, f"publisher crosswalk|discovery candidate {CANDIDATE}.*crosswalk"):
                         qualified(Catalog(self.root), self.root)
+
+    def test_active_publisher_admission_rejects_an_extra_mismatched_crosswalk(self):
+        matching = self.publisher_crosswalk()
+        proposed = {**self.row, "crosswalks": [matching]}
+        self.write(self.path.relative_to(self.root), proposed)
+        self.commit("Freeze a publisher lead with its matching crosswalk")
+        payload = [identity_claim(proposed), self.publisher_binding(matching)]
+        report = self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+        with patch("tools.qualification._validate_policy"):
+            self.assertEqual(qualified(Catalog(self.root), self.root), (report, payload))
+
+        unrelated = {**self.publisher_crosswalk(candidate_id=OTHER), "revision": "sha256:" + "d" * 64,
+                     "claim": reference("second-publisher-crosswalk")}
+        proposed["crosswalks"].append(unrelated)
+        self.write(self.path.relative_to(self.root), proposed)
+        self.commit("Freeze the matching crosswalk alongside the unrelated locator assertion")
+        self.select_fixture(self.git("rev-parse", "HEAD").strip(), [*payload, self.publisher_binding(unrelated)])
+        with patch("tools.qualification._validate_policy"):
+            with self.assertRaisesRegex(DataError, "publisher crosswalk"):
+                qualified(Catalog(self.root), self.root)
 
     def test_active_publisher_crosswalk_cannot_use_another_edition_from_history(self):
         crosswalk = self.publisher_crosswalk()
@@ -440,7 +473,7 @@ class GitHistoryTests(unittest.TestCase):
         self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
 
         with patch("tools.qualification._validate_policy"):
-            with self.assertRaisesRegex(DataError, f"discovery candidate {CANDIDATE}.*crosswalk"):
+            with self.assertRaisesRegex(DataError, f"publisher crosswalk|discovery candidate {CANDIDATE}.*crosswalk"):
                 qualified(Catalog(self.root), self.root)
 
     def test_active_admission_preserves_exact_historical_spdx_origin(self):

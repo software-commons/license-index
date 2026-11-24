@@ -200,13 +200,15 @@ def _binding_specs(entity):
 
 def _validate_target(target, owner, relation, entities):
     entity_id = owner["id"]
+    if relation == "exception-for":
+        require(owner["kind"] == "exception", f"{entity_id}: exception-for requires an exception and a base license")
     if _fields(target, {"id"}):
         target_id = target["id"]
         require(_matches(OPAQUE_ID, target_id) and target_id in entities and target_id != entity_id,
                 f"{entity_id}: unresolved or self-referential local relationship")
         other = entities[target_id]
         if relation == "exception-for":
-            require(owner["kind"] == "exception" and other["kind"] == "license",
+            require(other["kind"] == "license",
                     f"{entity_id}: exception-for requires an exception and a base license")
         if relation == "member-of":
             require(other["kind"] == "family", f"{entity_id}: member-of requires a family target")
@@ -403,6 +405,10 @@ def _validate_frozen_provenance(root, frozen, entities, retained_candidates):
                         f"{identity}: SPDX crosswalk does not match a linked frozen discovery origin: {crosswalk['key']}")
                 require(len(matched) == 1,
                         f"{identity}: ambiguous SPDX crosswalk matches multiple linked discovery candidates: "
+                        f"{crosswalk['key']}")
+            elif "discovery-origin" in crosswalk.get("scope", {}):
+                require(len(matched) == 1,
+                        f"{identity}: publisher crosswalk does not match one linked frozen discovery origin: "
                         f"{crosswalk['key']}")
             unmatched.difference_update(matched)
         require(not unmatched,
