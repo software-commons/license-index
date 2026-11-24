@@ -361,6 +361,17 @@ class ReviewGateTests(unittest.TestCase):
             self.assertEqual(data["protected_paths"], [".github/workflows/domain.yml"])
             self.assertEqual(data["protected_control_authorization"], {"required": False, "authorized_merge": None})
 
+    def test_review_rejects_nonlocal_tool_events_even_with_a_bound_verdict(self):
+        for stage in ("started", "completed"):
+            for tool in ("mcp_tool_call", "web_search", "dynamic_tool_call", "file_change"):
+                with self.subTest(stage=stage, tool=tool):
+                    events = make_trace().splitlines()
+                    events.insert(2, json.dumps({
+                        "type": f"item.{stage}", "item": {"type": tool},
+                    }).encode())
+                    with self.assertRaisesRegex(DataError, "outside the isolated reviewer profile"):
+                        review_result(b"\n".join(events), BINDING, "abc", PATCH)
+
     def test_accepts_only_complete_bound_verdicts(self):
         execution, verdict = review_result(make_trace(), BINDING, "abc", PATCH)
         self.assertEqual(execution, EXECUTION)
@@ -1091,6 +1102,10 @@ class ReviewGateTests(unittest.TestCase):
             self.assertEqual(invocation.kwargs["env"]["CODEX_HOME"], str(reviewer.home / ".codex"))
             self.assertNotIn("GH_TOKEN", invocation.kwargs["env"])
             self.assertNotIn("--sandbox", invocation.args[0])
+            for feature in {"apps", "plugins", "remote_plugin", "computer_use", "browser_use",
+                            "browser_use_external", "in_app_browser", "image_generation", "view_image",
+                            "multi_agent_v2"}:
+                self.assertIn(("--disable", feature), zip(invocation.args[0], invocation.args[0][1:]))
             self.assertIn('default_permissions="review-inputs"', invocation.args[0])
             profile, = [arg for arg in invocation.args[0] if arg.startswith("permissions.review-inputs=")]
             permissions = tomllib.loads(profile)["permissions"]["review-inputs"]

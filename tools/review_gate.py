@@ -80,6 +80,13 @@ class AuthorizationPaths:
     grant_state: Path
 
 
+PROTECTED_DISABLED_TOOLS = (
+    "apps", "plugins", "remote_plugin", "computer_use", "browser_use", "browser_use_external",
+    "in_app_browser", "image_generation", "view_image", "multi_agent_v2",
+)
+LOCAL_REVIEW_ITEM_TYPES = {"agent_message", "command_execution", "reasoning", "todo_list"}
+
+
 def save(path, data):
     with path.open("xb") as file:
         file.write(data)
@@ -134,6 +141,9 @@ def review_result(trace, binding, inspection_token, diff, evidence_files=None):
             "missing, failed or ambiguous Codex execution")
     execution = events[0].get("thread_id")
     require(valid_execution(execution), "invalid Codex execution identity")
+    require(all(isinstance(event.get("item"), dict) and event["item"].get("type") in LOCAL_REVIEW_ITEM_TYPES
+                for event in events if event["type"].startswith("item.")),
+            "review trace includes a tool outside the isolated reviewer profile")
     items = [event["item"] for event in events if event["type"] == "item.completed"]
     messages = [position for position, item in enumerate(items) if item["type"] == "agent_message"]
     require(messages, "Codex review did not return a verdict")
@@ -239,7 +249,8 @@ def launch_review(codex, model, input_dir, schema, audit_dir, *, reviewer=None):
                        f'{executable_key}="read"}}, '
                        'network={enabled=false}}')
         arguments.extend((
-            "--strict-config", "--ephemeral", "-c", 'default_permissions="review-inputs"',
+            "--strict-config", "--ephemeral",
+            *(flag for feature in PROTECTED_DISABLED_TOOLS for flag in ("--disable", feature)), "-c", 'default_permissions="review-inputs"',
             "-c", permissions,
         ))
         environment = {"PATH": os.defpath, "HOME": str(reviewer.home), "CODEX_HOME": str(reviewer.home / ".codex")}
