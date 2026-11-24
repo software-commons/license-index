@@ -455,6 +455,33 @@ def discovery_export(catalog):
     }
 
 
+def qualified_export(catalog, report, claims):
+    """Build the consumer view from the catalog and its validated active selection."""
+    require(report, "no active SCES-qualified release")
+    return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}
+
+
+def qualified_lookup(entities, identifier):
+    """Find one selected entity and derive its incoming local relationships."""
+    entity = next((row for row in entities if row["id"] == identifier), None)
+    if entity is None:
+        label = identifier.casefold()
+        matches = [
+            row for row in entities
+            if row["name"].casefold() == label or any(alias["name"].casefold() == label for alias in row["aliases"])
+        ]
+        require(matches, f"unknown qualified entity identifier: {identifier!r}")
+        require(len(matches) == 1, f"ambiguous qualified entity identifier: {identifier!r}")
+        entity = matches[0]
+
+    target = {"id": entity["id"]}
+    incoming = [
+        {"source": owner["id"], **relation}
+        for owner in entities for relation in owner["relations"] if relation["target"] == target
+    ]
+    return {"entity": entity, "incoming_relations": incoming}
+
+
 def archive_entry(archive, name, data):
     info = ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
     info.create_system = 3

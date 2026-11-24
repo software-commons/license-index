@@ -149,6 +149,40 @@ class BindingsTests(unittest.TestCase):
         self.assertEqual(exported["entities"][1]["relations"][0]["scope"], scope)
         self.assertEqual(exported["claims"][-1]["claim"]["scope"], scope)
 
+    def test_qualified_lookup_derives_only_incoming_local_edges(self):
+        target = entity(name="Fixture Base")
+        owner = entity(OTHER, kind="exception", name="Fixture Exception")
+        target["aliases"] = [{"name": "Straße License", "claim": reference("alias")}]
+        relation = {
+            "type": "exception-for", "target": {"id": MIT}, "claim": reference("local"),
+            "scope": {"edition": "2024"},
+        }
+        external = {
+            "type": "related-to", "target": {"id": MIT, "index": "software-commons/specification-index",
+                                            "revision": SOURCE}, "claim": reference("external"),
+        }
+        owner["relations"] = [relation, external]
+        catalog = SimpleNamespace(entities={MIT: target, OTHER: owner})
+
+        def lookup(identifier):
+            args = parser().parse_args(["show", "--qualified", "--policy", "fixture-policy", identifier])
+            return execute(catalog, args)[0]
+
+        with patch("tools.distribution.validate", return_value=({"release": "fixture"}, [])):
+            expected = {"entity": target, "incoming_relations": [{"source": OTHER, **relation}]}
+            self.assertEqual(lookup(MIT), expected)
+            self.assertEqual(lookup("STRASSE LICENSE"), expected)
+            self.assertEqual(lookup("fixture base"), expected)
+            self.assertEqual(lookup(OTHER), {"entity": owner, "incoming_relations": []})
+            with self.assertRaisesRegex(DataError, "unknown qualified entity"):
+                lookup("unknown")
+
+            owner["aliases"] = [{"name": MIT, "claim": reference("id-as-alias")},
+                                {"name": "STRASSE LICENSE", "claim": reference("ambiguous")}]
+            self.assertEqual(lookup(MIT), expected)
+            with self.assertRaisesRegex(DataError, "ambiguous qualified entity"):
+                lookup("Straße License")
+
     def test_crosswalk_revision_matches_immutable_origin_type(self):
         record = entity()
         record["identity_scope"] = {"authority": "fixture-publisher", "revision": "2024-01"}
@@ -739,7 +773,8 @@ class GitHistoryTests(unittest.TestCase):
 
     def test_discovery_and_checked_release_views_report_separate_counts(self):
         crosswalk = self.publisher_crosswalk()
-        row = {**self.row, "crosswalks": [crosswalk]}
+        alias = {"name": "Fixture Alias", "claim": reference("qualified-alias")}
+        row = {**self.row, "crosswalks": [crosswalk], "aliases": [alias]}
         self.write(self.path.relative_to(self.root), row)
         self.commit("Freeze a qualified publisher discovery link")
         frozen = self.git("rev-parse", "HEAD").strip()
@@ -755,26 +790,40 @@ class GitHistoryTests(unittest.TestCase):
                  "assessment": catalog.coverage()}
         self.write(snapshot, saved)
         self.write("registry/coverage/current.json", saved)
-        self.select_fixture(frozen, [identity_claim(row), self.publisher_binding(crosswalk)])
+        selected = [identity_claim(row), self.publisher_binding(crosswalk),
+                    claim(alias["claim"], MIT, "instrument-identity", alias["name"])]
 
         def invoke(*arguments):
             return execute(catalog, parser().parse_args(arguments))[0]
 
         policy_flag = ("--policy", str(self.root))
+        with self.assertRaisesRegex(DataError, "requires --policy"):
+            invoke("show", "--qualified", alias["name"])
+        self.select_fixture(frozen, selected)
         with patch("tools.qualification._validate_policy") as check:
             self.assertEqual(invoke("coverage")["catalog"]["accepted_entities"], 0)
             self.assertEqual(invoke("export")["status"], "development-discovery")
+            self.assertEqual(invoke("show", "Fixture Field Terms 1.0")["record"]["id"], CANDIDATE)
+            with self.assertRaisesRegex(DataError, "unknown catalog identifier"):
+                invoke("show", alias["name"])
             check.assert_not_called()
             validated = invoke("validate", *policy_flag)
             self.assertEqual(validated["coverage"]["catalog"]["accepted_entities"], 1)
             counters = validated["coverage"]["qualification"]
-            self.assertEqual(counters["selected_claims"], 2)
+            self.assertEqual(counters["selected_claims"], 3)
             self.assertEqual(counters["recorded_independently_reviewed_claims"], 0)
             self.assertEqual(invoke("coverage", *policy_flag), validated["coverage"])
-            self.assertEqual(invoke("export", "--qualified", *policy_flag)["entities"], [row])
+            exported = invoke("export", "--qualified", *policy_flag)
+            self.assertEqual(set(exported), {"release", "entities", "claims"})
+            self.assertEqual(exported["entities"], [row])
+            self.assertEqual(len(exported["claims"]), 3)
+            self.assertEqual(invoke("show", "--qualified", *policy_flag, "FIXTURE ALIAS"),
+                             {"entity": row, "incoming_relations": []})
             check.side_effect = DataError("fixture policy rejected")
             with self.assertRaisesRegex(DataError, "fixture policy rejected"):
                 invoke("export", *policy_flag)
+            with self.assertRaisesRegex(DataError, "fixture policy rejected"):
+                invoke("show", "--qualified", *policy_flag, alias["name"])
 
     def test_recorded_coverage_uses_exact_current_review_state(self):
         claim = {"kind": "claim", "id": "fixture", "revision": 1}

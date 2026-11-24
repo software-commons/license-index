@@ -59,11 +59,11 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
         run: |
           set -euo pipefail
-          python -I -B tools/run_isolated.py schema_check
           args=()
           if [[ -n "$BASE_SHA" && "$BASE_SHA" != 0000000000000000000000000000000000000000 ]]; then
             args+=(--base "$BASE_SHA")
           fi
+          python -I -B tools/run_isolated.py schema_check --policy ../policy "${args[@]}"
           python -I -B tools/run_isolated.py index validate --policy ../policy --fetch-spdx-archive --fetch-rights "${args[@]}"
 
           if [[ ${#args[@]} -eq 0 ]]; then

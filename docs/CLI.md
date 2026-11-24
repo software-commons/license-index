@@ -6,6 +6,7 @@ Use the launcher from the project where you want to create a license file. Use `
 | --- | --- |
 | `list`, `search QUERY` | List or search names and IDs. Use `--kind license`, `--kind exception`, `--kind other` or `--history` to focus lookup. |
 | `show ID` | Machine-readable discovery record, upstream status, artifact locators and coverage information. |
+| `show --qualified --policy PATH ID` | Look up an actively selected canonical entity by opaque ID, name or alias using the pinned SCES checkout. Returns the entity and incoming local relationships with their owning entity IDs. |
 | `text ID` | Exact pinned bytes from the publisher package, or from a checksum-verified SPDX artifact. |
 | `add ID` | Write only the selected LICENSE file, using an explicitly supported installation recipe. |
 | `explain ID` | Brief, detailed and scenario-level provisional research with sources, where available. |
@@ -14,6 +15,7 @@ Use the launcher from the project where you want to create a license file. Use `
 | `coverage` | Report catalog, text, installation and research counts. Supply `--policy PATH` to include validated active publication counts. |
 | `review-plan [ID ...]` | List provisional facets, source leads and draft fingerprints for [claim-by-claim review](PROFILE_QUALIFICATION.md). Add `--admission` to plan source and identity review for catalog candidates, including entries without a profile. |
 | `expression EXPRESSION` | Parse SPDX 3.0.1 syntax and show unresolved document-local references. |
+| `export --qualified --policy PATH` | Export the active qualification report, canonical entities and scoped claims using the pinned SCES checkout. |
 | `--version` | Print the software version. |
 
 The text command prefers a bundled publisher file when available. Other SPDX-listed texts can be read from a local copy of the pinned upstream data via `--artifact-root PATH`. `--fetch` makes a single explicit request for the cataloged SPDX artifact and verifies its length and SHA-256 before emitting it. The catalog preserves identifiers for both active and deprecated entries. A deprecated identifier may have SPDX replacement advice in `show` and `sources`. Matching templates have their own artifact references. A generated text file may contain upstream matching markers, as observed for the I2P GPL Java exception, so use its representation label and provenance when deciding how to apply it.

@@ -98,6 +98,8 @@
         "history": {"type": "array", "items": {"type": "object"}}
       }
     },
+    "relation_type": {"enum": ["edition-of", "member-of", "derived-from", "supersedes",
+                               "merged-from", "split-from", "exception-for", "related-to"]},
     "entity": {
       "type": "object",
       "required": ["id", "kind", "name", "state", "identity_claim", "candidate_ids", "aliases", "crosswalks", "relations"],
@@ -128,7 +130,7 @@
           "type": "array",
           "items": {"type": "object", "required": ["type", "target", "claim"], "additionalProperties": false,
             "properties": {
-              "type": {"$ref": "#/$defs/text"},
+              "type": {"$ref": "#/$defs/relation_type"},
               "target": {"type": "object", "required": ["id"], "additionalProperties": false,
                 "dependentRequired": {"index": ["revision"], "revision": ["index"]},
                 "properties": {"id": {"$ref": "#/$defs/text"}, "index": {"$ref": "#/$defs/text"},
@@ -138,6 +140,69 @@
               "claim": {"$ref": "#/$defs/claim"},
               "scope": {"$ref": "#/$defs/claim_scope"}
             }}
+        }
+      }
+    },
+    "qualified_export": {
+      "description": "License Index export restricted to the active SCES-qualified selection. Resolve SCES references from the pinned local policy bundle.",
+      "type": "object",
+      "required": ["release", "entities", "claims"],
+      "additionalProperties": false,
+      "properties": {
+        "release": {
+          "$ref": "https://github.com/software-commons/.github/blob/sces-v1.0/evidence/v1/contracts.schema.json#/$defs/qualification",
+          "properties": {
+            "repository": {"const": "software-commons/license-index"},
+            "dataset": {"const": "license-index"},
+            "schema_version": {"const": "1.0.0"},
+            "synthetic": {"const": false}
+          }
+        },
+        "entities": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/entity"}},
+        "claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["claim", "dependencies"],
+            "additionalProperties": false,
+            "properties": {
+              "claim": {"$ref": "https://github.com/software-commons/.github/blob/sces-v1.0/evidence/v1/contracts.schema.json#/$defs/claim"},
+              "dependencies": {
+                "type": "array",
+                "items": {"$ref": "https://github.com/software-commons/.github/blob/sces-v1.0/evidence/v1/contracts.schema.json#/$defs/dependency"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "qualified_lookup": {
+      "description": "A qualified canonical entity and the incoming local relationships derived from the same selected entities.",
+      "type": "object",
+      "required": ["entity", "incoming_relations"],
+      "additionalProperties": false,
+      "properties": {
+        "entity": {"$ref": "#/$defs/entity"},
+        "incoming_relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["source", "type", "target", "claim"],
+            "additionalProperties": false,
+            "properties": {
+              "source": {"$ref": "#/$defs/id"},
+              "type": {"$ref": "#/$defs/relation_type"},
+              "target": {
+                "type": "object",
+                "required": ["id"],
+                "additionalProperties": false,
+                "properties": {"id": {"$ref": "#/$defs/id"}}
+              },
+              "claim": {"$ref": "#/$defs/claim"},
+              "scope": {"$ref": "#/$defs/claim_scope"}
+            }
+          }
         }
       }
     },

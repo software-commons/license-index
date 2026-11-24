@@ -24,7 +24,7 @@ def parser():
     descriptions = {
         "list": "list upstream and publisher records",
         "search": "search identifiers and names",
-        "show": "inspect one discovered record",
+        "show": "inspect one discovered or qualified record",
         "text": "retrieve verified text bytes",
         "add": "preview or install a supported LICENSE file",
         "explain": "read a scoped provisional explanation",
@@ -62,7 +62,7 @@ def parser():
             sub.add_argument("identifiers", nargs="+")
         if command == "expression":
             sub.add_argument("expression")
-        if command in {"validate", "export", "coverage"}:
+        if command in {"validate", "export", "coverage", "show"}:
             sub.add_argument("--policy", type=Path, help="checkout at the pinned SCES commit")
         if command == "validate":
             sub.add_argument("--base", help="full SHA of a trusted prior commit")
@@ -73,7 +73,7 @@ def parser():
             rights = sub.add_mutually_exclusive_group()
             rights.add_argument("--rights-root", type=Path, help="verify publisher rights bytes from a local directory")
             rights.add_argument("--fetch-rights", action="store_true", help="verify pinned publisher rights over HTTPS")
-        if command == "export":
+        if command in {"export", "show"}:
             sub.add_argument("--qualified", action="store_true", help="require a current SCES-qualified selection")
         if command == "bundle":
             sub.add_argument("output", type=Path)
@@ -198,13 +198,21 @@ def execute(catalog, args):
         if args.admission:
             return build_admission_plan(catalog, args.identifiers), None
         return build_plan(catalog, args.identifiers), None
+    if command in {"show", "export"} and args.qualified:
+        from .distribution import qualified_export, qualified_lookup, validate
+        require(command != "show" or args.policy is not None, "show --qualified requires --policy with the pinned SCES checkout")
+        report, claims = validate(catalog, policy=args.policy)
+        selection = qualified_export(catalog, report, claims)
+        if command == "show":
+            return qualified_lookup(selection["entities"], args.identifier), None
+        return selection, None
     if command in {"validate", "export", "bundle"}:
         from .distribution import (
             bundle, coverage_assessment, discovery_export, read_rights_document, validate, validate_discovery,
         )
         if command == "bundle":
             return bundle(catalog, args.output), None
-        if command == "export" and not args.qualified:
+        if command == "export":
             if args.policy is None:
                 validate_discovery(catalog)
             else:
@@ -223,9 +231,8 @@ def execute(catalog, args):
             coverage = coverage_assessment(catalog, claims, base=args.base, policy=args.policy)
             return {"valid": True, "qualification": report, "coverage": coverage,
                     "spdx_replay": spdx_status, "pinned_publisher_rights_digests": rights_status}, message
-        report, claims = validate(catalog, policy=args.policy)
-        require(report, "no active SCES-qualified release")
-        return {"release": report, "entities": list(catalog.entities.values()), "claims": claims}, None
+    if command == "show":
+        require(args.policy is None, "show --policy requires --qualified")
     row = catalog.resolve(args.identifier)
     item = catalog.describe(row)
     profile = catalog.profile(row)
