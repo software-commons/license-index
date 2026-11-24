@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "66dc7c286f3d4214bc54411722be850d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1722,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Zed.json",
+        "sha256": "54a12ce2406b80259c032f5142b9ce941010612d831f71fa68092592a23e2b74"
+      },
+      "template": {
+        "bytes": 316,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Zed.template.txt",
+        "sha256": "5cb546fd8d95c5d0ce60c12ac76cc2cb0765dc79443e003fbc48db8840a40858"
+      },
+      "text": {
+        "bytes": 259,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Zed.txt",
+        "sha256": "673b1f47ed660463e8bad23e7a1dc14c24847765167629a15e7a3b80601946ed"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Zed",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Zed.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Zed",
+      "name": "Zed License",
+      "reference": "https://spdx.org/licenses/Zed.html",
+      "referenceNumber": 595,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Zed"
+      ]
+    },
+    "name": "Zed License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

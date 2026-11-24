@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "baf4d3ab570c4fd99bc0685f849360ae",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 80320,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ESA-PL-weak-copyleft-2.4.json",
+        "sha256": "334dd789eb113816d80a5394bd0aa9ef1cc0fea89013fc6fcd0cc135e80e3fb3"
+      },
+      "template": {
+        "bytes": 19512,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ESA-PL-weak-copyleft-2.4.template.txt",
+        "sha256": "4ab096f1e01fad6f332519ae5917e8764cf530c37ee1de090d13376f6f2100a7"
+      },
+      "text": {
+        "bytes": 16663,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ESA-PL-weak-copyleft-2.4.txt",
+        "sha256": "6084eba69f74f3190ea7508941c2cc08b65df66e40098bc959193ad68e0a9a66"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ESA-PL-weak-copyleft-2.4",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ESA-PL-weak-copyleft-2.4.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ESA-PL-weak-copyleft-2.4",
+      "name": "European Space Agency Public License – v2.4 – Weak Copyleft (Type 2)",
+      "reference": "https://spdx.org/licenses/ESA-PL-weak-copyleft-2.4.html",
+      "referenceNumber": 607,
+      "seeAlso": [
+        "https://essr.esa.int/license/european-space-agency-public-license-v2-4-weak-copyleft-type-2"
+      ]
+    },
+    "name": "European Space Agency Public License – v2.4 – Weak Copyleft (Type 2)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6c70a23dbcc54fce95a05b0b987cee09",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4407,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Afmparse.json",
+        "sha256": "9a5946cce0fb4f437d83f18824f2963d9fc523367ca8e7023700eea4216018a7"
+      },
+      "template": {
+        "bytes": 1043,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Afmparse.template.txt",
+        "sha256": "521c086c49b397380a978b6ddbca7b07bc407b8e265e86a41e095052a2f7bcc7"
+      },
+      "text": {
+        "bytes": 893,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Afmparse.txt",
+        "sha256": "b3030c3435ea42f8f171446210d1914e704f69d416b4c8cfc240e7a1fc4cb962"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Afmparse",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Afmparse.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Afmparse",
+      "name": "Afmparse License",
+      "reference": "https://spdx.org/licenses/Afmparse.html",
+      "referenceNumber": 718,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Afmparse"
+      ]
+    },
+    "name": "Afmparse License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

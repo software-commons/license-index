@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6e27507e13ab43eab10370e9479a2ca2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1497,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Zeeff.json",
+        "sha256": "46d60631e9378613eea7ad114727a2da9319117f2221ea85905dd80384a3873e"
+      },
+      "template": {
+        "bytes": 239,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Zeeff.template.txt",
+        "sha256": "8a1406513a1fa7101feb1a8293845b89ac2c1462831163da4a254f65ded60511"
+      },
+      "text": {
+        "bytes": 187,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Zeeff.txt",
+        "sha256": "e93b9d8c76e3d6d25e50bf003d8055928adf75d1f2c95b83f6ea87079c9de8ab"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Zeeff",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Zeeff.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Zeeff",
+      "name": "Zeeff License",
+      "reference": "https://spdx.org/licenses/Zeeff.html",
+      "referenceNumber": 211,
+      "seeAlso": [
+        "ftp://ftp.tin.org/pub/news/utils/newsx/newsx-1.6.tar.gz"
+      ]
+    },
+    "name": "Zeeff License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

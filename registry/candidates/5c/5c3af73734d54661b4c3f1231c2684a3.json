@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5c3af73734d54661b4c3f1231c2684a3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2202,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ulem.json",
+        "sha256": "8d547c2ad4550dd12f15ac30a859872c294f6612554473065e6c577538d773df"
+      },
+      "template": {
+        "bytes": 365,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ulem.template.txt",
+        "sha256": "258b9f4bf65585cad0faca6694ed23783267848c60417d989b65dad41595d505"
+      },
+      "text": {
+        "bytes": 209,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ulem.txt",
+        "sha256": "6bd02304617413a1cdec3a14227e995500f779241231224e7c4c5430620506bd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ulem",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ulem.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ulem",
+      "name": "ulem License",
+      "reference": "https://spdx.org/licenses/ulem.html",
+      "referenceNumber": 657,
+      "seeAlso": [
+        "https://mirrors.ctan.org/macros/latex/contrib/ulem/README"
+      ]
+    },
+    "name": "ulem License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

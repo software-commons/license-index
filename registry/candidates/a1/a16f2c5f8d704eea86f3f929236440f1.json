@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a16f2c5f8d704eea86f3f929236440f1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7200,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Adobe-Display-PostScript.json",
+        "sha256": "1006c0663e168f467a25fc52799ad21277eba264d4b075819e78da107b5e20f0"
+      },
+      "template": {
+        "bytes": 1930,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Adobe-Display-PostScript.template.txt",
+        "sha256": "53d6fb683b567b8f057564e47924bc58fe0903f16602b3f7a7d6b065de0f5b19"
+      },
+      "text": {
+        "bytes": 1883,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Adobe-Display-PostScript.txt",
+        "sha256": "25126d0087dfae189dbf1d1737ed4614f2ddff0755495929a08f9724c5f19201"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Adobe-Display-PostScript",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Adobe-Display-PostScript.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Adobe-Display-PostScript",
+      "name": "Adobe Display PostScript License",
+      "reference": "https://spdx.org/licenses/Adobe-Display-PostScript.html",
+      "referenceNumber": 246,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/xserver/-/blob/master/COPYING?ref_type=heads#L752"
+      ]
+    },
+    "name": "Adobe Display PostScript License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dc1f4d208cb94bf79e017609c080b7f0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5361,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Spencer-99.json",
+        "sha256": "59222604269f6ba3d167631e38eb6c1b86183dacc09834cef79afeee86988294"
+      },
+      "template": {
+        "bytes": 1432,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Spencer-99.template.txt",
+        "sha256": "781dc927bd4c2bd220efb29936d2de447689126fb47c8db3cdbff8c307388e95"
+      },
+      "text": {
+        "bytes": 1376,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Spencer-99.txt",
+        "sha256": "301dd94995194d81c49471a77e02957df588a2ec847dd2571cf797a5ca9ab65d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Spencer-99",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Spencer-99.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Spencer-99",
+      "name": "Spencer License 99",
+      "reference": "https://spdx.org/licenses/Spencer-99.html",
+      "referenceNumber": 511,
+      "seeAlso": [
+        "http://www.opensource.apple.com/source/tcl/tcl-5/tcl/generic/regfronts.c"
+      ]
+    },
+    "name": "Spencer License 99",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

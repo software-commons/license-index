@@ -1,0 +1,13 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "39fd64af2b72492aa2a4b3945382db74",
+  "origin": {
+    "identifier": "FUTO Source First License 1.1-kb (LatinIME)",
+    "kind": "publisher",
+    "name": "FUTO Source First License 1.1-kb (LatinIME)",
+    "revision": "1.1-kb",
+    "source": "https://gitlab.futo.org/keyboard/latinime/-/raw/7d61ab4132cfcbb7aa713190d934f0125dc38b03/LICENSE.md"
+  },
+  "reason": "The pinned LatinIME text names a 1.1-kb variant. Its use clause differs from the pinned Grayjay 1.1 wording. Independent identity comparison, applicability, and republication rights are pending."
+}

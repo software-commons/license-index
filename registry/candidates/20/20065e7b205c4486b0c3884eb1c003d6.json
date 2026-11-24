@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "20065e7b205c4486b0c3884eb1c003d6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6095,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SGI-B-2.0.json",
+        "sha256": "e46bc6354a725306b0ad860dcccb51e370ba1f8ccdfd8f996cec34e5ec8ccf56"
+      },
+      "template": {
+        "bytes": 1592,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SGI-B-2.0.template.txt",
+        "sha256": "d3f79eaf273ad75d307f6763f4f92d108aba0af461448e45637737894390ef61"
+      },
+      "text": {
+        "bytes": 1503,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SGI-B-2.0.txt",
+        "sha256": "cbe043cc819b6afbac13c11d83c8bdcd566d1539881f17cab28615edd7af3acf"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SGI-B-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SGI-B-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "SGI-B-2.0",
+      "name": "SGI Free Software License B v2.0",
+      "reference": "https://spdx.org/licenses/SGI-B-2.0.html",
+      "referenceNumber": 638,
+      "seeAlso": [
+        "http://oss.sgi.com/projects/FreeB/SGIFreeSWLicB.2.0.pdf"
+      ]
+    },
+    "name": "SGI Free Software License B v2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

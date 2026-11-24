@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f993be1a99b24c2abee32e27670c9385",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 76300,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PPL.json",
+        "sha256": "2f28b550becfe51278290339df9a4564c17904b385143017e01a2c97adcf5d83"
+      },
+      "template": {
+        "bytes": 21037,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PPL.template.txt",
+        "sha256": "f978e0cb09afb37b437cc653eee695569b1c160e2fcdb0b45fd83b8a96d8363e"
+      },
+      "text": {
+        "bytes": 18880,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PPL.txt",
+        "sha256": "e3a912d134e5cfbbaa53e8a583ea920eba8a78e05869e1298d9f9369c200663a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PPL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "PPL",
+      "name": "Peer Production License",
+      "reference": "https://spdx.org/licenses/PPL.html",
+      "referenceNumber": 53,
+      "seeAlso": [
+        "https://wiki.p2pfoundation.net/Peer_Production_License",
+        "http://www.networkcultures.org/_uploads/%233notebook_telekommunist.pdf"
+      ]
+    },
+    "name": "Peer Production License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

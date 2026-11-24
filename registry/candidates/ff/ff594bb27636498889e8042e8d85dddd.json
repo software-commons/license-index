@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ff594bb27636498889e8042e8d85dddd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 58712,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AGPL-1.0-only.json",
+        "sha256": "21d84eacab21fac6d64db356639db578bf26c55bfcee13afce8706bfe1dfe7e2"
+      },
+      "template": {
+        "bytes": 16924,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AGPL-1.0-only.template.txt",
+        "sha256": "82f3f1213fa2b3a978c2e84ab8cc67c7b0111f72e3e2e12229e4ce206e91e1dd"
+      },
+      "text": {
+        "bytes": 15839,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AGPL-1.0-only.txt",
+        "sha256": "0cf752be2bb9cdd02256cf540db397d94dc9ae2f8e74c325f62a5f8e7b3e1d86"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AGPL-1.0-only",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AGPL-1.0-only.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AGPL-1.0-only",
+      "name": "Affero General Public License v1.0 only",
+      "reference": "https://spdx.org/licenses/AGPL-1.0-only.html",
+      "referenceNumber": 582,
+      "seeAlso": [
+        "http://www.affero.org/oagpl.html"
+      ]
+    },
+    "name": "Affero General Public License v1.0 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

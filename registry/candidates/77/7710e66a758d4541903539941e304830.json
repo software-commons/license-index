@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7710e66a758d4541903539941e304830",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1745,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/man2html.json",
+        "sha256": "02c37026cb70de83d9902e7ad10cec8a45d341e6f1f9fb0525929730b83d9ccf"
+      },
+      "template": {
+        "bytes": 117,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/man2html.template.txt",
+        "sha256": "bb1240a20ca30c064c19dcb0323245fc93a457128e4390a44adca5e92472f518"
+      },
+      "text": {
+        "bytes": 116,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/man2html.txt",
+        "sha256": "55a38a64fa10bfdc9e485a7720eac25e811d67194de88a3a4c89fa60981da1ce"
+      }
+    },
+    "deprecated": false,
+    "identifier": "man2html",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/man2html.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "man2html",
+      "name": "man2html License",
+      "reference": "https://spdx.org/licenses/man2html.html",
+      "referenceNumber": 594,
+      "seeAlso": [
+        "http://primates.ximian.com/~flucifredi/man/man-1.6g.tar.gz",
+        "https://github.com/hamano/man2html/blob/master/man2html.c",
+        "https://docs.oracle.com/cd/E81115_01/html/E81116/licenses.html"
+      ]
+    },
+    "name": "man2html License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

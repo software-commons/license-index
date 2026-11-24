@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ea2cfcb9010d49c491bdefdb3e580fd2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2617,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Autoconf-exception-generic.json",
+        "sha256": "f4cb47eedaf01a9d1342af1508ee9774eeedaf4786ea7b3b191991299a8ed0bc"
+      },
+      "template": {
+        "bytes": 588,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Autoconf-exception-generic.template.txt",
+        "sha256": "f66cea8052afbe32765c1517af829b6907f64f0d1dd71b748b828399c67c06cf"
+      },
+      "text": {
+        "bytes": 266,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Autoconf-exception-generic.txt",
+        "sha256": "f5da8a774404fd564d1d5e59196dc81987b247e7584031d1588cb244049ccdd6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Autoconf-exception-generic",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Autoconf-exception-generic.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Autoconf-exception-generic",
+      "name": "Autoconf generic exception",
+      "reference": "https://spdx.org/licenses/Autoconf-exception-generic.html",
+      "referenceNumber": 78,
+      "seeAlso": [
+        "https://launchpad.net/ubuntu/precise/+source/xmltooling/+copyright",
+        "https://tracker.debian.org/media/packages/s/sipwitch/copyright-1.9.15-3",
+        "https://opensource.apple.com/source/launchd/launchd-258.1/launchd/compile.auto.html",
+        "https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=gnulib-tool;h=029a8cf377ad8d8f2d9e54061bf2f20496ad2eef;hb=73c74ba0197e6566da6882c87b1adee63e24d75c#l407"
+      ]
+    },
+    "name": "Autoconf generic exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0e97e5a761d648d3ad4905d3d919aaa9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4673,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/JSON.json",
+        "sha256": "dc191ef24af62daf32e8295b8cfc3ee40c95baea76cbfc455344c0bbda6d5ffb"
+      },
+      "template": {
+        "bytes": 1203,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/JSON.template.txt",
+        "sha256": "f59c60cfab313de79d6c1e39c7495e1868e2d0e32165e67aa45a7ac93c363354"
+      },
+      "text": {
+        "bytes": 1114,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/JSON.txt",
+        "sha256": "8f175cfd3fb4528377836d75a7e28829c997a12b356dbf5cd1c6c85b1f11e49f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "JSON",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/JSON.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "JSON",
+      "name": "JSON License",
+      "reference": "https://spdx.org/licenses/JSON.html",
+      "referenceNumber": 423,
+      "seeAlso": [
+        "http://www.json.org/license.html"
+      ]
+    },
+    "name": "JSON License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

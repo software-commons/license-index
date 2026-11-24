@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3f8b8335d5e442b69e4cedf2d0f2c7e2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5613,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Qwt-exception-1.0.json",
+        "sha256": "492bd2acc6a8325196a5bfeb98718e465ee0e900c9589942e9efb646973380d3"
+      },
+      "template": {
+        "bytes": 1386,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Qwt-exception-1.0.template.txt",
+        "sha256": "44102b7e5683b725388a36e52ad72dcb4e47057880adb99e4cbc8319a186f567"
+      },
+      "text": {
+        "bytes": 1199,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Qwt-exception-1.0.txt",
+        "sha256": "e32ab09c810c3db30fd650396dc6b4cd022d38aabd31f61e732ea87141f6d16d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Qwt-exception-1.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Qwt-exception-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Qwt-exception-1.0",
+      "name": "Qwt exception 1.0",
+      "reference": "https://spdx.org/licenses/Qwt-exception-1.0.html",
+      "referenceNumber": 17,
+      "seeAlso": [
+        "http://qwt.sourceforge.net/qwtlicense.html"
+      ]
+    },
+    "name": "Qwt exception 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

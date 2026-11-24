@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b3c9f626bd674d109e34cda748deee6f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 26217,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Intel-ACPI.json",
+        "sha256": "f0f6f0c2a247f86510e394f26f978b6f242420ecdf5f2c9ca9f85b5373e33de7"
+      },
+      "template": {
+        "bytes": 6963,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Intel-ACPI.template.txt",
+        "sha256": "8778eb5f8b5a33dfb8127c2981fc167e198f4dd58f173731773f49d3475d73ae"
+      },
+      "text": {
+        "bytes": 6132,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Intel-ACPI.txt",
+        "sha256": "438661edc91b5627914befe431a03535a2bcf175614cfdb26c7aa6bfbbb0cc03"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Intel-ACPI",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Intel-ACPI.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Intel-ACPI",
+      "name": "Intel ACPI Software License Agreement",
+      "reference": "https://spdx.org/licenses/Intel-ACPI.html",
+      "referenceNumber": 301,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Intel_ACPI_Software_License_Agreement"
+      ]
+    },
+    "name": "Intel ACPI Software License Agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ed786aa962ca4471a997c1d4a1616a57",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3927,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NTP.json",
+        "sha256": "53267adc1ba2eeb570bfdf7a5821c1fa6a1d92ef8c84552c4992d965a1cfef8e"
+      },
+      "template": {
+        "bytes": 926,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NTP.template.txt",
+        "sha256": "ecb22d01f3f94afabb1d225e86966944f27efdfa69ac563ecc1bbf6a62b43246"
+      },
+      "text": {
+        "bytes": 714,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NTP.txt",
+        "sha256": "290eb479deee5ab45484cb98f7cd6c118603208a4f4a118e34f591b50fa20934"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NTP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NTP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "NTP",
+      "name": "NTP License",
+      "reference": "https://spdx.org/licenses/NTP.html",
+      "referenceNumber": 258,
+      "seeAlso": [
+        "https://opensource.org/license/NTP"
+      ]
+    },
+    "name": "NTP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e0828b28604042f9a554f8f0e75fc191",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 95951,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LGPL-2.0-only.json",
+        "sha256": "cbbe2df61db512e6c8b3f4e3ab5477f6d32168741755f6ee82673e13be3c5293"
+      },
+      "template": {
+        "bytes": 26539,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LGPL-2.0-only.template.txt",
+        "sha256": "0b77546a598b02a897da01f8f0849803d36e02482f32f307484b0a1638168c85"
+      },
+      "text": {
+        "bytes": 24877,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LGPL-2.0-only.txt",
+        "sha256": "86dc99d7e5060915ab1dfc1378b7dd351c62088bfa74067e8aa1868c6fdba7d8"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "LGPL-2.0-only",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LGPL-2.0-only.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "LGPL-2.0-only",
+      "name": "GNU Library General Public License v2 only",
+      "reference": "https://spdx.org/licenses/LGPL-2.0-only.html",
+      "referenceNumber": 112,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
+      ]
+    },
+    "name": "GNU Library General Public License v2 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

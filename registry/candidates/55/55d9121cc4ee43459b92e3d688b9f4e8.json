@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "55d9121cc4ee43459b92e3d688b9f4e8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7464,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DEC-3-Clause.json",
+        "sha256": "0cbd48cd699ccac506191f27460857229a6179c0ffe10022b48fe0f1a230f51e"
+      },
+      "template": {
+        "bytes": 1712,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DEC-3-Clause.template.txt",
+        "sha256": "d07ee97ceb2d33b1e33074216a9b1c52df49cfaa3152ff68f7df4c7e04424d96"
+      },
+      "text": {
+        "bytes": 1530,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DEC-3-Clause.txt",
+        "sha256": "f42d3afd6860db6ea2547c8db561e98c2c87c57d193cfbf80ce8d8e38f3fed83"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DEC-3-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DEC-3-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DEC-3-Clause",
+      "name": "DEC 3-Clause License",
+      "reference": "https://spdx.org/licenses/DEC-3-Clause.html",
+      "referenceNumber": 142,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/xserver/-/blob/master/COPYING?ref_type=heads#L239"
+      ]
+    },
+    "name": "DEC 3-Clause License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "35db3f69da00408c919ac0110d564998",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4940,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Google-Patent-WebM.json",
+        "sha256": "0373e5a41186eff66e097a8c43e3ab0527094d10ae2c073a1be63b4c1d686193"
+      },
+      "template": {
+        "bytes": 1470,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Google-Patent-WebM.template.txt",
+        "sha256": "54529f18ba74f9b50cf2be819ba397920cdbb4349b243dd6057b5b740468f60e"
+      },
+      "text": {
+        "bytes": 1435,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Google-Patent-WebM.txt",
+        "sha256": "a112fb94d7307940b35ca32dd71f09f63a008ff6fe287d96b5fbb50a02e9ef85"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Google-Patent-WebM",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Google-Patent-WebM.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Google-Patent-WebM",
+      "name": "Google Additional IP Rights Grant (Patents) - WebM",
+      "reference": "https://spdx.org/licenses/Google-Patent-WebM.html",
+      "referenceNumber": 70,
+      "seeAlso": [
+        "https://www.webmproject.org/license/additional/"
+      ]
+    },
+    "name": "Google Additional IP Rights Grant (Patents) - WebM",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

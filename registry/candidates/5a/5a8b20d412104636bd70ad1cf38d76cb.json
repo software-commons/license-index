@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5a8b20d412104636bd70ad1cf38d76cb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1135,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GNOME-examples-exception.json",
+        "sha256": "363830d2c2e63a1de75486579c68a974b42072b458fe9bdea3ed8a15f8d4a1b6"
+      },
+      "template": {
+        "bytes": 198,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GNOME-examples-exception.template.txt",
+        "sha256": "d9edd9bc8e1ce19bf129f66792aa6937aa80748d4d677ac2990a12a7a3cc82e5"
+      },
+      "text": {
+        "bytes": 197,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GNOME-examples-exception.txt",
+        "sha256": "c9296cd40417ae31090ebbb68257ec1c1ba3ec0a51754e6d281a5630453961e4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GNOME-examples-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GNOME-examples-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GNOME-examples-exception",
+      "name": "GNOME examples exception",
+      "reference": "https://spdx.org/licenses/GNOME-examples-exception.html",
+      "referenceNumber": 84,
+      "seeAlso": [
+        "https://gitlab.gnome.org/Archive/gnome-devel-docs/-/blob/master/platform-demos/C/legal.xml?ref_type=heads",
+        "http://meldmerge.org/help/"
+      ]
+    },
+    "name": "GNOME examples exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

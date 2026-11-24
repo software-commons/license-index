@@ -1,0 +1,57 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "802f31c04d3c46ebadad1290e4defff8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 74384,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/D-FSL-1.0.json",
+        "sha256": "fc5581f3cd692bf59f61600312a2149e47a915ad04b9e1d0ba369cbcc0de7244"
+      },
+      "template": {
+        "bytes": 18152,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/D-FSL-1.0.template.txt",
+        "sha256": "e08625ff16c9591cbb8c01a40d0b2b1ecc7a98a82146adcc3f9d18a033776f8c"
+      },
+      "text": {
+        "bytes": 15238,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/D-FSL-1.0.txt",
+        "sha256": "d3b9533606523db32fc7d91c47ec04187452d2b6fbda6dbe9fbd50e89652641f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "D-FSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/D-FSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "D-FSL-1.0",
+      "name": "Deutsche Freie Software Lizenz",
+      "reference": "https://spdx.org/licenses/D-FSL-1.0.html",
+      "referenceNumber": 363,
+      "seeAlso": [
+        "http://www.dipp.nrw.de/d-fsl/lizenzen/",
+        "http://www.dipp.nrw.de/d-fsl/index_html/lizenzen/de/D-FSL-1_0_de.txt",
+        "http://www.dipp.nrw.de/d-fsl/index_html/lizenzen/en/D-FSL-1_0_en.txt",
+        "https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl",
+        "https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/deutsche-freie-software-lizenz",
+        "https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/german-free-software-license",
+        "https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/D-FSL-1_0_de.txt/at_download/file",
+        "https://www.hbz-nrw.de/produkte/open-access/lizenzen/dfsl/D-FSL-1_0_en.txt/at_download/file"
+      ]
+    },
+    "name": "Deutsche Freie Software Lizenz",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

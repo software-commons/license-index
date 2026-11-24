@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "592514dfc10b40b8877122ab5aaebd13",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5716,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/lsof.json",
+        "sha256": "5f32936c68a51238a3e75225f232d4cd0d4de163ef499ad991323e58f9db4df6"
+      },
+      "template": {
+        "bytes": 1186,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/lsof.template.txt",
+        "sha256": "80d4fb46da54c9707ff038487fe11dcce19106b64183a49e9ae18c8ea831f8c1"
+      },
+      "text": {
+        "bytes": 920,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/lsof.txt",
+        "sha256": "225222ff9bf38abc2cef7205e9b05c60935efa9ec28d1fd01e503c9316088718"
+      }
+    },
+    "deprecated": false,
+    "identifier": "lsof",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/lsof.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "lsof",
+      "name": "lsof License",
+      "reference": "https://spdx.org/licenses/lsof.html",
+      "referenceNumber": 557,
+      "seeAlso": [
+        "https://github.com/lsof-org/lsof/blob/master/COPYING"
+      ]
+    },
+    "name": "lsof License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

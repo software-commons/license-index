@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e73d3cc4e97d44b998af0116198842c2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 26260,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OPUBL-1.0.json",
+        "sha256": "b61467915a98d14d84803c09485e98828e2d85d5f5ff21fe91b91a0dfcc9c0ea"
+      },
+      "template": {
+        "bytes": 6975,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OPUBL-1.0.template.txt",
+        "sha256": "562f898d999eadbc0993f3fb5f8ed18d4df6a39a3613ce318771d71406bb356e"
+      },
+      "text": {
+        "bytes": 6148,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OPUBL-1.0.txt",
+        "sha256": "82e4552fc0641224de50b710b8cfe78a6e75c9b31d72e494203e10f67e58bf61"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OPUBL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OPUBL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OPUBL-1.0",
+      "name": "Open Publication License v1.0",
+      "reference": "https://spdx.org/licenses/OPUBL-1.0.html",
+      "referenceNumber": 641,
+      "seeAlso": [
+        "http://opencontent.org/openpub/",
+        "https://www.debian.org/opl",
+        "https://www.ctan.org/license/opl"
+      ]
+    },
+    "name": "Open Publication License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

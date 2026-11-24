@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0e8d1d7a62c44756be2e5d3591e4588c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2325,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Spelling-Provider-LGPL-exception.json",
+        "sha256": "d20f1ac0dc7c541755942277f10b05ced858a3ec0b2597c547843380708ae250"
+      },
+      "template": {
+        "bytes": 567,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Spelling-Provider-LGPL-exception.template.txt",
+        "sha256": "4e34d400ecea505d9a3c72f8abce5a7a11355a89e65991ebea184dd204aa637d"
+      },
+      "text": {
+        "bytes": 566,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Spelling-Provider-LGPL-exception.txt",
+        "sha256": "4c19a3f1c56b2e61355e49bccd29e894c3705c4e599cda945b2b42f36376bcf5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Spelling-Provider-LGPL-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Spelling-Provider-LGPL-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Spelling-Provider-LGPL-exception",
+      "name": "Spelling Provider LGPL exception",
+      "reference": "https://spdx.org/licenses/Spelling-Provider-LGPL-exception.html",
+      "referenceNumber": 30,
+      "seeAlso": [
+        "https://github.com/rrthomas/enchant/blob/774ff6dc2e441ba2b9b786f8edbe00e014960408/lib/internal.vapi#L18"
+      ]
+    },
+    "name": "Spelling Provider LGPL exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

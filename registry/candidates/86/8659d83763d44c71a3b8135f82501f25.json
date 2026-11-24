@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8659d83763d44c71a3b8135f82501f25",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9161,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Advertising-Acknowledgement.json",
+        "sha256": "7e6de5a7c82010eaae73bb05165d38bf0b899aed2621512fd1c717be7a2275f9"
+      },
+      "template": {
+        "bytes": 2088,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Advertising-Acknowledgement.template.txt",
+        "sha256": "6d73170118c699a297a8ac3728a824a827c15097e4f410a13a81059f8b81ec98"
+      },
+      "text": {
+        "bytes": 1626,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Advertising-Acknowledgement.txt",
+        "sha256": "d7837e2ed1c2b86c1306d8d5b997786b37b462ac900aec56fe9e83060b9f9db0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Advertising-Acknowledgement",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Advertising-Acknowledgement.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Advertising-Acknowledgement",
+      "name": "BSD Advertising Acknowledgement License",
+      "reference": "https://spdx.org/licenses/BSD-Advertising-Acknowledgement.html",
+      "referenceNumber": 425,
+      "seeAlso": [
+        "https://github.com/python-excel/xlrd/blob/master/LICENSE#L33"
+      ]
+    },
+    "name": "BSD Advertising Acknowledgement License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

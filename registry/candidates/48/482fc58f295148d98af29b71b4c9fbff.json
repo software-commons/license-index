@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "482fc58f295148d98af29b71b4c9fbff",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 46232,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CPL-1.0.json",
+        "sha256": "5887afb61131e5e437b4f91ba9e3fddb035bd1615aa00a2e8793aa2699540b2f"
+      },
+      "template": {
+        "bytes": 12766,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CPL-1.0.template.txt",
+        "sha256": "8094229da562ba331593208f9c514342ef90e8684755aedb320bcff8b4f3fe5e"
+      },
+      "text": {
+        "bytes": 11653,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CPL-1.0.txt",
+        "sha256": "9698f2ba346a875a47a9cc6bb602e3d126758774dde1f575b4f3369dc3f2574f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "CPL-1.0",
+      "name": "Common Public License 1.0",
+      "reference": "https://spdx.org/licenses/CPL-1.0.html",
+      "referenceNumber": 214,
+      "seeAlso": [
+        "https://opensource.org/license/CPL-1.0"
+      ]
+    },
+    "name": "Common Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

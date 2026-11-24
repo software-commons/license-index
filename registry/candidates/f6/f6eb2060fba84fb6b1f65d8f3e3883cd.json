@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f6eb2060fba84fb6b1f65d8f3e3883cd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 38427,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NLOD-1.0.json",
+        "sha256": "ad9e30d22b07ffa276c5f69e9d92fccc4c92aa2a763344ea32ccfe834173b779"
+      },
+      "template": {
+        "bytes": 9909,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NLOD-1.0.template.txt",
+        "sha256": "b61715753833a737167d5d116581f962d9df886b56427854c23ea8d9cfb1a855"
+      },
+      "text": {
+        "bytes": 8712,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NLOD-1.0.txt",
+        "sha256": "d5573513a243e2a7b8464c63281907e01245659f405d3efccc8b00cd7a59809e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NLOD-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NLOD-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NLOD-1.0",
+      "name": "Norwegian Licence for Open Government Data (NLOD) 1.0",
+      "reference": "https://spdx.org/licenses/NLOD-1.0.html",
+      "referenceNumber": 116,
+      "seeAlso": [
+        "http://data.norge.no/nlod/en/1.0"
+      ]
+    },
+    "name": "Norwegian Licence for Open Government Data (NLOD) 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

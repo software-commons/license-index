@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b383c3c0dffa4e31be28bc58b7636b50",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 75983,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-NC-SA-2.0-FR.json",
+        "sha256": "d7e2745b08a3c3e5ebafad7326e46a1d2c26ae4fc39e7cf87c528b5bced4098a"
+      },
+      "template": {
+        "bytes": 20730,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-NC-SA-2.0-FR.template.txt",
+        "sha256": "a9ba9852ae18a53fc1e88c49e1e3402706407364541e668c3bb6167c33b86513"
+      },
+      "text": {
+        "bytes": 18798,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-NC-SA-2.0-FR.txt",
+        "sha256": "0167ea1c1e7cbe892b94ce3188ee5ddda602a6c602ca173876220fa852bf5ccc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-NC-SA-2.0-FR",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-NC-SA-2.0-FR.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-NC-SA-2.0-FR",
+      "name": "Creative Commons Attribution-NonCommercial-ShareAlike 2.0 France",
+      "reference": "https://spdx.org/licenses/CC-BY-NC-SA-2.0-FR.html",
+      "referenceNumber": 138,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-nc-sa/2.0/fr/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution-NonCommercial-ShareAlike 2.0 France",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

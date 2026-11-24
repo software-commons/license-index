@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ae5ff46b29234222b9cc1a66cb3f3e32",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5164,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Zlib.json",
+        "sha256": "45c90d9b46d5d13276c1d5a577f05ea442dc3d5afde9d5e80d3869c6ca438c28"
+      },
+      "template": {
+        "bytes": 1105,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Zlib.template.txt",
+        "sha256": "517518a720051db892e77865041587abc99146359c9a0eb4de360bdab9e9255b"
+      },
+      "text": {
+        "bytes": 838,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Zlib.txt",
+        "sha256": "bfb1112d49db5b1daecdfef24bd7e2f3ea0bafb33aa67aa0ab51e2bf8407c03d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Zlib",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Zlib.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Zlib",
+      "name": "zlib License",
+      "reference": "https://spdx.org/licenses/Zlib.html",
+      "referenceNumber": 111,
+      "seeAlso": [
+        "http://www.zlib.net/zlib_license.html",
+        "https://opensource.org/license/Zlib"
+      ]
+    },
+    "name": "zlib License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

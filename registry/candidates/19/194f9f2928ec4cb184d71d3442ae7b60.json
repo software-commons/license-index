@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "194f9f2928ec4cb184d71d3442ae7b60",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15891,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BUSL-1.1.json",
+        "sha256": "09151c72f729e319c86747e9a3d7ca0f2fc50d275815cbede261842db0ac88f9"
+      },
+      "template": {
+        "bytes": 3614,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BUSL-1.1.template.txt",
+        "sha256": "6b7cfed578481196b1babeed66dc833f7f4839bd809b8796abd9a408b8f08c56"
+      },
+      "text": {
+        "bytes": 3424,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BUSL-1.1.txt",
+        "sha256": "d90560217049db1d6020ec7cf482da4198bfa372dffd22270ba08fd8088cd93b"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "BUSL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BUSL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BUSL-1.1",
+      "name": "Business Source License 1.1",
+      "reference": "https://spdx.org/licenses/BUSL-1.1.html",
+      "referenceNumber": 306,
+      "seeAlso": [
+        "https://mariadb.com/bsl11/"
+      ]
+    },
+    "name": "Business Source License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

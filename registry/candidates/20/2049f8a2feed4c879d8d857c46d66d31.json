@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2049f8a2feed4c879d8d857c46d66d31",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5083,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-Wu.json",
+        "sha256": "36f6052ad6d84afe7b58cfb28bcb2dcd1cf31ac1660c4b94a93fa09ed2633035"
+      },
+      "template": {
+        "bytes": 1350,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-Wu.template.txt",
+        "sha256": "5b6f7721a9190f9dfff872d6aa6f1018f3d3742551958a74549acc4963c1ef3a"
+      },
+      "text": {
+        "bytes": 1295,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-Wu.txt",
+        "sha256": "c0cb8b3ce560f5e3dc4d55e65e3da650e76ae45863066fa5f5d5a1439db5e153"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-Wu",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-Wu.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-Wu",
+      "name": "MIT Tom Wu Variant",
+      "reference": "https://spdx.org/licenses/MIT-Wu.html",
+      "referenceNumber": 31,
+      "seeAlso": [
+        "https://github.com/chromium/octane/blob/master/crypto.js"
+      ]
+    },
+    "name": "MIT Tom Wu Variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

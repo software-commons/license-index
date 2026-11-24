@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d927d116d019466a9f0aa36aa3badfc5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16103,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Libpng.json",
+        "sha256": "461b60f8f35de085fbc446cfb9a5b4aeb43b727c4d01ff5831bfc63e0d175e52"
+      },
+      "template": {
+        "bytes": 4264,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Libpng.template.txt",
+        "sha256": "474921e4e1addf5c8e91af32470e6f31169247c98b87b5d49f5a54b4fd7555ec"
+      },
+      "text": {
+        "bytes": 4218,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Libpng.txt",
+        "sha256": "7667a8c88c7a63690244988d626bcddd27ed895526e2c3ab1a9adb463a5fa287"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Libpng",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Libpng.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Libpng",
+      "name": "libpng License",
+      "reference": "https://spdx.org/licenses/Libpng.html",
+      "referenceNumber": 393,
+      "seeAlso": [
+        "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"
+      ]
+    },
+    "name": "libpng License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

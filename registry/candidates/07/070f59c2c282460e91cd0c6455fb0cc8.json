@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "070f59c2c282460e91cd0c6455fb0cc8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1224,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/dvipdfm.json",
+        "sha256": "557bfe15fe48671d9ba6d46cf8c496c5d7d678685654d4ab4c54b3c1a520b8f3"
+      },
+      "template": {
+        "bytes": 211,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/dvipdfm.template.txt",
+        "sha256": "c4ee63a6d75a5b11d6eb7faa27cd67d88d2e11828b546789094905a6d8afc24b"
+      },
+      "text": {
+        "bytes": 210,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/dvipdfm.txt",
+        "sha256": "b80c6a40accb70f26e04d26d47db8d9a885796b47ae6d027256fc1d4b7004d4e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "dvipdfm",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/dvipdfm.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "dvipdfm",
+      "name": "dvipdfm License",
+      "reference": "https://spdx.org/licenses/dvipdfm.html",
+      "referenceNumber": 325,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/dvipdfm"
+      ]
+    },
+    "name": "dvipdfm License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

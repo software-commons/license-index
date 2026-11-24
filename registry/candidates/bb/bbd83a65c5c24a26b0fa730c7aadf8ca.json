@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bbd83a65c5c24a26b0fa730c7aadf8ca",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14632,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/DigiRule-FOSS-exception.json",
+        "sha256": "531fa00c3052c0a6b75f81f9ed3031f4ecee091a957c57d4a431b5122544e0cd"
+      },
+      "template": {
+        "bytes": 3510,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DigiRule-FOSS-exception.template.txt",
+        "sha256": "bd826a7d8db4479e3f80b0e83ebfbd906ee705fd14ef85bfce8e1b45ef26e092"
+      },
+      "text": {
+        "bytes": 3131,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DigiRule-FOSS-exception.txt",
+        "sha256": "3cb5633b9277ceea6e714f2d20d5ac47615ce1b65317b6557ecd18e057af9904"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DigiRule-FOSS-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DigiRule-FOSS-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "DigiRule-FOSS-exception",
+      "name": "DigiRule FOSS License Exception",
+      "reference": "https://spdx.org/licenses/DigiRule-FOSS-exception.html",
+      "referenceNumber": 74,
+      "seeAlso": [
+        "http://www.digirulesolutions.com/drupal/foss"
+      ]
+    },
+    "name": "DigiRule FOSS License Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

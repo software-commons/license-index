@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f17114a4393d485ab8826241b4562a50",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 45959,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TGPPL-1.0.json",
+        "sha256": "989512a3a4070d301911766f1875058605033484bc9c4c5df7225592a59acf7e"
+      },
+      "template": {
+        "bytes": 11523,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TGPPL-1.0.template.txt",
+        "sha256": "0e9738052956a3f7ce397863fab1a004918c05a2172b311e70b7441a2d542ff1"
+      },
+      "text": {
+        "bytes": 10971,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TGPPL-1.0.txt",
+        "sha256": "ea4f57efc008f1cc87ff9bf78e49b92ef14ba5ef510d8bac6a83291d2911f655"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "TGPPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TGPPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TGPPL-1.0",
+      "name": "Transitive Grace Period Public Licence 1.0",
+      "reference": "https://spdx.org/licenses/TGPPL-1.0.html",
+      "referenceNumber": 683,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/TGPPL",
+        "https://tahoe-lafs.org/trac/tahoe-lafs/browser/trunk/COPYING.TGPPL.rst"
+      ]
+    },
+    "name": "Transitive Grace Period Public Licence 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

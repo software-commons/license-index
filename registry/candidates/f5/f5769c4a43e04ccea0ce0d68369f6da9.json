@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f5769c4a43e04ccea0ce0d68369f6da9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12261,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/xpp.json",
+        "sha256": "bfe168cfeb7438b4dfb7d1064ecf408fe0b33d4e7c4568dfd8974ee9a1a3c926"
+      },
+      "template": {
+        "bytes": 3119,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/xpp.template.txt",
+        "sha256": "1655082a76067192787ab18d41bfbc999d14c22d3d3ce0ac6d5fd8ff815c865f"
+      },
+      "text": {
+        "bytes": 2482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/xpp.txt",
+        "sha256": "7357cebf92b4a7b3667e81c15a56eb1e0b4c61f8161c1e6faeccab22912a9879"
+      }
+    },
+    "deprecated": false,
+    "identifier": "xpp",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/xpp.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "xpp",
+      "name": "XPP License",
+      "reference": "https://spdx.org/licenses/xpp.html",
+      "referenceNumber": 447,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/xpp"
+      ]
+    },
+    "name": "XPP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ad9c1f09043241a09174a2811c33141c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5551,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/X11-distribute-modifications-variant.json",
+        "sha256": "456700b0e42d27e32e7b597ae7c92477b943375f2d059e483dce71577470fa15"
+      },
+      "template": {
+        "bytes": 1370,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/X11-distribute-modifications-variant.template.txt",
+        "sha256": "3d518e79a423a6e07858cd66a7bd9b54e716be0b0a60519f02f89069ad7bd4dc"
+      },
+      "text": {
+        "bytes": 1314,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/X11-distribute-modifications-variant.txt",
+        "sha256": "472a5d3bfe4ba4289fbe4d3ff016be25ad4af4c6d7ea523d443139b56d214130"
+      }
+    },
+    "deprecated": false,
+    "identifier": "X11-distribute-modifications-variant",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/X11-distribute-modifications-variant.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "X11-distribute-modifications-variant",
+      "name": "X11 License Distribution Modification Variant",
+      "reference": "https://spdx.org/licenses/X11-distribute-modifications-variant.html",
+      "referenceNumber": 703,
+      "seeAlso": [
+        "https://github.com/mirror/ncurses/blob/master/COPYING"
+      ]
+    },
+    "name": "X11 License Distribution Modification Variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

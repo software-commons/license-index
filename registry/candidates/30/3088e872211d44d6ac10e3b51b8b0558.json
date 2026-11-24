@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3088e872211d44d6ac10e3b51b8b0558",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8729,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-Clear.json",
+        "sha256": "2425109a0674ff80a6b0c434e1c948c1d73cbf3420a0e184ca46e735073435d1"
+      },
+      "template": {
+        "bytes": 2088,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-Clear.template.txt",
+        "sha256": "bcecc5843d0502c494aca1d79aac81380a352e3e6e4853d85858269a79498e58"
+      },
+      "text": {
+        "bytes": 1676,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-Clear.txt",
+        "sha256": "4495ed59005765e600a16457dc52a2d39757dbfeae081e68b59fe7c177c78589"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-Clear",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-Clear.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-Clear",
+      "name": "BSD 3-Clause Clear License",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-Clear.html",
+      "referenceNumber": 66,
+      "seeAlso": [
+        "http://labs.metacarta.com/license-explanation.html#license"
+      ]
+    },
+    "name": "BSD 3-Clause Clear License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

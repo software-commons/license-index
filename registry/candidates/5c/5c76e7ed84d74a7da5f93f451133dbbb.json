@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5c76e7ed84d74a7da5f93f451133dbbb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4695,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Latex2e-translated-notice.json",
+        "sha256": "e2a014ccb20d5eb63616f28853350c1a7d7a2174ccf38b285e3db50c0b4cedfd"
+      },
+      "template": {
+        "bytes": 996,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Latex2e-translated-notice.template.txt",
+        "sha256": "d5099589672faaa5e5a105dce51eded3013645d930ece685c7297f4ab08a2c0a"
+      },
+      "text": {
+        "bytes": 981,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Latex2e-translated-notice.txt",
+        "sha256": "2c5a5181fd771b2957a89b82e314604c42cad79ff71c8db02088710b803a6903"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Latex2e-translated-notice",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Latex2e-translated-notice.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Latex2e-translated-notice",
+      "name": "Latex2e with translated notice permission",
+      "reference": "https://spdx.org/licenses/Latex2e-translated-notice.html",
+      "referenceNumber": 102,
+      "seeAlso": [
+        "https://git.savannah.gnu.org/cgit/indent.git/tree/doc/indent.texi?id=a74c6b4ee49397cf330b333da1042bffa60ed14f#n74"
+      ]
+    },
+    "name": "Latex2e with translated notice permission",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

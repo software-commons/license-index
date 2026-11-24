@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "395015cb26554551b67de3ba9fb0b009",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7538,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-Click.json",
+        "sha256": "60b885c3a6e50cd58e9e6cda549b8599ad727d31a8f2d44f8718799812849e13"
+      },
+      "template": {
+        "bytes": 1695,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-Click.template.txt",
+        "sha256": "c6e4f1e4a44190c18710dcb7ef168630001b919fac4b52f0f78d2c5ccf040e0e"
+      },
+      "text": {
+        "bytes": 1695,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-Click.txt",
+        "sha256": "bc2e9c8b6ccbdff1223ef1fe8866814934707ebfe230a3cdd7016e40a6335ca2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-Click",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-Click.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-Click",
+      "name": "MIT Click License",
+      "reference": "https://spdx.org/licenses/MIT-Click.html",
+      "referenceNumber": 650,
+      "seeAlso": [
+        "https://github.com/kohler/t1utils/blob/master/LICENSE"
+      ]
+    },
+    "name": "MIT Click License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

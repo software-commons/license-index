@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "adb482225b124f458435048415f89260",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6953,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-CMU.json",
+        "sha256": "dbefdbcedd5c29f6deb5ec515c753ef51092f7aca5fb69ff1af790e61c42557c"
+      },
+      "template": {
+        "bytes": 1650,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-CMU.template.txt",
+        "sha256": "6ac59d39e2509e4087aab1c43b197e0e8fb5a000703e64ece38eaa8ec15f47e6"
+      },
+      "text": {
+        "bytes": 1150,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-CMU.txt",
+        "sha256": "9454a04f14e2a889b3f08bd9973f39889378cb5bbb64008533c36ea685cda936"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-CMU",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-CMU.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-CMU",
+      "name": "CMU License",
+      "reference": "https://spdx.org/licenses/MIT-CMU.html",
+      "referenceNumber": 316,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:MIT?rd=Licensing/MIT#CMU_Style",
+        "https://github.com/python-pillow/Pillow/blob/fffb426092c8db24a5f4b6df243a8a3c01fb63cd/LICENSE"
+      ]
+    },
+    "name": "CMU License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

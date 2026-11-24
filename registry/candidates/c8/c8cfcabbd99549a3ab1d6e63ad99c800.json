@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c8cfcabbd99549a3ab1d6e63ad99c800",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 76533,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CDDL-1.1.json",
+        "sha256": "09c6c40ec660e7acf32c583f6f9bc6bb9e84998e44064a9cd5d3a8f90dadedb9"
+      },
+      "template": {
+        "bytes": 20016,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CDDL-1.1.template.txt",
+        "sha256": "ff815d528bfbdfbdb9e9c9334ec9d91f597bae9377c09c099083f4fa40af0eac"
+      },
+      "text": {
+        "bytes": 17390,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CDDL-1.1.txt",
+        "sha256": "b5bbb5ac38b5cb76862a7f410ca567e4b32d7c22f22622ebff10ba434827bb78"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CDDL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CDDL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CDDL-1.1",
+      "name": "Common Development and Distribution License 1.1",
+      "reference": "https://spdx.org/licenses/CDDL-1.1.html",
+      "referenceNumber": 451,
+      "seeAlso": [
+        "http://glassfish.java.net/public/CDDL+GPL_1_1.html",
+        "https://javaee.github.io/glassfish/LICENSE"
+      ]
+    },
+    "name": "Common Development and Distribution License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

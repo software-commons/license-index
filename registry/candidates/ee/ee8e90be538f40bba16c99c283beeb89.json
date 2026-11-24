@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ee8e90be538f40bba16c99c283beeb89",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Systemics-W3Works.json",
+        "sha256": "0e7803f446cad5ecbfcf9b866d79ee7b2fe0370e2017a8a7b42a9d840bfe4734"
+      },
+      "template": {
+        "bytes": 3569,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Systemics-W3Works.template.txt",
+        "sha256": "1f9f1fc0ca95ce0e6b7a959012c941d6cc7ea0bf897ced65d35395d38528b919"
+      },
+      "text": {
+        "bytes": 3180,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Systemics-W3Works.txt",
+        "sha256": "1c8583429a62a752137d666526601bd81a47fcebc07189f55256dd0904a4e10c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Systemics-W3Works",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Systemics-W3Works.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Systemics-W3Works",
+      "name": "Systemics W3Works BSD variant license",
+      "reference": "https://spdx.org/licenses/BSD-Systemics-W3Works.html",
+      "referenceNumber": 580,
+      "seeAlso": [
+        "https://metacpan.org/release/DPARIS/Crypt-Blowfish-2.14/source/COPYRIGHT#L7"
+      ]
+    },
+    "name": "Systemics W3Works BSD variant license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

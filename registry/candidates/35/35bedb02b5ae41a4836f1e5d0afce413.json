@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "35bedb02b5ae41a4836f1e5d0afce413",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3579,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Clips.json",
+        "sha256": "186e7d7b6e6f8d28e7c7db05d8f13979f81ccc300994caed6262108a1db5acfc"
+      },
+      "template": {
+        "bytes": 935,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Clips.template.txt",
+        "sha256": "c6a695d5d0b31b3cfd0a4d12701e1d2885916680f440d1b05d43ad36c0829bb1"
+      },
+      "text": {
+        "bytes": 938,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Clips.txt",
+        "sha256": "12ba45745237cd6fd4c0c4d0462d9dc875a18db24ababa74f3980ce2cb574d9c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Clips",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Clips.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Clips",
+      "name": "Clips License",
+      "reference": "https://spdx.org/licenses/Clips.html",
+      "referenceNumber": 399,
+      "seeAlso": [
+        "https://github.com/DrItanium/maya/blob/master/LICENSE.CLIPS"
+      ]
+    },
+    "name": "Clips License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

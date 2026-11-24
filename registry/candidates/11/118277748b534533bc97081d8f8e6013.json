@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "118277748b534533bc97081d8f8e6013",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2917,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Xfig.json",
+        "sha256": "66a94cede929ffba1af286ee940dadc700ff237248b8756ff47c8fa9f0ed385e"
+      },
+      "template": {
+        "bytes": 505,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Xfig.template.txt",
+        "sha256": "235ae5ebe0371b1a2d740de1fb53ebba01073e1ffccd47efa1661ceaef3acc40"
+      },
+      "text": {
+        "bytes": 510,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Xfig.txt",
+        "sha256": "515e85563ef3a75e1cd23f6aa9695506c14c5f3789d207d12b28f689e883010a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Xfig",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Xfig.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Xfig",
+      "name": "Xfig License",
+      "reference": "https://spdx.org/licenses/Xfig.html",
+      "referenceNumber": 415,
+      "seeAlso": [
+        "https://github.com/Distrotech/transfig/blob/master/transfig/transfig.c",
+        "https://fedoraproject.org/wiki/Licensing:MIT#Xfig_Variant",
+        "https://sourceforge.net/p/mcj/xfig/ci/master/tree/src/Makefile.am"
+      ]
+    },
+    "name": "Xfig License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

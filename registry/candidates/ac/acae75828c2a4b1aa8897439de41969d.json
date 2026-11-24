@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "acae75828c2a4b1aa8897439de41969d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 22586,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OpenSSL.json",
+        "sha256": "34f7a512993deb26457f436bfe5a36ab4173692e3181b92e27985b35bdde46ab"
+      },
+      "template": {
+        "bytes": 6001,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OpenSSL.template.txt",
+        "sha256": "1d82724ce5f7743111b0394305ba961e2e277bbe13b09897b72e782ec121242f"
+      },
+      "text": {
+        "bytes": 5309,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OpenSSL.txt",
+        "sha256": "57bf9f4cefe46ae1ef5b3ae83505f01ec8b2ac94a473e2c9e3fb1f80de1e23b8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OpenSSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OpenSSL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "OpenSSL",
+      "name": "OpenSSL License",
+      "reference": "https://spdx.org/licenses/OpenSSL.html",
+      "referenceNumber": 391,
+      "seeAlso": [
+        "http://www.openssl.org/source/license.html"
+      ]
+    },
+    "name": "OpenSSL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

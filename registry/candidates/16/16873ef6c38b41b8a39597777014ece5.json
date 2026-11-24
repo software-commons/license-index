@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "16873ef6c38b41b8a39597777014ece5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6731,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Qhull.json",
+        "sha256": "681d7e50d29b284de8ee849f2b8ab4dad66db7139faec89f9999b545d281656c"
+      },
+      "template": {
+        "bytes": 1615,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Qhull.template.txt",
+        "sha256": "7dbb4052feefe843740ada6c279cbc216f46a836209782a7303043e72744ffa9"
+      },
+      "text": {
+        "bytes": 1304,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Qhull.txt",
+        "sha256": "e8437fa1b9bed4bdb334dd598aab3a3c319f28664d935b9cc2ca690ce8c8c444"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Qhull",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Qhull.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Qhull",
+      "name": "Qhull License",
+      "reference": "https://spdx.org/licenses/Qhull.html",
+      "referenceNumber": 619,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Qhull"
+      ]
+    },
+    "name": "Qhull License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

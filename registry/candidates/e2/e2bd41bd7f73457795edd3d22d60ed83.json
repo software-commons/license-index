@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e2bd41bd7f73457795edd3d22d60ed83",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4640,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GLWTPL.json",
+        "sha256": "4924d5c7efdf65b5064d54d5884ddca6b2871809db1003c5a56d24019e91a77e"
+      },
+      "template": {
+        "bytes": 1019,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GLWTPL.template.txt",
+        "sha256": "815ce9c79c879a7c8b014e99c5cf10a5148ecf728487cf7a89bb513a15fd703f"
+      },
+      "text": {
+        "bytes": 959,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GLWTPL.txt",
+        "sha256": "761baf8222655fcaed12b56fc70fa60ef822ad233663dd2f8088fba5bf07906a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GLWTPL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GLWTPL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GLWTPL",
+      "name": "Good Luck With That Public License",
+      "reference": "https://spdx.org/licenses/GLWTPL.html",
+      "referenceNumber": 41,
+      "seeAlso": [
+        "https://github.com/me-shaon/GLWTPL/commit/da5f6bc734095efbacb442c0b31e33a65b9d6e85"
+      ]
+    },
+    "name": "Good Luck With That Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

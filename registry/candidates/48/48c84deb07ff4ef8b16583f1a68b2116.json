@@ -1,0 +1,24 @@
+{
+  "id": "48c84deb07ff4ef8b16583f1a68b2116",
+  "disposition": "non-license",
+  "reason": "The publisher's v1.0 condition requires a separately named License and contains placeholders for the software and licensor. Keep it as a condition lead. Project-specific scope requires the adopted combination and applicable version. Establish reuse authority for the clause text before packaging.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://commonsclause.com/",
+    "name": "Commons Clause License Condition v1.0",
+    "identifier": "Commons Clause License Condition v1.0",
+    "revision": "1.0"
+  },
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://commonsclause.com/",
+        "name": "Commons Clause License Condition v1.0",
+        "identifier": "Commons Clause License Condition v1.0",
+        "revision": "1.0"
+      },
+      "reason": "The publisher describes a condition that applies to a separately named base license. Keep the relationship scope and determine reuse rights for the condition text."
+    }
+  ]
+}

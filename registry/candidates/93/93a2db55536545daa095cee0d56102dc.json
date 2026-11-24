@@ -1,0 +1,73 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "93a2db55536545daa095cee0d56102dc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 130743,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-3.0+.json",
+        "sha256": "a3541bdfe5c33fc6ae546903f0820df7a3a528b1d04a62f4780097c7fd289f98"
+      },
+      "replacement_source": {
+        "bytes": 44088,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-3.0+.xml",
+        "sha256": "80963b6faeef59ec0ea43be5522a0144b45f6e7642b2e91c3d285ab5f853f40a"
+      },
+      "template": {
+        "bytes": 36527,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-3.0+.template.txt",
+        "sha256": "63496af06c12642a83d0a012274be729c90704f8344e0477c2e9cc5e3b765913"
+      },
+      "text": {
+        "bytes": 34682,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-3.0+.txt",
+        "sha256": "eb2b0e5c268a2756a3d2d8c12670054862787409fea86fb77a7f0adee15f4944"
+      }
+    },
+    "deprecated": true,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GPL-3.0+",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0+.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "GPL-3.0+",
+      "name": "GNU General Public License v3.0 or later",
+      "reference": "https://spdx.org/licenses/GPL-3.0+.html",
+      "referenceNumber": 724,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gpl-3.0-standalone.html",
+        "https://opensource.org/license/GPL-3.0"
+      ]
+    },
+    "name": "GNU General Public License v3.0 or later",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-3.0-or-later"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

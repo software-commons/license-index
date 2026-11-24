@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4a0f775682c8445782916409308c9809",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 39466,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/3D-Slicer-1.0.json",
+        "sha256": "05c4a1e3ae32f71b356c11f5e84192684f090aaec048b80d4c8d1cf9c256fbfd"
+      },
+      "template": {
+        "bytes": 11131,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/3D-Slicer-1.0.template.txt",
+        "sha256": "aa2f5001e2655ebad8d80955ea59003fe7ab22c84ed05a2cbb52f01feca4212c"
+      },
+      "text": {
+        "bytes": 10299,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/3D-Slicer-1.0.txt",
+        "sha256": "fb6a52ec4bf7ab943ceb0e3a2c74349d41dcfab787e7531aa91062e580d69ef8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "3D-Slicer-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/3D-Slicer-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "3D-Slicer-1.0",
+      "name": "3D Slicer License v1.0",
+      "reference": "https://spdx.org/licenses/3D-Slicer-1.0.html",
+      "referenceNumber": 622,
+      "seeAlso": [
+        "https://slicer.org/LICENSE",
+        "https://github.com/Slicer/Slicer/blob/main/License.txt"
+      ]
+    },
+    "name": "3D Slicer License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

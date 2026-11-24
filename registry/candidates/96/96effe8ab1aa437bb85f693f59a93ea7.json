@@ -1,0 +1,75 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "96effe8ab1aa437bb85f693f59a93ea7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 50572,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-1.0.json",
+        "sha256": "4fbd05314e2ef1347bf497557c0033ef6c78826b7f6a37d05e7caf4985563676"
+      },
+      "replacement_source": {
+        "bytes": 17265,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-1.0.xml",
+        "sha256": "edc36a5c7e6d22ebee1115a74da947803ed7f601f028863c1ab8e2ba206d2235"
+      },
+      "template": {
+        "bytes": 13327,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-1.0.template.txt",
+        "sha256": "26d286c2c9cabcd30d84f5aa92b97fa27b9b6eca02e0415b80bc921e3c844645"
+      },
+      "text": {
+        "bytes": 12235,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-1.0.txt",
+        "sha256": "da37ffd5fcdf0a7d76af862a4330ea1076e1443b51782b2f912148357b7acabe"
+      }
+    },
+    "deprecated": true,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.0",
+      "detailsUrl": "https://spdx.org/licenses/GPL-1.0.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "GPL-1.0",
+      "name": "GNU General Public License v1.0 only",
+      "reference": "https://spdx.org/licenses/GPL-1.0.html",
+      "referenceNumber": 1,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"
+      ]
+    },
+    "name": "GNU General Public License v1.0 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-1.0-only"
+      },
+      {
+        "for_expression": "GPL-1.0+",
+        "target": "GPL-1.0-or-later"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

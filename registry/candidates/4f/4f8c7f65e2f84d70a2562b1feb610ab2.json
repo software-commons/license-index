@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4f8c7f65e2f84d70a2562b1feb610ab2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 41436,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/copyleft-next-0.3.1.json",
+        "sha256": "069d372761012e5c783933090ab5f0ca38a86e6de179c3be5d24cfb899aa56c2"
+      },
+      "template": {
+        "bytes": 10752,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/copyleft-next-0.3.1.template.txt",
+        "sha256": "9a29b51ca1f613bfba2d66484d7f0623c3d0a441be84d2efc373d7ced8f0a251"
+      },
+      "text": {
+        "bytes": 10634,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/copyleft-next-0.3.1.txt",
+        "sha256": "ef241a58203ce1474141d3b014ff59d5a22b31248263e8dd78f7b5ff367e97bb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "copyleft-next-0.3.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/copyleft-next-0.3.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "copyleft-next-0.3.1",
+      "name": "copyleft-next 0.3.1",
+      "reference": "https://spdx.org/licenses/copyleft-next-0.3.1.html",
+      "referenceNumber": 696,
+      "seeAlso": [
+        "https://github.com/copyleft-next/copyleft-next/blob/master/Releases/copyleft-next-0.3.1"
+      ]
+    },
+    "name": "copyleft-next 0.3.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6b5e21da7f4942fc9ff2698e807fb3c6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13320,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GCC-exception-3.1.json",
+        "sha256": "98a8503dff3c3efe9629a5d11df3dfa6c855606b153f8cc0ee48bc701340330d"
+      },
+      "template": {
+        "bytes": 3598,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GCC-exception-3.1.template.txt",
+        "sha256": "753e8c018ac492b8e0af54b01803dba85b99227c8790440e26f3caac8cd5c10d"
+      },
+      "text": {
+        "bytes": 3390,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GCC-exception-3.1.txt",
+        "sha256": "7103d4f7f7e2f8ce10d282a05e0689637f8d6d9ef7b399d808d1da313e69b960"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GCC-exception-3.1",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GCC-exception-3.1.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GCC-exception-3.1",
+      "name": "GCC Runtime Library exception 3.1",
+      "reference": "https://spdx.org/licenses/GCC-exception-3.1.html",
+      "referenceNumber": 22,
+      "seeAlso": [
+        "http://www.gnu.org/licenses/gcc-exception-3.1.html"
+      ]
+    },
+    "name": "GCC Runtime Library exception 3.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

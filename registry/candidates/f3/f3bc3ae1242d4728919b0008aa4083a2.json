@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f3bc3ae1242d4728919b0008aa4083a2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7856,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ANTLR-PD.json",
+        "sha256": "221dc0e5393b39c81b72c0a9b367cb779251dd18f43bd63c6daaefe64ff287ba"
+      },
+      "template": {
+        "bytes": 1803,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ANTLR-PD.template.txt",
+        "sha256": "790642a7ff18f92b5ac2032c424e027307e774b6e1710bbe3b7cf57e88cb0e1f"
+      },
+      "text": {
+        "bytes": 987,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ANTLR-PD.txt",
+        "sha256": "c51128da1cb801fae229ac93125141db060611c176ecadb179f21cc412e627a4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ANTLR-PD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ANTLR-PD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ANTLR-PD",
+      "name": "ANTLR Software Rights Notice",
+      "reference": "https://spdx.org/licenses/ANTLR-PD.html",
+      "referenceNumber": 277,
+      "seeAlso": [
+        "http://www.antlr2.org/license.html"
+      ]
+    },
+    "name": "ANTLR Software Rights Notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

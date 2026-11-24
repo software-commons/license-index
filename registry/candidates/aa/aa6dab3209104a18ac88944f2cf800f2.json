@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "aa6dab3209104a18ac88944f2cf800f2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 27120,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Artistic-1.0-Perl.json",
+        "sha256": "de222616bea80c86862ac0d8085bda60b51a7f2637a2792a2adfec0eeec6312d"
+      },
+      "template": {
+        "bytes": 6996,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Artistic-1.0-Perl.template.txt",
+        "sha256": "ac6546f748096d2926628ea53d2192d253d656fa55c457e31a5ec340d5ff8aa5"
+      },
+      "text": {
+        "bytes": 6060,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Artistic-1.0-Perl.txt",
+        "sha256": "9e18ef4d50faba562e3efa37d8961d6e9956d1c103bfc4fc1caeb07e8effe885"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Artistic-1.0-Perl",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Artistic-1.0-Perl.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Artistic-1.0-Perl",
+      "name": "Artistic License 1.0 (Perl)",
+      "reference": "https://spdx.org/licenses/Artistic-1.0-Perl.html",
+      "referenceNumber": 161,
+      "seeAlso": [
+        "http://dev.perl.org/licenses/artistic.html"
+      ]
+    },
+    "name": "Artistic License 1.0 (Perl)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

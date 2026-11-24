@@ -1,0 +1,24 @@
+{
+  "id": "017c988ca62b4c5fa607e86aa1a10b4a",
+  "disposition": "unresolved",
+  "reason": "The publisher's pinned Fair Core 1.0 text names MIT as the future license and contains a separate license-key functionality clause. Keep the current Fair Core terms distinct from the future MIT grant and from SPDX FSL-1.1-MIT. Independent matching and text-redistribution authority remain pending.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://raw.githubusercontent.com/keygen-sh/fcl.dev/df535ee89b52fbc2a43530b47096b24db908e8e4/FCL-1.0-MIT.md",
+    "name": "Fair Core License 1.0, MIT future license",
+    "identifier": "Keygen FCL-1.0-MIT",
+    "revision": "1.0"
+  },
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://github.com/keygen-sh/fcl.dev/blob/master/FCL-1.0-MIT.md",
+        "name": "Fair Core License 1.0, MIT future license",
+        "identifier": "Keygen FCL-1.0-MIT",
+        "revision": "1.0"
+      },
+      "reason": "Publisher text identifies a distinct MIT future-license variant. Complete matching-equivalence checks against the pinned SPDX population, acquire immutable text, and review publication rights."
+    }
+  ]
+}

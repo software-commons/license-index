@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "716fa3bcc5f8451b8b5ac03f4c1605fc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7390,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SWL.json",
+        "sha256": "592fc18ef348a1b0929becabcdacd37506dfb538236406c960c48c59d364c843"
+      },
+      "template": {
+        "bytes": 2130,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SWL.template.txt",
+        "sha256": "821869b23ee32933114ad3daa76d6e49b3881a894479b80d679ae73aa7be91bc"
+      },
+      "text": {
+        "bytes": 2129,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SWL.txt",
+        "sha256": "012aaf808a2dc69ac992b0902f20246db69a6b330fbc9f2d31f49473809ea1fc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SWL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SWL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SWL",
+      "name": "Scheme Widget Library (SWL) Software License Agreement",
+      "reference": "https://spdx.org/licenses/SWL.html",
+      "referenceNumber": 421,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/SWL"
+      ]
+    },
+    "name": "Scheme Widget Library (SWL) Software License Agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,62 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2d8be15958154343992129defb09c224",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 73836,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-2.0-only.json",
+        "sha256": "e8d048eeb2eb042ec0437ca2b7b360baef48eaec7fb9e4e9b792aaf9ed33794b"
+      },
+      "template": {
+        "bytes": 19642,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-2.0-only.template.txt",
+        "sha256": "c9f2d3e2a989b5e6caa601a189f33c1023a5a331683462b67c024bad793007de"
+      },
+      "text": {
+        "bytes": 17337,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-2.0-only.txt",
+        "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GPL-2.0-only",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-only.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "GPL-2.0-only",
+      "name": "GNU General Public License v2.0 only",
+      "reference": "https://spdx.org/licenses/GPL-2.0-only.html",
+      "referenceNumber": 128,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
+        "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+        "https://opensource.org/license/GPL-2.0-only",
+        "https://github.com/openjdk/jdk/blob/6162e2c5213c5dd7c1127fd9616b543efa898962/LICENSE"
+      ]
+    },
+    "name": "GNU General Public License v2.0 only",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

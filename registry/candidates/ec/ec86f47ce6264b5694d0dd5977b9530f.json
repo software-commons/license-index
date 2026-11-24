@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ec86f47ce6264b5694d0dd5977b9530f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2495,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-sell-regexpr.json",
+        "sha256": "f0013e3005a2a1857210743afb19ab2d8d6e6a9963caa0c76de5c038e376464b"
+      },
+      "template": {
+        "bytes": 406,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-sell-regexpr.template.txt",
+        "sha256": "418f4cbc5f6f8a9771ffa416fc35d0ca41832d86d2e9da0298ef13e8020ad865"
+      },
+      "text": {
+        "bytes": 353,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-sell-regexpr.txt",
+        "sha256": "c853f16b4bb23d0310e049270c6440f79caad98c52bd43f8842091a9e233fd62"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-sell-regexpr",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-sell-regexpr.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-sell-regexpr",
+      "name": "Historical Permission Notice and Disclaimer - sell regexpr variant",
+      "reference": "https://spdx.org/licenses/HPND-sell-regexpr.html",
+      "referenceNumber": 105,
+      "seeAlso": [
+        "https://gitlab.com/bacula-org/bacula/-/blob/Branch-11.0/bacula/LICENSE-FOSS?ref_type=heads#L245"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - sell regexpr variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "54724e6c65544f8f8f591305fecb5802",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 61351,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LPPL-1.1.json",
+        "sha256": "b49a8952b3bdfdf02565af09a7cacfb92bb543c9503da8754c40d997cd0eb056"
+      },
+      "template": {
+        "bytes": 15267,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LPPL-1.1.template.txt",
+        "sha256": "8344cf75a85ab6f32ccedbcf203f1850b9519d0b8b8db001f4ad046ecf256f0f"
+      },
+      "text": {
+        "bytes": 14026,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LPPL-1.1.txt",
+        "sha256": "9ab49d3841a6076004a7964a045b9aad65eb0fe7dcd862b318dbf6b60ff67e95"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "LPPL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LPPL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "LPPL-1.1",
+      "name": "LaTeX Project Public License v1.1",
+      "reference": "https://spdx.org/licenses/LPPL-1.1.html",
+      "referenceNumber": 22,
+      "seeAlso": [
+        "http://www.latex-project.org/lppl/lppl-1-1.txt"
+      ]
+    },
+    "name": "LaTeX Project Public License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

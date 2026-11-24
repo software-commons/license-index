@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "40a300b924d0440d87e1246d3115b8cc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4450,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NIST-PD.json",
+        "sha256": "3ad5286805d23c3c9e6514083758e773d6a2a8d33abe2896128f6adbb46009ee"
+      },
+      "template": {
+        "bytes": 996,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NIST-PD.template.txt",
+        "sha256": "872161a18fe8884f6bd6907656642c2620cf9387c782970327c2e281fe8c3c0d"
+      },
+      "text": {
+        "bytes": 890,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NIST-PD.txt",
+        "sha256": "df5608400c450115c45a01868b3ac1909c967ca589db779148adcb328d34fa35"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NIST-PD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NIST-PD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NIST-PD",
+      "name": "NIST Public Domain Notice",
+      "reference": "https://spdx.org/licenses/NIST-PD.html",
+      "referenceNumber": 681,
+      "seeAlso": [
+        "https://github.com/tcheneau/simpleRPL/blob/e645e69e38dd4e3ccfeceb2db8cba05b7c2e0cd3/LICENSE.txt",
+        "https://github.com/tcheneau/Routing/blob/f09f46fcfe636107f22f2c98348188a65a135d98/README.md"
+      ]
+    },
+    "name": "NIST Public Domain Notice",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

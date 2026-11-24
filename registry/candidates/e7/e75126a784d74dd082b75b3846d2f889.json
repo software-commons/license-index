@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e75126a784d74dd082b75b3846d2f889",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9260,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Intel.json",
+        "sha256": "ae5756405a3a49ddab277b98833b14ff5604f7b39ee0bc7871b66dee554b2045"
+      },
+      "template": {
+        "bytes": 2313,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Intel.template.txt",
+        "sha256": "827a11a9bfedad333f2c6d5b962268ade39dbe026e39bd8787511b365c3913a9"
+      },
+      "text": {
+        "bytes": 2084,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Intel.txt",
+        "sha256": "6337a14cec9c05002528eb0540048a09a64f22850fec6c415962e262deaf81f3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Intel",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Intel.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Intel",
+      "name": "Intel Open Source License",
+      "reference": "https://spdx.org/licenses/Intel.html",
+      "referenceNumber": 159,
+      "seeAlso": [
+        "https://opensource.org/license/Intel"
+      ]
+    },
+    "name": "Intel Open Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

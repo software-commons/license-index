@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a50d496c108e475184d3cd9e7aa4d887",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10049,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Attribution-HPND-disclaimer.json",
+        "sha256": "1015cba00db7e9fadc0b9cce97097950bc12c1fbc63d0ab4a5f0b0d68318eae6"
+      },
+      "template": {
+        "bytes": 2394,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Attribution-HPND-disclaimer.template.txt",
+        "sha256": "9ebdfa73989cd5b13a107e1fa8a741c17ed3569c36b7dbffa3d296d7efdec616"
+      },
+      "text": {
+        "bytes": 1679,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Attribution-HPND-disclaimer.txt",
+        "sha256": "50dfd9d2ba0a6ec94be6abbf2dc52a0f175ccb8d9bb50df3dde4cc63d783ce3b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Attribution-HPND-disclaimer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Attribution-HPND-disclaimer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Attribution-HPND-disclaimer",
+      "name": "BSD with Attribution and HPND disclaimer",
+      "reference": "https://spdx.org/licenses/BSD-Attribution-HPND-disclaimer.html",
+      "referenceNumber": 708,
+      "seeAlso": [
+        "https://github.com/cyrusimap/cyrus-sasl/blob/master/COPYING"
+      ]
+    },
+    "name": "BSD with Attribution and HPND disclaimer",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

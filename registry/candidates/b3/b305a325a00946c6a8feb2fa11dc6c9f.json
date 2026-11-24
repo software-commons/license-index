@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b305a325a00946c6a8feb2fa11dc6c9f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6645,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-Tso.json",
+        "sha256": "271ee25b687ad6047b7a808e04e63d3a0f28e986a7b5e0f643ad879d6dcde957"
+      },
+      "template": {
+        "bytes": 1632,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-Tso.template.txt",
+        "sha256": "25efd60f3f0b79b588cf05aec44f6b9514b8cc417620cff3caf4b7430ad3ce3d"
+      },
+      "text": {
+        "bytes": 1460,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-Tso.txt",
+        "sha256": "e2f28a2aeb7518b3c583a213b5efe24567dbb9d9f93cfcd0b012f54eb67ab4a0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-Tso",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-Tso.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-Tso",
+      "name": "BSD 3-Clause Tso variant",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-Tso.html",
+      "referenceNumber": 155,
+      "seeAlso": [
+        "https://www.x.org/archive/current/doc/xorg-docs/License.html#Theodore_Tso"
+      ]
+    },
+    "name": "BSD 3-Clause Tso variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

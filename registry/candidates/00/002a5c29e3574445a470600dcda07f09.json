@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "002a5c29e3574445a470600dcda07f09",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4300,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-sell-variant-MIT-disclaimer.json",
+        "sha256": "dfef31623d27b16ae6af1273beef34298e994bb4cc8dea2e6bbaf12d2a052904"
+      },
+      "template": {
+        "bytes": 917,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-sell-variant-MIT-disclaimer.template.txt",
+        "sha256": "e83dde6a3604b3d3a864319d18fe64cb585d19a1f0db0d7512200bb98d71a738"
+      },
+      "text": {
+        "bytes": 891,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-sell-variant-MIT-disclaimer.txt",
+        "sha256": "5a1da266b8931ca44bd51326cf08e709b0d95252013ead9dd06d3acf5533462a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-sell-variant-MIT-disclaimer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-sell-variant-MIT-disclaimer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-sell-variant-MIT-disclaimer",
+      "name": "HPND sell variant with MIT disclaimer",
+      "reference": "https://spdx.org/licenses/HPND-sell-variant-MIT-disclaimer.html",
+      "referenceNumber": 213,
+      "seeAlso": [
+        "https://github.com/sigmavirus24/x11-ssh-askpass/blob/master/README"
+      ]
+    },
+    "name": "HPND sell variant with MIT disclaimer",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

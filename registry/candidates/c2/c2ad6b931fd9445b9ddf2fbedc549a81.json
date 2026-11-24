@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c2ad6b931fd9445b9ddf2fbedc549a81",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10773,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Entessa.json",
+        "sha256": "ea5df33b28b371858d4b9f1803b715614fc3897e93e4bf4a3435fbab73292f82"
+      },
+      "template": {
+        "bytes": 2618,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Entessa.template.txt",
+        "sha256": "eb1fe6e6f4c93cc500f2f83623cd69410331555ccf37c35d141f15d7af92948d"
+      },
+      "text": {
+        "bytes": 2277,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Entessa.txt",
+        "sha256": "548c65ff7aad4d42b4f1bb714f98df03cc686fb1d5b3d7a0e5225691fd848f5b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Entessa",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Entessa.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Entessa",
+      "name": "Entessa Public License v1.0",
+      "reference": "https://spdx.org/licenses/Entessa.html",
+      "referenceNumber": 351,
+      "seeAlso": [
+        "https://opensource.org/license/Entessa"
+      ]
+    },
+    "name": "Entessa Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

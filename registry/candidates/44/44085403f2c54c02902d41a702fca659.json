@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "44085403f2c54c02902d41a702fca659",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 36514,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/YPL-1.1.json",
+        "sha256": "339999f09f36d3a3ab3b0b5b7dc93cb55ebe511fae0564f9b2eeeaffd5edc41e"
+      },
+      "template": {
+        "bytes": 9979,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/YPL-1.1.template.txt",
+        "sha256": "d69762ca4ebe8dafa0d458bd0e8a0829f4f75fd35d84d5031ec1e93cd183c1e1"
+      },
+      "text": {
+        "bytes": 8988,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/YPL-1.1.txt",
+        "sha256": "d519065b0d392c52e9f39eb96a4f652d79af841dbb05382e81d2352caa22719c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "YPL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/YPL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "YPL-1.1",
+      "name": "Yahoo! Public License v1.1",
+      "reference": "https://spdx.org/licenses/YPL-1.1.html",
+      "referenceNumber": 278,
+      "seeAlso": [
+        "http://www.zimbra.com/license/yahoo_public_license_1.1.html"
+      ]
+    },
+    "name": "Yahoo! Public License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

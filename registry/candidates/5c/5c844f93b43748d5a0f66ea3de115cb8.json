@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5c844f93b43748d5a0f66ea3de115cb8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13469,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/VOSTROM.json",
+        "sha256": "d3fc2a2d3a3db793b66303bd15879f06c0b158366663f5cadcb7fb99f7b8076d"
+      },
+      "template": {
+        "bytes": 3555,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/VOSTROM.template.txt",
+        "sha256": "3144c37b371af47b1df4ccc18569d8fd111db14404ea3a2799e3592466e3119a"
+      },
+      "text": {
+        "bytes": 3058,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/VOSTROM.txt",
+        "sha256": "1c7762c7e3ccc74bd0e4359b05ad33e95d5838099c41e8ce49842f8558546ec6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "VOSTROM",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/VOSTROM.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "VOSTROM",
+      "name": "VOSTROM Public License for Open Source",
+      "reference": "https://spdx.org/licenses/VOSTROM.html",
+      "referenceNumber": 308,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/VOSTROM"
+      ]
+    },
+    "name": "VOSTROM Public License for Open Source",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "75bc648172754ddcbff612e46a3a54a0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1351,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Kastrup.json",
+        "sha256": "083a7fe3095712d3f82e7a8f52624d5a8e4116d25be05dae2964b261edc7796b"
+      },
+      "template": {
+        "bytes": 182,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Kastrup.template.txt",
+        "sha256": "89e65c4fdbbac37106618ddb9003033b8ee6391e57dbfec90f80d1966a4db4d6"
+      },
+      "text": {
+        "bytes": 128,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Kastrup.txt",
+        "sha256": "9e1cd57616f0ecd134872c3792532be05b9e2654d19703fa2ce55d731ca423a0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Kastrup",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Kastrup.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Kastrup",
+      "name": "Kastrup License",
+      "reference": "https://spdx.org/licenses/Kastrup.html",
+      "referenceNumber": 473,
+      "seeAlso": [
+        "https://ctan.math.utah.edu/ctan/tex-archive/macros/generic/kastrup/binhex.dtx"
+      ]
+    },
+    "name": "Kastrup License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

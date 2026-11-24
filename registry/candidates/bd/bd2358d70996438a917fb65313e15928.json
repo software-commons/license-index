@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bd2358d70996438a917fb65313e15928",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GCR-docs.json",
+        "sha256": "194d276952bbd04c28813bb2afe8c5a01e447d1bc74a8818d9f1de8cb6b1a45e"
+      },
+      "template": {
+        "bytes": 1695,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GCR-docs.template.txt",
+        "sha256": "594338613fa195c874b2679a56863730973f87e828de634b262748851591cc53"
+      },
+      "text": {
+        "bytes": 1697,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GCR-docs.txt",
+        "sha256": "c0142ddc7c67186f98990f8e7558747bdfbfcc76fc865335177bbc8d785ee860"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GCR-docs",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GCR-docs.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GCR-docs",
+      "name": "Gnome GCR Documentation License",
+      "reference": "https://spdx.org/licenses/GCR-docs.html",
+      "referenceNumber": 597,
+      "seeAlso": [
+        "https://github.com/GNOME/gcr/blob/master/docs/COPYING"
+      ]
+    },
+    "name": "Gnome GCR Documentation License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

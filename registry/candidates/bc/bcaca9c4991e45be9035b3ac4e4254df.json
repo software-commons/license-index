@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bcaca9c4991e45be9035b3ac4e4254df",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13994,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SUL-1.0.json",
+        "sha256": "ba1b42832a4f3df061d23c51d9b73808991d263e82b2c81f63a92049319cabf7"
+      },
+      "template": {
+        "bytes": 3601,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SUL-1.0.template.txt",
+        "sha256": "901d3b644f0d8c9f5ef664be86cbe911fa349a693b1df805d49eec96a1fa9e7e"
+      },
+      "text": {
+        "bytes": 3600,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SUL-1.0.txt",
+        "sha256": "73a310b6732d14a636e10a5d6dcf9ca7122ff7870ef06dfa07a872ddb152752a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SUL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SUL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SUL-1.0",
+      "name": "Sustainable Use License v1.0",
+      "reference": "https://spdx.org/licenses/SUL-1.0.html",
+      "referenceNumber": 720,
+      "seeAlso": [
+        "https://github.com/n8n-io/n8n/blob/master/LICENSE.md"
+      ]
+    },
+    "name": "Sustainable Use License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

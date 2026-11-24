@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5fd475d6b99b453fa84cbbcaffd565ac",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 44667,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-ND-1.0.json",
+        "sha256": "e3e9ef2dfe0fde30ac7302de3a9bce04349aa6d2713f29e3ac7c98b5c6baf21b"
+      },
+      "template": {
+        "bytes": 11941,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-ND-1.0.template.txt",
+        "sha256": "5777e17479568a33276d7a62625c971f3b0b3e95c8bfb9309edc0ca1ba7fea93"
+      },
+      "text": {
+        "bytes": 10488,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-ND-1.0.txt",
+        "sha256": "2bddbb1d9047a5f8152a7662d5410ce9ba6d3ae0f3a702aa2e68f616791f3905"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-ND-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-ND-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-ND-1.0",
+      "name": "Creative Commons Attribution No Derivatives 1.0 Generic",
+      "reference": "https://spdx.org/licenses/CC-BY-ND-1.0.html",
+      "referenceNumber": 523,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-nd/1.0/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution No Derivatives 1.0 Generic",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

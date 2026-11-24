@@ -1,0 +1,23 @@
+{
+  "id": "8b8b04b6ce3f404faa3390f290bf1378",
+  "disposition": "unresolved",
+  "reason": "FUTO's Source First page links the Grayjay text, headed Source First License 1.1 at the recorded GitLab commit. FUTO's LatinIME 1.1-kb terms differ in their use clause. Keep edition and project distinctions. The publisher's template-use guidance has a stated scope. Independent matching and index republication rights remain pending.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://gitlab.futo.org/videostreaming/grayjay/-/raw/a85024749fdc186cb67fcdbf310442cb425007de/LICENSE.md",
+    "name": "FUTO Source First License 1.1 (Grayjay)",
+    "identifier": "FUTO Source First License",
+    "revision": "1.1"
+  },
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://futo.tech/source-first",
+        "name": "FUTO Source First License",
+        "identifier": "FUTO Source First License"
+      },
+      "reason": "The publisher links a project template. Direct inspection of the linked body and identification of the edition remain pending. Verify the matching scope and the rights for public republication."
+    }
+  ]
+}

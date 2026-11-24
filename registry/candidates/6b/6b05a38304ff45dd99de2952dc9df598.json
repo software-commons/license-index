@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6b05a38304ff45dd99de2952dc9df598",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8390,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DSDP.json",
+        "sha256": "6f7cf2ba650840a71bc655535a525bb46c6139c089a3f1aeffdd41d6f01f6e60"
+      },
+      "template": {
+        "bytes": 2349,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DSDP.template.txt",
+        "sha256": "b4bfb552298e7795e379f601288a6e46ff89df1804b68f2a3ded7e392fab55e9"
+      },
+      "text": {
+        "bytes": 2280,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DSDP.txt",
+        "sha256": "796f94844f13d4cce27e4d71e1a2782e7b6a69f31d1c88956e4d24a556533998"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DSDP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DSDP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DSDP",
+      "name": "DSDP License",
+      "reference": "https://spdx.org/licenses/DSDP.html",
+      "referenceNumber": 701,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/DSDP"
+      ]
+    },
+    "name": "DSDP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

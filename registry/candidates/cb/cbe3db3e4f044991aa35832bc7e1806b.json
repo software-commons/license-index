@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "cbe3db3e4f044991aa35832bc7e1806b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4047,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GPL-3.0-linking-source-exception.json",
+        "sha256": "a37d60d2561c6040212c1eecc9febeaa0e325f5ea8d1e33fed607b885f21a8bb"
+      },
+      "template": {
+        "bytes": 843,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-3.0-linking-source-exception.template.txt",
+        "sha256": "52e5e4c620f3ad9ce36f410aa568681085909408316f57db6d87bd8ad24469bb"
+      },
+      "text": {
+        "bytes": 531,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-3.0-linking-source-exception.txt",
+        "sha256": "aa189fb0e461c79f4062363209dc3cb01f3bc1c367e62fbc1fa6be6b04e9535e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GPL-3.0-linking-source-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0-linking-source-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GPL-3.0-linking-source-exception",
+      "name": "GPL-3.0 Linking Exception (with Corresponding Source)",
+      "reference": "https://spdx.org/licenses/GPL-3.0-linking-source-exception.html",
+      "referenceNumber": 63,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gpl-faq.en.html#GPLIncompatibleLibs",
+        "https://github.com/mirror/wget/blob/master/src/http.c#L20"
+      ]
+    },
+    "name": "GPL-3.0 Linking Exception (with Corresponding Source)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

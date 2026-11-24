@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "99c112d6a5014274816da6ec0e0b76b8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5811,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SMLNJ.json",
+        "sha256": "e0675897072aa7a3c2b2076f8d95cd07ac575cf0e8b7d2f187c80b535351829c"
+      },
+      "template": {
+        "bytes": 1503,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SMLNJ.template.txt",
+        "sha256": "c6fc2c658f1c98f19af5db7c943e1e6ceeefa671c267353bd13d5c290f12c009"
+      },
+      "text": {
+        "bytes": 1122,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SMLNJ.txt",
+        "sha256": "772a7c6e457671d358559c6f242da9dc79f63b9301c93e22314cd5c032a1991e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SMLNJ",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SMLNJ.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "SMLNJ",
+      "name": "Standard ML of New Jersey License",
+      "reference": "https://spdx.org/licenses/SMLNJ.html",
+      "referenceNumber": 239,
+      "seeAlso": [
+        "https://www.smlnj.org/license.html"
+      ]
+    },
+    "name": "Standard ML of New Jersey License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

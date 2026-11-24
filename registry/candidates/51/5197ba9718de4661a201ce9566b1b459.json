@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5197ba9718de4661a201ce9566b1b459",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 69933,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-3.0-NL.json",
+        "sha256": "1f8e665b200a05057d8f0bf52e8f5f6c8c7d453aa9c4f390212fad38bdd06225"
+      },
+      "template": {
+        "bytes": 20187,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-3.0-NL.template.txt",
+        "sha256": "bdb778d7c622f04e6044a6883d0005624a789ba4d49b964de20cbf2ae2676eb1"
+      },
+      "text": {
+        "bytes": 18371,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-3.0-NL.txt",
+        "sha256": "aacbc3e84cc7000ff659c8564f29ab070a02662758c78e9ea601919e1d25a6c2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-3.0-NL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-3.0-NL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-3.0-NL",
+      "name": "Creative Commons Attribution 3.0 Netherlands",
+      "reference": "https://spdx.org/licenses/CC-BY-3.0-NL.html",
+      "referenceNumber": 477,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by/3.0/nl/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution 3.0 Netherlands",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

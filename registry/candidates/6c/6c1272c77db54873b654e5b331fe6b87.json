@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6c1272c77db54873b654e5b331fe6b87",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1436,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/swrule.json",
+        "sha256": "ef1a5f8bfc4cd8c2425e672ab6633bb6a409d996626ed5145ebe2b9475e5ab23"
+      },
+      "template": {
+        "bytes": 249,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/swrule.template.txt",
+        "sha256": "d4efd2bee52b55d790967628f80f1df1e1f0d0f94eb57faae2f875b195f38e14"
+      },
+      "text": {
+        "bytes": 248,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/swrule.txt",
+        "sha256": "7db3ae990965d1d5f5baf6bff4aa4603cbc84f84e2d4ad2a29847ac0dc8c79aa"
+      }
+    },
+    "deprecated": false,
+    "identifier": "swrule",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/swrule.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "swrule",
+      "name": "swrule License",
+      "reference": "https://spdx.org/licenses/swrule.html",
+      "referenceNumber": 693,
+      "seeAlso": [
+        "https://ctan.math.utah.edu/ctan/tex-archive/macros/generic/misc/swrule.sty"
+      ]
+    },
+    "name": "swrule License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

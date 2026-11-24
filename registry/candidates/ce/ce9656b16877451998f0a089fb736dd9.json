@@ -1,0 +1,61 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ce9656b16877451998f0a089fb736dd9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 73482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-2.0-or-later.json",
+        "sha256": "9f8c6e6dc16cd05d9b9dc34ddd4a4e40df59f9813bae38d1f461ea245166fdf0"
+      },
+      "template": {
+        "bytes": 19424,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-2.0-or-later.template.txt",
+        "sha256": "956daf4c1c614309190848396a07b03a35148a8fdbf7985a996d8c6eabbab489"
+      },
+      "text": {
+        "bytes": 17337,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-2.0-or-later.txt",
+        "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GPL-2.0-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "GPL-2.0-or-later",
+      "name": "GNU General Public License v2.0 or later",
+      "reference": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+      "referenceNumber": 168,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
+        "https://opensource.org/license/GPL-2.0",
+        "https://github.com/openjdk/jdk/blob/6162e2c5213c5dd7c1127fd9616b543efa898962/LICENSE"
+      ]
+    },
+    "name": "GNU General Public License v2.0 or later",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

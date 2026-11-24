@@ -1,0 +1,23 @@
+{
+  "candidate_changes": 0,
+  "data_commit": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+  "dependency_review": [],
+  "events": {
+    "added": [],
+    "changed": [],
+    "deprecated": [],
+    "removed": [],
+    "restored": []
+  },
+  "population": {
+    "deprecated_exceptions": 1,
+    "deprecated_licenses": 32,
+    "exceptions": 86,
+    "licenses": 740,
+    "missing_template": 0,
+    "missing_text": 0
+  },
+  "release": "3.29.0",
+  "unchanged": 826,
+  "xml_commit": "b1dbeb5c8bca21af860a90e187f71d60b84a7a40"
+}

@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b363737d71c04b7fa7703eaadfb570c0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 107743,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BitTorrent-1.1.json",
+        "sha256": "31548a8ea3640546c3f5d0c9cb530b34fa00d481f2e72c8c99f066f3e97ef639"
+      },
+      "template": {
+        "bytes": 30087,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BitTorrent-1.1.template.txt",
+        "sha256": "3f0f4aff40b7cea3429a22954b1571c6e1b17fb4437317d4c9459fd67a99a368"
+      },
+      "text": {
+        "bytes": 27782,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BitTorrent-1.1.txt",
+        "sha256": "69217aa11fdf55964628adbb1cfddec81d70d81343047ba00a509b34b7678742"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "BitTorrent-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BitTorrent-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "BitTorrent-1.1",
+      "name": "BitTorrent Open Source License v1.1",
+      "reference": "https://spdx.org/licenses/BitTorrent-1.1.html",
+      "referenceNumber": 13,
+      "seeAlso": [
+        "http://directory.fsf.org/wiki/License:BitTorrentOSL1.1"
+      ]
+    },
+    "name": "BitTorrent Open Source License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

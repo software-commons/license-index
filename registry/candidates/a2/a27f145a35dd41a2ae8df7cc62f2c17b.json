@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a27f145a35dd41a2ae8df7cc62f2c17b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7496,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MakeIndex.json",
+        "sha256": "60977eb0a7303f98cdac0f14894ac75db367a9d032ffa549a54e93b028acf61f"
+      },
+      "template": {
+        "bytes": 2040,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MakeIndex.template.txt",
+        "sha256": "4a3fe1e4e397dea65496f94c5065e2e1e83e1ba1742e253b5ebee22df742b40c"
+      },
+      "text": {
+        "bytes": 1974,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MakeIndex.txt",
+        "sha256": "d0e7ed2b5cb9423dfd990e6559416babaf82a08b238f97c3298b2b9475af0531"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MakeIndex",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MakeIndex.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MakeIndex",
+      "name": "MakeIndex License",
+      "reference": "https://spdx.org/licenses/MakeIndex.html",
+      "referenceNumber": 429,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MakeIndex"
+      ]
+    },
+    "name": "MakeIndex License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

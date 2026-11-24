@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b6716ba2e7ce4aa1b29f657b7eb5b469",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4318,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CMU-Mach.json",
+        "sha256": "6b128206ce38eb02793bf636b8d92bf84e4158f02dcec40562baf0a0d8d3db1d"
+      },
+      "template": {
+        "bytes": 1017,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CMU-Mach.template.txt",
+        "sha256": "35531d9ca1e0195dffd8dc728ef82f1c384968fd4d75b2b76be158b0192a0f16"
+      },
+      "text": {
+        "bytes": 938,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CMU-Mach.txt",
+        "sha256": "22eeb34e3e2a837f21ad0de0fcb13af7a4fa4c2d61a999c34d4a8ad62d3ca98d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CMU-Mach",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CMU-Mach.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CMU-Mach",
+      "name": "CMU Mach License",
+      "reference": "https://spdx.org/licenses/CMU-Mach.html",
+      "referenceNumber": 726,
+      "seeAlso": [
+        "https://www.cs.cmu.edu/~410/licenses.html"
+      ]
+    },
+    "name": "CMU Mach License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

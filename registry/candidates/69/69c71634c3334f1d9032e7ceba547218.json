@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "69c71634c3334f1d9032e7ceba547218",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3958,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Brian-Gladman-2-Clause.json",
+        "sha256": "cce649f23c36075d94725e0e5751e98a9872faa5539d1b90b1ab32d10ab794f6"
+      },
+      "template": {
+        "bytes": 691,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Brian-Gladman-2-Clause.template.txt",
+        "sha256": "62973ee43efc066c05e82fae89767559bd8972382a9b3c267e0a7a0c486883f6"
+      },
+      "text": {
+        "bytes": 655,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Brian-Gladman-2-Clause.txt",
+        "sha256": "2f78867bc743630a86137c136bc61356b2186787587ed16880762e86227edb8d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Brian-Gladman-2-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Brian-Gladman-2-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Brian-Gladman-2-Clause",
+      "name": "Brian Gladman 2-Clause License",
+      "reference": "https://spdx.org/licenses/Brian-Gladman-2-Clause.html",
+      "referenceNumber": 551,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L140-L156",
+        "https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html"
+      ]
+    },
+    "name": "Brian Gladman 2-Clause License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

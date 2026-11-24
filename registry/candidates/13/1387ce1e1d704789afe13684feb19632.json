@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1387ce1e1d704789afe13684feb19632",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7186,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/libpng-2.0.json",
+        "sha256": "2dc40ea04eb5b09f135bf418a4634f408b894bd3c218342fd23542dc99c3bb85"
+      },
+      "template": {
+        "bytes": 1776,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/libpng-2.0.template.txt",
+        "sha256": "c2b623fb762274adff4e30a618186ea6f25f3984a0450ab33ceedf99d4ee4a2d"
+      },
+      "text": {
+        "bytes": 1551,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/libpng-2.0.txt",
+        "sha256": "f207d0f7375b977f76ce2437962c1c12a646f15cda3df48d5472ac95eb68e8ff"
+      }
+    },
+    "deprecated": false,
+    "identifier": "libpng-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/libpng-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "libpng-2.0",
+      "name": "PNG Reference Library version 2",
+      "reference": "https://spdx.org/licenses/libpng-2.0.html",
+      "referenceNumber": 292,
+      "seeAlso": [
+        "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"
+      ]
+    },
+    "name": "PNG Reference Library version 2",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

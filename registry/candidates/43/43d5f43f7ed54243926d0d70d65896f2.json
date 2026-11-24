@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "43d5f43f7ed54243926d0d70d65896f2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5099,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/UMich-Merit.json",
+        "sha256": "1c012bb8d13627808443a029db2e3e3a2d466b8b3edc7560ad51dd09eb107e91"
+      },
+      "template": {
+        "bytes": 1220,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/UMich-Merit.template.txt",
+        "sha256": "0f19bc986df11dd9cc088ad3bb907d630c0274aea64e673cd2db9ee7e019754b"
+      },
+      "text": {
+        "bytes": 1164,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/UMich-Merit.txt",
+        "sha256": "b3177f6981ab51f225fc54c8deac8c9fa94c1f4b6757a0219078c3d01446a1bb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "UMich-Merit",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/UMich-Merit.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "UMich-Merit",
+      "name": "Michigan/Merit Networks License",
+      "reference": "https://spdx.org/licenses/UMich-Merit.html",
+      "referenceNumber": 262,
+      "seeAlso": [
+        "https://github.com/radcli/radcli/blob/master/COPYRIGHT#L64"
+      ]
+    },
+    "name": "Michigan/Merit Networks License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

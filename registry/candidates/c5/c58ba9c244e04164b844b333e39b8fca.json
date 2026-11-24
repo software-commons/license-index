@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c58ba9c244e04164b844b333e39b8fca",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16626,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CNRI-Jython.json",
+        "sha256": "d1055ac2461e13c2a7b99d8c25239df5f095db4fe22f9d36739adf7745be45fd"
+      },
+      "template": {
+        "bytes": 4380,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CNRI-Jython.template.txt",
+        "sha256": "92009f107bdd268cbddd9c3a0cc4fdfeb3aaf2f53495b9bd4a3890db39f9fcc2"
+      },
+      "text": {
+        "bytes": 3923,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CNRI-Jython.txt",
+        "sha256": "a2acd6ddc03c0afe980da1ebebe5beb8b120026518f096d6a9c9d007d17ee5f7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CNRI-Jython",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CNRI-Jython.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CNRI-Jython",
+      "name": "CNRI Jython License",
+      "reference": "https://spdx.org/licenses/CNRI-Jython.html",
+      "referenceNumber": 74,
+      "seeAlso": [
+        "http://www.jython.org/license.html"
+      ]
+    },
+    "name": "CNRI Jython License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

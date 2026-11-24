@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8f708ed2c5404929a27789169b2968b8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3606,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/cve-tou.json",
+        "sha256": "cba7aac8810cc841e6ae5c6cb9bb47825eda46b63f1a5c454caaaa200c0f698f"
+      },
+      "template": {
+        "bytes": 944,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/cve-tou.template.txt",
+        "sha256": "173cbbfe662378cf56c3fe3bc65bc33515ff60d5303fa20f0e220effec8d1c14"
+      },
+      "text": {
+        "bytes": 943,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/cve-tou.txt",
+        "sha256": "16c75e8640dbf131e7325c688a534b2cf751ab4550e1028f4a2ac0910f5ba903"
+      }
+    },
+    "deprecated": false,
+    "identifier": "cve-tou",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/cve-tou.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "cve-tou",
+      "name": "Common Vulnerability Enumeration ToU License",
+      "reference": "https://spdx.org/licenses/cve-tou.html",
+      "referenceNumber": 567,
+      "seeAlso": [
+        "https://www.cve.org/Legal/TermsOfUse"
+      ]
+    },
+    "name": "Common Vulnerability Enumeration ToU License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

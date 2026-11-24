@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "23262d01f2984d4ebfb0a6339d55dc3e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2206,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Fair.json",
+        "sha256": "d66da63b11a91741c5805c376e3c0a5e73d1601c455cc1386fe3154860c59269"
+      },
+      "template": {
+        "bytes": 334,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Fair.template.txt",
+        "sha256": "d237228e5ac02a3c76353e8730bad5be0e415a7729a21e6e8d033f33102d0b0a"
+      },
+      "text": {
+        "bytes": 245,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Fair.txt",
+        "sha256": "59954017f5a14cb3589a7123d56f96905ccb3d6ad58019432fdd0d91b3c2b541"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Fair",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Fair.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Fair",
+      "name": "Fair License",
+      "reference": "https://spdx.org/licenses/Fair.html",
+      "referenceNumber": 96,
+      "seeAlso": [
+        "https://web.archive.org/web/20150926120323/http://fairlicense.org/",
+        "https://opensource.org/license/Fair"
+      ]
+    },
+    "name": "Fair License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

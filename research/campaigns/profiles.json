@@ -1,0 +1,2858 @@
+{
+  "0BSD": {
+    "summary": "Zero-Clause BSD grants permission to use, copy, modify and distribute the software with or without a fee. The inspected grant is unconditional on retention of a copyright notice.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The grant covers use, copying, modification and distribution for any purpose with or without a fee.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/0bsd",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "notices": {
+        "state": "documented",
+        "text": "The inspected grant has no retention condition. This observation applies to this text.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/0bsd",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "unresolved",
+        "text": "The reviewed text does not expressly address contributor patent rights.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/0bsd",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The text states warranty and liability disclaimers.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/0bsd",
+            "locator": "Closing paragraphs"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Packaging code labeled BSD",
+        "text": "Check the exact identifier and instrument. The source and binary notice conditions in other BSD editions do not establish a notice condition in the 0BSD grant.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/0bsd",
+            "locator": "OSI edition identifier and grant"
+          }
+        ]
+      }
+    ]
+  },
+  "AGPL-3.0-only": {
+    "summary": "AGPLv3 governs copying and conveying covered works and includes a source offer for qualifying remote interaction with a modified program.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "Section 2 grants permission to run the unmodified program and addresses making, running and propagating covered works that are not conveyed.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§2"
+          }
+        ]
+      },
+      "license_combination": {
+        "state": "permission",
+        "text": "Section 13 permits a single combined work with a GPLv3-licensed work and conveyance of the result. Each part retains its respective terms. The GPLv3 counterpart applies the AGPLv3 network requirements to the combination as such, and the applicable AGPL source offer includes the Corresponding Source of GPLv3 material incorporated through the route.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Conveying a covered work in modified source form has change-notice and licensing conditions.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§5"
+          }
+        ]
+      },
+      "network_interaction": {
+        "state": "condition",
+        "text": "When you modify the Program and your version supports remote network interaction, that version must prominently offer every remotely interacting user access to its Corresponding Source at no charge from a network server by customary or standard software-copying means.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1 and 13"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Verbatim source conveyance must follow the license-copy and notice requirements. Modified source is subject to further notice conditions.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§§4–5"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "Section 11 defines an express patent grant from contributors for their essential patent claims over their contributor versions.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§11"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Conveying object code requires use of an applicable Corresponding Source mechanism. Installation Information applies in specified User Product transactions.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§§1 and 6"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 8 provides for termination for specified noncompliance and circumstances for provisional or permanent reinstatement.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§8"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "condition",
+        "text": "A version 3 only grant names this edition. Confirm that version choice in the applicable project authorization. The common license document identifies version 3.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "Edition heading, §14 and application appendix"
+          },
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "SPDX identifier and example notice"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Operating a modified network service",
+        "text": "Determine whether users interact remotely with the modified program and how those users can obtain Corresponding Source under the offer. Assess any copying of client code or appliances separately.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "§§0, 1, 6 and 13"
+          }
+        ]
+      },
+      {
+        "situation": "Applying AGPLv3 to a new project",
+        "text": "Use the correct license copy and application notices that specify the actual edition and later-version choice.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-only.html",
+            "locator": "License document and application appendix"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/gpl-howto.en.html",
+            "locator": "Application guidance and version notice"
+          }
+        ]
+      },
+      {
+        "situation": "Operating a combined AGPLv3 and GPLv3 network service",
+        "text": "Identify the authorized license of each component and determine whether they are joined into a single combined work. If the AGPLv3 network rule applies, scope the Corresponding Source to the interacting version and the GPLv3 work incorporated through section 13. Assess any client downloads separately.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1, 5 and 13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      }
+    ]
+  },
+  "AGPL-3.0-or-later": {
+    "summary": "A GNU AGPL version 3 or later grant permits using version 3 or a later FSF-published version. The network and combination descriptions here address version 3.",
+    "dimensions": {
+      "license_combination": {
+        "state": "permission",
+        "text": "Section 13 permits a single combined work with a GPLv3-licensed work and conveyance of the result. Each part retains its respective terms. The GPLv3 counterpart applies the AGPLv3 network requirements to the combination as such, and the applicable AGPL source offer includes the Corresponding Source of GPLv3 material incorporated through the route.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      },
+      "network_interaction": {
+        "state": "condition",
+        "text": "When you modify the Program and your version supports remote network interaction, that version must prominently offer every remotely interacting user access to its Corresponding Source at no charge from a network server by customary or standard software-copying means.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1 and 13"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "permission",
+        "text": "Section 14 permits choosing version 3 or any later GNU AGPL version published by the FSF when the applicable Program grant includes that later-version option.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://spdx.org/licenses/AGPL-3.0-or-later.html",
+            "locator": "SPDX identifier and example notice"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Choosing which GNU AGPL version applies",
+        "text": "Check the authorized grant for the Program and the files in scope. If the grant permits version 3 or later and you elect version 3, read the version 3 terms. A grant that states version 3 only, an unnumbered grant and a proxy decision each have different conditions.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          }
+        ]
+      },
+      {
+        "situation": "Operating a combined AGPLv3 and GPLv3 network service",
+        "text": "Identify the authorized license of each component and determine whether they are joined into a single combined work. If the AGPLv3 network rule applies, scope the Corresponding Source to the interacting version and the GPLv3 work incorporated through section 13. Assess any client downloads separately.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/agpl-3.0.txt",
+            "locator": "§§0, 1, 5 and 13"
+          },
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-3.0.txt",
+            "locator": "§13"
+          }
+        ]
+      }
+    ]
+  },
+  "Apache-2.0": {
+    "summary": "Apache License 2.0 provides explicit contributor copyright and qualified patent grants. Redistribution has license-copy and notice conditions, with additional treatment of modified files and a relevant upstream NOTICE.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "Subject to the terms, contributors grant the specified reproduction, derivative-work, display, performance, sublicensing and distribution rights in source or object form.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§2"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Modified files must carry prominent notices of changes when redistributed under §4.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§4(b)"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Give recipients a license copy. Retain pertinent upstream copyright, patent, trademark and attribution notices in any derivative Source you distribute. When the Work was distributed with a NOTICE file, include readable pertinent attribution from that file in distributed Derivative Works using a location specified in §4(d).",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§4(a), (c), (d)"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "Subject to the license terms, each contributor grants the specified patent rights over the Work. The grant covers only claims that contributor can license and that their contribution necessarily infringes by itself or in combination with the Work to which they submitted it.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§3, patent grant sentence"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "If you institute patent litigation against any entity, including a cross-claim or counterclaim, alleging that the work or an incorporated contribution directly or contributorily infringes a patent, the §3 patent licenses for that work terminate as of the filing date.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§3, litigation trigger sentence"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "documented",
+        "text": "Section 4 permits redistribution of the Work and Derivative Works in Source or Object form under its stated conditions. Section 4(c) governs notice retention in any derivative Source distributed.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§4"
+          }
+        ]
+      },
+      "trademark": {
+        "state": "restriction",
+        "text": "Section 6 withholds permission to use the Licensor’s trade names, trademarks, service marks or product names, with a stated exception for reasonable and customary descriptions of the Work’s origin and reproduction of NOTICE content.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§6"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "Section 7 supplies the Work from the Licensor and Contributions from their respective contributors on an as-is basis. Section 8 separately limits contributor liability to the recipient. Both sections have applicable-law and written-agreement qualifications.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§§7–8"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping a modified binary",
+        "text": "Give recipients a copy of the license and check that modified files carry prominent change notices. Inspect any accompanying derivative Source for pertinent upstream notices. For a distributed Derivative Work whose upstream distribution included a NOTICE file, check for readable pertinent attribution in a location permitted by §4(d). How a specific binary package carries the modified-file notices requires separate review.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§4"
+          }
+        ]
+      },
+      {
+        "situation": "Applying Apache-2.0 to a new project",
+        "text": "Keep the publisher license copy, including the appendix, intact. The ASF’s own-software guidance discusses personalizing a separate source-file notice, an alternative copyright line with the SPDX identifier, and consideration of a NOTICE file.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "Appendix"
+          },
+          {
+            "url": "https://www.apache.org/foundation/license-faq.html",
+            "locator": "How should I apply the Apache License to my own software?"
+          }
+        ]
+      }
+    ]
+  },
+  "BSD-2-Clause": {
+    "summary": "This BSD form permits use and redistribution with notice conditions for source and binary forms.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The instrument permits use and redistribution in source or binary form, with or without modification, subject to its conditions.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-2-clause",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Retain the copyright notice, conditions and disclaimer with distributed source. Reproduce them in documentation or accompanying materials when distributing binaries.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-2-clause",
+            "locator": "Clauses 1–2"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "unresolved",
+        "text": "The reviewed text has no separately stated patent grant.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-2-clause",
+            "locator": "Grant and numbered clauses"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The closing paragraphs disclaim stated warranties and limit liability.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-2-clause",
+            "locator": "Closing disclaimer"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing a binary package",
+        "text": "Carry the notice, conditions and disclaimer in documentation or other materials supplied with the distribution.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-2-clause",
+            "locator": "Clause 2"
+          }
+        ]
+      }
+    ]
+  },
+  "BSD-3-Clause": {
+    "summary": "This BSD form permits use and redistribution with notice conditions and restricts use of holder and contributor names for endorsement.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The instrument permits use and redistribution in source or binary form, with or without modification, subject to its conditions.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "endorsement": {
+        "state": "restriction",
+        "text": "The holder’s and contributors’ names may be used to endorse or promote derived products only with specific prior written permission.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Clause 3"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Retain the copyright notice, conditions and disclaimer with distributed source. Reproduce them in documentation or accompanying materials when distributing binaries.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Clauses 1–2"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "unresolved",
+        "text": "The reviewed text has no separately stated patent grant.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Grant and numbered clauses"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The closing paragraphs disclaim stated warranties and limit liability.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Closing disclaimer"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing a binary package",
+        "text": "Carry the notice, conditions and disclaimer in documentation or other materials supplied with the distribution.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Clause 2"
+          }
+        ]
+      },
+      {
+        "situation": "Preparing marketing material",
+        "text": "Retaining attribution and representing developer endorsement are separate issues. Inspect the proposed use of names against clause 3.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/bsd-3-clause",
+            "locator": "Clause 3"
+          }
+        ]
+      }
+    ]
+  },
+  "BUSL-1.1": {
+    "summary": "The Business Source License 1.1 uses project-specific parameters. Its initial use terms are replaced by a stated Change License at the earlier of the specified date or the version-specific anniversary in the text.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The initial grant lists copying, modification, derivative works, redistribution and non-production use.",
+        "sources": [
+          {
+            "url": "https://mariadb.com/bsl11/",
+            "locator": "Terms, first paragraph"
+          }
+        ]
+      },
+      "future_license": {
+        "state": "condition",
+        "text": "The Change License takes effect at the earlier of the Change Date or the fourth anniversary of first public distribution of that specific version under the license.",
+        "sources": [
+          {
+            "url": "https://mariadb.com/bsl11/",
+            "locator": "Terms, second paragraph"
+          }
+        ]
+      },
+      "production_use": {
+        "state": "restriction",
+        "text": "Production use can fall within a separately specified Additional Use Grant. Review the actual project text and scope.",
+        "sources": [
+          {
+            "url": "https://mariadb.com/bsl11/",
+            "locator": "Parameters and Terms, first paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Deploying a particular release",
+        "text": "Read the actual release terms, including the Additional Use Grant and Change Date. Verify the date of first public distribution for that version.",
+        "sources": [
+          {
+            "url": "https://mariadb.com/bsl11/",
+            "locator": "Parameters and Terms"
+          }
+        ]
+      }
+    ]
+  },
+  "CC-BY-NC-4.0": {
+    "summary": "CC BY-NC 4.0 grants specified use of copyright and similar rights for NonCommercial purposes. Sharing is subject to attribution conditions.",
+    "dimensions": {
+      "commercial_use": {
+        "state": "restriction",
+        "text": "The grant is limited to NonCommercial purposes as defined in §1. Applicability depends on the purpose of the use.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode.en",
+            "locator": "§§1 and 2(a)"
+          }
+        ]
+      },
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The grant covers reproduction and sharing of the licensed material and production, reproduction and sharing of adapted material for NonCommercial purposes.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode.en",
+            "locator": "§2(a)(1)"
+          }
+        ]
+      },
+      "database_rights": {
+        "state": "condition",
+        "text": "Section 4 addresses extraction, reuse, reproduction and sharing under Sui Generis Database Rights.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode.en",
+            "locator": "§4"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Sharing requires retaining the applicable identifying, copyright, license and disclaimer information and indicating modifications as specified.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode.en",
+            "locator": "§3(a)"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Reusing a software manual",
+        "text": "Identify whether code samples share the manual’s license. Analyze the purpose of the use and which attribution information accompanies the copied material.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode.en",
+            "locator": "§§1–3"
+          },
+          {
+            "url": "https://creativecommons.org/faq/",
+            "locator": "Can I apply a Creative Commons license to software?"
+          }
+        ]
+      }
+    ]
+  },
+  "CC-PDM-1.0": {
+    "summary": "The Public Domain Mark communicates a determination about existing copyright status. SPDX lists it as a related instrument.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "inapplicable",
+        "text": "The mark communicates known copyright status. It does not perform the function of a grant by a rights holder.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/public-domain/pdm/",
+            "locator": "Public Domain Mark description"
+          }
+        ]
+      },
+      "jurisdiction": {
+        "state": "unresolved",
+        "text": "Copyright status can vary by jurisdiction. Creative Commons recommends using the mark for works free of known copyright worldwide.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/public-domain/pdm/",
+            "locator": "Recommended Uses of the Public Domain Mark"
+          }
+        ]
+      },
+      "marking": {
+        "state": "documented",
+        "text": "Creative Commons describes it as a label for works free of known copyright worldwide.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/public-domain/pdm/",
+            "locator": "Recommended Uses of the Public Domain Mark"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Marking an archival work",
+        "text": "Check territorial copyright evidence behind the marking and separately consider other rights in the work.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/public-domain/pdm/",
+            "locator": "Recommended Uses of the Public Domain Mark"
+          }
+        ]
+      }
+    ]
+  },
+  "CC0-1.0": {
+    "summary": "CC0 is a public-domain dedication that attempts a waiver and supplies a fallback license when applicable. Its scope covers defined copyright and related rights.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "To the stated extent that the waiver is ineffective, the affirmer grants a fallback license in the listed rights.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§3"
+          }
+        ]
+      },
+      "dedication": {
+        "state": "documented",
+        "text": "The affirmer waives specified Copyright and Related Rights to the extent permitted by applicable law.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§§1–2"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "restriction",
+        "text": "The instrument expressly leaves the affirmer’s patent rights unaffected.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§4(a)"
+          }
+        ]
+      },
+      "third_party_rights": {
+        "state": "unresolved",
+        "text": "The affirmer disclaims responsibility for clearing others’ rights. Ownership and third-party claims require their own evidence.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§4(c)"
+          }
+        ]
+      },
+      "trademark": {
+        "state": "restriction",
+        "text": "The instrument expressly leaves the affirmer’s trademark rights unaffected.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§4(a)"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Dedicating project material",
+        "text": "Identify which rights the affirmer controls and the scope of the material. Check separately for relevant patents, trademarks or third-party rights.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§§1–4"
+          }
+        ]
+      }
+    ]
+  },
+  "CDDL-1.0": {
+    "summary": "The CDDL grants rights in Covered Software and applies source and notice conditions to its distribution. The edition matters for precise grant and termination language.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The initial developer and contributors grant specified non-patent and non-trademark intellectual property permissions under §2, subject to §3.1 and third-party claims.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.0",
+            "locator": "§§2.1(a), 2.2(a)"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Preserve listed notices and provide the CDDL copy accompanying covered source.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.0",
+            "locator": "§§3.1 and 3.3"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The patent grants have distinct scope and exclusions for the initial developer and subsequent contributors.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.0",
+            "locator": "§§2.1(b), 2.1(d), 2.2(b), 2.2(d)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Making Covered Software available in executable form triggers a source availability obligation and information on obtaining the source.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.0",
+            "locator": "§3.1"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 6 describes breach and patent-claim termination, with specified timing and survival of some end-user licenses.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.0",
+            "locator": "§6"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping a Larger Work containing CDDL code",
+        "text": "Determine which components are Covered Software and which changed files are Modifications before planning source access and notice handling.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.0",
+            "locator": "§§1 and 3"
+          }
+        ]
+      }
+    ]
+  },
+  "CDDL-1.1": {
+    "summary": "The CDDL grants rights in Covered Software and applies source and notice conditions to its distribution. The edition matters for precise grant and termination language.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The initial developer and contributors grant specified non-patent and non-trademark intellectual property permissions under §2, subject to §3.1 and third-party claims.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.1",
+            "locator": "§§2.1(a), 2.2(a)"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Preserve listed notices and provide the CDDL copy accompanying covered source.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.1",
+            "locator": "§§3.1 and 3.3"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The patent grants have distinct scope and exclusions for the initial developer and subsequent contributors.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.1",
+            "locator": "§§2.1(b), 2.1(d), 2.2(b), 2.2(d)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Making Covered Software available in executable form triggers a source availability obligation and information on obtaining the source.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.1",
+            "locator": "§3.1"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 6 describes breach and patent-claim termination. Section 6.3 also addresses certain patent-related settlements before patent litigation.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.1",
+            "locator": "§6"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping a Larger Work containing CDDL code",
+        "text": "Determine which components are Covered Software and which changed files are Modifications before planning source access and notice handling.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/CDDL-1.1",
+            "locator": "§§1 and 3"
+          }
+        ]
+      }
+    ]
+  },
+  "CPL-1.0": {
+    "summary": "CPL 1.0 sets conditions for source and object-code distribution and contains two distinct patent-litigation triggers.",
+    "dimensions": {
+      "contributions": {
+        "state": "condition",
+        "text": "Section 1 excludes an addition from Contributions when it is a separately licensed module distributed with the Program and is outside the Program’s derivative works.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§1, Contribution"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Include the agreement with each Program copy made available as source. Keep existing copyright notices intact. Each Contributor identifies itself as the originator of its own Contributions, if any, so later Recipients can reasonably identify the originator.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "Section 2(b) grants rights under defined Licensed Patents. Its combination coverage depends on the addition of the Contribution bringing the specific combination with the Program within those claims at the time of addition. Other combinations and hardware as such are excluded.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§§1 and 2(b)"
+          }
+        ]
+      },
+      "publisher_history": {
+        "state": "documented",
+        "text": "Eclipse’s archive records the transfer of CPL stewardship from IBM in February 2009 and describes the Eclipse Public License as the follow-on. A particular project’s licensing remains a separate question.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "publisher note before the agreement, updated 16 April 2009"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "An alternate object-code agreement must tell recipients that the distributing Contributor provides the Program’s source and explain how to obtain it reasonably through a customary software-exchange medium. When the Program is made available as source, CPL 1.0 applies.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "If a Recipient files patent litigation against a Contributor over a patent applicable to software, the CPL patent licenses that Contributor granted to the Recipient end on filing. If a Recipient files against any entity alleging that the Program itself infringes the Recipient’s patents, the Recipient’s §2(b) rights end on filing. The Program trigger excludes combinations with other software or hardware. Both triggers cover cross-claims and counterclaims.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§7, patent-litigation paragraphs"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Assessing the effect of patent litigation under CPL or EPL",
+        "text": "Identify the license edition, whether the defendant is a Contributor and what the filing alleges about the Program itself. Compare the CPL Contributor-specific trigger with each edition’s separate Program trigger before identifying the affected patent grants.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/cpl/cpl-v10.html",
+            "locator": "§7"
+          },
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt",
+            "locator": "§7"
+          },
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+            "locator": "§7"
+          }
+        ]
+      }
+    ]
+  },
+  "Classpath-exception-2.0": {
+    "summary": "This exception permits a specified combination with independent modules when applied by the relevant copyright holders to the base license.",
+    "dimensions": {
+      "exception_relationship": {
+        "state": "documented",
+        "text": "Inspect the project’s grant for the relevant library, including the GPL version election and any required file designation. GNU Classpath 0.95’s Package.java and OpenJDK jdk-25+36 illustrate distinct project notices.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/Classpath-exception-2.0.html",
+            "locator": "Exception text and notes"
+          },
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 7–10 and 22–37"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/LICENSE",
+            "locator": "Classpath exception, file designation paragraph"
+          }
+        ]
+      },
+      "linking_permission": {
+        "state": "permission",
+        "text": "The grant permits linking the covered library with independent modules and copying and distributing the resulting executable under chosen terms, subject to the terms of each linked independent module. The definition of independence excludes a module derived from or based on the library.",
+        "sources": [
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 27–34"
+          }
+        ]
+      },
+      "modification": {
+        "state": "permission",
+        "text": "The grant lets a modifier extend the exception to their version of the library. It directs a modifier who chooses to omit it to remove the exception statement from that version.",
+        "sources": [
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 34–37"
+          }
+        ]
+      },
+      "standalone_installation": {
+        "state": "inapplicable",
+        "text": "The exception supplies additional permission for a base-license relationship and refers to the covered library and its project notices.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/Classpath-exception-2.0.html",
+            "locator": "Exception text and notes"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing an executable using the exception",
+        "text": "Verify the library’s actual grant and the terms and independence of each linked module. For Oracle’s exception in OpenJDK jdk-25+36, compare the express designation in Object.java with the java.cpp header, which lacks that designation. Check modified copies separately.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/LICENSE",
+            "locator": "Classpath exception, lines 285–303"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/src/java.base/share/classes/java/lang/Object.java",
+            "locator": "License header lines 5–9"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/openjdk/jdk/jdk-25%2B36/src/hotspot/share/runtime/java.cpp",
+            "locator": "License header lines 1–22"
+          }
+        ]
+      }
+    ]
+  },
+  "EPL-1.0": {
+    "summary": "EPL 1.0 grants contributor copyright and patent rights under stated terms and provides requirements by distribution form.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The contributor grants the listed copyright permissions concerning its contribution and covered derivative works, subject to the agreement.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
+            "locator": "§2(a)"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Include the agreement with each Program copy made available as source and keep existing copyright notices intact. Each Contributor identifies itself as the originator of its own Contributions, if any, so later Recipients can reasonably trace them.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The contributor patent grant applies to the defined Licensed Patents, with limitations for combinations.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
+            "locator": "§§1 and 2(b)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "An alternate object-code agreement must state that the distributing Contributor provides the Program’s source and explain how to obtain it reasonably through a customary software-exchange medium. When the Program is made available as source, EPL 1.0 applies.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "A Recipient’s §2(b) patent rights end when the Recipient files patent litigation against any entity alleging that the Program itself infringes the Recipient’s patents. This includes cross-claims and counterclaims. The trigger excludes combinations with other software or hardware.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-1.0/EPL-1.0.txt",
+            "locator": "§7, Program patent-litigation paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping object code under separate terms",
+        "text": "Check the alternate agreement’s warranty and damages provisions on behalf of all Contributors, the statement assigning differing terms to the distributor alone, and instructions for obtaining the Program’s source. Check copyright notices and attribution of contribution origins.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/legal/epl/epl-v10.html",
+            "locator": "§3"
+          }
+        ]
+      }
+    ]
+  },
+  "EPL-2.0": {
+    "summary": "EPL 2.0 grants contributor rights with source availability and notice conditions. A Secondary License route has specific combination and notice requirements.",
+    "dimensions": {
+      "alternate_license": {
+        "state": "condition",
+        "text": "Under §3.1(b), alternate terms must disclaim warranties and exclude damages liability for all other Contributors, preserve Recipients’ §3.2 Source Code rights and require terms satisfying §3 for subsequent distribution.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+            "locator": "§3.1(b)"
+          }
+        ]
+      },
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The contributor grants the listed copyright permissions concerning its contribution and covered derivative works, subject to the agreement.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
+            "locator": "§2(a)"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Keep copyright, patent, trademark and attribution notices, warranty disclaimers and liability limitations intact in distributed copies of the Program. Contributors may add their own appropriate notices. Include the agreement with each Program copy distributed as Source Code.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
+            "locator": "§§3.2(b) and 3.3"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The contributor patent grant applies to the defined Licensed Patents, with limitations for combinations.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
+            "locator": "§§1 and 2(b)"
+          }
+        ]
+      },
+      "secondary_license": {
+        "state": "condition",
+        "text": "Under §3.2(a), the Program’s Source Code can be made available under the applicable Secondary License when the Program is combined with material in separate files available under that license and the initial Contributor attaches the Exhibit A notice to the Source Code. Section 1 limits Secondary Licenses to GPL version 2.0 or later with any permissions or exceptions identified by the initial Contributor.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
+            "locator": "§§1 and 3.2(a), Exhibit A"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "For distribution of the Program in any form, §3.1(a) requires making its Source Code available under the conditions in §3.2, with a statement of availability under EPL 2.0 and instructions for obtaining it through a customary software-exchange medium.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
+            "locator": "§§3.1(a) and 3.2"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "A Recipient’s §2(b) patent rights end when the Recipient files patent litigation against any entity alleging that the Program itself infringes the Recipient’s patents. This includes cross-claims and counterclaims. The trigger excludes combinations with other software or hardware.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt",
+            "locator": "§7, Program patent-litigation paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Using the Secondary License route",
+        "text": "Check the initial Contributor’s completed Exhibit A notice for the named Secondary License and any permissions. Inspect the arrangement and licensing of separate files, and keep the EPL agreement with each source copy.",
+        "sources": [
+          {
+            "url": "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.pdf",
+            "locator": "§§1 and 3.2, Exhibit A"
+          }
+        ]
+      }
+    ]
+  },
+  "FSL-1.1-ALv2": {
+    "summary": "The Functional Source License 1.1 grants specified rights for Permitted Purposes, defines Competing Use and names a license available on the stated future trigger.",
+    "dimensions": {
+      "competing_use": {
+        "state": "restriction",
+        "text": "The permitted-purpose definition excludes competing uses meeting the instrument’s terms and gives examples of permitted purposes.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-ALv2.html",
+            "locator": "Permitted Purpose"
+          }
+        ]
+      },
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The instrument grants the listed permissions for Permitted Purposes subject to its stated terms.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-ALv2.html",
+            "locator": "License Grant"
+          }
+        ]
+      },
+      "future_license": {
+        "state": "condition",
+        "text": "The future-license clause names Apache License 2.0 and defines the time trigger tied to the Software.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-ALv2.html",
+            "locator": "Future License"
+          },
+          {
+            "url": "https://fsl.software/",
+            "locator": "Publisher template index"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Offering a hosted product",
+        "text": "Assess the commercial offering against the actual Competing Use definition and identify the Software version and date relevant to its future-license clause.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-ALv2.html",
+            "locator": "Permitted Purpose and Future License"
+          }
+        ]
+      }
+    ]
+  },
+  "FSL-1.1-MIT": {
+    "summary": "The Functional Source License 1.1 grants specified rights for Permitted Purposes, defines Competing Use and names a license available on the stated future trigger.",
+    "dimensions": {
+      "competing_use": {
+        "state": "restriction",
+        "text": "The permitted-purpose definition excludes competing uses meeting the instrument’s terms and gives examples of permitted purposes.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-MIT.html",
+            "locator": "Permitted Purpose"
+          }
+        ]
+      },
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The instrument grants the listed permissions for Permitted Purposes subject to its stated terms.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-MIT.html",
+            "locator": "License Grant"
+          }
+        ]
+      },
+      "future_license": {
+        "state": "condition",
+        "text": "The future-license clause names MIT and defines the time trigger tied to the Software.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-MIT.html",
+            "locator": "Future License"
+          },
+          {
+            "url": "https://fsl.software/",
+            "locator": "Publisher template index"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Offering a hosted product",
+        "text": "Assess the commercial offering against the actual Competing Use definition and identify the Software version and date relevant to its future-license clause.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/FSL-1.1-MIT.html",
+            "locator": "Permitted Purpose and Future License"
+          }
+        ]
+      }
+    ]
+  },
+  "GCC-exception-3.1": {
+    "summary": "The GCC Runtime Library Exception 3.1 is a GPLv3 additional permission for qualifying compiled combinations with covered runtime files.",
+    "dimensions": {
+      "base_license": {
+        "state": "condition",
+        "text": "The opening identifies GPLv3 §7 and requires a copyright-holder notice applying GPLv3 with this exception to the runtime file in question.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L10-L14", "locator": "Opening applicability paragraph"}
+        ]
+      },
+      "exception_scope": {
+        "state": "permission",
+        "text": "Section 1 permits propagation of Target Code combining the covered Runtime Library with Independent Modules when all Target Code was generated by Eligible Compilation Processes. Conveyance terms must be consistent with the licensing of the Independent Modules.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L59-L66", "locator": "§1"}
+        ]
+      },
+      "independent_modules": {
+        "state": "condition",
+        "text": "An Independent Module needs the Runtime Library to execute after compilation or uses one of its interfaces. A file otherwise based on the Runtime Library falls outside this definition.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L22-L27", "locator": "§0, definition of Independent Module"}
+        ]
+      },
+      "eligible_compilation": {
+        "state": "condition",
+        "text": "Section 0 defines eligible compilation as using GCC alone or with GPL-compatible software, or using no work based on GCC. It excludes compiler intermediate representations and data used to produce them from Target Code. Its ineligible example uses non-GPL-compatible software to optimize a GCC intermediate representation.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L34-L57", "locator": "§0, definitions of GPL-compatible Software, Target Code, Compilation Process, and Eligible Compilation Process"}
+        ]
+      },
+      "base_license_boundary": {
+        "state": "documented",
+        "text": "Section 2 preserves the need to assess GCC's copyleft requirements separately. Section 1 describes a specific compiled combination. Assess a separately shipped compiler or runtime source under its own grant.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L59-L72", "locator": "§§1–2"}
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping an executable that contains GCC runtime code",
+        "text": "Verify each runtime file's copyright-holder notice, whether the application's files meet the Independent Module definition, and the eligibility of every process that generated the Target Code. Apply the licensing of the Independent Modules when choosing the combination's conveyance terms.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L10-L66", "locator": "Opening applicability paragraph and §§0–1"}
+        ]
+      },
+      {
+        "situation": "Optimizing GCC intermediate code with incompatible software",
+        "text": "Section 0 identifies a non-GPL-compatible optimizer of GCC intermediate representations as an ineligible compilation example. If any of the Target Code comes from that process, the condition in §1 fails. Check the actual toolchain and the applicable base licenses before conveying the output.",
+        "sources": [
+          {"url": "https://github.com/gcc-mirror/gcc/blob/04696df09633baf97cdbbdd6e9929b9d472161d3/COPYING.RUNTIME#L53-L66", "locator": "§0, Eligible Compilation Process, and §1"}
+        ]
+      }
+    ]
+  },
+  "GFDL-1.1-only": {
+    "summary": "GNU FDL 1.1 addresses copying and modifying covered documents. Its quantity rules depend on the notice, the number of copies, and whether those copies are printed or Opaque.",
+    "dimensions": {
+      "cover_texts": {
+        "state": "condition",
+        "text": "Cover Texts are passages identified in the document’s notice. For more than 100 printed copies, §3 requires the specified Cover Texts when the notice calls for them. Use the designated front and back covers.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      },
+      "format_classification": {
+        "state": "documented",
+        "text": "Section 1 defines Transparent and Opaque copies and includes PostScript and PDF among its examples of Opaque formats.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§1, Transparent and Opaque copies"
+          }
+        ]
+      },
+      "invariant_sections": {
+        "state": "condition",
+        "text": "Use the document’s notice to identify any designated Invariant Sections. For Modified Versions, §4 requires keeping those sections’ text and titles and carrying forward the required lists in the notice.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§1 and §4(G), §4(L)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Publishing or distributing more than 100 Opaque copies requires a machine-readable Transparent copy with each, or naming in or with each copy a network location for the complete Transparent copy without added material. The network option requires anonymous access without charge through public-standard protocols. When distribution starts, take reasonably prudent steps to keep it accessible for at least one year after the last public distribution of that edition.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§3, Opaque copying in quantity"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 9 provides for automatic termination for copying, modification, sublicensing, or distribution outside the license. It preserves licenses of downstream recipients who remain in full compliance.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§9"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing a large batch of printed manuals",
+        "text": "Check the actual license notice and count. Assess both the printed Cover Text condition and the separate Opaque-copy condition before deciding how to package the batch.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.1.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      }
+    ]
+  },
+  "GFDL-1.2-only": {
+    "summary": "GNU FDL 1.2 provides conditions for covered document copies and Modified Versions, with defined treatment of designated sections, notices and editable formats.",
+    "dimensions": {
+      "cover_texts": {
+        "state": "condition",
+        "text": "When publishing more than 100 printed copies or copies on media commonly having printed covers, follow §3’s front- and back-cover requirements if the notice calls for Cover Texts.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§3, Cover Texts"
+          }
+        ]
+      },
+      "format_classification": {
+        "state": "documented",
+        "text": "Section 1 includes PostScript and PDF designed for human modification as examples of potentially Transparent formats and gives output-only versions as examples of Opaque formats. Classify using the definition and how the actual file was made.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§1, Transparent and Opaque copies"
+          }
+        ]
+      },
+      "invariant_sections": {
+        "state": "condition",
+        "text": "An Invariant Section must qualify as a Secondary Section and be designated in the notice. Preserve the titles and text of existing Invariant Sections in Modified Versions. The notice can identify zero Invariant Sections.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§1, Secondary and Invariant Sections, §4(G) and §4(L)"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 9 provides for automatic termination for copying, modification, sublicensing, or distribution outside the license. It preserves licenses of downstream recipients who remain in full compliance.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§9"
+          }
+        ]
+      },
+      "warranty_notices": {
+        "state": "condition",
+        "text": "Section 4 requires preserving Warranty Disclaimers for Modified Versions, and §5 requires preserving them when combining documents. Section 1 describes their role and limits.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§1, §4(O), §5"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Selecting the editable copy for a PDF distribution",
+        "text": "Use the §1 editability criteria and assess the actual PDF. If issuing more than 100 Opaque copies, plan to accompany each with a Transparent copy or use the public network option on the terms in §3.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.2.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      }
+    ]
+  },
+  "GFDL-1.3-only": {
+    "summary": "GNU FDL 1.3 includes holder-specific reinstatement conditions and a historical, limited collaboration-site relicensing provision.",
+    "dimensions": {
+      "cover_texts": {
+        "state": "condition",
+        "text": "When publishing more than 100 printed copies or copies on media that commonly have printed covers, §3 requires the Front- and Back-Cover Texts specified by the document’s notice.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§§1 and 3"
+          }
+        ]
+      },
+      "format_classification": {
+        "state": "documented",
+        "text": "Section 1 distinguishes machine-readable copies suitable for straightforward revision from Opaque formats. It lists PostScript and PDF designed for human modification as suitable examples and gives output-only versions as Opaque examples.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§1, Transparent and Opaque copies"
+          }
+        ]
+      },
+      "historical_relicensing": {
+        "state": "condition",
+        "text": "Section 11 allowed a Massive Multiauthor Collaboration Site operator to republish an eligible collaboration on that same site under the defined CC BY-SA terms before 1 August 2009. Eligibility required the collaboration to be licensed under this License. Works first published elsewhere under this License and later incorporated had to lack Cover Texts and Invariant Sections and be incorporated before 1 November 2008.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§11, eligibility and deadline"
+          }
+        ]
+      },
+      "invariant_sections": {
+        "state": "condition",
+        "text": "An Invariant Section is a qualifying Secondary Section designated by title in the document’s notice. Preserve existing Invariant Sections and listed Cover Texts as directed for Modified Versions.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§1 and §4(G), §4(L)"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 9 automatically terminates rights for the specified acts outside the license. After all violations cease, reinstatement is assessed by copyright holder. It is provisional unless and until the holder explicitly and finally terminates. It becomes permanent if the holder fails to give reasonable notice before 60 days after cessation. It is also permanent if reasonable notice is the first from that holder for any work under this license and you cure the violation before 30 days have passed after receiving the notice.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§9, termination and reinstatement"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "condition",
+        "text": "Section 10 bases a later-version choice on the document’s authorized grant. It separately addresses a grant that specifies no version and the public acceptance of a future version by a document-designated proxy.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§10"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Assessing reinstatement after a breach",
+        "text": "Record when all violations ceased. Check each copyright holder’s notice history, any final termination, and whether you cured the violation before the first-notice deadline.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/fdl-1.3.txt",
+            "locator": "§9"
+          }
+        ]
+      }
+    ]
+  },
+  "GPL-1.0-only": {
+    "summary": "SPDX uses this identifier for a grant restricted to GNU GPL version 1. Verify the actual project notice for the material covered by that grant.",
+    "dimensions": {
+      "modification": {
+        "state": "condition",
+        "text": "Paragraph 2(a) calls for prominent change notices and dates in modified files. Paragraph 2(b) addresses licensing a distributed or published work containing the Program or any part of it. Paragraph 2 distinguishes mere aggregation with an independent work on a distribution medium.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 2"}]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "For verbatim source distribution, paragraph 1 calls for an appropriate copyright and warranty-disclaimer notice, retention of notices referring to the GPL and absence of warranty, and a copy of the GPL for recipients.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 1"}]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "For object code or executables, paragraph 3(a) calls for accompanying complete corresponding machine-readable source. Paragraph 3(b) permits an accompanying written offer for at least three years to supply such source to any third party, with only a nominal charge for distribution cost. Paragraph 3(c) permits passing along source-location information only for noncommercial redistribution after receiving the Program solely in object or executable form.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 3(a)–(c)"}]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "An authorized grant of version 1 only restricts the choice to that version. The sample notice printed in the GPLv1 appendix illustrates an or-later grant. Use the project’s actual notice to establish its version choice.",
+        "sources": [
+          {"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraphs 0 and 7 and application appendix"},
+          {"url": "https://spdx.org/licenses/GPL-1.0-only.html", "locator": "Notes and Standard License Header"}
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Passing on an executable received under GPL version 1 only",
+        "text": "Check whether the distribution is noncommercial and whether you received only object code or an executable. Paragraph 3(c) requires passing on the source-location information you received. If the route is unavailable, assess the accompanying-source and written-offer options in paragraphs 3(a) and 3(b).",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 3(a)–(c)"}]
+      }
+    ]
+  },
+  "GPL-1.0-or-later": {
+    "summary": "SPDX uses this identifier for a grant allowing GNU GPL version 1 or any later GNU GPL version published by the Free Software Foundation.",
+    "dimensions": {
+      "version_choice": {
+        "state": "documented",
+        "text": "Paragraph 7 permits following a later FSF version where the applicable grant specifies version 1 and the later-version option. It separately addresses a GNU GPL grant that specifies no version number. Check the grant for the file or release before exercising either option.",
+        "sources": [
+          {"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraphs 0 and 7"},
+          {"url": "https://spdx.org/licenses/GPL-1.0-or-later.html", "locator": "Notes and Standard License Header"}
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "A distributor following version 1 checks the three source routes in paragraph 3 and that paragraph’s definition of complete source. A distributor following a later edition checks the terms of that edition.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraphs 3 and 7"}]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Selecting an edition for redistributing older GPL-covered code",
+        "text": "Inspect the authorized notice on the material you received. If it grants version 1 or later and you elect a later FSF version, assess that edition’s distribution conditions. The common version 1 license document shows the original terms and sample notice.",
+        "sources": [{"url": "https://ftp.gnu.org/pub/gnu/Licenses/gpl-1.0.txt", "locator": "Paragraph 7 and application appendix"}]
+      }
+    ]
+  },
+  "GPL-2.0-only": {
+    "summary": "This SPDX identifier describes a grant restricted to GNU GPL version 2. The project's authorized license notices establish where that grant applies.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The text allows verbatim copying and distribution and permits modified distributions subject to §§1–2.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§1–2"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Section 2(a) requires prominent notices of changes and their dates in modified files. Section 2(b) applies to distribution or publication of a work containing or derived from the Program and requires licensing the work as a whole under GPLv2 at no charge to third parties. Section 2 separately addresses independent works distributed separately and mere aggregation.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§2"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "For verbatim source distribution, §1 requires appropriate copyright and warranty-disclaimer notices on each copy, retention of the license and no-warranty notices, and a copy of GPLv2 for recipients.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§1"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "For object code or executables, §3(a) provides for accompanying complete machine-readable corresponding source on a customary medium under §§1–2. Section 3(b) provides for an accompanying written offer valid for at least three years to supply the source to any third party at up to the distributor's physical source-distribution cost. Section 3(c) allows passing along the received offer information only for noncommercial distribution after receiving the binary with a compliant §3(b) offer.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§3(a)–(c)"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 4 makes attempted unauthorized copying, modification, sublicensing or distribution void and automatically terminates the actor's GPLv2 rights. Downstream parties who received copies or rights under the license retain their licenses while in full compliance.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§4"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "An explicit version 2 only grant limits the recipient to that version. Check the authorized notice or other grant for the relevant files and release. Section 9 has a separate rule for a program covered by a GNU GPL grant that omits the version number.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+            "locator": "Notes"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§0 and 9"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Acquiring a GPLv2 codebase",
+        "text": "Inspect the actual copyright holder's license declaration for the exact project version and component. Use the shared GPLv2 document to read version 2 terms and the authorized declaration to establish the permitted version choices.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+            "locator": "Notes and Standard License Header"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "The license notices"
+          }
+        ]
+      },
+      {
+        "situation": "Offering a GPLv2 executable for download",
+        "text": "When the executable is distributed through copy access from a designated place, §3 counts equivalent copy access to the corresponding source from the same place as distributing the source. Check the required license and notices under §§1–2 and the scope of corresponding source under §3.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§1–2 and §3, final three paragraphs"
+          }
+        ]
+      }
+    ]
+  },
+  "GPL-2.0-or-later": {
+    "summary": "This SPDX identifier describes a grant allowing the recipient to follow GNU GPL version 2 or a later FSF version. The following distribution terms describe the version 2 election.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The text allows verbatim copying and distribution and permits modified distributions subject to §§1–2.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§1–2"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Under GPLv2, §2(a) requires prominent notices of changes and their dates in modified files. Section 2(b) applies to distribution or publication of a work containing or derived from the Program and requires licensing the work as a whole under GPLv2 at no charge to third parties. Section 2 separately addresses independent works distributed separately and mere aggregation.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§2"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "For verbatim source distribution under GPLv2, §1 requires appropriate copyright and warranty-disclaimer notices on each copy, retention of the license and no-warranty notices, and a copy of GPLv2 for recipients.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§1"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Under GPLv2, §3(a) provides for accompanying complete machine-readable corresponding source on a customary medium under §§1–2. Section 3(b) provides for an accompanying written offer valid for at least three years to supply the source to any third party at up to the distributor's physical source-distribution cost. Section 3(c) allows passing along the received offer information only for noncommercial distribution after receiving the binary with a compliant §3(b) offer.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§3(a)–(c)"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 4 makes attempted unauthorized copying, modification, sublicensing or distribution void and automatically terminates the actor's GPLv2 rights. Downstream parties who received copies or rights under the license retain their licenses while in full compliance.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§4"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "Where the applicable grant specifies version 2 or any later version, §9 permits following version 2 or a later GPL version published by the FSF. An applicable GNU GPL grant with no version number uses the separate rule in §9.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+            "locator": "Notes"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§§0 and 9"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Acquiring a GPLv2 codebase",
+        "text": "Check the copyright holder's declaration for the exact release and component. When the grant permits a later edition and you elect it, use that edition's terms for the covered conduct.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+            "locator": "Notes and Standard License Header"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "The license notices"
+          }
+        ]
+      },
+      {
+        "situation": "Redistributing a received executable under GPLv2",
+        "text": "To pass along the received source-offer information under §3(c), confirm that the redistribution is noncommercial and that you received the executable or object code with a compliant §3(b) offer. If either condition is absent, assess the applicable alternatives in §3(a) and (b).",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+            "locator": "§3(a)–(c)"
+          }
+        ]
+      }
+    ]
+  },
+  "GPL-2.0-with-classpath-exception": {
+    "summary": "SPDX deprecates this composite identifier and records separate replacement guidance for the identifier and for a legacy expression with a trailing plus. Check the original grant when applying either SPDX expression to a file.",
+    "dimensions": {
+      "identifier_status": {
+        "state": "documented",
+        "text": "This identifier remains listed as deprecated in SPDX 3.29.0.",
+        "sources": [
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0-with-classpath-exception.xml#L3-L8",
+            "locator": "Legacy identifier and deprecated version"
+          }
+        ]
+      },
+      "replacement_guidance": {
+        "state": "documented",
+        "text": "The bare identifier’s recorded replacement is GPL-2.0 WITH Classpath-exception-2.0. Applying SPDX’s separate replacement for the bare GPL-2.0 base yields GPL-2.0-only WITH Classpath-exception-2.0. The legacy trailing-plus expression maps directly to GPL-2.0-or-later WITH Classpath-exception-2.0.",
+        "sources": [
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0-with-classpath-exception.xml#L3-L8",
+            "locator": "Separate replacement entries"
+          },
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0.xml#L3-L9",
+            "locator": "Bare GPL-2.0 replacement"
+          }
+        ]
+      },
+      "application_scope": {
+        "state": "documented",
+        "text": "Confirm the base-version election and the exception in the notice covering the actual file. GNU Classpath 0.95’s Package.java declares GPL version 2 or later with the Classpath exception.",
+        "sources": [
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source lines 7–10 and 22–37"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Migrating a legacy Classpath identifier in an SPDX document",
+        "text": "Preserve the original token and whether it carried a plus. Record the SPDX replacement path separately from the licensing conclusion for each component. Check original license notices before recording a version election or changing a file-level declaration.",
+        "sources": [
+          {
+            "url": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/license-list-XML/GPL-2.0-with-classpath-exception.xml#L3-L8",
+            "locator": "Bare and trailing-plus replacement entries"
+          },
+          {
+            "url": "https://developer.classpath.org/doc/java/lang/Package-source.html",
+            "locator": "Source header, base election and exception"
+          }
+        ]
+      }
+    ]
+  },
+  "GPL-3.0-only": {
+    "summary": "GPLv3 provides copying and modification permissions. Conveying covered works carries requirements that depend on the form and circumstances of the transfer. The only identifier refers to a version 3 declaration.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "Section 2 permits running the unmodified Program and making, running or propagating covered works without conveyance while the license remains in force. A separate conveyance permission for exclusive outsourced work or running facilities has conditions on license compliance, direction, control and copying outside that relationship.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§2"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Conveying modified source under §5 requires prominent notices of changes and a relevant date, a license notice, and licensing the covered work as a whole under GPLv3. Section 5 separately defines when co-packaged independent works form an aggregate.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§5"
+          }
+        ]
+      },
+      "network_interaction": {
+        "state": "documented",
+        "text": "Mere network interaction without transfer of a copy is outside §0’s definition of conveyance. Assess any copies actually transferred. Section 13 separately addresses a qualifying combination with AGPLv3-covered work.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§§0 and 13"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Section 4 requires copyright and other specified notices and a license copy for recipients of verbatim source. Section 5 adds changes and date notices and a qualified interactive-interface requirement. Section 6 carries §§4–5 into object-code conveyance.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§§4–6"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "Section 11 grants a nonexclusive, worldwide, royalty-free license under each contributor’s essential patent claims for the contents of that contributor’s version. The definition excludes claims infringed only as a consequence of further modification.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§11, paragraphs 1–3"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Conveying object code requires machine-readable Corresponding Source for the covered work through an applicable §6 route. Installation Information is a separate obligation for specified User Product transfers, subject to the exception when neither the conveyor nor any third party retains installation ability.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§§1 and 6"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 8 terminates rights for unauthorized propagation or modification. Upon cessation of violations, reinstatement works separately for each copyright holder. Permanent reinstatement has distinct paths for no notice before 60 days from cessation and first notice from that holder followed by cure before 30 days from receipt. Existing downstream licenses survive the termination.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§8"
+          }
+        ]
+      },
+      "version_election": {
+        "state": "documented",
+        "text": "GPL-3.0-only identifies an application of version 3 only. Inspect the licensing declaration for the material. Section 14 provides a later-version election for a declaration that expressly includes that option, and a separate rule for a declaration with no version number.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14"
+          },
+          {
+            "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+            "locator": "Notes and Standard License Header"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping an embedded binary",
+        "text": "Evaluate the applicable Corresponding Source route for a physical shipment, offer, download or other conveyance. For Installation Information, check User Product status, a transfer of possession and use including a fixed term, and whether anyone retains the ability to install modified object code.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§6"
+          }
+        ]
+      },
+      {
+        "situation": "Applying GPL version 3 only to a new project",
+        "text": "Keep the publisher’s license document intact and declare version 3 only in the authorized project or source notice. The license appendix illustrates an or-later notice, so choose the notice wording for the intended grant.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "Application guidance and version notice"
+          }
+        ]
+      }
+    ]
+  },
+  "GPL-3.0-or-later": {
+    "summary": "This profile covers the GPLv3 later-version election. GPLv3 terms govern when the recipient follows version 3. A later-version election requires examining the chosen version's own terms.",
+    "dimensions": {
+      "version_election": {
+        "state": "permission",
+        "text": "If the Program's declaration specifies GPL version 3 or any later version, §14 allows a recipient to follow version 3 or a later GPL version published by the Free Software Foundation.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14, second paragraph"
+          },
+          {
+            "url": "https://spdx.org/licenses/GPL-3.0-or-later.html",
+            "locator": "Notes and Standard License Header"
+          }
+        ]
+      },
+      "notices": {
+        "state": "documented",
+        "text": "Apply the later-version election through an authorized licensing declaration. The same GNU GPLv3 document accompanies both version 3 choices. Inspect the declaration that applies to the relevant material.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "Application guidance and version notice"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Evaluating a version election in a distribution with mixed source notices",
+        "text": "Check which grant covers each relevant file or component before relying on a later-version election. An explicit version 3 or later declaration supports that choice for its covered material. Assess conflicting notices or a versionless declaration separately.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§14 and application appendix"
+          },
+          {
+            "url": "https://gnu.org/licenses/gpl-howto.html",
+            "locator": "Copying permission statement and version declaration"
+          }
+        ]
+      }
+    ]
+  },
+  "ISC": {
+    "summary": "The ISC grant allows use, copying, modification and distribution, including for a fee, with a notice condition.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The grant covers use, copying, modification and distribution for any purpose with or without a fee.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/isc",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "The copyright and permission notices must appear in all copies.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/isc",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "unresolved",
+        "text": "The reviewed text does not expressly address contributor patent rights.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/isc",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The text states warranty and liability disclaimers.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/isc",
+            "locator": "Closing paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing paid copies",
+        "text": "Include the copyright and permission notices in the copies. The same textual condition applies to distribution for a fee.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/isc",
+            "locator": "Grant paragraph"
+          }
+        ]
+      }
+    ]
+  },
+  "LGPL-2.0-only": {
+    "summary": "The GNU Library GPL version 2 governs distribution of the library and specified linked works with distinct source and relinking conditions.",
+    "dimensions": {
+      "linked_works": {
+        "state": "condition",
+        "text": "Section 6 permits distribution of specified linked works under terms that allow modification for the customer's own use and reverse engineering to debug those modifications. It also requires notices, a license copy, and one of the routes in §6(a)–(d) for providing source and relinking materials or verifying prior delivery.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
+            "locator": "§6 and §6(a)–(d)"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Modified library distributions are subject to §2 conditions, including conditions on notices and licensing.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
+            "locator": "§2"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Distributing the library in object or executable form requires accompanying corresponding machine-readable source under the stated terms.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
+            "locator": "§4"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "The selected SPDX identifier describes the version-only application.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/LGPL-2.0-only.html",
+            "locator": "SPDX identifier notes"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing an executable that links an LGPL library",
+        "text": "Record the package structure, distribution terms, available source and whether recipients can use a modified library. Apply the reviewed edition’s linked-work provisions.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.0.txt",
+            "locator": "§§4–6"
+          }
+        ]
+      }
+    ]
+  },
+  "LGPL-2.1-only": {
+    "summary": "LGPL 2.1 provides library copying and distribution permissions with source conditions and specific rules for distributing works that link the library.",
+    "dimensions": {
+      "linked_works": {
+        "state": "condition",
+        "text": "Section 6 requires notices, a license copy, and terms that allow modification for the customer's own use and reverse engineering to debug those modifications. One route under §6(b) is a shared-library mechanism that uses the user's existing library at runtime and still works with an installed, interface-compatible modified library.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
+            "locator": "§6 and §6(b)"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Modified library distributions are subject to §2 conditions, including conditions on notices and licensing.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
+            "locator": "§2"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Distributing the library in object or executable form requires accompanying corresponding machine-readable source under the stated terms.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
+            "locator": "§4"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "The selected SPDX identifier describes the version-only application.",
+        "sources": [
+          {
+            "url": "https://spdx.org/licenses/LGPL-2.1-only.html",
+            "locator": "SPDX identifier notes"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing an executable that links an LGPL library",
+        "text": "Record the package structure, distribution terms, available source and whether recipients can use a modified library. Apply the reviewed edition’s linked-work provisions.",
+        "sources": [
+          {
+            "url": "https://ftp.gnu.org/pub/gnu/Licenses/lgpl-2.1.txt",
+            "locator": "§§4–6"
+          }
+        ]
+      }
+    ]
+  },
+  "LGPL-3.0-only": {
+    "summary": "The GNU LGPL version 3 supplement incorporates GPLv3 and adds permissions for specified library uses. This SPDX identifier describes an application restricted to LGPL version 3.",
+    "dimensions": {
+      "linked_works": {
+        "state": "condition",
+        "text": "Section 4 permits conveying a Combined Work under terms that, taken together, effectively allow modification of the included library portions and reverse engineering to debug those modifications. The conveyor must also meet the notice, document and other conditions listed in §4.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+            "locator": "§4"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Conveyance under §4 requires prominent notice of the Library’s use and coverage, copies of the LGPLv3 supplement and GPLv3, and an additional library copyright notice and reference to those copies if the Combined Work displays copyright notices during execution.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+            "locator": "§4(a)–(c)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Section 4(d) provides a relinking-material route and a suitable shared-library route. Section 4(e) calls for Installation Information only where GPLv3 §6 would otherwise require it and to the extent needed to install and run the modified Combined Work produced through relinking or recombination.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+            "locator": "§§0 and 4(d)–(e)"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§6"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Conveying a Combined Work under LGPL 3.0",
+        "text": "If relying on the shared-library route in §4(d)(1), check that the program uses a library copy already present on the user’s computer at runtime and works with a modified, interface-compatible version. Check the actual distribution terms, both license documents and the separate §4(e) trigger. Inspect the project’s grant before selecting a version.",
+        "sources": [
+          {
+            "url": "https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
+            "locator": "§§4 and 6"
+          },
+          {
+            "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+            "locator": "§6"
+          },
+          {
+            "url": "https://spdx.org/licenses/LGPL-3.0-only.html",
+            "locator": "Notes"
+          }
+        ]
+      }
+    ]
+  },
+  "LLVM-exception": {
+    "summary": "The LLVM exceptions modify specified Apache 2.0 terms for compiler-embedded Object code and for a defined combination with GPLv2-licensed software when the court condition applies.",
+    "dimensions": {
+      "exception_relationship": {
+        "state": "documented",
+        "text": "The exception accompanies Apache License 2.0 when the applicable grant includes it. SPDX represents that combination as Apache-2.0 WITH LLVM-exception. Identify the covered material and any separately licensed third-party or legacy code in the release.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT",
+            "locator": "License statement, exception and separately licensed material"
+          },
+          {
+            "url": "https://github.com/spdx/license-list-XML/blob/b1dbeb5c8bca21af860a90e187f71d60b84a7a40/src/exceptions/LLVM-exception.xml",
+            "locator": "Exception metadata and base-license note"
+          }
+        ]
+      },
+      "embedded_object": {
+        "state": "permission",
+        "text": "When compiling your source embeds portions of the covered software in the Object form of that source, the exception permits redistribution of those embedded portions in that form without the conditions in Apache §§4(a), 4(b) and 4(d).",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L210-L213",
+            "locator": "LLVM exception, embedded Object paragraph"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Apache §4(c) has its own trigger for pertinent notices in distributed Source-form Derivative Works. The compiler-embedded Object permission names the license-copy, modified-file notice and applicable upstream NOTICE conditions in §§4(a), 4(b) and 4(d).",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT",
+            "locator": "Apache §4 and LLVM exception, embedded Object paragraph"
+          }
+        ]
+      },
+      "combined_software": {
+        "state": "permission",
+        "text": "If compiled forms of the covered software are combined or linked with GPLv2-licensed software and a competent court finds an Apache section conflicts with GPLv2 conditions, the distributor may elect to waive or exclude the affected sections in full, retroactively and prospectively, solely for that combination. The text specifically names §§3 and 9.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L215-L222",
+            "locator": "LLVM exception, Combined Software paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Distributing output that embeds covered LLVM portions",
+        "text": "Identify portions embedded as a result of compiling your own source. Check the scope separately for a standalone tool or runtime shipped alongside the output, for source distributions, and for third-party parts under other terms.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L208-L235",
+            "locator": "LLVM exception and separately licensed third-party material"
+          }
+        ]
+      },
+      {
+        "situation": "Linking a compiled component to GPLv2-licensed software",
+        "text": "Check the actual GPL version governing the component, the compiled combination and any competent court finding. If the trigger applies, record which complete sections the permitted election covers and which artifacts form the Combined Software.",
+        "sources": [
+          {
+            "url": "https://github.com/llvm/llvm-project/blob/87f0227cb60147a26a1eeb4fb06e3b505e9c7261/LICENSE.TXT#L215-L222",
+            "locator": "LLVM Combined Software definition and conditions"
+          }
+        ]
+      }
+    ]
+  },
+  "Linux-syscall-note": {
+    "summary": "The Linux v6.12 licensing files distinguish ordinary use of kernel services by system calls from the notices on individual source files.",
+    "dimensions": {
+      "base_license": {
+        "state": "documented",
+        "text": "The v6.12 top-level COPYING describes GPL version 2 only with the syscall note for the kernel. The versioned documentation says that individual files can have different compatible licenses.",
+        "sources": [
+          {"url": "https://github.com/torvalds/linux/blob/adc218676eef25575469234709c2d87185ca223a/COPYING#L1-L17", "locator": "Kernel grant and exception reference"},
+          {"url": "https://docs.kernel.org/6.12/process/license-rules.html", "locator": "Introduction, license for the whole and individual source files"}
+        ]
+      },
+      "exception_scope": {
+        "state": "documented",
+        "text": "The note attributed to Linus Torvalds treats user programs' ordinary use of kernel services by system calls as normal use of the kernel outside its derived-work heading. Check separate grants where an application copies source or incorporates kernel code.",
+        "sources": [
+          {"url": "https://github.com/torvalds/linux/blob/adc218676eef25575469234709c2d87185ca223a/LICENSES/exceptions/Linux-syscall-note#L11-L24", "locator": "Text following License-Text"}
+        ]
+      },
+      "header_marking": {
+        "state": "documented",
+        "text": "The v6.12 exception file's metadata lists possible base identifiers for marking user-space API headers with WITH. Use the actual header's declaration to determine how the project marked it. The metadata documents the kernel's file-marking practice.",
+        "sources": [
+          {"url": "https://github.com/torvalds/linux/blob/adc218676eef25575469234709c2d87185ca223a/LICENSES/exceptions/Linux-syscall-note#L1-L10", "locator": "SPDX-Licenses and Usage-Guide"},
+          {"url": "https://docs.kernel.org/6.12/process/license-rules.html#license-identifier-syntax", "locator": "Syntax, WITH and exception metadata"}
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Checking a Linux header before including it in a user-space program",
+        "text": "In v6.12 the first line of include/uapi/linux/types.h includes the syscall note with GPL-2.0. The separate include/linux/types.h has only the GPL-2.0 identifier on its first line. Identify the exact included file and inspect its declaration. Calling a kernel service and copying an internal kernel header require separate analysis.",
+        "sources": [
+          {"url": "https://github.com/torvalds/linux/blob/adc218676eef25575469234709c2d87185ca223a/include/uapi/linux/types.h#L1", "locator": "User-space API header SPDX declaration"},
+          {"url": "https://github.com/torvalds/linux/blob/adc218676eef25575469234709c2d87185ca223a/include/linux/types.h#L1", "locator": "Internal header SPDX declaration"},
+          {"url": "https://github.com/torvalds/linux/blob/adc218676eef25575469234709c2d87185ca223a/LICENSES/exceptions/Linux-syscall-note#L4-L15", "locator": "Usage guide and note's ordinary-system-call passage"}
+        ]
+      }
+    ]
+  },
+  "MIT": {
+    "summary": "The MIT text grants broad permission to use, modify and distribute the software. Copies or substantial portions must include the copyright and permission notices.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The grant lists use, copying, modification, merging, publication, distribution, sublicensing and sale.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Include the copyright and permission notices in copies or substantial portions.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Notice paragraph"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "unresolved",
+        "text": "The reviewed text has no separately stated patent grant. Implied rights require separate analysis.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "unresolved",
+        "text": "The reviewed text specifies notice retention. It does not expressly address providing source with a binary.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Grant and notice paragraphs"
+          }
+        ]
+      },
+      "trademark": {
+        "state": "unresolved",
+        "text": "The reviewed grant does not expressly address trademark permission.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Grant paragraph"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The final paragraph disclaims warranties and limits liability.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Final paragraph"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Redistributing a library in a commercial package",
+        "text": "Preserve the third-party notice where the copy-or-substantial-portion condition applies. Review what material from the library ships with the package.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Notice paragraph"
+          }
+        ]
+      },
+      {
+        "situation": "Applying MIT to a new project",
+        "text": "Complete year and holder fields in a reviewed application template. Retain existing notices on third-party code.",
+        "sources": [
+          {
+            "url": "https://opensource.org/license/mit",
+            "locator": "Copyright notice placeholder"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/MIT.txt",
+            "locator": "Copyright notice line"
+          }
+        ]
+      }
+    ]
+  },
+  "MPL-1.1": {
+    "summary": "MPL 1.1 permits distributing Covered Code within a larger product. Distributing its executable triggers source availability and notice conditions, including specific retention periods for electronic delivery of modifications.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The Initial Developer grants specified rights in Original Code. Each contributor grants specified rights in that contributor's Modifications. Both grants are subject to third-party intellectual property claims and exclude patent and trademark rights from this part of the grant.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§2.1(a), 2.2(a)"
+          }
+        ]
+      },
+      "larger_work": {
+        "state": "permission",
+        "text": "You may distribute a Larger Work combining Covered Code with other code as one product if you meet the requirements for the Covered Code. A separate executable license has its own conditions, including preserving recipients' rights to the source.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.7, 3.6–3.7"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "For Covered Code released as a series of files, edits to a file containing Original Code or earlier Modifications and new files containing any of that material can be Modifications. The license requires a file documenting changes and their dates for Covered Code to which you contribute.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.9, 3.1, 3.3"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Include the license with distributed source, reproduce the Exhibit A notice in each source file or in a discoverable place if the file structure prevents it, and give executable recipients a conspicuous notice explaining source availability as specified.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§3.1, 3.5–3.6 and Exhibit A"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The Initial Developer's patent grant addresses Original Code. A contributor's grant addresses that contributor's Modifications and specified combinations with the Contributor Version. The exclusions depend on the grant and cover some alterations or combinations.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.2, 1.10.1, 2.1(b)–(d), 2.2(b)–(d)"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Make your Modifications available as source to anyone to whom you made an executable available. The source may accompany that executable or use an accepted electronic distribution mechanism. The electronic route specifies at least 12 months from first availability or at least six months after a subsequent version of that particular Modification becomes available to those recipients. You are responsible for availability through a third-party host.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.4, 3.2, 3.6"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "The noncompliance clause provides automatic termination if a breach remains uncured 30 days after you become aware of it. Separate patent-litigation rules distinguish the allegation, the affected grants and the applicable notice or effective date.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§8.1–8.4"
+          }
+        ]
+      },
+      "version_choice": {
+        "state": "documented",
+        "text": "The license contains a later-version option and separately allows the Initial Developer to designate portions for alternative licensing in their notices. The applicable source notice and the specific combination matter when evaluating an alternative license.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§5, 6.1–6.2, 13 and Exhibit A"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping a modified binary from a short-lived download URL",
+        "text": "Check whether each recipient can obtain the source for the Modifications. If you use electronic delivery, account for the applicable minimum availability period and the conspicuous executable notice. An external hosting service leaves the source-availability obligation with you.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§3.2, 3.6"
+          }
+        ]
+      },
+      {
+        "situation": "Putting copied code in a new file in a larger product",
+        "text": "When Covered Code was released as files, the new file can be a Modification if it contains part of the Original Code or earlier Modifications. A separate file containing only independently written material does not meet that criterion merely by shipping alongside Covered Code. Check the actual code and its license notices before relying on alternative terms.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/1.1/",
+            "locator": "§§1.7, 1.9, 3.7, 13 and Exhibit A"
+          }
+        ]
+      }
+    ]
+  },
+  "MPL-2.0": {
+    "summary": "MPL 2.0 requires source licensing and access for covered files under specified distribution conditions. A larger work may contain separate material governed by other terms.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "Each Contributor grants the rights specified in §2.1(a) over its Contributions under rights it can license, excluding patents and trademarks. The grant takes effect for a Contribution on that Contributor’s first distribution and is subject to §§3.1–3.4.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§§2.1(a), 2.2 and 2.7"
+          }
+        ]
+      },
+      "larger_work": {
+        "state": "permission",
+        "text": "The first paragraph of §3.3 permits distributing a Larger Work on chosen terms while meeting the MPL requirements for Covered Software. The Larger Work definition concerns additional material in separate files.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§1.7 and §3.3 first paragraph"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "The definition of Modifications covers qualifying changed files and new source files that contain Covered Software. Distributed Covered Software source remains subject to the license.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§§1.10 and 3.1"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Preserve the substance of license notices in the Source Code Form of Covered Software. Section 3.4 allows changes to the extent required to correct known factual inaccuracies.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§3.4"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "Section 2.1(b) grants rights over a Contributor’s Contributions or Contributor Version under that Contributor’s defined, licensable Patent Claims. The grant takes effect on the Contributor’s first distribution of the Contribution and has the exclusions in §2.3.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§§1.2, 1.9, 1.11 and 2.1(b)–2.3"
+          }
+        ]
+      },
+      "secondary_licenses": {
+        "state": "permission",
+        "text": "Section 3.3 permits a qualifying initial distribution of eligible Covered Software under both the MPL and the relevant Secondary License when the Larger Work combines it with an existing work governed by that license. Check both incompatibility grounds in §1.5. Recipients may then further distribute the Covered Software under either applicable license.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 1.12 and 3.3"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/FAQ/", "locator": "Q14"}
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "A distributor of Covered Software in Executable Form must make the source available under §3.1 and tell executable recipients how to get the source by reasonable means, in a timely manner, for at most the cost of distribution to them.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§§3.1–3.2"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "Section 5.1 provides automatic termination for noncompliance and separate routes to reinstatement. The patent litigation specified in §5.2 terminates both §2.1 grants from all Contributors for the Covered Software, subject to the trigger’s stated exclusions and §5.3’s surviving end-user agreements.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§5"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Shipping an executable Larger Work with an edited MPL file",
+        "text": "Make the Covered Software’s source available under §3.1 and give executable recipients the access instructions required by §3.2(a). Include new source files containing portions of Covered Software when identifying Modifications, and evaluate separate material under §3.3.",
+        "sources": [
+          {
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/",
+            "locator": "§§1.10 and 3.1–3.3"
+          }
+        ]
+      },
+      {
+        "situation": "Distributing a Larger Work with an existing GPLv3 component",
+        "text": "Check the MPL-covered files’ notices and their licensing history. If neither §1.5 ground applies and the work meets §3.3’s combination condition, follow Mozilla’s guidance for making the covered source available under both licenses. Apply the executable source-access rules separately if shipping executable copies.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 1.12 and 3.2–3.3"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/combining-mpl-and-gpl/", "locator": "Initial Distribution of MPL-licensed Files As Part Of an (L)GPL-licensed Project"}
+        ]
+      }
+    ]
+  },
+  "MPL-2.0-no-copyleft-exception": {
+    "summary": "SPDX uses this identifier for MPL 2.0 with the Exhibit B incompatibility notice attached to the covered source. The additional distribution route under Secondary Licenses in §3.3 depends on the actual notice and licensing history.",
+    "dimensions": {
+      "larger_work": {
+        "state": "permission",
+        "text": "The first paragraph of §3.3 still permits distributing a Larger Work on chosen terms while meeting the MPL requirements for Covered Software. Assess the separate files under the Larger Work definition.",
+        "sources": [{"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§1.7 and §3.3 first paragraph"}]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Section 10.4 requires attaching Exhibit B when distributing incompatible Covered Software in Source Code Form under MPL 2.0. Mozilla explains that printing Exhibit B within a copy of the full license leaves this attachment requirement unfulfilled. Preserve applicable source notices under §3.4.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§3.4 and 10.4, Exhibits A and B"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/FAQ/", "locator": "Q25"}
+        ]
+      },
+      "secondary_licenses": {
+        "state": "restriction",
+        "text": "Section 1.5(a) treats Covered Software as incompatible with Secondary Licenses when its initial Contributor attaches Exhibit B. Section 1.5(b) separately applies if the software was made available under MPL 1.1 or earlier without also being made available under a Secondary License. The second paragraph of §3.3 supplies no additional Secondary License permission for such incompatible source.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 1.12 and 3.3 second paragraph"},
+          {"url": "https://spdx.org/licenses/MPL-2.0-no-copyleft-exception.html", "locator": "Notes and Standard License Header"}
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "When distributing Covered Software in Executable Form, make its source available under §3.1 and tell recipients how to obtain it under the conditions in §3.2(a). Exhibit B affects the separate Secondary License route.",
+        "sources": [{"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§3.1–3.3 and 10.4"}]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Considering a Larger Work with a GPLv3 component and Exhibit B source",
+        "text": "Verify whether Exhibit B was actually attached to the covered source and check its licensing history. If the source is incompatible under §1.5, seek another applicable grant before relying on GPLv3 terms for that source. When distributing the incompatible source under MPL 2.0, attach Exhibit B and preserve applicable notices.",
+        "sources": [
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/", "locator": "§§1.5, 3.3–3.4 and 10.4"},
+          {"url": "https://www.mozilla.org/en-US/MPL/2.0/FAQ/", "locator": "Q14 and Q25"}
+        ]
+      }
+    ]
+  },
+  "ODbL-1.0": {
+    "summary": "ODbL addresses rights in a database and circumstances in which notices, share-alike or access to a derivative database apply.",
+    "dimensions": {
+      "database_rights": {
+        "state": "permission",
+        "text": "The grant in §3 concerns the Database, subject to its terms. Rights in individual contents can be governed separately.",
+        "sources": [
+          {
+            "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+            "locator": "§§2–3"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Section 4 distinguishes notices for conveying the Database from notices associated with public use of a Produced Work.",
+        "sources": [
+          {
+            "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+            "locator": "§§4.2–4.3"
+          }
+        ]
+      },
+      "share_alike": {
+        "state": "condition",
+        "text": "Under §4.4(c), Public Use of a Produced Work made from a Derivative Database counts as Public Use of that Derivative Database. Subject to §4.5, §4.4(a) limits the available terms for the Derivative Database to ODbL 1.0, a later similar ODbL version, or a compatible license.",
+        "sources": [
+          {
+            "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+            "locator": "§§4.4–4.5"
+          }
+        ]
+      },
+      "source_availability": {
+        "state": "condition",
+        "text": "Section 4.6 requires an offer to recipients when the licensee Publicly Uses a Derivative Database or a Produced Work from it. Offer a machine-readable copy of the complete Derivative Database or a file covering all alterations or their method, including added Contents. The offered copy or file must be free online. Physical distribution of that material may cost up to a reasonable production cost.",
+        "sources": [
+          {
+            "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+            "locator": "§4.6"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Publishing a static map from a derivative database",
+        "text": "Assume a licensee publishes a qualifying Produced Work to an audience outside the licensee's control and provides only the map. Where the map comes from a Derivative Database, assess the output notice, underlying database terms, and offer to recipients under §§4.3, 4.4 and 4.6. A map rendered directly from the original Database still has the §4.3 notice condition. Under §4.5(b), creating the map alone leaves the source database's derivative status unchanged for purposes of §4.4.",
+        "sources": [
+          {
+            "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+            "locator": "§§1 and 4.3–4.6"
+          }
+        ]
+      }
+    ]
+  },
+  "PolyForm-Noncommercial-1.0.0": {
+    "summary": "PolyForm Noncommercial 1.0.0 grants copyright permission for permitted purposes and has separate clauses for distribution and changes. Its personal-use and institutional-use clauses identify different ways a purpose can qualify.",
+    "dimensions": {
+      "commercial_use": {
+        "state": "restriction",
+        "text": "The general copyright grant and the permission to make changes or new works depend on a permitted purpose. Noncommercial purposes qualify, and two further clauses describe covered personal uses and use by specified organizations.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Copyright License, Changes and New Works License, Noncommercial Purposes, Personal Uses and Noncommercial Organizations"
+          }
+        ]
+      },
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The copyright grant covers acts that otherwise infringe the licensor's copyright in the software when done for a permitted purpose. The instrument sets out the grants for distribution and for changes or new works in separate clauses.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Copyright License, Distribution License and Changes and New Works License"
+          }
+        ]
+      },
+      "distribution": {
+        "state": "permission",
+        "text": "The distribution clause grants permission to distribute copies, including copies with changes and new works allowed by the changes clause. Each recipient of any part must receive the stated notices. The instrument expressly bars sublicensing or transferring the licenses it grants you.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Distribution License, Notices and No Other Rights"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Give anyone receiving a copy of any part the terms or the specified URL, together with copies of any plain-text Required Notice lines the licensor provided with the software.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Notices"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "permission",
+        "text": "The grant covers patent claims the licensor can or becomes able to license that your use of the software would infringe.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Patent License"
+          }
+        ]
+      },
+      "termination": {
+        "state": "condition",
+        "text": "After first written notice of a violation, licenses can continue if you fully comply and take practical corrective steps within 32 days of receipt. A written patent claim about the software can end the patent license immediately, with a distinct scope for claims made by your company.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Patent Defense, Violations and Definitions"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The instrument disclaims warranties and conditions and excludes the licensor's liability to the extent the law allows.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "No Liability"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Running a grant-funded university research project",
+        "text": "Use by an educational institution is a permitted purpose under the institutional clause regardless of the funding source or obligations from that funding. Verify who uses the software. A for-profit partner's separate use requires its own assessment. An institutional purpose leaves the distribution notice conditions in place.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Noncommercial Organizations, Distribution License and Notices"
+          }
+        ]
+      },
+      {
+        "situation": "Moving a no-charge prototype into a paid service",
+        "text": "Reassess the actual purpose before relying on this grant. A project with an anticipated commercial application falls outside the stated personal-use clause, even if the prototype has no price. Assess other permitted-purpose grounds, separate permission and any acts that require a copyright license. Whether the service distributes a copy is a separate factual question.",
+        "sources": [
+          {
+            "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+            "locator": "Copyright License, Distribution License, Noncommercial Purposes, Personal Uses, Noncommercial Organizations and Definitions"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9b263419a63f49aa8a9df7b6c0883f0f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1685,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/polyparse-exception.json",
+        "sha256": "09ca9a517976a1f6791e18da51bc1a307bd7db5fd6f13c51fb07863df0d935af"
+      },
+      "template": {
+        "bytes": 420,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/polyparse-exception.template.txt",
+        "sha256": "4f639eac6f42d2027b5302193ac0a236397f4e5c01ab761348c903815d841e0c"
+      },
+      "text": {
+        "bytes": 419,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/polyparse-exception.txt",
+        "sha256": "23ba2c108ff5a52efef7d82c2c516f4d65932182f22a6cc8e24c3360628703f0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "polyparse-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/polyparse-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "polyparse-exception",
+      "name": "Polyparse Exception",
+      "reference": "https://spdx.org/licenses/polyparse-exception.html",
+      "referenceNumber": 39,
+      "seeAlso": [
+        "https://hackage.haskell.org/package/polyparse-1.13/src/COPYRIGHT"
+      ]
+    },
+    "name": "Polyparse Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

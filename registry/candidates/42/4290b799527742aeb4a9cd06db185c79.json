@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4290b799527742aeb4a9cd06db185c79",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12797,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Info-ZIP.json",
+        "sha256": "cd0740e957c77ec9d042005fa173216860b178c13891fc15507de96ec16a24e8"
+      },
+      "template": {
+        "bytes": 3441,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Info-ZIP.template.txt",
+        "sha256": "f5eb20f2aa8d5f47640642aa845e472f6ae11ca96373758dd87bcd01d5c5ad28"
+      },
+      "text": {
+        "bytes": 3171,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Info-ZIP.txt",
+        "sha256": "fa0c6949eee13c4099a6d0f78f9f1d76c7320e71adfc066d1632837320703a08"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Info-ZIP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Info-ZIP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Info-ZIP",
+      "name": "Info-ZIP License",
+      "reference": "https://spdx.org/licenses/Info-ZIP.html",
+      "referenceNumber": 327,
+      "seeAlso": [
+        "http://www.info-zip.org/license.html"
+      ]
+    },
+    "name": "Info-ZIP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

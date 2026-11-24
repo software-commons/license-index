@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "39380494a1fc4328ba67816dcce0b322",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2369,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Soundex.json",
+        "sha256": "a9d9aae2c383dacf2eba34cb2523aa6c8745d3b2b76720b1aebca1a8c4d6887b"
+      },
+      "template": {
+        "bytes": 455,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Soundex.template.txt",
+        "sha256": "af2fc7eb80df4f75518f500d881354d99e29e770a6febdf406280780a5242650"
+      },
+      "text": {
+        "bytes": 404,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Soundex.txt",
+        "sha256": "03b2035244ff4f72de122c057065a4a88309f87ed0fbf4aa84b8e8543f6d1416"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Soundex",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Soundex.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Soundex",
+      "name": "Soundex License",
+      "reference": "https://spdx.org/licenses/Soundex.html",
+      "referenceNumber": 633,
+      "seeAlso": [
+        "https://metacpan.org/release/RJBS/Text-Soundex-3.05/source/Soundex.pm#L3-11"
+      ]
+    },
+    "name": "Soundex License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

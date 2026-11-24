@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9eba365106aa4dceba879ab9687092b7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 84089,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Hippocratic-3.0-core.json",
+        "sha256": "44c5a4b06d3e0c11f9c4668fe76468cf6f66f1d593ad5cbf2fcf88ea03d5e4e3"
+      },
+      "template": {
+        "bytes": 19487,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Hippocratic-3.0-core.template.txt",
+        "sha256": "6d6c3ded4b91c849bbc272893f7596b5574b892f3bf6e3feac1af33cb3cad4d9"
+      },
+      "text": {
+        "bytes": 16264,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Hippocratic-3.0-core.txt",
+        "sha256": "eb83973b6da3404ee2160c00e40f5faa2b9feab9eb39a8ca83a8a463e2ece686"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Hippocratic-3.0-core",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Hippocratic-3.0-core.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Hippocratic-3.0-core",
+      "name": "Hippocratic License 3.0",
+      "reference": "https://spdx.org/licenses/Hippocratic-3.0-core.html",
+      "referenceNumber": 252,
+      "seeAlso": [
+        "https://firstdonoharm.dev/version/3/0/core.txt"
+      ]
+    },
+    "name": "Hippocratic License 3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

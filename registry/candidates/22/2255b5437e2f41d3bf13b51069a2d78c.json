@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2255b5437e2f41d3bf13b51069a2d78c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 104493,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NOSL.json",
+        "sha256": "feab9cf01b44889d73d0302faef95fe2a16e97edc55abe98abd89f4e74f9b6de"
+      },
+      "template": {
+        "bytes": 27545,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NOSL.template.txt",
+        "sha256": "77cb43ad41aa966f99a31e19467955c24d32d65ea860caf22e61fb3a6ad5c729"
+      },
+      "text": {
+        "bytes": 24490,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NOSL.txt",
+        "sha256": "c85abab0d02c1df3940601b5ccafa1e01a8aa9bfafbdaa9bfcf77d717f617e9c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NOSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NOSL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "NOSL",
+      "name": "Netizen Open Source License",
+      "reference": "https://spdx.org/licenses/NOSL.html",
+      "referenceNumber": 411,
+      "seeAlso": [
+        "http://bits.netizen.com.au/licenses/NOSL/nosl.txt"
+      ]
+    },
+    "name": "Netizen Open Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

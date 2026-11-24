@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5a3c8285ba784ba588eba2c49dbda351",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4641,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-Fenneberg-Livingston.json",
+        "sha256": "27174a2c458907e41e0d2b9d77b74bf65f652f30ee0be6f6566bc9de09a15e87"
+      },
+      "template": {
+        "bytes": 897,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-Fenneberg-Livingston.template.txt",
+        "sha256": "b1081fa689b09cd1879c1131125600ac1e734edf86544fa63c4abd3c01d369b0"
+      },
+      "text": {
+        "bytes": 700,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-Fenneberg-Livingston.txt",
+        "sha256": "9fb0130e0f701fdd89f46ca85a5560bc0f605508e102e8d227ec28cf27b0675c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-Fenneberg-Livingston",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-Fenneberg-Livingston.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-Fenneberg-Livingston",
+      "name": "Historical Permission Notice and Disclaimer - Fenneberg-Livingston variant",
+      "reference": "https://spdx.org/licenses/HPND-Fenneberg-Livingston.html",
+      "referenceNumber": 556,
+      "seeAlso": [
+        "https://github.com/FreeRADIUS/freeradius-client/blob/master/COPYRIGHT#L32",
+        "https://github.com/radcli/radcli/blob/master/COPYRIGHT#L34"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - Fenneberg-Livingston variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

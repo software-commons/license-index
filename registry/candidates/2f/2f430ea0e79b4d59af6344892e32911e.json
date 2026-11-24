@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2f430ea0e79b4d59af6344892e32911e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3023,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/hyphen-bulgarian.json",
+        "sha256": "68e3765d8ce14e17d282e137b9a0214e6d0b4c27d0b80683713e452261e6e373"
+      },
+      "template": {
+        "bytes": 550,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/hyphen-bulgarian.template.txt",
+        "sha256": "41b4a359707dbeb1b72c67730abc02beb10587294c8f829fb9cd08f3571bf1d6"
+      },
+      "text": {
+        "bytes": 490,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/hyphen-bulgarian.txt",
+        "sha256": "eec5743526765b0ec7d52e26648fe17bd4381cc0c23e351ffed38bcde0c10801"
+      }
+    },
+    "deprecated": false,
+    "identifier": "hyphen-bulgarian",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/hyphen-bulgarian.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "hyphen-bulgarian",
+      "name": "hyphen-bulgarian License",
+      "reference": "https://spdx.org/licenses/hyphen-bulgarian.html",
+      "referenceNumber": 65,
+      "seeAlso": [
+        "https://ctan.math.illinois.edu/systems/texlive/tlnet/archive/hyphen-bulgarian.tar.xz",
+        "https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/blob/959538769bfad6a73bdf34275d46520ec0f9cbb5/COPYING#L176-185"
+      ]
+    },
+    "name": "hyphen-bulgarian License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

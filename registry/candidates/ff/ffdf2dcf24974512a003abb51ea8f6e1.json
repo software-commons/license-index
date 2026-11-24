@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ffdf2dcf24974512a003abb51ea8f6e1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8626,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-Views.json",
+        "sha256": "7e23465ef9d8a9c5dbcf53c1fb8f43920005fb444c77e729a7836f3e4781f7d0"
+      },
+      "template": {
+        "bytes": 1909,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause-Views.template.txt",
+        "sha256": "356ba964b25514395af4e854f9d32514e98aa1ffa6d9eedf53fc245a1897b62e"
+      },
+      "text": {
+        "bytes": 1519,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause-Views.txt",
+        "sha256": "cf2d8e08c5c338804d361fee703f88f52b7fdc710eab87ccd072cf083696f6fc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause-Views",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-Views.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-Views",
+      "name": "BSD 2-Clause with views sentence",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-Views.html",
+      "referenceNumber": 519,
+      "seeAlso": [
+        "http://www.freebsd.org/copyright/freebsd-license.html",
+        "https://people.freebsd.org/~ivoras/wine/patch-wine-nvidia.sh",
+        "https://github.com/protegeproject/protege/blob/master/license.txt"
+      ]
+    },
+    "name": "BSD 2-Clause with views sentence",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

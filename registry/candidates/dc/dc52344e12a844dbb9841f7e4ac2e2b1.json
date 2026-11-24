@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dc52344e12a844dbb9841f7e4ac2e2b1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2801,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-Pbmplus.json",
+        "sha256": "ecb6d7b4847ed72e273ae682dea49a8db22ce05cc69fb8a1fb80646988f273dd"
+      },
+      "template": {
+        "bytes": 459,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-Pbmplus.template.txt",
+        "sha256": "66bd87ad4cd5b9f1969862221ff0ee95e44ffb37c60a4db4a74cdabfa48ec095"
+      },
+      "text": {
+        "bytes": 406,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-Pbmplus.txt",
+        "sha256": "a361c810da87802193e85503747f5b4ecfee6344a3c554de99896fc915e354b3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-Pbmplus",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-Pbmplus.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-Pbmplus",
+      "name": "Historical Permission Notice and Disclaimer - Pbmplus variant",
+      "reference": "https://spdx.org/licenses/HPND-Pbmplus.html",
+      "referenceNumber": 329,
+      "seeAlso": [
+        "https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/netpbm.c#l8"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - Pbmplus variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

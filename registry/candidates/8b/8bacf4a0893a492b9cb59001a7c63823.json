@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8bacf4a0893a492b9cb59001a7c63823",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1699,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/PCRE2-exception.json",
+        "sha256": "99f32bd8db1cb5db999ca7985b0b98ce282054152358cf798dc49d44cfa2f49e"
+      },
+      "template": {
+        "bytes": 414,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PCRE2-exception.template.txt",
+        "sha256": "a8c4885d5b4863f50f9ff0dd04de1167c523377d4858b809e2d537d6090d5948"
+      },
+      "text": {
+        "bytes": 413,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PCRE2-exception.txt",
+        "sha256": "9bb8552f23d2a44e265c13e83e16928853f29675cc37d3887f71287e9040c4fd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PCRE2-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PCRE2-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "PCRE2-exception",
+      "name": "PCRE2 exception",
+      "reference": "https://spdx.org/licenses/PCRE2-exception.html",
+      "referenceNumber": 62,
+      "seeAlso": [
+        "https://www.pcre.org/licence.txt"
+      ]
+    },
+    "name": "PCRE2 exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

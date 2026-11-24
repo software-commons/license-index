@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5066be3c90e445a0af396da946a1a8b0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 68435,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NASA-1.3.json",
+        "sha256": "5861b66e41c7f5df80874d240221e6efd8703537e57981066df311f1759d2f76"
+      },
+      "template": {
+        "bytes": 17362,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NASA-1.3.template.txt",
+        "sha256": "8e798caf8a7f272371b3f1268eceafcf7fbc10cad9fbea7d7840f329083415b6"
+      },
+      "text": {
+        "bytes": 13778,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NASA-1.3.txt",
+        "sha256": "fe59e577293a15d0e8e732068b759272a11beb70868b7c8baaf4351442b64893"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NASA-1.3",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NASA-1.3.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": true,
+      "licenseId": "NASA-1.3",
+      "name": "NASA Open Source Agreement 1.3",
+      "reference": "https://spdx.org/licenses/NASA-1.3.html",
+      "referenceNumber": 101,
+      "seeAlso": [
+        "http://ti.arc.nasa.gov/opensource/nosa/",
+        "https://opensource.org/license/NASA-1.3"
+      ]
+    },
+    "name": "NASA Open Source Agreement 1.3",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

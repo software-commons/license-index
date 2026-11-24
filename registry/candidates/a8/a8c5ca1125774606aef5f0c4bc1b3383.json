@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a8c5ca1125774606aef5f0c4bc1b3383",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5514,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Brian-Gladman-3-Clause.json",
+        "sha256": "a88e7d7bab8a2a479ccff34d1ecab0643f7f62344cdf180dcbe7bd8d203c3f07"
+      },
+      "template": {
+        "bytes": 1275,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Brian-Gladman-3-Clause.template.txt",
+        "sha256": "0bce68c6c073ce68ffc2feac1030c63a92ababf2ce1535671151a0cd17ae05c1"
+      },
+      "text": {
+        "bytes": 1096,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Brian-Gladman-3-Clause.txt",
+        "sha256": "c7823399907fa696b8634dedf908b80c0bed592a297ced3bbb4034a07cd06470"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Brian-Gladman-3-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Brian-Gladman-3-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Brian-Gladman-3-Clause",
+      "name": "Brian Gladman 3-Clause License",
+      "reference": "https://spdx.org/licenses/Brian-Gladman-3-Clause.html",
+      "referenceNumber": 677,
+      "seeAlso": [
+        "https://github.com/SWI-Prolog/packages-clib/blob/master/sha1/brg_endian.h"
+      ]
+    },
+    "name": "Brian Gladman 3-Clause License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8c03a36ffcb343a3845ca5464750b88f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5759,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-export2-US.json",
+        "sha256": "5e39e0fbd1626627c89c090ff90f74e37bfd79be641c21422b9ae9729c7076cb"
+      },
+      "template": {
+        "bytes": 1285,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-export2-US.template.txt",
+        "sha256": "f7b84efb3c1d521998a90a11a5a505f984066344ae74807e7340ba1f400a6337"
+      },
+      "text": {
+        "bytes": 1136,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-export2-US.txt",
+        "sha256": "bd33905481ee786386948a8a223c8bd162aa6753d585379215bf31e73298c4db"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-export2-US",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-export2-US.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-export2-US",
+      "name": "HPND with US Government export control and 2 disclaimers",
+      "reference": "https://spdx.org/licenses/HPND-export2-US.html",
+      "referenceNumber": 229,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L111-L133",
+        "https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html"
+      ]
+    },
+    "name": "HPND with US Government export control and 2 disclaimers",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "87110d653b734f928c0ad357e4704921",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2902,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HaskellReport.json",
+        "sha256": "db047eb503fb2c4891ff54622e41ec7073e9e7b9c797bca17bd97ba7e5912c9f"
+      },
+      "template": {
+        "bytes": 656,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HaskellReport.template.txt",
+        "sha256": "36fb017ca4b93baac5eb94cdfe9c58dd8dc4c285a49e83c491a3a8253815a6f5"
+      },
+      "text": {
+        "bytes": 602,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HaskellReport.txt",
+        "sha256": "5d28692ce2562cd7e0eb0ed6f087f84e71663b14d319e0ebb2abc8f84f1e308f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HaskellReport",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HaskellReport.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HaskellReport",
+      "name": "Haskell Language Report License",
+      "reference": "https://spdx.org/licenses/HaskellReport.html",
+      "referenceNumber": 469,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Haskell_Language_Report_License"
+      ]
+    },
+    "name": "Haskell Language Report License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

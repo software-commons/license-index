@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5fca37bf1cc74b63aded99cf073b0e8e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3151,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-UC.json",
+        "sha256": "424234547432530c616339daa50ca607a947a514a5fcc3af35f05ada9ff57d2c"
+      },
+      "template": {
+        "bytes": 580,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-UC.template.txt",
+        "sha256": "73b8c701c74e7cdf83b6ca2ce39c890b49218b0d473e9c0138f18ebcedc78715"
+      },
+      "text": {
+        "bytes": 425,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-UC.txt",
+        "sha256": "f75f12c110026b77dc75ba2d92d3b84acbcfa7ce705af1ee7bd0589521724ad6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-UC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-UC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-UC",
+      "name": "Historical Permission Notice and Disclaimer - University of California variant",
+      "reference": "https://spdx.org/licenses/HPND-UC.html",
+      "referenceNumber": 626,
+      "seeAlso": [
+        "https://core.tcl-lang.org/tk/file?name=compat/unistd.h"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - University of California variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

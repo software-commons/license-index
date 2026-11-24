@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ab18898a28bd430a885cfd65c60b8ff8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11069,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-Patent.json",
+        "sha256": "9339b0fd09e2bf99ba3b7d3aa8cba8c5ae546a81f51366096f6be4cf9c96ccfa"
+      },
+      "template": {
+        "bytes": 2829,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause-Patent.template.txt",
+        "sha256": "744a70753586bc39b577bde78046fee646397ec746758fb5d6ff8c71180f82c3"
+      },
+      "text": {
+        "bytes": 2569,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause-Patent.txt",
+        "sha256": "10500282524f6f9e8c656779f3af9975875ad886181a1f9e7ff0034bcb2f70f5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause-Patent",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-Patent.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "BSD-2-Clause-Patent",
+      "name": "BSD-2-Clause Plus Patent License",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-Patent.html",
+      "referenceNumber": 697,
+      "seeAlso": [
+        "https://opensource.org/license/BSD-2-Clause-Patent"
+      ]
+    },
+    "name": "BSD-2-Clause Plus Patent License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

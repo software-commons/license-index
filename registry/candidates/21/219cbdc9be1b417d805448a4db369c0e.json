@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "219cbdc9be1b417d805448a4db369c0e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4736,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/curl.json",
+        "sha256": "b70e4e14b7a324abdecec0bc44e219e57b840f42a647c8b0fd53beb155f60fb0"
+      },
+      "template": {
+        "bytes": 1132,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/curl.template.txt",
+        "sha256": "18898199289ff9526ef779a4cce3f79ab6e1cd3c646221dc7903b884cf1bbecb"
+      },
+      "text": {
+        "bytes": 1043,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/curl.txt",
+        "sha256": "272d1239bdcef73bb98bac206168ca1040bd4a31296755fadfb7515bcea18df3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "curl",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/curl.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "curl",
+      "name": "curl License",
+      "reference": "https://spdx.org/licenses/curl.html",
+      "referenceNumber": 642,
+      "seeAlso": [
+        "https://github.com/bagder/curl/blob/master/COPYING",
+        "https://opensource.org/license/curl"
+      ]
+    },
+    "name": "curl License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

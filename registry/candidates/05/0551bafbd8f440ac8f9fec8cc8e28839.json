@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0551bafbd8f440ac8f9fec8cc8e28839",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3707,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSFULLRWD.json",
+        "sha256": "131df7f102f31643156a4381943446c481d69be8d0fbf8d2ed512db2f87d805f"
+      },
+      "template": {
+        "bytes": 821,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSFULLRWD.template.txt",
+        "sha256": "b46908037913f557c4fc229ae4ce24028ba52b236e8f1a1ef784c9462de21a09"
+      },
+      "text": {
+        "bytes": 544,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSFULLRWD.txt",
+        "sha256": "e1d905d45b956dcf22c5a7bebd382f3c8c90256ee46148dd479fc821097522d2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSFULLRWD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSFULLRWD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSFULLRWD",
+      "name": "FSF Unlimited License (With License Retention and Warranty Disclaimer)",
+      "reference": "https://spdx.org/licenses/FSFULLRWD.html",
+      "referenceNumber": 0,
+      "seeAlso": [
+        "https://lists.gnu.org/archive/html/autoconf/2012-04/msg00061.html"
+      ]
+    },
+    "name": "FSF Unlimited License (With License Retention and Warranty Disclaimer)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

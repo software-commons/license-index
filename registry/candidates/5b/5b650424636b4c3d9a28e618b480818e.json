@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5b650424636b4c3d9a28e618b480818e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6484,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Mackerras-3-Clause-acknowledgment.json",
+        "sha256": "3fd2e2c06718a93d8a2400c8a19aacd73d3a131b24d23b9c0938edf300cf5b08"
+      },
+      "template": {
+        "bytes": 1414,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Mackerras-3-Clause-acknowledgment.template.txt",
+        "sha256": "6ed11f711c2c95977b698f7cc99043b3ced540a5967f20937a6818c0b2513ae6"
+      },
+      "text": {
+        "bytes": 1144,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Mackerras-3-Clause-acknowledgment.txt",
+        "sha256": "f2c3240abd5792c68c93e54310ca1dd6389313a91092e78039d2619948b6beac"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Mackerras-3-Clause-acknowledgment",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Mackerras-3-Clause-acknowledgment.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Mackerras-3-Clause-acknowledgment",
+      "name": "Mackerras 3-Clause - acknowledgment variant",
+      "reference": "https://spdx.org/licenses/Mackerras-3-Clause-acknowledgment.html",
+      "referenceNumber": 417,
+      "seeAlso": [
+        "https://github.com/ppp-project/ppp/blob/master/pppd/auth.c#L6-L28"
+      ]
+    },
+    "name": "Mackerras 3-Clause - acknowledgment variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

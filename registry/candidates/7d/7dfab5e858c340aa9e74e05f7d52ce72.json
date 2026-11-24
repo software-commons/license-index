@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7dfab5e858c340aa9e74e05f7d52ce72",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 97891,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-SA-3.0-AT.json",
+        "sha256": "0304efb2fad0ef0a29792c5706cd1c6c7fec12afe483621a5bdb7438529fb323"
+      },
+      "template": {
+        "bytes": 25075,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-SA-3.0-AT.template.txt",
+        "sha256": "c2947813b6248006d8f3b26fd69691a0ef4783eb92881fb74c02c7284605dcdd"
+      },
+      "text": {
+        "bytes": 22343,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-SA-3.0-AT.txt",
+        "sha256": "81184828fbd0059bbb5216306a3b03dd268e16c3bfb2470ddb269e1deda323a8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-SA-3.0-AT",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-SA-3.0-AT.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-SA-3.0-AT",
+      "name": "Creative Commons Attribution Share Alike 3.0 Austria",
+      "reference": "https://spdx.org/licenses/CC-BY-SA-3.0-AT.html",
+      "referenceNumber": 518,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-sa/3.0/at/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Share Alike 3.0 Austria",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

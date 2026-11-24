@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7183edf941d84c7a9ce0da107571f822",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7985,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-No-Nuclear-Warranty.json",
+        "sha256": "0129fa04fbc0734be8f9519e61c6e5483fcb9ae8d2bbff3d9ab79945a81b215b"
+      },
+      "template": {
+        "bytes": 1892,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-No-Nuclear-Warranty.template.txt",
+        "sha256": "a8bd8140fe17f6ed88552f643ceaa5d3085af46bbf55e3523f1c4c1d9c52185b"
+      },
+      "text": {
+        "bytes": 1699,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-No-Nuclear-Warranty.txt",
+        "sha256": "d3ce9bbc979d0eddb9006621ed5bd8f127af1054de064d438dd21a2c23d8bfdd"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-No-Nuclear-Warranty",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-No-Nuclear-Warranty.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-No-Nuclear-Warranty",
+      "name": "BSD 3-Clause No Nuclear Warranty",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-No-Nuclear-Warranty.html",
+      "referenceNumber": 569,
+      "seeAlso": [
+        "https://jogamp.org/git/?p=gluegen.git;a=blob_plain;f=LICENSE.txt"
+      ]
+    },
+    "name": "BSD 3-Clause No Nuclear Warranty",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

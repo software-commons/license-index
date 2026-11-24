@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "394058c41c164b8fbd49b72cf2e1c6ec",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2539,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Linux-syscall-note.json",
+        "sha256": "4c30ef03edf824948a73f89a091f69b5037414b1692328d89cd4d289e7dc06e8"
+      },
+      "template": {
+        "bytes": 625,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Linux-syscall-note.template.txt",
+        "sha256": "cf87ef8225f391861813ca84513750286fe5305fd44ce2b612765f91c221a117"
+      },
+      "text": {
+        "bytes": 638,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Linux-syscall-note.txt",
+        "sha256": "5bcef4fedbfc08776630e65d5d0d074dd31208037eddb167ca46a9ec4f737764"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Linux-syscall-note",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Linux-syscall-note.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Linux-syscall-note",
+      "name": "Linux Syscall Note",
+      "reference": "https://spdx.org/licenses/Linux-syscall-note.html",
+      "referenceNumber": 49,
+      "seeAlso": [
+        "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/COPYING"
+      ]
+    },
+    "name": "Linux Syscall Note",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

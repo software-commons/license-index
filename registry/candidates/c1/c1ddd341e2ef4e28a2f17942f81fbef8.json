@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c1ddd341e2ef4e28a2f17942f81fbef8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9583,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ParaType-Free-Font-1.3.json",
+        "sha256": "0f29a2f8c3a49aca0f27a28f6eda1f468baab1fb8f97cbabfad5190a3b42e02c"
+      },
+      "template": {
+        "bytes": 2244,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ParaType-Free-Font-1.3.template.txt",
+        "sha256": "9f6196fb5276963d59320acd0288ae8f8a4f890e713e529941abd1f65cdec791"
+      },
+      "text": {
+        "bytes": 1941,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ParaType-Free-Font-1.3.txt",
+        "sha256": "6c69486476279199d0c3708d4db088d1dc4dfadbf670c21c6339f42c08780f97"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ParaType-Free-Font-1.3",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ParaType-Free-Font-1.3.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ParaType-Free-Font-1.3",
+      "name": "ParaType Free Font Licensing Agreement v1.3",
+      "reference": "https://spdx.org/licenses/ParaType-Free-Font-1.3.html",
+      "referenceNumber": 716,
+      "seeAlso": [
+        "https://web.archive.org/web/20161209023955/http://www.paratype.ru/public/pt_openlicense_eng.asp",
+        "https://metadata.ftp-master.debian.org/changelogs//main/f/fonts-paratype/fonts-paratype_20181108-4_copyright"
+      ]
+    },
+    "name": "ParaType Free Font Licensing Agreement v1.3",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f914eb25d6cd450cb42b5868c68fa7e3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9047,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/UnRAR.json",
+        "sha256": "022a71b8d5ef174bddf0d37a48ff3dc7046575dbe62f3dbfbe634026d364e060"
+      },
+      "template": {
+        "bytes": 2046,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/UnRAR.template.txt",
+        "sha256": "2efa629be7be1b921f2a601d3eb05b65df5178bac5685396adab10e77a3ab793"
+      },
+      "text": {
+        "bytes": 1974,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/UnRAR.txt",
+        "sha256": "b8ebff69ebbedacbc666b21b1096639aa01c90323633bcec6ba5da1b86541562"
+      }
+    },
+    "deprecated": false,
+    "identifier": "UnRAR",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/UnRAR.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "UnRAR",
+      "name": "UnRAR License",
+      "reference": "https://spdx.org/licenses/UnRAR.html",
+      "referenceNumber": 347,
+      "seeAlso": [
+        "https://public.dhe.ibm.com/aix/freeSoftware/aixtoolbox/LICENSES/unRAR.txt"
+      ]
+    },
+    "name": "UnRAR License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

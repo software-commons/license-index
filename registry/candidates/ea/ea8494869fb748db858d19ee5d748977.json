@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ea8494869fb748db858d19ee5d748977",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9475,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/VSL-1.0.json",
+        "sha256": "5baaf3ca4409f4e2f132de0c314c679c6b1df80c5a712871c91addb9c47f2553"
+      },
+      "template": {
+        "bytes": 2425,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/VSL-1.0.template.txt",
+        "sha256": "d686ef0971b57f613e2b5e0b90161ac8f122efa4a10474fb7af01a3c19321a17"
+      },
+      "text": {
+        "bytes": 2065,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/VSL-1.0.txt",
+        "sha256": "435a7448a4719164bd6eff3dd00cef735eb4b81f70b715d8891753ca46777570"
+      }
+    },
+    "deprecated": false,
+    "identifier": "VSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/VSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "VSL-1.0",
+      "name": "Vovida Software License v1.0",
+      "reference": "https://spdx.org/licenses/VSL-1.0.html",
+      "referenceNumber": 285,
+      "seeAlso": [
+        "https://opensource.org/license/VSL-1.0"
+      ]
+    },
+    "name": "Vovida Software License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

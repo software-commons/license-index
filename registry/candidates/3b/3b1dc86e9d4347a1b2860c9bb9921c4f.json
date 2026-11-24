@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3b1dc86e9d4347a1b2860c9bb9921c4f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10702,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FreeBSD-DOC.json",
+        "sha256": "a69c66eec7d4a49bc11e1d38cb8e0d0bc679d3a784a34f1e6cd2984a4a5794c9"
+      },
+      "template": {
+        "bytes": 2953,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FreeBSD-DOC.template.txt",
+        "sha256": "2e7bf9c595c832bda736fbe51c04d0cb03fe81df2b178482359d32cf1945dbf4"
+      },
+      "text": {
+        "bytes": 2781,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FreeBSD-DOC.txt",
+        "sha256": "5f8b56ac9004a40244eba78f9db2661c7e0c22b864dce6d6a6fd036ecf1a4c6f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FreeBSD-DOC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FreeBSD-DOC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FreeBSD-DOC",
+      "name": "FreeBSD Documentation License",
+      "reference": "https://spdx.org/licenses/FreeBSD-DOC.html",
+      "referenceNumber": 32,
+      "seeAlso": [
+        "https://www.freebsd.org/copyright/freebsd-doc-license/"
+      ]
+    },
+    "name": "FreeBSD Documentation License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

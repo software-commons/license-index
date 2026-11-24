@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7f0bce9ede98411ea960a926ad32ef9f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7485,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-Darwin.json",
+        "sha256": "b0e736239a27970ded7a9ea4d9067568e5ecb00020e34f6e38727b6ba4e11e36"
+      },
+      "template": {
+        "bytes": 1740,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause-Darwin.template.txt",
+        "sha256": "605d8fabd5a61b8b4f7cbae4ff8e54451da07ea9072c8f5d4260873ed8102bb9"
+      },
+      "text": {
+        "bytes": 1593,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause-Darwin.txt",
+        "sha256": "37570d1866355ee1c785a0f12ab04f282f0433f8f22a8e9c5667829d4be4fd9d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause-Darwin",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-Darwin.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-Darwin",
+      "name": "BSD 2-Clause - Ian Darwin variant",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-Darwin.html",
+      "referenceNumber": 362,
+      "seeAlso": [
+        "https://github.com/file/file/blob/master/COPYING"
+      ]
+    },
+    "name": "BSD 2-Clause - Ian Darwin variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d73795a25f9244078b39fbd6715433f3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3603,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ISC-Veillard.json",
+        "sha256": "29ae01f450cabb4db0b72eb79c835829a519383e1ded810be98c1bd6a8c1b16c"
+      },
+      "template": {
+        "bytes": 576,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ISC-Veillard.template.txt",
+        "sha256": "7e1850224e9765b614409090c6ddb890d9919f35af535f22970cd3da3f6d747b"
+      },
+      "text": {
+        "bytes": 522,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ISC-Veillard.txt",
+        "sha256": "f9449d12f6aa6cf4a86ec893bd0ed3b397e57ad7f2d78aab2d680ceb38068c3f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ISC-Veillard",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ISC-Veillard.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ISC-Veillard",
+      "name": "ISC Veillard variant",
+      "reference": "https://spdx.org/licenses/ISC-Veillard.html",
+      "referenceNumber": 295,
+      "seeAlso": [
+        "https://raw.githubusercontent.com/GNOME/libxml2/4c2e7c651f6c2f0d1a74f350cbda95f7df3e7017/hash.c",
+        "https://github.com/GNOME/libxml2/blob/master/dict.c",
+        "https://sourceforge.net/p/ctrio/git/ci/master/tree/README"
+      ]
+    },
+    "name": "ISC Veillard variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

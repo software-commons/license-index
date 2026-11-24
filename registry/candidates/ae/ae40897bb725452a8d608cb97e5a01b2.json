@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ae40897bb725452a8d608cb97e5a01b2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 82820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MPL-1.0.json",
+        "sha256": "45802335cedaeb1e7c57c077955573abd3e24f550df3643077668b105675b5db"
+      },
+      "template": {
+        "bytes": 20667,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MPL-1.0.template.txt",
+        "sha256": "17442a70351f0576dc890526732eef41265eebe99e5947eccbe2c2386c829948"
+      },
+      "text": {
+        "bytes": 18272,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MPL-1.0.txt",
+        "sha256": "819b323d7e6d8685b4c0fe9c297c75d59f2e70eb52fcc7e14bc2e65d70b8f916"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "MPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "MPL-1.0",
+      "name": "Mozilla Public License 1.0",
+      "reference": "https://spdx.org/licenses/MPL-1.0.html",
+      "referenceNumber": 579,
+      "seeAlso": [
+        "http://www.mozilla.org/MPL/MPL-1.0.html",
+        "https://opensource.org/license/MPL-1.0"
+      ]
+    },
+    "name": "Mozilla Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

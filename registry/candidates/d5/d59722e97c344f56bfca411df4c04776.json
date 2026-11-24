@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d59722e97c344f56bfca411df4c04776",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 948,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/any-OSI.json",
+        "sha256": "422e7ef908e5721b78e2a2d353daf6628a01d71b1dda57aecd6e1dc9c219aae9"
+      },
+      "template": {
+        "bytes": 94,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/any-OSI.template.txt",
+        "sha256": "cfdaa85cb583d90816003f1dd1c0cffc759ee8d611abb6a4754bad6c9bd10faf"
+      },
+      "text": {
+        "bytes": 93,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/any-OSI.txt",
+        "sha256": "794e2165b96e8e85340c037ea93ae3b5b3a6d30929f711a3b0b7e4b2074f5029"
+      }
+    },
+    "deprecated": false,
+    "identifier": "any-OSI",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/any-OSI.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "any-OSI",
+      "name": "Any OSI License",
+      "reference": "https://spdx.org/licenses/any-OSI.html",
+      "referenceNumber": 455,
+      "seeAlso": [
+        "https://metacpan.org/pod/Exporter::Tidy#LICENSE"
+      ]
+    },
+    "name": "Any OSI License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9e58058870d7471bbd8f8fe732b4ff4b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 57870,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Net-SNMP.json",
+        "sha256": "01c829ff0b83e1c48ac0cde89e6295dec3a1b1aa51b54d1946a30d9f8a8528af"
+      },
+      "replacement_source": {
+        "bytes": 20004,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/Net-SNMP.xml",
+        "sha256": "e43883239a86f2ded7847754a01e79c4a127eb94cb1b50153c162750e173f44d"
+      },
+      "template": {
+        "bytes": 15608,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_Net-SNMP.template.txt",
+        "sha256": "cb68f4778873bc55979faa74cb379ef13e5d64faeae33c2be0553d48110eaeea"
+      },
+      "text": {
+        "bytes": 14237,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_Net-SNMP.txt",
+        "sha256": "edf2a6282bd3574dfe90461e1ba69325f27331ca072c5887f6a42b9e89495908"
+      }
+    },
+    "deprecated": true,
+    "identifier": "Net-SNMP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.25.0",
+      "detailsUrl": "https://spdx.org/licenses/Net-SNMP.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "Net-SNMP",
+      "name": "Net-SNMP License",
+      "reference": "https://spdx.org/licenses/Net-SNMP.html",
+      "referenceNumber": 485,
+      "seeAlso": [
+        "http://net-snmp.sourceforge.net/about/license.html"
+      ]
+    },
+    "name": "Net-SNMP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

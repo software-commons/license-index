@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6096e6a9892a46bfb5b2a9298bd1732c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4532,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/libtiff.json",
+        "sha256": "59fc688c63f464b3e4df32344fdec79ff4bd7f61861d541e9a6bf2ff5b1d8446"
+      },
+      "template": {
+        "bytes": 1197,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/libtiff.template.txt",
+        "sha256": "44b471c2334cfd7b704d335e1ca3792e0d62e4377ba24c1784c7d97a602bb409"
+      },
+      "text": {
+        "bytes": 1139,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/libtiff.txt",
+        "sha256": "a6ecaa20c8c1b7a8215ed05e5f58764f821596e36d31acc05282c6154cf0dc44"
+      }
+    },
+    "deprecated": false,
+    "identifier": "libtiff",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/libtiff.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "libtiff",
+      "name": "libtiff License",
+      "reference": "https://spdx.org/licenses/libtiff.html",
+      "referenceNumber": 540,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/libtiff"
+      ]
+    },
+    "name": "libtiff License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "08ac9b38f2854ba18b6ac63e0dfa1e89",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 19487,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/C-UDA-1.0.json",
+        "sha256": "0e44c50bebc06b72c97dbcd0cd8b275947cbb642eb6f9ad3df90995a11152d9d"
+      },
+      "template": {
+        "bytes": 4632,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/C-UDA-1.0.template.txt",
+        "sha256": "9a0e9545938ebc532b78dd0fecc7986f2c8a3a7876e7b93d276d6134568f0a96"
+      },
+      "text": {
+        "bytes": 3451,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/C-UDA-1.0.txt",
+        "sha256": "010e48b7389abc09621b16c332d3e7d138ce0815bff07e67a5cb05ef5407058f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "C-UDA-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/C-UDA-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "C-UDA-1.0",
+      "name": "Computational Use of Data Agreement v1.0",
+      "reference": "https://spdx.org/licenses/C-UDA-1.0.html",
+      "referenceNumber": 153,
+      "seeAlso": [
+        "https://github.com/microsoft/Computational-Use-of-Data-Agreement/blob/master/C-UDA-1.0.md",
+        "https://cdla.dev/computational-use-of-data-agreement-v1-0/"
+      ]
+    },
+    "name": "Computational Use of Data Agreement v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

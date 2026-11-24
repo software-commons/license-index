@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3bed0957d1754b67ac3f3417a82d6793",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 124582,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/RPSL-1.0.json",
+        "sha256": "60ef3e068532dffd610c1aef902ebbf0418868c9784c6e3d5fe0d09b39ce8a43"
+      },
+      "template": {
+        "bytes": 33189,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/RPSL-1.0.template.txt",
+        "sha256": "1a9467cf4f2d23c3fdebc4ad22c8ffa48e91435b79564cbb190551c25dd5e393"
+      },
+      "text": {
+        "bytes": 30271,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/RPSL-1.0.txt",
+        "sha256": "358012b3f023bec75c2c90ebe3cf2ea2330e2edc5404e7f810237ca66d146e20"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "RPSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/RPSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "RPSL-1.0",
+      "name": "RealNetworks Public Source License v1.0",
+      "reference": "https://spdx.org/licenses/RPSL-1.0.html",
+      "referenceNumber": 539,
+      "seeAlso": [
+        "https://helixcommunity.org/content/rpsl",
+        "https://opensource.org/license/RPSL-1.0"
+      ]
+    },
+    "name": "RealNetworks Public Source License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

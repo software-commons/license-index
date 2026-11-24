@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "15d9cbcb86ac47c0a2adf5b4a0eb5086",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15740,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSL-1.1-ALv2.json",
+        "sha256": "2325cd291171ca9f7081c8d1f9842939092fa604fbdca9745bcf5f482a3a83ab"
+      },
+      "template": {
+        "bytes": 4191,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSL-1.1-ALv2.template.txt",
+        "sha256": "ec9062075c49102f541256cb2ab230209de18bd6c8e36d7b044baa8380d05faa"
+      },
+      "text": {
+        "bytes": 3751,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSL-1.1-ALv2.txt",
+        "sha256": "36b6082235c0a2105174927fc57cc6ae9c41f45a08af2bdcaee18a8dace56177"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSL-1.1-ALv2",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSL-1.1-ALv2.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSL-1.1-ALv2",
+      "name": "Functional Source License, Version 1.1, ALv2 Future License",
+      "reference": "https://spdx.org/licenses/FSL-1.1-ALv2.html",
+      "referenceNumber": 125,
+      "seeAlso": [
+        "https://fsl.software/FSL-1.1-ALv2.template.md"
+      ]
+    },
+    "name": "Functional Source License, Version 1.1, ALv2 Future License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

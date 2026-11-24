@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "06babbcd2196483dad8ab64102c6d1c8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3004,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Sun-PPP.json",
+        "sha256": "4a888136894a3c8222ddfe214be2c8149c69fef8ba95b48ffbf398fde1dea7bc"
+      },
+      "template": {
+        "bytes": 670,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Sun-PPP.template.txt",
+        "sha256": "ffeaf3ab001c9a5a63438cb463996006baf7adf670b294a8ae7ac13e34f41ea5"
+      },
+      "text": {
+        "bytes": 616,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Sun-PPP.txt",
+        "sha256": "059d4483c8805533d6d0835631c9055e06ee1162af496d2014b3e8829289c0a4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Sun-PPP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Sun-PPP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Sun-PPP",
+      "name": "Sun PPP License",
+      "reference": "https://spdx.org/licenses/Sun-PPP.html",
+      "referenceNumber": 409,
+      "seeAlso": [
+        "https://github.com/ppp-project/ppp/blob/master/pppd/eap.c#L7-L16"
+      ]
+    },
+    "name": "Sun PPP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

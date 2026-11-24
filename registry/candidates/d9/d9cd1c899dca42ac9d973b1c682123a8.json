@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d9cd1c899dca42ac9d973b1c682123a8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6862,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Adobe-2006.json",
+        "sha256": "b841139feb92add5ba9447eb92a9a9682835bc458c9f9fcfe941764511ecf51e"
+      },
+      "template": {
+        "bytes": 1866,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Adobe-2006.template.txt",
+        "sha256": "d4aee761b2f27c72b1f603a3246ba071180f83e608d1b7b17959ebd47acbc818"
+      },
+      "text": {
+        "bytes": 1776,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Adobe-2006.txt",
+        "sha256": "44890cfc9297c506de1b2f43c9050c7984798e6a0c6f3ac07ad829af40695b4a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Adobe-2006",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Adobe-2006.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Adobe-2006",
+      "name": "Adobe Systems Incorporated Source Code License Agreement",
+      "reference": "https://spdx.org/licenses/Adobe-2006.html",
+      "referenceNumber": 428,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/AdobeLicense"
+      ]
+    },
+    "name": "Adobe Systems Incorporated Source Code License Agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

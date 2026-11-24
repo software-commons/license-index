@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1ec07d50b23a467092cc2fc45ff01e23",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6556,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Mup.json",
+        "sha256": "7b80b45e68be980b00e151ed45248018b84fd57b5228f8ca533c48c4cd98f1c5"
+      },
+      "template": {
+        "bytes": 1668,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Mup.template.txt",
+        "sha256": "b0b5e4fc937b1b4670a69b8e92e585394bd863b4d416a70cbe9f8ad76d491252"
+      },
+      "text": {
+        "bytes": 1459,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Mup.txt",
+        "sha256": "2150061850ba3f03176b10c680386fd793923a3c28394048e8c1ca611cee3240"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Mup",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Mup.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Mup",
+      "name": "Mup License",
+      "reference": "https://spdx.org/licenses/Mup.html",
+      "referenceNumber": 416,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Mup"
+      ]
+    },
+    "name": "Mup License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

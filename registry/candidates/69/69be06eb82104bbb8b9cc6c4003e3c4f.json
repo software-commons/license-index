@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "69be06eb82104bbb8b9cc6c4003e3c4f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5267,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-export-US-acknowledgement.json",
+        "sha256": "cf3d1b26a59716fd1d5bbecf4028268cf1465e59ab69ed147462433daa863918"
+      },
+      "template": {
+        "bytes": 1170,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-export-US-acknowledgement.template.txt",
+        "sha256": "7863b5492b53e31a22352679c06a211d80039b79a307158ca822567ab30cff59"
+      },
+      "text": {
+        "bytes": 1184,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-export-US-acknowledgement.txt",
+        "sha256": "09dd3f5048d0b39a7f11af7fdaa963a048ea2aebdd69acdc25b20848f3222c2f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-export-US-acknowledgement",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-export-US-acknowledgement.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-export-US-acknowledgement",
+      "name": "HPND with US Government export control warning and acknowledgment",
+      "reference": "https://spdx.org/licenses/HPND-export-US-acknowledgement.html",
+      "referenceNumber": 609,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/krb5-1.21.2-final/NOTICE#L831-L852",
+        "https://web.mit.edu/kerberos/krb5-1.21/doc/mitK5license.html"
+      ]
+    },
+    "name": "HPND with US Government export control warning and acknowledgment",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

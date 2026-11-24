@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e48c21be637840219462e6913497695e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3185,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Latex2e.json",
+        "sha256": "fcaa92c399364907df7960d1df3546484296d49dd94df361777e97e13a581c13"
+      },
+      "template": {
+        "bytes": 760,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Latex2e.template.txt",
+        "sha256": "93d0a1884c3096a0d4e3f44a0ce0d40d5d40a80b9035391b1313d2581bb1ad86"
+      },
+      "text": {
+        "bytes": 704,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Latex2e.txt",
+        "sha256": "5d68e4a9f72d6c1845be14efba0883926d093ab1a8e3fce765b0bcd7c98b77ef"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Latex2e",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Latex2e.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Latex2e",
+      "name": "Latex2e License",
+      "reference": "https://spdx.org/licenses/Latex2e.html",
+      "referenceNumber": 326,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Latex2e"
+      ]
+    },
+    "name": "Latex2e License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

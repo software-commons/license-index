@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e1e4082676a540f8a647ea6bc0006ae8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3319,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Kazlib.json",
+        "sha256": "4cd323902e39ee7785e2bbc257b43ddb713835467c9ab64b7e8ff4102861f704"
+      },
+      "template": {
+        "bytes": 762,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Kazlib.template.txt",
+        "sha256": "2cdeae82f5eb69c1ae7426fe3d96034a50956e496cc1d2514b4567951fddda3f"
+      },
+      "text": {
+        "bytes": 683,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Kazlib.txt",
+        "sha256": "31e4a00336d15d148a53bc173852f06b8b2063126fd09966106de11351fbadc2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Kazlib",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Kazlib.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Kazlib",
+      "name": "Kazlib License",
+      "reference": "https://spdx.org/licenses/Kazlib.html",
+      "referenceNumber": 401,
+      "seeAlso": [
+        "http://git.savannah.gnu.org/cgit/kazlib.git/tree/except.c?id=0062df360c2d17d57f6af19b0e444c51feb99036"
+      ]
+    },
+    "name": "Kazlib License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

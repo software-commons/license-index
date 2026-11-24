@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "defb306da8b84f79a96d9f38a01ec97b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7246,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-pos-unchanged.json",
+        "sha256": "45e409d89318a3b853474d83df09986b55bc72b383a7a217b101d601165c7e95"
+      },
+      "template": {
+        "bytes": 1422,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-2-Clause-pos-unchanged.template.txt",
+        "sha256": "31cb53b3b27e185aa3322161538161348635acf0f7effc5f3a6e21631b4eb812"
+      },
+      "text": {
+        "bytes": 1276,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-2-Clause-pos-unchanged.txt",
+        "sha256": "329b3d835cdcad7cfaa0ee445ea3581ff0456cdfa47017801f0f0bbad8cae4de"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-2-Clause-pos-unchanged",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-pos-unchanged.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-pos-unchanged",
+      "name": "BSD 2-Clause - position unchanged variant",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-pos-unchanged.html",
+      "referenceNumber": 60,
+      "seeAlso": [
+        "https://scancode-licensedb.aboutcode.org/bsd-unchanged",
+        "https://cgit.freebsd.org/src/tree/usr.bin/sockstat/sockstat.c",
+        "https://github.com/libarchive/libarchive/blob/master/libarchive_fe/line_reader.c",
+        "https://github.com/freebsd/pkg/blob/main/src/add.c"
+      ]
+    },
+    "name": "BSD 2-Clause - position unchanged variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

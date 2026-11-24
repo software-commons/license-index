@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "73a9ff8f12564e349f0a3fa7894ee850",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 85720,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Watcom-1.0.json",
+        "sha256": "7ed4283cefe333f1148cf2daa0e34aa6ce72140b89a2aafee9654d0cbb2d04ef"
+      },
+      "template": {
+        "bytes": 23296,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Watcom-1.0.template.txt",
+        "sha256": "8e8adbf88bdd819acc2d9b0f1e311024df2bb8f7586073aac5853710b186cbcb"
+      },
+      "text": {
+        "bytes": 20972,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Watcom-1.0.txt",
+        "sha256": "6aae307240e425f74bdf26242e08e170f701a5c97db796c363200b4a231ee680"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Watcom-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Watcom-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": true,
+      "licenseId": "Watcom-1.0",
+      "name": "Sybase Open Watcom Public License 1.0",
+      "reference": "https://spdx.org/licenses/Watcom-1.0.html",
+      "referenceNumber": 730,
+      "seeAlso": [
+        "https://opensource.org/license/Watcom-1.0"
+      ]
+    },
+    "name": "Sybase Open Watcom Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

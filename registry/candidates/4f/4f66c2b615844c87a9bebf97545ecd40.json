@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4f66c2b615844c87a9bebf97545ecd40",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2536,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Unlicense-libwhirlpool.json",
+        "sha256": "513e2e78cac35627b77e5851fc2f5c6b31e422fce7da20e493401d85342e9c96"
+      },
+      "template": {
+        "bytes": 483,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Unlicense-libwhirlpool.template.txt",
+        "sha256": "9873985bb6b663092ee4b0c58c3001156ec51dbb32cbceb719400e682da04e98"
+      },
+      "text": {
+        "bytes": 482,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Unlicense-libwhirlpool.txt",
+        "sha256": "6385ff692b1e88ab73255a570679a7b33555b2777830492fd8736fcfa94d4772"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Unlicense-libwhirlpool",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Unlicense-libwhirlpool.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Unlicense-libwhirlpool",
+      "name": "Unlicense - libwhirlpool variant",
+      "reference": "https://spdx.org/licenses/Unlicense-libwhirlpool.html",
+      "referenceNumber": 636,
+      "seeAlso": [
+        "https://github.com/dfateyev/libwhirlpool/blob/master/README#L27"
+      ]
+    },
+    "name": "Unlicense - libwhirlpool variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

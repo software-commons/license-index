@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "19d034719b924fadb9ab9aa5d6167d56",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6507,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/X11.json",
+        "sha256": "71ac8894979bccc4d6bdb26792dd56bee328c78fa2d20511a088be379b177219"
+      },
+      "template": {
+        "bytes": 1617,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/X11.template.txt",
+        "sha256": "30fe15e95c81333bce7ccb6e6a27c9a4bbf67d80d2990d0f7c7268671f75da5e"
+      },
+      "text": {
+        "bytes": 1338,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/X11.txt",
+        "sha256": "e1963c9958b93bc2578b34f8ae22cfe205e8c0e7d5be7235cfdbdefbf92a5423"
+      }
+    },
+    "deprecated": false,
+    "identifier": "X11",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/X11.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "X11",
+      "name": "X11 License",
+      "reference": "https://spdx.org/licenses/X11.html",
+      "referenceNumber": 242,
+      "seeAlso": [
+        "http://www.xfree86.org/3.3.6/COPYRIGHT2.html#3"
+      ]
+    },
+    "name": "X11 License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

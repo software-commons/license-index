@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b29c0a432b604442b32ca695c3c4f684",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 39420,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MulanPSL-1.0.json",
+        "sha256": "63cb5ac2e05d36ddc94fd922539c22bab5499c9fd984ad9249324ffdc1b111f7"
+      },
+      "template": {
+        "bytes": 9825,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MulanPSL-1.0.template.txt",
+        "sha256": "3cf5fbe79a7b6f1ce8931ca8858131dcc4c949953729032ca47e0f9d31af1874"
+      },
+      "text": {
+        "bytes": 8908,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MulanPSL-1.0.txt",
+        "sha256": "b43343cd1c032cd260893c7ed384157418ef7468bcae64547f4fd8e49f93572e"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "MulanPSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MulanPSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MulanPSL-1.0",
+      "name": "Mulan Permissive Software License, Version 1",
+      "reference": "https://spdx.org/licenses/MulanPSL-1.0.html",
+      "referenceNumber": 468,
+      "seeAlso": [
+        "https://license.coscl.org.cn/MulanPSL/",
+        "https://github.com/yuwenlong/longphp/blob/25dfb70cc2a466dc4bb55ba30901cbce08d164b5/LICENSE"
+      ]
+    },
+    "name": "Mulan Permissive Software License, Version 1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

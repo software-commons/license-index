@@ -1,0 +1,32 @@
+{
+  "id": "8ff1e9161c234e4283bd19d62b08977c",
+  "disposition": "unresolved",
+  "reason": "This lead tracks the named Visual Studio Code desktop product agreement. Microsoft publishes separate Visual Studio Code Server product terms and identifies the source-code MIT license separately. Verify the terms bundled with the applicable desktop release and platform, and the authority to republish them.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://code.visualstudio.com/license",
+    "name": "Microsoft Visual Studio Code product terms",
+    "identifier": "Microsoft Visual Studio Code product terms"
+  },
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://code.visualstudio.com/license",
+        "name": "Microsoft Visual Studio Code product terms",
+        "identifier": "Microsoft Visual Studio Code product terms"
+      },
+      "reason": "Microsoft distinguishes the product agreement from the MIT source-code license. Pin an applicable product release and platform variant, reconcile external identities, and review capture and publication rights."
+    },
+    {
+      "disposition": "unresolved",
+      "origin": {
+        "kind": "publisher",
+        "source": "https://code.visualstudio.com/license",
+        "name": "Microsoft Visual Studio Code product terms",
+        "identifier": "Microsoft Visual Studio Code product terms"
+      },
+      "reason": "Microsoft's text explicitly covers its Visual Studio Code product and separately identifies the Code - OSS source under MIT. The product web terms are mutable and do not identify a numbered product release. Verify the terms distributed with any specific release, platform or localization and determine republication rights."
+    }
+  ]
+}

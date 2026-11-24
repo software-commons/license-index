@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d72e0467970842f88c097e6c9d61f54d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6019,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-STK.json",
+        "sha256": "4e96ff6c8d7264c199c00ed5e12ae1853d7e81e33d08a1a11f98e0004834ea39"
+      },
+      "template": {
+        "bytes": 1452,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-STK.template.txt",
+        "sha256": "2e651d9a86d37c5dc76e1c9ff2eebd1544d185383963a3d5aebc4fda989135fa"
+      },
+      "text": {
+        "bytes": 1364,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-STK.txt",
+        "sha256": "342901da98ec7c044426f3d1c2e1b8dd2ac79001e0916b49c2cf71b158b13aa5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-STK",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-STK.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-STK",
+      "name": "MIT-STK License",
+      "reference": "https://spdx.org/licenses/MIT-STK.html",
+      "referenceNumber": 492,
+      "seeAlso": [
+        "https://github.com/thestk/stk/blob/6aacd357d76250bb7da2b1ddf675651828784bbc/LICENSE"
+      ]
+    },
+    "name": "MIT-STK License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

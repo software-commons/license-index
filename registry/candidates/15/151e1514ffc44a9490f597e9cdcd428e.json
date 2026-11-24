@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "151e1514ffc44a9490f597e9cdcd428e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 41498,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSL-3.0.json",
+        "sha256": "12fa980560830d8e41ea934f668a1bd4e46e1d2db6ca082473f73403300c7278"
+      },
+      "template": {
+        "bytes": 11398,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSL-3.0.template.txt",
+        "sha256": "389dd60b4f61dacdac77b1ed499ce78d0976b5083af85d7e7d13b8db5b835d26"
+      },
+      "text": {
+        "bytes": 10319,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSL-3.0.txt",
+        "sha256": "9329b26bc40104b49da35be76b7e972dada9f2561ca19d17aed4801bf5e1623c"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "OSL-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSL-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "OSL-3.0",
+      "name": "Open Software License 3.0",
+      "reference": "https://spdx.org/licenses/OSL-3.0.html",
+      "referenceNumber": 69,
+      "seeAlso": [
+        "https://web.archive.org/web/20120101081418/http://rosenlaw.com:80/OSL3.0.htm",
+        "https://opensource.org/license/OSL-3.0"
+      ]
+    },
+    "name": "Open Software License 3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

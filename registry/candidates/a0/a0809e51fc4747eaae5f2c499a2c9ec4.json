@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a0809e51fc4747eaae5f2c499a2c9ec4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1341,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Aspell-RU.json",
+        "sha256": "dbfc9a4b527569a51c140bc6595c69c52badf5600dba2caac4af9041f2c64515"
+      },
+      "template": {
+        "bytes": 218,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Aspell-RU.template.txt",
+        "sha256": "bd3e9fa1c866eaa117cea018e5de95bff73bff8737836881cc22fa22665b76b7"
+      },
+      "text": {
+        "bytes": 217,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Aspell-RU.txt",
+        "sha256": "8c78d8248e56eb51decc0c79cb92599050472c35b935d1ee5710c86d5d351a95"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Aspell-RU",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Aspell-RU.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Aspell-RU",
+      "name": "Aspell Russian License",
+      "reference": "https://spdx.org/licenses/Aspell-RU.html",
+      "referenceNumber": 173,
+      "seeAlso": [
+        "https://ftp.gnu.org/gnu/aspell/dict/ru/aspell6-ru-0.99f7-1.tar.bz2"
+      ]
+    },
+    "name": "Aspell Russian License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

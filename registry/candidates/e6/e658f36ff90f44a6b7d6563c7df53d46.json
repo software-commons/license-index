@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e658f36ff90f44a6b7d6563c7df53d46",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7108,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Qt-LGPL-exception-1.1.json",
+        "sha256": "f61e4d126745289e06d9543bfdc49e75bda158a3819f105fba01917e5e296a3a"
+      },
+      "template": {
+        "bytes": 1609,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Qt-LGPL-exception-1.1.template.txt",
+        "sha256": "c6bba0f7285dd96d45103455c72190b621fd3a680020ca66b413ac5490af0d75"
+      },
+      "text": {
+        "bytes": 1195,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Qt-LGPL-exception-1.1.txt",
+        "sha256": "79949ee74297883df6e4e7c4bfe1e75a6e7695376b4a87ffc013e27bda509cb2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Qt-LGPL-exception-1.1",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Qt-LGPL-exception-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Qt-LGPL-exception-1.1",
+      "name": "Qt LGPL exception 1.1",
+      "reference": "https://spdx.org/licenses/Qt-LGPL-exception-1.1.html",
+      "referenceNumber": 73,
+      "seeAlso": [
+        "http://code.qt.io/cgit/qt/qtbase.git/tree/LGPL_EXCEPTION.txt"
+      ]
+    },
+    "name": "Qt LGPL exception 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

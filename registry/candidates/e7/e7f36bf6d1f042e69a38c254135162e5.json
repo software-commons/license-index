@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e7f36bf6d1f042e69a38c254135162e5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 49741,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OGDL-Taiwan-1.0.json",
+        "sha256": "81cb8a14e00dd5c8d0047a00956fd31b2a61bd65cd3b004c83b289b34f320251"
+      },
+      "template": {
+        "bytes": 13489,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OGDL-Taiwan-1.0.template.txt",
+        "sha256": "5c9ed4890f5111e4aabb8276f98691d7047cfa75e727b1807b89e0dce25c00da"
+      },
+      "text": {
+        "bytes": 11606,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OGDL-Taiwan-1.0.txt",
+        "sha256": "6fb1f786e1d278b6240b4816ba791d48fc84223e35da8a9263e42836bc154e94"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OGDL-Taiwan-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OGDL-Taiwan-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OGDL-Taiwan-1.0",
+      "name": "Taiwan Open Government Data License, version 1.0",
+      "reference": "https://spdx.org/licenses/OGDL-Taiwan-1.0.html",
+      "referenceNumber": 667,
+      "seeAlso": [
+        "https://data.gov.tw/license"
+      ]
+    },
+    "name": "Taiwan Open Government Data License, version 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

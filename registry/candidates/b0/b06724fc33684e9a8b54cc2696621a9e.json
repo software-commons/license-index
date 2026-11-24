@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b06724fc33684e9a8b54cc2696621a9e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3220,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/xlock.json",
+        "sha256": "50f2b07c1323cd700ae10380c55573057b0d2c725bda02fc9c198c994c4e2541"
+      },
+      "template": {
+        "bytes": 776,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/xlock.template.txt",
+        "sha256": "f6330a698ece8b81f761f3ffae72d3d2a75fe55caa46d894b756ea7a0a05dec9"
+      },
+      "text": {
+        "bytes": 734,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/xlock.txt",
+        "sha256": "b8bbeada89cb533dfbabd24fa6eda1de38155fd4d5cbc8928796d917a3411878"
+      }
+    },
+    "deprecated": false,
+    "identifier": "xlock",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/xlock.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "xlock",
+      "name": "xlock License",
+      "reference": "https://spdx.org/licenses/xlock.html",
+      "referenceNumber": 152,
+      "seeAlso": [
+        "https://fossies.org/linux/tiff/contrib/ras/ras2tif.c"
+      ]
+    },
+    "name": "xlock License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

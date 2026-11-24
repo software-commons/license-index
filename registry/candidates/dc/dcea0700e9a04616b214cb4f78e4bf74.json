@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dcea0700e9a04616b214cb4f78e4bf74",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9993,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ASWF-Digital-Assets-1.0.json",
+        "sha256": "6b4dc628c34a6e384dad448babfc78cd1e346157a7a7b067b8a0b6b452efe921"
+      },
+      "template": {
+        "bytes": 2468,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ASWF-Digital-Assets-1.0.template.txt",
+        "sha256": "66cbb178ae8fab08b8152f0c04d158d85e566a5127d953a53f1bf60c721a17f2"
+      },
+      "text": {
+        "bytes": 2230,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ASWF-Digital-Assets-1.0.txt",
+        "sha256": "fd7d465c176789b5734800ffc8b269f5a9cf146ada14020adebf73ed3366ff3d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ASWF-Digital-Assets-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ASWF-Digital-Assets-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ASWF-Digital-Assets-1.0",
+      "name": "ASWF Digital Assets License version 1.0",
+      "reference": "https://spdx.org/licenses/ASWF-Digital-Assets-1.0.html",
+      "referenceNumber": 56,
+      "seeAlso": [
+        "https://github.com/AcademySoftwareFoundation/foundation/blob/main/digital_assets/aswf_digital_assets_license_v1.0.txt"
+      ]
+    },
+    "name": "ASWF Digital Assets License version 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

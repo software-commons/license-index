@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "47e5d63f04f14254a6b5eae42b4acbc0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 81472,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CATOSL-1.1.json",
+        "sha256": "2f18dbe55deaad685ce568a08e4ad42c2108d17bec0fec3edbe53aaa4ec4a358"
+      },
+      "template": {
+        "bytes": 21932,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CATOSL-1.1.template.txt",
+        "sha256": "0922566db9403b6f84ae2d779359ad2495f5fbd45f29a43b854ea2b4e9f0882f"
+      },
+      "text": {
+        "bytes": 19046,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CATOSL-1.1.txt",
+        "sha256": "c30f1f9fafed19c55115432c9dcaaee2cccf26dc810e514685f73992c3cc1db5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CATOSL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CATOSL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CATOSL-1.1",
+      "name": "Computer Associates Trusted Open Source License 1.1",
+      "reference": "https://spdx.org/licenses/CATOSL-1.1.html",
+      "referenceNumber": 287,
+      "seeAlso": [
+        "https://opensource.org/license/CATOSL-1.1"
+      ]
+    },
+    "name": "Computer Associates Trusted Open Source License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

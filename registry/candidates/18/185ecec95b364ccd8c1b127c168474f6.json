@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "185ecec95b364ccd8c1b127c168474f6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14461,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Elastic-2.0.json",
+        "sha256": "8f16e5782f682a700deb692799f42b21c90878250902d6a81e7bafe03a7286cd"
+      },
+      "template": {
+        "bytes": 3864,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Elastic-2.0.template.txt",
+        "sha256": "8701075824a18f0f0b733f7922cea9de21dcdd5dfd46e9e40f00c7a2c8eff01e"
+      },
+      "text": {
+        "bytes": 3802,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Elastic-2.0.txt",
+        "sha256": "6448026f2e06ab3da9ed8ddda686694bba37179e88db92dea6d4aab516c957ea"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Elastic-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Elastic-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Elastic-2.0",
+      "name": "Elastic License 2.0",
+      "reference": "https://spdx.org/licenses/Elastic-2.0.html",
+      "referenceNumber": 348,
+      "seeAlso": [
+        "https://www.elastic.co/licensing/elastic-license",
+        "https://github.com/elastic/elasticsearch/blob/master/licenses/ELASTIC-LICENSE-2.0.txt"
+      ]
+    },
+    "name": "Elastic License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

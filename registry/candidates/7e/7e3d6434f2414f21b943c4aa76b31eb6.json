@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7e3d6434f2414f21b943c4aa76b31eb6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3239,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Graphics-Gems.json",
+        "sha256": "cddd22cb69d332519815c7cf5a1795d7c77e95db282d8362ec2e1d5611360929"
+      },
+      "template": {
+        "bytes": 741,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Graphics-Gems.template.txt",
+        "sha256": "bf0a9167277eb50bcddf7c27db3ce28446375ce8bb48bea482074d4cc22f0296"
+      },
+      "text": {
+        "bytes": 707,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Graphics-Gems.txt",
+        "sha256": "026ad6cb0b03c812839238ceaa759349166ccad7ad67ff3fea58387d6625e5ae"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Graphics-Gems",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Graphics-Gems.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Graphics-Gems",
+      "name": "Graphics Gems License",
+      "reference": "https://spdx.org/licenses/Graphics-Gems.html",
+      "referenceNumber": 309,
+      "seeAlso": [
+        "https://github.com/erich666/GraphicsGems/blob/master/LICENSE.md"
+      ]
+    },
+    "name": "Graphics Gems License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

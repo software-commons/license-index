@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e6c6b61635ff434285763aa488edc8ea",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 38653,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSL-1.1.json",
+        "sha256": "b653155cef59b88e66040eab391e257dc1b1373f411016b4f5ba8adcf28886b2"
+      },
+      "template": {
+        "bytes": 10702,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSL-1.1.template.txt",
+        "sha256": "daf0e600706941f81b7ed8166fc2ea61145a4e0835f2a8b1aad6a17b1aa2db30"
+      },
+      "text": {
+        "bytes": 9663,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSL-1.1.txt",
+        "sha256": "2cb78904f44dfd665afc4753432c328421632f5ce9389d70a42efd3905ebc4d7"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "OSL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "OSL-1.1",
+      "name": "Open Software License 1.1",
+      "reference": "https://spdx.org/licenses/OSL-1.1.html",
+      "referenceNumber": 216,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/OSL1.1"
+      ]
+    },
+    "name": "Open Software License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

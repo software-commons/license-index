@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e64a41713ecd46ad8affa15bf8f36c12",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3260,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Boehm-GC-without-fee.json",
+        "sha256": "c249955c7cdec91244c62de75d43d4dc688630f0a77661fbb20d9a2fc889f922"
+      },
+      "template": {
+        "bytes": 641,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Boehm-GC-without-fee.template.txt",
+        "sha256": "b023f1ef204097a6e290b986b564e0d2e5061584676833143bc2db21eb342236"
+      },
+      "text": {
+        "bytes": 586,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Boehm-GC-without-fee.txt",
+        "sha256": "513b5aa9205e848425ec73e434ae1fa0595b1397f80f29c5f49a1b352bf199dc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Boehm-GC-without-fee",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Boehm-GC-without-fee.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Boehm-GC-without-fee",
+      "name": "Boehm-Demers-Weiser GC License (without fee)",
+      "reference": "https://spdx.org/licenses/Boehm-GC-without-fee.html",
+      "referenceNumber": 541,
+      "seeAlso": [
+        "https://github.com/MariaDB/server/blob/11.6/libmysqld/lib_sql.cc"
+      ]
+    },
+    "name": "Boehm-Demers-Weiser GC License (without fee)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

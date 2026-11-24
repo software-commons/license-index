@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6b9ec52c7e3c46a0b0272a16d60e4061",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4691,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Fawkes-Runtime-exception.json",
+        "sha256": "2c8425ede50036b4240f6faae9f36863853c71fefc17f688f19e9f3f541e5f93"
+      },
+      "template": {
+        "bytes": 1345,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Fawkes-Runtime-exception.template.txt",
+        "sha256": "0e633b164463e41dcfb84875101254e4c85688f07d7c99632a2c743f2e335578"
+      },
+      "text": {
+        "bytes": 1344,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Fawkes-Runtime-exception.txt",
+        "sha256": "e1ce38432762eb43172bc2b9297b6ee5c07eea1585140edd180bff6a92b84828"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Fawkes-Runtime-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Fawkes-Runtime-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Fawkes-Runtime-exception",
+      "name": "Fawkes Runtime Exception",
+      "reference": "https://spdx.org/licenses/Fawkes-Runtime-exception.html",
+      "referenceNumber": 43,
+      "seeAlso": [
+        "http://www.fawkesrobotics.org/about/license/"
+      ]
+    },
+    "name": "Fawkes Runtime Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

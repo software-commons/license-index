@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "094771291ef043fcb55ab4090e9b2e25",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17747,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OFL-1.0.json",
+        "sha256": "d62cfb635b2b12240c0c034b1d925d8e14a9464a821d5edd65fdcf573e3b3733"
+      },
+      "template": {
+        "bytes": 4381,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OFL-1.0.template.txt",
+        "sha256": "dd9c5c4459967ada7cf4f8f1c084aaac84230cb38d7bbaccca3063a1af039d2b"
+      },
+      "text": {
+        "bytes": 3858,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OFL-1.0.txt",
+        "sha256": "7e6a2968a3782383e1b427aafaf7f7c7737fff024294c4a4d0347557b1aecb10"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OFL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OFL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "OFL-1.0",
+      "name": "SIL Open Font License 1.0",
+      "reference": "https://spdx.org/licenses/OFL-1.0.html",
+      "referenceNumber": 274,
+      "seeAlso": [
+        "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"
+      ]
+    },
+    "name": "SIL Open Font License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

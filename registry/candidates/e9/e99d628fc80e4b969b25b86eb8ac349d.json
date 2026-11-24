@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e99d628fc80e4b969b25b86eb8ac349d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8525,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GPL-3.0-interface-exception.json",
+        "sha256": "01d4b31610ca40574f1e61a97cba9ecf3a0bc1750d518487a8be6195c08dba66"
+      },
+      "template": {
+        "bytes": 2154,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-3.0-interface-exception.template.txt",
+        "sha256": "93753249cf5a8c65fd44a2c8641624e7f7c7046fe1dd9ef8bc43c7239ec1b404"
+      },
+      "text": {
+        "bytes": 1618,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-3.0-interface-exception.txt",
+        "sha256": "723a4d4ee0cc163203c7d5730e04a1216e69e0748860909d35149be4fbe3610c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GPL-3.0-interface-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0-interface-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GPL-3.0-interface-exception",
+      "name": "GPL-3.0 Interface Exception",
+      "reference": "https://spdx.org/licenses/GPL-3.0-interface-exception.html",
+      "referenceNumber": 64,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gpl-faq.en.html#LinkingOverControlledInterface"
+      ]
+    },
+    "name": "GPL-3.0 Interface Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

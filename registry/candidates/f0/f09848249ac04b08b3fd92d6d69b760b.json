@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f09848249ac04b08b3fd92d6d69b760b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 25208,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NBPL-1.0.json",
+        "sha256": "7878e2f85605c9da9b6fd04f9e668eadb44839d053ed04da1471d64bed1456a3"
+      },
+      "template": {
+        "bytes": 6408,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NBPL-1.0.template.txt",
+        "sha256": "1f39bc2f2d80b829feeee66ee2f710c10e2282bbe97317937a2e65f63ed0b91b"
+      },
+      "text": {
+        "bytes": 5425,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NBPL-1.0.txt",
+        "sha256": "856b837d14c15e0433c9516008a5a39e6807455ddd2d01d056bfb05ebb5c540f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NBPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NBPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NBPL-1.0",
+      "name": "Net Boolean Public License v1",
+      "reference": "https://spdx.org/licenses/NBPL-1.0.html",
+      "referenceNumber": 332,
+      "seeAlso": [
+        "http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=37b4b3f6cc4bf34e1d3dec61e69914b9819d8894"
+      ]
+    },
+    "name": "Net Boolean Public License v1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

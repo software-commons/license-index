@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4532809c2f484a7596b9c7a68dd7be2f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4125,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-export-US.json",
+        "sha256": "5e7de82ac1609fa8e88bd997c3707631a54f84d650ddb2cc4d54d8afb505bb13"
+      },
+      "template": {
+        "bytes": 986,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-export-US.template.txt",
+        "sha256": "ea3607878ea380dbabea91fe1a1e59cf73a658ce645d6437029ce9f6eda1d7a5"
+      },
+      "text": {
+        "bytes": 944,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-export-US.txt",
+        "sha256": "45263c2b3d0b5a81d3876bc59d5d75ea85b90b843a18d9377a9e725a35493e8b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-export-US",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-export-US.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-export-US",
+      "name": "HPND with US Government export control warning",
+      "reference": "https://spdx.org/licenses/HPND-export-US.html",
+      "referenceNumber": 170,
+      "seeAlso": [
+        "https://www.kermitproject.org/ck90.html#source"
+      ]
+    },
+    "name": "HPND with US Government export control warning",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

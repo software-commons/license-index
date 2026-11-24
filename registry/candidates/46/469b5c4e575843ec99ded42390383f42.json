@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "469b5c4e575843ec99ded42390383f42",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2462,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Symlinks.json",
+        "sha256": "ba1c67985a6f4633e11e3317ee1eecf84eb05cbc588e4ed66a141f0400287f7d"
+      },
+      "template": {
+        "bytes": 515,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Symlinks.template.txt",
+        "sha256": "4ea676613b49e4e3ca913cc544c43b79eec9ffd0a1bccf0025c544bd69e914bc"
+      },
+      "text": {
+        "bytes": 515,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Symlinks.txt",
+        "sha256": "36f07aa8b6ad56853879e759e1d5c6c8b5caf438c728aececeff8e728acf8aa6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Symlinks",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Symlinks.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Symlinks",
+      "name": "Symlinks License",
+      "reference": "https://spdx.org/licenses/Symlinks.html",
+      "referenceNumber": 637,
+      "seeAlso": [
+        "https://www.mail-archive.com/debian-bugs-rc@lists.debian.org/msg11494.html"
+      ]
+    },
+    "name": "Symlinks License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

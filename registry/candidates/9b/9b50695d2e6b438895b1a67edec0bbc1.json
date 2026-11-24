@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9b50695d2e6b438895b1a67edec0bbc1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 132314,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-3.0-or-later.json",
+        "sha256": "c64ddf70e5ebb3cd2cb8789d87597e4c1dc13eb7045b86d3e7fccc96f16fc62e"
+      },
+      "template": {
+        "bytes": 36607,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-3.0-or-later.template.txt",
+        "sha256": "f8746a99750398c3579e17d2a3e6e48ceea91e1146be070ed2d6d81f4cd5461a"
+      },
+      "text": {
+        "bytes": 34674,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-3.0-or-later.txt",
+        "sha256": "fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GPL-3.0-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-3.0-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "GPL-3.0-or-later",
+      "name": "GNU General Public License v3.0 or later",
+      "reference": "https://spdx.org/licenses/GPL-3.0-or-later.html",
+      "referenceNumber": 122,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gpl-3.0-standalone.html",
+        "https://opensource.org/license/GPL-3.0"
+      ]
+    },
+    "name": "GNU General Public License v3.0 or later",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

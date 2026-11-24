@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ba115d0dc78b480aa5b1deea163c1c2c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10644,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TMate.json",
+        "sha256": "fb65ff9903d85d6aa4808437a24251aa0933316be00095532fa5b7af82b61e42"
+      },
+      "template": {
+        "bytes": 2843,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TMate.template.txt",
+        "sha256": "45388a89b1d8e54323fe729715fb8c87eeff4284240eee899601afb731cece7c"
+      },
+      "text": {
+        "bytes": 2537,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TMate.txt",
+        "sha256": "8596527f4b4ed7aa90489c3fc5ca7939db93c378f1cffa1edba65408f239876f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TMate",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TMate.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TMate",
+      "name": "TMate Open Source License",
+      "reference": "https://spdx.org/licenses/TMate.html",
+      "referenceNumber": 124,
+      "seeAlso": [
+        "http://svnkit.com/license.html"
+      ]
+    },
+    "name": "TMate Open Source License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

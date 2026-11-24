@@ -1,0 +1,58 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "238a0b3faff74041a2f8dd0f0d94bc79",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 89674,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GFDL-1.3-invariants-or-later.json",
+        "sha256": "1a9763cc123cac3159b5a7e8f242469949bb487c70901ed1c81aa9c32930bcad"
+      },
+      "template": {
+        "bytes": 24362,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GFDL-1.3-invariants-or-later.template.txt",
+        "sha256": "f5b57e8fe2bc3503944b07ae8fc0ad33aebd43c36e69c4f6b0d8bd8ea4c9d9d1"
+      },
+      "text": {
+        "bytes": 22791,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GFDL-1.3-invariants-or-later.txt",
+        "sha256": "d024962f1f4966c102b40d9fd9cc834a3f0b3c1397b41444b7cd7925640dc929"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GFDL-1.3-invariants-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GFDL-1.3-invariants-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "GFDL-1.3-invariants-or-later",
+      "name": "GNU Free Documentation License v1.3 or later - invariants",
+      "reference": "https://spdx.org/licenses/GFDL-1.3-invariants-or-later.html",
+      "referenceNumber": 723,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/fdl-1.3.txt"
+      ]
+    },
+    "name": "GNU Free Documentation License v1.3 or later - invariants",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

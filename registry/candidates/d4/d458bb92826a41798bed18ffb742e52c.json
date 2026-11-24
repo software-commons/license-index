@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d458bb92826a41798bed18ffb742e52c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 56609,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-SA-2.0-UK.json",
+        "sha256": "fc66ac572292ed83b507658200c7a6562441e79a81f44e3b252a0996bbaf243f"
+      },
+      "template": {
+        "bytes": 13564,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-SA-2.0-UK.template.txt",
+        "sha256": "d4998b0d71acb8f75ee8756ec278430161fcf19f57fb5e566080a22b1d327636"
+      },
+      "text": {
+        "bytes": 10810,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-SA-2.0-UK.txt",
+        "sha256": "794bc0365e8b31fa70d4041ec7166b398a587c5ca95209dd1ac1d69f7a8c1fb9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-SA-2.0-UK",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-SA-2.0-UK.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-SA-2.0-UK",
+      "name": "Creative Commons Attribution Share Alike 2.0 England and Wales",
+      "reference": "https://spdx.org/licenses/CC-BY-SA-2.0-UK.html",
+      "referenceNumber": 52,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-sa/2.0/uk/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Share Alike 2.0 England and Wales",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

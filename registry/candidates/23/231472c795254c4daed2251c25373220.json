@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "231472c795254c4daed2251c25373220",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12697,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PHP-3.0.json",
+        "sha256": "defeaea9eddc173527942262dfaebd27dc12a455fde415f37313b7e9c102a7ea"
+      },
+      "template": {
+        "bytes": 3240,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PHP-3.0.template.txt",
+        "sha256": "cfa22a3cedfc80ba48b010255e9872e374e6863c7d15fb1c66029e3664ef03d6"
+      },
+      "text": {
+        "bytes": 2846,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PHP-3.0.txt",
+        "sha256": "8c18adf2c052e52aa8376d40a445a840af2edab91aa5892a78bddf9421cf0a9d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PHP-3.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PHP-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "PHP-3.0",
+      "name": "PHP License v3.0",
+      "reference": "https://spdx.org/licenses/PHP-3.0.html",
+      "referenceNumber": 617,
+      "seeAlso": [
+        "http://www.php.net/license/3_0.txt",
+        "https://opensource.org/license/PHP-3.0"
+      ]
+    },
+    "name": "PHP License v3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

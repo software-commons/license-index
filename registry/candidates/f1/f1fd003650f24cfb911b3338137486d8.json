@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f1fd003650f24cfb911b3338137486d8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3497,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CAPEC-tou.json",
+        "sha256": "53059ebbdc29b865b695954f822a42c6d0c7f57d06b86f990a582892cbb062a7"
+      },
+      "template": {
+        "bytes": 861,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CAPEC-tou.template.txt",
+        "sha256": "07115eb628dca919b85a3c1f072d84e31eff0ef7b6c2a0bd33c809cc124eebce"
+      },
+      "text": {
+        "bytes": 863,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CAPEC-tou.txt",
+        "sha256": "711f3162aafecfc516ea27750252f26aa91e4ef0b683e21cb40560945671608f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CAPEC-tou",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CAPEC-tou.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CAPEC-tou",
+      "name": "Common Attack    Pattern Enumeration and Classification License",
+      "reference": "https://spdx.org/licenses/CAPEC-tou.html",
+      "referenceNumber": 353,
+      "seeAlso": [
+        "https://capec.mitre.org/about/termsofuse.html"
+      ]
+    },
+    "name": "Common Attack    Pattern Enumeration and Classification License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

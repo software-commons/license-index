@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "63b1d72db0f84983a7462b1e493b5b98",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5521,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DocBook-DTD.json",
+        "sha256": "9cf90f09a4b3f370b4187dfcef572dcbb3bf959ac0329890f3576841b3ed7c5f"
+      },
+      "template": {
+        "bytes": 1275,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DocBook-DTD.template.txt",
+        "sha256": "8a7d243891be08e6684c35931fb3f12e4d8782298815c1eacf9878f14a101b09"
+      },
+      "text": {
+        "bytes": 1157,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DocBook-DTD.txt",
+        "sha256": "5c56ee08862864de10af94cc685bc48b20b815e3fc2724b9f80593ee27973ae0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DocBook-DTD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DocBook-DTD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DocBook-DTD",
+      "name": "DocBook DTD License",
+      "reference": "https://spdx.org/licenses/DocBook-DTD.html",
+      "referenceNumber": 103,
+      "seeAlso": [
+        "http://www.docbook.org/xml/simple/1.1/docbook-simple-1.1.zip"
+      ]
+    },
+    "name": "DocBook DTD License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

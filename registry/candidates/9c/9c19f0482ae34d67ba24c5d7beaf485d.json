@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9c19f0482ae34d67ba24c5d7beaf485d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5384,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/SANE-exception.json",
+        "sha256": "3b3a5aebbbdae47a5519342666eb4a54f35cf6cb5b3198cb9b25cdaa0fc93ca5"
+      },
+      "template": {
+        "bytes": 1252,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SANE-exception.template.txt",
+        "sha256": "42b63e34ff2ac69acb129fb2cb6824b3d0b140a8cae6af10fa60f163d2b79a76"
+      },
+      "text": {
+        "bytes": 1003,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SANE-exception.txt",
+        "sha256": "69d1780a6eb75837b22567afcb00786c013b074d5d93269579ad4715f80c7111"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SANE-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SANE-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "SANE-exception",
+      "name": "SANE Exception",
+      "reference": "https://spdx.org/licenses/SANE-exception.html",
+      "referenceNumber": 45,
+      "seeAlso": [
+        "https://github.com/alexpevzner/sane-airscan/blob/master/LICENSE",
+        "https://gitlab.com/sane-project/backends/-/blob/master/sanei/sanei_pp.c?ref_type=heads",
+        "https://gitlab.com/sane-project/frontends/-/blob/master/sanei/sanei_codec_ascii.c?ref_type=heads"
+      ]
+    },
+    "name": "SANE Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

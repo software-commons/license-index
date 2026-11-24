@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0bad31addf7c42c3972a4353df67a542",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8045,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DRL-1.1.json",
+        "sha256": "add6d06a066b44fa74a96f602ca04b26f17fa7665290ef1bf6d0e1312240a615"
+      },
+      "template": {
+        "bytes": 2131,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DRL-1.1.template.txt",
+        "sha256": "8c7716c364756e9dfad56148c8efa62895af3cb614044b077ade7008952af8f8"
+      },
+      "text": {
+        "bytes": 1883,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DRL-1.1.txt",
+        "sha256": "db8ed64d721c42044109255da4ca1a351e1be2631e0be5af118fd70c6fa28246"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DRL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DRL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DRL-1.1",
+      "name": "Detection Rule License 1.1",
+      "reference": "https://spdx.org/licenses/DRL-1.1.html",
+      "referenceNumber": 61,
+      "seeAlso": [
+        "https://github.com/SigmaHQ/Detection-Rule-License/blob/6ec7fbde6101d101b5b5d1fcb8f9b69fbc76c04a/LICENSE.Detection.Rules.md"
+      ]
+    },
+    "name": "Detection Rule License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

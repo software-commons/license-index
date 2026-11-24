@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8187395f845941dcb820b851fb247dd0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17902,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PSF-2.0.json",
+        "sha256": "43522a91d6924def0da67b2d0569052dc5217464080307e9b1483e1b741bd27d"
+      },
+      "template": {
+        "bytes": 4096,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PSF-2.0.template.txt",
+        "sha256": "a05694a733b3deaa5f5980a3bc90faf561a1911645edc109461a883a3cbfb26a"
+      },
+      "text": {
+        "bytes": 2427,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PSF-2.0.txt",
+        "sha256": "ab745c5061d1dea43a3885e5b4b6befc7e983954954775c5736debeefcdfd89b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PSF-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PSF-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "PSF-2.0",
+      "name": "Python Software Foundation License 2.0",
+      "reference": "https://spdx.org/licenses/PSF-2.0.html",
+      "referenceNumber": 297,
+      "seeAlso": [
+        "https://opensource.org/license/PSF-2-0",
+        "https://matplotlib.org/stable/project/license.html"
+      ]
+    },
+    "name": "Python Software Foundation License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

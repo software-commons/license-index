@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ef78463ab8eb4aea9176c8f851af0d3c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3395,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Ferguson-Twofish.json",
+        "sha256": "0deae9c1759b553243a8beb6eb94add89bcd6695ed5aaeec91d4cfd78f8e3368"
+      },
+      "template": {
+        "bytes": 772,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Ferguson-Twofish.template.txt",
+        "sha256": "dfa547c3aadb1fd1e69efdac8c6348afb6b099d7ca0a86410dfe4eede497512d"
+      },
+      "text": {
+        "bytes": 806,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Ferguson-Twofish.txt",
+        "sha256": "c518a7865c8aaf8f04c7d4c7b75de3ae0c734f68472e73eabcb787929e0dee60"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Ferguson-Twofish",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Ferguson-Twofish.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Ferguson-Twofish",
+      "name": "Ferguson Twofish License",
+      "reference": "https://spdx.org/licenses/Ferguson-Twofish.html",
+      "referenceNumber": 576,
+      "seeAlso": [
+        "https://github.com/wernerd/ZRTPCPP/blob/6b3cd8e6783642292bad0c21e3e5e5ce45ff3e03/cryptcommon/twofish.c#L113C3-L127"
+      ]
+    },
+    "name": "Ferguson Twofish License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

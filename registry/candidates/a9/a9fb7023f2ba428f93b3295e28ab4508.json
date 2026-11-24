@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a9fb7023f2ba428f93b3295e28ab4508",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1640,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TPDL.json",
+        "sha256": "fbf5473d940ce71e4d6405446c243ddb5a9100ea47805817b2d3812e258a1868"
+      },
+      "template": {
+        "bytes": 287,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TPDL.template.txt",
+        "sha256": "ae9db063de9a500c5af662cf3ae84db188df54c5de81d1410813cb3d7fc62ffb"
+      },
+      "text": {
+        "bytes": 233,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TPDL.txt",
+        "sha256": "9f945905a2cc37e6d7f7bba3be144957d5d95eb75825cf07d9ff24127c29f788"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TPDL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TPDL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TPDL",
+      "name": "Time::ParseDate License",
+      "reference": "https://spdx.org/licenses/TPDL.html",
+      "referenceNumber": 227,
+      "seeAlso": [
+        "https://metacpan.org/pod/Time::ParseDate#LICENSE"
+      ]
+    },
+    "name": "Time::ParseDate License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

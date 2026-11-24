@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d0d8a301d9784434832966a77cf8cced",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 46596,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EPL-1.0.json",
+        "sha256": "e82b2affdb832512b9fe2858c1fa5c7f0a47738d6c489a31eb4627239cdd4ebd"
+      },
+      "template": {
+        "bytes": 12587,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EPL-1.0.template.txt",
+        "sha256": "58fb4517d0d3099bd3c3540e2bd96ebb03d37c3d4686b8c0bf69f2f6bd9224f9"
+      },
+      "text": {
+        "bytes": 11345,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EPL-1.0.txt",
+        "sha256": "f3d8dc494be2e7ea9cd31ac2fb902e35dce7ff8181b9b30d05861b47c339cb25"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "EPL-1.0",
+      "name": "Eclipse Public License 1.0",
+      "reference": "https://spdx.org/licenses/EPL-1.0.html",
+      "referenceNumber": 419,
+      "seeAlso": [
+        "http://www.eclipse.org/legal/epl-v10.html",
+        "https://opensource.org/license/EPL-1.0"
+      ]
+    },
+    "name": "Eclipse Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

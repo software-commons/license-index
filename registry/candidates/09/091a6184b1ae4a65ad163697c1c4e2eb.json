@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "091a6184b1ae4a65ad163697c1c4e2eb",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7366,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Source-beginning-file.json",
+        "sha256": "006d085a02b496b5e0419a8e18124632200d315dbe0c0cb49bff2877a826884c"
+      },
+      "template": {
+        "bytes": 1667,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Source-beginning-file.template.txt",
+        "sha256": "246aa489236266a8f45934f8a9a81e576ba71668ee6de091e9d92e6e90c2f753"
+      },
+      "text": {
+        "bytes": 1284,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Source-beginning-file.txt",
+        "sha256": "93a423c24f6c8ae180890239ae07fdb5d9d17bf826d8b9d177dfd12bb8a9cf79"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Source-beginning-file",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Source-beginning-file.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Source-beginning-file",
+      "name": "BSD Source Code Attribution - beginning of file variant",
+      "reference": "https://spdx.org/licenses/BSD-Source-beginning-file.html",
+      "referenceNumber": 471,
+      "seeAlso": [
+        "https://github.com/lattera/freebsd/blob/master/sys/cam/cam.c#L4"
+      ]
+    },
+    "name": "BSD Source Code Attribution - beginning of file variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

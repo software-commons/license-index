@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0aebf67217f1451b92e42a883dad6c7a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 86370,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/RHeCos-1.1.json",
+        "sha256": "d5d84f8a81b534b1675fc2a63593ef2889aa8475f5adb9be7a407a20b818a53d"
+      },
+      "template": {
+        "bytes": 24017,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/RHeCos-1.1.template.txt",
+        "sha256": "93d340575be8ea5310fafcfca1fbf420dc52d00bf988b6b4d49e524c9b3bd17c"
+      },
+      "text": {
+        "bytes": 21641,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/RHeCos-1.1.txt",
+        "sha256": "4ea0e1d136be8623d1d7f93df765f4021d5a11e17169b2356c6462dbd3d3002b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "RHeCos-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/RHeCos-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "RHeCos-1.1",
+      "name": "Red Hat eCos Public License v1.1",
+      "reference": "https://spdx.org/licenses/RHeCos-1.1.html",
+      "referenceNumber": 160,
+      "seeAlso": [
+        "http://ecos.sourceware.org/old-license.html"
+      ]
+    },
+    "name": "Red Hat eCos Public License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

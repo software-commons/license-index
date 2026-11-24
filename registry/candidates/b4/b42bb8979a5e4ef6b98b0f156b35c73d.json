@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b42bb8979a5e4ef6b98b0f156b35c73d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 21786,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NCGL-UK-2.0.json",
+        "sha256": "3ec33929bdb4a267da8cbce15cb927c9ac60cc18e51f5ed9c9c7cd9f96fb25cc"
+      },
+      "template": {
+        "bytes": 5912,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NCGL-UK-2.0.template.txt",
+        "sha256": "8a9c32fcec33e06eec7eca8cb79687eb5a3e188604deedd47e2f5bcba4daff3a"
+      },
+      "text": {
+        "bytes": 5536,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NCGL-UK-2.0.txt",
+        "sha256": "8b47bd0a080565f15820162902a5068cc5902ad46cf90bf30a4f59b8c363a7ee"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NCGL-UK-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NCGL-UK-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NCGL-UK-2.0",
+      "name": "Non-Commercial Government Licence",
+      "reference": "https://spdx.org/licenses/NCGL-UK-2.0.html",
+      "referenceNumber": 553,
+      "seeAlso": [
+        "http://www.nationalarchives.gov.uk/doc/non-commercial-government-licence/version/2/"
+      ]
+    },
+    "name": "Non-Commercial Government Licence",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

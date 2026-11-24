@@ -1,0 +1,24 @@
+{
+  "id": "c20a92f4381d4cf2940a098e294a1a3a",
+  "disposition": "unresolved",
+  "reason": "The publisher's versioned plain text identifies Free Trial 1.0.0. The Free Trial clause specifies evaluation for less than 32 consecutive calendar days. Keep it distinct from the internal-business-use and general noncommercial forms. Verify matching and publisher text-terms scope before admission or packaging.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://polyformproject.org/licenses/free-trial/1.0.0.txt",
+    "name": "PolyForm Free Trial License 1.0.0",
+    "identifier": "PolyForm Project Free Trial 1.0.0",
+    "revision": "1.0.0"
+  },
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://polyformproject.org/licenses/free-trial/1.0.0",
+        "name": "PolyForm Free Trial License 1.0.0",
+        "identifier": "PolyForm Project Free Trial 1.0.0",
+        "revision": "1.0.0"
+      },
+      "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights."
+    }
+  ]
+}

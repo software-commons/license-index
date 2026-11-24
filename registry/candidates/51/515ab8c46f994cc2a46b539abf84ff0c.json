@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "515ab8c46f994cc2a46b539abf84ff0c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15544,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DOC.json",
+        "sha256": "99dd87c8783f540b47be6c61cb0230bd0b1883fbb267872ff326fbad06ed872e"
+      },
+      "template": {
+        "bytes": 4560,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DOC.template.txt",
+        "sha256": "7030f803eb6e7ce6908b0bc683d751684bc27fdc260d2210e7d1db7cd4c929b0"
+      },
+      "text": {
+        "bytes": 4472,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DOC.txt",
+        "sha256": "de40eb797e5b9225c42d93b157a0d6f0ea5367f950adb1ed731652284207a67d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DOC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DOC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DOC",
+      "name": "DOC License",
+      "reference": "https://spdx.org/licenses/DOC.html",
+      "referenceNumber": 331,
+      "seeAlso": [
+        "http://www.cs.wustl.edu/~schmidt/ACE-copying.html",
+        "https://www.dre.vanderbilt.edu/~schmidt/ACE-copying.html"
+      ]
+    },
+    "name": "DOC License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

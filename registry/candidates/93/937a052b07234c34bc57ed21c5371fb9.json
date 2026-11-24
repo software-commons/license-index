@@ -1,0 +1,67 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "937a052b07234c34bc57ed21c5371fb9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3291,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-2.0-with-bison-exception.json",
+        "sha256": "da1795d9092b1883b883a3bccebe38219fd7ebd3efeee77ba154cf74a5d32adb"
+      },
+      "replacement_source": {
+        "bytes": 1577,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-2.0-with-bison-exception.xml",
+        "sha256": "a66aa98025b4d62f1425dd226b465b0433c3ead83c81d35d3e2281d295671882"
+      },
+      "template": {
+        "bytes": 705,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-2.0-with-bison-exception.template.txt",
+        "sha256": "fa89a2b49a2d8be842da91e39036b0367ca09ad996573fe73aa94e339c6df28c"
+      },
+      "text": {
+        "bytes": 672,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-2.0-with-bison-exception.txt",
+        "sha256": "4c7b802f0bc751c1d1be44072229a10d9de0fdc636a1d3c8a75538d5b99d5394"
+      }
+    },
+    "deprecated": true,
+    "identifier": "GPL-2.0-with-bison-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-with-bison-exception.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "GPL-2.0-with-bison-exception",
+      "name": "GNU General Public License v2.0 w/Bison exception",
+      "reference": "https://spdx.org/licenses/GPL-2.0-with-bison-exception.html",
+      "referenceNumber": 11,
+      "seeAlso": [
+        "http://git.savannah.gnu.org/cgit/bison.git/tree/data/yacc.c?id=193d7c7054ba7197b0789e14965b739162319b5e#n141"
+      ]
+    },
+    "name": "GNU General Public License v2.0 w/Bison exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-2.0 WITH Bison-exception-2.2"
+      },
+      {
+        "for_expression": "GPL-2.0-with-bison-exception+",
+        "target": "GPL-2.0-or-later WITH Bison-exception-2.2"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

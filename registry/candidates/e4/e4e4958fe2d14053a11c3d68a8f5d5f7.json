@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e4e4958fe2d14053a11c3d68a8f5d5f7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15513,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PolyForm-Small-Business-1.0.0.json",
+        "sha256": "005b02dc69009aa69d6b64f6ccc8cc2cef8ed5548dccc14adda244f18ae5bc38"
+      },
+      "template": {
+        "bytes": 4415,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PolyForm-Small-Business-1.0.0.template.txt",
+        "sha256": "c67b3baa8e398f43ad7bd26c61a2b4c2f07bcf0c0c6d1f87aa5aef91cd71a1a0"
+      },
+      "text": {
+        "bytes": 4389,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PolyForm-Small-Business-1.0.0.txt",
+        "sha256": "2f81e317d36f83a199c9fa10bcb250775fd90510303eaeb15aac2d8f0c1fc2d6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PolyForm-Small-Business-1.0.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PolyForm-Small-Business-1.0.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "PolyForm-Small-Business-1.0.0",
+      "name": "PolyForm Small Business License 1.0.0",
+      "reference": "https://spdx.org/licenses/PolyForm-Small-Business-1.0.0.html",
+      "referenceNumber": 169,
+      "seeAlso": [
+        "https://polyformproject.org/licenses/small-business/1.0.0"
+      ]
+    },
+    "name": "PolyForm Small Business License 1.0.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

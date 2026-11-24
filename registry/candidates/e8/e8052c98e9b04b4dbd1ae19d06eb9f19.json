@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e8052c98e9b04b4dbd1ae19d06eb9f19",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1002,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HIDAPI.json",
+        "sha256": "71dd768ff8eab256a9c6b14f71edb3efe426d705b4580d6a7fb140dd2348de52"
+      },
+      "template": {
+        "bytes": 120,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HIDAPI.template.txt",
+        "sha256": "4a38be7ad35a59c29198c0d737db153384e5d8e0b1f43cfc6c44788a35e01e19"
+      },
+      "text": {
+        "bytes": 119,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HIDAPI.txt",
+        "sha256": "c0a7ae1681ff1e9ee1d66e7f4b6fa781358d8c943ca1e3a77fe0aabff35448d3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HIDAPI",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HIDAPI.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HIDAPI",
+      "name": "HIDAPI License",
+      "reference": "https://spdx.org/licenses/HIDAPI.html",
+      "referenceNumber": 38,
+      "seeAlso": [
+        "https://github.com/signal11/hidapi/blob/master/LICENSE-orig.txt"
+      ]
+    },
+    "name": "HIDAPI License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

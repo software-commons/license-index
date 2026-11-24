@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "39386ab44b5d435f9b695a27cdee41bc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16699,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MMPL-1.0.1.json",
+        "sha256": "fd0e0aeafc75de72852926090ccf0eab4742dd66f73d291bc66774eef6537215"
+      },
+      "template": {
+        "bytes": 4031,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MMPL-1.0.1.template.txt",
+        "sha256": "3defa46695a5540548f3414fdeac3c874e347c95731888c278a28e5552b82ab6"
+      },
+      "text": {
+        "bytes": 3105,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MMPL-1.0.1.txt",
+        "sha256": "d882934346f5a468e7f9773580de7f5552d422ee21c0fda3da34a69afc5217a1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MMPL-1.0.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MMPL-1.0.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MMPL-1.0.1",
+      "name": "Minecraft Mod Public License v1.0.1",
+      "reference": "https://spdx.org/licenses/MMPL-1.0.1.html",
+      "referenceNumber": 694,
+      "seeAlso": [
+        "https://github.com/BuildCraft/BuildCraft/blob/623d323b1868712f29f4a8b0979a02e8d1835131/LICENSE",
+        "https://mod-buildcraft.com/MMPL-1.0.txt"
+      ]
+    },
+    "name": "Minecraft Mod Public License v1.0.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

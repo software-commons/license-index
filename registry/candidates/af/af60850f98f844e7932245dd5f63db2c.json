@@ -1,0 +1,55 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "af60850f98f844e7932245dd5f63db2c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9435,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LOOP.json",
+        "sha256": "ed801ee779218d6c6dd64984bb172efa5323a03cd61874940ebe32a5be33a1ac"
+      },
+      "template": {
+        "bytes": 2046,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LOOP.template.txt",
+        "sha256": "0e8f1745aad5b4c3fb2bebe962f79647b8d504c957c88d5911a04ca41137ffc4"
+      },
+      "text": {
+        "bytes": 2054,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LOOP.txt",
+        "sha256": "da529c5c3f538f467762f7963488bbb37f42417226056e1d312af0e18e66bf43"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LOOP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LOOP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "LOOP",
+      "name": "Common Lisp LOOP License",
+      "reference": "https://spdx.org/licenses/LOOP.html",
+      "referenceNumber": 20,
+      "seeAlso": [
+        "https://gitlab.com/embeddable-common-lisp/ecl/-/blob/develop/src/lsp/loop.lsp",
+        "http://git.savannah.gnu.org/cgit/gcl.git/tree/gcl/lsp/gcl_loop.lsp?h=Version_2_6_13pre",
+        "https://sourceforge.net/p/sbcl/sbcl/ci/master/tree/src/code/loop.lisp",
+        "https://github.com/cl-adams/adams/blob/master/LICENSE.md",
+        "https://github.com/blakemcbride/eclipse-lisp/blob/master/lisp/loop.lisp",
+        "https://gitlab.common-lisp.net/cmucl/cmucl/-/blob/master/src/code/loop.lisp"
+      ]
+    },
+    "name": "Common Lisp LOOP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a70c145d098d4639b3f21fffe5d5715f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 21212,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Sendmail.json",
+        "sha256": "eb5807794e2254877e85f0a34d07b834c76435c57c509169e60b0e401f273fb4"
+      },
+      "template": {
+        "bytes": 5237,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Sendmail.template.txt",
+        "sha256": "532dec076c797596909851196274c5c77fdf57ab8a7a23b48349aad3ed4cf498"
+      },
+      "text": {
+        "bytes": 3948,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Sendmail.txt",
+        "sha256": "3e9d88d6efc1150456f660c2b375be7e9af5d7147bf90bb6c79f4b25a1e21424"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Sendmail",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Sendmail.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Sendmail",
+      "name": "Sendmail License",
+      "reference": "https://spdx.org/licenses/Sendmail.html",
+      "referenceNumber": 191,
+      "seeAlso": [
+        "http://www.sendmail.com/pdfs/open_source/sendmail_license.pdf",
+        "https://web.archive.org/web/20160322142305/https://www.sendmail.com/pdfs/open_source/sendmail_license.pdf"
+      ]
+    },
+    "name": "Sendmail License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

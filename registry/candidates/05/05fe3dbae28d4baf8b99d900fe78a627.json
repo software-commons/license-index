@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "05fe3dbae28d4baf8b99d900fe78a627",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 92184,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSET-PL-2.1.json",
+        "sha256": "b4677098b5e1d8b7b2e5d0c6c429884bb86faa348958a78d91298e9526af4109"
+      },
+      "template": {
+        "bytes": 23652,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSET-PL-2.1.template.txt",
+        "sha256": "990a66a035bd723bad04fd9f709265e7324d3ac37deb8a64b6cdb89c1cd16fa6"
+      },
+      "text": {
+        "bytes": 19962,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSET-PL-2.1.txt",
+        "sha256": "ed99f44eca387bd812c680bba47e765779a8d721e9edf483e42fe272a206b3f6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OSET-PL-2.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSET-PL-2.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "OSET-PL-2.1",
+      "name": "OSET Public License version 2.1",
+      "reference": "https://spdx.org/licenses/OSET-PL-2.1.html",
+      "referenceNumber": 167,
+      "seeAlso": [
+        "http://www.osetfoundation.org/public-license",
+        "https://opensource.org/license/OSET-PL-2.1"
+      ]
+    },
+    "name": "OSET Public License version 2.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

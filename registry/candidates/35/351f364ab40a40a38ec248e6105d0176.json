@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "351f364ab40a40a38ec248e6105d0176",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1328,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/App-s2p.json",
+        "sha256": "0be3c546d6c596eec379e9646e4f062a82783752a90a05e11e7569d85e12b6b9"
+      },
+      "template": {
+        "bytes": 224,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/App-s2p.template.txt",
+        "sha256": "53083f46d28481522362c71453a64bfb4658e051add31701b2f10613f90c0563"
+      },
+      "text": {
+        "bytes": 224,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/App-s2p.txt",
+        "sha256": "6b2a839c39ff6485a5ac9921e942f771a3391078ae722302664cf14aeee2733b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "App-s2p",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/App-s2p.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "App-s2p",
+      "name": "App::s2p License",
+      "reference": "https://spdx.org/licenses/App-s2p.html",
+      "referenceNumber": 76,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/App-s2p"
+      ]
+    },
+    "name": "App::s2p License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

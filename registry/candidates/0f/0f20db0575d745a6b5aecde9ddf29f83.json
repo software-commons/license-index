@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0f20db0575d745a6b5aecde9ddf29f83",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6329,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Mackerras-3-Clause.json",
+        "sha256": "249afb7cfeb11665ae9d360306a3aa736593cd6151e750e361887d11c35d9a40"
+      },
+      "template": {
+        "bytes": 1361,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Mackerras-3-Clause.template.txt",
+        "sha256": "200b7cdb0c4287b0f72b2e47d70642119e0ccd96110c0e9d8abde59c449d004b"
+      },
+      "text": {
+        "bytes": 1240,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Mackerras-3-Clause.txt",
+        "sha256": "36b3b92cdf9674e405d1be8088706aa7b2a948b0fa237a780f1a7a643d1e0688"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Mackerras-3-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Mackerras-3-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Mackerras-3-Clause",
+      "name": "Mackerras 3-Clause License",
+      "reference": "https://spdx.org/licenses/Mackerras-3-Clause.html",
+      "referenceNumber": 630,
+      "seeAlso": [
+        "https://github.com/ppp-project/ppp/blob/master/pppd/chap_ms.c#L6-L28"
+      ]
+    },
+    "name": "Mackerras 3-Clause License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

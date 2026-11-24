@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "30eb000d1a4941a49aecfb5bf3573019",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2445,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/magaz.json",
+        "sha256": "044044f38a86214459ebb2c7ba47ee0752c900caf421339528834aafded1a2e0"
+      },
+      "template": {
+        "bytes": 331,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/magaz.template.txt",
+        "sha256": "1ed8b8910b731d9b94ec8f1821c4f508702c50ab78d4ccb5518b05b5cce6f031"
+      },
+      "text": {
+        "bytes": 216,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/magaz.txt",
+        "sha256": "5b446f36f88c0ae31a51a3eb270bb09d247a9ef4e5224e01101f77e293b06e85"
+      }
+    },
+    "deprecated": false,
+    "identifier": "magaz",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/magaz.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "magaz",
+      "name": "magaz License",
+      "reference": "https://spdx.org/licenses/magaz.html",
+      "referenceNumber": 135,
+      "seeAlso": [
+        "https://mirrors.nic.cz/tex-archive/macros/latex/contrib/magaz/magaz.tex",
+        "https://mirrors.ctan.org/macros/latex/contrib/version/version.sty"
+      ]
+    },
+    "name": "magaz License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "052d53a299c04b27bd0fe0bd6837b00a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6841,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/libutil-David-Nugent.json",
+        "sha256": "6af3fa8fffb347712936f6667c9363ee33b63e05aea9b538b33a1ccf9b194dff"
+      },
+      "template": {
+        "bytes": 1312,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/libutil-David-Nugent.template.txt",
+        "sha256": "3b2789b344e131105716832476bab411e7292da0d6c85f7dad3839ca09e2b79f"
+      },
+      "text": {
+        "bytes": 915,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/libutil-David-Nugent.txt",
+        "sha256": "b389615248f34daef9db640576d666ef01cb81852226d74f070b73e5d86eb7de"
+      }
+    },
+    "deprecated": false,
+    "identifier": "libutil-David-Nugent",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/libutil-David-Nugent.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "libutil-David-Nugent",
+      "name": "libutil David Nugent License",
+      "reference": "https://spdx.org/licenses/libutil-David-Nugent.html",
+      "referenceNumber": 261,
+      "seeAlso": [
+        "http://web.mit.edu/freebsd/head/lib/libutil/login_ok.3",
+        "https://cgit.freedesktop.org/libbsd/tree/man/setproctitle.3bsd"
+      ]
+    },
+    "name": "libutil David Nugent License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

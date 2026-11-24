@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "13117cfbab364a4abfaed248e5cdca39",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2864,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GStreamer-exception-2008.json",
+        "sha256": "3e4af8b3803efe65c16fe17e5daff4e8e9e0d75a33fdab3dcd5e0185376458f2"
+      },
+      "template": {
+        "bytes": 598,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GStreamer-exception-2008.template.txt",
+        "sha256": "29d5f77396b5b9e2e9ae40d6bff306b268622d07c79c7164ef10c033555bfa5a"
+      },
+      "text": {
+        "bytes": 462,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GStreamer-exception-2008.txt",
+        "sha256": "f6b64fbfdc2007b0114e33bd1e912589d9ed5e88ade53a6ec0b63c5bcb4aaf44"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GStreamer-exception-2008",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GStreamer-exception-2008.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GStreamer-exception-2008",
+      "name": "GStreamer Exception (2008)",
+      "reference": "https://spdx.org/licenses/GStreamer-exception-2008.html",
+      "referenceNumber": 12,
+      "seeAlso": [
+        "https://gstreamer.freedesktop.org/documentation/frequently-asked-questions/licensing.html?gi-language=c#licensing-of-applications-using-gstreamer"
+      ]
+    },
+    "name": "GStreamer Exception (2008)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

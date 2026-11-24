@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "90d95b44b2674757ab4135f01a420e26",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2038,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AdaCore-doc.json",
+        "sha256": "ef147d5fa2c86ea00d90dd5d81fd59df47ebec2d62b8a5c932359d5ec01e5151"
+      },
+      "template": {
+        "bytes": 237,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AdaCore-doc.template.txt",
+        "sha256": "22f085417909a843285612377229d9c6f703f7120459d509ae30f94ca59db48f"
+      },
+      "text": {
+        "bytes": 236,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AdaCore-doc.txt",
+        "sha256": "ae394ea7feba5746a5036b6070abfb62cdd8d514492156bdc4ea9a441a39ed6e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AdaCore-doc",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AdaCore-doc.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AdaCore-doc",
+      "name": "AdaCore Doc License",
+      "reference": "https://spdx.org/licenses/AdaCore-doc.html",
+      "referenceNumber": 599,
+      "seeAlso": [
+        "https://github.com/AdaCore/xmlada/blob/master/docs/index.rst",
+        "https://github.com/AdaCore/gnatcoll-core/blob/master/docs/index.rst",
+        "https://github.com/AdaCore/gnatcoll-db/blob/master/docs/index.rst"
+      ]
+    },
+    "name": "AdaCore Doc License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

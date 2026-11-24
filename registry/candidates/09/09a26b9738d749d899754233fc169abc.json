@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "09a26b9738d749d899754233fc169abc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17100,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CNRI-Python-GPL-Compatible.json",
+        "sha256": "6b013d258a7ed4755f73cedbd49c9981adb5bdc35c7c2826480d65da1532c49b"
+      },
+      "template": {
+        "bytes": 4478,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CNRI-Python-GPL-Compatible.template.txt",
+        "sha256": "0236bd56a76eae66e80b633cac24ef0e276caa1da26be60fa0b2ae4bfd3a89e1"
+      },
+      "text": {
+        "bytes": 4004,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CNRI-Python-GPL-Compatible.txt",
+        "sha256": "8e1f50d9b3c33a6a58559a27042475a6267c7ebc745be85f2eaa2ffb04878dc8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CNRI-Python-GPL-Compatible",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CNRI-Python-GPL-Compatible.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "CNRI-Python-GPL-Compatible",
+      "name": "CNRI Python Open Source GPL Compatible License Agreement",
+      "reference": "https://spdx.org/licenses/CNRI-Python-GPL-Compatible.html",
+      "referenceNumber": 340,
+      "seeAlso": [
+        "http://www.python.org/download/releases/1.6.1/download_win/",
+        "https://opensource.org/license/CNRI-Python-GPL-Compatible"
+      ]
+    },
+    "name": "CNRI Python Open Source GPL Compatible License Agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

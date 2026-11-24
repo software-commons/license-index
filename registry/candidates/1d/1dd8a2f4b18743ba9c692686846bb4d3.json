@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1dd8a2f4b18743ba9c692686846bb4d3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5007,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Brian-Gladman-3-Clause-no-conversion.json",
+        "sha256": "26e37f4f679a695fa84a00e401d0f99de15cb5fe1de04608ae31e45291f9c9e5"
+      },
+      "template": {
+        "bytes": 1064,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Brian-Gladman-3-Clause-no-conversion.template.txt",
+        "sha256": "25d57293fa3f8b5e1d076760a48c3fe4ab7f09a9e885ec953c48174dc9210a2c"
+      },
+      "text": {
+        "bytes": 880,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Brian-Gladman-3-Clause-no-conversion.txt",
+        "sha256": "1a68190c2361dd2e4f172a91901f73c8068b3c0f684f35a6f887116ea0f91c38"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Brian-Gladman-3-Clause-no-conversion",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Brian-Gladman-3-Clause-no-conversion.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Brian-Gladman-3-Clause-no-conversion",
+      "name": "Brian Gladman 3-Clause License (no conversion clause)",
+      "reference": "https://spdx.org/licenses/Brian-Gladman-3-Clause-no-conversion.html",
+      "referenceNumber": 42,
+      "seeAlso": [
+        "https://github.com/krb5/krb5/blob/kfw-4.0.1-beta1/src/lib/crypto/builtin/aes/aesopt.h"
+      ]
+    },
+    "name": "Brian Gladman 3-Clause License (no conversion clause)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

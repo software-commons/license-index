@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "989636356353415e8680885fed059671",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5733,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSSP.json",
+        "sha256": "928d1ecc50778b4c96ad2deb52426a5cee39f969f00d914d6e3f1bfb0a795d35"
+      },
+      "template": {
+        "bytes": 1399,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSSP.template.txt",
+        "sha256": "08028dd33b1b3e90505528d8c159c86ab7454d4184abbf1ea76cc7c401a0568d"
+      },
+      "text": {
+        "bytes": 1321,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSSP.txt",
+        "sha256": "c3c72d1d321ae891c01d1798b422deebf04724bf0419e50a50a2292553ae5ef9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OSSP",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSSP.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OSSP",
+      "name": "OSSP License",
+      "reference": "https://spdx.org/licenses/OSSP.html",
+      "referenceNumber": 317,
+      "seeAlso": [
+        "https://git.sr.ht/~nabijaczleweli/ossp-var"
+      ]
+    },
+    "name": "OSSP License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d5215669b9984ed8bf0ec9dd34bcc2b3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 23114,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Catharon.json",
+        "sha256": "aaed57122fab97c0094a68edbd4d3e4892c52810c6112a141d8cdb066c25aca6"
+      },
+      "template": {
+        "bytes": 5282,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Catharon.template.txt",
+        "sha256": "aa84a7f192da6ea766321482fdec89446cc4d0996949635ccc0848f1f609eb24"
+      },
+      "text": {
+        "bytes": 5178,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Catharon.txt",
+        "sha256": "942d5d330259d528b7b0a8cbf8ddf919c7f07d726fa6d4ab8a80999050e3f43a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Catharon",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Catharon.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Catharon",
+      "name": "Catharon License",
+      "reference": "https://spdx.org/licenses/Catharon.html",
+      "referenceNumber": 264,
+      "seeAlso": [
+        "https://github.com/scummvm/scummvm/blob/v2.8.0/LICENSES/CatharonLicense.txt"
+      ]
+    },
+    "name": "Catharon License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d78b35d0aebb47f7908f3f61301032b2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Baekmuk.json",
+        "sha256": "563214783af5d5110a271946467432824c56e8da0d999765bb53af89dad8ee78"
+      },
+      "template": {
+        "bytes": 471,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Baekmuk.template.txt",
+        "sha256": "014bce8aadfffffe1a3655e7fa0c0542274349a87bd9331cc2fa69d542ca87a3"
+      },
+      "text": {
+        "bytes": 479,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Baekmuk.txt",
+        "sha256": "875ba3facc8d06ccd4bf853ee64e2a59a39f81e62ade4dd9387d38fa354a74f7"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Baekmuk",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Baekmuk.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Baekmuk",
+      "name": "Baekmuk License",
+      "reference": "https://spdx.org/licenses/Baekmuk.html",
+      "referenceNumber": 275,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:Baekmuk?rd=Licensing/Baekmuk"
+      ]
+    },
+    "name": "Baekmuk License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

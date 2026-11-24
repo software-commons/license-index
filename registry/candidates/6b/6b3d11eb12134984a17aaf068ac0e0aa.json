@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6b3d11eb12134984a17aaf068ac0e0aa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3891,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Xerox.json",
+        "sha256": "3d4d641defd55912f28d1b4398d2b9ec1e7a4cf896818220ab80afe191330c40"
+      },
+      "template": {
+        "bytes": 1019,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Xerox.template.txt",
+        "sha256": "f2e92e205494f9a7a6bd224e42d91841ecaabe4c1a06c69b26e91f05334d0316"
+      },
+      "text": {
+        "bytes": 963,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Xerox.txt",
+        "sha256": "2dc0b8da7071d88b88e4f7b7de338d5339bc44ffb1889d66d63ef9b9ac5e5d11"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Xerox",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Xerox.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Xerox",
+      "name": "Xerox License",
+      "reference": "https://spdx.org/licenses/Xerox.html",
+      "referenceNumber": 217,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Xerox"
+      ]
+    },
+    "name": "Xerox License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

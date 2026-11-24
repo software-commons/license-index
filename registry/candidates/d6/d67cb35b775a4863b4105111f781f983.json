@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d67cb35b775a4863b4105111f781f983",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5429,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSL-1.0.json",
+        "sha256": "639508920388ec0d9ae447f1fe65beac499ea246b12c3438d5ceb35eb081d608"
+      },
+      "template": {
+        "bytes": 1372,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSL-1.0.template.txt",
+        "sha256": "5218853c2dd51b793b84bce58bb669dcad92215fc6de3dd06be83946e94d9078"
+      },
+      "text": {
+        "bytes": 1338,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSL-1.0.txt",
+        "sha256": "84c6ef3ea9e3254a54d0acf5d3e0c61ae011b8fef7dd6940591cf060e6380a8f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "BSL-1.0",
+      "name": "Boost Software License 1.0",
+      "reference": "https://spdx.org/licenses/BSL-1.0.html",
+      "referenceNumber": 328,
+      "seeAlso": [
+        "http://www.boost.org/LICENSE_1_0.txt",
+        "https://opensource.org/license/BSL-1.0"
+      ]
+    },
+    "name": "Boost Software License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

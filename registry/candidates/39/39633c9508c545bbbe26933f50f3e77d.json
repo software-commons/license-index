@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "39633c9508c545bbbe26933f50f3e77d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8090,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Multics.json",
+        "sha256": "b1f5b0b7c8d53bcd012022a01008654f7a5aec91fb98eaa4782ccdc1f7b13415"
+      },
+      "template": {
+        "bytes": 2239,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Multics.template.txt",
+        "sha256": "d7c8f42eec6f5ea04aa7090872a112a54657487e84327efb2ec5a9259bfd46ae"
+      },
+      "text": {
+        "bytes": 2040,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Multics.txt",
+        "sha256": "d61ab7b7b6e9d7871ef6e5217e6b7cb915dd6549cfa68a49669382090b81fe70"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Multics",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Multics.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Multics",
+      "name": "Multics License",
+      "reference": "https://spdx.org/licenses/Multics.html",
+      "referenceNumber": 12,
+      "seeAlso": [
+        "https://opensource.org/license/Multics"
+      ]
+    },
+    "name": "Multics License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

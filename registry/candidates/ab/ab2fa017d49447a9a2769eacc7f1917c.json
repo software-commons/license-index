@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ab2fa017d49447a9a2769eacc7f1917c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6717,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-sell-variant-critical-systems.json",
+        "sha256": "055a79b7d4fded14fe7891d2d240729da5816d4070cebdb1ffad446dadc97d29"
+      },
+      "template": {
+        "bytes": 1476,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-sell-variant-critical-systems.template.txt",
+        "sha256": "d80128c046a70432af01af75d8af3a6d96e58bab5b94c8ee29da26cd74d1ee96"
+      },
+      "text": {
+        "bytes": 1195,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-sell-variant-critical-systems.txt",
+        "sha256": "f95fd22335c5e22284c23644c0d4c406ed94063a2ca7f75adfd70cb37c726027"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-sell-variant-critical-systems",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-sell-variant-critical-systems.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-sell-variant-critical-systems",
+      "name": "HPND - sell variant with safety critical systems clause",
+      "reference": "https://spdx.org/licenses/HPND-sell-variant-critical-systems.html",
+      "referenceNumber": 603,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/driver/xf86-video-voodoo/-/blob/68a5b6d98ae34749cca889f4373b4043d00bfe6a/src/voodoo_dga.c#L12-33"
+      ]
+    },
+    "name": "HPND - sell variant with safety critical systems clause",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

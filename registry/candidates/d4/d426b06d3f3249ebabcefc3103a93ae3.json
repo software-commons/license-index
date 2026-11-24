@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d426b06d3f3249ebabcefc3103a93ae3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8335,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-flex.json",
+        "sha256": "4ac8988763427dd5ce1d09fbec3fb1cd817b85ef74f0b3eda25667c0da1e8ae7"
+      },
+      "template": {
+        "bytes": 2033,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-flex.template.txt",
+        "sha256": "d4074d728a10e5a43ee71e667a49cb88fcee3fd938e1cd1c5cc18b398d26dd8d"
+      },
+      "text": {
+        "bytes": 1855,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-flex.txt",
+        "sha256": "97fd685958d93be7f8dab939bb8161dbd6afb0718c63bfc337c24321aea44273"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-flex",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-flex.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-flex",
+      "name": "BSD 3-Clause Flex variant",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-flex.html",
+      "referenceNumber": 414,
+      "seeAlso": [
+        "https://github.com/westes/flex/blob/master/COPYING"
+      ]
+    },
+    "name": "BSD 3-Clause Flex variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

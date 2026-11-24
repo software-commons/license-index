@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3c2044feb29849a3ab0dde308659bf7a",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 52995,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ImageMagick.json",
+        "sha256": "a20d077ef7685ee04f562360bd3e77e72beeca11dd5c6f15c2e49ddce84c0beb"
+      },
+      "template": {
+        "bytes": 14185,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ImageMagick.template.txt",
+        "sha256": "90360804327a7f67c35e9f81f3030542ea437633828452d3e05207e607cf3581"
+      },
+      "text": {
+        "bytes": 12506,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ImageMagick.txt",
+        "sha256": "0559a7a7cf47eaf00332b60f8db520866cc09899eaceda5fb528a24c184626a6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ImageMagick",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ImageMagick.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ImageMagick",
+      "name": "ImageMagick License",
+      "reference": "https://spdx.org/licenses/ImageMagick.html",
+      "referenceNumber": 106,
+      "seeAlso": [
+        "http://www.imagemagick.org/script/license.php"
+      ]
+    },
+    "name": "ImageMagick License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

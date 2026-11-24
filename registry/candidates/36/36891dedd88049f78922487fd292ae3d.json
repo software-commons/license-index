@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "36891dedd88049f78922487fd292ae3d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1755,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Autoconf-exception-generic-3.0.json",
+        "sha256": "3aeecbe412438fe31653a18fb4c278f1c806271daf5761a999aa29812b2550e4"
+      },
+      "template": {
+        "bytes": 379,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Autoconf-exception-generic-3.0.template.txt",
+        "sha256": "2dc7f28b40b153c9b442a2ef9be7fd765e4dd3e7b1e67bc0a67aa61d5e3bfc1b"
+      },
+      "text": {
+        "bytes": 387,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Autoconf-exception-generic-3.0.txt",
+        "sha256": "52d0836d9f63223dae5b6a680af6d12abc8bf15ebf5b44db8a14b7362afe993d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Autoconf-exception-generic-3.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Autoconf-exception-generic-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Autoconf-exception-generic-3.0",
+      "name": "Autoconf generic exception for GPL-3.0",
+      "reference": "https://spdx.org/licenses/Autoconf-exception-generic-3.0.html",
+      "referenceNumber": 82,
+      "seeAlso": [
+        "https://src.fedoraproject.org/rpms/redhat-rpm-config/blob/rawhide/f/config.guess"
+      ]
+    },
+    "name": "Autoconf generic exception for GPL-3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

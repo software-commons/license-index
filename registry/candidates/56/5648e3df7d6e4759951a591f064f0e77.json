@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5648e3df7d6e4759951a591f064f0e77",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10065,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/radvd.json",
+        "sha256": "a324b70d94aaf8951f5ff904ea6748db47237466ec2fe396c073474acd1150a3"
+      },
+      "template": {
+        "bytes": 2451,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/radvd.template.txt",
+        "sha256": "434aaf16b851326fb4e09f4d962888bc5bb08818a1a85d450f7e174fcc3202f2"
+      },
+      "text": {
+        "bytes": 2188,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/radvd.txt",
+        "sha256": "26ed43c573c7b7f796464acf61b190ea39951acc9b0f3c9961ebb96c31e76be5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "radvd",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/radvd.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "radvd",
+      "name": "radvd License",
+      "reference": "https://spdx.org/licenses/radvd.html",
+      "referenceNumber": 357,
+      "seeAlso": [
+        "https://github.com/radvd-project/radvd/blob/master/COPYRIGHT"
+      ]
+    },
+    "name": "radvd License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

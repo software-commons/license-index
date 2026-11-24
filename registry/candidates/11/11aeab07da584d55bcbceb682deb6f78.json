@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "11aeab07da584d55bcbceb682deb6f78",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12802,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ZPL-1.1.json",
+        "sha256": "c29b7d67ace8d13d54158568dad47d4ee0bebb2840a26adfff33ec7b615f3100"
+      },
+      "template": {
+        "bytes": 3340,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ZPL-1.1.template.txt",
+        "sha256": "7799704ce135e32e9a805b35e76d46a40f852694b70cdfd47b27e884d6a1d1e2"
+      },
+      "text": {
+        "bytes": 2924,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ZPL-1.1.txt",
+        "sha256": "d384d993a9eb2ec842f15348a862b809d7f1a4d7fbdec18459d6249c8007cdb2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ZPL-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ZPL-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ZPL-1.1",
+      "name": "Zope Public License 1.1",
+      "reference": "https://spdx.org/licenses/ZPL-1.1.html",
+      "referenceNumber": 434,
+      "seeAlso": [
+        "http://old.zope.org/Resources/License/ZPL-1.1"
+      ]
+    },
+    "name": "Zope Public License 1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

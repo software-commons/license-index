@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b1d980ebceda44b08a1f7ab6fb957cbf",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5604,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/pnmstitch.json",
+        "sha256": "8d1a8d7617b7bf72c30001f254adbea5de468bbc375d5e041783fb51561010c4"
+      },
+      "template": {
+        "bytes": 1282,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/pnmstitch.template.txt",
+        "sha256": "c95e8d093622fabb130b590557faca7b1e6f5ece50c3ca17add4daf51956ad35"
+      },
+      "text": {
+        "bytes": 1105,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/pnmstitch.txt",
+        "sha256": "b8f88b9690b1eaf8af0e99a0f9491995b5632a87a91000f14f8b6baf4ddde0c2"
+      }
+    },
+    "deprecated": false,
+    "identifier": "pnmstitch",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/pnmstitch.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "pnmstitch",
+      "name": "pnmstitch License",
+      "reference": "https://spdx.org/licenses/pnmstitch.html",
+      "referenceNumber": 99,
+      "seeAlso": [
+        "https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/editor/pnmstitch.c#l2"
+      ]
+    },
+    "name": "pnmstitch License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

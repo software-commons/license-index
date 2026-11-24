@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6fb26159f76e4f4c807fb37b42e9c681",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5502,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MITNFA.json",
+        "sha256": "d4f559c02d7d71383234dfcd087ba54fbfd109458049da589315fdaaa9907660"
+      },
+      "template": {
+        "bytes": 1532,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MITNFA.template.txt",
+        "sha256": "c774d751c82ed98c3397f3315c43c56b8bb4fd8c66277a4a54f12a7466cd7937"
+      },
+      "text": {
+        "bytes": 1531,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MITNFA.txt",
+        "sha256": "d436716f7a05466f52443893079761c8a88f4967d0ef490fabc0a1c9ef1c3a1d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MITNFA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MITNFA.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MITNFA",
+      "name": "MIT +no-false-attribs license",
+      "reference": "https://spdx.org/licenses/MITNFA.html",
+      "referenceNumber": 534,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MITNFA"
+      ]
+    },
+    "name": "MIT +no-false-attribs license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

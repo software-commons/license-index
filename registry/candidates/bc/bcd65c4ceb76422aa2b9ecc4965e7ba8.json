@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bcd65c4ceb76422aa2b9ecc4965e7ba8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11260,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/IEC-Code-Components-EULA.json",
+        "sha256": "4fffb746d0e952ac5cb984ff7640c1b48c5e7f9f127084a63c0a9bb9f43f3cc1"
+      },
+      "template": {
+        "bytes": 2628,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/IEC-Code-Components-EULA.template.txt",
+        "sha256": "810eded8de2af18d2fb4cf7a08381ee79495e4c5c5422c1b5cc2f4ec93ba5359"
+      },
+      "text": {
+        "bytes": 2330,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/IEC-Code-Components-EULA.txt",
+        "sha256": "f72284157fbc0b39b7b65491abc3012f62a81839e2d28609032df8d3d9340814"
+      }
+    },
+    "deprecated": false,
+    "identifier": "IEC-Code-Components-EULA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/IEC-Code-Components-EULA.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "IEC-Code-Components-EULA",
+      "name": "IEC    Code Components End-user licence agreement",
+      "reference": "https://spdx.org/licenses/IEC-Code-Components-EULA.html",
+      "referenceNumber": 265,
+      "seeAlso": [
+        "https://www.iec.ch/webstore/custserv/pdf/CC-EULA.pdf",
+        "https://www.iec.ch/CCv1",
+        "https://www.iec.ch/copyright"
+      ]
+    },
+    "name": "IEC    Code Components End-user licence agreement",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

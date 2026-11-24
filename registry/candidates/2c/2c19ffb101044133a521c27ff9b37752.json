@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2c19ffb101044133a521c27ff9b37752",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 37185,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Zimbra-1.4.json",
+        "sha256": "c5421838377668d083112b18f122b07a6d177fb1c932f326205b60d5255286b6"
+      },
+      "template": {
+        "bytes": 9902,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Zimbra-1.4.template.txt",
+        "sha256": "1f7c7f6d1856a527b3b7d623be84bd7b945241627c95b2b34e401c30fccdc29f"
+      },
+      "text": {
+        "bytes": 8947,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Zimbra-1.4.txt",
+        "sha256": "d2b8dafada0490c22d39079793ccc6ce4dbb38a9c071ef96152ef1d6a759e511"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Zimbra-1.4",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Zimbra-1.4.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Zimbra-1.4",
+      "name": "Zimbra Public License v1.4",
+      "reference": "https://spdx.org/licenses/Zimbra-1.4.html",
+      "referenceNumber": 203,
+      "seeAlso": [
+        "http://www.zimbra.com/legal/zimbra-public-license-1-4"
+      ]
+    },
+    "name": "Zimbra Public License v1.4",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4ad408eadede43369b1811cdcda7c266",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4441,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Independent-modules-exception.json",
+        "sha256": "025004fc2eac1040190a1dfe74439a00be6c01c0f55b9c0c3e07ea045dfa4ab9"
+      },
+      "template": {
+        "bytes": 1135,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Independent-modules-exception.template.txt",
+        "sha256": "06c70f7485d9fa5b12fb907017fa527aac9defe814b0dcfa26ae012cbeed6266"
+      },
+      "text": {
+        "bytes": 1065,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Independent-modules-exception.txt",
+        "sha256": "1e43b7a1a3e2d5ec9f0c66a6548d01ec958ce23d7fa0d83bc77f5ac429d0ec83"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Independent-modules-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Independent-modules-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Independent-modules-exception",
+      "name": "Independent Module Linking exception",
+      "reference": "https://spdx.org/licenses/Independent-modules-exception.html",
+      "referenceNumber": 58,
+      "seeAlso": [
+        "https://gitlab.com/freepascal.org/fpc/source/-/blob/release_3_2_2/rtl/COPYING.FPC"
+      ]
+    },
+    "name": "Independent Module Linking exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

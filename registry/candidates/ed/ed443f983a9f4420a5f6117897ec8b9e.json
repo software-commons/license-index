@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ed443f983a9f4420a5f6117897ec8b9e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7238,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-2-Clause-FreeBSD.json",
+        "sha256": "95e4a77e02c9759b1d8c98dd6c8809331b83766472d488bad87f50a629f9a041"
+      },
+      "replacement_source": {
+        "bytes": 2683,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/BSD-2-Clause-FreeBSD.xml",
+        "sha256": "46f191bd96fb7566094be39ae9feaa1e43feb788f606ec338c57b9d7bc3c15dd"
+      },
+      "template": {
+        "bytes": 1709,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_BSD-2-Clause-FreeBSD.template.txt",
+        "sha256": "15cc6240a21dce5f7597f28c8eb41d6cb3d7146668e9743284f1c06674b5a6f4"
+      },
+      "text": {
+        "bytes": 1518,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_BSD-2-Clause-FreeBSD.txt",
+        "sha256": "38cc5fec5a80af1b141447d58f686b3a75488db05ddbd0ef439f494ea0458f64"
+      }
+    },
+    "deprecated": true,
+    "identifier": "BSD-2-Clause-FreeBSD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "3.10",
+      "detailsUrl": "https://spdx.org/licenses/BSD-2-Clause-FreeBSD.json",
+      "isDeprecatedLicenseId": true,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "BSD-2-Clause-FreeBSD",
+      "name": "BSD 2-Clause FreeBSD License",
+      "reference": "https://spdx.org/licenses/BSD-2-Clause-FreeBSD.html",
+      "referenceNumber": 284,
+      "seeAlso": [
+        "http://www.freebsd.org/copyright/freebsd-license.html"
+      ]
+    },
+    "name": "BSD 2-Clause FreeBSD License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

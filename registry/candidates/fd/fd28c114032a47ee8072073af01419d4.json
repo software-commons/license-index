@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fd28c114032a47ee8072073af01419d4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6941,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Caldera-no-preamble.json",
+        "sha256": "0136bdd087bccca558c16f58e2ad5d8e05064892d3d972b993c0e7902096b62b"
+      },
+      "template": {
+        "bytes": 1799,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Caldera-no-preamble.template.txt",
+        "sha256": "464cf803b43fc0644762d3161d0a2a1211c45bf0d27c1cf3475373dc89c54f9e"
+      },
+      "text": {
+        "bytes": 1752,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Caldera-no-preamble.txt",
+        "sha256": "f5a5d863ea1be445f88b95229461bf19175e1f11a7cf7f61d227a13fa319aa29"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Caldera-no-preamble",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Caldera-no-preamble.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Caldera-no-preamble",
+      "name": "Caldera License (without preamble)",
+      "reference": "https://spdx.org/licenses/Caldera-no-preamble.html",
+      "referenceNumber": 341,
+      "seeAlso": [
+        "https://github.com/apache/apr/blob/trunk/LICENSE#L298C6-L298C29"
+      ]
+    },
+    "name": "Caldera License (without preamble)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

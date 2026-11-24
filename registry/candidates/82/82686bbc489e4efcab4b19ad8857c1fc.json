@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "82686bbc489e4efcab4b19ad8857c1fc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3689,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Linux-man-pages-copyleft-var.json",
+        "sha256": "9a111b53e2c6d762b39423ba7b96ea1390804e15218807bf3dc98e46117bb6eb"
+      },
+      "template": {
+        "bytes": 800,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Linux-man-pages-copyleft-var.template.txt",
+        "sha256": "6a4472922c4fe7c44ba117f0273827a3c5f09cee98dd60f08c1f76dbfa5f96db"
+      },
+      "text": {
+        "bytes": 808,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Linux-man-pages-copyleft-var.txt",
+        "sha256": "5eaba1f816b73ae7c6742d167d8ce64ef5ffdacde8597dee824ea8570b881ec5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Linux-man-pages-copyleft-var",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Linux-man-pages-copyleft-var.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Linux-man-pages-copyleft-var",
+      "name": "Linux man-pages Copyleft Variant",
+      "reference": "https://spdx.org/licenses/Linux-man-pages-copyleft-var.html",
+      "referenceNumber": 255,
+      "seeAlso": [
+        "https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/man2/set_mempolicy.2#n5"
+      ]
+    },
+    "name": "Linux man-pages Copyleft Variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

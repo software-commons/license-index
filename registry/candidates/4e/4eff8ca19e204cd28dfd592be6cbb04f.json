@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4eff8ca19e204cd28dfd592be6cbb04f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2933,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/NIST-PD-TNT.json",
+        "sha256": "b24f3bbbf9d5da0a13cd7c926c0c799d460e4047820998ee42864bb8f60e9512"
+      },
+      "template": {
+        "bytes": 605,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/NIST-PD-TNT.template.txt",
+        "sha256": "ead9defe52259fe3e1c6c2e4279550cce1f653b2a3851dae689fb152b8a398e2"
+      },
+      "text": {
+        "bytes": 604,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/NIST-PD-TNT.txt",
+        "sha256": "7ff14bfcea1d7eb72bb49121f94f33f38ab6b298a8bd9fc5d7615681e38968ed"
+      }
+    },
+    "deprecated": false,
+    "identifier": "NIST-PD-TNT",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/NIST-PD-TNT.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "NIST-PD-TNT",
+      "name": "NIST    Public Domain Notice TNT variant",
+      "reference": "https://spdx.org/licenses/NIST-PD-TNT.html",
+      "referenceNumber": 243,
+      "seeAlso": [
+        "https://math.nist.gov/tnt/download.html"
+      ]
+    },
+    "name": "NIST    Public Domain Notice TNT variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

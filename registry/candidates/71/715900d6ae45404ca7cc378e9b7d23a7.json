@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "715900d6ae45404ca7cc378e9b7d23a7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1631,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/snprintf.json",
+        "sha256": "322a995763dcf865df6f33903e9901e8ebd12bc4a8baa09f1c6c608f5d25ed9d"
+      },
+      "template": {
+        "bytes": 262,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/snprintf.template.txt",
+        "sha256": "4234a3a9af60c6322cbd51aa90c58d913e10cc46755b563d16fb73038443ea28"
+      },
+      "text": {
+        "bytes": 209,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/snprintf.txt",
+        "sha256": "f91ffe18448379c5dc14d84a8285513cde4ca65700abf757a1737a3084526fd9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "snprintf",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/snprintf.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "snprintf",
+      "name": "snprintf License",
+      "reference": "https://spdx.org/licenses/snprintf.html",
+      "referenceNumber": 188,
+      "seeAlso": [
+        "https://github.com/openssh/openssh-portable/blob/master/openbsd-compat/bsd-snprintf.c#L2"
+      ]
+    },
+    "name": "snprintf License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e0421de1f22b449286a1ba1a59ccb11e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 107277,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Motosoto.json",
+        "sha256": "5f9fd72644af17e8c3c17d1167937b45e1cf1447a1706ce6e2e01b6f2a274197"
+      },
+      "template": {
+        "bytes": 27824,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Motosoto.template.txt",
+        "sha256": "4cd8497193c90d7b07a00b90e20e1d4f500459545f8cd45d2e10068c741eae25"
+      },
+      "text": {
+        "bytes": 26396,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Motosoto.txt",
+        "sha256": "217f381da7c4195cfb4a5a03d98c2e7c65568fe9bc9d81cd157a4d2b92528f11"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Motosoto",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Motosoto.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Motosoto",
+      "name": "Motosoto License",
+      "reference": "https://spdx.org/licenses/Motosoto.html",
+      "referenceNumber": 324,
+      "seeAlso": [
+        "https://opensource.org/license/Motosoto"
+      ]
+    },
+    "name": "Motosoto License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

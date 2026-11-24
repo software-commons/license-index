@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "eb331c1ea32d46d8a4bbfc387766e57d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5781,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Cornell-Lossless-JPEG.json",
+        "sha256": "e74c37ebb746100f779e64086115a9179529ca7ab1123bd3d0ff66bd57571c1c"
+      },
+      "template": {
+        "bytes": 1220,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Cornell-Lossless-JPEG.template.txt",
+        "sha256": "e381e05c9a6720e2bb0c2d0a0bd4ee2aff8ffb65146218de335db4c63dea0d52"
+      },
+      "text": {
+        "bytes": 971,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Cornell-Lossless-JPEG.txt",
+        "sha256": "d72d91523e8030b56b033e84824aabc68aa68c2d08329a6718a2ab97bb6e073a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Cornell-Lossless-JPEG",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Cornell-Lossless-JPEG.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Cornell-Lossless-JPEG",
+      "name": "Cornell Lossless JPEG License",
+      "reference": "https://spdx.org/licenses/Cornell-Lossless-JPEG.html",
+      "referenceNumber": 236,
+      "seeAlso": [
+        "https://android.googlesource.com/platform/external/dng_sdk/+/refs/heads/master/source/dng_lossless_jpeg.cpp#16",
+        "https://www.mssl.ucl.ac.uk/~mcrw/src/20050920/proto.h",
+        "https://gitlab.freedesktop.org/libopenraw/libopenraw/blob/master/lib/ljpegdecompressor.cpp#L32"
+      ]
+    },
+    "name": "Cornell Lossless JPEG License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

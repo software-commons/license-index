@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "13d53c100a6046e4b94314bf2585b9ba",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 17652,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OpenPBS-2.3.json",
+        "sha256": "4888363f7f1d16e2818cb0ab0973e9bfce77ecd9d231bb8db71ac042759a027a"
+      },
+      "template": {
+        "bytes": 4326,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OpenPBS-2.3.template.txt",
+        "sha256": "8e04b2edbf3fa2997b2e0ec1e0ecb117132f718892020ad8150dd83930a400fc"
+      },
+      "text": {
+        "bytes": 3962,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OpenPBS-2.3.txt",
+        "sha256": "260b415e93abd31eed15f4d520b4e86c6b0e9317c0541d6004242d499078ae59"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OpenPBS-2.3",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OpenPBS-2.3.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OpenPBS-2.3",
+      "name": "OpenPBS v2.3 Software License",
+      "reference": "https://spdx.org/licenses/OpenPBS-2.3.html",
+      "referenceNumber": 352,
+      "seeAlso": [
+        "https://github.com/adaptivecomputing/torque/blob/master/PBS_License.txt",
+        "https://www.mcs.anl.gov/research/projects/openpbs/PBS_License.txt"
+      ]
+    },
+    "name": "OpenPBS v2.3 Software License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

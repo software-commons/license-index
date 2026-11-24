@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6ec5e09d120648239243cdc6d69b6e81",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 41420,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/IPA.json",
+        "sha256": "36b54e068611668539001ea4adf24b93f1c3babba571a01d824767ca770152bc"
+      },
+      "template": {
+        "bytes": 10780,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/IPA.template.txt",
+        "sha256": "8c8c57692e366458847cebb85ad3bb16aa4d644bfbe434370c4f0b3561611f0f"
+      },
+      "text": {
+        "bytes": 9093,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/IPA.txt",
+        "sha256": "f5449912f9a791699330354ef8b83347edb849a74a66d2577324b76c2acd6c15"
+      }
+    },
+    "deprecated": false,
+    "identifier": "IPA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/IPA.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "IPA",
+      "name": "IPA Font License",
+      "reference": "https://spdx.org/licenses/IPA.html",
+      "referenceNumber": 493,
+      "seeAlso": [
+        "https://opensource.org/license/IPA"
+      ]
+    },
+    "name": "IPA Font License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

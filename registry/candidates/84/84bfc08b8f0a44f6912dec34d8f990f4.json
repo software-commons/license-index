@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "84bfc08b8f0a44f6912dec34d8f990f4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5998,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OML.json",
+        "sha256": "e110b05bbd565731e96e3889071000d8ef7fe202e1b53cc09945b5da716f83b9"
+      },
+      "template": {
+        "bytes": 1690,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OML.template.txt",
+        "sha256": "b0859b748112cb553bc6167545c0803ecd22cc95d5af367ec51e79353ed34403"
+      },
+      "text": {
+        "bytes": 1689,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OML.txt",
+        "sha256": "6d6cbb65c30870b70e1e261fca3c0d475acc1b26746824bee0db446be5452b76"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OML",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OML.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OML",
+      "name": "Open Market License",
+      "reference": "https://spdx.org/licenses/OML.html",
+      "referenceNumber": 591,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Open_Market_License"
+      ]
+    },
+    "name": "Open Market License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

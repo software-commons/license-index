@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f70184dc78ab4a6a886607db9d021fd0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1820,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/atc-game.json",
+        "sha256": "879d6c9070de75c409901ec01ff65a9fa356973a0b50ca0790bb924a201de50d"
+      },
+      "template": {
+        "bytes": 301,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/atc-game.template.txt",
+        "sha256": "d4385addd9414ca6809c7fb786348ffc3f004b82084fb430d8629cf263e92b53"
+      },
+      "text": {
+        "bytes": 247,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/atc-game.txt",
+        "sha256": "e7d75b53c8e4147d815f74bc4b4fd1677ed95e3be4553bc4b19419953658cdf8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "atc-game",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/atc-game.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "atc-game",
+      "name": "atc Game License",
+      "reference": "https://spdx.org/licenses/atc-game.html",
+      "referenceNumber": 390,
+      "seeAlso": [
+        "https://github.com/vattam/BSDGames/blob/master/atc/extern.c#L36"
+      ]
+    },
+    "name": "atc Game License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

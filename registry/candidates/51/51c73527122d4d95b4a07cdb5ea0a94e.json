@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "51c73527122d4d95b4a07cdb5ea0a94e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3999,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AMD-newlib.json",
+        "sha256": "eefa5a522a29dc537c8671f1bc9a55ee294df9e737020c8d880fda92bc164537"
+      },
+      "template": {
+        "bytes": 819,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AMD-newlib.template.txt",
+        "sha256": "690963db8c96b7e6127f4aa75b14a2dd20b705e319947e877eca1de49d52cedd"
+      },
+      "text": {
+        "bytes": 545,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AMD-newlib.txt",
+        "sha256": "194934ff77c5c15488c3c3e23c9750aea0cb4a7286b3f53d2f71cdbd3247162f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AMD-newlib",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AMD-newlib.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AMD-newlib",
+      "name": "AMD newlib License",
+      "reference": "https://spdx.org/licenses/AMD-newlib.html",
+      "referenceNumber": 568,
+      "seeAlso": [
+        "https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/sys/a29khif/_close.S;h=04f52ae00de1dafbd9055ad8d73c5c697a3aae7f;hb=HEAD"
+      ]
+    },
+    "name": "AMD newlib License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

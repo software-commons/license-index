@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b7b0e2644c5b497f93485098a36b46b1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 10329,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OLDAP-2.5.json",
+        "sha256": "c177f5229bca19e7481d136bfcc32759b20f8c7d0aa55591031ff9a37f15847f"
+      },
+      "template": {
+        "bytes": 2565,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OLDAP-2.5.template.txt",
+        "sha256": "dcb5eb51a5bb3c28b9d6170a70a6a0eefb5595290522bab541db0049c58ce2ae"
+      },
+      "text": {
+        "bytes": 2171,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OLDAP-2.5.txt",
+        "sha256": "7016e17ba63ff052e08716cb4faa54e984eabacbebd6f73299796def8b76a809"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OLDAP-2.5",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OLDAP-2.5.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OLDAP-2.5",
+      "name": "Open LDAP Public License v2.5",
+      "reference": "https://spdx.org/licenses/OLDAP-2.5.html",
+      "referenceNumber": 698,
+      "seeAlso": [
+        "http://www.openldap.org/devel/gitweb.cgi?p=openldap.git;a=blob;f=LICENSE;hb=6852b9d90022e8593c98205413380536b1b5a7cf"
+      ]
+    },
+    "name": "Open LDAP Public License v2.5",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

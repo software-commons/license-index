@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e1863d62ef5644dfa58b6d3c58943142",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 48740,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LPL-1.02.json",
+        "sha256": "c3c2f7642b2e138106c807f059f8b61c70705dff959faa0fcef8b5f5695d51d2"
+      },
+      "template": {
+        "bytes": 13144,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LPL-1.02.template.txt",
+        "sha256": "a106c9b89321f6459287f87dd4d7362a84a3231b79fc3d850bcd79fc0df30fa4"
+      },
+      "text": {
+        "bytes": 11824,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LPL-1.02.txt",
+        "sha256": "bc4fd6a85caed81081c052ccdd86b03912bc29fb6b9f4117e6e1de438046a57f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LPL-1.02",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LPL-1.02.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "LPL-1.02",
+      "name": "Lucent Public License v1.02",
+      "reference": "https://spdx.org/licenses/LPL-1.02.html",
+      "referenceNumber": 232,
+      "seeAlso": [
+        "http://plan9.bell-labs.com/plan9/license.html",
+        "https://opensource.org/license/LPL-1.02"
+      ]
+    },
+    "name": "Lucent Public License v1.02",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

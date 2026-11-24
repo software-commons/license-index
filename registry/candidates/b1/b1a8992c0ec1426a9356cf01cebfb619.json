@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b1a8992c0ec1426a9356cf01cebfb619",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2539,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Advanced-Cryptics-Dictionary.json",
+        "sha256": "093d4d82c3f10e03cf1923cd98dd925db55880dbf10c95c03e6c090272a9fa5b"
+      },
+      "template": {
+        "bytes": 507,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Advanced-Cryptics-Dictionary.template.txt",
+        "sha256": "fdeb10f8e3d1d4a803e7c84cf77f04557cd0ffdd3ac9e77ad1150606df27d8eb"
+      },
+      "text": {
+        "bytes": 451,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Advanced-Cryptics-Dictionary.txt",
+        "sha256": "28da1b6615bc168ebd2e8a34b261607805a7a21d457f00bc7138eb73a4f92e7b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Advanced-Cryptics-Dictionary",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Advanced-Cryptics-Dictionary.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Advanced-Cryptics-Dictionary",
+      "name": "Advanced Cryptics Dictionary License",
+      "reference": "https://spdx.org/licenses/Advanced-Cryptics-Dictionary.html",
+      "referenceNumber": 4,
+      "seeAlso": [
+        "https://ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2"
+      ]
+    },
+    "name": "Advanced Cryptics Dictionary License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

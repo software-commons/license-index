@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2b7a75d5b86b41f5aef8eca679964552",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1226,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Texinfo-exception.json",
+        "sha256": "7319445e9db5e246eb1c04a6bf3d702238d468ddd487fd401c269c403340bd9f"
+      },
+      "template": {
+        "bytes": 257,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Texinfo-exception.template.txt",
+        "sha256": "703a065e0b8d565eb5cf3565e46c1a661626a9df539baccaebe0c9fd7a5874c2"
+      },
+      "text": {
+        "bytes": 256,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Texinfo-exception.txt",
+        "sha256": "a40028164e2124a3034146b0eb9e00de829fa3fca38d0acc33dbd77034837fbe"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Texinfo-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Texinfo-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Texinfo-exception",
+      "name": "Texinfo exception",
+      "reference": "https://spdx.org/licenses/Texinfo-exception.html",
+      "referenceNumber": 38,
+      "seeAlso": [
+        "https://git.savannah.gnu.org/cgit/automake.git/tree/lib/texinfo.tex?h=v1.16.5#n23"
+      ]
+    },
+    "name": "Texinfo exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

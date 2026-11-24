@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4b332048dd7e4ecea6f3d17167f0bd71",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4691,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-testregex.json",
+        "sha256": "80e2d55d4123327e6d1c1ea585af5befe199814c3b518c14177455224f0422f7"
+      },
+      "template": {
+        "bytes": 1085,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-testregex.template.txt",
+        "sha256": "23ebadeb21e2dd6417ec84b545cc927e1d80bc032618e22e598b9609e00574be"
+      },
+      "text": {
+        "bytes": 1134,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-testregex.txt",
+        "sha256": "6f24234c5af1086db34e47ad721d10335aa3f32f65e11aa94637399a387e5adb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-testregex",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-testregex.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-testregex",
+      "name": "MIT testregex Variant",
+      "reference": "https://spdx.org/licenses/MIT-testregex.html",
+      "referenceNumber": 381,
+      "seeAlso": [
+        "https://github.com/dotnet/runtime/blob/55e1ac7c07df62c4108d4acedf78f77574470ce5/src/libraries/System.Text.RegularExpressions/tests/FunctionalTests/AttRegexTests.cs#L12-L28"
+      ]
+    },
+    "name": "MIT testregex Variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "53bc3cac5aa246a683dc3f28a105885f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 11512,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Plexus.json",
+        "sha256": "03b62076cb097921260d770e930b0ec86866225710deaebe11c52437d4d5c96c"
+      },
+      "template": {
+        "bytes": 2711,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Plexus.template.txt",
+        "sha256": "106cc526c629d0f61a5b4c0e851a373dcc8b169fba72481c5b1196fbb2ffc264"
+      },
+      "text": {
+        "bytes": 1849,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Plexus.txt",
+        "sha256": "22b94623b17585bdde3e1fd4f1749da139b656ebf5cf63c26d5c5fa9680a1aa8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Plexus",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Plexus.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Plexus",
+      "name": "Plexus Classworlds License",
+      "reference": "https://spdx.org/licenses/Plexus.html",
+      "referenceNumber": 113,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Plexus_Classworlds_License"
+      ]
+    },
+    "name": "Plexus Classworlds License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

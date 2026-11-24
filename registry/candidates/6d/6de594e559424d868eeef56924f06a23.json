@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6de594e559424d868eeef56924f06a23",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5296,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-4-Clause-Shortened.json",
+        "sha256": "7aae71b423eee053758de1ab2028e9aed3e5f90dc903f4e4ed376c2c0461346a"
+      },
+      "template": {
+        "bytes": 1237,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-4-Clause-Shortened.template.txt",
+        "sha256": "85133834aca6579e2773a42a4ba338cb2c42cf5fe8be4484a954432776b8fa80"
+      },
+      "text": {
+        "bytes": 1048,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-4-Clause-Shortened.txt",
+        "sha256": "0006343c63f49f803c08b0cf3e918a4fbcd4bef17f3c61ad704aae3474c2472b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-4-Clause-Shortened",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-4-Clause-Shortened.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-4-Clause-Shortened",
+      "name": "BSD 4 Clause Shortened",
+      "reference": "https://spdx.org/licenses/BSD-4-Clause-Shortened.html",
+      "referenceNumber": 392,
+      "seeAlso": [
+        "https://metadata.ftp-master.debian.org/changelogs//main/a/arpwatch/arpwatch_2.1a15-7_copyright"
+      ]
+    },
+    "name": "BSD 4 Clause Shortened",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

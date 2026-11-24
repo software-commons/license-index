@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "44ff15e46815485590cebd8d8a6a1fb0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3157,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OAR.json",
+        "sha256": "137af4c611c7b355665c9190a801ae89af678450a651edc9aca05d2813ce760d"
+      },
+      "template": {
+        "bytes": 679,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OAR.template.txt",
+        "sha256": "330711795eb1afe4c972123015a3b3df663cd4760087374791657435ae6d431c"
+      },
+      "text": {
+        "bytes": 577,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OAR.txt",
+        "sha256": "07cffb7517187e810518a3dcb1c4aac6c99f061ba87888539cb20ae5821b21e4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OAR",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OAR.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OAR",
+      "name": "OAR License",
+      "reference": "https://spdx.org/licenses/OAR.html",
+      "referenceNumber": 663,
+      "seeAlso": [
+        "https://sourceware.org/git/?p=newlib-cygwin.git;a=blob;f=newlib/libc/string/strsignal.c;hb=HEAD#l35"
+      ]
+    },
+    "name": "OAR License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

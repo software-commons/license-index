@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "63fb84f3d0534145bd421879e4cb6d74",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7394,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/DL-DE-ZERO-2.0.json",
+        "sha256": "fc46bf446ef33b41d4ae7366f8246bcbc0fee1d240f9fd12985fe447ac75a239"
+      },
+      "template": {
+        "bytes": 1675,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/DL-DE-ZERO-2.0.template.txt",
+        "sha256": "b289ec8061c617610e951a9463bcdaabcc15adabe6388e00aee89d5c4fd46d50"
+      },
+      "text": {
+        "bytes": 1210,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/DL-DE-ZERO-2.0.txt",
+        "sha256": "d8b7a2dacf795f36d8cbbf0a12a8d2b59d8c2049db50c700598f21f99d785b9a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "DL-DE-ZERO-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/DL-DE-ZERO-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "DL-DE-ZERO-2.0",
+      "name": "Data licence Germany – zero – version 2.0",
+      "reference": "https://spdx.org/licenses/DL-DE-ZERO-2.0.html",
+      "referenceNumber": 489,
+      "seeAlso": [
+        "https://www.govdata.de/dl-de/zero-2-0"
+      ]
+    },
+    "name": "Data licence Germany – zero – version 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

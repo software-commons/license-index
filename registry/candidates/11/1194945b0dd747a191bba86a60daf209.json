@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1194945b0dd747a191bba86a60daf209",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7178,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/COIL-1.0.json",
+        "sha256": "b077ee02dc441cca0e3cd46bcb0a7c25746d23c05ef059ffd20a05d22257cf27"
+      },
+      "template": {
+        "bytes": 1786,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/COIL-1.0.template.txt",
+        "sha256": "1ac0d1c7ea38696d2750629746fa1e4afc7bd7791ee3bc6581eb2007639b3609"
+      },
+      "text": {
+        "bytes": 1657,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/COIL-1.0.txt",
+        "sha256": "468662ce418b08a970e4a6e175402504d399b0f230dd266be42f7b7b12629941"
+      }
+    },
+    "deprecated": false,
+    "identifier": "COIL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/COIL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "COIL-1.0",
+      "name": "Copyfree Open Innovation License",
+      "reference": "https://spdx.org/licenses/COIL-1.0.html",
+      "referenceNumber": 714,
+      "seeAlso": [
+        "https://coil.apotheon.org/plaintext/01.0.txt"
+      ]
+    },
+    "name": "Copyfree Open Innovation License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

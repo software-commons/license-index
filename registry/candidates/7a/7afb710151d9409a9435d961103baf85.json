@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7afb710151d9409a9435d961103baf85",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 15126,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SSH-OpenSSH.json",
+        "sha256": "927883994b2d0ea0cb10c095834bc07d2439963813c090553ccf5dc798ecffb1"
+      },
+      "template": {
+        "bytes": 3909,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SSH-OpenSSH.template.txt",
+        "sha256": "cf508128475b44e28dac98e5f419c442fc5cd0c5e2aa8f1b2780fda4f5e2c1f1"
+      },
+      "text": {
+        "bytes": 3399,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SSH-OpenSSH.txt",
+        "sha256": "93ef72accf595b5da226a3492881e88b8464450ff13addb3ce4a3f7fdeb9f23c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SSH-OpenSSH",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SSH-OpenSSH.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SSH-OpenSSH",
+      "name": "SSH OpenSSH license",
+      "reference": "https://spdx.org/licenses/SSH-OpenSSH.html",
+      "referenceNumber": 410,
+      "seeAlso": [
+        "https://github.com/openssh/openssh-portable/blob/1b11ea7c58cd5c59838b5fa574cd456d6047b2d4/LICENCE#L10"
+      ]
+    },
+    "name": "SSH OpenSSH license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

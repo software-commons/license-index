@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8e0afc31d8604bf992a7fff0514eac93",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13292,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SSLeay-standalone.json",
+        "sha256": "9f5d3c74d5df30c87644adb75cf91a3002d81c59aa45f15f73f6e37c7bc5c642"
+      },
+      "template": {
+        "bytes": 3293,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SSLeay-standalone.template.txt",
+        "sha256": "07960e2ba773c5fca6010f021cc458dacd3fb9267a7ff4da5c1f8e8247e08ff8"
+      },
+      "text": {
+        "bytes": 3154,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SSLeay-standalone.txt",
+        "sha256": "54b10939070f848802ba699ce682c5cc2fd66c4263c8abd6ba040c4209d0e2a4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SSLeay-standalone",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SSLeay-standalone.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SSLeay-standalone",
+      "name": "SSLeay License - standalone",
+      "reference": "https://spdx.org/licenses/SSLeay-standalone.html",
+      "referenceNumber": 559,
+      "seeAlso": [
+        "https://www.tq-group.com/filedownloads/files/software-license-conditions/OriginalSSLeay/OriginalSSLeay.pdf"
+      ]
+    },
+    "name": "SSLeay License - standalone",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

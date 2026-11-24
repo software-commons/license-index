@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "caa1af206b9b4b3f8018fe2476092c03",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 27484,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-Protection.json",
+        "sha256": "284827c004c84d869c4cccc3848576362c1a194d75bf47112c56eb5b49ef81db"
+      },
+      "template": {
+        "bytes": 7225,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-Protection.template.txt",
+        "sha256": "348c325ba545a36ca1c39beb594773dfff07ac2334d8a6d9de725dc20ad7f6f2"
+      },
+      "text": {
+        "bytes": 6244,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-Protection.txt",
+        "sha256": "42277c58c0373c9c2ce0cd349d8e7f8da793933806b22591c63ff0bc73841a00"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-Protection",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-Protection.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-Protection",
+      "name": "BSD Protection License",
+      "reference": "https://spdx.org/licenses/BSD-Protection.html",
+      "referenceNumber": 662,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/BSD_Protection_License"
+      ]
+    },
+    "name": "BSD Protection License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

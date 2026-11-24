@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e627e48e40d94339a3f8c2d9e537abba",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 55759,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Glide.json",
+        "sha256": "b1204a59364a3cb1b82c988ed113a8158e4afcdd49d4dd77a9ef1195e1d6651f"
+      },
+      "template": {
+        "bytes": 14259,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Glide.template.txt",
+        "sha256": "b179af4517a9422be9fb35f2d5b0eff96311f5a5251f5ed8bec4a37ad2beb83a"
+      },
+      "text": {
+        "bytes": 12253,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Glide.txt",
+        "sha256": "5eaa9ab5acc3e11f248e77eeb1c77d699064e1c3cad78a9e7db1bc4867a08ad6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Glide",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Glide.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Glide",
+      "name": "3dfx Glide License",
+      "reference": "https://spdx.org/licenses/Glide.html",
+      "referenceNumber": 339,
+      "seeAlso": [
+        "http://www.users.on.net/~triforce/glidexp/COPYING.txt"
+      ]
+    },
+    "name": "3dfx Glide License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

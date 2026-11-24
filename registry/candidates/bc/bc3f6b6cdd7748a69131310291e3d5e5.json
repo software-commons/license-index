@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bc3f6b6cdd7748a69131310291e3d5e5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 977,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TermReadKey.json",
+        "sha256": "9a39245f6ff527841fbd284ac1c8a4b3f6a36af94b42fc7aee3368ace1f66789"
+      },
+      "template": {
+        "bytes": 104,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TermReadKey.template.txt",
+        "sha256": "a0fbfb433853605da753dccc5e3aaa38ff45f5767205aa4ec87bf1a62df669f1"
+      },
+      "text": {
+        "bytes": 103,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TermReadKey.txt",
+        "sha256": "2739578644b799505e1f5ca5e63bfafcb0c0da9b3f5a63e9f9f0017947746d0f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TermReadKey",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TermReadKey.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TermReadKey",
+      "name": "TermReadKey License",
+      "reference": "https://spdx.org/licenses/TermReadKey.html",
+      "referenceNumber": 9,
+      "seeAlso": [
+        "https://github.com/jonathanstowe/TermReadKey/blob/master/README#L9-L10"
+      ]
+    },
+    "name": "TermReadKey License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

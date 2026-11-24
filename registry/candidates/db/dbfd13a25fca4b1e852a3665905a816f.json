@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "dbfd13a25fca4b1e852a3665905a816f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2269,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSFAP-no-warranty-disclaimer.json",
+        "sha256": "665fd697032edbb1501eec38209cf92d3fe4d33170d4e60b926c975bc7d33a7c"
+      },
+      "template": {
+        "bytes": 263,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSFAP-no-warranty-disclaimer.template.txt",
+        "sha256": "e46ebe961b94fffbbd39901dc0d30e967aaab3328e17fd6fec6c14f5dc8269fe"
+      },
+      "text": {
+        "bytes": 209,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSFAP-no-warranty-disclaimer.txt",
+        "sha256": "3a40f45db703245444eb47b1ff185380c57f0c34fc1a815f9ac6be2860250147"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSFAP-no-warranty-disclaimer",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSFAP-no-warranty-disclaimer.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSFAP-no-warranty-disclaimer",
+      "name": "FSF All Permissive License (without Warranty)",
+      "reference": "https://spdx.org/licenses/FSFAP-no-warranty-disclaimer.html",
+      "referenceNumber": 442,
+      "seeAlso": [
+        "https://git.savannah.gnu.org/cgit/wget.git/tree/util/trunc.c?h=v1.21.3&id=40747a11e44ced5a8ac628a41f879ced3e2ebce9#n6"
+      ]
+    },
+    "name": "FSF All Permissive License (without Warranty)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

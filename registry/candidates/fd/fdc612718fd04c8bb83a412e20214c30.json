@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fdc612718fd04c8bb83a412e20214c30",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6221,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MIT-enna.json",
+        "sha256": "b5f41d89bfc45bee67677effd4d7156616bf2bb5b9b2357bec4597d1284c4aec"
+      },
+      "template": {
+        "bytes": 1724,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MIT-enna.template.txt",
+        "sha256": "8c4b887068e7a7a4d1428e153c7561177bf4eb89cd359c2ae23976e65be671f9"
+      },
+      "text": {
+        "bytes": 1668,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MIT-enna.txt",
+        "sha256": "f9a92117b604caf0373ca5dfd120a3ce0aae882faba6c6b70b0991df6492227e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MIT-enna",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MIT-enna.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MIT-enna",
+      "name": "enna License",
+      "reference": "https://spdx.org/licenses/MIT-enna.html",
+      "referenceNumber": 710,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/MIT#enna"
+      ]
+    },
+    "name": "enna License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

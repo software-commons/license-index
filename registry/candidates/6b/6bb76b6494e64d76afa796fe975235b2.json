@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6bb76b6494e64d76afa796fe975235b2",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 79953,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MPL-2.0-no-copyleft-exception.json",
+        "sha256": "e2d371a44e57264254d3aab963917d1f70531d0a1ed034593b3245a96794e054"
+      },
+      "template": {
+        "bytes": 19344,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MPL-2.0-no-copyleft-exception.template.txt",
+        "sha256": "f8d0669c1b4aee55ae7018b6200098d07621014cc571e5455072fc1b551395d7"
+      },
+      "text": {
+        "bytes": 16727,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MPL-2.0-no-copyleft-exception.txt",
+        "sha256": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "MPL-2.0-no-copyleft-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MPL-2.0-no-copyleft-exception.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "MPL-2.0-no-copyleft-exception",
+      "name": "Mozilla Public License 2.0 (no copyleft exception)",
+      "reference": "https://spdx.org/licenses/MPL-2.0-no-copyleft-exception.html",
+      "referenceNumber": 280,
+      "seeAlso": [
+        "https://www.mozilla.org/MPL/2.0/",
+        "https://opensource.org/license/MPL-2.0"
+      ]
+    },
+    "name": "Mozilla Public License 2.0 (no copyleft exception)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

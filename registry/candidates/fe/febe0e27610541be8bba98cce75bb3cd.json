@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "febe0e27610541be8bba98cce75bb3cd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2256,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/mif-exception.json",
+        "sha256": "36c5c26197f147720790b9bd540bba8938b5421cfbaef337a48d0e00542e8d74"
+      },
+      "template": {
+        "bytes": 530,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/mif-exception.template.txt",
+        "sha256": "a853c23ff20113943d76ec54d2ffa55679481e54d721c5f82be8c9e7482c6151"
+      },
+      "text": {
+        "bytes": 529,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/mif-exception.txt",
+        "sha256": "bd674fc4a77b6a474a2e94e85b5b9fcbfa87391c7885ae22415a279ecddb90dc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "mif-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/mif-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "mif-exception",
+      "name": "Macros and Inline Functions Exception",
+      "reference": "https://spdx.org/licenses/mif-exception.html",
+      "referenceNumber": 37,
+      "seeAlso": [
+        "http://www.scs.stanford.edu/histar/src/lib/cppsup/exception",
+        "http://dev.bertos.org/doxygen/",
+        "https://www.threadingbuildingblocks.org/licensing"
+      ]
+    },
+    "name": "Macros and Inline Functions Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

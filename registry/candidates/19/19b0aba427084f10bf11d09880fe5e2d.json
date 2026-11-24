@@ -1,0 +1,53 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "19b0aba427084f10bf11d09880fe5e2d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 37703,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Artistic-2.0.json",
+        "sha256": "97151f115cd68b589406ca73d9126c05f7a44fb9944514f2b7fc2b6e80e4103a"
+      },
+      "template": {
+        "bytes": 9735,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Artistic-2.0.template.txt",
+        "sha256": "72204944cbc62ae1dc98d04c9e4e3b1a06ebbabf9d4f65c3981fff8948b79775"
+      },
+      "text": {
+        "bytes": 8764,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Artistic-2.0.txt",
+        "sha256": "bae466ac8d7100c304fe76632ccc627203a3897d3f7166f3cce00fb9df8c2074"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Artistic-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Artistic-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Artistic-2.0",
+      "name": "Artistic License 2.0",
+      "reference": "https://spdx.org/licenses/Artistic-2.0.html",
+      "referenceNumber": 334,
+      "seeAlso": [
+        "http://www.perlfoundation.org/artistic_license_2_0",
+        "https://www.perlfoundation.org/artistic-license-20.html",
+        "https://opensource.org/license/Artistic-2.0"
+      ]
+    },
+    "name": "Artistic License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

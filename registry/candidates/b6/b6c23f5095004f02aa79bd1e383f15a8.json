@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b6c23f5095004f02aa79bd1e383f15a8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5006,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MPEG-SSG.json",
+        "sha256": "700c1c4356b87f7c5441d309773f6bafb1eb6064f09599c022e89e2342625c44"
+      },
+      "template": {
+        "bytes": 1163,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MPEG-SSG.template.txt",
+        "sha256": "e7e104836e56b7e8fb52e1d319e9101c90ca5b826e4e40feef21631747d39d22"
+      },
+      "text": {
+        "bytes": 1126,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MPEG-SSG.txt",
+        "sha256": "071c67a3669230dbf0c7f4bd8be5bb95659307bb1ae82f846dcc0896113e8103"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MPEG-SSG",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MPEG-SSG.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MPEG-SSG",
+      "name": "MPEG Software Simulation",
+      "reference": "https://spdx.org/licenses/MPEG-SSG.html",
+      "referenceNumber": 590,
+      "seeAlso": [
+        "https://sourceforge.net/p/netpbm/code/HEAD/tree/super_stable/converter/ppm/ppmtompeg/jrevdct.c#l1189"
+      ]
+    },
+    "name": "MPEG Software Simulation",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

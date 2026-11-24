@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "75c54a7c4a0f4c68a388455d2719dd2e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3046,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TCP-wrappers.json",
+        "sha256": "b73b6619e1d7d25bd347e13f5dd1570590c7b0c0900141068653882836d3c867"
+      },
+      "template": {
+        "bytes": 704,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TCP-wrappers.template.txt",
+        "sha256": "21b32fedf99ec559203f0f9b315f9e9a809c533cd6f035c3f093312abca9a3d7"
+      },
+      "text": {
+        "bytes": 648,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TCP-wrappers.txt",
+        "sha256": "0645a9c6aa32bbcb9b8576ea237cbf081e9c640454daac8666ef9f9300e629f9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TCP-wrappers",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TCP-wrappers.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TCP-wrappers",
+      "name": "TCP Wrappers License",
+      "reference": "https://spdx.org/licenses/TCP-wrappers.html",
+      "referenceNumber": 365,
+      "seeAlso": [
+        "http://rc.quest.com/topics/openssh/license.php#tcpwrappers"
+      ]
+    },
+    "name": "TCP Wrappers License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

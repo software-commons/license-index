@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9c426e40821044f9bfe6f100d73029aa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2620,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Bootloader-exception.json",
+        "sha256": "549ec908c4e40fea2798829240621732bed5db392e5102f546ede38fab33a75d"
+      },
+      "template": {
+        "bytes": 650,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bootloader-exception.template.txt",
+        "sha256": "3bd46a238a233e416cf15bf7e2cd586c3360027e0069f158455488cdfc6a8a1d"
+      },
+      "text": {
+        "bytes": 523,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bootloader-exception.txt",
+        "sha256": "e95f6b21fad95ea10ef0fdaebcba9b8ea777fce7a757fbb1aac1325be9ee4117"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bootloader-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bootloader-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Bootloader-exception",
+      "name": "Bootloader Distribution Exception",
+      "reference": "https://spdx.org/licenses/Bootloader-exception.html",
+      "referenceNumber": 50,
+      "seeAlso": [
+        "https://github.com/pyinstaller/pyinstaller/blob/develop/COPYING.txt"
+      ]
+    },
+    "name": "Bootloader Distribution Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

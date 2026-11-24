@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "87279e3d81d34057a256115b5de4701e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2313,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Swift-exception.json",
+        "sha256": "2a41263780ee531df740262de54a3409106be9807e8e5713dd5b5acdb3ead541"
+      },
+      "template": {
+        "bytes": 479,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Swift-exception.template.txt",
+        "sha256": "a72db326602b18c8e055033e111484e97295917b6a1e8a2f19062ab4840aee63"
+      },
+      "text": {
+        "bytes": 355,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Swift-exception.txt",
+        "sha256": "3fd829e25ba4b34da7bfcb6dfb201e7bda8379b55b1ec37bbd425907f07f4311"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Swift-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Swift-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Swift-exception",
+      "name": "Swift Exception",
+      "reference": "https://spdx.org/licenses/Swift-exception.html",
+      "referenceNumber": 76,
+      "seeAlso": [
+        "https://swift.org/LICENSE.txt",
+        "https://github.com/apple/swift-package-manager/blob/7ab2275f447a5eb37497ed63a9340f8a6d1e488b/LICENSE.txt#L205"
+      ]
+    },
+    "name": "Swift Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

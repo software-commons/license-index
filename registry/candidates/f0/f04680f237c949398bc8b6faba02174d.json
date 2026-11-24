@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f04680f237c949398bc8b6faba02174d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 81665,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/APSL-1.0.json",
+        "sha256": "29df9994e86167e68337a1a3216b6171ef086ad1be6daf28d318d2ff0cbe6425"
+      },
+      "template": {
+        "bytes": 22118,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/APSL-1.0.template.txt",
+        "sha256": "ea0578279432dfd5858112d86c1440d4c81b14f6e0ca69547c0e68e89d884304"
+      },
+      "text": {
+        "bytes": 19644,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/APSL-1.0.txt",
+        "sha256": "54702bc17c8ac3601637577c8f92e5992be79110df72c7ff6fe20d75d4df2745"
+      }
+    },
+    "deprecated": false,
+    "identifier": "APSL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/APSL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": true,
+      "licenseId": "APSL-1.0",
+      "name": "Apple Public Source License 1.0",
+      "reference": "https://spdx.org/licenses/APSL-1.0.html",
+      "referenceNumber": 25,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Apple_Public_Source_License_1.0"
+      ]
+    },
+    "name": "Apple Public Source License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

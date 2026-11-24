@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7d93a0ace27a4799b763e655aa17f710",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2381,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SunPro.json",
+        "sha256": "cd55ac6dc684d2ad2a73f938e35fc4a3e06e8cad7608f266cc4d6bcf1697c846"
+      },
+      "template": {
+        "bytes": 356,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SunPro.template.txt",
+        "sha256": "6bbc1240902abfffd4f632ae3d95c246f30466869c38de5af7e522a488e27c6c"
+      },
+      "text": {
+        "bytes": 246,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SunPro.txt",
+        "sha256": "f5ab1c2763182c84a0b991a82d57b4176df0d109ca5d485d8446585696b26894"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SunPro",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SunPro.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SunPro",
+      "name": "SunPro License",
+      "reference": "https://spdx.org/licenses/SunPro.html",
+      "referenceNumber": 548,
+      "seeAlso": [
+        "https://github.com/freebsd/freebsd-src/blob/main/lib/msun/src/e_acosh.c",
+        "https://github.com/freebsd/freebsd-src/blob/main/lib/msun/src/e_lgammal.c"
+      ]
+    },
+    "name": "SunPro License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

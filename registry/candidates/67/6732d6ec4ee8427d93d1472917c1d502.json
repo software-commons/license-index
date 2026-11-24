@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6732d6ec4ee8427d93d1472917c1d502",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8298,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Autoconf-exception-3.0.json",
+        "sha256": "d7ab3327f4e37f77e3eee61f198e4cea415decc9fb8b9e88aaf7de61a3976f4a"
+      },
+      "template": {
+        "bytes": 2081,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Autoconf-exception-3.0.template.txt",
+        "sha256": "e5bb6ae90fd76ff0c6885b145cff8cb7fcf3d23be6022d937f502bd833f4cd09"
+      },
+      "text": {
+        "bytes": 1818,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Autoconf-exception-3.0.txt",
+        "sha256": "bb96c8e5d1aeba92975ad66f23f6c9316581247fd0c82c3f0d025f56edb30533"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Autoconf-exception-3.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Autoconf-exception-3.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Autoconf-exception-3.0",
+      "name": "Autoconf exception 3.0",
+      "reference": "https://spdx.org/licenses/Autoconf-exception-3.0.html",
+      "referenceNumber": 41,
+      "seeAlso": [
+        "http://www.gnu.org/licenses/autoconf-exception-3.0.html"
+      ]
+    },
+    "name": "Autoconf exception 3.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

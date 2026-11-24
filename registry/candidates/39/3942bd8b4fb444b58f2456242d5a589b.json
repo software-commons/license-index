@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3942bd8b4fb444b58f2456242d5a589b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 9187,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OLDAP-2.8.json",
+        "sha256": "f1d5a9432c0003dc9d5f45809cf65f9931d3b9a8eefb77089f85047502dac153"
+      },
+      "template": {
+        "bytes": 2436,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OLDAP-2.8.template.txt",
+        "sha256": "528f0a5d9558d56505c01da22510ca87a2c9c6d5d7ed1ba77f6c959d5a54c7ae"
+      },
+      "text": {
+        "bytes": 2195,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OLDAP-2.8.txt",
+        "sha256": "bf30f8254b6698a79e867d0a7d641bbbd3460f7c2f16cab9c6816718815c2ded"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OLDAP-2.8",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OLDAP-2.8.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "OLDAP-2.8",
+      "name": "Open LDAP Public License v2.8",
+      "reference": "https://spdx.org/licenses/OLDAP-2.8.html",
+      "referenceNumber": 310,
+      "seeAlso": [
+        "http://www.openldap.org/software/release/license.html"
+      ]
+    },
+    "name": "Open LDAP Public License v2.8",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

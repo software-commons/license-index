@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "90de9bfdd49d45668b57c5c64baef934",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 57833,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EUPL-1.0.json",
+        "sha256": "f78ae2832113f270082b9a71ddffc3ef65fbd028a3b46a832510097310b7d92a"
+      },
+      "template": {
+        "bytes": 15150,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EUPL-1.0.template.txt",
+        "sha256": "7afe748a82f3938669679545d0c64af98917981e54b0f9f39178710b45257f0c"
+      },
+      "text": {
+        "bytes": 13005,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EUPL-1.0.txt",
+        "sha256": "88111434fafd94ba8d30e8dae9dc222dc57328af4d8f8910868fc9736d82cd72"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EUPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EUPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "EUPL-1.0",
+      "name": "European Union Public License 1.0",
+      "reference": "https://spdx.org/licenses/EUPL-1.0.html",
+      "referenceNumber": 197,
+      "seeAlso": [
+        "http://ec.europa.eu/idabc/en/document/7330.html",
+        "http://ec.europa.eu/idabc/servlets/Doc027f.pdf?id=31096"
+      ]
+    },
+    "name": "European Union Public License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

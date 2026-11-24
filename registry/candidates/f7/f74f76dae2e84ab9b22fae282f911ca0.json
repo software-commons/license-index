@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f74f76dae2e84ab9b22fae282f911ca0",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1709,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FSFULLRSD.json",
+        "sha256": "245c90dccbf9d774233188c292d052b55577ec73ae6585309dad2830bddfc4d2"
+      },
+      "template": {
+        "bytes": 233,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FSFULLRSD.template.txt",
+        "sha256": "a45d569a1ba413500304ec4d763c5260945f3970485329fbbfeacd931224e081"
+      },
+      "text": {
+        "bytes": 232,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FSFULLRSD.txt",
+        "sha256": "9571805a23936016934dcee9035ef5a461a685f87c360cd3d8b84df4e1c92381"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FSFULLRSD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FSFULLRSD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FSFULLRSD",
+      "name": "FSF Unlimited License (with License Retention and Short Disclaimer)",
+      "reference": "https://spdx.org/licenses/FSFULLRSD.html",
+      "referenceNumber": 372,
+      "seeAlso": [
+        "https://git.savannah.gnu.org/cgit/gnulib.git/tree/modules/COPYING?id=7b08932179d0d6b017f7df01a2ddf6e096b038e3"
+      ]
+    },
+    "name": "FSF Unlimited License (with License Retention and Short Disclaimer)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "31c17fce8a014fefa1fa1a194c8f82d3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3902,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CrystalStacker.json",
+        "sha256": "7ed931b86588e644e3ee84973b81d0fdd2e9c1f07b4e07065ed909bf2bcb5582"
+      },
+      "template": {
+        "bytes": 983,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CrystalStacker.template.txt",
+        "sha256": "8dbf4bb5199ae1ea6ccd686d38f3b36beb7ea098c1c8edb353a7ced568a359bb"
+      },
+      "text": {
+        "bytes": 982,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CrystalStacker.txt",
+        "sha256": "2fab343deeb18d20ff0e23388a88a6c1505077c27a4ef49cbd189dbc90d5279e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CrystalStacker",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CrystalStacker.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CrystalStacker",
+      "name": "CrystalStacker License",
+      "reference": "https://spdx.org/licenses/CrystalStacker.html",
+      "referenceNumber": 439,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:CrystalStacker?rd=Licensing/CrystalStacker"
+      ]
+    },
+    "name": "CrystalStacker License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

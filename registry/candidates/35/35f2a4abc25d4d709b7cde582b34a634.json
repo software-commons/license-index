@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "35f2a4abc25d4d709b7cde582b34a634",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2672,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Classpath-exception-2.0-short.json",
+        "sha256": "79bec2ab4793eab7ec24b54ff7992123d5896bd6a3871cbb34278ca591e9624a"
+      },
+      "template": {
+        "bytes": 710,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Classpath-exception-2.0-short.template.txt",
+        "sha256": "cfd3e136d5ffc90e8011bf0ecd89a3ea8863dc7f986691af9597e100833299b3"
+      },
+      "text": {
+        "bytes": 709,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Classpath-exception-2.0-short.txt",
+        "sha256": "af3e9840bfbd3f31d05b84ae1e9d25f338f006b4a3584f3e7609fcac0cc6fc73"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Classpath-exception-2.0-short",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Classpath-exception-2.0-short.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Classpath-exception-2.0-short",
+      "name": "Classpath exception 2.0 - short",
+      "reference": "https://spdx.org/licenses/Classpath-exception-2.0-short.html",
+      "referenceNumber": 34,
+      "seeAlso": [
+        "https://sourceforge.net/projects/lazarus/files/Lazarus%20Zip%20_%20GZip/Lazarus%204.2/lazarus-4.2-0.tar.gz/download"
+      ]
+    },
+    "name": "Classpath exception 2.0 - short",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ea23409e124a49a2a94edf482bfd291b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8351,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Bitstream-Vera.json",
+        "sha256": "181e7fe5ccb257a863ee7ce58f216cbcac8f3266f4c73b923a3f1f2197c42694"
+      },
+      "template": {
+        "bytes": 2319,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bitstream-Vera.template.txt",
+        "sha256": "97b6069fef6145775cdf31b851680ef340098cfe036d4743dd08ef55034712e6"
+      },
+      "text": {
+        "bytes": 2318,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bitstream-Vera.txt",
+        "sha256": "5b3b4d3cef4029bda987a71f4bfb6087e40c5e91a2cb853fe7f6ccb78d9d8e38"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bitstream-Vera",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bitstream-Vera.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Bitstream-Vera",
+      "name": "Bitstream Vera Font License",
+      "reference": "https://spdx.org/licenses/Bitstream-Vera.html",
+      "referenceNumber": 631,
+      "seeAlso": [
+        "https://web.archive.org/web/20080207013128/http://www.gnome.org/fonts/",
+        "https://docubrain.com/sites/default/files/licenses/bitstream-vera.html"
+      ]
+    },
+    "name": "Bitstream Vera Font License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

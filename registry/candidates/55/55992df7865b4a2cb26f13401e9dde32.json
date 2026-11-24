@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "55992df7865b4a2cb26f13401e9dde32",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3385,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/XSkat.json",
+        "sha256": "a141dcec1a4422bd76ce9f4ed33f85c4d59ef6c7337a19a40d2fb51f8a856979"
+      },
+      "template": {
+        "bytes": 687,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/XSkat.template.txt",
+        "sha256": "505541174982be35ad75d94bb6d13d2abcb817fd90b31953c4d269560dec7c45"
+      },
+      "text": {
+        "bytes": 535,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/XSkat.txt",
+        "sha256": "ed84c6b9d91007c072aa95bc50768cd2fe3451eaeba31f824f95698cd006341b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "XSkat",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/XSkat.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "XSkat",
+      "name": "XSkat License",
+      "reference": "https://spdx.org/licenses/XSkat.html",
+      "referenceNumber": 522,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/XSkat_License"
+      ]
+    },
+    "name": "XSkat License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

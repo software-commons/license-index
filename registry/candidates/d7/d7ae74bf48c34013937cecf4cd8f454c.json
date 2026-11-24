@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d7ae74bf48c34013937cecf4cd8f454c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14345,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/JPL-image.json",
+        "sha256": "41db149478cd4e4f3357ac1dc620a5e2dfbeff0e38278448e5f0fc260b26402a"
+      },
+      "template": {
+        "bytes": 3607,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/JPL-image.template.txt",
+        "sha256": "dbc2fe5808b6bac320f8e9896936fee26141897e006e6dd4c971084a2b008311"
+      },
+      "text": {
+        "bytes": 3158,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/JPL-image.txt",
+        "sha256": "3a0c8eb612b77118be08dbff72000b058d14809157674d047e4b06e4626a77ba"
+      }
+    },
+    "deprecated": false,
+    "identifier": "JPL-image",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/JPL-image.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "JPL-image",
+      "name": "JPL Image Use Policy",
+      "reference": "https://spdx.org/licenses/JPL-image.html",
+      "referenceNumber": 51,
+      "seeAlso": [
+        "https://www.jpl.nasa.gov/jpl-image-use-policy"
+      ]
+    },
+    "name": "JPL Image Use Policy",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

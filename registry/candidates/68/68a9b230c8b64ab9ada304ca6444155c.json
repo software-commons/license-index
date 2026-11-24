@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "68a9b230c8b64ab9ada304ca6444155c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2063,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ThirdEye.json",
+        "sha256": "f166342ef7ec38202fa4ee7b3cff2a71159c93ec2cdf0198e9704b5bd1f383ad"
+      },
+      "template": {
+        "bytes": 327,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ThirdEye.template.txt",
+        "sha256": "d0975e2ac500c0547f5506648a8e48e64fe84c1c911966e5ae34279c0e8652e1"
+      },
+      "text": {
+        "bytes": 271,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ThirdEye.txt",
+        "sha256": "698a0558ebcd947aca4ab392164d32b28132aea1bee91aa82363dfae56230f9b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ThirdEye",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ThirdEye.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ThirdEye",
+      "name": "ThirdEye License",
+      "reference": "https://spdx.org/licenses/ThirdEye.html",
+      "referenceNumber": 270,
+      "seeAlso": [
+        "https://sourceware.org/cgit/binutils-gdb/tree/include/coff/symconst.h#n11"
+      ]
+    },
+    "name": "ThirdEye License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

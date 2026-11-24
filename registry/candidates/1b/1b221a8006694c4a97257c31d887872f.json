@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1b221a8006694c4a97257c31d887872f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 62332,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-3.0-US.json",
+        "sha256": "be7b7da13452e2b0398174d69000085731ca6765123d67bd6482909924301a94"
+      },
+      "template": {
+        "bytes": 16314,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-3.0-US.template.txt",
+        "sha256": "692bee1f4478215cd24536240fdd08f1cd3d34423460f67122c16d104cc56a3e"
+      },
+      "text": {
+        "bytes": 14654,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-3.0-US.txt",
+        "sha256": "df36d89de58066f49fa9b81f4290ea409adbbdd9d69c620359efbdc8bccaac3c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-3.0-US",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-3.0-US.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-3.0-US",
+      "name": "Creative Commons Attribution 3.0 United States",
+      "reference": "https://spdx.org/licenses/CC-BY-3.0-US.html",
+      "referenceNumber": 526,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by/3.0/us/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution 3.0 United States",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

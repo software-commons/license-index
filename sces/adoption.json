@@ -1,0 +1,28 @@
+{
+  "policy": "SCES-1.0",
+  "policy_sha256": "14da3f31f697ab828d4a4560f060dbe511861020db54bea7bc531e20ea0855ce",
+  "repository": "software-commons/license-index",
+  "mode": "index",
+  "predicates": {
+    "instrument-identity": {"scope_dimensions": ["authority", "revision"], "categories": ["documented", "historical"], "targeted_review": true},
+    "publication-authority": {"scope_dimensions": ["authority", "revision"], "categories": ["documented", "historical"], "targeted_review": true},
+    "spdx-membership": {"scope_dimensions": ["upstream-release", "data-revision"], "categories": ["documented", "derived"], "targeted_review": false},
+    "text-revision": {"scope_dimensions": ["edition", "representation", "revision"], "categories": ["documented", "observed"], "targeted_review": true},
+    "text-redistribution": {"scope_dimensions": ["edition", "representation", "provenance"], "categories": ["normative", "derived"], "targeted_review": true},
+    "permission": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "condition": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "restriction": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "explicit-absence": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "patent-grant": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "attribution": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "notice-obligation": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "source-disclosure": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "reciprocity": {"scope_dimensions": ["edition", "material", "activity"], "categories": ["normative", "derived"], "targeted_review": true},
+    "application-procedure": {"scope_dimensions": ["edition", "representation", "activity"], "categories": ["documented", "normative"], "targeted_review": true},
+    "exception-relationship": {"scope_dimensions": ["edition", "base-license", "revision"], "categories": ["documented", "normative"], "targeted_review": true},
+    "identifier-deprecation": {"scope_dimensions": ["authority", "upstream-release"], "categories": ["documented", "historical"], "targeted_review": false},
+    "official-classification": {"scope_dimensions": ["classifying-authority", "edition", "revision"], "categories": ["documented", "historical"], "targeted_review": false},
+    "historical-relationship": {"scope_dimensions": ["authority", "revision"], "categories": ["documented", "historical", "derived"], "targeted_review": true},
+    "cross-index-relationship": {"scope_dimensions": ["owning-revision", "target-revision"], "categories": ["documented", "derived"], "targeted_review": true}
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1bbdd91788204fb19ed57887af3e660c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3546,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-4.3RENO.json",
+        "sha256": "557718df55ccfb6a5076f5d028caa062226e2a13bcd9f888e5eaec5c93b251bc"
+      },
+      "template": {
+        "bytes": 643,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-4.3RENO.template.txt",
+        "sha256": "f51812f617af70047d9b023781b5000317b327baec02c0b11a84cc2b2fdb5088"
+      },
+      "text": {
+        "bytes": 476,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-4.3RENO.txt",
+        "sha256": "78a35293ed0f94c71ebde56fd8c0dfc38d5af54cf93efaf91f43a32d43660c60"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-4.3RENO",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-4.3RENO.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-4.3RENO",
+      "name": "BSD 4.3 RENO License",
+      "reference": "https://spdx.org/licenses/BSD-4.3RENO.html",
+      "referenceNumber": 266,
+      "seeAlso": [
+        "https://sourceware.org/git/?p=binutils-gdb.git;a=blob;f=libiberty/strcasecmp.c;h=131d81c2ce7881fa48c363dc5bf5fb302c61ce0b;hb=HEAD",
+        "https://git.openldap.org/openldap/openldap/-/blob/master/COPYRIGHT#L55-63"
+      ]
+    },
+    "name": "BSD 4.3 RENO License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

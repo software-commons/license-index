@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "11f3c985b9054c36a8a34f8d6aed0879",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 19171,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HDF5.json",
+        "sha256": "e9d224ddc1d3b132a47f4c86fe0a82d59f77039988d84193adeadbf7c27c42b3"
+      },
+      "template": {
+        "bytes": 5185,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HDF5.template.txt",
+        "sha256": "1134e8c4e8d7c0d9414c2d612eba184932452c1208fa0b216ecb65045c5d29b4"
+      },
+      "text": {
+        "bytes": 5022,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HDF5.txt",
+        "sha256": "c4ec6b5c31a394cce9a934db2903e741e77e97f769db99bdf193ab19ae0523e9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HDF5",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HDF5.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HDF5",
+      "name": "HDF5 License",
+      "reference": "https://spdx.org/licenses/HDF5.html",
+      "referenceNumber": 322,
+      "seeAlso": [
+        "https://github.com/HDFGroup/hdf5/?tab=License-1-ov-file#readme"
+      ]
+    },
+    "name": "HDF5 License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

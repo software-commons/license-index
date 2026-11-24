@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "323a143b84ec419290b2dd7e94fec4da",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14055,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AML-glslang.json",
+        "sha256": "52e7884a98b54fff360c06d31d8f54f27f0909da626233d6dc54f9c02b08bab6"
+      },
+      "template": {
+        "bytes": 3311,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AML-glslang.template.txt",
+        "sha256": "6bbe1b450aeeb4f1acf8efeb00c19a9cf01da6c7f960d62a72b247bbb99faf5a"
+      },
+      "text": {
+        "bytes": 2373,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AML-glslang.txt",
+        "sha256": "cc8ea571129dbee2997e52a54d1f715f8b0159a22f28f985a9b2b31708a48620"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AML-glslang",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AML-glslang.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AML-glslang",
+      "name": "AML glslang variant License",
+      "reference": "https://spdx.org/licenses/AML-glslang.html",
+      "referenceNumber": 500,
+      "seeAlso": [
+        "https://github.com/KhronosGroup/glslang/blob/main/LICENSE.txt#L949",
+        "https://docs.omniverse.nvidia.com/install-guide/latest/common/licenses.html"
+      ]
+    },
+    "name": "AML glslang variant License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

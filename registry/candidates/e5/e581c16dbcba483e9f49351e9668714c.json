@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e581c16dbcba483e9f49351e9668714c",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5741,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Spencer-94.json",
+        "sha256": "357a1ffad260f2d93d456c48c1dcce9840adfb20f58745b42e6c358596f1f657"
+      },
+      "template": {
+        "bytes": 1226,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Spencer-94.template.txt",
+        "sha256": "a707879ca371b9f321c21e58bdbe7d1b5aae51443fc4bf0906d7b64b15c7f94d"
+      },
+      "text": {
+        "bytes": 935,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Spencer-94.txt",
+        "sha256": "7fc18e76f0c124a3a568657b99e33df9bda7e4f71a493dd63d69956eb2117660"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Spencer-94",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Spencer-94.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Spencer-94",
+      "name": "Spencer License 94",
+      "reference": "https://spdx.org/licenses/Spencer-94.html",
+      "referenceNumber": 315,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License",
+        "https://metacpan.org/release/KNOK/File-MMagic-1.30/source/COPYING#L28"
+      ]
+    },
+    "name": "Spencer License 94",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

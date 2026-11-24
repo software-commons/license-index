@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "2224ca8e290f4593bcbcb130fed6a805",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5360,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ANTLR-PD-fallback.json",
+        "sha256": "037f2096e660702c9fcb931561ef070dd9989a5958521ceebbc9832df2aab078"
+      },
+      "template": {
+        "bytes": 1294,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ANTLR-PD-fallback.template.txt",
+        "sha256": "77d5473b12bf80e5b0343623ab2c063712d871e0f3d195d204eaab27e7a1e331"
+      },
+      "text": {
+        "bytes": 1261,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ANTLR-PD-fallback.txt",
+        "sha256": "782267c0e1e51c2dcd348a454191660fa7d9ca10ead82e74f3fce0bd8083021d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ANTLR-PD-fallback",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ANTLR-PD-fallback.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "ANTLR-PD-fallback",
+      "name": "ANTLR Software Rights Notice with license fallback",
+      "reference": "https://spdx.org/licenses/ANTLR-PD-fallback.html",
+      "referenceNumber": 117,
+      "seeAlso": [
+        "http://www.antlr2.org/license.html"
+      ]
+    },
+    "name": "ANTLR Software Rights Notice with license fallback",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

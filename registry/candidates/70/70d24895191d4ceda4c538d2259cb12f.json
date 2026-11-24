@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "70d24895191d4ceda4c538d2259cb12f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1637,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Knuth-CTAN.json",
+        "sha256": "d273db150d08e3684e48d91f9021baf7d4b142b9b34adf0585166d723e964b3e"
+      },
+      "template": {
+        "bytes": 297,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Knuth-CTAN.template.txt",
+        "sha256": "3d46f2b25d0b2bf972239e34e67ec36b4b15d78e1770f9e2344e4523d943e855"
+      },
+      "text": {
+        "bytes": 296,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Knuth-CTAN.txt",
+        "sha256": "3b61d86ae3fd94caa0febd5b24f68cf37f8dd915e142083bb966c4ca037634ce"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Knuth-CTAN",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Knuth-CTAN.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Knuth-CTAN",
+      "name": "Knuth CTAN License",
+      "reference": "https://spdx.org/licenses/Knuth-CTAN.html",
+      "referenceNumber": 457,
+      "seeAlso": [
+        "https://ctan.org/license/knuth"
+      ]
+    },
+    "name": "Knuth CTAN License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

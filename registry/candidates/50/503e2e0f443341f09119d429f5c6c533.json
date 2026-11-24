@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "503e2e0f443341f09119d429f5c6c533",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2977,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Sun-PPP-2000.json",
+        "sha256": "91bc2fc0c02e839e09d4a5c9109b7eb63288d3224e6c6e919eae1003b0264f36"
+      },
+      "template": {
+        "bytes": 668,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Sun-PPP-2000.template.txt",
+        "sha256": "477404764714dfbfe7d6e36f1ec91332364f72ab5b09b6c1396379260f89124d"
+      },
+      "text": {
+        "bytes": 613,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Sun-PPP-2000.txt",
+        "sha256": "f6a7697354c7d77cb22f779070d5d0b08a7b9b138a5343152380964d3bfde8c8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Sun-PPP-2000",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Sun-PPP-2000.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Sun-PPP-2000",
+      "name": "Sun PPP License (2000)",
+      "reference": "https://spdx.org/licenses/Sun-PPP-2000.html",
+      "referenceNumber": 57,
+      "seeAlso": [
+        "https://github.com/ppp-project/ppp/blob/master/modules/ppp_ahdlc.c#L7-L19"
+      ]
+    },
+    "name": "Sun PPP License (2000)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

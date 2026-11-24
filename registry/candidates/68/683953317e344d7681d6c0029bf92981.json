@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "683953317e344d7681d6c0029bf92981",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6449,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-acpica.json",
+        "sha256": "42b078a9b38dcf49295aa03835ffd0b650dc8c5ab83b9563a5138c1bebac066a"
+      },
+      "template": {
+        "bytes": 1701,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-acpica.template.txt",
+        "sha256": "38457bfa15d71bac9bc135eddd90c61c526635959124186505a75acd132a3830"
+      },
+      "text": {
+        "bytes": 1568,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-acpica.txt",
+        "sha256": "9c43dbb3ba77f0470afd60d079f05b85395f4834a4900aec03840c4932b08ff1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-acpica",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-acpica.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-acpica",
+      "name": "BSD 3-Clause acpica variant",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-acpica.html",
+      "referenceNumber": 588,
+      "seeAlso": [
+        "https://github.com/acpica/acpica/blob/master/source/common/acfileio.c#L119"
+      ]
+    },
+    "name": "BSD 3-Clause acpica variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

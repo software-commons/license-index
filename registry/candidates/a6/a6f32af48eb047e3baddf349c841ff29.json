@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a6f32af48eb047e3baddf349c841ff29",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3430,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GNU-compiler-exception.json",
+        "sha256": "edeb42a7364ac88fa77d311e6bca7b5002a310376129e2d07baef30a5442a394"
+      },
+      "template": {
+        "bytes": 729,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GNU-compiler-exception.template.txt",
+        "sha256": "42702d3c89acbcb8c25b8030920e13fa2b071d56744a351538435e23a3be7090"
+      },
+      "text": {
+        "bytes": 346,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GNU-compiler-exception.txt",
+        "sha256": "8cc0807167ca1a95e384c9a9a9b44f941a3a4a84496e1c1db5263dabac5a5a6e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GNU-compiler-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GNU-compiler-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GNU-compiler-exception",
+      "name": "GNU Compiler Exception",
+      "reference": "https://spdx.org/licenses/GNU-compiler-exception.html",
+      "referenceNumber": 81,
+      "seeAlso": [
+        "https://sourceware.org/git?p=binutils-gdb.git;a=blob;f=libiberty/unlink-if-ordinary.c;h=e49f2f2f67bfdb10d6b2bd579b0e01cad0fd708e;hb=HEAD#l19",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/powerpc/lib/crtsavres.S?h=v6.16-rc6#n34"
+      ]
+    },
+    "name": "GNU Compiler Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

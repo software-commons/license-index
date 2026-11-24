@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b99c9faacc754c85b44bda857dbaffa3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2204,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PADL.json",
+        "sha256": "81db6d11762c8d74f00bbfb56dc8b8fa503d07303d2729d4562e2b15f225ab03"
+      },
+      "template": {
+        "bytes": 368,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PADL.template.txt",
+        "sha256": "7862a8c810e001fcd983d8766d435f06e50b779a20d95fae6e4c61d69d241873"
+      },
+      "text": {
+        "bytes": 314,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PADL.txt",
+        "sha256": "385147523f99b7b5b41d1dfb093fc3c466fb65357b8022521b088468cac839e4"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PADL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PADL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "PADL",
+      "name": "PADL License",
+      "reference": "https://spdx.org/licenses/PADL.html",
+      "referenceNumber": 495,
+      "seeAlso": [
+        "https://git.openldap.org/openldap/openldap/-/blob/master/libraries/libldap/os-local.c?ref_type=heads#L19-23"
+      ]
+    },
+    "name": "PADL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

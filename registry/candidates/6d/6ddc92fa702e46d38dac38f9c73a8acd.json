@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6ddc92fa702e46d38dac38f9c73a8acd",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4876,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-DEC.json",
+        "sha256": "2a54e16e083c6fea7e5422bfe7777a91990ec85d3f1fc4953c9f9423f9e03a1e"
+      },
+      "template": {
+        "bytes": 1088,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-DEC.template.txt",
+        "sha256": "93b6ad00e5c6d25434a85dd77ac262e126d61f1e6fa2f45fa847853ac3a58ead"
+      },
+      "text": {
+        "bytes": 1034,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-DEC.txt",
+        "sha256": "140feb81600f4af1eb0010e02efd7ef2ad04f16b13a5fe7d4291891b48a5d218"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-DEC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-DEC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-DEC",
+      "name": "Historical Permission Notice and Disclaimer - DEC variant",
+      "reference": "https://spdx.org/licenses/HPND-DEC.html",
+      "referenceNumber": 586,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/app/xkbcomp/-/blob/master/COPYING?ref_type=heads#L69"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - DEC variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

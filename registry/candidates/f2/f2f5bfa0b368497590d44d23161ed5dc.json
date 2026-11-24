@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f2f5bfa0b368497590d44d23161ed5dc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8860,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AML.json",
+        "sha256": "13e7a0d7dd464eaa108a18c916cbde92b8c79d0ebc88904783511450acdb15eb"
+      },
+      "template": {
+        "bytes": 2523,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AML.template.txt",
+        "sha256": "c0eec94a4aaae0e370fc02ff4bcca8657308d6c878a8742a8804d856c6fd0a51"
+      },
+      "text": {
+        "bytes": 2358,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AML.txt",
+        "sha256": "5a18e36d6923eaefdb77cd01adaa4c823a0f33fc50071568e4a8f7017aaf8c84"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AML",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AML.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AML",
+      "name": "Apple MIT License",
+      "reference": "https://spdx.org/licenses/AML.html",
+      "referenceNumber": 397,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Apple_MIT_License"
+      ]
+    },
+    "name": "Apple MIT License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

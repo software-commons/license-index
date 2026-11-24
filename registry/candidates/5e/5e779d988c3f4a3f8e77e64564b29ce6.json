@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5e779d988c3f4a3f8e77e64564b29ce6",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8219,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GPL-CC-1.0.json",
+        "sha256": "bf1107ef1fdb934849c32b86b933d142fc68075b65e202277e687ac98608895d"
+      },
+      "template": {
+        "bytes": 2175,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GPL-CC-1.0.template.txt",
+        "sha256": "900cee9fc157b2412d4c228568806e1b32ccc057aef145dbe681621b2004ea13"
+      },
+      "text": {
+        "bytes": 2092,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GPL-CC-1.0.txt",
+        "sha256": "340ae872d625b128586b8751f3d599f63893417d8867cdb488702c48ea58fbc1"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GPL-CC-1.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GPL-CC-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GPL-CC-1.0",
+      "name": "GPL Cooperation Commitment 1.0",
+      "reference": "https://spdx.org/licenses/GPL-CC-1.0.html",
+      "referenceNumber": 1,
+      "seeAlso": [
+        "https://github.com/gplcc/gplcc/blob/master/Project/COMMITMENT",
+        "https://gplcc.github.io/gplcc/Project/README-PROJECT.html"
+      ]
+    },
+    "name": "GPL Cooperation Commitment 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

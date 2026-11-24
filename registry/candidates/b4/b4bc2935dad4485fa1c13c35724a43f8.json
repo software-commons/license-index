@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b4bc2935dad4485fa1c13c35724a43f8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 23355,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OGL-UK-1.0.json",
+        "sha256": "7aaca23b7425ce7cc4cdf51d601e9b9c35464eb6b8f8014266596652ef791393"
+      },
+      "template": {
+        "bytes": 6437,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OGL-UK-1.0.template.txt",
+        "sha256": "7337ee4474f42fc087ea3c981d7d2f9b166d993a802836b3e336171af491a1c0"
+      },
+      "text": {
+        "bytes": 6059,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OGL-UK-1.0.txt",
+        "sha256": "e3371a2e1b91cd17a191e13bd28e63ff7ed158090b13157cf78b7e44dd8cb389"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OGL-UK-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OGL-UK-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OGL-UK-1.0",
+      "name": "Open Government Licence v1.0",
+      "reference": "https://spdx.org/licenses/OGL-UK-1.0.html",
+      "referenceNumber": 674,
+      "seeAlso": [
+        "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/"
+      ]
+    },
+    "name": "Open Government Licence v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

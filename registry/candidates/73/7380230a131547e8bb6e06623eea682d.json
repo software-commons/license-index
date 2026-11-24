@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7380230a131547e8bb6e06623eea682d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 72988,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GFDL-1.1-or-later.json",
+        "sha256": "0150a8e213b9f5d10fee5087848854c6fd3e918ad91491756ab338f8203fe2a7"
+      },
+      "template": {
+        "bytes": 19400,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GFDL-1.1-or-later.template.txt",
+        "sha256": "d09142902bc42e608a8ed2a1b308985b3cd0bc660c011ca1cddfa7da69d38c96"
+      },
+      "text": {
+        "bytes": 17970,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GFDL-1.1-or-later.txt",
+        "sha256": "25fa19cb49d292047f3f16879301ae3a496b263a938f74e1840906d97f6d0211"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "GFDL-1.1-or-later",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GFDL-1.1-or-later.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "GFDL-1.1-or-later",
+      "name": "GNU Free Documentation License v1.1 or later",
+      "reference": "https://spdx.org/licenses/GFDL-1.1-or-later.html",
+      "referenceNumber": 174,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"
+      ]
+    },
+    "name": "GNU Free Documentation License v1.1 or later",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

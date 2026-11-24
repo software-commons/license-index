@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6e0b6690a0b842f2a0b1c092b97fdbd7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4498,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Noweb.json",
+        "sha256": "04ff5ca9f9d475b0fb3f7e4812167cb92b4f72a71c5a313fdc3eacdf0ab5f79f"
+      },
+      "template": {
+        "bytes": 1182,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Noweb.template.txt",
+        "sha256": "db8bd9f4696ecd7048ebac2f17f35826664b01c5dc9b6a1eabd6a02421f3a475"
+      },
+      "text": {
+        "bytes": 1126,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Noweb.txt",
+        "sha256": "1718bbd9a0a6b2e03fbb1f3e6e11cb0bfbd95e29cd5eef5988eb42a1c26385f9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Noweb",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Noweb.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Noweb",
+      "name": "Noweb License",
+      "reference": "https://spdx.org/licenses/Noweb.html",
+      "referenceNumber": 443,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Noweb"
+      ]
+    },
+    "name": "Noweb License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

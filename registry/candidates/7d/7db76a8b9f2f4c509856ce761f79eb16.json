@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7db76a8b9f2f4c509856ce761f79eb16",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2646,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Vixie-Cron.json",
+        "sha256": "4cf43ec7b2cb3ea22a43a400e8e6a66c77274079b27da85f08cd610806a275ec"
+      },
+      "template": {
+        "bytes": 597,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Vixie-Cron.template.txt",
+        "sha256": "587db2f58b2ce132a93af22fcde9b7ef6dc9e89cda49498cb22999d86b45c574"
+      },
+      "text": {
+        "bytes": 543,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Vixie-Cron.txt",
+        "sha256": "7a2e03c724a3290a358c495071cea4c305dbacd53b9a0fb7558487dd45382186"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Vixie-Cron",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Vixie-Cron.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Vixie-Cron",
+      "name": "Vixie Cron License",
+      "reference": "https://spdx.org/licenses/Vixie-Cron.html",
+      "referenceNumber": 290,
+      "seeAlso": [
+        "https://github.com/vixie/cron/tree/545b3f5246824a9cda5905eeb7cf019c95e66995"
+      ]
+    },
+    "name": "Vixie Cron License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

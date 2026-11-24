@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "27adecf1ec7d47db85eaddebebaf8b7b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1990,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FBM.json",
+        "sha256": "fe117ea34c58132c59f389b7b07ff97d1afc1d1873e6b303cf719ce746b62b7e"
+      },
+      "template": {
+        "bytes": 385,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FBM.template.txt",
+        "sha256": "acea1fde7857ed33882f359ae817f84283ef9d1c0c8acf7aa85140053c0df530"
+      },
+      "text": {
+        "bytes": 330,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FBM.txt",
+        "sha256": "2119028b24dbe85666e9e4c1891499314c688452652a047dd1c93309e83f8e4f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FBM",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FBM.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FBM",
+      "name": "Fuzzy Bitmap License",
+      "reference": "https://spdx.org/licenses/FBM.html",
+      "referenceNumber": 629,
+      "seeAlso": [
+        "https://github.com/SWI-Prolog/packages-xpce/blob/161a40cd82004f731ba48024f9d30af388a7edf5/src/img/gifwrite.c#L21-L26"
+      ]
+    },
+    "name": "Fuzzy Bitmap License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

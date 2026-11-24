@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b2a146429ee94b4c90d86b2ac2f3e231",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13601,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SimPL-2.0.json",
+        "sha256": "7732a99b2c70146479004727443a938cea8529ba17451c285236a9d5b53d1175"
+      },
+      "template": {
+        "bytes": 3245,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SimPL-2.0.template.txt",
+        "sha256": "8d259a47ef5004a9ec772f3b3d88ca606a0174a8af5d8233b2142bba98cdb719"
+      },
+      "text": {
+        "bytes": 2529,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SimPL-2.0.txt",
+        "sha256": "c914635c3f2fcb078fd728f76fc1b0dc5abd4e976061bc32f2cea622b4a1b5ec"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SimPL-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SimPL-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "SimPL-2.0",
+      "name": "Simple Public License 2.0",
+      "reference": "https://spdx.org/licenses/SimPL-2.0.html",
+      "referenceNumber": 623,
+      "seeAlso": [
+        "https://opensource.org/license/SiMPL-2.0"
+      ]
+    },
+    "name": "Simple Public License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

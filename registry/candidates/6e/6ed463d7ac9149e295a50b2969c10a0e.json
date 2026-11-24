@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6ed463d7ac9149e295a50b2969c10a0e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6236,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/ICU.json",
+        "sha256": "47b7ebb79246c0350e5d4401089a52a92750d61a496fa33232f5919c14a99119"
+      },
+      "template": {
+        "bytes": 1686,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/ICU.template.txt",
+        "sha256": "310d7db2b5bb0adfc48e7f865956390c657e7208f9af0e6b4b10924a08e759d4"
+      },
+      "text": {
+        "bytes": 1597,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/ICU.txt",
+        "sha256": "c7922dccc709c9e19ab6ba970fe00af174229484b05160fb07a3913f4d04cf50"
+      }
+    },
+    "deprecated": false,
+    "identifier": "ICU",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/ICU.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "ICU",
+      "name": "ICU License",
+      "reference": "https://spdx.org/licenses/ICU.html",
+      "referenceNumber": 81,
+      "seeAlso": [
+        "http://source.icu-project.org/repos/icu/icu/trunk/license.html"
+      ]
+    },
+    "name": "ICU License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

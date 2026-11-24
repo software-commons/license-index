@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5b8f85b8d930453eb3d1991fca660771",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1543,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/diffmark.json",
+        "sha256": "09e7a80bba3fe6bf176c647d604b43645e84c98a631ab343d7fa807ec719a776"
+      },
+      "template": {
+        "bytes": 192,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/diffmark.template.txt",
+        "sha256": "391f9a6df546654c3c2f640ca4302f04daa56c00cbbb6366eddfae7060ca3ae1"
+      },
+      "text": {
+        "bytes": 88,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/diffmark.txt",
+        "sha256": "44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "diffmark",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/diffmark.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "diffmark",
+      "name": "diffmark license",
+      "reference": "https://spdx.org/licenses/diffmark.html",
+      "referenceNumber": 2,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/diffmark"
+      ]
+    },
+    "name": "diffmark license",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

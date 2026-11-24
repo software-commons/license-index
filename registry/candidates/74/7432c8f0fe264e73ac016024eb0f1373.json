@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7432c8f0fe264e73ac016024eb0f1373",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 71619,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-2.5-AU.json",
+        "sha256": "48e099887e1f58f6279caf5cd3f4f74fb379cd75880e64ed06ee07fd0613b83c"
+      },
+      "template": {
+        "bytes": 19438,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-2.5-AU.template.txt",
+        "sha256": "b00f23709a3bc9fc1e6f69f11dbcd1f425dacdbd69ba009194da74759a10a0f4"
+      },
+      "text": {
+        "bytes": 17126,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-2.5-AU.txt",
+        "sha256": "0e035b0af59631c22efc3cd4e914b8eff3901ecfdb955a665a5f418aa71f9cd0"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-2.5-AU",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-2.5-AU.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-2.5-AU",
+      "name": "Creative Commons Attribution 2.5 Australia",
+      "reference": "https://spdx.org/licenses/CC-BY-2.5-AU.html",
+      "referenceNumber": 528,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by/2.5/au/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution 2.5 Australia",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

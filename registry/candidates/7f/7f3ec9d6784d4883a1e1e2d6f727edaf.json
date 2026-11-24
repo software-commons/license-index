@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7f3ec9d6784d4883a1e1e2d6f727edaf",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 39507,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OSL-2.0.json",
+        "sha256": "cfd94ab22ba054a7ee29eaaaeda5a9dd349b3879d318a1c8cb7e91324ffe33ec"
+      },
+      "template": {
+        "bytes": 10955,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OSL-2.0.template.txt",
+        "sha256": "094f1023fc0853dfa024a2716c505568cea84e50afcd8595dc3105b80ec8fdd2"
+      },
+      "text": {
+        "bytes": 9880,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OSL-2.0.txt",
+        "sha256": "e1f0417f3b2df980f3c61a26f9417c00ebf325f1a5ec4704c5edfaa70e50a13d"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "OSL-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OSL-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "OSL-2.0",
+      "name": "Open Software License 2.0",
+      "reference": "https://spdx.org/licenses/OSL-2.0.html",
+      "referenceNumber": 312,
+      "seeAlso": [
+        "http://web.archive.org/web/20041020171434/http://www.rosenlaw.com/osl2.0.html"
+      ]
+    },
+    "name": "Open Software License 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

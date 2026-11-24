@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d5728939f1e441cbab8390cd66c70f8b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3666,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/xkeyboard-config-Zinoviev.json",
+        "sha256": "e94435bc8977fc00e0908bd548b23d48965123a681887ed20596fb5024f2927f"
+      },
+      "template": {
+        "bytes": 739,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/xkeyboard-config-Zinoviev.template.txt",
+        "sha256": "b8cff52a6d39a2dc958727bf1eb2a89737216c95303d66fe5849c1cd33b5af8f"
+      },
+      "text": {
+        "bytes": 685,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/xkeyboard-config-Zinoviev.txt",
+        "sha256": "7a1b77840b6a7299c539aee677d500b68e332fce28466a90a7c43b25037dab04"
+      }
+    },
+    "deprecated": false,
+    "identifier": "xkeyboard-config-Zinoviev",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/xkeyboard-config-Zinoviev.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "xkeyboard-config-Zinoviev",
+      "name": "xkeyboard-config Zinoviev License",
+      "reference": "https://spdx.org/licenses/xkeyboard-config-Zinoviev.html",
+      "referenceNumber": 241,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/blob/master/COPYING?ref_type=heads#L178"
+      ]
+    },
+    "name": "xkeyboard-config Zinoviev License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

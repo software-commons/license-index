@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fc4d3d3c45644be4972634c662a7fe0d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 55586,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LGPLLR.json",
+        "sha256": "40ed7afbc0948bbc033db632fc68b6b8c22a047f765e732db1cd18a0143f2511"
+      },
+      "template": {
+        "bytes": 15745,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LGPLLR.template.txt",
+        "sha256": "4070c2cd58787267eac59a74ce0cf6cadff10c29140dd858b43286d923b942a2"
+      },
+      "text": {
+        "bytes": 14556,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LGPLLR.txt",
+        "sha256": "089a0a0b01dd68e9f804355f76772a010c03d6c543a0a9664e24ef5255cc0b62"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LGPLLR",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LGPLLR.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "LGPLLR",
+      "name": "Lesser General Public License For Linguistic Resources",
+      "reference": "https://spdx.org/licenses/LGPLLR.html",
+      "referenceNumber": 364,
+      "seeAlso": [
+        "http://www-igm.univ-mlv.fr/~unitex/lgpllr.html"
+      ]
+    },
+    "name": "Lesser General Public License For Linguistic Resources",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

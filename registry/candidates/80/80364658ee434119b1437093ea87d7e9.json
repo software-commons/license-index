@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "80364658ee434119b1437093ea87d7e9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2885,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Bison-exception-2.2.json",
+        "sha256": "cce2541c976813bbe2d620549490c475c41bcdbd3cc1c7a5a9cf44dc41d6a3db"
+      },
+      "template": {
+        "bytes": 707,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Bison-exception-2.2.template.txt",
+        "sha256": "29b8955480784c97e613b6ba089c09b46868adba2b9e0ee95634142b8b8f87e0"
+      },
+      "text": {
+        "bytes": 673,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Bison-exception-2.2.txt",
+        "sha256": "002401c20a16ac592c98b2bd2342acfd20c67dbfeb1ef9aba00a9b1f9fdb1a87"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Bison-exception-2.2",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Bison-exception-2.2.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Bison-exception-2.2",
+      "name": "Bison exception 2.2",
+      "reference": "https://spdx.org/licenses/Bison-exception-2.2.html",
+      "referenceNumber": 51,
+      "seeAlso": [
+        "http://git.savannah.gnu.org/cgit/bison.git/tree/data/yacc.c?id=193d7c7054ba7197b0789e14965b739162319b5e#n141"
+      ]
+    },
+    "name": "Bison exception 2.2",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

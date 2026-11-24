@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7042e00ded88480b9099cd9353dcb842",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1800,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/SWI-exception.json",
+        "sha256": "bab7843515a080bc3238afec007ce35e030a7e54037ef7e9e6f4df7aae198882"
+      },
+      "template": {
+        "bytes": 383,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SWI-exception.template.txt",
+        "sha256": "92ce5ad62ee274e6646bbd5d2e8e87625a0e299df23170dee35e6dcc34e2a902"
+      },
+      "text": {
+        "bytes": 382,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SWI-exception.txt",
+        "sha256": "9da23ea902529428ab2e16eb98599766f331d7eb9bdacfcc355d29519140ec97"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SWI-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SWI-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "SWI-exception",
+      "name": "SWI exception",
+      "reference": "https://spdx.org/licenses/SWI-exception.html",
+      "referenceNumber": 75,
+      "seeAlso": [
+        "https://github.com/SWI-Prolog/packages-clpqr/blob/bfa80b9270274f0800120d5b8e6fef42ac2dc6a5/clpqr/class.pl"
+      ]
+    },
+    "name": "SWI exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

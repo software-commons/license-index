@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b122367da80a4b169a3388e5d659c0d7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3570,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-doc-sell.json",
+        "sha256": "79a86c31f686dcc7ab8cda8492bddb5d10950f085f0394e218ba781fc45338d4"
+      },
+      "template": {
+        "bytes": 552,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-doc-sell.template.txt",
+        "sha256": "75274ab980a03afbc466baecad37e55e705500f9d25980991f10878526016a7a"
+      },
+      "text": {
+        "bytes": 442,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-doc-sell.txt",
+        "sha256": "b4ec6564fc15f466e4b3908098db5aa810fc2587ef4ee32e1739c9d7ca7c21ab"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-doc-sell",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-doc-sell.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-doc-sell",
+      "name": "Historical Permission Notice and Disclaimer - documentation sell variant",
+      "reference": "https://spdx.org/licenses/HPND-doc-sell.html",
+      "referenceNumber": 695,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/xorg/lib/libxtst/-/blob/master/COPYING?ref_type=heads#L108-117",
+        "https://gitlab.freedesktop.org/xorg/lib/libxext/-/blob/master/COPYING?ref_type=heads#L153-162"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - documentation sell variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

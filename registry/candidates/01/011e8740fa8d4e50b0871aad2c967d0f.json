@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "011e8740fa8d4e50b0871aad2c967d0f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2931,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-UC-export-US.json",
+        "sha256": "3364ea42a53afd2e95f7465d45d2ef3317b836f419e424fa6583ea6068e5414b"
+      },
+      "template": {
+        "bytes": 584,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-UC-export-US.template.txt",
+        "sha256": "ff324d6bc4619a000e0ea50f61268f1d26274348f2231486dd30a3a9806a1ff2"
+      },
+      "text": {
+        "bytes": 533,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-UC-export-US.txt",
+        "sha256": "54f8e7db87bb74ccd25d62a32d2c613b9131fd8e21b6d9ce499d2d67ddbdf196"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-UC-export-US",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-UC-export-US.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-UC-export-US",
+      "name": "Historical Permission Notice and Disclaimer - University of California, US export warning",
+      "reference": "https://spdx.org/licenses/HPND-UC-export-US.html",
+      "referenceNumber": 506,
+      "seeAlso": [
+        "https://github.com/RTimothyEdwards/magic/blob/master/LICENSE"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - University of California, US export warning",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

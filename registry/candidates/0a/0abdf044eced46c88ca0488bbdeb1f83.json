@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "0abdf044eced46c88ca0488bbdeb1f83",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7704,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/UPL-1.0.json",
+        "sha256": "01e247e2782b2f962f4e6f67c89d18810316c52c6d9766ebc47412ca64be383f"
+      },
+      "template": {
+        "bytes": 2024,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/UPL-1.0.template.txt",
+        "sha256": "f6ccacdb8483e8889f876bcd8ee37727703917d61df0b1ba0772ef17dc344527"
+      },
+      "text": {
+        "bytes": 1837,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/UPL-1.0.txt",
+        "sha256": "2f81e75033a0c872ab9725b36081e363f0c9e6c45585c35930edb66043fdc576"
+      }
+    },
+    "deprecated": false,
+    "identifier": "UPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/UPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "UPL-1.0",
+      "name": "Universal Permissive License v1.0",
+      "reference": "https://spdx.org/licenses/UPL-1.0.html",
+      "referenceNumber": 307,
+      "seeAlso": [
+        "https://opensource.org/license/UPL-1.0"
+      ]
+    },
+    "name": "Universal Permissive License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9f2906e7c3ed4ac5919a5b872f8d43e3",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4284,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/RSA-MD.json",
+        "sha256": "5c3d6896f1599f158a7f86c298c66df83c7392368d7fefa5461790285fe93001"
+      },
+      "template": {
+        "bytes": 1033,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/RSA-MD.template.txt",
+        "sha256": "3eb25ff55e26a682ea8b21d488bfa28f3c9350890c30ebdf4668f4759cd4b2e9"
+      },
+      "text": {
+        "bytes": 869,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/RSA-MD.txt",
+        "sha256": "91a375b6dee034a2269e061179262e1080354aa22f420fbf22a6aeb265cd060f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "RSA-MD",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/RSA-MD.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "RSA-MD",
+      "name": "RSA Message-Digest License",
+      "reference": "https://spdx.org/licenses/RSA-MD.html",
+      "referenceNumber": 72,
+      "seeAlso": [
+        "http://www.faqs.org/rfcs/rfc1321.html"
+      ]
+    },
+    "name": "RSA Message-Digest License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

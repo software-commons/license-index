@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9743cdde457c42eeb36b0ffff2152a00",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 88511,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-SA-3.0-DE.json",
+        "sha256": "5f28ffc25314ac14f8a88fb5e4838a331d35ca928222596bffd4e1db1ef8e3db"
+      },
+      "template": {
+        "bytes": 24978,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-SA-3.0-DE.template.txt",
+        "sha256": "5da9a5709114601757c8339c3d742c9cfcd9da599d50fa0684e07f80dc1724dc"
+      },
+      "text": {
+        "bytes": 22421,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-SA-3.0-DE.txt",
+        "sha256": "dfac6ca9c9b3082919f8e417e522e561e11c8402eab83e1099650b8e4347412d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-SA-3.0-DE",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-SA-3.0-DE.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-SA-3.0-DE",
+      "name": "Creative Commons Attribution Share Alike 3.0 Germany",
+      "reference": "https://spdx.org/licenses/CC-BY-SA-3.0-DE.html",
+      "referenceNumber": 209,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-sa/3.0/de/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Share Alike 3.0 Germany",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

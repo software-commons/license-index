@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "43e8ae157dcc4df1968298eb1c7991af",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 68990,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SISSL.json",
+        "sha256": "8c0eccb655b778b3a98120d1a50096945bbbb2a99ae02433769c1be97080c229"
+      },
+      "template": {
+        "bytes": 16864,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SISSL.template.txt",
+        "sha256": "06214df0791619ced2794219608ef4790eeb79b2347e9607fd5365134b5964d6"
+      },
+      "text": {
+        "bytes": 14490,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SISSL.txt",
+        "sha256": "51a1c03478872c36943737b04cc35a6f903d4f3a6bd9144c90af5831f44c0e75"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "SISSL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SISSL.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "SISSL",
+      "name": "Sun Industry Standards Source License v1.1",
+      "reference": "https://spdx.org/licenses/SISSL.html",
+      "referenceNumber": 383,
+      "seeAlso": [
+        "http://www.openoffice.org/licenses/sissl_license.html",
+        "https://opensource.org/license/SISSL"
+      ]
+    },
+    "name": "Sun Industry Standards Source License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

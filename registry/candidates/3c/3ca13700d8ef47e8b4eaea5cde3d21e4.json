@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "3ca13700d8ef47e8b4eaea5cde3d21e4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 20561,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Sleepycat.json",
+        "sha256": "6adff087e5c35a7060b8b86fe42ac23721cca98f0e5bfb11bec1031c76880ece"
+      },
+      "template": {
+        "bytes": 5605,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Sleepycat.template.txt",
+        "sha256": "fb2931cf046f8bc9eb074a3ca2f69e50c3c4a2ff2f244076347c75ee0176893b"
+      },
+      "text": {
+        "bytes": 4995,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Sleepycat.txt",
+        "sha256": "74e179cd51dffda479cf3a339cf53c4dc46289fd72307f246af6c45de7b9cb5c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Sleepycat",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Sleepycat.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "Sleepycat",
+      "name": "Sleepycat License",
+      "reference": "https://spdx.org/licenses/Sleepycat.html",
+      "referenceNumber": 380,
+      "seeAlso": [
+        "https://opensource.org/license/Sleepycat"
+      ]
+    },
+    "name": "Sleepycat License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

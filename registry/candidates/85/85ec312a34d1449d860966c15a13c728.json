@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "85ec312a34d1449d860966c15a13c728",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 31091,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Hippocratic-2.1.json",
+        "sha256": "6686b420f17be02a00ea2529002f96330164cc650a2ae64a7841e4a9c1a987ca"
+      },
+      "template": {
+        "bytes": 9011,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Hippocratic-2.1.template.txt",
+        "sha256": "0a055c79d324730636b9ccf00e41b6b97ec438a8c556ec0823b5de6a116fe8d7"
+      },
+      "text": {
+        "bytes": 8422,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Hippocratic-2.1.txt",
+        "sha256": "e64f3c8d11dcff7bcbe739ae7b2d3ef755cd3dadf47273ad3cdebbda8a40f58a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Hippocratic-2.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Hippocratic-2.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Hippocratic-2.1",
+      "name": "Hippocratic License 2.1",
+      "reference": "https://spdx.org/licenses/Hippocratic-2.1.html",
+      "referenceNumber": 206,
+      "seeAlso": [
+        "https://firstdonoharm.dev/version/2/1/license.html",
+        "https://github.com/EthicalSource/hippocratic-license/blob/58c0e646d64ff6fbee275bfe2b9492f914e3ab2a/LICENSE.txt"
+      ]
+    },
+    "name": "Hippocratic License 2.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

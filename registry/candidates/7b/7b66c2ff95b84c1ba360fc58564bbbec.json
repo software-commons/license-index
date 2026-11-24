@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "7b66c2ff95b84c1ba360fc58564bbbec",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2023,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Unlicense-libtelnet.json",
+        "sha256": "3591a645c142725eb8820a06d679fcabc3f28d5c6897e044e7389d8ecd8eeb64"
+      },
+      "template": {
+        "bytes": 368,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Unlicense-libtelnet.template.txt",
+        "sha256": "faf514232abf34ee3e7b07d152a2f7b9d9cfff19d1b881b596d78bc96e8b44c9"
+      },
+      "text": {
+        "bytes": 367,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Unlicense-libtelnet.txt",
+        "sha256": "d6a4c4a239470cc6e0e8c42813027011ad41620a79875ccd385a240d51a76213"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Unlicense-libtelnet",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Unlicense-libtelnet.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Unlicense-libtelnet",
+      "name": "Unlicense - libtelnet variant",
+      "reference": "https://spdx.org/licenses/Unlicense-libtelnet.html",
+      "referenceNumber": 193,
+      "seeAlso": [
+        "https://github.com/seanmiddleditch/libtelnet/blob/develop/COPYING"
+      ]
+    },
+    "name": "Unlicense - libtelnet variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

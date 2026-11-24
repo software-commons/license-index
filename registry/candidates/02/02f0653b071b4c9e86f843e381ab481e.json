@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "02f0653b071b4c9e86f843e381ab481e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8749,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/OGC-1.0.json",
+        "sha256": "5ef79ea6afc0b5cc70021fd1e67c9dbfa4849be7bea8f76a8ace7c1ee7d396db"
+      },
+      "template": {
+        "bytes": 2424,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OGC-1.0.template.txt",
+        "sha256": "afaddebb88cb9d88bf47df2384e12354ea8e1f467e3d966a35f20f8df489bfe7"
+      },
+      "text": {
+        "bytes": 2179,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OGC-1.0.txt",
+        "sha256": "95deb073011c1c2ae37c66965fe59f0405ef87b4009a36d9418cf42ab355b4fb"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OGC-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OGC-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "OGC-1.0",
+      "name": "OGC Software License, Version 1.0",
+      "reference": "https://spdx.org/licenses/OGC-1.0.html",
+      "referenceNumber": 195,
+      "seeAlso": [
+        "https://www.ogc.org/ogc/software/1.0"
+      ]
+    },
+    "name": "OGC Software License, Version 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4420e82d9c234e6aba23ffa1c3ed921f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8005,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-No-Nuclear-License.json",
+        "sha256": "ce1f144942474a329eb1dd1edb6e227ccc7d7e31f49baf1cbeabd38885a1b4eb"
+      },
+      "template": {
+        "bytes": 1898,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-No-Nuclear-License.template.txt",
+        "sha256": "addc13cfe6efa3b2d1f4d2e8edbe588d80a2017b101076706eb08db23682a353"
+      },
+      "text": {
+        "bytes": 1693,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-No-Nuclear-License.txt",
+        "sha256": "54493541a36e52787ebd104f994172a4ab474ce6aff622e377457d816ca44ef3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-No-Nuclear-License",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-No-Nuclear-License.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-No-Nuclear-License",
+      "name": "BSD 3-Clause No Nuclear License",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-No-Nuclear-License.html",
+      "referenceNumber": 305,
+      "seeAlso": [
+        "http://download.oracle.com/otn-pub/java/licenses/bsd.txt"
+      ]
+    },
+    "name": "BSD 3-Clause No Nuclear License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

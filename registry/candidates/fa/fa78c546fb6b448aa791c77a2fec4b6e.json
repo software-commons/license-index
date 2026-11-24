@@ -1,0 +1,67 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fa78c546fb6b448aa791c77a2fec4b6e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2914,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/GPL-2.0-with-font-exception.json",
+        "sha256": "564d8f89c259a213ae5bd0a0542ea18b2adb17fd721c8a09fbc440e6982e5217"
+      },
+      "replacement_source": {
+        "bytes": 1462,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "license-list-XML/GPL-2.0-with-font-exception.xml",
+        "sha256": "fe6c40258f9aee0231575cf1545da8aebb5cd6d38c53905c61f349a0fa333c3c"
+      },
+      "template": {
+        "bytes": 632,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/deprecated_GPL-2.0-with-font-exception.template.txt",
+        "sha256": "311ae4c381a6a00103e3645958f5827a8361a5156d75b199dd39813c5ac50ac4"
+      },
+      "text": {
+        "bytes": 631,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/deprecated_GPL-2.0-with-font-exception.txt",
+        "sha256": "a3fdbd75bfd1d86ad19ec47965795f51983896a8c3e3e0b53cc4219d92444f22"
+      }
+    },
+    "deprecated": true,
+    "identifier": "GPL-2.0-with-font-exception",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "deprecatedVersion": "2.0rc2",
+      "detailsUrl": "https://spdx.org/licenses/GPL-2.0-with-font-exception.json",
+      "isDeprecatedLicenseId": true,
+      "isOsiApproved": false,
+      "licenseId": "GPL-2.0-with-font-exception",
+      "name": "GNU General Public License v2.0 w/Font exception",
+      "reference": "https://spdx.org/licenses/GPL-2.0-with-font-exception.html",
+      "referenceNumber": 613,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gpl-faq.html#FontException"
+      ]
+    },
+    "name": "GNU General Public License v2.0 w/Font exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "upstream_replacements": [
+      {
+        "target": "GPL-2.0 WITH Font-exception-2.0"
+      },
+      {
+        "for_expression": "GPL-2.0-with-font-exception+",
+        "target": "GPL-2.0-or-later+ WITH Font-exception-2.0"
+      }
+    ]
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

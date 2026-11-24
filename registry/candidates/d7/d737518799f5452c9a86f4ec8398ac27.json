@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d737518799f5452c9a86f4ec8398ac27",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1952,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/blessing.json",
+        "sha256": "e0e4fb01d45b7a7254a5b8734186c89e613c43ac32706be0508339d45cbcffa6"
+      },
+      "template": {
+        "bytes": 262,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/blessing.template.txt",
+        "sha256": "b034ffe0feca4f9d9089952453be8ea8613869dce95ed7ed86c87dcae09467cb"
+      },
+      "text": {
+        "bytes": 244,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/blessing.txt",
+        "sha256": "592db1199aab67aafe4515db9808b420db122083807c5329b2f061951e79acbe"
+      }
+    },
+    "deprecated": false,
+    "identifier": "blessing",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/blessing.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "blessing",
+      "name": "SQLite Blessing",
+      "reference": "https://spdx.org/licenses/blessing.html",
+      "referenceNumber": 366,
+      "seeAlso": [
+        "https://www.sqlite.org/src/artifact/e33a4df7e32d742a?ln=4-9",
+        "https://sqlite.org/src/artifact/df5091916dbb40e6"
+      ]
+    },
+    "name": "SQLite Blessing",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

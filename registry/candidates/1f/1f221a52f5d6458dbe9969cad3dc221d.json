@@ -1,0 +1,60 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "1f221a52f5d6458dbe9969cad3dc221d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 43530,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Pixar.json",
+        "sha256": "0348f2071556f59d32b08f6fd91d1eed3a0677de53a18a8a917c84052439f4ea"
+      },
+      "template": {
+        "bytes": 9857,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Pixar.template.txt",
+        "sha256": "ee7384a26a63d9f964edc9b523b1e2e539fd0d836135a4cdd203f6e2f74eb170"
+      },
+      "text": {
+        "bytes": 10038,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Pixar.txt",
+        "sha256": "c52718780b46e8c7ea48b9ae0406061d4918761e385b6e024571a37c6d02dd95"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "Pixar",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Pixar.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Pixar",
+      "name": "Pixar License",
+      "reference": "https://spdx.org/licenses/Pixar.html",
+      "referenceNumber": 542,
+      "seeAlso": [
+        "https://github.com/PixarAnimationStudios/OpenSubdiv/raw/v3_5_0/LICENSE.txt",
+        "https://graphics.pixar.com/opensubdiv/docs/license.html",
+        "https://github.com/PixarAnimationStudios/OpenSubdiv/blob/v3_5_0/opensubdiv/version.cpp#L2-L22"
+      ]
+    },
+    "name": "Pixar License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

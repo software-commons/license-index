@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "a5f1321e7a654aafb0beb159aae424d9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12763,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Ruby.json",
+        "sha256": "cdddba5bcb3281589a764faf0f3b52b7c2f247925a91904ee9551c7dbbc25b63"
+      },
+      "template": {
+        "bytes": 2815,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Ruby.template.txt",
+        "sha256": "3b8ee9581c18fda59ceb67fe144201b05cdaa28472990a84df8ddec601011827"
+      },
+      "text": {
+        "bytes": 2137,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Ruby.txt",
+        "sha256": "dac64527dc40e0be96d3316a93c0b5adb64ae47c7dc546fbc9fae4f0268cf6b6"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Ruby",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Ruby.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "Ruby",
+      "name": "Ruby License",
+      "reference": "https://spdx.org/licenses/Ruby.html",
+      "referenceNumber": 450,
+      "seeAlso": [
+        "https://www.ruby-lang.org/en/about/license.txt"
+      ]
+    },
+    "name": "Ruby License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

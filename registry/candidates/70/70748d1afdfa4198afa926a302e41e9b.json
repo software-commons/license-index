@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "70748d1afdfa4198afa926a302e41e9b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2645,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/TTWL.json",
+        "sha256": "d4ee58df413b15fc170f2167527f0e93d49f91a07028f26096e2f2e52b4eeeae"
+      },
+      "template": {
+        "bytes": 459,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/TTWL.template.txt",
+        "sha256": "0942e118ec9aa6071a6ab268bfd90c700351532e453ad11bd8c11ed9202977c7"
+      },
+      "text": {
+        "bytes": 406,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/TTWL.txt",
+        "sha256": "bc2c29906ea52dfa77744560479c1f0fc2218fdc6907b8d98ec08df2b77f5e53"
+      }
+    },
+    "deprecated": false,
+    "identifier": "TTWL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/TTWL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "TTWL",
+      "name": "Text-Tabs+Wrap License",
+      "reference": "https://spdx.org/licenses/TTWL.html",
+      "referenceNumber": 218,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/TTWL",
+        "https://github.com/ap/Text-Tabs/blob/master/lib.modern/Text/Tabs.pm#L148"
+      ]
+    },
+    "name": "Text-Tabs+Wrap License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

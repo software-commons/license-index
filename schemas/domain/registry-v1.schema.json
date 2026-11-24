@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/software-commons/license-index/schemas/domain/registry-v1.schema.json",
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$"},
+    "text": {"type": "string", "minLength": 1},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "https": {"type": "string", "pattern": "^https://[^/ ]+"},
+    "path": {"type": "string", "pattern": "^[A-Za-z0-9_.+/-]+$"},
+    "descriptor": {
+      "type": "object",
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "encoding": {"const": "UTF-8"},
+        "line_endings": {"enum": ["LF", "CRLF", "mixed", "none"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["kind", "id", "revision"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"const": "claim"},
+        "id": {"$ref": "#/$defs/text"},
+        "revision": {"type": "integer", "minimum": 1}
+      }
+    },
+    "claim_scope": {
+      "type": "object",
+      "description": "Applicability dimensions preserved in the canonical field from its exact SCES claim.",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"},
+      "additionalProperties": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:-]*$"}
+    },
+    "content_revision": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "crosswalk": {
+      "type": "object",
+      "required": ["origin", "revision", "key", "claim"],
+      "additionalProperties": false,
+      "properties": {
+        "origin": {"$ref": "#/$defs/text"},
+        "revision": {"$ref": "#/$defs/text"},
+        "key": {"$ref": "#/$defs/text"},
+        "claim": {"$ref": "#/$defs/claim"},
+        "scope": {"$ref": "#/$defs/claim_scope"}
+      },
+      "if": {"properties": {"origin": {"const": "spdx"}}},
+      "then": {"properties": {"revision": {"$ref": "#/$defs/commit"}}},
+      "else": {
+        "if": {"properties": {"origin": {
+          "pattern": "^(?:software-commons/[a-z0-9]+(?:-[a-z0-9]+)*-index|git\\+https://[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?(/[A-Za-z0-9][A-Za-z0-9._-]*)+)$"
+        }}},
+        "then": {"properties": {"revision": {"anyOf": [
+          {"$ref": "#/$defs/commit"}, {"$ref": "#/$defs/content_revision"}
+        ]}}},
+        "else": {"properties": {"revision": {"$ref": "#/$defs/content_revision"}}}
+      }
+    },
+    "origin": {
+      "type": "object",
+      "required": ["kind", "source", "identifier", "name"],
+      "properties": {
+        "kind": {"enum": ["spdx", "publisher"]},
+        "name": {"$ref": "#/$defs/text"},
+        "identifier": {"$ref": "#/$defs/text"},
+        "source": {"$ref": "#/$defs/text"}
+      },
+      "if": {"properties": {"kind": {"const": "spdx"}}},
+      "then": {
+        "required": ["release", "list_kind", "metadata", "deprecated", "artifacts"],
+        "properties": {
+          "source": {"$ref": "#/$defs/commit"},
+          "release": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "list_kind": {"enum": ["license", "exception"]},
+          "deprecated": {"type": "boolean"},
+          "removed": {"type": "boolean"},
+          "metadata": {"type": "object"},
+          "artifacts": {
+            "type": "object",
+            "required": ["detail"],
+            "additionalProperties": {"$ref": "#/$defs/descriptor"}
+          }
+        }
+      },
+      "else": {"properties": {"source": {"$ref": "#/$defs/https"}}}
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["id", "disposition", "reason", "origin", "history"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "disposition": {"enum": ["unresolved", "excluded", "existing-spdx", "accepted", "alias", "distinct-edition", "exception", "non-license", "duplicate", "historical"]},
+        "reason": {"$ref": "#/$defs/text"},
+        "origin": {"$ref": "#/$defs/origin"},
+        "history": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "relation_type": {"enum": ["edition-of", "member-of", "derived-from", "supersedes",
+                               "merged-from", "split-from", "exception-for", "related-to"]},
+    "entity": {
+      "type": "object",
+      "required": ["id", "kind", "name", "state", "identity_claim", "candidate_ids", "aliases", "crosswalks", "relations"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["license", "exception", "related-instrument", "family"]},
+        "name": {"$ref": "#/$defs/text"},
+        "state": {"enum": ["active", "historical", "retired"]},
+        "identity_claim": {"$ref": "#/$defs/claim"},
+        "candidate_ids": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "description": "Permanent IDs of the retained discovery records supporting this admission.",
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "identity_scope": {"$ref": "#/$defs/claim_scope"},
+        "aliases": {
+          "type": "array",
+          "items": {"type": "object", "required": ["name", "claim"], "additionalProperties": false,
+            "properties": {"name": {"$ref": "#/$defs/text"}, "claim": {"$ref": "#/$defs/claim"},
+              "scope": {"$ref": "#/$defs/claim_scope"}}}
+        },
+        "crosswalks": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/crosswalk"}
+        },
+        "relations": {
+          "type": "array",
+          "items": {"type": "object", "required": ["type", "target", "claim"], "additionalProperties": false,
+            "properties": {
+              "type": {"$ref": "#/$defs/relation_type"},
+              "target": {"type": "object", "required": ["id"], "additionalProperties": false,
+                "dependentRequired": {"index": ["revision"], "revision": ["index"]},
+                "properties": {"id": {"$ref": "#/$defs/text"}, "index": {"$ref": "#/$defs/text"},
+                  "revision": {"anyOf": [
+                    {"$ref": "#/$defs/commit"}, {"$ref": "#/$defs/content_revision"}
+                  ]}}},
+              "claim": {"$ref": "#/$defs/claim"},
+              "scope": {"$ref": "#/$defs/claim_scope"}
+            }}
+        }
+      }
+    },
+    "qualified_export": {
+      "description": "License Index export restricted to the active SCES-qualified selection. Resolve SCES references from the pinned local policy bundle.",
+      "type": "object",
+      "required": ["release", "entities", "claims"],
+      "additionalProperties": false,
+      "properties": {
+        "release": {
+          "$ref": "https://github.com/software-commons/.github/blob/sces-v1.0/evidence/v1/contracts.schema.json#/$defs/qualification",
+          "properties": {
+            "repository": {"const": "software-commons/license-index"},
+            "dataset": {"const": "license-index"},
+            "schema_version": {"const": "1.0.0"},
+            "synthetic": {"const": false}
+          }
+        },
+        "entities": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/entity"}},
+        "claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["claim", "dependencies"],
+            "additionalProperties": false,
+            "properties": {
+              "claim": {"$ref": "https://github.com/software-commons/.github/blob/sces-v1.0/evidence/v1/contracts.schema.json#/$defs/claim"},
+              "dependencies": {
+                "type": "array",
+                "items": {"$ref": "https://github.com/software-commons/.github/blob/sces-v1.0/evidence/v1/contracts.schema.json#/$defs/dependency"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "qualified_lookup": {
+      "description": "A qualified canonical entity and the incoming local relationships derived from the same selected entities.",
+      "type": "object",
+      "required": ["entity", "incoming_relations"],
+      "additionalProperties": false,
+      "properties": {
+        "entity": {"$ref": "#/$defs/entity"},
+        "incoming_relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["source", "type", "target", "claim"],
+            "additionalProperties": false,
+            "properties": {
+              "source": {"$ref": "#/$defs/id"},
+              "type": {"$ref": "#/$defs/relation_type"},
+              "target": {
+                "type": "object",
+                "required": ["id"],
+                "additionalProperties": false,
+                "properties": {"id": {"$ref": "#/$defs/id"}}
+              },
+              "claim": {"$ref": "#/$defs/claim"},
+              "scope": {"$ref": "#/$defs/claim_scope"}
+            }
+          }
+        }
+      }
+    },
+    "coverage_scope_entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "pattern": "\\S"}
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "cutoff", "source_manifest", "snapshot", "method", "assessment"],
+      "properties": {
+        "schema_version": {"enum": ["1.0.0", "2.0.0", "3.0.0", "4.0.0"]},
+        "cutoff": {"type": "string", "format": "date"},
+        "source_manifest": {"$ref": "#/$defs/path"},
+        "snapshot": {"$ref": "#/$defs/path"},
+        "method": {"$ref": "#/$defs/text"},
+        "predecessor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["snapshot", "commit", "sha256"],
+          "properties": {
+            "snapshot": {"$ref": "#/$defs/path", "pattern": "^registry/coverage/snapshots/.+\\.json$"},
+            "commit": {"$ref": "#/$defs/commit"},
+            "sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "research_scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["included_ecosystems", "discovery_paths", "exclusions", "inaccessible_areas",
+                       "reconciliation_choices"],
+          "properties": {
+            "included_ecosystems": {"$ref": "#/$defs/coverage_scope_entries"},
+            "discovery_paths": {"$ref": "#/$defs/coverage_scope_entries"},
+            "exclusions": {"$ref": "#/$defs/coverage_scope_entries"},
+            "inaccessible_areas": {"$ref": "#/$defs/coverage_scope_entries"},
+            "reconciliation_choices": {"$ref": "#/$defs/coverage_scope_entries"}
+          }
+        },
+        "assessment": {
+          "type": "object",
+          "required": ["scope", "catalog", "authentic_text", "installation", "research", "qualification"]
+        }
+      },
+      "allOf": [{
+        "if": {"properties": {"schema_version": {"enum": ["2.0.0", "3.0.0", "4.0.0"]}}},
+        "then": {"properties": {"assessment": {"properties": {
+          "catalog": {
+            "type": "object",
+            "required": ["candidate_dispositions"],
+            "properties": {
+              "candidate_dispositions": {
+                "type": "object",
+                "propertyNames": {"$ref": "#/$defs/candidate/properties/disposition"},
+                "additionalProperties": {"type": "integer", "minimum": 0}
+              }
+            }
+          },
+          "qualification": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["recorded_claim_revisions", "recorded_independently_reviewed_claims",
+                         "recorded_invalidated_claim_revisions", "selected_claims", "status"],
+            "properties": {
+              "recorded_claim_revisions": {"type": "integer", "minimum": 0},
+              "recorded_independently_reviewed_claims": {"type": "integer", "minimum": 0},
+              "recorded_invalidated_claim_revisions": {"type": "integer", "minimum": 0},
+              "selected_claims": {"type": "integer", "minimum": 0},
+              "status": {"enum": ["development", "qualified-selection"]}
+            }
+          }
+        }}}}
+      }, {
+        "if": {"properties": {"schema_version": {"enum": ["3.0.0", "4.0.0"]}}},
+        "then": {"properties": {"assessment": {"properties": {
+          "research": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provisional_explanations", "spdx_without_provisional_explanation",
+                         "dimensions", "dimension_states", "dimension_assessments_sha256", "scenarios"],
+            "properties": {
+              "provisional_explanations": {"type": "integer", "minimum": 0},
+              "spdx_without_provisional_explanation": {"type": "integer", "minimum": 0},
+              "dimensions": {"type": "integer", "minimum": 0},
+              "dimension_states": {
+                "type": "object",
+                "propertyNames": {"enum": ["permission", "condition", "restriction", "documented",
+                                            "unresolved", "inapplicable", "explicit-absence"]},
+                "additionalProperties": {"type": "integer", "minimum": 0}
+              },
+              "dimension_assessments_sha256": {"$ref": "#/$defs/sha256"},
+              "scenarios": {"type": "integer", "minimum": 0}
+            }
+          }
+        }}}}
+      }, {
+        "if": {"properties": {"schema_version": {"const": "4.0.0"}}},
+        "then": {"required": ["predecessor", "research_scope"]},
+        "else": {"properties": {"predecessor": false, "research_scope": false}}
+      }]
+    },
+    "source": {
+      "type": "object",
+      "required": ["release", "data_commit", "xml_commit", "archive", "population", "manifests"],
+      "properties": {
+        "release": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "data_commit": {"$ref": "#/$defs/commit"},
+        "xml_commit": {"$ref": "#/$defs/commit"},
+        "archive": {
+          "type": "object",
+          "required": ["url", "sha256", "bytes"],
+          "properties": {"url": {"$ref": "#/$defs/https"}, "sha256": {"$ref": "#/$defs/sha256"},
+            "bytes": {"type": "integer", "minimum": 1}}
+        },
+        "population": {
+          "type": "object",
+          "required": ["licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions"],
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "manifests": {
+          "type": "object",
+          "required": ["licenses", "exceptions"],
+          "additionalProperties": {"$ref": "#/$defs/descriptor"}
+        }
+      }
+    },
+    "export": {
+      "type": "object",
+      "required": ["dataset", "schema_version", "software_version", "status", "coverage",
+                   "coverage_snapshot_sha256", "source", "candidates", "provisional_profiles"],
+      "properties": {
+        "dataset": {"const": "software-commons/license-index"},
+        "schema_version": {"const": "1.0.0"},
+        "software_version": {"$ref": "#/$defs/text"},
+        "status": {"const": "development-discovery"},
+        "coverage": {"$ref": "#/$defs/coverage"},
+        "coverage_snapshot_sha256": {"$ref": "#/$defs/sha256"},
+        "source": {"$ref": "#/$defs/source"},
+        "candidates": {"type": "array", "items": {
+          "type": "object", "required": ["record", "catalog_status", "legal_interpretation_qualification"],
+          "properties": {"record": {"$ref": "#/$defs/candidate"}, "catalog_status": {"const": "discovery"},
+            "legal_interpretation_qualification": {"const": "unqualified"}}
+        }},
+        "provisional_profiles": {"type": "object"}
+      }
+    }
+  }
+}

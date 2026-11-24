@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b7b13f5a1cdf495b8da63eb59879550b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2853,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/OCCT-exception-1.0.json",
+        "sha256": "e7a044f922ca08a8b85035331c6e4413401aca4f92e1eab6d16e7203c6833cae"
+      },
+      "template": {
+        "bytes": 697,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/OCCT-exception-1.0.template.txt",
+        "sha256": "cd6fc9c6837ea4d892947dec72f023b822c2d3fabd4d0fed96ee288ffc8e837e"
+      },
+      "text": {
+        "bytes": 663,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/OCCT-exception-1.0.txt",
+        "sha256": "6814878c4f9e653cca06d533c034ebc14b050c479ac4e90694a96ca5f3ed619e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "OCCT-exception-1.0",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/OCCT-exception-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "OCCT-exception-1.0",
+      "name": "Open CASCADE Exception 1.0",
+      "reference": "https://spdx.org/licenses/OCCT-exception-1.0.html",
+      "referenceNumber": 83,
+      "seeAlso": [
+        "http://www.opencascade.com/content/licensing"
+      ]
+    },
+    "name": "Open CASCADE Exception 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "49042e32806544f9a7446edfb1cbf072",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6904,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-Modification.json",
+        "sha256": "d56e280138d11afc00cba66571f724a6adda63e2c46f3e69bf5c4c9dfd7a25c7"
+      },
+      "template": {
+        "bytes": 1765,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-Modification.template.txt",
+        "sha256": "18c3dcbe46c86c9ec797e1530692a4fbf75059a9006411627dea5499b0a53e4e"
+      },
+      "text": {
+        "bytes": 1624,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-Modification.txt",
+        "sha256": "c9d6ed9e3618b2caf1e26d863a9469baf20e7ad39a6804a200b3ccd8710b335e"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-Modification",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-Modification.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-Modification",
+      "name": "BSD 3-Clause Modification",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-Modification.html",
+      "referenceNumber": 508,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing:BSD#Modification_Variant"
+      ]
+    },
+    "name": "BSD 3-Clause Modification",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

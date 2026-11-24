@@ -1,0 +1,93 @@
+{
+  "assessment": {
+    "authentic_text": {
+      "bundled_publisher_text_files": 23,
+      "bundled_publisher_text_identities": 45,
+      "spdx_header_references": 93,
+      "spdx_matching_template_references": 826,
+      "spdx_text_references": 826
+    },
+    "catalog": {
+      "accepted_entities": 0,
+      "beyond_spdx_dispositions": {
+        "excluded": 1,
+        "non-license": 1,
+        "unresolved": 12
+      },
+      "beyond_spdx_leads": 14,
+      "spdx_deprecated_exceptions": 1,
+      "spdx_deprecated_licenses": 32,
+      "spdx_deprecated_with_replacement_guidance": 30,
+      "spdx_exceptions": 86,
+      "spdx_historical_only": 0,
+      "spdx_licenses": 740
+    },
+    "installation": {
+      "offline": [
+        "AGPL-3.0-only",
+        "AGPL-3.0-or-later",
+        "Apache-2.0",
+        "CC-BY-4.0",
+        "CC-BY-NC-4.0",
+        "CC-BY-NC-ND-4.0",
+        "CC-BY-NC-SA-4.0",
+        "CC-BY-ND-4.0",
+        "CC-BY-SA-4.0",
+        "CC0-1.0",
+        "EPL-1.0",
+        "EPL-2.0",
+        "GFDL-1.1-invariants-only",
+        "GFDL-1.1-invariants-or-later",
+        "GFDL-1.1-no-invariants-only",
+        "GFDL-1.1-no-invariants-or-later",
+        "GFDL-1.1-only",
+        "GFDL-1.1-or-later",
+        "GFDL-1.2-invariants-only",
+        "GFDL-1.2-invariants-or-later",
+        "GFDL-1.2-no-invariants-only",
+        "GFDL-1.2-no-invariants-or-later",
+        "GFDL-1.2-only",
+        "GFDL-1.2-or-later",
+        "GFDL-1.3-invariants-only",
+        "GFDL-1.3-invariants-or-later",
+        "GFDL-1.3-no-invariants-only",
+        "GFDL-1.3-no-invariants-or-later",
+        "GFDL-1.3-only",
+        "GFDL-1.3-or-later",
+        "GPL-1.0-only",
+        "GPL-1.0-or-later",
+        "GPL-2.0-only",
+        "GPL-2.0-or-later",
+        "GPL-3.0-only",
+        "GPL-3.0-or-later",
+        "LGPL-2.0-only",
+        "LGPL-2.0-or-later",
+        "LGPL-2.1-only",
+        "LGPL-2.1-or-later",
+        "PolyForm-Noncommercial-1.0.0",
+        "PolyForm-Small-Business-1.0.0"
+      ],
+      "requires_verified_companion": [
+        "LGPL-3.0-only",
+        "LGPL-3.0-or-later"
+      ],
+      "requires_verified_spdx_input": [
+        "MIT"
+      ]
+    },
+    "qualification": {
+      "independently_verified_claims": 0,
+      "status": "development"
+    },
+    "research": {
+      "provisional_explanations": 40,
+      "spdx_without_provisional_explanation": 786
+    },
+    "scope": "SPDX discovery and publisher leads"
+  },
+  "cutoff": "2026-11-23",
+  "method": "Reconcile exact upstream list manifests and per-ID artifact checksums. Count discovery, packaged text, safe installation, provisional research, and selected SCES claims separately.",
+  "schema_version": "1.0.0",
+  "snapshot": "registry/coverage/snapshots/2026-11-23-spdx-3.29.0-lgpl-v3-companion.json",
+  "source_manifest": "research/sources/spdx-3.29.0.json"
+}

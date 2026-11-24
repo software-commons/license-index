@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4824b2fba18d4e67b06653198ed0e6f4",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2480,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/python-ldap.json",
+        "sha256": "aa21e047d5dcfa99248f19e810c6bb4456bab3eeb5df484cab5003dc5a8c2eb2"
+      },
+      "template": {
+        "bytes": 529,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/python-ldap.template.txt",
+        "sha256": "812a61f0f386f629489999fe90a9c6d71eb95d9f9242dd85fa5adb0d261ba8f0"
+      },
+      "text": {
+        "bytes": 550,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/python-ldap.txt",
+        "sha256": "8c5c1b80c0ecdcfc9379de912c82f6f5fd32eb1d63877e94f929fe307917bb70"
+      }
+    },
+    "deprecated": false,
+    "identifier": "python-ldap",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/python-ldap.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "python-ldap",
+      "name": "Python ldap License",
+      "reference": "https://spdx.org/licenses/python-ldap.html",
+      "referenceNumber": 267,
+      "seeAlso": [
+        "https://github.com/python-ldap/python-ldap/blob/main/LICENCE"
+      ]
+    },
+    "name": "Python ldap License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

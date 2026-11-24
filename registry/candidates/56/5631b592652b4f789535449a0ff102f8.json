@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "5631b592652b4f789535449a0ff102f8",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 38358,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/LAL-1.3.json",
+        "sha256": "98d3bd0a010b8ca1c4b443e93964fc607a5168762d536cea00833937f40f8473"
+      },
+      "template": {
+        "bytes": 9493,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LAL-1.3.template.txt",
+        "sha256": "045020651d58ac449baf8a12c844fae5cd648790ee3d6e85d07df39cf5db1610"
+      },
+      "text": {
+        "bytes": 8264,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LAL-1.3.txt",
+        "sha256": "b6ca3a455ec3f5d116b5c069d26f5e6dec8b164e1af8a06ba31c4f65306219f5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LAL-1.3",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LAL-1.3.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "LAL-1.3",
+      "name": "Licence Art Libre 1.3",
+      "reference": "https://spdx.org/licenses/LAL-1.3.html",
+      "referenceNumber": 59,
+      "seeAlso": [
+        "https://artlibre.org/"
+      ]
+    },
+    "name": "Licence Art Libre 1.3",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

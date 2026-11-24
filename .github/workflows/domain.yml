@@ -1,0 +1,103 @@
+name: Domain
+
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  platform:
+    name: Tests on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - run: python -I -B tools/run_isolated.py tests
+  registry:
+    name: Registry validation
+    needs: [platform]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Require every platform test run
+        env:
+          PLATFORM_RESULT: ${{ needs.platform.result }}
+        run: test "$PLATFORM_RESULT" = success
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          path: index
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: software-commons/.github
+          path: policy
+          ref: ab26f278422772f2d9e5d4dd016407d14372a710
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - name: Install pinned evidence-policy dependencies
+        run: python -I -m pip install --disable-pip-version-check -r policy/tools/sces/requirements.txt
+      - name: Validate schema, SPDX replay, publisher rights, frozen history and active qualification
+        working-directory: index
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
+        run: |
+          set -euo pipefail
+          args=()
+          if [[ -n "$BASE_SHA" && "$BASE_SHA" != 0000000000000000000000000000000000000000 ]]; then
+            args+=(--base "$BASE_SHA")
+          fi
+          python -I -B tools/run_isolated.py schema_check --policy ../policy "${args[@]}"
+          python -I -B tools/run_isolated.py index validate --policy ../policy --fetch-spdx-archive --fetch-rights "${args[@]}"
+
+          if [[ ${#args[@]} -eq 0 ]]; then
+            exit 0
+          fi
+          staging=$(mktemp -d)
+          trap 'rm -rf -- "$staging"' EXIT
+          mkdir "$staging/first" "$staging/second"
+          stage_candidate() {
+            python -I -B tools/run_isolated.py stage_release "$1/candidate.zip" --policy ../policy "${args[@]}" > "$1/REQUEST.json"
+          }
+          if [[ -f sces/publication.json ]]; then
+            python -I -B tools/run_isolated.py index bundle "$staging/first/development.zip" --policy ../policy
+            python -I -B tools/run_isolated.py index bundle "$staging/second/development.zip" --policy ../policy
+            cmp "$staging/first/development.zip" "$staging/second/development.zip"
+            python -I -B -m zipfile -e "$staging/first/development.zip" "$staging/offline"
+            (
+              cd "$staging/offline"
+              python -I -B tools/run_isolated.py index validate
+            )
+            stage_candidate "$staging/first"
+            stage_candidate "$staging/second"
+            cmp "$staging/first/candidate.zip" "$staging/second/candidate.zip"
+            cmp "$staging/first/REQUEST.json" "$staging/second/REQUEST.json"
+            request_digest=$(sha256sum "$staging/first/REQUEST.json" | cut -d ' ' -f 1)
+            python -I -B tools/run_isolated.py verify_release "$staging/first/REQUEST.json" \
+              --request-sha256 "$request_digest" --zip "$staging/first/candidate.zip"
+          else
+            if stage_candidate "$staging/first" 2> "$staging/error"; then
+              echo 'Staging succeeded without an active selection' >&2
+              exit 1
+            fi
+            cat "$staging/error" >&2
+            grep -Fx 'stage release: no active SCES-qualified release to stage' "$staging/error" >/dev/null
+            test ! -e "$staging/first/candidate.zip"
+            test ! -s "$staging/first/REQUEST.json"
+          fi

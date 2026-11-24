@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f587ad4985af4e4cae938f909315999b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3273,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Asterisk-linking-protocols-exception.json",
+        "sha256": "3d775b5c0f56d5ca32d62ff7aefe10c13e0212d3ae002be28ad197630337b325"
+      },
+      "template": {
+        "bytes": 874,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Asterisk-linking-protocols-exception.template.txt",
+        "sha256": "23fd869fc4879295d16ba39ad5b3e1c22bfdc5756bdea0b00ef4c00229d5d94b"
+      },
+      "text": {
+        "bytes": 873,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Asterisk-linking-protocols-exception.txt",
+        "sha256": "13c5d685b548ddf78a571757709401a8ac00737897f67809e9cfb118473d9162"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Asterisk-linking-protocols-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Asterisk-linking-protocols-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Asterisk-linking-protocols-exception",
+      "name": "Asterisk linking protocols exception",
+      "reference": "https://spdx.org/licenses/Asterisk-linking-protocols-exception.html",
+      "referenceNumber": 25,
+      "seeAlso": [
+        "https://github.com/asterisk/asterisk/blob/115d7c01e32ccf4566a99e9d74e2b88830985a0b/LICENSE#L27"
+      ]
+    },
+    "name": "Asterisk linking protocols exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

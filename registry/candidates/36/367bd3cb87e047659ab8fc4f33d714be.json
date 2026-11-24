@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "367bd3cb87e047659ab8fc4f33d714be",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3656,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/erlang-otp-linking-exception.json",
+        "sha256": "cee952ba561f163cf22d18d9018ba72e903f1e8a5f3a1141e1f916b494e93dcc"
+      },
+      "template": {
+        "bytes": 887,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/erlang-otp-linking-exception.template.txt",
+        "sha256": "aff5dc016ebc1d0db55cc34acfbac233e352fc8ead396eb036744f6dce6f8330"
+      },
+      "text": {
+        "bytes": 700,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/erlang-otp-linking-exception.txt",
+        "sha256": "25574fb03832a17c5f16abb34368b627ec1157be28b96cc79103f2bf21ae1692"
+      }
+    },
+    "deprecated": false,
+    "identifier": "erlang-otp-linking-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/erlang-otp-linking-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "erlang-otp-linking-exception",
+      "name": "Erlang/OTP Linking Exception",
+      "reference": "https://spdx.org/licenses/erlang-otp-linking-exception.html",
+      "referenceNumber": 44,
+      "seeAlso": [
+        "https://www.gnu.org/licenses/gpl-faq.en.html#GPLIncompatibleLibs",
+        "https://erlang.org/pipermail/erlang-questions/2012-May/066355.html",
+        "https://gitea.osmocom.org/erlang/osmo_ss7/src/commit/2286c1b8738d715950026650bf53f19a69d6ed0e/src/ss7_links.erl#L20"
+      ]
+    },
+    "name": "Erlang/OTP Linking Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

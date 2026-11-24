@@ -1,0 +1,52 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9f5b38823ecd4ba2b28597644a5eb374",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 12777,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Unicode-DFS-2016.json",
+        "sha256": "8c6281840dfb5d045b295c833ae5e8da49c26045c1208740b4440f3be224de68"
+      },
+      "template": {
+        "bytes": 3247,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Unicode-DFS-2016.template.txt",
+        "sha256": "ef81c914ed6385117eb984d1c6fa89edef4fc05a7946c9c3b483ed49f725d55e"
+      },
+      "text": {
+        "bytes": 2858,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Unicode-DFS-2016.txt",
+        "sha256": "1a33fc12a3abb0b3eb14db70e36ef1d0af51c93b1cc1f80f022c3bd406e9b874"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Unicode-DFS-2016",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Unicode-DFS-2016.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Unicode-DFS-2016",
+      "name": "Unicode License Agreement - Data Files and Software (2016)",
+      "reference": "https://spdx.org/licenses/Unicode-DFS-2016.html",
+      "referenceNumber": 373,
+      "seeAlso": [
+        "https://www.unicode.org/license.txt",
+        "http://web.archive.org/web/20160823201924/http://www.unicode.org/copyright.html#License",
+        "http://www.unicode.org/copyright.html"
+      ]
+    },
+    "name": "Unicode License Agreement - Data Files and Software (2016)",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

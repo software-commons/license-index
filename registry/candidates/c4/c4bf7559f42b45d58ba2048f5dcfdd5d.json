@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c4bf7559f42b45d58ba2048f5dcfdd5d",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13495,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/MTLL.json",
+        "sha256": "41e36277bf7df5c6939f0648035fea2404c9676d3430a942efea35a70c7c49cc"
+      },
+      "template": {
+        "bytes": 3548,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/MTLL.template.txt",
+        "sha256": "a0b1e13b8e20bb46fe192e1126b424d29bb74499c93c72a4d652a73c29fed104"
+      },
+      "text": {
+        "bytes": 3239,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/MTLL.txt",
+        "sha256": "b3999fd83c5efc7758af8c5ea4e220f2f17938e5c3b69730591dade823e8666a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "MTLL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/MTLL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "MTLL",
+      "name": "Matrix Template Library License",
+      "reference": "https://spdx.org/licenses/MTLL.html",
+      "referenceNumber": 651,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Matrix_Template_Library_License"
+      ]
+    },
+    "name": "Matrix Template Library License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

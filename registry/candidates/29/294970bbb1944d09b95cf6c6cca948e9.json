@@ -1,0 +1,59 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "294970bbb1944d09b95cf6c6cca948e9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 107840,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SPL-1.0.json",
+        "sha256": "c7318712d2ca730e4737576a785ecd53a823652a978bc69e28d061e1a27d6aaa"
+      },
+      "template": {
+        "bytes": 27031,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SPL-1.0.template.txt",
+        "sha256": "a66f896d16145fd358f4951d383af0f3bc41a825674e2adb1ebc659524e6d41c"
+      },
+      "text": {
+        "bytes": 23398,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SPL-1.0.txt",
+        "sha256": "5a38bd15c6ddcfa3937a4434126f899e597537a68da2fbbd4b219652a673734d"
+      }
+    },
+    "deprecated": false,
+    "headers": {
+      "artifact": "detail",
+      "fields": [
+        "standardLicenseHeader",
+        "standardLicenseHeaderTemplate",
+        "standardLicenseHeaderHtml"
+      ]
+    },
+    "identifier": "SPL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SPL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": true,
+      "licenseId": "SPL-1.0",
+      "name": "Sun Public License v1.0",
+      "reference": "https://spdx.org/licenses/SPL-1.0.html",
+      "referenceNumber": 151,
+      "seeAlso": [
+        "https://opensource.org/license/SPL-1.0"
+      ]
+    },
+    "name": "Sun Public License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

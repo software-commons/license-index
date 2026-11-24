@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "c189982d8ae942708d6a710eb8a64fde",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 14242,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CDLA-Permissive-2.0.json",
+        "sha256": "503082b2e8b5920f46ac354c635d55fa16b1ce223521a76254f8675fa8294a51"
+      },
+      "template": {
+        "bytes": 3140,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CDLA-Permissive-2.0.template.txt",
+        "sha256": "9635a8ca3330d4d579cb41cbc7029dec812ddb7ba830ab7824276aa47a06f475"
+      },
+      "text": {
+        "bytes": 2354,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CDLA-Permissive-2.0.txt",
+        "sha256": "4531a67d443284d93ffed0803df5b10634aff21c3d77e381f2d48af01d875868"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CDLA-Permissive-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CDLA-Permissive-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CDLA-Permissive-2.0",
+      "name": "Community Data License Agreement Permissive 2.0",
+      "reference": "https://spdx.org/licenses/CDLA-Permissive-2.0.html",
+      "referenceNumber": 198,
+      "seeAlso": [
+        "https://cdla.dev/permissive-2-0"
+      ]
+    },
+    "name": "Community Data License Agreement Permissive 2.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

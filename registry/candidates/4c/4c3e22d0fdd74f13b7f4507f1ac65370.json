@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "4c3e22d0fdd74f13b7f4507f1ac65370",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 19160,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Sendmail-Open-Source-1.1.json",
+        "sha256": "1d41fa386a77101808bddcd9cf9a2912c23b10a21624647bd347eaabd725cba6"
+      },
+      "template": {
+        "bytes": 4706,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Sendmail-Open-Source-1.1.template.txt",
+        "sha256": "3a737e147aa7fc58eafb0ba3fba544dc3df37a142bcf9b93a9ca5eb1906abe5f"
+      },
+      "text": {
+        "bytes": 4317,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Sendmail-Open-Source-1.1.txt",
+        "sha256": "fd100cb7d1fe590a4b20e367f200ea62dee55a075a90d682e160a6ae07595984"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Sendmail-Open-Source-1.1",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Sendmail-Open-Source-1.1.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Sendmail-Open-Source-1.1",
+      "name": "Sendmail Open Source License v1.1",
+      "reference": "https://spdx.org/licenses/Sendmail-Open-Source-1.1.html",
+      "referenceNumber": 323,
+      "seeAlso": [
+        "https://github.com/trusteddomainproject/OpenDMARC/blob/master/LICENSE.Sendmail"
+      ]
+    },
+    "name": "Sendmail Open Source License v1.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

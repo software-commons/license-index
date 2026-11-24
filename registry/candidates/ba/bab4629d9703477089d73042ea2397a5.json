@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bab4629d9703477089d73042ea2397a5",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 46473,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Aladdin.json",
+        "sha256": "ce524e09c73ec097cb50380d538488157d025dfe8ed073283bd38867d741349b"
+      },
+      "template": {
+        "bytes": 12788,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Aladdin.template.txt",
+        "sha256": "f3c4e4b223379d89e2ed6ac9902b38b8607014f114cf49e928e9938b859e72d1"
+      },
+      "text": {
+        "bytes": 11604,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Aladdin.txt",
+        "sha256": "e7a871c1033452f86767d6b6ec64e935f96992ba9f62408472556967bcf91f6a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Aladdin",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Aladdin.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "Aladdin",
+      "name": "Aladdin Free Public License",
+      "reference": "https://spdx.org/licenses/Aladdin.html",
+      "referenceNumber": 608,
+      "seeAlso": [
+        "http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.01/Public.htm"
+      ]
+    },
+    "name": "Aladdin Free Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

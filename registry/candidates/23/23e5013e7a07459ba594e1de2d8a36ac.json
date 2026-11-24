@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "23e5013e7a07459ba594e1de2d8a36ac",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 18052,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/FDK-MPEG-H.json",
+        "sha256": "8cc6cfdadb4f3e92373469b051e6cba72fdc081f606bd965959282acb5791e00"
+      },
+      "template": {
+        "bytes": 4433,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/FDK-MPEG-H.template.txt",
+        "sha256": "eaaabf3a854f9a00a7088075d0ea9335e8d7c1fc9ffabf242b01308037060db5"
+      },
+      "text": {
+        "bytes": 3795,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/FDK-MPEG-H.txt",
+        "sha256": "043f61f02d02c5010e5cb7c075b8fc802fa918cb12cf81d71f9c287e434abe4f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "FDK-MPEG-H",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/FDK-MPEG-H.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "FDK-MPEG-H",
+      "name": "Fraunhofer FDK MPEG-H Software",
+      "reference": "https://spdx.org/licenses/FDK-MPEG-H.html",
+      "referenceNumber": 509,
+      "seeAlso": [
+        "https://github.com/Fraunhofer-IIS/mpeghdec/blob/main/LICENSE.txt"
+      ]
+    },
+    "name": "Fraunhofer FDK MPEG-H Software",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

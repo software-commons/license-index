@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f5662b824f72407f9348c00a92e9d2f1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8982,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Naumen.json",
+        "sha256": "7cb6de9ff6ed163f787b701fbf392ac2e3f6c7facb2f88364ea61a80018fae55"
+      },
+      "template": {
+        "bytes": 2297,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Naumen.template.txt",
+        "sha256": "3de026b59ec7adb903bd980b39e056f2df81b248fddb4155c30e30b79bd5e592"
+      },
+      "text": {
+        "bytes": 1953,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Naumen.txt",
+        "sha256": "ab999583e09a53632496f4614a2f587f4ed19cecb57a558aed92a0d1a4f3da79"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Naumen",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Naumen.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "Naumen",
+      "name": "Naumen Public License",
+      "reference": "https://spdx.org/licenses/Naumen.html",
+      "referenceNumber": 532,
+      "seeAlso": [
+        "https://opensource.org/license/Naumen"
+      ]
+    },
+    "name": "Naumen Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

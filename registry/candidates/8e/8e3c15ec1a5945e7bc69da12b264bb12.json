@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8e3c15ec1a5945e7bc69da12b264bb12",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 52946,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-2.0.json",
+        "sha256": "d078891f35799b6de8f4a5ed607ee5037636ce530938957e58711b6318711714"
+      },
+      "template": {
+        "bytes": 14207,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-2.0.template.txt",
+        "sha256": "c8e36b2465ce3e91751e8c0715bbee34ce228010944e32485502872a30e8804b"
+      },
+      "text": {
+        "bytes": 12572,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-2.0.txt",
+        "sha256": "f892996eb4b6f2e54241432ed67b743772224e191ba3a0ae595eb4feca3df4c5"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-2.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-2.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-2.0",
+      "name": "Creative Commons Attribution 2.0 Generic",
+      "reference": "https://spdx.org/licenses/CC-BY-2.0.html",
+      "referenceNumber": 426,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by/2.0/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution 2.0 Generic",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

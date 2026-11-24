@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "d0090a91160c4a05a1f90f8bd609732f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 4284,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/HPND-SMC.json",
+        "sha256": "8b1765a90e53ac30b9b769290e239faf1900d8ecc37f060fffec8582fd640785"
+      },
+      "template": {
+        "bytes": 875,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/HPND-SMC.template.txt",
+        "sha256": "fec472b1a525775ff079cae6762f69aa0ffcdd4aadfc7cd961d5c1cf1a159c76"
+      },
+      "text": {
+        "bytes": 816,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/HPND-SMC.txt",
+        "sha256": "4d6b749dd4c429df9614674af671f2b5c83869bbcd27e5d7ef202cee5aca04ec"
+      }
+    },
+    "deprecated": false,
+    "identifier": "HPND-SMC",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/HPND-SMC.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "HPND-SMC",
+      "name": "Historical Permission Notice and Disclaimer - SMC variant",
+      "reference": "https://spdx.org/licenses/HPND-SMC.html",
+      "referenceNumber": 343,
+      "seeAlso": [
+        "https://docs.python.org/3/license.html#execution-tracing"
+      ]
+    },
+    "name": "Historical Permission Notice and Disclaimer - SMC variant",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

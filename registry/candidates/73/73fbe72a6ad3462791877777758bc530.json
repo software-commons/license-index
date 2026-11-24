@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "73fbe72a6ad3462791877777758bc530",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5644,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-1-Clause.json",
+        "sha256": "0cdf69b91119df7a8c2469ba7f4a98b9c3405ad57bb7cc17c1e0faf0608cd1ce"
+      },
+      "template": {
+        "bytes": 1363,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-1-Clause.template.txt",
+        "sha256": "6c87cde974763e51517e7eaa461041391a89b8181a6e163be6596742f08b03ac"
+      },
+      "text": {
+        "bytes": 1086,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-1-Clause.txt",
+        "sha256": "244e17b6f02493de568a8ddfd7f4349996a6c332c0585d304ceaf5394becea52"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-1-Clause",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-1-Clause.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "BSD-1-Clause",
+      "name": "BSD 1-Clause License",
+      "reference": "https://spdx.org/licenses/BSD-1-Clause.html",
+      "referenceNumber": 43,
+      "seeAlso": [
+        "https://svnweb.freebsd.org/base/head/include/ifaddrs.h?revision=326823"
+      ]
+    },
+    "name": "BSD 1-Clause License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

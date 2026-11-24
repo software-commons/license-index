@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "8ec77527cda94ba2beb7361f5384793f",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 29698,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC0-1.0.json",
+        "sha256": "294ac7fc5a0bd851cf1367a9673491aa25a43f182f93cdb8b77d214f54f42ac6"
+      },
+      "template": {
+        "bytes": 8002,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC0-1.0.template.txt",
+        "sha256": "11b0f2c2841f449603f36bf727342f194ffdda8cc98cb9b3416d7a1e1b31628e"
+      },
+      "text": {
+        "bytes": 7048,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC0-1.0.txt",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC0-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC0-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": true,
+      "isOsiApproved": false,
+      "licenseId": "CC0-1.0",
+      "name": "Creative Commons Zero v1.0 Universal",
+      "reference": "https://spdx.org/licenses/CC0-1.0.html",
+      "referenceNumber": 157,
+      "seeAlso": [
+        "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
+      ]
+    },
+    "name": "Creative Commons Zero v1.0 Universal",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "be6b5802f1a24968875ba5fcda507b61",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1643,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/GNAT-exception.json",
+        "sha256": "1ac649614783c2f42960517f86a403eeba5db5260fd5e8abe1e9793cb52a8114"
+      },
+      "template": {
+        "bytes": 380,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/GNAT-exception.template.txt",
+        "sha256": "a5c55acf192f9f6179966a9ffa919bc4549e3d7e04a65c8684fef4a4dc06f67e"
+      },
+      "text": {
+        "bytes": 379,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/GNAT-exception.txt",
+        "sha256": "65877ed77981399921c194a0a899c0355abae64ac6d938d26ab3fb0992d3113d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "GNAT-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/GNAT-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "GNAT-exception",
+      "name": "GNAT exception",
+      "reference": "https://spdx.org/licenses/GNAT-exception.html",
+      "referenceNumber": 29,
+      "seeAlso": [
+        "https://github.com/AdaCore/florist/blob/master/libsrc/posix-configurable_file_limits.adb"
+      ]
+    },
+    "name": "GNAT exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

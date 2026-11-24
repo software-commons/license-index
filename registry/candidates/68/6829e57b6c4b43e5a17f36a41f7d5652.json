@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "6829e57b6c4b43e5a17f36a41f7d5652",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16156,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PolyForm-Noncommercial-1.0.0.json",
+        "sha256": "b4da46c8cb9dee2a93f49a6e0ed15fff93ed5ff5987977fd7a045d3082a522d7"
+      },
+      "template": {
+        "bytes": 4590,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PolyForm-Noncommercial-1.0.0.template.txt",
+        "sha256": "348e4618be398546caff29eec182f87def53df72dbb32c91b117dc4e65999a20"
+      },
+      "text": {
+        "bytes": 4563,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PolyForm-Noncommercial-1.0.0.txt",
+        "sha256": "ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PolyForm-Noncommercial-1.0.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PolyForm-Noncommercial-1.0.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "PolyForm-Noncommercial-1.0.0",
+      "name": "PolyForm Noncommercial License 1.0.0",
+      "reference": "https://spdx.org/licenses/PolyForm-Noncommercial-1.0.0.html",
+      "referenceNumber": 26,
+      "seeAlso": [
+        "https://polyformproject.org/licenses/noncommercial/1.0.0"
+      ]
+    },
+    "name": "PolyForm Noncommercial License 1.0.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

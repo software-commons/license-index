@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f62d26b2a387486ba39ac2af1e095e6e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 18723,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AMDPLPA.json",
+        "sha256": "fa9ee42e47ede597000b58d3f9665765ac9af7f05805fd18baff6c4ceae8ace8"
+      },
+      "template": {
+        "bytes": 5673,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AMDPLPA.template.txt",
+        "sha256": "263e08efc31b7ddbbdd2f6b244ab398d88eda93c5b5a2634aa49a93185c30e1b"
+      },
+      "text": {
+        "bytes": 5642,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AMDPLPA.txt",
+        "sha256": "68b952125c3cd2641c1070f5e23d2661672d1ade688107044fb6edcd2ef8aa91"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AMDPLPA",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AMDPLPA.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "AMDPLPA",
+      "name": "AMD's plpa_map.c License",
+      "reference": "https://spdx.org/licenses/AMDPLPA.html",
+      "referenceNumber": 46,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/AMD_plpa_map_License"
+      ]
+    },
+    "name": "AMD's plpa_map.c License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

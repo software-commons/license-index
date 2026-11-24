@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "421e9c994e564f6eb20ad6ae3b7b25f1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 56233,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/CC-BY-NC-2.5.json",
+        "sha256": "926a380bf113098ca853c204362a911f390383c67cedfd2b06603a47ee07de71"
+      },
+      "template": {
+        "bytes": 15396,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/CC-BY-NC-2.5.template.txt",
+        "sha256": "52a084a0e56eb5f156f1ab6f45f476fb46ecd5ea52c31cf2517f9fdfd96ef3ae"
+      },
+      "text": {
+        "bytes": 13790,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/CC-BY-NC-2.5.txt",
+        "sha256": "4af6cb2a17379821538198ada4fb742e827bde59a684f3b43abc91966105e19b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "CC-BY-NC-2.5",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/CC-BY-NC-2.5.json",
+      "isDeprecatedLicenseId": false,
+      "isFsfLibre": false,
+      "isOsiApproved": false,
+      "licenseId": "CC-BY-NC-2.5",
+      "name": "Creative Commons Attribution Non Commercial 2.5 Generic",
+      "reference": "https://spdx.org/licenses/CC-BY-NC-2.5.html",
+      "referenceNumber": 130,
+      "seeAlso": [
+        "https://creativecommons.org/licenses/by-nc/2.5/legalcode"
+      ]
+    },
+    "name": "Creative Commons Attribution Non Commercial 2.5 Generic",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

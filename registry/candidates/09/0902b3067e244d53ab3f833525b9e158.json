@@ -1,0 +1,24 @@
+{
+  "id": "0902b3067e244d53ab3f833525b9e158",
+  "disposition": "unresolved",
+  "reason": "The publisher's versioned plain text names Strict 1.0.0. Its Copyright License excludes distribution and changes or new works from the grant. This difference matters when comparing the separately listed PolyForm Noncommercial form. Verify SPDX matching and the publisher text-terms scope before admission or packaging.",
+  "origin": {
+    "kind": "publisher",
+    "source": "https://polyformproject.org/licenses/strict/1.0.0.txt",
+    "name": "PolyForm Strict License 1.0.0",
+    "identifier": "PolyForm Project Strict 1.0.0",
+    "revision": "1.0.0"
+  },
+  "history": [
+    {
+      "origin": {
+        "kind": "publisher",
+        "source": "https://polyformproject.org/licenses/strict/1.0.0",
+        "name": "PolyForm Strict License 1.0.0",
+        "identifier": "PolyForm Project Strict 1.0.0",
+        "revision": "1.0.0"
+      },
+      "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights."
+    }
+  ]
+}

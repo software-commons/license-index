@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "e7a3822d7d874b15ab5018b664f26bf9",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2563,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/LZMA-exception.json",
+        "sha256": "53185790023761658544ddccdd532f1e5ec09cf31edb067ef20a3f5b31d89682"
+      },
+      "template": {
+        "bytes": 635,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/LZMA-exception.template.txt",
+        "sha256": "d92e4431391a2c35458fdb52ea438d094b707c416d4c50f021048f5d6c14ec78"
+      },
+      "text": {
+        "bytes": 522,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/LZMA-exception.txt",
+        "sha256": "f9b8e3025d7f43cc32b20182b1353eb932cd76d83813f99173538204e7a952fc"
+      }
+    },
+    "deprecated": false,
+    "identifier": "LZMA-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/LZMA-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "LZMA-exception",
+      "name": "LZMA exception",
+      "reference": "https://spdx.org/licenses/LZMA-exception.html",
+      "referenceNumber": 33,
+      "seeAlso": [
+        "http://nsis.sourceforge.net/Docs/AppendixI.html#I.6"
+      ]
+    },
+    "name": "LZMA exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

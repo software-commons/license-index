@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b6c8197bb050424a9fd6d48abf8cb542",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 29792,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Arphic-1999.json",
+        "sha256": "85e98a01b98c71fbbb7c8100aef78de6466c3c1e692a8680a849476c509c5046"
+      },
+      "template": {
+        "bytes": 7548,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Arphic-1999.template.txt",
+        "sha256": "b88fd82ab8bc544a2a773dccffd365a0e05c8c4a1b66f69e3dafb1c86b17dc30"
+      },
+      "text": {
+        "bytes": 6901,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Arphic-1999.txt",
+        "sha256": "3a5e90c0957524a89e48203febcd4492ca4393678abaa7e5b4d70f3ff32b386d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Arphic-1999",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Arphic-1999.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Arphic-1999",
+      "name": "Arphic Public License",
+      "reference": "https://spdx.org/licenses/Arphic-1999.html",
+      "referenceNumber": 6,
+      "seeAlso": [
+        "http://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/LICENSE"
+      ]
+    },
+    "name": "Arphic Public License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

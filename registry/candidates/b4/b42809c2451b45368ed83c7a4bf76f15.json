@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b42809c2451b45368ed83c7a4bf76f15",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 16540,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/SHL-2.1.json",
+        "sha256": "f717f42770db5537d35d6e5b6035568b1d8a63bf496b5eebd8fc3bc0cd7a833e"
+      },
+      "template": {
+        "bytes": 4686,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SHL-2.1.template.txt",
+        "sha256": "c4b341266c2b0cca30d40b7b3144195e269b3f5ad6124a92bb5d1283c9aadfb9"
+      },
+      "text": {
+        "bytes": 4484,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SHL-2.1.txt",
+        "sha256": "6fa7fc99563ae8b86d910c33820be9af08052b7c527bd61d5661b0c2cbd623e9"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SHL-2.1",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SHL-2.1.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "SHL-2.1",
+      "name": "Solderpad Hardware License v2.1",
+      "reference": "https://spdx.org/licenses/SHL-2.1.html",
+      "referenceNumber": 21,
+      "seeAlso": [
+        "https://solderpad.org/licenses/SHL-2.1/"
+      ]
+    },
+    "name": "Solderpad Hardware License v2.1",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

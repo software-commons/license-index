@@ -1,0 +1,49 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "b88de63b1f2042789d67e89a1ce462c7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 7866,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Simple-Library-Usage-exception.json",
+        "sha256": "ac60672ad02310438477f5c9905b0770c3f003f54e740c4158136f7d5b625658"
+      },
+      "template": {
+        "bytes": 1930,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Simple-Library-Usage-exception.template.txt",
+        "sha256": "834f0965a62815cb34fbf41fbcea07d922c7117ac8c03d5e3493dab4acd066da"
+      },
+      "text": {
+        "bytes": 1597,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Simple-Library-Usage-exception.txt",
+        "sha256": "93864618b82edaee835a2068596ece92adfb6731887c97b8fb0c00fbebf78d84"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Simple-Library-Usage-exception",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Simple-Library-Usage-exception.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Simple-Library-Usage-exception",
+      "name": "Simple Library Usage Exception",
+      "reference": "https://spdx.org/licenses/Simple-Library-Usage-exception.html",
+      "referenceNumber": 79,
+      "seeAlso": [
+        "https://sourceforge.net/p/teem/code/HEAD/tree/teem/trunk/LICENSE.txt"
+      ]
+    },
+    "name": "Simple Library Usage Exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

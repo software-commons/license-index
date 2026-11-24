@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "52a13ae86e14450dba4a4cbca63aaeb7",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 1293,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/check-cvs.json",
+        "sha256": "dfdb7e4a44937d4daa98078615eaec2d3aa51dc20d5d37fb416964f9a5db3255"
+      },
+      "template": {
+        "bytes": 126,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/check-cvs.template.txt",
+        "sha256": "50ae1fb7d6498a0912c173e32eb6d4e1c6c87f25b05e632a0bf99dc1fe6c20cc"
+      },
+      "text": {
+        "bytes": 125,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/check-cvs.txt",
+        "sha256": "acff39035d2a1ee1eecc3114c43df5012b120eb285b1a3ca69186469c8dcb53f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "check-cvs",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/check-cvs.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "check-cvs",
+      "name": "check-cvs License",
+      "reference": "https://spdx.org/licenses/check-cvs.html",
+      "referenceNumber": 50,
+      "seeAlso": [
+        "http://cvs.savannah.gnu.org/viewvc/cvs/ccvs/contrib/check_cvs.in?revision=1.1.4.3&view=markup&pathrev=cvs1-11-23#l2"
+      ]
+    },
+    "name": "check-cvs License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

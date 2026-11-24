@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9df92ebef0364d09a965b700c69225a1",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 6929,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/SGI-OpenGL.json",
+        "sha256": "ecc9d1b5a21da5f00c92b9ddf7ad22e46eafc393089344a5421a33b27c952f77"
+      },
+      "template": {
+        "bytes": 1895,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/SGI-OpenGL.template.txt",
+        "sha256": "f7e98cac5b7cfb41bd86ce4f14eee8ca25363d33cad89cd55b14f6da8e73b877"
+      },
+      "text": {
+        "bytes": 1843,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/SGI-OpenGL.txt",
+        "sha256": "68759c1c36ecd64ac0f00532357550305e2d9225e47eb11f2b6b021df7d60cd3"
+      }
+    },
+    "deprecated": false,
+    "identifier": "SGI-OpenGL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/SGI-OpenGL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "SGI-OpenGL",
+      "name": "SGI OpenGL License",
+      "reference": "https://spdx.org/licenses/SGI-OpenGL.html",
+      "referenceNumber": 465,
+      "seeAlso": [
+        "https://gitlab.freedesktop.org/mesa/glw/-/blob/master/README?ref_type=heads"
+      ]
+    },
+    "name": "SGI OpenGL License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "745bf70b52ed4da192f779114cd6a7aa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 8463,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/BSD-3-Clause-No-Military-License.json",
+        "sha256": "d695df3be22257e370c73ba09c711377b23fbc5732dc52562d49f0abcb4c8e4f"
+      },
+      "template": {
+        "bytes": 1859,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/BSD-3-Clause-No-Military-License.template.txt",
+        "sha256": "469a86f3f4ab25c3c6a998e49a6043b55fe9fa7c3bf3981988e88fff96824874"
+      },
+      "text": {
+        "bytes": 1647,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/BSD-3-Clause-No-Military-License.txt",
+        "sha256": "41e603d9270a99621857db0b3e6b2d7fecfbe4f6cd002e505fe635c2f69e2a3d"
+      }
+    },
+    "deprecated": false,
+    "identifier": "BSD-3-Clause-No-Military-License",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause-No-Military-License.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "BSD-3-Clause-No-Military-License",
+      "name": "BSD 3-Clause No Military License",
+      "reference": "https://spdx.org/licenses/BSD-3-Clause-No-Military-License.html",
+      "referenceNumber": 276,
+      "seeAlso": [
+        "https://gitlab.syncad.com/hive/dhive/-/blob/master/LICENSE",
+        "https://github.com/greymass/swift-eosio/blob/master/LICENSE"
+      ]
+    },
+    "name": "BSD 3-Clause No Military License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

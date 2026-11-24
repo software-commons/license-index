@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "20a26aceaf494d03ba34cdf442b6a173",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 5200,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/EFL-1.0.json",
+        "sha256": "1cdc4fc65b23e0c01bbf7fc2f936a023ef1080038678aff370f3f0b3ee93b6c7"
+      },
+      "template": {
+        "bytes": 1091,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/EFL-1.0.template.txt",
+        "sha256": "d10d739493f39a6f66ba0479bf0b316af861e4f1cc72042930b3019dfa87001f"
+      },
+      "text": {
+        "bytes": 919,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/EFL-1.0.txt",
+        "sha256": "76631db9123a74928a98da1b833f3b4923f718c9528bbc40e2cd1a77a6d2cc4b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "EFL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/EFL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "EFL-1.0",
+      "name": "Eiffel Forum License v1.0",
+      "reference": "https://spdx.org/licenses/EFL-1.0.html",
+      "referenceNumber": 234,
+      "seeAlso": [
+        "http://www.eiffel-nice.org/license/forum.txt",
+        "https://opensource.org/license/EFL-1.0"
+      ]
+    },
+    "name": "Eiffel Forum License v1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

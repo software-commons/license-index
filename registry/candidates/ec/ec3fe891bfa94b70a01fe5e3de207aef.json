@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "ec3fe891bfa94b70a01fe5e3de207aef",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 64903,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/PDDL-1.0.json",
+        "sha256": "e36a15bbbc15098d67e48b6bfea3cf2c9f5995b1a54f932a963f9f498f9f9d29"
+      },
+      "template": {
+        "bytes": 17528,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/PDDL-1.0.template.txt",
+        "sha256": "f1c723f90e5532c685c797586d5a96505f5e9b1d4bde0a4397289ed879d7fcf8"
+      },
+      "text": {
+        "bytes": 15485,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/PDDL-1.0.txt",
+        "sha256": "561ca6d9bba2a5b8658466833b15035f64d067fc327d226250f5123aa96e82af"
+      }
+    },
+    "deprecated": false,
+    "identifier": "PDDL-1.0",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/PDDL-1.0.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "PDDL-1.0",
+      "name": "Open Data Commons Public Domain Dedication & License 1.0",
+      "reference": "https://spdx.org/licenses/PDDL-1.0.html",
+      "referenceNumber": 201,
+      "seeAlso": [
+        "http://opendatacommons.org/licenses/pddl/1.0/",
+        "https://opendatacommons.org/licenses/pddl/"
+      ]
+    },
+    "name": "Open Data Commons Public Domain Dedication & License 1.0",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "bc0dbbb69d1b4f7fa05172fb3606dd43",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2302,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Martin-Birgmeier.json",
+        "sha256": "5e6a85fb8367abad44d508941798ea6bc61ac61b76b3d3e0de5070a4a9ce8fff"
+      },
+      "template": {
+        "bytes": 459,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Martin-Birgmeier.template.txt",
+        "sha256": "4c83d244dca8343ef320b9ecd759d22bd1f0acc35e385ac89542d2911823d87d"
+      },
+      "text": {
+        "bytes": 407,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Martin-Birgmeier.txt",
+        "sha256": "6162a9f6c4a186b562bf090cd3f57c5f1f681480eecbde75beeaffaca5bd7040"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Martin-Birgmeier",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Martin-Birgmeier.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Martin-Birgmeier",
+      "name": "Martin Birgmeier License",
+      "reference": "https://spdx.org/licenses/Martin-Birgmeier.html",
+      "referenceNumber": 27,
+      "seeAlso": [
+        "https://github.com/Perl/perl5/blob/blead/util.c#L6136"
+      ]
+    },
+    "name": "Martin Birgmeier License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

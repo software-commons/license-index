@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "f37007a5312246e192ff85dc20262b5b",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2810,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/w3m.json",
+        "sha256": "d8c83a217567edc46c36011bb0f5ec0909699d16f9a7d1168e4ffc1de0394522"
+      },
+      "template": {
+        "bytes": 622,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/w3m.template.txt",
+        "sha256": "8f6727b1f7acf2e04f06fd00aa4f0c5cd564f084367dc2762aabe9e0dbdcb069"
+      },
+      "text": {
+        "bytes": 568,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/w3m.txt",
+        "sha256": "1ec6c72eff7efc1f806e532ce1fbee17f5051c898d9d594e3ff24cbbe4c3065a"
+      }
+    },
+    "deprecated": false,
+    "identifier": "w3m",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/w3m.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "w3m",
+      "name": "w3m License",
+      "reference": "https://spdx.org/licenses/w3m.html",
+      "referenceNumber": 702,
+      "seeAlso": [
+        "https://github.com/tats/w3m/blob/master/COPYING"
+      ]
+    },
+    "name": "w3m License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

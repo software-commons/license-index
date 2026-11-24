@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fefe08bff5c14c50b5ad1566d28a1e5e",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 2405,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/Barr.json",
+        "sha256": "8c1342597385b0c937de1f0006d341de632d8fcf50482ed824b08a85b0af7fe8"
+      },
+      "template": {
+        "bytes": 596,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Barr.template.txt",
+        "sha256": "3d27ad00c81b433fa7c27fc9ffa0485b45c2583b6bf374d0a38bf01ec3936322"
+      },
+      "text": {
+        "bytes": 603,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Barr.txt",
+        "sha256": "81fe1e987543218967099ed9e912d9ecbdd1148028b702665bc519e6bc70c82b"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Barr",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Barr.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": false,
+      "licenseId": "Barr",
+      "name": "Barr License",
+      "reference": "https://spdx.org/licenses/Barr.html",
+      "referenceNumber": 664,
+      "seeAlso": [
+        "https://fedoraproject.org/wiki/Licensing/Barr"
+      ]
+    },
+    "name": "Barr License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

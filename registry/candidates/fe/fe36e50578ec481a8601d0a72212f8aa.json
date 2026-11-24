@@ -1,0 +1,50 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "fe36e50578ec481a8601d0a72212f8aa",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 13806,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/details/AAL.json",
+        "sha256": "aaa30638fa8e7485e2caccb2309f647d20c2282642920170fe893ba083551d83"
+      },
+      "template": {
+        "bytes": 3185,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/AAL.template.txt",
+        "sha256": "195524a95cb585fe24049c61aa11793a82988f5c33d76fed18b16ac1751cd966"
+      },
+      "text": {
+        "bytes": 2529,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/AAL.txt",
+        "sha256": "0f4015683803b7c2e5252126aa72251c4bd4535363d47ee785219a7df4bd744f"
+      }
+    },
+    "deprecated": false,
+    "identifier": "AAL",
+    "kind": "spdx",
+    "list_kind": "license",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/AAL.json",
+      "isDeprecatedLicenseId": false,
+      "isOsiApproved": true,
+      "licenseId": "AAL",
+      "name": "Attribution Assurance License",
+      "reference": "https://spdx.org/licenses/AAL.html",
+      "referenceNumber": 149,
+      "seeAlso": [
+        "https://opensource.org/license/AAL"
+      ]
+    },
+    "name": "Attribution Assurance License",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}

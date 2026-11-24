@@ -1,0 +1,51 @@
+{
+  "disposition": "unresolved",
+  "history": [],
+  "id": "9056736679564e01a5f513bb3853e6dc",
+  "origin": {
+    "artifacts": {
+      "detail": {
+        "bytes": 3128,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "json/exceptions/Autoconf-exception-macro.json",
+        "sha256": "6316c4e77e0a9ff1d9e4bd10dc0dcc7822bb6960cc580561ad36b1d69ddd327a"
+      },
+      "template": {
+        "bytes": 769,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "template/Autoconf-exception-macro.template.txt",
+        "sha256": "f36a9ea0faae5fcb119628ec19c0e094f82eca0975269bd2fdbf98f22fcbe6c5"
+      },
+      "text": {
+        "bytes": 768,
+        "encoding": "UTF-8",
+        "line_endings": "LF",
+        "path": "text/Autoconf-exception-macro.txt",
+        "sha256": "f4d2da1bbeb699a80a1f6d06161ba6625aa766c538dddeaa5a6bb9087462841c"
+      }
+    },
+    "deprecated": false,
+    "identifier": "Autoconf-exception-macro",
+    "kind": "spdx",
+    "list_kind": "exception",
+    "metadata": {
+      "detailsUrl": "https://spdx.org/licenses/Autoconf-exception-macro.json",
+      "isDeprecatedLicenseId": false,
+      "licenseExceptionId": "Autoconf-exception-macro",
+      "name": "Autoconf macro exception",
+      "reference": "https://spdx.org/licenses/Autoconf-exception-macro.html",
+      "referenceNumber": 66,
+      "seeAlso": [
+        "https://github.com/freedesktop/xorg-macros/blob/39f07f7db58ebbf3dcb64a2bf9098ed5cf3d1223/xorg-macros.m4.in",
+        "https://www.gnu.org/software/autoconf-archive/ax_pthread.html",
+        "https://launchpad.net/ubuntu/precise/+source/xmltooling/+copyright"
+      ]
+    },
+    "name": "Autoconf macro exception",
+    "release": "3.29.0",
+    "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
+  },
+  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+}
