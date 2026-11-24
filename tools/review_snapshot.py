@@ -92,6 +92,22 @@ class AdmissionHead:
             raise SnapshotError("Expected an exact pull-request number and full admission head SHA")
 
 
+@dataclass(frozen=True)
+class QueuePull:
+    repository_id: int
+    number: int
+    base: str
+    head: str
+
+    def __post_init__(self):
+        AdmissionHead(self.repository_id, self.number, self.head)
+        if not _is_sha(self.base) or self.base == self.head:
+            raise SnapshotError("Expected distinct full queue base and head SHAs")
+
+    def bind_merge(self, merge):
+        return PullSnapshot(self.repository_id, self.number, self.base, self.head, merge)
+
+
 class _NoRedirects(HTTPRedirectHandler):
     def redirect_request(self, request, file, code, message, headers, new_url):
         return None
@@ -146,6 +162,11 @@ class GitHub:
     def get_admission_head(self, number):
         """Read the current open PR head without requiring merge or approval eligibility."""
         return self._open_pull(number)[2]
+
+    def get_queue_pull(self, number):
+        """Read the open PR's base and head for exact queue denial without a test merge."""
+        _, base, identity = self._open_pull(number)
+        return QueuePull(identity.repository_id, identity.number, base.get("sha"), identity.head)
 
     def get_pull(self, number):
         item, base, identity = self._open_pull(number)

@@ -6,7 +6,7 @@ import unittest
 from urllib.parse import quote
 
 from tools.review_queue import capture_queue_observation, capture_queue_target
-from tools.review_snapshot import REPOSITORY, REPOSITORY_ID, PullSnapshot, SnapshotError
+from tools.review_snapshot import REPOSITORY, REPOSITORY_ID, PullSnapshot, QueuePull, SnapshotError
 
 
 PULL = PullSnapshot(REPOSITORY_ID, 17, "a" * 40, "b" * 40, "c" * 40)
@@ -131,6 +131,12 @@ class QueueObservationTests(unittest.TestCase):
         self.assertEqual(github.calls, [DOMAIN_RUN, REF_API])
         with self.assertRaisesRegex(SnapshotError, "did not complete successfully"):
             self.capture(responses)
+        identity = QueuePull(PULL.repository_id, PULL.number, PULL.base, PULL.head)
+        self.assertEqual(capture_queue_target(FixtureGitHub(responses), identity, 11), target)
+        github = FixtureGitHub()
+        with self.assertRaisesRegex(SnapshotError, "validated pull-request snapshot"):
+            capture_queue_observation(github, identity, 11, actions_app_id=APP)
+        self.assertEqual(github.calls, [])
 
     def test_rejects_bad_anchor(self):
         for changes in ({"id": 19}, {"event": "push"}, {"path": ".github/workflows/other.yml"},

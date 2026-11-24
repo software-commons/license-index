@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 from tools.review_authorization import GRANT_PATH
 from tools.review_snapshot import (
-    REPOSITORY, REPOSITORY_ID, AdmissionHead, GitHub, PullSnapshot, SnapshotError, capture_admission_head,
+    REPOSITORY, REPOSITORY_ID, AdmissionHead, GitHub, PullSnapshot, QueuePull, SnapshotError, capture_admission_head,
     capture_control_paths, capture_diff,
 )
 
@@ -63,6 +63,20 @@ class PullTests(unittest.TestCase):
         response["base"]["repo"]["id"] += 1
         with self.assertRaisesRegex(SnapshotError, "unexpected repository identifier"):
             self.read(response)
+
+    def test_queue_denial_uses_open_base_head_without_a_test_merge(self):
+        response = {**pull_response(), "mergeable": None, "merge_commit_sha": None}
+        github = GitHub()
+        with patch.object(github, "_get_json", return_value=response):
+            identity = github.get_queue_pull(1)
+            self.assertEqual(identity, QueuePull(REPOSITORY_ID, 1, "a" * 40, "b" * 40))
+            self.assertEqual(identity.bind_merge("d" * 40),
+                             PullSnapshot(REPOSITORY_ID, 1, "a" * 40, "b" * 40, "d" * 40))
+            with self.assertRaisesRegex(SnapshotError, "has not established"):
+                github.get_pull(1)
+            response["base"]["sha"] = response["head"]["sha"]
+            with self.assertRaisesRegex(SnapshotError, "distinct full queue base and head"):
+                github.get_queue_pull(1)
 
     def test_rejects_draft_closed_pr_wrong_number_and_unready_merge(self):
         for key, value, diagnostic in (

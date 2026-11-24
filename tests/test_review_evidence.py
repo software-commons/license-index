@@ -313,11 +313,16 @@ class CaptureSelectedEvidenceTests(unittest.TestCase):
         _git(self.root, "switch", "--quiet", "--detach", base)
         (self.root / SELECTION).unlink()
         candidate = self.commit({advice_path: _canonical(advice)}, "withdraw the exact active qualification")
-        self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=base),
-                         {"base:sces/publication.json": publication[SELECTION],
-                          "sces/adoption.json": inputs["sces/adoption.json"],
-                          RELEASE + "claims.json": publication[RELEASE + "claims.json"],
-                          path: report, advice_path: _canonical(advice)})
+        expected = {"base:sces/publication.json": publication[SELECTION],
+                    "sces/adoption.json": inputs["sces/adoption.json"],
+                    RELEASE + "claims.json": publication[RELEASE + "claims.json"],
+                    path: report, advice_path: _canonical(advice)}
+        limit = sum(map(len, expected.values()))
+        with patch("tools.review_evidence._MAX_EVIDENCE", limit):
+            self.assertEqual(capture_selected_evidence(self.root, candidate, REPOSITORY, base=base), expected)
+        with patch("tools.review_evidence._MAX_EVIDENCE", limit - 1):
+            with self.assertRaisesRegex(DataError, "SCES selected evidence exceeds the review capture limit"):
+                capture_selected_evidence(self.root, candidate, REPOSITORY, base=base)
         with self.assertRaisesRegex(DataError, "requires the exact verified pull-request base"):
             capture_selected_evidence(self.root, candidate, REPOSITORY)
 

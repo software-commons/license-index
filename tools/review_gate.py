@@ -534,21 +534,25 @@ def run(args, github, *, token_input=None, publisher=write_check):
         if revoke_only:
             return denial_result(admission_identity.head, previous)
 
-    pull = pinned_pull if pinned_pull is not None else github.get_pull(args.pull)
+    queue_denial_only = revoke_only and run_id is not None
+    read_pull = github.get_queue_pull if queue_denial_only else github.get_pull
+    pull = pinned_pull if pinned_pull is not None else read_pull(args.pull)
     if admission_identity is not None:
         require(pull.head == admission_identity.head, "live admission head changed before review")
     observation, queue_target = None, None
+    evidence, staged, controls = None, {}, []
     snapshot = pull
     capture_options = {"linear_head": True} if admission else {}
     if run_id is not None and args.app_id is not None:
         queue_target = capture_queue_target(github, pull, run_id)
-        snapshot = replace(pull, merge=queue_target["merge"])
+        merge = queue_target["merge"]
+        snapshot = pull.bind_merge(merge) if queue_denial_only else replace(pull, merge=merge)
         capture_options["queue_ref"] = queue_target["queue_ref"]
     if expected_merge is not None:
         require(snapshot.merge == expected_merge, "live review target differs from the expected review merge")
 
     def verify_current_pull():
-        require(github.get_pull(pull.number) == pull, "pull request changed after review target capture")
+        require(read_pull(pull.number) == pull, "pull request changed after review target capture")
 
     def verify_revocation_target():
         verify_current_pull()

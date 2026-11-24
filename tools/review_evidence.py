@@ -532,7 +532,7 @@ def _check_withdrawal(advisory, report_path, report_digest, report):
 def _new_withdrawals(directory, commit, selection_tree, base_selection_tree, inherited, candidate, new):
     base_bytes, base_selection = None, None
     if base_selection_tree and (new or not selection_tree):
-        base_bytes = _blobs(directory, base_selection_tree, [_SELECTION], limit=_MAX_EVIDENCE)[_SELECTION]
+        base_bytes = _blobs(directory, base_selection_tree, [_SELECTION], limit=_MAX_BLOB + 64)[_SELECTION]
         base_selection = decode(base_bytes)
         slug = base_selection["release"]
         require(isinstance(slug, str) and _SLUG.fullmatch(slug), "invalid SCES base release name")
@@ -554,8 +554,13 @@ def _new_withdrawals(directory, commit, selection_tree, base_selection_tree, inh
         reports[advisory] = (slug, path)
     adoption_paths = _inventory(directory, commit, _ADOPTION)
     ordered = [_ADOPTION, *new, *(artifact for _, path in reports.values() for artifact in (path, _claims_path(path)))]
+    base_advisory = f"sces/advisories/{base_selection['release']}.json" if base_selection is not None else None
+    remaining = _MAX_EVIDENCE - (len(base_bytes) if base_advisory in reports else 0)
+    require(remaining >= 0, "SCES selected evidence exceeds the review capture limit")
+    # Git's per-blob framing and the staged evidence bytes have different bounds.
     staged = _blobs(directory, {**candidate, **adoption_paths}, ordered,
-                    limit=_MAX_EVIDENCE - len(base_bytes or b""))
+                    limit=remaining + 64 * len(ordered))
+    require(sum(map(len, staged.values())) <= remaining, "SCES selected evidence exceeds the review capture limit")
     adoption = decode(staged[_ADOPTION])
     require(adoption["policy"] == "SCES-1.0" and adoption["policy_sha256"] == POLICY_DIGEST
             and adoption["repository"] == REPOSITORY and adoption["mode"] == "index",
@@ -566,7 +571,7 @@ def _new_withdrawals(directory, commit, selection_tree, base_selection_tree, inh
         _qualification_identity(report, slug)
         _check_archived_claims(report, report_path, staged)
         _check_withdrawal(decode(staged[advisory]), report_path, _digest(report_bytes), report)
-        if base_selection is not None and slug == base_selection["release"]:
+        if advisory == base_advisory:
             _bind_base_qualification(report, base_selection, base_bytes)
             staged[_BASE_SELECTION_REVIEW_PATH] = base_bytes
     return staged

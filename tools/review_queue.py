@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 from urllib.parse import urlencode
 
-from .review_snapshot import BASE_REF, REPOSITORY, PullSnapshot, SnapshotError
+from .review_snapshot import BASE_REF, REPOSITORY, PullSnapshot, QueuePull, SnapshotError
 
 
 _REPO_PATH = f"/repos/{REPOSITORY}"
@@ -133,7 +133,7 @@ def _jobs(github, path, run, branch, merge, selected_checks, actions_app_id):
 
 
 def _queue_anchor(github, pull_snapshot, run_id):
-    _require(isinstance(pull_snapshot, PullSnapshot), "Expected a validated pull-request snapshot")
+    _require(isinstance(pull_snapshot, (PullSnapshot, QueuePull)), "Expected a validated pull-request identity")
     _require(_positive_id(run_id), "Expected a positive Actions run ID")
     anchor = github._get_json(f"{_REPO_PATH}/actions/runs/{run_id}")
     _require(isinstance(anchor, dict) and anchor.get("id") == run_id, "GitHub returned the wrong workflow run")
@@ -161,6 +161,7 @@ def capture_queue_target(github, pull_snapshot, run_id):
 
 def capture_queue_observation(github, pull_snapshot, run_id, *, actions_app_id):
     """Observe current CI provenance. The caller must still verify the commit's Git parents."""
+    _require(isinstance(pull_snapshot, PullSnapshot), "Expected a validated pull-request snapshot")
     _require(_positive_id(actions_app_id), "Expected a positive Actions App ID")
     anchor, path, branch, merge, verified_anchor = _queue_anchor(github, pull_snapshot, run_id)
     _require(_successful(anchor), "The selected GitHub merge-group run did not complete successfully")

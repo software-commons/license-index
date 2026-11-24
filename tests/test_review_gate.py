@@ -22,7 +22,7 @@ from tools.review_gate import (
     verify_issued_check,
 )
 from tools.review_protection import commissioning_policy
-from tools.review_snapshot import AdmissionHead, PullSnapshot, REPOSITORY, SnapshotError
+from tools.review_snapshot import AdmissionHead, PullSnapshot, QueuePull, REPOSITORY, SnapshotError
 
 EXECUTION = "90c3284d-c009-4e34-bc00-beb41319adad"
 SNAPSHOT = PullSnapshot(repository_id=1468281504, number=1, base="a" * 40, head="b" * 40, merge="c" * 40)
@@ -873,6 +873,39 @@ class ReviewGateTests(unittest.TestCase):
             github.get_pull.assert_not_called()
             credential.assert_not_called()
             publisher.assert_not_called()
+
+    def test_queue_revocation_uses_exact_live_group_without_the_test_merge(self):
+        identity = QueuePull(SNAPSHOT.repository_id, SNAPSHOT.number, SNAPSHOT.base, SNAPSHOT.head)
+        prior = api_check({"name": CHECK_NAME, "head_sha": QUEUE["merge"],
+                           "status": "completed", "conclusion": "success"})
+        for drift in (False, True):
+            with self.subTest(drift=drift), TemporaryDirectory() as directory:
+                state = Path(directory)
+                args = SimpleNamespace(state_dir=state, mode="review", pull=1, app_id=123,
+                                       reviewer=Reviewer(4001, 4002, state), queue_run=321,
+                                       revoke_only=True, expected_merge=QUEUE["merge"])
+                github = Mock(get_queue_pull=Mock(side_effect=[identity, replace(identity, base="f" * 40) if drift else identity]),
+                              get_pull=Mock(side_effect=SnapshotError("GitHub has not established a mergeable test commit")))
+                self.successful_checks.side_effect = [[prior], [prior], []]
+                publisher = Mock(return_value={**prior, "conclusion": "failure"})
+                with (patch("tools.review_gate.capture_queue_target", return_value=QUEUE_TARGET) as queue,
+                      patch("tools.review_gate.capture_candidate_tree", return_value="e" * 40) as tree,
+                      patch("tools.review_gate.capture_queue_observation") as approval_ci,
+                      patch("tools.review_gate.token_is_target_only", return_value=True)):
+                    if drift:
+                        with self.assertRaisesRegex(DataError, "pull request changed after review target capture"):
+                            run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                        publisher.assert_not_called()
+                    else:
+                        result = run(args, github, token_input=lambda: LEGACY_TOKEN, publisher=publisher)
+                        self.assertEqual(result["revoked_check_ids"], [prior["id"]])
+                        publisher.assert_called_once()
+                self.assertEqual(github.get_queue_pull.call_count, 2)
+                github.get_pull.assert_not_called()
+                self.assertEqual(queue.call_count, 1 if drift else 2)
+                self.assertEqual(tree.call_args.args[0], replace(SNAPSHOT, merge=QUEUE["merge"]))
+                self.assertEqual(tree.call_args.kwargs, {"queue_ref": QUEUE["queue_ref"]})
+                approval_ci.assert_not_called()
 
     def test_incomplete_review_does_not_read_credential_or_issue(self):
         with TemporaryDirectory() as directory:
