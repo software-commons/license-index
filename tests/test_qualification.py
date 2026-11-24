@@ -32,6 +32,7 @@ def entity(identifier=MIT, kind="license", name="Fixture License"):
     return {
         "id": identifier, "kind": kind, "name": name, "state": "active",
         "identity_claim": reference("identity-" + identifier),
+        "candidate_ids": [CANDIDATE],
         "aliases": [], "crosswalks": [], "relations": [],
     }
 
@@ -49,6 +50,16 @@ def identity_claim(row):
     return claim(row["identity_claim"], row["id"], "instrument-identity", value, row.get("identity_scope"))
 
 class BindingsTests(unittest.TestCase):
+    def test_canonical_provenance_requires_distinct_opaque_candidate_ids(self):
+        row = entity()
+        for candidate_ids in (None, [], [CANDIDATE, CANDIDATE], ["MIT"]):
+            with self.subTest(candidate_ids=candidate_ids):
+                candidate = {**row, "candidate_ids": candidate_ids}
+                if candidate_ids is None:
+                    del candidate["candidate_ids"]
+                with self.assertRaises(DataError):
+                    _bind_payload({MIT: candidate}, [identity_claim(candidate)])
+
     def test_bind_exact_identity_alias_spdx_crosswalk_and_external_edge(self):
         row = entity()
         identity_scope = {"authority": "fixture-publisher", "revision": "2024-01"}
@@ -230,6 +241,73 @@ class GitHistoryTests(unittest.TestCase):
         path.parent.mkdir(exist_ok=True, parents=True)
         path.write_bytes(encode(value))
         return path
+
+    def select_fixture(self, frozen, payload):
+        self.write("sces/publication.json", {"release": "synthetic-fixture"})
+        report = {
+            "repository": "software-commons/license-index", "dataset": "license-index",
+            "schema_version": "1.0.0", "synthetic": False, "source_commit": frozen,
+        }
+        self.write("sces/releases/synthetic-fixture/qualification.json", report)
+        self.write("sces/releases/synthetic-fixture/claims.json", payload)
+        return report
+
+    def spdx_admission(self, identifier="MIT", revision=SOURCE, release="3.2.0", *, kind="license",
+                       candidate_ids=(OTHER,)):
+        row = {**entity(kind=kind), "candidate_ids": list(candidate_ids)}
+        crosswalk = {"origin": "spdx", "revision": revision, "key": identifier}
+        scope = {"upstream-release": release}
+        binding = reference("crosswalk")
+        row["crosswalks"] = [{**crosswalk, "claim": binding, "scope": scope}]
+        self.write(self.path.relative_to(self.root), row)
+        return [claim(binding, MIT, "spdx-membership", _claim_value(crosswalk),
+                      {**scope, "data-revision": revision}), identity_claim(row)]
+
+    def spdx_lead(self, identifier="MIT", revision=SOURCE, release="3.2.0"):
+        origin = {
+            "kind": "spdx", "identifier": identifier, "name": "Fixture License", "source": revision,
+            "release": release, "list_kind": "license", "deprecated": False,
+            "metadata": {"licenseId": identifier, "name": "Fixture License", "isDeprecatedLicenseId": False},
+            "artifacts": {"detail": {"path": f"json/details/{identifier}.json", "sha256": "a" * 64, "bytes": 1}},
+        }
+        return {**self.lead, "id": OTHER, "origin": origin, "history": []}
+
+    def test_active_admission_cannot_use_a_candidate_added_after_freeze(self):
+        payload = self.spdx_admission()
+        self.commit("Freeze the entity without its named discovery record")
+        frozen = self.git("rev-parse", "HEAD").strip()
+        self.write(f"registry/candidates/{OTHER[:2]}/{OTHER}.json", self.spdx_lead())
+        self.select_fixture(frozen, payload)
+        with patch("tools.qualification._validate_policy"):
+            with self.assertRaisesRegex(DataError, "candidate|provenance"):
+                qualified(Catalog(self.root), self.root)
+
+    def test_active_spdx_claim_must_match_a_linked_exact_origin(self):
+        self.write(f"registry/candidates/{OTHER[:2]}/{OTHER}.json", self.spdx_lead())
+        for case in ({"candidate_ids": (CANDIDATE,)}, {"identifier": "mit"}, {"revision": "b" * 40},
+                     {"release": "3.3.0"}, {"kind": "exception"}):
+            with self.subTest(case=case):
+                payload = self.spdx_admission(**case)
+                self.commit("Freeze a crosswalk whose claim agrees with its unsupported field")
+                self.select_fixture(self.git("rev-parse", "HEAD").strip(), payload)
+                with patch("tools.qualification._validate_policy"):
+                    with self.assertRaisesRegex(DataError, "candidate|provenance|origin"):
+                        qualified(Catalog(self.root), self.root)
+
+    def test_active_admission_preserves_exact_historical_spdx_origin(self):
+        historical = self.spdx_lead()
+        later = self.spdx_lead(revision="b" * 40, release="3.3.0")
+        later["history"] = [{"origin": historical["origin"]}]
+        later["membership"] = {"status": "removed", "source": "c" * 40, "release": "3.4.0"}
+        path = f"registry/candidates/{OTHER[:2]}/{OTHER}.json"
+        self.write(path, later)
+        payload = self.spdx_admission(kind="related-instrument")
+        self.commit("Freeze the exact earlier membership under the retained discovery UUID")
+        frozen = self.git("rev-parse", "HEAD").strip()
+        report = self.select_fixture(frozen, payload)
+        self.write(path, {**later, "history": []})
+        with patch("tools.qualification._validate_policy"):
+            self.assertEqual(qualified(Catalog(self.root), self.root), (report, payload))
 
     def test_candidate_and_canonical_paths_are_never_reused_or_dropped(self):
         check_history(self.catalog, self.base)
@@ -446,13 +524,7 @@ class GitHistoryTests(unittest.TestCase):
                 qualified(self.catalog, self.root, base=self.base)
 
     def test_mocked_policy_boundary_accepts_only_frozen_exact_registry_bytes(self):
-        self.write("sces/publication.json", {"release": "synthetic-fixture"})
-        report = {
-            "repository": "software-commons/license-index", "dataset": "license-index",
-            "schema_version": "1.0.0", "synthetic": False, "source_commit": self.base,
-        }
-        self.write("sces/releases/synthetic-fixture/qualification.json", report)
-        self.write("sces/releases/synthetic-fixture/claims.json", [identity_claim(self.row)])
+        report = self.select_fixture(self.base, [identity_claim(self.row)])
         with self.assertRaisesRegex(DataError, "requires --policy"):
             qualified(self.catalog, None)
         with patch("tools.qualification._validate_policy") as validate:
