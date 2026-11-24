@@ -2,6 +2,7 @@ import errno
 import os
 from pathlib import Path
 import stat
+import sys
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
@@ -478,6 +479,36 @@ class InstallTests(unittest.TestCase):
         self.assertTrue(os.path.samestat(previous.stat(), original))
         self.assertEqual(previous.read_bytes(), b"original")
         self.assertEqual(set(self.directory.iterdir()), {self.output, previous.parent})
+
+    @unittest.skipUnless(sys.platform.startswith("linux") or sys.platform == "darwin", "POSIX recovery path")
+    def test_posix_force_reports_verified_recovery_when_output_parent_moves(self):
+        from tools.li_install import _exchange_posix
+
+        parent = self.directory / "original"
+        parent.mkdir()
+        output = parent / "LICENSE"
+        output.write_bytes(b"previous license")
+        original = output.stat()
+        moved = self.directory / "moved"
+
+        def move_once(stage, temporary, directory, name):
+            if not moved.exists():
+                parent.rename(moved)
+                parent.mkdir()
+                output.write_bytes(b"unrelated license")
+            _exchange_posix(stage, temporary, directory, name)
+
+        with patch("tools.li_install._exchange_posix", side_effect=move_once):
+            with self.assertRaisesRegex(InstallError, "Output changed during replacement") as failure:
+                write_license(output, b"replacement license", force=True)
+
+        self.assertEqual(output.read_bytes(), b"unrelated license")
+        restored = moved / output.name
+        self.assertTrue(os.path.samestat(restored.stat(), original))
+        self.assertEqual(restored.read_bytes(), b"previous license")
+        recovery, = moved.glob(".license-index-*.tmp/license")
+        self.assertEqual(recovery.read_bytes(), b"replacement license")
+        self.assertIn(f"Preserved a copy at {recovery}", str(failure.exception))
 
     @unittest.skipUnless(os.name == "posix", "POSIX atomic exchange")
     def test_posix_force_preserves_nonregular_entries_at_the_exchange_boundary(self):

@@ -417,6 +417,39 @@ class _PinnedPosixTarget(NamedTuple):
     digest: bytes
 
 
+def _posix_path_matches(path, directory, entry):
+    try:
+        parent = _open_posix_parent(path)
+        try:
+            return (os.path.samestat(os.fstat(parent), os.fstat(directory))
+                    and os.path.samestat(os.stat(path.name, dir_fd=parent, follow_symlinks=False), entry))
+        finally:
+            os.close(parent)
+    except OSError:
+        return False
+
+
+def _posix_recovery_location(stage, expected, entry):
+    if _posix_path_matches(expected, stage, entry):
+        return expected
+    try:
+        if sys.platform.startswith("linux"):
+            directory = Path(f"/proc/self/fd/{stage}").readlink()
+        elif sys.platform == "darwin":
+            import fcntl
+
+            # F_GETPATH writes a NUL-terminated pathname into a MAXPATHLEN buffer.
+            raw = fcntl.fcntl(stage, fcntl.F_GETPATH, bytes(1024))
+            directory = Path(os.fsdecode(raw.split(b"\0", 1)[0]))
+        else:
+            return None
+    except OSError:
+        return None
+    candidate = directory / expected.name
+    if directory.is_absolute() and _posix_path_matches(candidate, stage, entry):
+        return candidate
+
+
 def _replace_posix_regular(stage, temporary, directory, output, previous, staged, recovery):
     try:
         _exchange_posix(stage, temporary, directory, output.name)
@@ -431,7 +464,9 @@ def _replace_posix_regular(stage, temporary, directory, output, previous, staged
             # Exchange itself can update ctime. Compare the content and stable metadata.
             if _posix_file_metadata(latest) == _posix_file_metadata(previous.info) and digest == previous.digest:
                 # A writer may still hold the previous file open. Preserve its directory entry.
-                return recovery
+                location = _posix_recovery_location(stage, recovery, displaced)
+                if location is not None and _posix_path_matches(output, directory, staged):
+                    return location
     except (InstallError, OSError):
         pass  # Treat an unstable or unreadable displaced file as changed.
 
@@ -443,9 +478,20 @@ def _replace_posix_regular(stage, temporary, directory, output, previous, staged
             restored = os.path.samestat(os.stat(temporary, dir_fd=stage, follow_symlinks=False), staged)
     except OSError:
         pass
+    try:
+        entry = os.stat(temporary, dir_fd=stage, follow_symlinks=False)
+        location = _posix_recovery_location(stage, recovery, entry)
+    except OSError:
+        location = None
+    message = "Output changed during replacement."
     if restored:
-        raise InstallError(f"Output changed during replacement. Restored {output}. Preserved a copy at {recovery}")
-    raise InstallError(f"Output changed during replacement. A displaced entry was preserved at {recovery}")
+        message += " Restored the displaced directory entry."
+    if location is not None:
+        preserved = "a copy" if restored else "the displaced entry"
+        message += f" Preserved {preserved} at {location}"
+    else:
+        message += f" Unable to verify a recovery path for staging directory {recovery.parent.name}."
+    raise InstallError(message)
 
 
 def _pin_posix_target(directory, name, output, handles):
