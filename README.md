@@ -6,7 +6,7 @@ The development catalog accounts for all 740 licenses and 86 exceptions listed i
 
 ## Install and use
 
-Use Python 3.11 or newer. Clone the repository at the revision you want or unpack the offline ZIP. Invoke `license-index.cmd` on Windows or `./license-index` on Linux and macOS. Adding the extracted folder to PATH makes the launcher available from another project. If an archive extractor removes executable permissions on Unix, run `chmod +x license-index`. The same interface is available from the repository root via `python -m tools.index`.
+Use Python 3.11 or newer. Clone the repository at the revision you want or unpack the offline ZIP. Invoke `license-index.cmd` on Windows or `./license-index` on Linux and macOS. Adding the extracted folder to PATH makes the launcher available from another project. If an archive extractor removes executable permissions on Unix, run `chmod +x license-index`. The same interface is available from the repository root via `python -B -m tools.index`.
 
 ```powershell
 .\license-index.cmd search Apache
