@@ -487,6 +487,69 @@ class ReconcileTests(unittest.TestCase):
         path.write_bytes(reconcile.json_bytes(record))
         self.assertEqual(reconcile.find_dependencies(self.repo, ["Example"], []), [])
 
+    def test_dependency_review_follows_changed_mit_artifacts_to_exact_claim_revisions(self):
+        def record(kind, identity, revision=1, **fields):
+            ref = {"kind": kind, "id": identity, "revision": revision}
+            path = self.repo / f"sces/records/{kind}/{identity}--{revision}.json"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(reconcile.json_bytes({**ref, **fields}))
+            return ref
+
+        fixture(self.archive, licenses=("MIT", "Other"))
+        first, source = self.read()
+        reconcile.prepare(self.repo, self.repo, first, source, initial=True)
+        fixture(self.archive, data=NEXT, licenses=("MIT", "Other"))
+        second, source = self.read(data=NEXT)
+        raw = "https://raw.githubusercontent.com/spdx/license-list-data"
+        blob = "https://github.com/spdx/license-list-data/blob"
+        plain = record("source", "mit-plain", locator=f"{raw}/{DATA}/text/MIT.txt")
+        detail = record("source", "mit-detail", locator=f"{raw}/{DATA}/json/details/MIT.json")
+        template = record("source", "mit-template", locator=f"{raw}/{DATA}/template/MIT.template.txt")
+        incoming = record("source", "mit-incoming", locator=f"{blob}/{NEXT}/text/MIT.txt")
+        wrong_pin = record("source", "mit-plain", 2, locator=f"{raw}/{XML}/text/MIT.txt")
+        wrong_path = record("source", "similar", locator=f"{raw}/{DATA}/text/MIT-other.txt")
+        foreign = record("source", "foreign", locator=f"https://example.invalid/{DATA}/text/MIT.txt")
+        equality = "mit-spdx-3290-plaintext-detail-byte-equality"
+        boundary = "mit-spdx-3290-template-detail-byte-boundary"
+        older = record("claim", equality)
+        newer = record("claim", equality, 2)
+        matcher = record("claim", boundary)
+        unrelated = record("claim", "other-claim")
+        for name, claim, basis in (("plain", older, plain), ("detail", older, detail),
+                                   ("matcher-plain", matcher, plain), ("matcher-detail", matcher, detail),
+                                   ("matcher-template", matcher, template), ("new-source", newer, wrong_pin),
+                                   ("similar-name", unrelated, wrong_path), ("different-origin", unrelated, foreign)):
+            record("dependency", name, claim=claim, basis=basis)
+        record("verification", "prior-review", claim=older)
+        record("verification", "later-review", claim=newer)
+        # A new pinned locator can already have its own exact evidence.
+        record("dependency", "incoming-review", claim=matcher, basis=incoming)
+
+        for artifact, wanted in (("text", {equality, boundary}), ("detail", {equality, boundary}),
+                                 ("template", {boundary})):
+            with self.subTest(artifact=artifact):
+                changed = deepcopy(second)
+                previous = changed["MIT"]["artifacts"][artifact]
+                changed["MIT"]["artifacts"][artifact] = reconcile.describe_text(previous["path"], b"New bytes.\n")
+                report = reconcile.prepare(self.repo, self.root / artifact, changed, source)
+                self.assertEqual(report["events"]["changed"], ["MIT"])
+                paths = {row["path"]: row["direct_matches"] for row in report["dependency_review"]}
+                self.assertEqual({path for path in paths if path.startswith("sces/records/claim/")},
+                                 {f"sces/records/claim/{name}--1.json" for name in wanted})
+                self.assertNotIn("sces/records/source/mit-plain--2.json", paths)
+                self.assertNotIn("sces/records/source/similar--1.json", paths)
+                self.assertNotIn("sces/records/source/foreign--1.json", paths)
+                self.assertNotIn("sces/records/verification/later-review--1.json", paths)
+                if artifact == "text":
+                    self.assertEqual(paths["sces/records/source/mit-plain--1.json"], [f"{raw}/{DATA}/text/MIT.txt"])
+                    self.assertEqual(paths["sces/records/source/mit-incoming--1.json"], [f"{blob}/{NEXT}/text/MIT.txt"])
+                    self.assertIn("sces/records/verification/prior-review--1.json", paths)
+
+        second["MIT"]["name"] = "MIT (display name change)"
+        report = reconcile.prepare(self.repo, self.root / "metadata", second, source)
+        self.assertEqual(report["events"]["changed"], ["MIT"])
+        self.assertEqual(report["dependency_review"], [])
+
     def test_case_only_spdx_change_reviews_both_exact_spellings(self):
         fixture(self.archive)
         first, source = self.read()

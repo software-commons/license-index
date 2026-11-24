@@ -97,13 +97,12 @@ def validate_source(catalog, source):
     # Exported discovery records retain artifact origins even after an identifier is removed
     # or its origin moves to history. These pins do not affect the current population.
     origin_pins = set()
-    for row in catalog.spdx.values():
-        origin = row["origin"]
-        origin_pins.add((origin["release"], origin["source"]))
-        for note in row.get("history", ()):
-            prior = note.get("origin")
-            if isinstance(prior, dict) and prior.get("kind") == "spdx":
-                origin_pins.add((prior["release"], prior["source"]))
+    for row in catalog.candidates.values():
+        origins = [row["origin"]]
+        origins.extend(note.get("origin") for note in row.get("history", ()))
+        for origin in origins:
+            if isinstance(origin, dict) and origin.get("kind") == "spdx":
+                origin_pins.add((origin["release"], origin["source"]))
     retained_paths = set()
     for release, commit in sorted(origin_pins - {(source.get("release"), source["data_commit"])}):
         require(RELEASE.fullmatch(release) and DATA_COMMIT.fullmatch(commit), "invalid retained SPDX source pin")

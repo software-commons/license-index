@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-from collections import Counter
+from collections import Counter, defaultdict, deque
 from datetime import datetime
 from hashlib import file_digest, sha256
 import json
@@ -14,6 +14,7 @@ from shutil import copyfileobj
 import sys
 import tarfile
 from tempfile import NamedTemporaryFile, TemporaryDirectory
+from urllib.parse import quote
 from urllib.request import Request, urlopen
 from uuid import uuid4
 from xml.etree import ElementTree
@@ -340,14 +341,93 @@ def reconcile(existing, origins, manifest):
     return updates, events
 
 
-def find_dependencies(repo, identifiers, candidate_ids):
+def changed_artifact_locators(previous, incoming):
+    locators = set()
+    before = previous.get("artifacts", {})
+    after = incoming.get("artifacts", {})
+    for name in before.keys() | after.keys():
+        if before.get(name) == after.get(name):
+            continue
+        for origin, artifact in ((previous, before.get(name)), (incoming, after.get(name))):
+            if artifact is None:
+                continue
+            revision = origin["source"]
+            if not COMMIT.fullmatch(revision):
+                raise ValueError("Expected an exact SPDX artifact origin commit")
+            for path in {artifact["path"], quote(artifact["path"])}:
+                locators.update((
+                    f"https://raw.githubusercontent.com/{DATA_REPOSITORY}/{revision}/{path}",
+                    f"https://github.com/{DATA_REPOSITORY}/blob/{revision}/{path}",
+                ))
+    return locators
+
+
+def record_key(value):
+    if isinstance(value, dict):
+        kind, identity, revision = (value.get(field) for field in ("kind", "id", "revision"))
+        if isinstance(kind, str) and isinstance(identity, str) and type(revision) is int and revision > 0:
+            return kind, identity, revision
+    return None
+
+
+def record_refs(value):
+    if isinstance(value, dict):
+        if value.keys() == {"kind", "id", "revision"} and (key := record_key(value)):
+            yield key
+        else:
+            for item in value.values():
+                yield from record_refs(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from record_refs(item)
+
+
+def artifact_dependencies(records, locators):
+    by_key = {}
+    dependents = defaultdict(list)
+    matches = {}
+    queue = deque()
+
+    def mark(path, reason):
+        if path not in matches:
+            matches[path] = set()
+            queue.append(path)
+        matches[path].add(reason)
+
+    for path, value in records.items():
+        if not path.startswith("sces/records/") or (key := record_key(value)) is None:
+            continue
+        by_key[key] = path
+        for reference in set(record_refs(value)):
+            dependents[reference].append(path)
+        locator = value.get("locator")
+        if value["kind"] == "source" and isinstance(locator, str) and locator in locators:
+            mark(path, locator)
+
+    while queue:
+        path = queue.popleft()
+        value = records[path]
+        kind, identity, revision = key = record_key(value)
+        reason = f"{kind}:{identity}--{revision}"
+        for dependent in dependents[key]:
+            mark(dependent, reason)
+        # Dependency records point to both the basis and the owning claim.
+        # Follow the owner without pulling in every other basis of that claim.
+        if kind == "dependency":
+            claim = record_key(value.get("claim"))
+            if claim and claim[0] == "claim" and claim in by_key:
+                mark(by_key[claim], reason)
+    return matches
+
+
+def find_dependencies(repo, identifiers, candidate_ids, *, artifact_locators=()):
     tokens = set(identifiers) | set(candidate_ids)
     matches = []
-    pending = {}
+    records = {}
     for pattern in ("registry/entities/**/*.json", "sces/records/**/*.json"):
         for path in sorted(repo.glob(pattern)):
-            value = read_json(path.read_bytes())
-            pending[path.relative_to(repo).as_posix()] = (value, spdx_membership_key(value))
+            records[path.relative_to(repo).as_posix()] = read_json(path.read_bytes())
+    pending = {path: (value, spdx_membership_key(value)) for path, value in records.items()}
     while tokens and pending:
         found = [(path, find_tokens(value, tokens) | ({key} & tokens))
                  for path, (value, key) in pending.items()]
@@ -362,6 +442,12 @@ def find_dependencies(repo, identifiers, candidate_ids):
                 tokens.add(identity)
                 if path.startswith("registry/entities/") and CANDIDATE_ID.fullmatch(identity):
                     tokens.add(f"e-{identity}")
+    if artifact_locators:
+        exact = artifact_dependencies(records, artifact_locators)
+        for match in matches:
+            if direct := exact.pop(match["path"], None):
+                match["direct_matches"] = sorted(set(match["direct_matches"]) | direct)
+        matches.extend({"path": path, "direct_matches": sorted(direct)} for path, direct in exact.items())
     return matches
 
 
@@ -429,6 +515,10 @@ def prepare(repo, out, origins, manifest, *, initial=False):
     prior_keys = {identifier.casefold(): identifier for identifier in existing}
     # Affected membership claims can still cite the exact prior key spelling.
     review_keys = affected | {prior_keys.get(identifier.casefold(), identifier) for identifier in affected}
+    artifact_locators = set()
+    for identifier in affected:
+        prior = existing.get(prior_keys.get(identifier.casefold()), {})
+        artifact_locators.update(changed_artifact_locators(prior.get("origin", {}), origins.get(identifier, {})))
     report = {
         "release": manifest["release"],
         "data_commit": manifest["data_commit"],
@@ -436,7 +526,8 @@ def prepare(repo, out, origins, manifest, *, initial=False):
         "population": manifest["population"],
         "events": events,
         "dependency_review": find_dependencies(
-            repo, review_keys, (updates[identifier]["id"] for identifier in affected)
+            repo, review_keys, (updates[identifier]["id"] for identifier in affected),
+            artifact_locators=artifact_locators,
         ),
         "candidate_changes": len(updates),
         "unchanged": len(origins) - sum(identifier in origins for identifier in updates),
