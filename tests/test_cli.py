@@ -106,6 +106,20 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(old["catalog_status"], "discovery")
         self.assertIsNone(self.json_output("show", "llvm-exception")["text_package"])
 
+    def test_human_list_and_search_label_discovery_dispositions(self):
+        for query, disposition in (("Countdown", "excluded"), ("Commons Clause", "non-license")):
+            with self.subTest(query=query):
+                result = command("search", query)
+                self.assertEqual(result.returncode, 0, result.stderr.decode())
+                row, = result.stdout.decode("utf-8").splitlines()
+                self.assertIn(f"[discovery candidate, {disposition}]", row)
+
+        listing = command("list", "--kind", "other")
+        self.assertEqual(listing.returncode, 0, listing.stderr.decode())
+        rows = listing.stdout.decode("utf-8").splitlines()
+        self.assertGreater(len(rows), 1)
+        self.assertTrue(all("[discovery candidate, " in row for row in rows))
+
     def test_coverage_binds_individual_dimension_assessments(self):
         catalog = Catalog(ROOT)
         permissions = {"state": "unresolved", "text": "Fixture permission", "sources": []}

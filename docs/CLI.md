@@ -4,7 +4,7 @@ Use the launcher from the project where you want to create a license file. Use `
 
 | Command | Result |
 | --- | --- |
-| `list`, `search QUERY` | List or search names and IDs. Use `--kind license`, `--kind exception`, `--kind other` or `--history` to focus lookup. |
+| `list`, `search QUERY` | List or search discovery candidates by name and ID, with each candidate's disposition. Use `--kind license`, `--kind exception`, `--kind other` or `--history` to focus lookup. |
 | `show ID` | Machine-readable discovery record, upstream status, artifact locators and coverage information. |
 | `show --qualified --policy PATH ID` | Look up an actively selected canonical entity by opaque ID, name or alias using the pinned SCES checkout. Returns the entity and incoming local relationships with their owning entity IDs. |
 | `text ID` | Exact pinned bytes from the publisher package, or from a checksum-verified SPDX artifact. |

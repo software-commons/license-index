@@ -179,7 +179,8 @@ def execute(catalog, args):
     if command in {"list", "search"}:
         rows = catalog.search(getattr(args, "query", ""), include_history=args.history, kind=args.kind)
         return [catalog.describe(row) for row in rows], "\n".join(
-            f"{row['origin']['identifier']}  {row['origin']['name']}" for row in rows)
+            f"{row['origin']['identifier']}  {row['origin']['name']}  [discovery candidate, {row['disposition']}]"
+            for row in rows)
     if command == "coverage":
         from .distribution import coverage_assessment, validate
         claims = validate(catalog, policy=args.policy)[1] if args.policy else ()
