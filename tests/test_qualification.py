@@ -546,11 +546,6 @@ class GitHistoryTests(unittest.TestCase):
                 qualified(self.catalog, self.root)
 
     def test_discovery_and_checked_release_views_report_separate_counts(self):
-        self.write(f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json", {
-            "id": CANDIDATE, "disposition": "unresolved", "reason": "Synthetic test lead",
-            "origin": {"kind": "publisher", "identifier": "fixture", "name": "Fixture", "source": "https://example.invalid"},
-            "history": [],
-        })
         catalog = Catalog(self.root)
         source = "research/sources/fixture.json"
         snapshot = "registry/coverage/snapshots/discovery.json"
