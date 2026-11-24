@@ -339,6 +339,24 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(self.output.read_bytes(), b"existing")
         self.assertEqual(list(self.directory.iterdir()), [self.output])
 
+    @unittest.skipUnless(os.name == "posix", "POSIX destination validation")
+    def test_posix_force_rechecks_destination_after_staging(self):
+        referent = self.directory / "referent"
+        referent.write_bytes(b"preserve")
+        self.output.write_bytes(b"existing")
+
+        def finish_with_link_at_destination(descriptor, content):
+            _complete_file(descriptor, content)
+            self.output.unlink()
+            self.output.symlink_to(referent.name)
+
+        with patch("tools.li_install._complete_file", side_effect=finish_with_link_at_destination):
+            with self.assertRaisesRegex(InstallError, "Output must be a regular file path"):
+                write_license(self.output, b"new", force=True)
+        self.assertEqual(self.output.readlink(), Path(referent.name))
+        self.assertEqual(referent.read_bytes(), b"preserve")
+        self.assertEqual(set(self.directory.iterdir()), {self.output, referent})
+
     @unittest.skipUnless(os.name == "posix", "POSIX directory descriptor staging")
     def test_shared_posix_output_uses_a_private_same_filesystem_stage(self):
         shared = self.directory / "shared"

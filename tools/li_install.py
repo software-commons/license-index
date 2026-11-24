@@ -387,6 +387,8 @@ def _write_posix(output, content, force, dry_run, before_publish):
                 if before_publish is not None:
                     before_publish(stat_target)
                 if force:
+                    # Recheck after staging. POSIX rename cannot check the target type atomically.
+                    _check_target(stat_target, output, force, dry_run=False)
                     os.replace(temporary, output.name, src_dir_fd=stage, dst_dir_fd=directory)
                 else:
                     os.link(
