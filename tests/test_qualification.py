@@ -285,8 +285,6 @@ class GitHistoryTests(unittest.TestCase):
 
     def test_current_coverage_requires_a_distinct_tracked_json_archive(self):
         self.path.unlink()
-        candidate_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
-        self.write(candidate_path, {"id": CANDIDATE, "disposition": "unresolved", "origin": {"kind": "publisher"}})
         source = "research/sources/fixture.json"
         self.write(source, {"data_commit": SOURCE, "xml_commit": SOURCE, "manifests": {},
                             "population": dict.fromkeys((
@@ -324,9 +322,6 @@ class GitHistoryTests(unittest.TestCase):
                                 "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
                                 "missing_text", "missing_template",
                             ), 0)})
-        candidate_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
-        row = {"id": CANDIDATE, "disposition": "unresolved", "origin": {"kind": "publisher"}}
-        self.write(candidate_path, row)
         self.commit("Set the pre-admission baseline without qualified entities")
         base = self.git("rev-parse", "HEAD").strip()
         archive = "registry/coverage/snapshots/archived.json"
@@ -338,7 +333,7 @@ class GitHistoryTests(unittest.TestCase):
         archived_commit = self.git("rev-parse", "HEAD").strip()
 
         def select_current():
-            self.write(candidate_path, {**row, "disposition": "out-of-scope"})
+            self.write(self.lead_path, {**self.lead, "disposition": "excluded"})
             current = {"source_manifest": source, "snapshot": "registry/coverage/snapshots/current.json",
                        "assessment": Catalog(self.root).coverage()}
             self.write(current["snapshot"], current)
@@ -360,8 +355,6 @@ class GitHistoryTests(unittest.TestCase):
 
     def test_strict_validation_replays_each_incoming_snapshot_at_its_own_source_pins(self):
         (self.root / f"registry/entities/{MIT[:2]}/{MIT}.json").unlink()
-        candidate_path = f"registry/candidates/{CANDIDATE[:2]}/{CANDIDATE}.json"
-        self.write(candidate_path, {"id": CANDIDATE, "disposition": "unresolved", "origin": {"kind": "publisher"}})
         self.commit("Set the protected baseline")
         base = self.git("rev-parse", "HEAD").strip()
         checkpoints = []
