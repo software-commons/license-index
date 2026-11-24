@@ -578,6 +578,37 @@ class GitHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "snapshot was modified"):
             check_history(self.catalog, self.base)
 
+    def test_spdx_history_must_preserve_the_protected_base_across_divergent_merges(self):
+        lead = self.spdx_lead()
+        path = f"registry/candidates/{OTHER[:2]}/{OTHER}.json"
+        self.write(path, lead)
+        self.commit("Record the shared SPDX candidate")
+        boundary = self.git("rev-parse", "HEAD").strip()
+
+        retained = {**lead, "history": [{"reason": "Note recorded on the protected branch"}]}
+        self.write(path, retained)
+        self.commit("Retain a candidate revision on the protected branch")
+        base = self.git("rev-parse", "HEAD").strip()
+
+        self.git("checkout", "--quiet", "--detach", boundary)
+        self.write("side.json", {"fixture": "side branch with older candidate history"})
+        self.commit("Record the divergent branch")
+        side = self.git("rev-parse", "HEAD").strip()
+        tree = self.git("rev-parse", "HEAD^{tree}").strip()
+        merge = self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                         "-c", "commit.gpgsign=false", "commit-tree", tree, "-p", base, "-p", side,
+                         "-m", "Synthetic merge retaining the side branch candidate bytes").strip()
+        self.git("checkout", "--quiet", "--detach", merge)
+
+        check_history(Catalog(self.root), side)
+        with self.assertRaisesRegex(DataError, "SPDX candidate history must remain append-only"):
+            check_history(Catalog(self.root), base)
+        self.write(path, {**retained, "origin": {**lead["origin"], "identifier": "Other-License"}})
+        with self.assertRaisesRegex(DataError, "cannot reassign a permanent SPDX candidate"):
+            check_history(Catalog(self.root), base)
+        self.write(path, {**retained, "history": [*retained["history"], {"reason": "Later note"}]})
+        check_history(Catalog(self.root), base)
+
     def test_history_preserves_prior_snapshot_source_after_current_moves(self):
         self.write("research/sources/next.json", {"source": "next"})
         self.write(COVERAGE, {"source_manifest": "research/sources/next.json"})

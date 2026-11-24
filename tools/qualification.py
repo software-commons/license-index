@@ -522,20 +522,24 @@ def _qualified(catalog, policy, *, base=None, historical_timestamp=None):
     return report, bound
 
 
-def _check_publisher_history(root, previous, candidates, algorithm):
+def _check_candidate_history(root, previous, candidates, algorithm):
     for name, oid in previous.items():
         if _blob_hash(_exact_file(root / name), algorithm) == oid:
             continue
         old = decode(_git(root, "cat-file", "blob", oid))
         current = candidates[name]
         previous_origin, origin = old["origin"], current["origin"]
-        if previous_origin["kind"] != "publisher" and origin["kind"] != "publisher":
+        history, inherited = current["history"], old["history"]
+        if previous_origin["kind"] == origin["kind"] == "spdx":
+            # Compare against the protected base independently of the archive replay predecessor.
+            require(previous_origin["identifier"].casefold() == origin["identifier"].casefold(),
+                    f"{name}: cannot reassign a permanent SPDX candidate")
+            require(history[:len(inherited)] == inherited, f"{name}: SPDX candidate history must remain append-only")
             continue
         require(previous_origin["kind"] == origin["kind"]
                 and previous_origin["identifier"] == origin["identifier"]
                 and ("revision" not in previous_origin or previous_origin["revision"] == origin.get("revision")),
                 f"{name}: cannot reassign a permanent publisher lead")
-        history, inherited = current["history"], old["history"]
         require(history[:len(inherited)] == inherited, f"{name}: publisher lead history must remain append-only")
         if previous_origin != origin:
             require(any(isinstance(note, dict) and note.get("origin") == previous_origin
@@ -558,7 +562,7 @@ def check_history(catalog, base: str) -> None:
     if not prior and not previous_candidates:
         return
     algorithm = _git(root, "rev-parse", "--show-object-format").decode().strip()
-    _check_publisher_history(root, previous_candidates, candidates, algorithm)
+    _check_candidate_history(root, previous_candidates, candidates, algorithm)
     if prior:
         sources = _git_blobs(root, base, "research/sources")
         referenced = set()
