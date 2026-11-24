@@ -5,12 +5,80 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import MagicMock, patch
+from zipfile import ZipFile
 
 from tools.distribution import (
-    CC_LEGAL_TEXTS, CC_RIGHTS, CC_RIGHTS_SHA256, POLYFORM_RIGHTS, RIGHTS_DOCUMENTS, RIGHTS_MAX_BYTES,
-    read_rights_document, validate_texts,
+    CC_LEGAL_TEXTS, CC_RIGHTS, CC_RIGHTS_SHA256, COVERAGE, POLYFORM_RIGHTS, RIGHTS_DOCUMENTS, RIGHTS_MAX_BYTES,
+    bundle, read_rights_document, validate_texts,
 )
-from tools.records import Catalog, DataError, NoRedirects
+from tools.records import Catalog, DataError, NoRedirects, decode, encode
+
+
+class DistributionTests(unittest.TestCase):
+    def test_bundle_retains_removed_and_historical_spdx_origin_manifests(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+
+            def write(name, data):
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(encode(data))
+                return path
+
+            identity = "123456789abc4def8123456789abcdef"
+            source_pin = "a" * 40
+            history_pin = "b" * 40
+            current_pin = "c" * 40
+            origin = {
+                "kind": "spdx", "identifier": "Removed-Fixture", "name": "Retained fixture",
+                "source": source_pin, "release": "3.28.0", "list_kind": "license", "deprecated": False,
+                "metadata": {"licenseId": "Removed-Fixture", "name": "Retained fixture", "isDeprecatedLicenseId": False},
+                "artifacts": {"detail": {"path": "json/details/Removed-Fixture.json", "sha256": "d" * 64, "bytes": 1}},
+            }
+            candidate = {
+                "id": identity, "disposition": "historical", "reason": "Synthetic removal fixture",
+                "origin": origin,
+                "history": [{"origin": {**origin, "release": "3.27.0", "source": history_pin}}],
+                "membership": {"status": "removed", "release": "3.29.0", "source": current_pin},
+            }
+            candidate_path = f"registry/candidates/{identity[:2]}/{identity}.json"
+            write(candidate_path, candidate)
+            current_source = "research/sources/spdx-3.29.0.json"
+            write(current_source, {
+                "release": "3.29.0", "data_commit": current_pin, "xml_commit": current_pin,
+                "manifests": {}, "population": dict.fromkeys((
+                    "licenses", "exceptions", "deprecated_licenses", "deprecated_exceptions",
+                    "missing_text", "missing_template",
+                ), 0),
+            })
+            catalog = Catalog(root)
+            counts = catalog.coverage()["catalog"]
+            self.assertEqual(counts["spdx_licenses"], 0)
+            self.assertEqual(counts["spdx_historical_only"], 1)
+            snapshot = "registry/coverage/snapshots/3.29.0.json"
+            coverage = {"source_manifest": current_source, "snapshot": snapshot, "assessment": catalog.coverage()}
+            write(COVERAGE, coverage)
+            write(snapshot, coverage)
+            older_sources = {
+                "research/sources/spdx-3.28.0.json": {"release": "3.28.0", "data_commit": source_pin},
+                "research/sources/spdx-3.27.0.json": {"release": "3.27.0", "data_commit": history_pin},
+            }
+            output = root / "discovery.zip"
+            with patch("tools.distribution.BUNDLE_SUPPORT", {COVERAGE}):
+                with self.assertRaisesRegex(DataError, "unregistered retained SPDX source pin"):
+                    bundle(catalog, output)
+                self.assertFalse(output.exists())
+                for name, source in older_sources.items():
+                    write(name, source)
+                bundle(catalog, output)
+                repeat = root / "repeat.zip"
+                bundle(catalog, repeat)
+            self.assertEqual(output.read_bytes(), repeat.read_bytes())
+            with ZipFile(output) as archive:
+                for name, source in older_sources.items():
+                    self.assertEqual(archive.read(name), encode(source))
+                self.assertEqual(archive.read(candidate_path), encode(candidate))
+                self.assertEqual(decode(archive.read("catalog.json"))["candidates"][0]["record"], candidate)
 
 
 class RightsTests(unittest.TestCase):

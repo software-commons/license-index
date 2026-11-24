@@ -83,10 +83,8 @@ def validate_source(catalog, source):
     for key in ("text", "template"):
         count = sum(key not in row["origin"]["artifacts"] for row in catalog.active_spdx)
         require(expected[f"missing_{key}"] == count, f"SPDX missing {key} count mismatch")
-    active_pins = set()
     for row in catalog.active_spdx:
         origin = row["origin"]
-        active_pins.add((origin["release"], origin["source"]))
         require("detail" in origin["artifacts"], f"missing SPDX detail: {origin['identifier']}")
         for value in origin["artifacts"].values():
             descriptor(value)
@@ -96,10 +94,18 @@ def validate_source(catalog, source):
                 (origin["identifier"], origin["name"], origin["deprecated"]),
                 f"SPDX identity drift: {origin['identifier']}")
 
-    # The current manifest defines membership. Unchanged records keep their original artifact
-    # source, which archive replay checks against the exact predecessor and current population.
+    # Exported discovery records retain artifact origins even after an identifier is removed
+    # or its origin moves to history. These pins do not affect the current population.
+    origin_pins = set()
+    for row in catalog.spdx.values():
+        origin = row["origin"]
+        origin_pins.add((origin["release"], origin["source"]))
+        for note in row.get("history", ()):
+            prior = note.get("origin")
+            if isinstance(prior, dict) and prior.get("kind") == "spdx":
+                origin_pins.add((prior["release"], prior["source"]))
     retained_paths = set()
-    for release, commit in sorted(active_pins - {(source.get("release"), source["data_commit"])}):
+    for release, commit in sorted(origin_pins - {(source.get("release"), source["data_commit"])}):
         require(RELEASE.fullmatch(release) and DATA_COMMIT.fullmatch(commit), "invalid retained SPDX source pin")
         for suffix in ("", f"-{commit}"):
             name = f"{SOURCES}/spdx-{release}{suffix}.json"
