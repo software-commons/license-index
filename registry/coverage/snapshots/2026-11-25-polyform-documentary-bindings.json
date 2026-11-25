@@ -1,0 +1,164 @@
+{
+  "assessment": {
+    "authentic_text": {
+      "bundled_publisher_text_files": 23,
+      "bundled_publisher_text_identities": 45,
+      "spdx_header_references": 93,
+      "spdx_matching_template_references": 826,
+      "spdx_text_references": 826
+    },
+    "catalog": {
+      "accepted_entities": 1,
+      "beyond_spdx_dispositions": {
+        "excluded": 1,
+        "non-license": 1,
+        "unresolved": 12
+      },
+      "beyond_spdx_leads": 14,
+      "candidate_dispositions": {
+        "accepted": 1,
+        "excluded": 1,
+        "non-license": 1,
+        "unresolved": 837
+      },
+      "spdx_deprecated_exceptions": 1,
+      "spdx_deprecated_licenses": 32,
+      "spdx_deprecated_with_replacement_guidance": 30,
+      "spdx_exceptions": 86,
+      "spdx_historical_only": 0,
+      "spdx_licenses": 740
+    },
+    "installation": {
+      "offline": [
+        "AGPL-3.0-only",
+        "AGPL-3.0-or-later",
+        "Apache-2.0",
+        "CC-BY-4.0",
+        "CC-BY-NC-4.0",
+        "CC-BY-NC-ND-4.0",
+        "CC-BY-NC-SA-4.0",
+        "CC-BY-ND-4.0",
+        "CC-BY-SA-4.0",
+        "CC0-1.0",
+        "EPL-1.0",
+        "EPL-2.0",
+        "GFDL-1.1-invariants-only",
+        "GFDL-1.1-invariants-or-later",
+        "GFDL-1.1-no-invariants-only",
+        "GFDL-1.1-no-invariants-or-later",
+        "GFDL-1.1-only",
+        "GFDL-1.1-or-later",
+        "GFDL-1.2-invariants-only",
+        "GFDL-1.2-invariants-or-later",
+        "GFDL-1.2-no-invariants-only",
+        "GFDL-1.2-no-invariants-or-later",
+        "GFDL-1.2-only",
+        "GFDL-1.2-or-later",
+        "GFDL-1.3-invariants-only",
+        "GFDL-1.3-invariants-or-later",
+        "GFDL-1.3-no-invariants-only",
+        "GFDL-1.3-no-invariants-or-later",
+        "GFDL-1.3-only",
+        "GFDL-1.3-or-later",
+        "GPL-1.0-only",
+        "GPL-1.0-or-later",
+        "GPL-2.0-only",
+        "GPL-2.0-or-later",
+        "GPL-3.0-only",
+        "GPL-3.0-or-later",
+        "LGPL-2.0-only",
+        "LGPL-2.0-or-later",
+        "LGPL-2.1-only",
+        "LGPL-2.1-or-later",
+        "PolyForm-Noncommercial-1.0.0",
+        "PolyForm-Small-Business-1.0.0"
+      ],
+      "requires_verified_companion": [
+        "LGPL-3.0-only",
+        "LGPL-3.0-or-later"
+      ],
+      "requires_verified_spdx_input": [
+        "MIT"
+      ]
+    },
+    "qualification": {
+      "recorded_claim_revisions": 184,
+      "recorded_independently_reviewed_claims": 140,
+      "recorded_invalidated_claim_revisions": 44,
+      "selected_claims": 8,
+      "status": "qualified-selection"
+    },
+    "research": {
+      "dimension_assessments_sha256": "95f652761c7c1d1678f7c44e05638cab2a115bbc9b273a155d17e8c8acd71d2a",
+      "dimension_states": {
+        "condition": 97,
+        "documented": 37,
+        "inapplicable": 2,
+        "permission": 49,
+        "restriction": 11,
+        "unresolved": 11
+      },
+      "dimensions": 207,
+      "provisional_explanations": 42,
+      "scenarios": 62,
+      "spdx_without_provisional_explanation": 784
+    },
+    "scope": "SPDX discovery and publisher leads"
+  },
+  "cutoff": "2026-11-25",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
+  "predecessor": {
+    "commit": "95e3e6f517c0c12b31e37f72374a6ddf1b03ce53",
+    "sha256": "49d28545d77c8d6dc70dff82432c2448fb4fc459cb9f2236588477d75d64effc",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-verified-terms.json"
+  },
+  "research_scope": {
+    "discovery_paths": [
+      "The exact SPDX License List 3.29.0 data archive and XML revision identified by the source manifest.",
+      "Publisher sources named in the retained candidate records and beyond-SPDX reconciliation notes.",
+      "Provisional profiles and exact SCES records retained at the research cutoff."
+    ],
+    "exclusions": [
+      "The broader beyond-SPDX population outside the targeted publisher leads.",
+      "Project-specific compliance determinations, blanket compatibility conclusions and custom contract drafting."
+    ],
+    "inaccessible_areas": [
+      "Private, unpublished or access-restricted terms outside the public-source discovery method."
+    ],
+    "included_ecosystems": [
+      "Software licensing instruments and exceptions listed in SPDX License List 3.29.0.",
+      "Fourteen targeted publisher leads for software, documentation, data and related terms outside SPDX."
+    ],
+    "reconciliation_choices": [
+      "Keep exact SPDX identifiers and deprecated entries distinct, preserving upstream replacement advice as provenance.",
+      "Keep publisher leads with their individual dispositions and reasons. The blank Countdown form is excluded as a standalone license.",
+      "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence.",
+      "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate.",
+      "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope.",
+      "Record four independently verified CC0 claim revisions while retaining the existing MIT selection and canonical entity ledger.",
+      "Preserve the four initial CC0 claim revisions and their original research records. Record independently reviewed successor revisions and mark the earlier revisions superseded.",
+      "Record independently verified CC0 waiver, fallback, and third-party clearance claims for later selection.",
+      "Record the independently reproduced Windows CC0 offline installer specimen for later selection.",
+      "Supersede the earlier CC0 installer observation revisions with explicitly bound implementation and package trees.",
+      "Record the reviewed CC0 prospective identity mapping under the existing related-instrument taxonomy.",
+      "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support.",
+      "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios.",
+      "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example.",
+      "Add two separate CDDL publisher edition identities and exact SPDX mappings, retaining the 1.1 attached-notice boundary.",
+      "Preserve the CDDL evidence history and use only the freshly verified native JavaScript crosswalk successors.",
+      "Reconcile the original MIT correction with the landed CDDL checkpoint and use the newly verified native comparison method.",
+      "Record four independently verified ISC publisher-reference assertions and one illustrative text-reuse scenario.",
+      "Supersede the original ISC SPDX crosswalk with the independently inspected annotated release-tag binding.",
+      "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
+      "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections.",
+      "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile.",
+      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions.",
+      "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records.",
+      "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts.",
+      "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison."
+    ]
+  },
+  "schema_version": "4.0.0",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-documentary-bindings.json",
+  "source_manifest": "research/sources/spdx-3.29.0.json"
+}
