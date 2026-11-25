@@ -82,25 +82,25 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 138,
-      "recorded_independently_reviewed_claims": 109,
+      "recorded_claim_revisions": 141,
+      "recorded_independently_reviewed_claims": 112,
       "recorded_invalidated_claim_revisions": 29,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
     "research": {
-      "dimension_assessments_sha256": "eeba8532b9ef820748f001eb5025fc49f400bfb10c31a62adca36bef7ef280dd",
+      "dimension_assessments_sha256": "365ee2aaa051236a063df495e2a4d796b6e6052b341ffaa274b8d0f35430a90e",
       "dimension_states": {
-        "condition": 94,
-        "documented": 34,
+        "condition": 95,
+        "documented": 36,
         "inapplicable": 2,
         "permission": 48,
         "restriction": 10,
         "unresolved": 9
       },
-      "dimensions": 197,
+      "dimensions": 200,
       "provisional_explanations": 41,
-      "scenarios": 55,
+      "scenarios": 57,
       "spdx_without_provisional_explanation": 785
     },
     "scope": "SPDX discovery and publisher leads"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "cf44ad16b5d656bb5dbf8930385014ffafb3557b",
-    "sha256": "86814a973793dfce6f37a37df872d1ad5cf582529bae640b365deb5e98c3c5d9",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-canonical-identity-mapping.json"
+    "commit": "2247bb076198b925b087ae5d49a9d09aff5c529b",
+    "sha256": "bc6316b48b52eda32ea7fb0b5507f090b9f960cbcda857e85382e4aa8cee2a8b",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-canonical-taxonomy-binding.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -141,10 +141,11 @@
       "Record the independently reproduced Windows CC0 offline installer specimen for later selection.",
       "Supersede the earlier CC0 installer observation revisions with explicitly bound implementation and package trees.",
       "Record the reviewed CC0 prospective identity mapping under the existing related-instrument taxonomy.",
-      "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support."
+      "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support.",
+      "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-canonical-taxonomy-binding.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-database-and-disclaimers.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

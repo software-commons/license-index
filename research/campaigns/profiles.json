@@ -720,6 +720,36 @@
             "locator": "§4(a)"
           }
         ]
+      },
+      "data_and_database_rights": {
+        "state": "documented",
+        "text": "The defined Copyright and Related Rights include specified rights protecting data use and reuse, and database rights. Actual rights and control depend on the database and applicable law.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§1(v)–(vi)"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "condition",
+        "text": "The Affirmer offers the Work as is and disclaims representations and warranties to the extent the applicable law permits.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§4(b)"
+          }
+        ]
+      },
+      "creative_commons_role": {
+        "state": "documented",
+        "text": "The Affirmer acknowledges the publisher's nonparty role and absence of a duty under the instrument for the dedication or use of the Work.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§4(d)"
+          }
+        ]
       }
     },
     "scenarios": [
@@ -730,6 +760,26 @@
           {
             "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
             "locator": "§§1–4"
+          }
+        ]
+      },
+      {
+        "situation": "Illustration with a dataset containing third-party material",
+        "text": "Assume the maintainer controls certain rights in an assembled database and another party controls rights in some entries. Identify the rights and material covered by the maintainer's dedication. Assess the other party's rights separately.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§1(v)–(vi), §2 and §4(c)"
+          }
+        ]
+      },
+      {
+        "situation": "Illustration with a separate accuracy assurance",
+        "text": "Assume the Affirmer gives a customer a separate contractual assurance about the dataset's accuracy. Read the assurance and applicable law separately from the as-is language of CC0.",
+        "sources": [
+          {
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.en",
+            "locator": "§4(b)"
           }
         ]
       }
