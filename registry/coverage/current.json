@@ -82,14 +82,14 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 144,
-      "recorded_independently_reviewed_claims": 115,
+      "recorded_claim_revisions": 148,
+      "recorded_independently_reviewed_claims": 119,
       "recorded_invalidated_claim_revisions": 29,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
     "research": {
-      "dimension_assessments_sha256": "365ee2aaa051236a063df495e2a4d796b6e6052b341ffaa274b8d0f35430a90e",
+      "dimension_assessments_sha256": "03c4398320cf3ef9d382e7f1eb8cce451822c3c622e2f10be32d27f96442fe71",
       "dimension_states": {
         "condition": 95,
         "documented": 36,
@@ -100,7 +100,7 @@
       },
       "dimensions": 200,
       "provisional_explanations": 41,
-      "scenarios": 58,
+      "scenarios": 59,
       "spdx_without_provisional_explanation": 785
     },
     "scope": "SPDX discovery and publisher leads"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "8a92e545c37f34f34c2b369539750c6147c619fb",
-    "sha256": "739ac994334ee4cebb6395daa6cdbbcead1b5ec691c6e1af8a5bc1333161104d",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-database-and-disclaimers.json"
+    "commit": "50933e5b5fb6a0ae501e0e9999807e743ac148c1",
+    "sha256": "4f62f53d92c48f9e49ea8ebb4c216930aa5bdfa4da0a4e681098335d9f0500fc",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-apache-20-redistribution.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -143,10 +143,11 @@
       "Record the reviewed CC0 prospective identity mapping under the existing related-instrument taxonomy.",
       "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support.",
       "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios.",
-      "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example."
+      "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example.",
+      "Record four independently verified ISC publisher-reference assertions and one illustrative text-reuse scenario."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-apache-20-redistribution.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-isc-reference-qualification.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
