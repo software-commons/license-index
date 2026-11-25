@@ -8,7 +8,7 @@
       "claim": {
         "id": "polyform-perimeter-retained-publisher-crosswalk",
         "kind": "claim",
-        "revision": 2
+        "revision": 3
       },
       "key": "PolyForm Project Perimeter 1.0.1",
       "origin": "https://polyformproject.org/licenses/perimeter/1.0.1.txt",
