@@ -1,0 +1,80 @@
+{
+  "acquisition_bindings": 20,
+  "claims": [
+    {
+      "id": "polyform-perimeter-publisher-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "polyform-perimeter-qualified-competition-scope",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "polyform-perimeter-recipient-notice-obligation",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "polyform-perimeter-retained-publisher-crosswalk",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "polyform-shield-noncompete-scope",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "polyform-shield-publisher-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "polyform-shield-recipient-notice-obligation",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "polyform-shield-retained-publisher-crosswalk",
+      "kind": "claim",
+      "revision": 2
+    }
+  ],
+  "executions": [
+    {
+      "events_sha256": "c81b910d570e44314f70e711c33b85bcb0858157c9c175a07babb2948e51a5ca",
+      "execution": "01a214b0-c141-7ac3-806f-00637838e4d2",
+      "session_sha256": "8744e564e3c8a2382b7c7cfd154ecce098663521bac87777c29585e91b65b09d"
+    },
+    {
+      "events_sha256": "475bd2625a51a8f667a0f73491cf40132993de2cb21c93708b3449c318f31613",
+      "execution": "01a214b2-dd4d-7262-872e-d6c8b3ce39da",
+      "session_sha256": "7303fedfd3090694b983b0e1316e9f71f14f8335061e72a9a39e1ceb24aa544a"
+    },
+    {
+      "events_sha256": "245988c71b27d8983f201f81e03d6d6d8a36fc014050dcad17fdba777f637341",
+      "execution": "01a214cf-51cc-7d72-a512-5afb47008d72",
+      "session_sha256": "6a3476d64863a32d0ace7256f1bffd11d5212c429386decfd8cc1069c6a820fa"
+    },
+    {
+      "events_sha256": "b3220bc4716761f28e0ab1dea924f5f9dbf3ea4b653fef5154c0b99c2164c5f3",
+      "execution": "01a214d0-bcc3-7170-abaf-e6d7f93a1a44",
+      "session_sha256": "cdc7049dafc6d77565960547d8bab6385244d528a0ca1b082e762143c81b2eb7"
+    },
+    {
+      "events_sha256": "1c41352a4dbd2f7c8d2c7f54894b89819e175a5494f3ce7e7a4c977782b8d742",
+      "execution": "01a214da-7bd3-7c42-beff-5807ed5a65d1",
+      "session_sha256": "c2c064bb01cbb06137cf8d6fbea95c439b21bc75023a1cef8cb68108dacc34c0"
+    },
+    {
+      "events_sha256": "10b813fef1e7551461830c4bf22053b1309959f8fa268ea69afce94855b53844",
+      "execution": "01a214dc-37a9-74b1-ba17-8bd928928bc0",
+      "session_sha256": "c1c1d33bd7afa19c3b2e3aeaac78de77c50647e9e6bdf34285868b8f4c080035"
+    }
+  ],
+  "status": "recorded-source-receipts-match-supplied-codex-logs",
+  "unique_acquisitions": 16,
+  "unverified_dependency_findings": []
+}

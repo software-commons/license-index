@@ -8,18 +8,19 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 1,
+      "accepted_entities": 3,
       "beyond_spdx_dispositions": {
+        "accepted": 2,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 12
+        "unresolved": 10
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 1,
+        "accepted": 3,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 837
+        "unresolved": 835
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -85,7 +86,7 @@
       "recorded_claim_revisions": 184,
       "recorded_independently_reviewed_claims": 140,
       "recorded_invalidated_claim_revisions": 44,
-      "selected_claims": 8,
+      "selected_claims": 16,
       "status": "qualified-selection"
     },
     "research": {
@@ -108,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "95e3e6f517c0c12b31e37f72374a6ddf1b03ce53",
-    "sha256": "49d28545d77c8d6dc70dff82432c2448fb4fc459cb9f2236588477d75d64effc",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-verified-terms.json"
+    "commit": "91b90ea97671b52bfd3c1eb8c1eeb5771f0879c2",
+    "sha256": "7952556997fdbbdba748bf1e722bcb6be3bc35301d60913ffa03ca5d16556718",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-documentary-bindings.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -155,10 +156,11 @@
       "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions.",
       "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records.",
       "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts.",
-      "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison."
+      "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison.",
+      "Accept the two exact PolyForm publisher bindings and select their eight qualified claims alongside the eight MIT claims."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-documentary-bindings.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-canonical-selection.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
