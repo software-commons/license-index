@@ -82,8 +82,8 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 180,
-      "recorded_independently_reviewed_claims": 136,
+      "recorded_claim_revisions": 184,
+      "recorded_independently_reviewed_claims": 140,
       "recorded_invalidated_claim_revisions": 44,
       "selected_claims": 8,
       "status": "qualified-selection"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "b78b1de11afab5eb2e559c5c5e464e84bfc1b8d4",
-    "sha256": "58cb04643adfa457222a90863c3ab5c2edbe93c6a1e277e461fae39f2bf70d91",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-pair-pinned-policy.json"
+    "commit": "95e3e6f517c0c12b31e37f72374a6ddf1b03ce53",
+    "sha256": "49d28545d77c8d6dc70dff82432c2448fb4fc459cb9f2236588477d75d64effc",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-verified-terms.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -154,10 +154,11 @@
       "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile.",
       "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions.",
       "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records.",
-      "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts."
+      "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts.",
+      "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-verified-terms.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-documentary-bindings.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
