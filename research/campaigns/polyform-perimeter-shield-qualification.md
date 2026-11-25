@@ -32,4 +32,4 @@ The current crosswalk dispositions bind these exact runs. The two documentary id
 
 ## Canonical admission and qualification
 
-The active sixteen-claim selection retains the eight MIT assertions and adds the eight supported PolyForm assertions. Its frozen Git source binds both distinct entity records and their exact retained discovery origins. Qualification and public release have separate authorization. [Qualification report](../../sces/releases/mit-polyform-reference-0-2-0/qualification.json).
+The active sixteen-claim selection retains the eight MIT assertions and adds the eight supported PolyForm assertions. Its frozen Git source binds both distinct entity records and their exact retained discovery origins. Qualification and public release have separate authorization. [Qualification report](../../sces/releases/mit-polyform-reference-0-2-1/qualification.json).

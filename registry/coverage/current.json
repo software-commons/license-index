@@ -83,9 +83,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 184,
+      "recorded_claim_revisions": 189,
       "recorded_independently_reviewed_claims": 140,
-      "recorded_invalidated_claim_revisions": 44,
+      "recorded_invalidated_claim_revisions": 49,
       "selected_claims": 16,
       "status": "qualified-selection"
     },
@@ -109,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "91b90ea97671b52bfd3c1eb8c1eeb5771f0879c2",
-    "sha256": "7952556997fdbbdba748bf1e722bcb6be3bc35301d60913ffa03ca5d16556718",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-documentary-bindings.json"
+    "commit": "4adde0533c52fd19a53fd2f91496ceeb17f97618",
+    "sha256": "a5c19035449ef2178db608b960b4e74162699082c3d4544da807e8bd16eeabd2",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-canonical-selection.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -157,10 +157,11 @@
       "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records.",
       "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts.",
       "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison.",
-      "Accept the two exact PolyForm publisher bindings and select their eight qualified claims alongside the eight MIT claims."
+      "Accept the two exact PolyForm publisher bindings and select their eight qualified claims alongside the eight MIT claims.",
+      "Record the corrected MIT and PolyForm selection under current source and policy-aware evidence."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-canonical-selection.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-corrected-selection.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

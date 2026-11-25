@@ -3,22 +3,22 @@
     {
       "id": "mit-osi-covered-work-redistribution-notice",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-osi-reference-form-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-osi-reference-grant-scope",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-osi-reference-liability-language",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-osi-reference-spdx-3290-crosswalk",
@@ -28,7 +28,7 @@
     {
       "id": "mit-osi-reference-warranty-disclaimer",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-spdx-3290-plaintext-detail-byte-equality",
@@ -82,8 +82,8 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.0",
-  "evaluated_at": "2026-11-25T23:02:04Z",
+  "dataset_version": "0.2.1",
+  "evaluated_at": "2026-11-25T23:18:41Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -92,21 +92,19 @@
     "All unselected claims, other instruments, and provisional profiles."
   ],
   "limitations": [
-    "The identity is scoped to the archived Open Source Initiative record 395. The SPDX crosswalk is documentary correspondence at the selected data commit.",
-    "The representation comparisons concern the measured SPDX bytes and decoded fields.",
-    "Each selected assertion retains its exact conditions, application scope, and limitations from its claim revision.",
-    "The three SPDX claims bind the annotated v3.29.0 tag to the exact commit. The two representation results concern only the measured original files and fields.",
-    "The two byte comparison claims bind the exact JavaScript procedure that the separate research and review executions used.",
-    "The retained MIT assertions preserve the scope and limitations of the previous qualification. The PolyForm documentary bindings cover the named publisher forms and the exact discovery records.",
-    "The PolyForm legal assertions concern the exact inspected clauses. Particular work grants, product classification and enforceability require separate evidence."
+    "The MIT publisher identity and four terms apply to the captured OSI record 395 CMS revision modified 2026-11-24.",
+    "The MIT crosswalk concerns the selected SPDX List Data release and exact publisher reference. The byte comparisons apply to the pinned SPDX files and decoded fields.",
+    "The PolyForm documentary bindings cover the named publisher forms and exact indexed discovery origins.",
+    "The selected competition and notice claims refer to the exact inspected clauses and do not determine particular work grants, products, enforceability or jurisdiction.",
+    "Each selected assertion retains its own conditions and limits."
   ],
   "previous_report": {
     "path": "sces/releases/mit-reference-0-1-1/qualification.json",
     "sha256": "8e242dc8052294a6d65469db46bb07900d09bd26d3b984aeb6700cbe3b06e45b"
   },
-  "release": "mit-polyform-reference-0-2-0",
-  "research_cutoff": "2026-11-25T23:02:04Z",
+  "release": "mit-polyform-reference-0-2-1",
+  "research_cutoff": "2026-11-25T23:18:41Z",
   "schema_version": "1.0.0",
   "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions.",
-  "source_commit": "234c273f403a1fbd364997a24f91c084d67bf858"
+  "source_commit": "0404c10b496ca9189c8cb76dbfa5da69e38a3d7f"
 }
