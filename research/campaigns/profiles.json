@@ -2936,5 +2936,120 @@
         ]
       }
     ]
+  },
+  "Zlib": {
+    "summary": "The zlib License used by zlib v1.4 permits commercial use, changes and redistribution. The numbered conditions address origin, altered source and notice preservation.",
+    "dimensions": {
+      "copyright_grant": {
+        "state": "permission",
+        "text": "The inspected grant permits use for any purpose, including commercial use, and permits alteration and redistribution subject to its restrictions.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Permission paragraph and clauses 1 through 3"
+          }
+        ]
+      },
+      "modification": {
+        "state": "condition",
+        "text": "Clearly mark altered source versions and avoid presenting them as the original software.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clause 2"
+          }
+        ]
+      },
+      "notices": {
+        "state": "condition",
+        "text": "Keep the original notice intact in a source distribution.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clause 3"
+          }
+        ]
+      },
+      "attribution": {
+        "state": "restriction",
+        "text": "Do not misrepresent origin. Product-documentation acknowledgment is optional under this clause.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clause 1"
+          }
+        ]
+      },
+      "warranty": {
+        "state": "documented",
+        "text": "The text states warranty and liability disclaimers. Their effect in a particular dispute needs separate assessment.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Opening warranty and liability paragraph"
+          }
+        ]
+      },
+      "patent_grant": {
+        "state": "unresolved",
+        "text": "The observed copyright permission supplies no conclusion about a patent grant or defenses.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Permission paragraph"
+          }
+        ]
+      },
+      "trademark": {
+        "state": "unresolved",
+        "text": "Branding permission needs separate evidence. The origin condition addresses misrepresentation.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clause 1"
+          }
+        ]
+      }
+    },
+    "scenarios": [
+      {
+        "situation": "Sending a modified zlib source tree",
+        "text": "Preserve the notice and plainly mark the changes. The zlib project FAQ specifies changes to the version identifiers and records of the origin, nature and dates of the changes.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clauses 2 and 3"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/FAQ",
+            "locator": "Question 24"
+          }
+        ]
+      },
+      {
+        "situation": "Shipping a compiled modified zlib with both public source headers",
+        "text": "The zlib FAQ treats the library shipped with zlib.h and zconf.h as a source distribution. Follow the documented header marking for that combination and preserve the source notice. Assess a binary-only package separately.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clauses 2 and 3"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/FAQ",
+            "locator": "Question 24, compiled-library and two-headers example"
+          }
+        ]
+      },
+      {
+        "situation": "Deciding whether to credit zlib in a product manual",
+        "text": "The inspected clause makes a product-documentation acknowledgment optional. Preserve the actual origin and assess source notices separately when material is distributed.",
+        "sources": [
+          {
+            "url": "https://raw.githubusercontent.com/madler/zlib/99623ef7097352da7993ba614161fd6a311e046e/LICENSE",
+            "locator": "Clauses 1 and 3"
+          }
+        ]
+      }
+    ]
   }
 }

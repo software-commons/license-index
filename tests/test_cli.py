@@ -345,7 +345,7 @@ class ToolTests(unittest.TestCase):
             self.assertEqual({key: value for key, value in descriptor.items() if key != "url"}, expected)
             self.assertIn(f"/{observed['data_commit']}/{expected['path']}", descriptor["url"])
 
-    def test_admission_plan_preserves_legacy_scope_and_unprofiled_leads(self):
+    def test_admission_plan_preserves_legacy_scope_and_profile_coverage(self):
         identifiers = ("GPL-2.0-with-classpath-exception", "LLVM-exception", "Commons Clause License Condition v1.0",
                        "GCC-exception-2.0", "Zlib")
         plan = self.json_output("review-plan", "--admission", *identifiers)
@@ -371,7 +371,7 @@ class ToolTests(unittest.TestCase):
         self.assertIn("scope-disposition", publisher["work"])
         self.assertEqual(packets[identifiers[3]]["explanation_status"], "unresearched")
         self.assertEqual(packets[identifiers[4]]["kind"], "license")
-        self.assertEqual(packets[identifiers[4]]["explanation_status"], "unresearched")
+        self.assertEqual(packets[identifiers[4]]["explanation_status"], "provisional")
 
     def test_admission_packet_distinguishes_older_origin_and_removal(self):
         catalog = Catalog(ROOT)
