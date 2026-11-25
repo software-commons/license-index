@@ -82,8 +82,8 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 133,
-      "recorded_independently_reviewed_claims": 107,
+      "recorded_claim_revisions": 134,
+      "recorded_independently_reviewed_claims": 108,
       "recorded_invalidated_claim_revisions": 26,
       "selected_claims": 8,
       "status": "qualified-selection"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "2107f1560ecc280d7ac220e75822607451c7dc2f",
-    "sha256": "460f3afb38383ffe9dfec442d907a06d9969cfdc7eaad09c3c0b26d1d378d729",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-successors.json"
+    "commit": "591c4a7021d646e89cedf64e77a36d1dc37870f6",
+    "sha256": "f5466fbe3494b13d227fc79b314395398f6e4a60d8f52628f8aeaa42d931b742",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-application-terms.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -137,10 +137,11 @@
       "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope.",
       "Record four independently verified CC0 claim revisions while retaining the existing MIT selection and canonical entity ledger.",
       "Preserve the four initial CC0 claim revisions and their original research records. Record independently reviewed successor revisions and mark the earlier revisions superseded.",
-      "Record independently verified CC0 waiver, fallback, and third-party clearance claims for later selection."
+      "Record independently verified CC0 waiver, fallback, and third-party clearance claims for later selection.",
+      "Record the independently reproduced Windows CC0 offline installer specimen for later selection."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-application-terms.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-installer-observation.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
