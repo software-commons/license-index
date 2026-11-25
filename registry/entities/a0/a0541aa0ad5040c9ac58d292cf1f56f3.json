@@ -24,7 +24,7 @@
   "identity_claim": {
     "id": "polyform-perimeter-publisher-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "polyform-project",
