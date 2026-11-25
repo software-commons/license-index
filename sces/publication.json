@@ -48,7 +48,7 @@
     {
       "id": "polyform-perimeter-retained-publisher-crosswalk",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "polyform-shield-publisher-identity",
@@ -58,7 +58,7 @@
     {
       "id": "polyform-shield-retained-publisher-crosswalk",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "polyform-perimeter-qualified-competition-scope",
@@ -82,8 +82,8 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.2",
-  "evaluated_at": "2026-11-25T23:35:41Z",
+  "dataset_version": "0.2.3",
+  "evaluated_at": "2026-11-25T23:50:57Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -102,9 +102,9 @@
     "path": "sces/releases/mit-reference-0-1-1/qualification.json",
     "sha256": "8e242dc8052294a6d65469db46bb07900d09bd26d3b984aeb6700cbe3b06e45b"
   },
-  "release": "mit-polyform-reference-0-2-2",
-  "research_cutoff": "2026-11-25T23:35:41Z",
+  "release": "mit-polyform-reference-0-2-3",
+  "research_cutoff": "2026-11-25T23:50:57Z",
   "schema_version": "1.0.0",
   "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions.",
-  "source_commit": "c682cfb982c4ffab0716ecd59abb3e9e60bf0df9"
+  "source_commit": "d230535bb7155f502c449e95b5efd256bd661d6f"
 }

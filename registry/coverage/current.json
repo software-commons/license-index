@@ -83,9 +83,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 193,
+      "recorded_claim_revisions": 195,
       "recorded_independently_reviewed_claims": 140,
-      "recorded_invalidated_claim_revisions": 53,
+      "recorded_invalidated_claim_revisions": 55,
       "selected_claims": 16,
       "status": "qualified-selection"
     },
@@ -109,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "b311c85061229e13cf5c348b5b5f827802584119",
-    "sha256": "f5a637668262c00c4fb638398ce1d38960df2bf92f2b1417d9443d5280e093b0",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-corrected-selection.json"
+    "commit": "e72b8755383a12ba148cc6c35f57f9fb0022f2e0",
+    "sha256": "289cdf2b0e14bf95eb5819619ccf7e693a79e79ef6272ffe22f8699337e6916b",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-identity-aligned-selection.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -159,10 +159,11 @@
       "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison.",
       "Accept the two exact PolyForm publisher bindings and select their eight qualified claims alongside the eight MIT claims.",
       "Record the corrected MIT and PolyForm selection under current source and policy-aware evidence.",
-      "Bind the corrected MIT and PolyForm identity scope notes and preserve the prior verification history."
+      "Bind the corrected MIT and PolyForm identity scope notes and preserve the prior verification history.",
+      "Revalidate each PolyForm crosswalk using the earlier and accepted discovery snapshots, and preserve the earlier verification history."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-identity-aligned-selection.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-accepted-crosswalk-selection.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
