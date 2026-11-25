@@ -8,7 +8,7 @@
       "claim": {
         "id": "mit-osi-reference-spdx-3290-crosswalk",
         "kind": "claim",
-        "revision": 1
+        "revision": 2
       },
       "key": "MIT",
       "origin": "spdx",
