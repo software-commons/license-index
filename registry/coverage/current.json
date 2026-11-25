@@ -82,14 +82,14 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 155,
-      "recorded_independently_reviewed_claims": 119,
-      "recorded_invalidated_claim_revisions": 36,
+      "recorded_claim_revisions": 160,
+      "recorded_independently_reviewed_claims": 123,
+      "recorded_invalidated_claim_revisions": 37,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
     "research": {
-      "dimension_assessments_sha256": "365ee2aaa051236a063df495e2a4d796b6e6052b341ffaa274b8d0f35430a90e",
+      "dimension_assessments_sha256": "03c4398320cf3ef9d382e7f1eb8cce451822c3c622e2f10be32d27f96442fe71",
       "dimension_states": {
         "condition": 95,
         "documented": 36,
@@ -100,7 +100,7 @@
       },
       "dimensions": 200,
       "provisional_explanations": 41,
-      "scenarios": 58,
+      "scenarios": 59,
       "spdx_without_provisional_explanation": 785
     },
     "scope": "SPDX discovery and publisher leads"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "633a9c268b35400ad61c57160ff2a1cac4b0b44c",
-    "sha256": "4f0ec927540f4aff950c6b37026b411aee31b93499f2b61680f5a6be729f7a24",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cddl-native-comparison-method.json"
+    "commit": "f5101ff0c2d1d0062ef06df204b2834b3f60c988",
+    "sha256": "f332a1cae7130b59a4ec3a1c71c248d9025668b2bb0142be4df904217e386574",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-mit-tag-native-method-after-cddl.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -146,10 +146,14 @@
       "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example.",
       "Add two separate CDDL publisher edition identities and exact SPDX mappings, retaining the 1.1 attached-notice boundary.",
       "Preserve the CDDL evidence history and use only the freshly verified native JavaScript crosswalk successors.",
-      "Reconcile the original MIT correction with the landed CDDL checkpoint and use the newly verified native comparison method."
+      "Reconcile the original MIT correction with the landed CDDL checkpoint and use the newly verified native comparison method.",
+      "Record four independently verified ISC publisher-reference assertions and one illustrative text-reuse scenario.",
+      "Supersede the original ISC SPDX crosswalk with the independently inspected annotated release-tag binding.",
+      "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
+      "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-mit-tag-native-method-after-cddl.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-isc-after-mit-tag-correction.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
