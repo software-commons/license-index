@@ -23,7 +23,7 @@
     {
       "id": "mit-osi-reference-spdx-3290-crosswalk",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-osi-reference-warranty-disclaimer",
@@ -33,17 +33,17 @@
     {
       "id": "mit-spdx-3290-plaintext-detail-byte-equality",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "mit-spdx-3290-template-detail-byte-boundary",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.1.0",
-  "evaluated_at": "2026-11-24T22:24:58Z",
+  "dataset_version": "0.1.1",
+  "evaluated_at": "2026-11-25T06:43:39Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -53,11 +53,16 @@
   "limitations": [
     "The identity is scoped to the archived Open Source Initiative record 395. The SPDX crosswalk is documentary correspondence at the selected data commit.",
     "The representation comparisons concern the measured SPDX bytes and decoded fields.",
-    "Each selected assertion retains its exact conditions, application scope, and limitations from its claim revision."
+    "Each selected assertion retains its exact conditions, application scope, and limitations from its claim revision.",
+    "The three SPDX claims bind the annotated v3.29.0 tag to the exact commit. The two representation results concern only the measured original files and fields."
   ],
-  "release": "mit-reference-0-1-0",
-  "research_cutoff": "2026-11-23T16:23:49Z",
+  "previous_report": {
+    "path": "sces/releases/mit-reference-0-1-0/qualification.json",
+    "sha256": "0f706ad3dff2732524c42f84cd8b6925f353e233e7d04cf7fe15e3d9905d401c"
+  },
+  "release": "mit-reference-0-1-1",
+  "research_cutoff": "2026-11-25T06:43:39Z",
   "schema_version": "1.0.0",
   "scope": "The named Open Source Initiative MIT reference form. The selection covers its identity, documentary correspondence to SPDX 3.29.0, the scoped permission, notice, warranty and liability language, and two pinned SPDX representation comparisons.",
-  "source_commit": "e2b78aa93c3e5b81be160b38e5ecf2205fc811ac"
+  "source_commit": "1ea496699e90843441cbb8826e29971a3a854305"
 }
