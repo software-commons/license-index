@@ -2089,6 +2089,10 @@
           {
             "url": "https://opensource.org/license/isc",
             "locator": "Grant paragraph"
+          },
+          {
+            "url": "https://www.isc.org/licenses/",
+            "locator": "Displayed ISC software grant and notice condition"
           }
         ]
       },
@@ -2099,6 +2103,10 @@
           {
             "url": "https://opensource.org/license/isc",
             "locator": "Grant paragraph"
+          },
+          {
+            "url": "https://www.isc.org/licenses/",
+            "locator": "Displayed ISC software grant and notice condition"
           }
         ]
       },
@@ -2131,6 +2139,20 @@
           {
             "url": "https://opensource.org/license/isc",
             "locator": "Grant paragraph"
+          },
+          {
+            "url": "https://www.isc.org/licenses/",
+            "locator": "Displayed ISC software grant and notice condition"
+          }
+        ]
+      },
+      {
+        "situation": "Copying the publisher's reference into a licensing guide",
+        "text": "Assume the guide reproduces the exact displayed ISC license body as a reference. The publisher gives express permission to reuse that displayed text. When distributing software under the displayed grant, include the required copyright and permission notices in all copies.",
+        "sources": [
+          {
+            "url": "https://www.isc.org/licenses/",
+            "locator": "Separate license-text permission and displayed software grant"
           }
         ]
       }

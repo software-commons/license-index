@@ -1,0 +1,120 @@
+{
+  "acquisition_bindings": 44,
+  "claims": [
+    {
+      "id": "isc-reference-exact-displayed-text-reuse",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "isc-reference-publisher-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "isc-reference-software-grant",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "isc-reference-spdx-crosswalk",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "mit-osi-covered-work-redistribution-notice",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mit-osi-reference-form-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mit-osi-reference-grant-scope",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mit-osi-reference-liability-language",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mit-osi-reference-spdx-3290-crosswalk",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "mit-osi-reference-warranty-disclaimer",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mit-spdx-3290-plaintext-detail-byte-equality",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "mit-spdx-3290-template-detail-byte-boundary",
+      "kind": "claim",
+      "revision": 3
+    }
+  ],
+  "executions": [
+    {
+      "events_sha256": "d8cd680e409ed997563ab300565f02643616e8515e767b6b346aae3d9b0d6f0c",
+      "execution": "01a20922-ae65-73b2-8f37-a56d87729869",
+      "session_sha256": "e171b05938e3ec4f3aad8fb6b27f8ccd8d6b1577b11c2edc7444bebb0403f26d"
+    },
+    {
+      "events_sha256": "87ab7be2d13c39dbda49f25983fad66d9b7d511b311637f1038ec6bd65c43841",
+      "execution": "01a20925-2c9f-7712-8488-3f78113534f7",
+      "session_sha256": "fe9b98551afbd4114e1e43270b9520d55c6344f56cd10afb3b948f38d847d9d2"
+    },
+    {
+      "events_sha256": "9f73cc6bf0f3fdbfb043b477c7dfaee590dad31d33fde240bece09a809632aec",
+      "execution": "01a21143-577c-76d2-a490-d233e5055db5",
+      "session_sha256": "595bdd30db968b252d003dc1edfc9d3fd9c95386b806cdd302ff7e846cd9615e"
+    },
+    {
+      "events_sha256": "5b1940a041b36d1113b7ae8d47e5f86e2a9b5b5c7963b23554f137d9dd52fe99",
+      "execution": "01a21144-5595-7bc3-b2ba-7564a26844f3",
+      "session_sha256": "6e42cbf2a0812bd5c92eb1e6b9ad81bf4de2efd5d0f0813e9aa43536930233e8"
+    },
+    {
+      "events_sha256": "aba2dc0bbb2069893ad47e7114dbe2861657e80b177a9bdcee86188f83efa5d5",
+      "execution": "01a21158-bc6f-7212-95da-6eea6ff9dd88",
+      "session_sha256": "2eb841af7408781b2c5f4240bc0565be3d4d6becc9a7544124ae6ed1816d9397"
+    },
+    {
+      "events_sha256": "4681ef7a0f411d692da31a33e405b4d326a116b785ddbd95ed410a750e027b55",
+      "execution": "01a21159-af65-7ba0-a9fd-292fe43cbbe3",
+      "session_sha256": "63c5e236ee657dc7e36a3a1910568e7240289a33aedfad9791514a2d3a064a11"
+    },
+    {
+      "events_sha256": "59f129515057bc82c572553bc2371baaf7ae1a41715acd20ffe0fe01d293f5ff",
+      "execution": "01a2116e-df58-7e30-8011-816931b9dbbc",
+      "session_sha256": "81890a1de2dfcda7dddf1f6e2db5adb854f9632ed4ae078f596f5216af722a52"
+    },
+    {
+      "events_sha256": "910938dfdbffe1653ba20c8874efbd53c5713cb9f12e34c747e3792466430c3e",
+      "execution": "01a21170-831e-79a3-bb8c-52bbef86abd8",
+      "session_sha256": "85a80b6e03fc182bc31e9ad5188b0bd179ce846247510f53a9a502a9ada83467"
+    },
+    {
+      "events_sha256": "177efe19e0804744f5dd8a8380f0760668d6c1c77b2e5ad1020e3effd66a05f0",
+      "execution": "01a212f8-31f3-7543-9953-96948dbfa288",
+      "session_sha256": "f5f6309d4c858ee2f52ba70c303b7aa9322211f381715fe0e8432f97d723c65d"
+    },
+    {
+      "events_sha256": "238df98c784b4a740a6ba711a142d8eec2c07aeea21ae5aabd21be0f8826096e",
+      "execution": "01a212f9-be37-72d3-9a3c-12a4c2d41b8f",
+      "session_sha256": "bd30b973261e83ea4f53501acc9446f215c990221a01bed59b25e6c2d9ed3076"
+    }
+  ],
+  "status": "recorded-source-receipts-match-supplied-codex-logs",
+  "unique_acquisitions": 30,
+  "unverified_dependency_findings": []
+}
