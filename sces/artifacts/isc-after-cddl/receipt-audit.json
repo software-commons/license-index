@@ -1,0 +1,56 @@
+{
+  "native_receipts": {
+    "acquisition_bindings": 14,
+    "claims": [
+      {
+        "id": "isc-reference-exact-displayed-text-reuse",
+        "kind": "claim",
+        "revision": 1
+      },
+      {
+        "id": "isc-reference-publisher-identity",
+        "kind": "claim",
+        "revision": 1
+      },
+      {
+        "id": "isc-reference-software-grant",
+        "kind": "claim",
+        "revision": 1
+      },
+      {
+        "id": "isc-reference-spdx-crosswalk",
+        "kind": "claim",
+        "revision": 2
+      }
+    ],
+    "executions": [
+      {
+        "events_sha256": "9f73cc6bf0f3fdbfb043b477c7dfaee590dad31d33fde240bece09a809632aec",
+        "execution": "01a21143-577c-76d2-a490-d233e5055db5",
+        "session_sha256": "595bdd30db968b252d003dc1edfc9d3fd9c95386b806cdd302ff7e846cd9615e"
+      },
+      {
+        "events_sha256": "5b1940a041b36d1113b7ae8d47e5f86e2a9b5b5c7963b23554f137d9dd52fe99",
+        "execution": "01a21144-5595-7bc3-b2ba-7564a26844f3",
+        "session_sha256": "6e42cbf2a0812bd5c92eb1e6b9ad81bf4de2efd5d0f0813e9aa43536930233e8"
+      },
+      {
+        "events_sha256": "aba2dc0bbb2069893ad47e7114dbe2861657e80b177a9bdcee86188f83efa5d5",
+        "execution": "01a21158-bc6f-7212-95da-6eea6ff9dd88",
+        "session_sha256": "2eb841af7408781b2c5f4240bc0565be3d4d6becc9a7544124ae6ed1816d9397"
+      },
+      {
+        "events_sha256": "4681ef7a0f411d692da31a33e405b4d326a116b785ddbd95ed410a750e027b55",
+        "execution": "01a21159-af65-7ba0-a9fd-292fe43cbbe3",
+        "session_sha256": "63c5e236ee657dc7e36a3a1910568e7240289a33aedfad9791514a2d3a064a11"
+      }
+    ],
+    "status": "recorded-source-receipts-match-supplied-codex-logs",
+    "unique_acquisitions": 12,
+    "unverified_dependency_findings": []
+  },
+  "original_feature_head": "01703d99073dcc238d880515eb101c3645f366fc",
+  "protected_base": "d1ee009852e51b4783d047221a27ab91cac97a33",
+  "reconciled_commit": "0cebc7882120570af04a377ffd24ee39aac78bdb",
+  "verification_scope": "Exact current ISC claim revisions in the locally reconciled registry"
+}
