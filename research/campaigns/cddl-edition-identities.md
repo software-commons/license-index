@@ -1,0 +1,7 @@
+# CDDL 1.0 and 1.1 publisher editions
+
+Oracle's official license directory links separate representations for the 1.0 and 1.1 agreements. The two prospective identity records retain distinct opaque IDs. Their evidence covers the titles and exact publisher responses. [Oracle license directory](https://oss.oracle.com/licenses/), [CDDL 1.0](https://oss.oracle.com/licenses/CDDL), [CDDL 1.1](https://oss.oracle.com/licenses/CDDL-1.1)
+
+The two SPDX bindings refer to generated text at the commit recorded by the annotated SPDX 3.29.0 release tag. The comparison normalizes whitespace and typographic quotation marks. After those transformations, the 1.0 representations align. For 1.1, the matching scope includes the California notice attached to both representations. The comparison excludes Oracle's visual separator. Agreement-only 1.1 text does not match the complete SPDX body, and a changed clause fails the comparison for both editions. [CDDL-1.0 SPDX entry](https://spdx.org/licenses/CDDL-1.0.html), [CDDL-1.1 SPDX entry](https://spdx.org/licenses/CDDL-1.1.html)
+
+The California notice identifies its own covered projects or distributions. A project's applicable edition, notices, and distribution conditions require its own evidence. The existing explanatory profile remains provisional. Standalone redistribution and offline installation of either publisher representation remain open.
