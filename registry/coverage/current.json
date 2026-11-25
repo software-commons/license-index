@@ -82,9 +82,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 136,
-      "recorded_independently_reviewed_claims": 108,
-      "recorded_invalidated_claim_revisions": 28,
+      "recorded_claim_revisions": 138,
+      "recorded_independently_reviewed_claims": 109,
+      "recorded_invalidated_claim_revisions": 29,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "fef35daaa34a2458e34ed45a622545b7ece5cec8",
-    "sha256": "3d7aacf2cf9a04124d74d4ab5f5c7296ca6eb63f550cc96ffead27a969f1a830",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-installer-observation.json"
+    "commit": "cf44ad16b5d656bb5dbf8930385014ffafb3557b",
+    "sha256": "86814a973793dfce6f37a37df872d1ad5cf582529bae640b365deb5e98c3c5d9",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-canonical-identity-mapping.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -139,10 +139,12 @@
       "Preserve the four initial CC0 claim revisions and their original research records. Record independently reviewed successor revisions and mark the earlier revisions superseded.",
       "Record independently verified CC0 waiver, fallback, and third-party clearance claims for later selection.",
       "Record the independently reproduced Windows CC0 offline installer specimen for later selection.",
-      "Supersede the earlier CC0 installer observation revisions with explicitly bound implementation and package trees."
+      "Supersede the earlier CC0 installer observation revisions with explicitly bound implementation and package trees.",
+      "Record the reviewed CC0 prospective identity mapping under the existing related-instrument taxonomy.",
+      "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-installer-tree-lineage.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-canonical-taxonomy-binding.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
