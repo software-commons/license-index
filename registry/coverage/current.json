@@ -82,8 +82,8 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 171,
-      "recorded_independently_reviewed_claims": 132,
+      "recorded_claim_revisions": 180,
+      "recorded_independently_reviewed_claims": 141,
       "recorded_invalidated_claim_revisions": 39,
       "selected_claims": 8,
       "status": "qualified-selection"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "58dfc4a8c06a7b13b14d6070adf6179d095691e9",
-    "sha256": "2a930217e5e3f21b9b414048931f68a43d0a167ac7ddf4910a6db2eaa01a68c6",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-policy-corrected.json"
+    "commit": "00cf017c65e29d148cca1d9f66bfb69ce2506aa6",
+    "sha256": "878a8d07d2cf1ad6140642f47194c8f6cd08a515731b078c65221b630cb50fa2",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-documentary-identity.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -152,10 +152,11 @@
       "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
       "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections.",
       "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile.",
-      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions."
+      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions.",
+      "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-documentary-identity.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-pair-pinned-policy.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
