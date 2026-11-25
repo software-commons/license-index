@@ -20,7 +20,7 @@ The current candidate ledger has accepted the exact Perimeter 1.0.1 and Shield 1
 
 ### Revalidation schedule for the documentary bindings
 
-The four revision 2 claims and the two pinned discovery source records are due for revalidation on 2027-05-25. This six-month interval fits the narrow documentary scope. The publisher observations refer to immutable Git files and named editions. The index observations refer to the exact protected commit and specific opaque discovery records. Their recorded bytes and names can be replayed exactly. The scheduled check tests whether newer authoritative information affects the continued use of these records.
+The four active documentary claims and the two pinned discovery source records are due for revalidation on 2027-05-25. This six-month interval fits the narrow documentary scope. The publisher observations refer to immutable Git files and named editions. The index observations refer to the exact protected commit and specific opaque discovery records. Their recorded bytes and names can be replayed exactly. The scheduled check tests whether newer authoritative information affects the continued use of these records.
 
 Revalidate sooner upon a publisher correction to an edition name or location, a moved or withdrawn publisher representation, an edition-specific conflict, or a change to either discovery record's current key, URL, provenance, or disposition. Replay both pin and digest bindings, compare the current publisher and registry records to the captured versions, and reassess applicability before using either claim in a new selection.
 
@@ -32,4 +32,6 @@ The current crosswalk dispositions bind these exact runs. The two documentary id
 
 ## Canonical admission and qualification
 
-The active sixteen-claim selection retains the eight MIT assertions and adds the eight supported PolyForm assertions. Its frozen Git source binds both distinct entity records and their exact retained discovery origins. Qualification and public release have separate authorization. [Qualification report](../../sces/releases/mit-polyform-reference-0-2-1/qualification.json).
+The active sixteen-claim selection retains the eight MIT assertions and adds the eight supported PolyForm assertions. Its frozen Git source binds both distinct entity records and their exact retained discovery origins. Qualification and public release have separate authorization. [Qualification report](../../sces/releases/mit-polyform-reference-0-2-2/qualification.json).
+
+The revision 3 identity records retain the named publisher forms and identify state as a License Index field. The four documentary bindings retain the six-month revalidation interval justified above. [Current qualification scope](mit-current-source-policy-reverification.md#canonical-scope-correction).
