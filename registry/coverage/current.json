@@ -82,8 +82,8 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 129,
-      "recorded_independently_reviewed_claims": 103,
+      "recorded_claim_revisions": 133,
+      "recorded_independently_reviewed_claims": 107,
       "recorded_invalidated_claim_revisions": 26,
       "selected_claims": 8,
       "status": "qualified-selection"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "786d29a8d0802ec5afc781ea3926b9415ca29b60",
-    "sha256": "5a9ed293500e335ed50053b881a2e020e78353070f16585d32cd71d318815a46",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-qualification.json"
+    "commit": "2107f1560ecc280d7ac220e75822607451c7dc2f",
+    "sha256": "460f3afb38383ffe9dfec442d907a06d9969cfdc7eaad09c3c0b26d1d378d729",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-successors.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -136,10 +136,11 @@
       "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate.",
       "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope.",
       "Record four independently verified CC0 claim revisions while retaining the existing MIT selection and canonical entity ledger.",
-      "Preserve the four initial CC0 claim revisions and their original research records. Record independently reviewed successor revisions and mark the earlier revisions superseded."
+      "Preserve the four initial CC0 claim revisions and their original research records. Record independently reviewed successor revisions and mark the earlier revisions superseded.",
+      "Record independently verified CC0 waiver, fallback, and third-party clearance claims for later selection."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-successors.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-application-terms.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
