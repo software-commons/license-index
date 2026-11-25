@@ -1,6 +1,6 @@
 {
   "capture_program": {
-    "path": "sces/artifacts/cc0-1.0-qualification/spdx_full_job_source.py",
+    "path": "sces/artifacts/cc0-1.0-qualification-v2/spdx_full_job_source.py",
     "sha256": "589ce1b86ff6d9009155d51b473658f20082c714e0ea9f4c35cf7058f378580f"
   },
   "command": [
