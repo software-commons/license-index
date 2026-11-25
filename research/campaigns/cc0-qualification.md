@@ -11,4 +11,6 @@ Two separate Codex executions acquired the same nine original sources, assessed 
 
 Independent installer reproduction remains pending. The broader provisional profile contains open questions about the waiver, fallback, third-party rights, and project-specific applicability. [Publisher Plain Text](https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt) · [Provisional profile](educational-research.md)
 
+The fixed manifest identifies the workflow job by its public locator and pins the extractor's UTF-8 output. Run the exact capture program with Python's `-I -B` flags and the `--capture` argument on a Windows host with GitHub CLI in its standard installation path. The program reads the published job log, selects the three specified lines, and writes their LF-delimited bytes. The capture method binds the original retrieval command, program SHA-256, and 426-byte result digest. [Workflow capture method](../../sces/artifacts/cc0-1.0-qualification/workflow-capture-method.json)
+
 [Fixed source manifest](../../sces/artifacts/cc0-1.0-qualification/public-source-manifest.json) · [Research receipts](../../sces/artifacts/cc0-1.0-qualification/research-receipts.jsonl) · [Independent verification receipts](../../sces/artifacts/cc0-1.0-qualification/independent-review-receipts.jsonl)

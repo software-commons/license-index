@@ -1,0 +1,25 @@
+{
+  "capture_program": {
+    "path": "sces/artifacts/cc0-1.0-qualification/spdx_release_log_source.py",
+    "sha256": "a998421f9287c2fbdadf413130a5c754c70c299ae781552b1e2e7216b7a1990e"
+  },
+  "command": [
+    "gh",
+    "run",
+    "view",
+    "35125161397",
+    "--repo",
+    "spdx/license-list-XML",
+    "--job",
+    "104892289184",
+    "--log"
+  ],
+  "excerpt_bytes": 426,
+  "excerpt_sha256": "4e40c749021db32cd809b44c4f9ddfaed916e1e4b6abd1f83d42c33123903f06",
+  "locator": "https://github.com/spdx/license-list-XML/actions/runs/35125161397/job/104892289184",
+  "representation": "Three verbatim, selected lines of the GitHub CLI job log, framed with LF, in source order.",
+  "scope": "The manifest URL is the canonical job locator. The capture program obtains the cited excerpt from the public job log through the listed read-only retrieval command.",
+  "selection": "Use the three exact byte patterns in the pinned Python program. Each must occur once and their indices must increase. Preserve the complete matched lines and terminate each with LF.",
+  "source": "spdx_release_job",
+  "source_manifest_sha256": "ceffcd221515524d4a1c66bb99c93c19f178c1b0fb222c3b64e1012fb0ff2d97"
+}
