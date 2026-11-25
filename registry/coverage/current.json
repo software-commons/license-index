@@ -82,35 +82,35 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 160,
-      "recorded_independently_reviewed_claims": 123,
-      "recorded_invalidated_claim_revisions": 37,
+      "recorded_claim_revisions": 171,
+      "recorded_independently_reviewed_claims": 132,
+      "recorded_invalidated_claim_revisions": 39,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
     "research": {
-      "dimension_assessments_sha256": "03c4398320cf3ef9d382e7f1eb8cce451822c3c622e2f10be32d27f96442fe71",
+      "dimension_assessments_sha256": "95f652761c7c1d1678f7c44e05638cab2a115bbc9b273a155d17e8c8acd71d2a",
       "dimension_states": {
-        "condition": 95,
-        "documented": 36,
+        "condition": 97,
+        "documented": 37,
         "inapplicable": 2,
-        "permission": 48,
-        "restriction": 10,
-        "unresolved": 9
+        "permission": 49,
+        "restriction": 11,
+        "unresolved": 11
       },
-      "dimensions": 200,
-      "provisional_explanations": 41,
-      "scenarios": 59,
-      "spdx_without_provisional_explanation": 785
+      "dimensions": 207,
+      "provisional_explanations": 42,
+      "scenarios": 62,
+      "spdx_without_provisional_explanation": 784
     },
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "f5101ff0c2d1d0062ef06df204b2834b3f60c988",
-    "sha256": "f332a1cae7130b59a4ec3a1c71c248d9025668b2bb0142be4df904217e386574",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-mit-tag-native-method-after-cddl.json"
+    "commit": "58dfc4a8c06a7b13b14d6070adf6179d095691e9",
+    "sha256": "2a930217e5e3f21b9b414048931f68a43d0a167ac7ddf4910a6db2eaa01a68c6",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-policy-corrected.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -150,10 +150,12 @@
       "Record four independently verified ISC publisher-reference assertions and one illustrative text-reuse scenario.",
       "Supersede the original ISC SPDX crosswalk with the independently inspected annotated release-tag binding.",
       "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
-      "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections."
+      "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections.",
+      "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile.",
+      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-isc-after-mit-tag-correction.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-documentary-identity.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
