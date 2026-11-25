@@ -1,0 +1,40 @@
+{
+  "excerpt_sha256": "c034cbbf1ebf2078ac1ac3a1e39655c59f54f1d95a543582d07bd69cb50b85aa",
+  "method_sha256": "589ce1b86ff6d9009155d51b473658f20082c714e0ea9f4c35cf7058f378580f",
+  "procedure": "Concatenate the six exact half-open ranges in source order. Preserve the bytes within each range.",
+  "ranges": [
+    {
+      "end": 10526,
+      "sha256": "ea4b1cef898168e3091c251a8b8447773032345d4c70751dbd33481e5d046c06",
+      "start": 10328
+    },
+    {
+      "end": 11190,
+      "sha256": "57a7fb3b28f702fba38b95c4427876c40602bc516af0b879a21a7c7d2cc5e201",
+      "start": 11093
+    },
+    {
+      "end": 12464,
+      "sha256": "c0876a5d4db9b03e7c937aacc3f4b3b7f2e9738325fa8bf6f5a7123d00815d9e",
+      "start": 12394
+    },
+    {
+      "end": 12534,
+      "sha256": "a1cc92ae88ea0e51fb9d342a83c9687a393336fc1f63f24366332b3279340436",
+      "start": 12464
+    },
+    {
+      "end": 78175,
+      "sha256": "2b02b24ea5018d6998ecc1efb541787197e435221ae6ff730292eaef4bf790f8",
+      "start": 78070
+    },
+    {
+      "end": 78461,
+      "sha256": "28c76aab69be2c3f65b6cf51169d58f56dca75e386f9577001a883bda7a0ba29",
+      "start": 78398
+    }
+  ],
+  "source": "spdx_release_job",
+  "source_bytes": 81691,
+  "source_sha256": "1e9137b29385a9ce0deaa48c20ab9927916426819a69f0cfc6281d239340c282"
+}

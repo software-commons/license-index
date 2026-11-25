@@ -1,0 +1,27 @@
+{
+  "method": "Compare untouched complete CLI results, model-facing native deliveries, and bounded event summaries. Use the pinned generic audit for complete source events.",
+  "program": {
+    "path": "sces/artifacts/cc0-1.0-qualification-v2/full_job_receipt_audit.py",
+    "sha256": "1c281dd53f2a77d07ae09717a91e61298f01951cb36f36ab73b122c01bf80b5a"
+  },
+  "receipts": {
+    "independent-review": {
+      "bytes": 81691,
+      "capture": "exec-f7bd7e9d-8aab-482a-8070-de725d357288",
+      "events_sha256": "07b7dd0b1ebd75dbd3ba1f6968401cb2907dfe875df9b2998d4074a59fd014f5",
+      "execution": "01a21069-0651-7df1-bd93-be8acba87d36",
+      "matched_complete_model_delivery": true,
+      "session_sha256": "74ef88dc3f14021bc151f0a99ebc1d4b63e4da3e3167daea8a94554806ad4990",
+      "sha256": "1e9137b29385a9ce0deaa48c20ab9927916426819a69f0cfc6281d239340c282"
+    },
+    "research": {
+      "bytes": 81691,
+      "capture": "exec-719ee04f-4b21-4f2f-b40c-2109aa0da28e",
+      "events_sha256": "2a3b1ef0731c227b70663e0bdb692263c4d8aa97c2a206618db49b50760a6257",
+      "execution": "01a21066-d6e4-7b90-a1ae-f6754a722b8c",
+      "matched_complete_model_delivery": true,
+      "session_sha256": "d250f1c969efc13a868f32fea107a76f59f11c5f5bf3a8e9871726b496fb1bee",
+      "sha256": "1e9137b29385a9ce0deaa48c20ab9927916426819a69f0cfc6281d239340c282"
+    }
+  }
+}

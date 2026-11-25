@@ -1,0 +1,21 @@
+{
+  "capture_program": {
+    "path": "sces/artifacts/cc0-1.0-qualification-v2/spdx_full_job_source.py",
+    "sha256": "589ce1b86ff6d9009155d51b473658f20082c714e0ea9f4c35cf7058f378580f"
+  },
+  "command": [
+    "gh",
+    "api",
+    "--hostname",
+    "github.com",
+    "--allow-escape-sequences",
+    "repos/spdx/license-list-XML/actions/jobs/104892289184/logs"
+  ],
+  "locator": "https://api.github.com/repos/spdx/license-list-XML/actions/jobs/104892289184/logs",
+  "representation": "Complete original authenticated GitHub Actions job response, retained in controlled custody.",
+  "scope": "The command returns the complete response. Derive passage ranges separately after validating the full-body length and digest.",
+  "source": "spdx_release_job",
+  "source_bytes": 81691,
+  "source_manifest_sha256": "c5e525ab1f3a6168fd5358fd01e80f226035fbf16f3d672546b566928a888f1f",
+  "source_sha256": "1e9137b29385a9ce0deaa48c20ab9927916426819a69f0cfc6281d239340c282"
+}
