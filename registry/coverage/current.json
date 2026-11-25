@@ -82,9 +82,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 148,
+      "recorded_claim_revisions": 150,
       "recorded_independently_reviewed_claims": 119,
-      "recorded_invalidated_claim_revisions": 29,
+      "recorded_invalidated_claim_revisions": 31,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "50933e5b5fb6a0ae501e0e9999807e743ac148c1",
-    "sha256": "4f62f53d92c48f9e49ea8ebb4c216930aa5bdfa4da0a4e681098335d9f0500fc",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-apache-20-redistribution.json"
+    "commit": "22ad238b8530883566c8ced2433dbc5e2ea422e4",
+    "sha256": "78e950c020e8686bdd4f55e6be5de5c6bf7fa5f921052df607e1089205210a4c",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-cddl-editions.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -144,10 +144,11 @@
       "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support.",
       "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios.",
       "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example.",
-      "Add two separate CDDL publisher edition identities and exact SPDX mappings, retaining the 1.1 attached-notice boundary."
+      "Add two separate CDDL publisher edition identities and exact SPDX mappings, retaining the 1.1 attached-notice boundary.",
+      "Preserve the CDDL evidence history and use only the freshly verified native JavaScript crosswalk successors."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-cddl-editions.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cddl-native-comparison-method.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
