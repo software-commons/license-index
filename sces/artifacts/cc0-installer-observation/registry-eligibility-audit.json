@@ -1,5 +1,5 @@
 {
-  "audit": {"assessed_at":"2026-11-25T03:02:23.367484+00:00","audited_commit":"808531ce7e7e95fb646459c9fc7c11abd5c2f840","claim_revisions":134,"eligible_for_selection":108,"history_base":"591c4a7021d646e89cedf64e77a36d1dc37870f6","ineligible_for_selection":26,"policy_commit":"ab26f278422772f2d9e5d4dd016407d14372a710","policy_sha256":"14da3f31f697ab828d4a4560f060dbe511861020db54bea7bc531e20ea0855ce"},
+  "audit": {"assessed_at":"2026-11-25T03:15:04.277900+00:00","audited_commit":"8810350368710f4a722fabbdbe8d83c7a241394e","claim_revisions":135,"eligible_for_selection":108,"history_base":"591c4a7021d646e89cedf64e77a36d1dc37870f6","ineligible_for_selection":27,"policy_commit":"ab26f278422772f2d9e5d4dd016407d14372a710","policy_sha256":"14da3f31f697ab828d4a4560f060dbe511861020db54bea7bc531e20ea0855ce"},
   "claims": [
     {"eligible":true,"id":"apache-20-instrument-identity","revision":1,"sha256":"42437be440d847098d4fb0b69caf0a751f607e2c867e24afef4abd93e837869d"},
     {"eligible":true,"id":"apache-20-license-document-unchanged-reuse","revision":1,"sha256":"200c1b8150fe618131332076d5adfb5c39b624f41ce63ee881e261a1a81f362f"},
@@ -13,7 +13,8 @@
     {"eligible":true,"id":"cc-by-4-share-retain-supplied-notices","revision":1,"sha256":"45383edec703ff4b1cdbb8725444503d9a5735f022c4d499cbcaa9685f947ab5"},
     {"eligible":false,"id":"cc0-10-identity","revision":1,"sha256":"c26c67f6c033528dc583a4c1f12daadc7045849de83a5a32c92b6d1af832ba6f"},
     {"eligible":true,"id":"cc0-10-identity","revision":2,"sha256":"3cd21cd90d566e1803fdb26e0765fbd3c2b6148f057c07756d343ed0064f092a"},
-    {"eligible":true,"id":"cc0-10-pinned-cli-exact-offline-specimen","revision":1,"sha256":"ec80a618f2f5c09980ecfa5a9da22ca80992964af3d481896f1f4778e06d6d71"},
+    {"eligible":false,"id":"cc0-10-pinned-cli-exact-offline-specimen","revision":1,"sha256":"ec80a618f2f5c09980ecfa5a9da22ca80992964af3d481896f1f4778e06d6d71"},
+    {"eligible":true,"id":"cc0-10-pinned-cli-exact-offline-specimen","revision":2,"sha256":"13ab9ead94231073a6e799d5303ab63f0e7bc33f7875524d35322b19c1e7ee62"},
     {"eligible":false,"id":"cc0-10-publisher-text-copy","revision":1,"sha256":"8c562d34d04c4a7e5f9c3e955202d4809feb18e5bf902d9053096561bccf4ccd"},
     {"eligible":true,"id":"cc0-10-publisher-text-copy","revision":2,"sha256":"81ca2bad3d2dd90de2df8e50c751fd9180b4c09418cf1beeaec42728beeb84da"},
     {"eligible":true,"id":"cc0-10-section-2-waiver-scope","revision":1,"sha256":"769613fe839ec7658f958d6e8a9c3a1c8029aa5642899374eb1eb86c3e745f43"},
