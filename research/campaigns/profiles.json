@@ -376,6 +376,16 @@
             "locator": "How should I apply the Apache License to my own software?"
           }
         ]
+      },
+      {
+        "situation": "Illustration with a modified Source archive",
+        "text": "Assume you redistribute a derivative Source archive and removed an upstream component. Give recipients a license copy and flag each included file you changed. Check whether each upstream notice still pertains to any part of the archive. Check upstream NOTICE attribution separately.",
+        "sources": [
+          {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0",
+            "locator": "§1 and §4(a)–(d)"
+          }
+        ]
       }
     ]
   },
