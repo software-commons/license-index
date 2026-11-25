@@ -1,7 +1,7 @@
 {
   "id": "fb8e3056117d4dfcac91e59f1ba21433",
-  "disposition": "unresolved",
-  "reason": "The publisher's versioned plain text identifies Perimeter 1.0.1. Its Noncompete clause identifies products that compete with the software. Preserve that wording boundary when comparing Shield. Check earlier edition artifacts and verify matching and text-terms scope before admission or packaging.",
+  "disposition": "accepted",
+  "reason": "The exact retained origin maps to the named publisher edition. The independently reviewed identity and documentary crosswalk bind this candidate to its canonical record.",
   "origin": {
     "kind": "publisher",
     "source": "https://polyformproject.org/licenses/perimeter/1.0.1.txt",
@@ -19,6 +19,10 @@
         "revision": "1.0.1"
       },
       "reason": "The publisher catalog links this named edition, distinct from the listed PolyForm Noncommercial and Small Business forms. Compare exact source artifacts and SPDX matching coverage, then review publication rights."
+    },
+    {
+      "reason": "The publisher's versioned plain text identifies Perimeter 1.0.1. Its Noncompete clause identifies products that compete with the software. Preserve that wording boundary when comparing Shield. Check earlier edition artifacts and verify matching and text-terms scope before admission or packaging.",
+      "disposition": "unresolved"
     }
   ]
 }
