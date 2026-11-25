@@ -82,8 +82,8 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 141,
-      "recorded_independently_reviewed_claims": 112,
+      "recorded_claim_revisions": 144,
+      "recorded_independently_reviewed_claims": 115,
       "recorded_invalidated_claim_revisions": 29,
       "selected_claims": 8,
       "status": "qualified-selection"
@@ -100,7 +100,7 @@
       },
       "dimensions": 200,
       "provisional_explanations": 41,
-      "scenarios": 57,
+      "scenarios": 58,
       "spdx_without_provisional_explanation": 785
     },
     "scope": "SPDX discovery and publisher leads"
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "2247bb076198b925b087ae5d49a9d09aff5c529b",
-    "sha256": "bc6316b48b52eda32ea7fb0b5507f090b9f960cbcda857e85382e4aa8cee2a8b",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-canonical-taxonomy-binding.json"
+    "commit": "8a92e545c37f34f34c2b369539750c6147c619fb",
+    "sha256": "739ac994334ee4cebb6395daa6cdbbcead1b5ec691c6e1af8a5bc1333161104d",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-database-and-disclaimers.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -142,10 +142,11 @@
       "Supersede the earlier CC0 installer observation revisions with explicitly bound implementation and package trees.",
       "Record the reviewed CC0 prospective identity mapping under the existing related-instrument taxonomy.",
       "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support.",
-      "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios."
+      "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios.",
+      "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-database-and-disclaimers.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-apache-20-redistribution.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
