@@ -82,9 +82,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 171,
-      "recorded_independently_reviewed_claims": 132,
-      "recorded_invalidated_claim_revisions": 39,
+      "recorded_claim_revisions": 180,
+      "recorded_independently_reviewed_claims": 136,
+      "recorded_invalidated_claim_revisions": 44,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "58dfc4a8c06a7b13b14d6070adf6179d095691e9",
-    "sha256": "2a930217e5e3f21b9b414048931f68a43d0a167ac7ddf4910a6db2eaa01a68c6",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-policy-corrected.json"
+    "commit": "b78b1de11afab5eb2e559c5c5e464e84bfc1b8d4",
+    "sha256": "58cb04643adfa457222a90863c3ab5c2edbe93c6a1e277e461fae39f2bf70d91",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-pair-pinned-policy.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -152,10 +152,12 @@
       "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
       "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections.",
       "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile.",
-      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions."
+      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions.",
+      "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records.",
+      "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-documentary-identity.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-polyform-verified-terms.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
