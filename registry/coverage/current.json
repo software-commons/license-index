@@ -82,8 +82,8 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 121,
-      "recorded_independently_reviewed_claims": 99,
+      "recorded_claim_revisions": 125,
+      "recorded_independently_reviewed_claims": 103,
       "recorded_invalidated_claim_revisions": 22,
       "selected_claims": 8,
       "status": "qualified-selection"
@@ -105,12 +105,12 @@
     },
     "scope": "SPDX discovery and publisher leads"
   },
-  "cutoff": "2026-11-24",
+  "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "a6cc13660edc51a25171c0662c605047259e9180",
-    "sha256": "426172362907a846c20e00b75875dbbe990ed66b42b89da720f0670ce622915c",
-    "snapshot": "registry/coverage/snapshots/2026-11-24-mit-reference-initial-selection.json"
+    "commit": "6565729ddff1e711903afdb3a44f95778114704f",
+    "sha256": "f678de41d56e7dde57b8aab0190e909e36f24824a0323c37484d02c6eadfcb27",
+    "snapshot": "registry/coverage/snapshots/2026-11-24-mit-installer-causal-evidence.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -134,10 +134,11 @@
       "Keep publisher leads with their individual dispositions and reasons. The blank Countdown form is excluded as a standalone license.",
       "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence.",
       "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate.",
-      "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope."
+      "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope.",
+      "Record four independently verified CC0 claim revisions while retaining the existing MIT selection and canonical entity ledger."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-24-mit-installer-causal-evidence.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-qualification.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
