@@ -82,9 +82,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 169,
+      "recorded_claim_revisions": 170,
       "recorded_independently_reviewed_claims": 132,
-      "recorded_invalidated_claim_revisions": 37,
+      "recorded_invalidated_claim_revisions": 38,
       "selected_claims": 8,
       "status": "qualified-selection"
     },
@@ -108,9 +108,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "fc2e7d3070f2e17080fcf963e885d063af5cb9ba",
-    "sha256": "550344638c4240d9ae93a7d13c6e882191c3eb2ba5d7279e2e12210e9f153024",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-isc-after-mit-tag-correction.json"
+    "commit": "b7733e91a91c2ebacf3e6c1e946d5f586efe3ce2",
+    "sha256": "409e29309792512dd2da1845b1ab4e5e5e4f981670c3b08c58de035964fd015e",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-after-isc.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -151,10 +151,10 @@
       "Supersede the original ISC SPDX crosswalk with the independently inspected annotated release-tag binding.",
       "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
       "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections.",
-      "Record nine independently reviewed zlib v1.4 claims and add the provisional Zlib profile."
+      "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-after-isc.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-zlib-14-policy-corrected.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

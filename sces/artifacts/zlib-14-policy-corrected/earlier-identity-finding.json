@@ -1,0 +1,31 @@
+{
+  "conclusion": "unsupported",
+  "execution": "01a2148b-fcdd-79c0-9cdf-2350529f4085",
+  "findings": [
+    {
+      "checks": {
+        "applicability": "pass",
+        "authenticity": "pass",
+        "contradiction": "pass",
+        "integrity": "pass",
+        "interpretation": "fail",
+        "relevance": "pass"
+      },
+      "id": "zlib-14-instrument-identity-publisher-readme",
+      "outcome": "insufficient",
+      "reasoning": "Capture abaa1dc9f21246a9839b2ad107285d67, opening paragraph and Copyright notice section. The release README establishes the library's identity and terms. Using it to establish which root file controls would exceed what it says."
+    }
+  ],
+  "original_claim": {
+    "id": "zlib-14-instrument-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "original_claim_sha256": "94ecda9b6bb5ef0f8c4737d56fd076bef860e968bb2fa588a1aa81b7be83f335",
+  "reasoning": "The assigned supporting sources establish the library release, its authors and its published terms. They leave one material assertion unproved under the specified bindings: the README reproduces the notice but does not identify the root LICENSE as a controlling reference, and the tag identifies a commit without discussing any file. Direct inspection found the expected text in LICENSE, but that file has only a context binding in this draft. This is insufficient support for the exact record, rather than a finding that the root file contains different terms.",
+  "successor_claim": {
+    "id": "zlib-14-instrument-identity",
+    "kind": "claim",
+    "revision": 2
+  }
+}
