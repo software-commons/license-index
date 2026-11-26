@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "cryptsetup-openssl-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "cryptsetup-project",
     "edition": "cryptsetup-2-7-5",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:45670cce8b6a0ddd66c8016cd8ccef6cd71f35717cbacc7f1e895b3855207b33",
     "taxonomy": "license-index-exception"
   },

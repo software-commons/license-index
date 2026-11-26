@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "autoconf-exception-generic-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-autoconf",
     "edition": "autoconf-2.59-elisp-comp-generic-notice",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:8fdb65e022704da78d3dc45fb7726f9317729554682f9c94df3ee06096b8742e",
     "taxonomy": "license-index-exception"
   },

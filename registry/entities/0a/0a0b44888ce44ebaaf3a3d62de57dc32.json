@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "pddl-1-0-reference-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "open-data-commons",
     "edition": "pddl-1-0",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:09ecade0250eba538cc68145b8f5448eb44cf8340a414665f7f5c12872102faa",
     "taxonomy": "license-index-related-instrument"

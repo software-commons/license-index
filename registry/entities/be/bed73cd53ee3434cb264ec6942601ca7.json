@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "gcc-exception-2-0-note-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-glibc",
     "edition": "glibc-2.42-gcc-runtime-linking-exception-note-variant",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:b7da99f854538a38e13da5c24cfdd977fcfbd2588606ccf14b03c50b9f457cd4",
     "taxonomy": "license-index-exception"
   },

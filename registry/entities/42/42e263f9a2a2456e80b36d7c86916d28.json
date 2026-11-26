@@ -40,11 +40,12 @@
   "identity_claim": {
     "id": "sil-ofl-1-0-documentary-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "sil-open-font-license-project",
     "edition": "sil-ofl-1-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-plaintext",
     "revision": "sha256:84b1b3656866ede40c9a4794a26cce3250a8e79007b16fa9601a813eae3ef5e5",
     "taxonomy": "license-index-license"

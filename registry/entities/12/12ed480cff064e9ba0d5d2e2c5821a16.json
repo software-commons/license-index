@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "kvirc-openssl-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "kvirc-project",
     "edition": "kvirc-pinned-about-license",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:161a73a84b58eed82959bcb9b8e74128e6fe4b18b71ae0688097f17c532c009c",
     "taxonomy": "license-index-exception"
   },

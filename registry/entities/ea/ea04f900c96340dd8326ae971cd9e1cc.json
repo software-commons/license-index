@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "openjdk-assembly-exception-1-0-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "openjdk-project",
     "edition": "openjdk-assembly-exception-publisher-reference",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:56ea6c7f55997900d0f132d15eb80e549f7d090ebfea7ccdc07a91ae7230dc7a",
     "taxonomy": "license-index-exception"
   },

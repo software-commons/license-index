@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "osl-2-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "open-source-initiative",
     "edition": "osl-2-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "lifecycle-context": "rosen-pre-3-0-references",
     "representation": "archived-osi-plaintext",
     "revision": "sha256:f16caf37737d270c42c451ea92dd5591979f269a7cc130a6f809c6c8cc2f9d3b",

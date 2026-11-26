@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "afl-2-1-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "open-source-initiative",
     "edition": "afl-2-1",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "lifecycle-context": "rosen-pre-3-0-references",
     "representation": "archived-osi-html",
     "revision": "sha256:70e1b6f72cd73f7593c6659abd072b8b28157112b15dba4d24f92c62ebbbfa43",

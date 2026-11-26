@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "gstreamer-exception-2005-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnome-totem-project",
     "edition": "totem-1-0-5-2005-header",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:99c9c10f0da56255db69ae6bd27dd63882f689ac52f5e66500f70450d96737bf",
     "taxonomy": "license-index-exception"
   },

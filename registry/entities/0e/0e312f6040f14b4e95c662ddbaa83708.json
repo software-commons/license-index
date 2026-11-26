@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "independent-modules-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "free-pascal-development-team",
     "edition": "free-pascal-322-rtl-copying-fpc",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:f65c27c43c289a842185f7948820a01b8eda29021cb0ec0dcdd3d646def9cf69",
     "taxonomy": "license-index-exception"
   },

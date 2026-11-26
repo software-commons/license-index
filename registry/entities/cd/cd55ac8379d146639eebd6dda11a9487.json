@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "rsync-linking-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "rsync-project",
     "edition": "rsync-pinned-copying",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:85c19ea50a224c2d0067a69c083584e5717b40b76610ec1218f91385775067dd",
     "taxonomy": "license-index-exception"
   },

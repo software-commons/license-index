@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "stunnel-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "stunnel-project",
     "edition": "stunnel-pinned-copying",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:716f18b10eac3f1875ea2205418dd1b0084bd210bd17d615df6b180cfc4d65b6",
     "taxonomy": "license-index-exception"
   },

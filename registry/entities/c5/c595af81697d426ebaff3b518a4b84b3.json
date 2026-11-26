@@ -42,11 +42,12 @@
   "identity_claim": {
     "id": "fsf-lgpl-2-1-documentary-license-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "free-software-foundation",
     "edition": "gnu-lgpl-2.1",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
     "taxonomy": "license-index-license"
   },

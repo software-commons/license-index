@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "ocaml-lgpl-linking-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "ocaml-project",
     "edition": "ocaml-commit-8eb41f72ded84df884c3671734c947f612091f84",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:65f47d3bf5a921011ac7fa30f23d54f9dffbe7683921eeb116d5ce8dc26ff0c1",
     "taxonomy": "license-index-exception"
   },

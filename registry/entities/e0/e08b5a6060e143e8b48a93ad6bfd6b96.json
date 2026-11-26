@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "nlod-1-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "norwegian-digitalisation-agency",
     "edition": "nlod-1-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:cf9bbe13bb0fee9190be7002fa40c4095b42963678bf729c7011359d30f4940c",
     "taxonomy": "license-index-license"

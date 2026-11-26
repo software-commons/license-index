@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "texinfo-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-automake",
     "edition": "automake-texinfo-tex-18416d6-2021-04-25-21",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:1d33f69c72e9bcd880fd02f2153c6475fc887042ae87569256cd8be009ce83b4",
     "taxonomy": "license-index-exception"
   },

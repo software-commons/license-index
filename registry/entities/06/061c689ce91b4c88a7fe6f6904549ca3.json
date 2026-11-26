@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "classpath-exception-2-0-short-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "lazarus-development-team",
     "edition": "lazarus-42-copying-modified-lgpl",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:0624a5291021279446fbea96cdd33527d09c64c87d5616f789b2521e2a9e3d71",
     "taxonomy": "license-index-exception"
   },

@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "autoconf-exception-2-0-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-autoconf",
     "edition": "autoconf-2.59-configure-output-notice",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:2d5a6e2d219173514495e2e409fa4343643243cd41483f02ae8d3e8b434822fa",
     "taxonomy": "license-index-exception"
   },

@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "odbl-1-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "open-data-commons",
     "edition": "odbl-1-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:85bc21fb2c00b2effb9202b2aa785934ce5a05df954e17cbd2a1f7c10c04c633",
     "taxonomy": "license-index-license"

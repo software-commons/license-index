@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "autoconf-exception-macro-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-autoconf-archive",
     "edition": "autoconf-archive-ax-pthread-macro-notice",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:8bd2248e78260451101fdf107606be932541ccd53c0b70498ba051db685c7c5c",
     "taxonomy": "license-index-exception"
   },

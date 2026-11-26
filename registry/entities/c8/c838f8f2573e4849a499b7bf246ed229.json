@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "classpath-exception-2-0-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-classpath-project",
     "edition": "gnu-classpath-095-java-lang-package",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:e7f33a8a79767aa5604d94b12589b75653714c19c54427feb76329a4c3f34fbb",
     "taxonomy": "license-index-exception"
   },

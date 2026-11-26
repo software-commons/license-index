@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "gnu-compiler-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "gnu-gcc-libiberty",
     "edition": "gnu-compiler-exception-gcc-14.2.0-libiberty",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:89bac0c3c15e3f7db2d320e2f4f63dc249f8e0d415eb85689615bfaa7d6f6728",
     "taxonomy": "license-index-exception"
   },

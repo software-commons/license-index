@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "osl-3-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "open-source-initiative",
     "edition": "osl-3-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "osi-cms-json",
     "revision": "sha256:9180dadd0af121c9805a38cda6b947aa7526ecd49845fc1c94b4dcd7b93c15e6",
     "taxonomy": "license-index-license"

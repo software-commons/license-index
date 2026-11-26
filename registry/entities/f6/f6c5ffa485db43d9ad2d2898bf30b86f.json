@@ -42,11 +42,12 @@
   "identity_claim": {
     "id": "fsf-gpl-3-0-documentary-license-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "free-software-foundation",
     "edition": "gnu-gpl-3.0",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
     "taxonomy": "license-index-license"
   },

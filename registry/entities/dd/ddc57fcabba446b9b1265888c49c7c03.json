@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "w3c-1998-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "world-wide-web-consortium",
     "edition": "w3c-1998",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:d4eedcb04dc16687b6d56b49ed06e1b55f599b8bd8e518af9773d1b7d2cf5c76",
     "taxonomy": "license-index-license"

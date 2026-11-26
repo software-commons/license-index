@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "dl-de-by-2-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "city-of-frankfurt-am-main",
     "edition": "dl-de-by-2-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "official-municipal-german-html",
     "revision": "sha256:c109b5ea9901c7d1a4b6b08e7035d3303d70e143c634f38a66eeee3a1ca55655",
     "taxonomy": "license-index-license"

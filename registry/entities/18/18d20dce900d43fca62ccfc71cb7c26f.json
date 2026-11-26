@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "llvm-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "llvm-project",
     "edition": "llvm-project-license-at-87f0227",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee",
     "taxonomy": "license-index-exception"
   },

@@ -25,11 +25,12 @@
   "identity_claim": {
     "id": "openvpn-openssl-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "openvpn-technologies-inc",
     "edition": "openvpn-2-3-18",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
     "revision": "sha256:901e7fb3bf0d250ba10b84e7b3404a907203daf60a895c2dadf12117e34dae56",
     "taxonomy": "license-index-exception"
   },
