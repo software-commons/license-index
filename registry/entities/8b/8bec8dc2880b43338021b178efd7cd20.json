@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "168d62aefb9d46a59208abfbc56e287c"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "odbl-1-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "ODbL-1.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "odbl-1-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "8bec8dc2880b43338021b178efd7cd20",
+  "identity_claim": {
+    "id": "odbl-1-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-data-commons",
+    "edition": "odbl-1-0",
+    "representation": "publisher-english-html",
+    "revision": "sha256:85bc21fb2c00b2effb9202b2aa785934ce5a05df954e17cbd2a1f7c10c04c633",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Open Data Commons Open Database License v1.0",
+  "relations": [],
+  "state": "active"
+}

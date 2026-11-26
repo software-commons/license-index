@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "odc-by-1-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Exact publisher edition identity for the documentary correspondence | controlled capture ranges [20606,20666) sha256:a9fbb1173c6f0ce6a1a5cddc3e7a409fc6a7ee47262f17163d36b33095a8a2a0",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "odc-by-1-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "odc-by-1-0-spdx-3290-correspondence-odc-by-1-0-publisher",
+  "kind": "dependency",
+  "relation": "context",
+  "revision": 1
+}

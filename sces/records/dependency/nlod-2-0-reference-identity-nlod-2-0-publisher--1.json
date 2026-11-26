@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "nlod-2-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Identified publisher edition heading or version clause and associated instrument | controlled capture ranges [29794,29856) sha256:6dae28952591be59bbd5146fe65e49db7cb206863c03e0756abe9bb7dcab7e81",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "nlod-2-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "nlod-2-0-reference-identity-nlod-2-0-publisher",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

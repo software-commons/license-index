@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "spdx-3290-nlod-1-0-generated-detail",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Pinned generated SPDX detail identifier, name and seeAlso references | controlled capture ranges [19913,20485) sha256:19f7f7cb90f948174501b78cc890207952c8e447dbe43b847fe0eb4b91282882",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "nlod-1-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "nlod-1-0-spdx-3290-correspondence-nlod-1-0-spdx",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

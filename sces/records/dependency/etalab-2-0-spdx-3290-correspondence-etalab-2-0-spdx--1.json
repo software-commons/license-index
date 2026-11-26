@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "spdx-3290-etalab-2-0-generated-detail",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Pinned generated SPDX detail identifier, name and seeAlso references | controlled capture ranges [19283,20394) sha256:e9119f649a048a4b3e983d1792de64be52e4c077e9db2cd5493fcec8f41f918e",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "etalab-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "etalab-2-0-spdx-3290-correspondence-etalab-2-0-spdx",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

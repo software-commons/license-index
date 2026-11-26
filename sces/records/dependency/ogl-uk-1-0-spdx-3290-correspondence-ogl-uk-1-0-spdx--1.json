@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "spdx-3290-ogl-uk-1-0-generated-detail",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Pinned generated SPDX detail identifier, name and seeAlso references | controlled capture ranges [13161,13610) sha256:e04804570eae003f9c473d10cba73da631933fe15173733cd8559dedbcca4517",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "ogl-uk-1-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "ogl-uk-1-0-spdx-3290-correspondence-ogl-uk-1-0-spdx",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

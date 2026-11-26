@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "ogl-uk-3-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Exact publisher edition identity for the documentary correspondence | controlled capture ranges [8768,8818) sha256:1c803360f3cfb1da81df3f9e9a5a2c5ac137d8d4f3956bcc2393a2e64b017c33",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "ogl-uk-3-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "ogl-uk-3-0-spdx-3290-correspondence-ogl-uk-3-0-publisher",
+  "kind": "dependency",
+  "relation": "context",
+  "revision": 1
+}

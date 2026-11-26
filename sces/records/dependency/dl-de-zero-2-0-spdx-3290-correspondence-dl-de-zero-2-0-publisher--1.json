@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "dl-de-zero-2-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Exact publisher edition identity for the documentary correspondence | controlled capture ranges [5097,5145) sha256:529a0deb4715bfca8244abeb76391096ab0ab26ce30651889417dd24bf004b9c",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "dl-de-zero-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "dl-de-zero-2-0-spdx-3290-correspondence-dl-de-zero-2-0-publisher",
+  "kind": "dependency",
+  "relation": "context",
+  "revision": 1
+}

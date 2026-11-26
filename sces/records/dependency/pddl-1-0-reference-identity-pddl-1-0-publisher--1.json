@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "pddl-1-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Identified publisher edition heading or version clause and associated instrument | controlled capture ranges [20621,20809) sha256:a5787e837598826d48a81e3386f1b1664c732722b7f6ea879fa299adcfeefb93",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "pddl-1-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "pddl-1-0-reference-identity-pddl-1-0-publisher",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

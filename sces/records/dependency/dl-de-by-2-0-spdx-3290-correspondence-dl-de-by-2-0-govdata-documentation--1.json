@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "dl-de-by-2-0-govdata-edition-documentation",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "GovData documentation's link to the same named attribution edition | controlled capture ranges [7942,7977) sha256:3efb628969202fa46065a8a135f8ae3a84475abca95d241526d1bb2ac5f8519f",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "dl-de-by-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "dl-de-by-2-0-spdx-3290-correspondence-dl-de-by-2-0-govdata-documentation",
+  "kind": "dependency",
+  "relation": "context",
+  "revision": 1
+}
