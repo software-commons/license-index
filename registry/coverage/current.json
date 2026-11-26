@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 91,
+      "accepted_entities": 97,
       "beyond_spdx_dispositions": {
         "accepted": 2,
         "excluded": 1,
@@ -17,10 +17,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 112,
+        "accepted": 118,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 726
+        "unresolved": 720
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 526,
-      "recorded_independently_reviewed_claims": 342,
+      "recorded_claim_revisions": 538,
+      "recorded_independently_reviewed_claims": 354,
       "recorded_invalidated_claim_revisions": 184,
-      "selected_claims": 241,
+      "selected_claims": 253,
       "status": "qualified-selection"
     },
     "research": {
@@ -107,11 +107,11 @@
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-25",
-  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-26T19:05:42Z (UTC). The retained SPDX manifest pins the census population.",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-26T19:59:50Z (UTC). The retained SPDX manifest pins the census population.",
   "predecessor": {
-    "commit": "50c659e4053032c062aa443af0b09ca67b4def30",
-    "sha256": "3a6189a69dcd17fbef56588b7ec6b2b3fba39cca33e2aaa6264fcd331a696598",
-    "snapshot": "registry/coverage/snapshots/2026-11-26-cc-generic-2x-identities.json"
+    "commit": "9dea5426048a84953453437cbd79b6deb7f1a72f",
+    "sha256": "0d0f7a9eb6cf81aac344b1b50467365a9ac1cb3c3b1512140d9740ec9f0ea08b",
+    "snapshot": "registry/coverage/snapshots/2026-11-26-cc-generic-34-identities.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -173,10 +173,11 @@
       "The retained archive registry/coverage/snapshots/2026-11-26-documentary-exception-lifecycle-verified.json at 8ff25e3ee7ca54d62a307391054fd9b94d824da0 with SHA-256 1a23620d1da7d53cb90d439b525396201a54667940af9fdb6634995dc6062ccc has the discovery census cutoff 2026-11-25. Its separate SCES qualification research cutoff is 2026-11-26T06:51:55Z.",
       "The retained archive registry/coverage/snapshots/2026-11-26-documentary-exception-lifecycle-completed.json at 8283a9ec40c5a36f7ed1f98189d08937e7ab94c8 with SHA-256 65a8de5ee488c9d48e33827f773b1e63368fba075689d7fe1ae4c7de6bbf81a0 has the discovery census cutoff 2026-11-25. Its separate SCES qualification research cutoff is 2026-11-26T15:54:05Z.",
       "Admit 12 exact Creative Commons Generic references and their scoped SPDX correspondences.",
-      "Admit 12 exact Creative Commons 3.0 Unported and 4.0 International references and their scoped SPDX correspondences."
+      "Admit 12 exact Creative Commons 3.0 Unported and 4.0 International references and their scoped SPDX correspondences.",
+      "Admit 6 exact Creative Commons 1.0 Generic references and their scoped SPDX correspondences."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-26-cc-generic-34-identities.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-26-cc-generic-10-identities.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
