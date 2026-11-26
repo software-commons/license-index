@@ -1,0 +1,38 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "fb8e3056117d4dfcac91e59f1ba21433"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "polyform-perimeter-retained-publisher-crosswalk",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "PolyForm Project Perimeter 1.0.1",
+      "origin": "https://polyformproject.org/licenses/perimeter/1.0.1.txt",
+      "revision": "sha256:5c7a5ccd847fcc285dda039e511ba013693fe979dfc5faee47f6fb59c7add337",
+      "scope": {
+        "authority": "polyform-project",
+        "discovery-origin": "sha256:db8f43dc3772608f3e5894b0d4be87c2a84eac1c0d1a76d9ce251a3f75af1447",
+        "edition": "polyform-perimeter-1.0.1"
+      }
+    }
+  ],
+  "id": "a0541aa0ad5040c9ac58d292cf1f56f3",
+  "identity_claim": {
+    "id": "polyform-perimeter-publisher-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "polyform-project",
+    "edition": "polyform-perimeter-1.0.1",
+    "revision": "sha256:5c7a5ccd847fcc285dda039e511ba013693fe979dfc5faee47f6fb59c7add337"
+  },
+  "kind": "license",
+  "name": "PolyForm Perimeter License 1.0.1",
+  "relations": [],
+  "state": "active"
+}

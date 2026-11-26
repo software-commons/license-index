@@ -1,0 +1,38 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "aeb20a58b75e4589986bad1e77e15f0b"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "polyform-shield-retained-publisher-crosswalk",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "PolyForm Project Shield 1.0.0",
+      "origin": "https://polyformproject.org/licenses/shield/1.0.0.txt",
+      "revision": "sha256:67530f8e9adfcc5d2e9d72b804500cebb7472ff84c34a6729a80a2a9be901ee6",
+      "scope": {
+        "authority": "polyform-project",
+        "discovery-origin": "sha256:2abae766dc3be2334c8c01f80109e67252b391d474dbc50826f7959d55e054bd",
+        "edition": "polyform-shield-1.0.0"
+      }
+    }
+  ],
+  "id": "287adfa284d54124a873da34e089eef2",
+  "identity_claim": {
+    "id": "polyform-shield-publisher-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "polyform-project",
+    "edition": "polyform-shield-1.0.0",
+    "revision": "sha256:67530f8e9adfcc5d2e9d72b804500cebb7472ff84c34a6729a80a2a9be901ee6"
+  },
+  "kind": "license",
+  "name": "PolyForm Shield License 1.0.0",
+  "relations": [],
+  "state": "active"
+}
