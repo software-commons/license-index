@@ -1,16 +1,18 @@
 # Research status
 
-The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-26T19:59:50Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
+The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-26T20:36:55Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
 
 The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) gives the exact UTC qualification cutoff for each of four retained documentary exception archives.
 
 | Measure | Development snapshot |
 | --- | --- |
-| Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license identifiers and one deprecated exception identifier. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside SPDX. The 840 discovery records include 720 unresolved, 118 accepted, one excluded, and one non-license. |
+| Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license identifiers and one deprecated exception identifier. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside SPDX. The 840 discovery records include 713 unresolved, 125 accepted, one excluded, and one non-license. |
 | Text coverage | Forty-five identifiers map to twenty-three offline publisher texts. The discovery ledger also records 826 pinned generated SPDX text references, 826 distinct matching-template references, and 93 nonblank header references. |
 | Installation support | Forty-two identifiers have ordinary offline unchanged-copy recipes. Two additional LGPLv3 identifiers verify an existing exact GPLv3 companion before writing the supplement offline. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
 | Explanatory research depth | 42 provisional profiles with 207 dimensions and 62 scenarios, covering 37 current license identifiers, four exception identifiers and one deprecated license identifier. Eleven dimensions remain unresolved, and two are assessed as inapplicable. See [educational research](../research/campaigns/educational-research.md) for limitations and disconfirming questions. |
-| Claim qualification | Of 538 claim revisions, 354 have a current supported independent review on record and 184 have an invalidated disposition. These totals reflect recorded dispositions. The active selection includes 253 claims and binds 97 accepted canonical entities. [Qualification report](../sces/releases/cc-generic-10-reference-0-2-14/qualification.json) |
+| Claim qualification | Of 552 claim revisions, 368 have a current supported independent review on record and 184 have an invalidated disposition. These totals reflect recorded dispositions. The active selection includes 267 claims and binds 104 accepted canonical entities. [Qualification report](../sces/releases/cc-german-ports-reference-0-2-15/qualification.json) |
+
+The German-language Creative Commons campaign adds seven independently reviewed publisher reference identities and exact SPDX documentary correspondences: one 2.0 edition and six distinct 3.0 editions. The 2.0 title does not itself name Deutschland; its governing-law sentence is separately preserved as context, without adjudicating legal effect or work-specific applicability. Captured `/legalcode` and declared `/legalcode.de` are distinct URLs whose byte equality is not established by these claims. [Campaign and receipts](../research/campaigns/cc-german-ports-identities.md).
 
 The Creative Commons 1.0 Generic campaign adds six independently reviewed publisher-reference identities and their exact SPDX documentary correspondences. The captured publisher pages refer to a draft license; the notice significance, document finality and legal effect remain unresolved. [Campaign and receipts](../research/campaigns/cc-generic-10-identities.md).
 
