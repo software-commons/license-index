@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "bdd739ed73a04fd9aefc1de0785b06a0"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "w3c-2015-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "W3C-20150513",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "w3c-2015",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "e4b47da1df5f441da28741488b2c1500",
+  "identity_claim": {
+    "id": "w3c-2015-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "world-wide-web-consortium",
+    "edition": "w3c-2015",
+    "representation": "publisher-english-html",
+    "revision": "sha256:ba6ea10efa05afc04565c8237ec18585b59bf1eba836ff86a692808a6c55e60b",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "W3C Software and Document License (2015 edition)",
+  "relations": [],
+  "state": "active"
+}

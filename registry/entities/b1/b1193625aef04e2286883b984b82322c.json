@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "180ce8854cae4ab4a11d89462552589b"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "nposl-3-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "NPOSL-3.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "nposl-3-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b1193625aef04e2286883b984b82322c",
+  "identity_claim": {
+    "id": "nposl-3-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-source-initiative",
+    "edition": "nposl-3-0",
+    "representation": "osi-cms-json",
+    "revision": "sha256:610e51461fe1a7e26685b407f37c0e67fba8819e5d0daab2eab806c1ba364e4c",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Non-Profit Open Software License 3.0",
+  "relations": [],
+  "state": "active"
+}

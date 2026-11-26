@@ -1,0 +1,130 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "4b5950c8778841d9a3042ae612ce8771",
+    "5a0da53b93514c78a6a526023297d9c8",
+    "7380230a131547e8bb6e06623eea682d",
+    "7d93af3bf73840349776686c526e41ba",
+    "a0de8388f48f41bca2d8c8ba8e3a8f34",
+    "d1d0be9e4a2d40ebab1f4caa57582c57"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "gnu-fdl-v1-1-spdx-3290-invariants-only",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "GFDL-1.1-invariants-only",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "gnu-fdl-1.1",
+        "identifier": "GFDL-1.1-invariants-only",
+        "optional-features": "at-least-one-present",
+        "upstream-release": "3.29.0",
+        "version-choice": "version-1.1-only"
+      }
+    },
+    {
+      "claim": {
+        "id": "gnu-fdl-v1-1-spdx-3290-invariants-or-later",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "GFDL-1.1-invariants-or-later",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "gnu-fdl-1.1",
+        "identifier": "GFDL-1.1-invariants-or-later",
+        "optional-features": "at-least-one-present",
+        "upstream-release": "3.29.0",
+        "version-choice": "version-1.1-or-later"
+      }
+    },
+    {
+      "claim": {
+        "id": "gnu-fdl-v1-1-spdx-3290-no-invariants-only",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "GFDL-1.1-no-invariants-only",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "gnu-fdl-1.1",
+        "identifier": "GFDL-1.1-no-invariants-only",
+        "optional-features": "all-absent",
+        "upstream-release": "3.29.0",
+        "version-choice": "version-1.1-only"
+      }
+    },
+    {
+      "claim": {
+        "id": "gnu-fdl-v1-1-spdx-3290-no-invariants-or-later",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "GFDL-1.1-no-invariants-or-later",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "gnu-fdl-1.1",
+        "identifier": "GFDL-1.1-no-invariants-or-later",
+        "optional-features": "all-absent",
+        "upstream-release": "3.29.0",
+        "version-choice": "version-1.1-or-later"
+      }
+    },
+    {
+      "claim": {
+        "id": "gnu-fdl-v1-1-spdx-3290-only",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "GFDL-1.1-only",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "gnu-fdl-1.1",
+        "identifier": "GFDL-1.1-only",
+        "optional-features": "not-specified-by-identifier",
+        "upstream-release": "3.29.0",
+        "version-choice": "version-1.1-only"
+      }
+    },
+    {
+      "claim": {
+        "id": "gnu-fdl-v1-1-spdx-3290-or-later",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "GFDL-1.1-or-later",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "gnu-fdl-1.1",
+        "identifier": "GFDL-1.1-or-later",
+        "optional-features": "not-specified-by-identifier",
+        "upstream-release": "3.29.0",
+        "version-choice": "version-1.1-or-later"
+      }
+    }
+  ],
+  "id": "10e1eed7457342f495be30282c2a7cd0",
+  "identity_claim": {
+    "id": "gnu-fdl-v1-1-edition-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "free-software-foundation",
+    "edition": "gnu-fdl-1.1",
+    "revision": "gnu-fdl-1.1-2000-03"
+  },
+  "kind": "license",
+  "name": "GNU Free Documentation License version 1.1",
+  "relations": [],
+  "state": "active"
+}

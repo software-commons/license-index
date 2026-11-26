@@ -1,0 +1,40 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "d8fe830ff1fb4da5af1e948d1cc56e14"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "osl-2-1-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OSL-2.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "osl-2-1",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "e228e6ec1168475399eb37380f9401fc",
+  "identity_claim": {
+    "id": "osl-2-1-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-source-initiative",
+    "edition": "osl-2-1",
+    "lifecycle-context": "rosen-pre-3-0-references",
+    "representation": "osi-cms-json",
+    "revision": "sha256:9624ca83f5c52a16f4e5f6216d17b51c5aa9483d040dedb9517ec2366bfe8388",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Open Software License 2.1",
+  "relations": [],
+  "state": "historical"
+}
