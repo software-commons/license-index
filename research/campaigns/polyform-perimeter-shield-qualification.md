@@ -32,7 +32,7 @@ The revision 2 crosswalk dispositions preserve these exact runs. Later identity 
 
 ## Canonical admission and qualification
 
-The active sixteen-claim selection retains the eight MIT assertions and adds the eight supported PolyForm assertions. Its frozen Git source binds both distinct entity records and their exact retained discovery origins. Qualification and public release have separate authorization. [Qualification report](../../sces/releases/mit-polyform-reference-0-2-3/qualification.json).
+The active sixteen-claim selection retains the eight MIT assertions and adds the eight supported PolyForm assertions. Its frozen Git source binds both distinct entity records and their exact retained discovery origins. Qualification and public release have separate authorization. [Qualification report](../../sces/releases/mit-polyform-reference-0-2-4/qualification.json).
 
 The revision 3 identity records retain the named publisher forms and identify state as a License Index field. The four documentary bindings retain the six-month revalidation interval justified above. [Current qualification scope](mit-current-source-policy-reverification.md#canonical-scope-correction).
 
