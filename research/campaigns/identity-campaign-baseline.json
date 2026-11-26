@@ -1,0 +1,27 @@
+{
+  "accepted_crosswalks": 4,
+  "accepted_relationships": 0,
+  "candidate_id_encoding": "sorted opaque UTF-8 IDs, one LF after each",
+  "canonical_disposition_at_start": {
+    "accepted": 4,
+    "excluded": 1,
+    "non-license": 1,
+    "unresolved": 834
+  },
+  "catalog": {
+    "manifest": "research/sources/spdx-3.29.0.json",
+    "manifest_sha256": "9640b15d6839dedc6fd9a88e2c3b2dea7165f02af3ab82ef3fbee28a20cff7cb",
+    "spdx_list": "3.29.0"
+  },
+  "commit": "78d4e50bedabc573888068032eb8cd5bcb234aaf",
+  "discovery_total": 840,
+  "membership": {
+    "exception": 86,
+    "license": 740,
+    "publisher": 14
+  },
+  "prior_membership_commit": "110c8d544300202b623601f6bf316b62980f0299",
+  "registry_coverage_sha256": "9c545007700ffc0e6d21e2d7d774bb101734ec34178524edcb97fb05203c3cc7",
+  "registry_coverage_snapshot": "registry/coverage/snapshots/2026-11-25-cc0-identity-admission.json",
+  "sorted_candidate_ids_sha256": "3c5d438fd9d4b97772b3f8e73b54705dc6b2406738b9e89e29b49831822cb30e"
+}

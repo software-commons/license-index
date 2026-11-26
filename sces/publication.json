@@ -11,6 +11,36 @@
       "revision": 3
     },
     {
+      "id": "dl-de-by-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "dl-de-by-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "dl-de-zero-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "dl-de-zero-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "etalab-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "etalab-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "mit-osi-covered-work-redistribution-notice",
       "kind": "claim",
       "revision": 2
@@ -49,6 +79,96 @@
       "id": "mit-spdx-3290-template-detail-byte-boundary",
       "kind": "claim",
       "revision": 3
+    },
+    {
+      "id": "nlod-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "nlod-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "nlod-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "nlod-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "odbl-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "odbl-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "odc-by-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "odc-by-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-canada-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-canada-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-uk-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-uk-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-uk-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-uk-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-uk-3-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ogl-uk-3-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "pddl-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "pddl-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
     },
     {
       "id": "polyform-perimeter-publisher-identity",
@@ -92,15 +212,16 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.5",
-  "evaluated_at": "2026-11-26T00:39:18Z",
+  "dataset_version": "0.2.6",
+  "evaluated_at": "2026-11-26T01:58:51Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
     "The historical Windows installer specimen falls outside this reference-form selection. Its pinned implementation and controlled-observation evidence remain in the registry.",
     "Cross-representation equivalence, historical edition comparison, standalone republication of the PolyForm texts, SPDX equivalence, and project-specific interpretation or compliance.",
     "All unselected claims, other instruments, and provisional profiles.",
-    "CC0 rights and application claims outside the selected identity and SPDX correspondence."
+    "CC0 rights and application claims outside the selected identity and SPDX correspondence.",
+    "Public-data translations outside the identified representations, application of terms to any particular work, package redistribution and installation."
   ],
   "limitations": [
     "The MIT publisher identity and four terms apply to the captured OSI record 395 CMS revision modified 2026-11-24.",
@@ -108,15 +229,16 @@
     "The PolyForm documentary bindings cover the named publisher forms and exact indexed discovery origins.",
     "The selected competition and notice claims refer to the exact inspected clauses and do not determine particular work grants, products, enforceability or jurisdiction.",
     "Each selected assertion retains its own conditions and limits.",
-    "The CC0 identity refers to the exact English publisher edition. Its SPDX crosswalk concerns documentary correspondence for the pinned generated-data release."
+    "The CC0 identity refers to the exact English publisher edition. Its SPDX crosswalk concerns documentary correspondence for the pinned generated-data release.",
+    "Public-data crosswalks identify documentary edition correspondence. Publisher and SPDX representations can differ."
   ],
   "previous_report": {
-    "path": "sces/releases/mit-polyform-reference-0-2-4/qualification.json",
-    "sha256": "458e0075f4df8605f93aca6a4e93eb1f65b260e3096111fbde8dc23efd8a40d2"
+    "path": "sces/releases/mit-polyform-cc0-reference-0-2-5/qualification.json",
+    "sha256": "64be9af1bd821e094bec2e85c238ad2cf3bd1666a3ae48a9fe1dceec45da240d"
   },
-  "release": "mit-polyform-cc0-reference-0-2-5",
-  "research_cutoff": "2026-11-26T00:39:18Z",
+  "release": "mit-polyform-cc0-public-data-reference-0-2-6",
+  "research_cutoff": "2026-11-26T01:58:51Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence.",
-  "source_commit": "3cff4adea2245a262136161cd905a4415e39fa6e"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0.",
+  "source_commit": "a227d30455f90c639e43defe0f1c29f2e6e6986a"
 }
