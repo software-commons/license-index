@@ -732,7 +732,7 @@ def run(args, github, *, token_input=None, publisher=write_check):
         binding.update(review_policy=policy_sources, review_policy_sha256=sha256(policy_manifest).hexdigest())
         save(audit / "review-policy-manifest.json", policy_manifest)
     history_files = {}
-    if getattr(args, "review_policy_required", False) and len(_COVERAGE_PATCH_PATH.findall(diff)) > 1:
+    if getattr(args, "review_policy_required", False) and _COVERAGE_PATCH_PATH.search(diff):
         history_receipt, history, history_files = load_review_history(snapshot.base, snapshot.head)
         binding.update(review_history=history, review_history_sha256=history["sha256"])
         save(audit / "review-history-receipt.json", history_receipt)

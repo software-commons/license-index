@@ -483,6 +483,35 @@ class ReviewGateTests(unittest.TestCase):
         with self.assertRaisesRegex(DataError, "lacks exact selected SCES"):
             review_result(make_trace(verdict=verdict, evidence=first_batch), binding, "abc", PATCH, evidence)
 
+    def test_protected_history_is_required_for_a_single_coverage_snapshot(self):
+        coverage_diff = (
+            b"diff --git a/registry/coverage/snapshots/new.json b/registry/coverage/snapshots/new.json\n"
+        )
+        history_bytes = b"synthetic exact history archive"
+        digest = sha256(history_bytes).hexdigest()
+        receipt = {"sha256": digest}
+        github = Mock(get_pull=Mock(return_value=SNAPSHOT))
+        for diff, number in ((PATCH, 0), (PATCH + coverage_diff, 1),
+                             (PATCH + coverage_diff + coverage_diff, 2)):
+            with (self.subTest(coverage_snapshots=number), TemporaryDirectory() as directory,
+                  patch("tools.review_gate.capture_diff", return_value=("e" * 40, diff)),
+                  patch("tools.review_gate.load_review_policy", return_value=(b"{}\n", {}, {})),
+                  patch("tools.review_gate.load_review_history",
+                        return_value=(b"{}\n", receipt, {"review-history.zip": history_bytes})) as history):
+                args = SimpleNamespace(state_dir=Path(directory), mode="inspect", pull=1, app_id=None,
+                                       review_policy_required=True)
+                result = run(args, github)
+                if number == 0:
+                    history.assert_not_called()
+                    self.assertNotIn("review_history_sha256", result["binding"])
+                    continue
+                history.assert_called_once_with(SNAPSHOT.base, SNAPSHOT.head)
+                self.assertEqual(result["binding"]["review_history_sha256"], digest)
+                self.assertEqual(result["binding"]["review_history"], receipt)
+                history.side_effect = DataError("The exact history is absent")
+                with self.assertRaisesRegex(DataError, "exact history is absent"):
+                    run(args, github)
+
     def test_stages_exact_selected_bytes_and_requires_them_in_review(self):
         evidence = {"sces/releases/r/claims.json": b"published bytes",
                     "sces/records/verification/example--1.json": b"unchanged verification"}
