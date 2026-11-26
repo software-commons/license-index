@@ -83,9 +83,9 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 372,
+      "recorded_claim_revisions": 411,
       "recorded_independently_reviewed_claims": 294,
-      "recorded_invalidated_claim_revisions": 78,
+      "recorded_invalidated_claim_revisions": 117,
       "selected_claims": 193,
       "status": "qualified-selection"
     },
@@ -109,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "1912f88f76054a03e56edc61b4c997a94686dba2",
-    "sha256": "28cc8f19c56c2e35f74297bb3ff649bd9b4040ccbae7e29ada0bf1f8bbd9362b",
-    "snapshot": "registry/coverage/snapshots/2026-11-26-historical-documentary-identities.json"
+    "commit": "3ec5b437f9198d8e4d3642de9378cd3c2a7874e6",
+    "sha256": "87f72d6e79246a9aa36c2fc8177b6e0fb48f7a835dee8dc06f211839c5f5018e",
+    "snapshot": "registry/coverage/snapshots/2026-11-26-documentary-exception-identities.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -164,10 +164,11 @@
       "Admit the exact CC0 1.0 Universal English reference and scoped SPDX documentary correspondence.",
       "Admit 12 exact public-data publisher representations and their pinned SPDX documentary crosswalks.",
       "Admit 19 publisher edition identities and 37 documentary SPDX correspondences.",
-      "Admit 32 publisher edition identities and 35 documentary SPDX correspondences."
+      "Admit 32 publisher edition identities and 35 documentary SPDX correspondences.",
+      "Preserve the original incoming snapshot at its exact cutoff and record the verified evidence successors."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-26-documentary-exception-identities.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-26-documentary-exception-identities-verified.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
