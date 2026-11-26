@@ -24,11 +24,12 @@
   "identity_claim": {
     "id": "polyform-shield-publisher-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "polyform-project",
     "edition": "polyform-shield-1.0.0",
+    "index-lifecycle-decision": "documentary-reference-classifications-2026-11-26",
     "revision": "sha256:67530f8e9adfcc5d2e9d72b804500cebb7472ff84c34a6729a80a2a9be901ee6"
   },
   "kind": "license",

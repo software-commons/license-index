@@ -116,11 +116,12 @@
   "identity_claim": {
     "id": "gnu-fdl-v1-2-edition-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "free-software-foundation",
     "edition": "gnu-fdl-1.2",
+    "index-lifecycle-decision": "documentary-reference-classifications-2026-11-26",
     "revision": "gnu-fdl-1.2-2002-11"
   },
   "kind": "license",

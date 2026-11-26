@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "mit-osi-reference-form-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "open-source-initiative",
     "edition": "osi-mit-reference-form",
+    "index-lifecycle-decision": "documentary-reference-classifications-2026-11-26",
     "revision": "osi-record-395-2026-11-24T10:18:15Z"
   },
   "kind": "license",
