@@ -1,0 +1,40 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "8ec77527cda94ba2beb7361f5384793f"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc0-10-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "CC0-1.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "cc0-1.0-universal",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "42f54e04dc4a46c0982aeaa88c3f707c",
+  "identity_claim": {
+    "id": "cc0-10-canonical-identity-mapping",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc0-1.0-universal",
+    "provenance": "sha256:a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "representation": "publisher-english-plaintext",
+    "revision": "sha256:a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "taxonomy": "license-index-related-instrument"
+  },
+  "kind": "related-instrument",
+  "name": "CC0 1.0 Universal",
+  "relations": [],
+  "state": "active"
+}
