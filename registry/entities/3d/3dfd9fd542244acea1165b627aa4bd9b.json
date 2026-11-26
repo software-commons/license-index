@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "0daeba0ef0c94da4839b8f5bfd011510"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-nc-sa-2-0-de-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-NC-SA-2.0-DE",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-nc-sa-2-0-de-publisher-reference",
+        "revision": "sha256:d88be489f05079a292baa8faf4bdf81153c2748198da6d4a654428993749cea4",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "3dfd9fd542244acea1165b627aa4bd9b",
+  "identity_claim": {
+    "id": "cc-by-nc-sa-2-0-de-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-nc-sa-2-0-de-publisher-reference",
+    "index-lifecycle-decision": "cc-german-ports-classifications-2026-11-26",
+    "revision": "sha256:d88be489f05079a292baa8faf4bdf81153c2748198da6d4a654428993749cea4",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Namensnennung — Nicht-kommerziell — Weitergabe unter gleichen Bedingungen 2.0",
+  "relations": [],
+  "state": "active"
+}

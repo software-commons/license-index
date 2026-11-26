@@ -1,0 +1,7 @@
+# Creative Commons German-language documentary identities
+
+- stage-cc-german-20-a-lifecycle: 1 exact mappings. [Research receipts](../../sces/artifacts/stage-cc-german-20-a-lifecycle/research-receipts.jsonl) · [Independent verification](../../sces/artifacts/stage-cc-german-20-a-lifecycle/independent-review-receipts.jsonl)
+- stage-cc-german-30-a-lifecycle: 3 exact mappings. [Research receipts](../../sces/artifacts/stage-cc-german-30-a-lifecycle/research-receipts.jsonl) · [Independent verification](../../sces/artifacts/stage-cc-german-30-a-lifecycle/independent-review-receipts.jsonl)
+- stage-cc-german-30-b-lifecycle: 3 exact mappings. [Research receipts](../../sces/artifacts/stage-cc-german-30-b-lifecycle/research-receipts.jsonl) · [Independent verification](../../sces/artifacts/stage-cc-german-30-b-lifecycle/independent-review-receipts.jsonl)
+
+These claims identify the captured publisher references and their SPDX documentary correspondences. The Index lifecycle value is editorial. Six 3.0 titles name Deutschland; the 2.0 title does not. The 2.0 governing-law sentence is separately cited as context; its legal effect and work-specific applicability are not adjudicated. The captured /legalcode pages and publisher-declared /legalcode.de URLs are distinct; byte equality is not established by these claims. Publisher and SPDX labels do not establish text or legal equivalence. Unselected editions, redistribution rights and installation remain separate.
