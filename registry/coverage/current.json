@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 16,
+      "accepted_entities": 35,
       "beyond_spdx_dispositions": {
         "accepted": 2,
         "excluded": 1,
@@ -17,10 +17,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 16,
+        "accepted": 53,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 822
+        "unresolved": 785
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 221,
-      "recorded_independently_reviewed_claims": 164,
-      "recorded_invalidated_claim_revisions": 57,
-      "selected_claims": 42,
+      "recorded_claim_revisions": 277,
+      "recorded_independently_reviewed_claims": 199,
+      "recorded_invalidated_claim_revisions": 78,
+      "selected_claims": 98,
       "status": "qualified-selection"
     },
     "research": {
@@ -109,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "78d4e50bedabc573888068032eb8cd5bcb234aaf",
-    "sha256": "9c545007700ffc0e6d21e2d7d774bb101734ec34178524edcb97fb05203c3cc7",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-identity-admission.json"
+    "commit": "802591ce52a39c8d573d2a47e9ef757ed90baf59",
+    "sha256": "e55b510ca3fd0163c21b2c04c4d2b01e5c7a11a1c88006ca65e9a8b7228a529d",
+    "snapshot": "registry/coverage/snapshots/2026-11-26-public-data-identities.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -162,10 +162,11 @@
       "Bind the corrected MIT and PolyForm identity scope notes and preserve the prior verification history.",
       "Revalidate each PolyForm crosswalk using the earlier and accepted discovery snapshots, and preserve the earlier verification history.",
       "Admit the exact CC0 1.0 Universal English reference and scoped SPDX documentary correspondence.",
-      "Admit 12 exact public-data publisher representations and their pinned SPDX documentary crosswalks."
+      "Admit 12 exact public-data publisher representations and their pinned SPDX documentary crosswalks.",
+      "Admit 19 publisher edition identities and 37 documentary SPDX correspondences."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-26-public-data-identities.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-26-historical-documentary-identities.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

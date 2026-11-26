@@ -1,6 +1,56 @@
 {
   "claims": [
     {
+      "id": "afl-1-1-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-1-1-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-1-2-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-1-2-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-2-1-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-2-1-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-3-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "afl-3-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc0-10-canonical-identity-mapping",
       "kind": "claim",
       "revision": 3
@@ -39,6 +89,111 @@
       "id": "etalab-2-0-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "gnu-fdl-v1-1-edition-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-1-spdx-3290-invariants-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-1-spdx-3290-invariants-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-1-spdx-3290-no-invariants-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-1-spdx-3290-no-invariants-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-1-spdx-3290-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-1-spdx-3290-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-edition-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-spdx-3290-invariants-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-spdx-3290-invariants-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-spdx-3290-no-invariants-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-spdx-3290-no-invariants-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-spdx-3290-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-2-spdx-3290-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-edition-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-spdx-3290-invariants-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-spdx-3290-invariants-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-spdx-3290-no-invariants-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-spdx-3290-no-invariants-or-later",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-spdx-3290-only",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "gnu-fdl-v1-3-spdx-3290-or-later",
+      "kind": "claim",
+      "revision": 2
     },
     {
       "id": "mit-osi-covered-work-redistribution-notice",
@@ -101,6 +256,16 @@
       "revision": 1
     },
     {
+      "id": "nposl-3-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "nposl-3-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "odbl-1-0-reference-identity",
       "kind": "claim",
       "revision": 1
@@ -117,6 +282,31 @@
     },
     {
       "id": "odc-by-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ofl-1-0-rfn-spdx-3290-documentary-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ofl-1-0-spdx-3290-documentary-correspondence-scope-aligned",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ofl-1-1-no-rfn-spdx-3290-documentary-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ofl-1-1-rfn-spdx-3290-documentary-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "ofl-1-1-spdx-3290-documentary-correspondence-scope-aligned",
       "kind": "claim",
       "revision": 1
     },
@@ -157,6 +347,56 @@
     },
     {
       "id": "ogl-uk-3-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-1-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-1-1-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-1-1-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-2-1-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-2-1-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-3-0-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-3-0-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -209,11 +449,51 @@
       "id": "polyform-shield-retained-publisher-crosswalk",
       "kind": "claim",
       "revision": 3
+    },
+    {
+      "id": "sil-ofl-1-0-documentary-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "sil-ofl-1-1-documentary-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "w3c-1998-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "w3c-1998-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "w3c-2002-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "w3c-2002-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "w3c-2015-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "w3c-2015-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.6",
-  "evaluated_at": "2026-11-26T01:58:51Z",
+  "dataset_version": "0.2.7",
+  "evaluated_at": "2026-11-26T02:47:52Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -221,7 +501,8 @@
     "Cross-representation equivalence, historical edition comparison, standalone republication of the PolyForm texts, SPDX equivalence, and project-specific interpretation or compliance.",
     "All unselected claims, other instruments, and provisional profiles.",
     "CC0 rights and application claims outside the selected identity and SPDX correspondence.",
-    "Public-data translations outside the identified representations, application of terms to any particular work, package redistribution and installation."
+    "Public-data translations outside the identified representations, application of terms to any particular work, package redistribution and installation.",
+    "Project-specific eligibility, generalized compatibility, installation and distribution rights outside the selected documentary claims."
   ],
   "limitations": [
     "The MIT publisher identity and four terms apply to the captured OSI record 395 CMS revision modified 2026-11-24.",
@@ -230,15 +511,16 @@
     "The selected competition and notice claims refer to the exact inspected clauses and do not determine particular work grants, products, enforceability or jurisdiction.",
     "Each selected assertion retains its own conditions and limits.",
     "The CC0 identity refers to the exact English publisher edition. Its SPDX crosswalk concerns documentary correspondence for the pinned generated-data release.",
-    "Public-data crosswalks identify documentary edition correspondence. Publisher and SPDX representations can differ."
+    "Public-data crosswalks identify documentary edition correspondence. Publisher and SPDX representations can differ.",
+    "Edition and identifier correspondence preserves the recorded distinctions among publisher versions and SPDX identifier choices."
   ],
   "previous_report": {
-    "path": "sces/releases/mit-polyform-cc0-reference-0-2-5/qualification.json",
-    "sha256": "64be9af1bd821e094bec2e85c238ad2cf3bd1666a3ae48a9fe1dceec45da240d"
+    "path": "sces/releases/mit-polyform-cc0-public-data-reference-0-2-6/qualification.json",
+    "sha256": "1ffe9cd93216d5676221395ee7882c0dca12ebacef1da2481d8b05f8dfa46677"
   },
-  "release": "mit-polyform-cc0-public-data-reference-0-2-6",
-  "research_cutoff": "2026-11-26T01:58:51Z",
+  "release": "historical-documentary-reference-0-2-7",
+  "research_cutoff": "2026-11-26T02:47:52Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0.",
-  "source_commit": "a227d30455f90c639e43defe0f1c29f2e6e6986a"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences.",
+  "source_commit": "de77c3aa723db8f198befe5776b96ddbfe8b481c"
 }

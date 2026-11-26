@@ -1,0 +1,40 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "140151360b8940c4b730b4b340c8d5b3"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "afl-1-1-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "AFL-1.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "afl-1-1",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "670052713e3540089cf5605f244a2dde",
+  "identity_claim": {
+    "id": "afl-1-1-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-source-initiative",
+    "edition": "afl-1-1",
+    "lifecycle-context": "rosen-pre-3-0-references",
+    "representation": "archived-osi-html",
+    "revision": "sha256:da11e4eb830247b72de9bf85a7d30455855973a537b79d72e3e81844bb44012e",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Academic Free License v1.1",
+  "relations": [],
+  "state": "historical"
+}

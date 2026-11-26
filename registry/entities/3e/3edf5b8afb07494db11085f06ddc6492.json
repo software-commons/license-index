@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "b076a27c0a924b8eba751e53da75ca5c"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "w3c-2002-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "W3C",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "w3c-2002",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "3edf5b8afb07494db11085f06ddc6492",
+  "identity_claim": {
+    "id": "w3c-2002-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "world-wide-web-consortium",
+    "edition": "w3c-2002",
+    "representation": "publisher-english-html",
+    "revision": "sha256:b297963744c1fd2561233e56cddafaf1c4f6584a3ce59558b0221c2951b8f244",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "W3C Software Notice and License (2002 edition)",
+  "relations": [],
+  "state": "active"
+}

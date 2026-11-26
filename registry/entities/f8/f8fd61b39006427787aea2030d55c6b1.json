@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "151e1514ffc44a9490f597e9cdcd428e"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "osl-3-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OSL-3.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "osl-3-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "f8fd61b39006427787aea2030d55c6b1",
+  "identity_claim": {
+    "id": "osl-3-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-source-initiative",
+    "edition": "osl-3-0",
+    "representation": "osi-cms-json",
+    "revision": "sha256:9180dadd0af121c9805a38cda6b947aa7526ecd49845fc1c94b4dcd7b93c15e6",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Open Software License 3.0",
+  "relations": [],
+  "state": "active"
+}

@@ -1,0 +1,72 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "26cdb02d95c74fafa50c8918840f3866",
+    "6b233347baf64888a5d72848e9606a62",
+    "fd692d709fae419391da67b6cd243301"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "ofl-1-1-spdx-3290-documentary-correspondence-scope-aligned",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OFL-1.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "sil-ofl-1-1",
+        "spdx-rfn-choice": "no-rfn-status-assertion",
+        "upstream-release": "3.29.0"
+      }
+    },
+    {
+      "claim": {
+        "id": "ofl-1-1-rfn-spdx-3290-documentary-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OFL-1.1-RFN",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "sil-ofl-1-1",
+        "spdx-rfn-choice": "present",
+        "upstream-release": "3.29.0"
+      }
+    },
+    {
+      "claim": {
+        "id": "ofl-1-1-no-rfn-spdx-3290-documentary-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OFL-1.1-no-RFN",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "sil-ofl-1-1",
+        "spdx-rfn-choice": "absent",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "6b04083002484bb7b9bba9b1cf8f27a0",
+  "identity_claim": {
+    "id": "sil-ofl-1-1-documentary-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "sil-open-font-license-project",
+    "edition": "sil-ofl-1-1",
+    "representation": "publisher-english-plaintext",
+    "revision": "sha256:1d361a8f8e8ce6e68457dcd93fb56e162e6baa3bbb7e7573a290d44399f6b57e",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "SIL Open Font License 1.1",
+  "relations": [],
+  "state": "active"
+}
