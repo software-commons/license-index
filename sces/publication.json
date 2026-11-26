@@ -621,6 +621,16 @@
       "revision": 1
     },
     {
+      "id": "eupl-1-2-documentary-license-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "eupl-1-2-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
       "id": "fsf-gpl-2-0-documentary-license-identity",
       "kind": "claim",
       "revision": 3
@@ -1337,8 +1347,8 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.15",
-  "evaluated_at": "2026-11-26T20:36:55Z",
+  "dataset_version": "0.2.16",
+  "evaluated_at": "2026-11-26T21:22:09Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -1364,15 +1374,16 @@
     "These Creative Commons correspondences cover named reference editions and documentary labels; publisher and SPDX representations are distinct.",
     "The captured publisher /legalcode pages declare canonical /legalcode.en URLs, but their byte equality is not established. Publisher NoDerivs or NoDerivatives and SPDX No Derivatives are documentary labels; publisher HTML and SPDX records are distinct representations.",
     "The captured pages refer to a draft license; the notice significance, document finality and legal effect remain unresolved. Captured /legalcode and declared /legalcode.en are separate URLs with no established byte equality. The publisher NoDerivs-NonCommercial naming order and SPDX NC-ND identifier are distinct documentary labels.",
-    "The 2.0 German-language title does not itself name Deutschland; its German governing-law sentence is separately cited as context. The effect of that sentence and work-specific jurisdiction are not adjudicated. Publisher /legalcode and declared /legalcode.de are distinct URLs whose byte equality is not established by these claims."
+    "The 2.0 German-language title does not itself name Deutschland; its German governing-law sentence is separately cited as context. The effect of that sentence and work-specific jurisdiction are not adjudicated. Publisher /legalcode and declared /legalcode.de are distinct URLs whose byte equality is not established by these claims.",
+    "The directly cited Commission UTF-8 text is not asserted byte- or legally equivalent to the EUR-Lex annex or other representations. EUPL 1.0 and 1.1 documentary mappings remain provisional. No license terms, work-specific applicability, text reuse or publication rights are adjudicated."
   ],
   "previous_report": {
-    "path": "sces/releases/cc-generic-10-reference-0-2-14/qualification.json",
-    "sha256": "bfea7e0e60b21978e2640e4bc5bdc912b7440211fb53f89b88805300150588b8"
+    "path": "sces/releases/cc-german-ports-reference-0-2-15/qualification.json",
+    "sha256": "04109b16c14cab7f664f225c1d6cb28a4c5fd8b47d5a38829628db9528f90ee7"
   },
-  "release": "cc-german-ports-reference-0-2-15",
-  "research_cutoff": "2026-11-26T20:36:55Z",
+  "release": "eupl-12-reference-0-2-16",
+  "research_cutoff": "2026-11-26T21:22:09Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks.",
-  "source_commit": "2484ed595ff7c745ed4d2f1e4d1c6e49c97845c3"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence.",
+  "source_commit": "fbbba63b27451eb5fe9cde4d3ea161026d001d73"
 }

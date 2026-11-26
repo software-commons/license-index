@@ -1,0 +1,185 @@
+{
+  "assessment": {
+    "authentic_text": {
+      "bundled_publisher_text_files": 23,
+      "bundled_publisher_text_identities": 45,
+      "spdx_header_references": 93,
+      "spdx_matching_template_references": 826,
+      "spdx_text_references": 826
+    },
+    "catalog": {
+      "accepted_entities": 105,
+      "beyond_spdx_dispositions": {
+        "accepted": 2,
+        "excluded": 1,
+        "non-license": 1,
+        "unresolved": 10
+      },
+      "beyond_spdx_leads": 14,
+      "candidate_dispositions": {
+        "accepted": 126,
+        "excluded": 1,
+        "non-license": 1,
+        "unresolved": 712
+      },
+      "spdx_deprecated_exceptions": 1,
+      "spdx_deprecated_licenses": 32,
+      "spdx_deprecated_with_replacement_guidance": 30,
+      "spdx_exceptions": 86,
+      "spdx_historical_only": 0,
+      "spdx_licenses": 740
+    },
+    "installation": {
+      "offline": [
+        "AGPL-3.0-only",
+        "AGPL-3.0-or-later",
+        "Apache-2.0",
+        "CC-BY-4.0",
+        "CC-BY-NC-4.0",
+        "CC-BY-NC-ND-4.0",
+        "CC-BY-NC-SA-4.0",
+        "CC-BY-ND-4.0",
+        "CC-BY-SA-4.0",
+        "CC0-1.0",
+        "EPL-1.0",
+        "EPL-2.0",
+        "GFDL-1.1-invariants-only",
+        "GFDL-1.1-invariants-or-later",
+        "GFDL-1.1-no-invariants-only",
+        "GFDL-1.1-no-invariants-or-later",
+        "GFDL-1.1-only",
+        "GFDL-1.1-or-later",
+        "GFDL-1.2-invariants-only",
+        "GFDL-1.2-invariants-or-later",
+        "GFDL-1.2-no-invariants-only",
+        "GFDL-1.2-no-invariants-or-later",
+        "GFDL-1.2-only",
+        "GFDL-1.2-or-later",
+        "GFDL-1.3-invariants-only",
+        "GFDL-1.3-invariants-or-later",
+        "GFDL-1.3-no-invariants-only",
+        "GFDL-1.3-no-invariants-or-later",
+        "GFDL-1.3-only",
+        "GFDL-1.3-or-later",
+        "GPL-1.0-only",
+        "GPL-1.0-or-later",
+        "GPL-2.0-only",
+        "GPL-2.0-or-later",
+        "GPL-3.0-only",
+        "GPL-3.0-or-later",
+        "LGPL-2.0-only",
+        "LGPL-2.0-or-later",
+        "LGPL-2.1-only",
+        "LGPL-2.1-or-later",
+        "PolyForm-Noncommercial-1.0.0",
+        "PolyForm-Small-Business-1.0.0"
+      ],
+      "requires_verified_companion": [
+        "LGPL-3.0-only",
+        "LGPL-3.0-or-later"
+      ],
+      "requires_verified_spdx_input": [
+        "MIT"
+      ]
+    },
+    "qualification": {
+      "recorded_claim_revisions": 556,
+      "recorded_independently_reviewed_claims": 370,
+      "recorded_invalidated_claim_revisions": 184,
+      "selected_claims": 269,
+      "status": "qualified-selection"
+    },
+    "research": {
+      "dimension_assessments_sha256": "95f652761c7c1d1678f7c44e05638cab2a115bbc9b273a155d17e8c8acd71d2a",
+      "dimension_states": {
+        "condition": 97,
+        "documented": 37,
+        "inapplicable": 2,
+        "permission": 49,
+        "restriction": 11,
+        "unresolved": 11
+      },
+      "dimensions": 207,
+      "provisional_explanations": 42,
+      "scenarios": 62,
+      "spdx_without_provisional_explanation": 784
+    },
+    "scope": "SPDX discovery and publisher leads"
+  },
+  "cutoff": "2026-11-25",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-26T21:22:09Z (UTC). The retained SPDX manifest pins the census population.",
+  "predecessor": {
+    "commit": "d401df260ca703febeec9292810ecc84588072f8",
+    "sha256": "28dd89d785e7390b399587917f0b0c55e092df996cda60e1ec17f6001027978a",
+    "snapshot": "registry/coverage/snapshots/2026-11-26-cc-german-ports-identities.json"
+  },
+  "research_scope": {
+    "discovery_paths": [
+      "The exact SPDX License List 3.29.0 data archive and XML revision identified by the source manifest.",
+      "Publisher sources named in the retained candidate records and beyond-SPDX reconciliation notes.",
+      "Provisional profiles and exact SCES records retained at the research cutoff."
+    ],
+    "exclusions": [
+      "The broader beyond-SPDX population outside the targeted publisher leads.",
+      "Project-specific compliance determinations, blanket compatibility conclusions and custom contract drafting."
+    ],
+    "inaccessible_areas": [
+      "Private, unpublished or access-restricted terms outside the public-source discovery method."
+    ],
+    "included_ecosystems": [
+      "Software licensing instruments and exceptions listed in SPDX License List 3.29.0.",
+      "Fourteen targeted publisher leads for software, documentation, data and related terms outside SPDX."
+    ],
+    "reconciliation_choices": [
+      "Keep exact SPDX identifiers and deprecated entries distinct, preserving upstream replacement advice as provenance.",
+      "Keep publisher leads with their individual dispositions and reasons. The blank Countdown form is excluded as a standalone license.",
+      "Record canonical admissions and selected claims separately from upstream membership and independently reviewed evidence.",
+      "Select the named OSI MIT reference form and its scoped claims. Keep the discovery census and provisional profiles separate.",
+      "Record the independently reproduced MIT installer specimen as a revised claim with explicit implementation and observation dependencies. The existing eight-claim selection retains its original scope.",
+      "Record four independently verified CC0 claim revisions while retaining the existing MIT selection and canonical entity ledger.",
+      "Preserve the four initial CC0 claim revisions and their original research records. Record independently reviewed successor revisions and mark the earlier revisions superseded.",
+      "Record independently verified CC0 waiver, fallback, and third-party clearance claims for later selection.",
+      "Record the independently reproduced Windows CC0 offline installer specimen for later selection.",
+      "Supersede the earlier CC0 installer observation revisions with explicitly bound implementation and package trees.",
+      "Record the reviewed CC0 prospective identity mapping under the existing related-instrument taxonomy.",
+      "Supersede the CC0 mapping with revision 2, which binds the local taxonomy as controlling support.",
+      "Record verified CC0 data-rights and disclaimer clauses and add two scoped illustrative scenarios.",
+      "Record independently verified Apache section 4(a) through 4(c) claims and a hypothetical Source redistribution example.",
+      "Add two separate CDDL publisher edition identities and exact SPDX mappings, retaining the 1.1 attached-notice boundary.",
+      "Preserve the CDDL evidence history and use only the freshly verified native JavaScript crosswalk successors.",
+      "Reconcile the original MIT correction with the landed CDDL checkpoint and use the newly verified native comparison method.",
+      "Record four independently verified ISC publisher-reference assertions and one illustrative text-reuse scenario.",
+      "Supersede the original ISC SPDX crosswalk with the independently inspected annotated release-tag binding.",
+      "Reconcile the independently developed ISC coverage after the landed CDDL checkpoint and retain both histories.",
+      "Reconcile the four reviewed ISC claims and their earlier history after the MIT reference tag and method corrections.",
+      "Record nine independently reviewed zlib v1.4 claims after pinned policy inspection. Retain the superseded identity as evidence history. Add the provisional Zlib profile.",
+      "Bind the exact Zlib documentary reference to claim revision 3 after fresh research and independent review. Keep both earlier identity revisions.",
+      "Record the reviewed PolyForm Perimeter and Shield publisher forms and exact notices and competition assertions. Preserve earlier research and review records.",
+      "Apply the protected review findings to retain four supported PolyForm terms. Preserve and invalidate the five identity, crosswalk and edition-comparison drafts.",
+      "Record two PolyForm publisher documentary identities and two direct discovery crosswalks. Preserve the provisional edition comparison.",
+      "Accept the two exact PolyForm publisher bindings and select their eight qualified claims alongside the eight MIT claims.",
+      "Record the corrected MIT and PolyForm selection under current source and policy-aware evidence.",
+      "Bind the corrected MIT and PolyForm identity scope notes and preserve the prior verification history.",
+      "Revalidate each PolyForm crosswalk using the earlier and accepted discovery snapshots, and preserve the earlier verification history.",
+      "Admit the exact CC0 1.0 Universal English reference and scoped SPDX documentary correspondence.",
+      "Admit 12 exact public-data publisher representations and their pinned SPDX documentary crosswalks.",
+      "Admit 19 publisher edition identities and 37 documentary SPDX correspondences.",
+      "Admit 32 publisher edition identities and 35 documentary SPDX correspondences.",
+      "Preserve the original incoming snapshot at its exact cutoff and record the verified evidence successors.",
+      "Bind six Index lifecycle classifications to the exact Index decision while preserving publisher identity evidence and earlier coverage snapshots.",
+      "Check the exact Index lifecycle decision for newly added documentary references while retaining prior evidence and coverage snapshots.",
+      "The retained archive registry/coverage/snapshots/2026-11-26-documentary-exception-identities.json at 3ec5b437f9198d8e4d3642de9378cd3c2a7874e6 with SHA-256 87f72d6e79246a9aa36c2fc8177b6e0fb48f7a835dee8dc06f211839c5f5018e has the discovery census cutoff 2026-11-25. Its separate SCES qualification research cutoff is 2026-11-26T03:45:11Z.",
+      "The retained archive registry/coverage/snapshots/2026-11-26-documentary-exception-identities-verified.json at ccf3e2c30d56147820a9c0a24b98beeffad43a7f with SHA-256 62b12a18d71f723cbb8cd3b97efa556fb6cb93cf61944363a81ec3d946b237ea has the discovery census cutoff 2026-11-25. Its separate SCES qualification research cutoff is 2026-11-26T04:11:57Z.",
+      "The retained archive registry/coverage/snapshots/2026-11-26-documentary-exception-lifecycle-verified.json at 8ff25e3ee7ca54d62a307391054fd9b94d824da0 with SHA-256 1a23620d1da7d53cb90d439b525396201a54667940af9fdb6634995dc6062ccc has the discovery census cutoff 2026-11-25. Its separate SCES qualification research cutoff is 2026-11-26T06:51:55Z.",
+      "The retained archive registry/coverage/snapshots/2026-11-26-documentary-exception-lifecycle-completed.json at 8283a9ec40c5a36f7ed1f98189d08937e7ab94c8 with SHA-256 65a8de5ee488c9d48e33827f773b1e63368fba075689d7fe1ae4c7de6bbf81a0 has the discovery census cutoff 2026-11-25. Its separate SCES qualification research cutoff is 2026-11-26T15:54:05Z.",
+      "Admit 12 exact Creative Commons Generic references and their scoped SPDX correspondences.",
+      "Admit 12 exact Creative Commons 3.0 Unported and 4.0 International references and their scoped SPDX correspondences.",
+      "Admit 6 exact Creative Commons 1.0 Generic references and their scoped SPDX correspondences.",
+      "Admit 7 exact German-language Creative Commons references and their scoped SPDX correspondences.",
+      "Admit 1 exact EUPL 1.2 reference and its scoped SPDX correspondence."
+    ]
+  },
+  "schema_version": "4.0.0",
+  "snapshot": "registry/coverage/snapshots/2026-11-26-eupl-12-identities.json",
+  "source_manifest": "research/sources/spdx-3.29.0.json"
+}
