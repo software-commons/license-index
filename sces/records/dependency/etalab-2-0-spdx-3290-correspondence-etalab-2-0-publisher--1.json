@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "etalab-2-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Exact publisher edition identity for the documentary correspondence | controlled capture ranges [0,38) sha256:0e78385f673db63966124eabb9fba74da6087fcaeb067e6b2593dcda6bf223b8",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "etalab-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "etalab-2-0-spdx-3290-correspondence-etalab-2-0-publisher",
+  "kind": "dependency",
+  "relation": "context",
+  "revision": 1
+}

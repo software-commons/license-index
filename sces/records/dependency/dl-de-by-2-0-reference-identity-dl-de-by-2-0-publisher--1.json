@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "dl-de-by-2-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Identified publisher edition heading or version clause and associated instrument | controlled capture ranges [12070,12127) sha256:5ac232fa83bbef9c33177ed17956933782fb8dab309ae0299c5706dfce6f956f",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "dl-de-by-2-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "dl-de-by-2-0-reference-identity-dl-de-by-2-0-publisher",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

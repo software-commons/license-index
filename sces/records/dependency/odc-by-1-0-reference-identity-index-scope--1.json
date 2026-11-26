@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "public-data-admission-taxonomy",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "License Index admission criteria for the license mapping | controlled capture ranges [533,942) sha256:484aa8f091d091a7ca9af0293422f98eb33661dba8bb787a3af82d93656419cf",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "odc-by-1-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "odc-by-1-0-reference-identity-index-scope",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

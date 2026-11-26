@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "spdx-3290-dl-de-by-2-0-generated-detail",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Pinned generated SPDX detail identifier, name and seeAlso references | controlled capture ranges [7213,7611) sha256:b7e240205c197749e46f433a4616596f09bb60569c60d1bf01bdf62b1c2f025d",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "dl-de-by-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "dl-de-by-2-0-spdx-3290-correspondence-dl-de-by-2-0-spdx",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

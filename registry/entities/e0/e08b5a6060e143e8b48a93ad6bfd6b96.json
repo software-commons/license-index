@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "f6eb2060fba84fb6b1f65d8f3e3883cd"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "nlod-1-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "NLOD-1.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "nlod-1-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "e08b5a6060e143e8b48a93ad6bfd6b96",
+  "identity_claim": {
+    "id": "nlod-1-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "norwegian-digitalisation-agency",
+    "edition": "nlod-1-0",
+    "representation": "publisher-english-html",
+    "revision": "sha256:cf9bbe13bb0fee9190be7002fa40c4095b42963678bf729c7011359d30f4940c",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Norwegian Licence for Open Government Data (NLOD) 1.0",
+  "relations": [],
+  "state": "active"
+}

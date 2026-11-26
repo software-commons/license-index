@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "1fe857c0b2f4406d81b5a377eda0d436"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "dl-de-by-2-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "DL-DE-BY-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "dl-de-by-2-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "9732058801464081ae0f27ae9941eb8d",
+  "identity_claim": {
+    "id": "dl-de-by-2-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "city-of-frankfurt-am-main",
+    "edition": "dl-de-by-2-0",
+    "representation": "official-municipal-german-html",
+    "revision": "sha256:c109b5ea9901c7d1a4b6b08e7035d3303d70e143c634f38a66eeee3a1ca55655",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Data licence Germany – attribution – version 2.0",
+  "relations": [],
+  "state": "active"
+}

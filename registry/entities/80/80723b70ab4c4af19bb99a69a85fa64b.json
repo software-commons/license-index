@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "b4bc2935dad4485fa1c13c35724a43f8"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "ogl-uk-1-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OGL-UK-1.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "ogl-uk-1-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "80723b70ab4c4af19bb99a69a85fa64b",
+  "identity_claim": {
+    "id": "ogl-uk-1-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "the-national-archives",
+    "edition": "ogl-uk-1-0",
+    "representation": "publisher-english-html",
+    "revision": "sha256:a5ddab8cb10dacfd82f9e3f6699191849d62e74180525ec5041572c408a8c2ca",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Open Government Licence v1.0 (UK)",
+  "relations": [],
+  "state": "active"
+}

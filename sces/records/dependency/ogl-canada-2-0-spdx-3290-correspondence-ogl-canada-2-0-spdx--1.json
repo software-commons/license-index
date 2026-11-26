@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "spdx-3290-ogl-canada-2-0-generated-detail",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Pinned generated SPDX detail identifier, name and seeAlso references | controlled capture ranges [8546,8968) sha256:fd005edf6dceae47da1397c55239e47f524010cae4d87771190af6b125c1b97c",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "ogl-canada-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "ogl-canada-2-0-spdx-3290-correspondence-ogl-canada-2-0-spdx",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

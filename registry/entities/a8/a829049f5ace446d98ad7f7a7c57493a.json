@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "2a51a3c2868841138486f975361335c9"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "ogl-canada-2-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OGL-Canada-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "ogl-canada-2-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "a829049f5ace446d98ad7f7a7c57493a",
+  "identity_claim": {
+    "id": "ogl-canada-2-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "government-of-canada",
+    "edition": "ogl-canada-2-0",
+    "representation": "publisher-english-html",
+    "revision": "sha256:e62c3211e4bdc94fa4b6ca6bf541749c18b468c994ccae55e32603fafe7204cd",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Open Government Licence – Canada v2.0",
+  "relations": [],
+  "state": "active"
+}

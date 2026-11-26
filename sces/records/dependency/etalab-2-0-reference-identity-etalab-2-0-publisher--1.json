@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "etalab-2-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Identified publisher edition heading or version clause and associated instrument | controlled capture ranges [0,38) sha256:0e78385f673db63966124eabb9fba74da6087fcaeb067e6b2593dcda6bf223b8",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "etalab-2-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "etalab-2-0-reference-identity-etalab-2-0-publisher",
+  "kind": "dependency",
+  "relation": "support",
+  "revision": 1
+}

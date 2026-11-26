@@ -1,0 +1,39 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "087c6f6952a8494e973e9fa6abf9992f"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "etalab-2-0-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "etalab-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "edition": "etalab-2-0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "fc2535e31369471a8024900edb4e6e8a",
+  "identity_claim": {
+    "id": "etalab-2-0-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "etalab",
+    "edition": "etalab-2-0",
+    "representation": "publisher-french-markdown",
+    "revision": "sha256:a1deb9d7554ad10e041dbd7440b3dec0ac0d3679f9e1655ee9d850908b015995",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Licence Ouverte 2.0 (Etalab)",
+  "relations": [],
+  "state": "active"
+}

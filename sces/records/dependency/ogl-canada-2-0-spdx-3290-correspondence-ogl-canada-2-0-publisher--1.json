@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "id": "ogl-canada-2-0-official-publisher-reference",
+    "kind": "source",
+    "revision": 1
+  },
+  "citation": {
+    "locator": "Exact publisher edition identity for the documentary correspondence | controlled capture ranges [17577,17638) sha256:09408aa71d3f1f5cc36d5a66bea1a076f3427da0d7365152f7e13869c84f13a8",
+    "modality": "descriptive"
+  },
+  "claim": {
+    "id": "ogl-canada-2-0-spdx-3290-correspondence",
+    "kind": "claim",
+    "revision": 1
+  },
+  "id": "ogl-canada-2-0-spdx-3290-correspondence-ogl-canada-2-0-publisher",
+  "kind": "dependency",
+  "relation": "context",
+  "revision": 1
+}
