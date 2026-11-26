@@ -4,11 +4,13 @@ Cutoff 2026-11-25. The [SPDX source manifest](../research/sources/spdx-3.29.0.js
 
 | Measure | Development snapshot |
 | --- | --- |
-| Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license identifiers and one deprecated exception identifier. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside SPDX. The 840 discovery records include 785 unresolved, 53 accepted, one excluded, and one non-license. |
+| Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license identifiers and one deprecated exception identifier. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside SPDX. The 840 discovery records include 750 unresolved, 88 accepted, one excluded, and one non-license. |
 | Text coverage | Forty-five identifiers map to twenty-three offline publisher texts. The discovery ledger also records 826 pinned generated SPDX text references, 826 distinct matching-template references, and 93 nonblank header references. |
 | Installation support | Forty-two identifiers have ordinary offline unchanged-copy recipes. Two additional LGPLv3 identifiers verify an existing exact GPLv3 companion before writing the supplement offline. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
 | Explanatory research depth | 42 provisional profiles with 207 dimensions and 62 scenarios, covering 37 current license identifiers, four exception identifiers and one deprecated license identifier. Eleven dimensions remain unresolved, and two are assessed as inapplicable. See [educational research](../research/campaigns/educational-research.md) for limitations and disconfirming questions. |
-| Claim qualification | Of 277 claim revisions, 199 have a current supported independent review on record and 78 have an invalidated disposition. These totals reflect recorded dispositions. The active selection includes 98 claims and binds 35 accepted canonical entities. [Qualification report](../sces/releases/historical-documentary-reference-0-2-7/qualification.json) |
+| Claim qualification | Of 372 claim revisions, 294 have a current supported independent review on record and 78 have an invalidated disposition. These totals reflect recorded dispositions. The active selection includes 193 claims and binds 67 accepted canonical entities. [Qualification report](../sces/releases/documentary-exception-reference-0-2-8/qualification.json) |
+
+The documentary exception campaign adds 28 exception identities with exact base-edition evidence and their related license crosswalks. [Campaign and receipts](../research/campaigns/documentary-exception-identities.md).
 
 The historical documentary campaign adds 37 exact SPDX mappings. [Campaign and receipts](../research/campaigns/historical-documentary-identities.md).
 

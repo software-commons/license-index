@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 35,
+      "accepted_entities": 67,
       "beyond_spdx_dispositions": {
         "accepted": 2,
         "excluded": 1,
@@ -17,10 +17,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 53,
+        "accepted": 88,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 785
+        "unresolved": 750
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 277,
-      "recorded_independently_reviewed_claims": 199,
+      "recorded_claim_revisions": 372,
+      "recorded_independently_reviewed_claims": 294,
       "recorded_invalidated_claim_revisions": 78,
-      "selected_claims": 98,
+      "selected_claims": 193,
       "status": "qualified-selection"
     },
     "research": {
@@ -109,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "802591ce52a39c8d573d2a47e9ef757ed90baf59",
-    "sha256": "e55b510ca3fd0163c21b2c04c4d2b01e5c7a11a1c88006ca65e9a8b7228a529d",
-    "snapshot": "registry/coverage/snapshots/2026-11-26-public-data-identities.json"
+    "commit": "1912f88f76054a03e56edc61b4c997a94686dba2",
+    "sha256": "28cc8f19c56c2e35f74297bb3ff649bd9b4040ccbae7e29ada0bf1f8bbd9362b",
+    "snapshot": "registry/coverage/snapshots/2026-11-26-historical-documentary-identities.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -163,10 +163,11 @@
       "Revalidate each PolyForm crosswalk using the earlier and accepted discovery snapshots, and preserve the earlier verification history.",
       "Admit the exact CC0 1.0 Universal English reference and scoped SPDX documentary correspondence.",
       "Admit 12 exact public-data publisher representations and their pinned SPDX documentary crosswalks.",
-      "Admit 19 publisher edition identities and 37 documentary SPDX correspondences."
+      "Admit 19 publisher edition identities and 37 documentary SPDX correspondences.",
+      "Admit 32 publisher edition identities and 35 documentary SPDX correspondences."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-26-historical-documentary-identities.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-26-documentary-exception-identities.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
