@@ -166,6 +166,126 @@
       "revision": 1
     },
     {
+      "id": "cc-by-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-2-5-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-2-5-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-nd-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-nd-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-nd-2-5-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-nd-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-5-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nd-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nd-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nd-2-5-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nd-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-5-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc0-10-canonical-identity-mapping",
       "kind": "claim",
       "revision": 4
@@ -967,8 +1087,8 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.11",
-  "evaluated_at": "2026-11-26T15:54:05Z",
+  "dataset_version": "0.2.12",
+  "evaluated_at": "2026-11-26T18:18:03Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -977,7 +1097,8 @@
     "All unselected claims, other instruments, and provisional profiles.",
     "CC0 rights and application claims outside the selected identity and SPDX correspondence.",
     "Public-data translations outside the identified representations, application of terms to any particular work, package redistribution and installation.",
-    "Project-specific eligibility, generalized compatibility, installation and distribution rights outside the selected documentary claims."
+    "Project-specific eligibility, generalized compatibility, installation and distribution rights outside the selected documentary claims.",
+    "Ported or other editions, legal term equivalence, work-specific applicability, text redistribution rights and installation beyond selected claims."
   ],
   "limitations": [
     "The MIT publisher identity and four terms apply to the captured OSI record 395 CMS revision modified 2026-11-24.",
@@ -989,15 +1110,16 @@
     "Public-data crosswalks identify documentary edition correspondence. Publisher and SPDX representations can differ.",
     "Edition and identifier correspondence preserves the recorded distinctions among publisher versions and SPDX identifier choices.",
     "For the six named MIT, PolyForm and GNU FDL reference editions, active is the Index's classification for continued indexing of the exact references.",
-    "The selected documentary reference lifecycle values reflect the Index's exact editorial decisions about continued or historical lookup."
+    "The selected documentary reference lifecycle values reflect the Index's exact editorial decisions about continued or historical lookup.",
+    "These Creative Commons correspondences cover named reference editions and documentary labels; publisher and SPDX representations are distinct."
   ],
   "previous_report": {
-    "path": "sces/releases/historical-documentary-reference-0-2-7/qualification.json",
-    "sha256": "38faeae3cb78bec933605faa48c657f75081f436fb773bcea4d749bbbd1b2980"
+    "path": "sces/releases/documentary-exception-reference-0-2-11/qualification.json",
+    "sha256": "4b1d19069019d91d53f37557e44b1be0d4a0a89b32e930073e3acf2ff49b429d"
   },
-  "release": "documentary-exception-reference-0-2-11",
-  "research_cutoff": "2026-11-26T15:54:05Z",
+  "release": "cc-generic-2x-reference-0-2-12",
+  "research_cutoff": "2026-11-26T18:18:03Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims.",
-  "source_commit": "2eaba84a789932bb8075166112270b4a00d227ba"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks.",
+  "source_commit": "ad81c9c327dabad1aa0409b0e1357b132e26817f"
 }
