@@ -42,7 +42,7 @@
   "identity_claim": {
     "id": "fsf-lgpl-2-1-documentary-license-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "free-software-foundation",

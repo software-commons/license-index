@@ -8,7 +8,7 @@
       "claim": {
         "id": "sqlitestudio-openssl-exception-exception-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 1
+        "revision": 2
       },
       "key": "sqlitestudio-OpenSSL-exception",
       "origin": "spdx",
@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "sqlitestudio-openssl-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "sqlitestudio-project",
@@ -40,7 +40,7 @@
       "claim": {
         "id": "sqlitestudio-openssl-exception-documented-base-license",
         "kind": "claim",
-        "revision": 1
+        "revision": 2
       },
       "scope": {
         "authority": "sqlitestudio-project",

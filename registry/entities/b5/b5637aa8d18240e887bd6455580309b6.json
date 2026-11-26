@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "apache-2-0-documentary-license-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "apache-software-foundation",

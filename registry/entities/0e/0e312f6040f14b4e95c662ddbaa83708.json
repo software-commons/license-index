@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "independent-modules-exception-documentary-exception-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "free-pascal-development-team",

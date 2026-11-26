@@ -23,7 +23,7 @@
   "identity_claim": {
     "id": "pddl-1-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "open-data-commons",
