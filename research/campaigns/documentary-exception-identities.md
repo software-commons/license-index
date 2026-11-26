@@ -27,6 +27,12 @@ The mappings cover exact publisher witnesses and scoped SPDX entries. A file-spe
 
 Provisional inquiries track the GPL edition behind the I2P Java template, independent archive-member acquisition for GNU JavaMail and vsftpd, and a successor disposition for the invalidated GCC Runtime Library Exception 3.1 identity claim.
 
-[Qualification report](../../sces/releases/documentary-exception-reference-0-2-9/qualification.json)
+[Qualification report](../../sces/releases/documentary-exception-reference-0-2-10/qualification.json)
 
 The protected review prompted a second exact verification of the identity taxonomy binding and two downstream source witnesses. The original coverage snapshot and evidence revisions are retained, and the original draft selection remains in Git history. Current classification requires the pinned admission taxonomy as supporting evidence. The inherited PDDL related-instrument classification also binds its exact Index rule. Autoconf generic 3.0 is scoped to the named GCC mirror file and Texinfo to the named Automake mirror file. Their earlier authority attribution is superseded. SQLiteStudio's exact project tag and target commit support the recorded release association.
+
+Fresh research and independent verification revisited six inherited documentary identity claims. The new revisions cite publisher evidence for the named reference forms and the exact [Index decision](../../docs/decisions/documentary-reference-lifecycle-2026-11-26.md) for the lifecycle classification. These classifications concern continued indexing of the named reference editions. The earlier evidence and coverage snapshots remain available.
+
+GNU FDL [research receipts](../../sces/artifacts/stage-exception-lifecycle-fdl/research-receipts.jsonl) · [independent verification receipts](../../sces/artifacts/stage-exception-lifecycle-fdl/independent-review-receipts.jsonl).
+
+MIT and PolyForm [research receipts](../../sces/artifacts/stage-exception-lifecycle-mit-polyform/research-receipts.jsonl) · [independent verification receipts](../../sces/artifacts/stage-exception-lifecycle-mit-polyform/independent-review-receipts.jsonl).
