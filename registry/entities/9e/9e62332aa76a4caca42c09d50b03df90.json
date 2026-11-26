@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "db93ffff378043a99ba2db7743cbcb8b"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "ocaml-lgpl-linking-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OCaml-LGPL-linking-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "ocaml-project",
+        "edition": "ocaml-commit-8eb41f72ded84df884c3671734c947f612091f84",
+        "revision": "sha256:65f47d3bf5a921011ac7fa30f23d54f9dffbe7683921eeb116d5ce8dc26ff0c1",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "9e62332aa76a4caca42c09d50b03df90",
+  "identity_claim": {
+    "id": "ocaml-lgpl-linking-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "ocaml-project",
+    "edition": "ocaml-commit-8eb41f72ded84df884c3671734c947f612091f84",
+    "revision": "sha256:65f47d3bf5a921011ac7fa30f23d54f9dffbe7683921eeb116d5ce8dc26ff0c1",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "OCaml LGPL Linking Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "ocaml-lgpl-linking-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "ocaml-project",
+        "base-license": "LGPL-2.1",
+        "edition": "ocaml-commit-8eb41f72ded84df884c3671734c947f612091f84",
+        "revision": "sha256:65f47d3bf5a921011ac7fa30f23d54f9dffbe7683921eeb116d5ce8dc26ff0c1"
+      },
+      "target": {
+        "id": "c595af81697d426ebaff3b518a4b84b3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

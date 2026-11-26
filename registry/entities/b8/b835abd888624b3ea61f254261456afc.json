@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "8e388e49250b4f868aebcd85fcd6027a"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "bison-exception-1-24-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Bison-exception-1.24",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-bison",
+        "edition": "gnu-bison-exception-1.24-pinned-bison-simple-notice",
+        "revision": "sha256:eacfbda0a6d118a507eb8e34ccb189aaddf87032a2b5d570d8b38f7a19f583f0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b835abd888624b3ea61f254261456afc",
+  "identity_claim": {
+    "id": "bison-exception-1-24-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-bison",
+    "edition": "gnu-bison-exception-1.24-pinned-bison-simple-notice",
+    "revision": "sha256:eacfbda0a6d118a507eb8e34ccb189aaddf87032a2b5d570d8b38f7a19f583f0",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Bison exception 1.24",
+  "relations": [
+    {
+      "claim": {
+        "id": "bison-exception-1-24-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-bison",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "gnu-bison-exception-1.24-pinned-bison-simple-notice",
+        "revision": "sha256:eacfbda0a6d118a507eb8e34ccb189aaddf87032a2b5d570d8b38f7a19f583f0"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "historical"
+}

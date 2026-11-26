@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "74a66ef38f984f15bff61facacd09027"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "kvirc-openssl-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "kvirc-openssl-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "kvirc-project",
+        "edition": "kvirc-pinned-about-license",
+        "revision": "sha256:161a73a84b58eed82959bcb9b8e74128e6fe4b18b71ae0688097f17c532c009c",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "12ed480cff064e9ba0d5d2e2c5821a16",
+  "identity_claim": {
+    "id": "kvirc-openssl-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "kvirc-project",
+    "edition": "kvirc-pinned-about-license",
+    "revision": "sha256:161a73a84b58eed82959bcb9b8e74128e6fe4b18b71ae0688097f17c532c009c",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "kvirc OpenSSL Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "kvirc-openssl-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "kvirc-project",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "kvirc-pinned-about-license",
+        "revision": "sha256:161a73a84b58eed82959bcb9b8e74128e6fe4b18b71ae0688097f17c532c009c"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "9056736679564e01a5f513bb3853e6dc"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "autoconf-exception-macro-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Autoconf-exception-macro",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-autoconf-archive",
+        "edition": "autoconf-archive-ax-pthread-macro-notice",
+        "revision": "sha256:8bd2248e78260451101fdf107606be932541ccd53c0b70498ba051db685c7c5c",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "662eab93a33a46569935776999f1139b",
+  "identity_claim": {
+    "id": "autoconf-exception-macro-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-autoconf-archive",
+    "edition": "autoconf-archive-ax-pthread-macro-notice",
+    "revision": "sha256:8bd2248e78260451101fdf107606be932541ccd53c0b70498ba051db685c7c5c",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Autoconf macro exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "autoconf-exception-macro-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-autoconf-archive",
+        "base-license": "GPL-3.0-or-later",
+        "edition": "autoconf-archive-ax-pthread-macro-notice",
+        "revision": "sha256:8bd2248e78260451101fdf107606be932541ccd53c0b70498ba051db685c7c5c"
+      },
+      "target": {
+        "id": "f6c5ffa485db43d9ad2d2898bf30b86f"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

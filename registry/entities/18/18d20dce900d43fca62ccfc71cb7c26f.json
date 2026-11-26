@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "0345f62d985747d580fd7d1397ef5386"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "llvm-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "LLVM-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "llvm-project",
+        "edition": "llvm-project-license-at-87f0227",
+        "revision": "sha256:8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "18d20dce900d43fca62ccfc71cb7c26f",
+  "identity_claim": {
+    "id": "llvm-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "llvm-project",
+    "edition": "llvm-project-license-at-87f0227",
+    "revision": "sha256:8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "LLVM Exceptions to the Apache 2.0 License",
+  "relations": [
+    {
+      "claim": {
+        "id": "llvm-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "llvm-project",
+        "base-license": "Apache-2.0",
+        "edition": "llvm-project-license-at-87f0227",
+        "revision": "sha256:8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee"
+      },
+      "target": {
+        "id": "b5637aa8d18240e887bd6455580309b6"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

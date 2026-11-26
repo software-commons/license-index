@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "8449f4cff2024a2a8d620780d38c4175"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "gcc-exception-2-0-note-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "GCC-exception-2.0-note",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-glibc",
+        "edition": "glibc-2.42-gcc-runtime-linking-exception-note-variant",
+        "revision": "sha256:b7da99f854538a38e13da5c24cfdd977fcfbd2588606ccf14b03c50b9f457cd4",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "bed73cd53ee3434cb264ec6942601ca7",
+  "identity_claim": {
+    "id": "gcc-exception-2-0-note-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-glibc",
+    "edition": "glibc-2.42-gcc-runtime-linking-exception-note-variant",
+    "revision": "sha256:b7da99f854538a38e13da5c24cfdd977fcfbd2588606ccf14b03c50b9f457cd4",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "GCC    Runtime Library exception 2.0 - note variant",
+  "relations": [
+    {
+      "claim": {
+        "id": "gcc-exception-2-0-note-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-glibc",
+        "base-license": "LGPL-2.1-or-later",
+        "edition": "glibc-2.42-gcc-runtime-linking-exception-note-variant",
+        "revision": "sha256:b7da99f854538a38e13da5c24cfdd977fcfbd2588606ccf14b03c50b9f457cd4"
+      },
+      "target": {
+        "id": "c595af81697d426ebaff3b518a4b84b3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

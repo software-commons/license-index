@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "5a7011a442dd41759a2dd09f9194e553"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "classpath-exception-2-0-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Classpath-exception-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-classpath-project",
+        "edition": "gnu-classpath-095-java-lang-package",
+        "revision": "sha256:e7f33a8a79767aa5604d94b12589b75653714c19c54427feb76329a4c3f34fbb",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "c838f8f2573e4849a499b7bf246ed229",
+  "identity_claim": {
+    "id": "classpath-exception-2-0-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-classpath-project",
+    "edition": "gnu-classpath-095-java-lang-package",
+    "revision": "sha256:e7f33a8a79767aa5604d94b12589b75653714c19c54427feb76329a4c3f34fbb",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "GNU Classpath linking exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "classpath-exception-2-0-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-classpath-project",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "gnu-classpath-095-java-lang-package",
+        "revision": "sha256:e7f33a8a79767aa5604d94b12589b75653714c19c54427feb76329a4c3f34fbb"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

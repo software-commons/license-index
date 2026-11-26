@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "c06752582ce34bb8890a4a72b9c1ad4f"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "autoconf-exception-2-0-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Autoconf-exception-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-autoconf",
+        "edition": "autoconf-2.59-configure-output-notice",
+        "revision": "sha256:2d5a6e2d219173514495e2e409fa4343643243cd41483f02ae8d3e8b434822fa",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b9046c15256b4d44bf7c4c7da92b3d7c",
+  "identity_claim": {
+    "id": "autoconf-exception-2-0-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-autoconf",
+    "edition": "autoconf-2.59-configure-output-notice",
+    "revision": "sha256:2d5a6e2d219173514495e2e409fa4343643243cd41483f02ae8d3e8b434822fa",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Autoconf exception 2.0",
+  "relations": [
+    {
+      "claim": {
+        "id": "autoconf-exception-2-0-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-autoconf",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "autoconf-2.59-configure-output-notice",
+        "revision": "sha256:2d5a6e2d219173514495e2e409fa4343643243cd41483f02ae8d3e8b434822fa"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "historical"
+}

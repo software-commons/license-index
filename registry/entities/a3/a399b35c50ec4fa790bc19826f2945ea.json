@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "7e21a2db6b104a7aa461b87f41f6f78b"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "gcc-exception-2-0-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "GCC-exception-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-gcc",
+        "edition": "gcc-runtime-library-exception-2.0-historical-libgcc1",
+        "revision": "sha256:90e7954cc4cf444431eea3a67b2c57bc4687ee58a16d4d2355237e8a9acd7b9c",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "a399b35c50ec4fa790bc19826f2945ea",
+  "identity_claim": {
+    "id": "gcc-exception-2-0-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-gcc",
+    "edition": "gcc-runtime-library-exception-2.0-historical-libgcc1",
+    "revision": "sha256:90e7954cc4cf444431eea3a67b2c57bc4687ee58a16d4d2355237e8a9acd7b9c",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "GCC Runtime Library exception 2.0",
+  "relations": [
+    {
+      "claim": {
+        "id": "gcc-exception-2-0-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-gcc",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "gcc-runtime-library-exception-2.0-historical-libgcc1",
+        "revision": "sha256:90e7954cc4cf444431eea3a67b2c57bc4687ee58a16d4d2355237e8a9acd7b9c"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "historical"
+}

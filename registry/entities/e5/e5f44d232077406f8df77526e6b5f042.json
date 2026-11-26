@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "2b7a75d5b86b41f5aef8eca679964552"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "texinfo-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Texinfo-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-texinfo",
+        "edition": "gnu-texinfo-tex-automake-1.16.5",
+        "revision": "sha256:1d33f69c72e9bcd880fd02f2153c6475fc887042ae87569256cd8be009ce83b4",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "e5f44d232077406f8df77526e6b5f042",
+  "identity_claim": {
+    "id": "texinfo-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "gnu-texinfo",
+    "edition": "gnu-texinfo-tex-automake-1.16.5",
+    "revision": "sha256:1d33f69c72e9bcd880fd02f2153c6475fc887042ae87569256cd8be009ce83b4",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Texinfo exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "texinfo-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-texinfo",
+        "base-license": "GPL-3.0-or-later",
+        "edition": "gnu-texinfo-tex-automake-1.16.5",
+        "revision": "sha256:1d33f69c72e9bcd880fd02f2153c6475fc887042ae87569256cd8be009ce83b4"
+      },
+      "target": {
+        "id": "f6c5ffa485db43d9ad2d2898bf30b86f"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

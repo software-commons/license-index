@@ -1,0 +1,40 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "35f2a4abc25d4d709b7cde582b34a634"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "classpath-exception-2-0-short-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Classpath-exception-2.0-short",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "lazarus-development-team",
+        "edition": "lazarus-42-copying-modified-lgpl",
+        "revision": "sha256:0624a5291021279446fbea96cdd33527d09c64c87d5616f789b2521e2a9e3d71",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "061c689ce91b4c88a7fe6f6904549ca3",
+  "identity_claim": {
+    "id": "classpath-exception-2-0-short-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "lazarus-development-team",
+    "edition": "lazarus-42-copying-modified-lgpl",
+    "revision": "sha256:0624a5291021279446fbea96cdd33527d09c64c87d5616f789b2521e2a9e3d71",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Lazarus modified LGPL linking exception",
+  "relations": [],
+  "state": "active"
+}

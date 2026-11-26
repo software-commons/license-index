@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "d9031f3b6980472fbe2e8918fe11f0c0"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "sqlitestudio-openssl-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "sqlitestudio-OpenSSL-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "sqlitestudio-project",
+        "edition": "sqlitestudio-3-4-21",
+        "revision": "sha256:c8d10fd14c31e3094ff244b15fc6414a084373e86a8b2eb296d1e13832f91ed6",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "2e8f8e90f9f94d9abceaabb904ffd81d",
+  "identity_claim": {
+    "id": "sqlitestudio-openssl-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "sqlitestudio-project",
+    "edition": "sqlitestudio-3-4-21",
+    "revision": "sha256:c8d10fd14c31e3094ff244b15fc6414a084373e86a8b2eb296d1e13832f91ed6",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "sqlitestudio OpenSSL exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "sqlitestudio-openssl-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "sqlitestudio-project",
+        "base-license": "GPL-3.0",
+        "edition": "sqlitestudio-3-4-21",
+        "revision": "sha256:c8d10fd14c31e3094ff244b15fc6414a084373e86a8b2eb296d1e13832f91ed6"
+      },
+      "target": {
+        "id": "f6c5ffa485db43d9ad2d2898bf30b86f"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

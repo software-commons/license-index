@@ -1,0 +1,57 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "4eb4881a3774484a9635b2068389fe46",
+    "ccba234243cb4500801a487e76bd8ec0"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "lgpl-2-1-only-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "LGPL-2.1-only",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "free-software-foundation",
+        "edition": "gnu-lgpl-2.1",
+        "revision": "sha256:20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "upstream-release": "3.29.0"
+      }
+    },
+    {
+      "claim": {
+        "id": "lgpl-2-1-or-later-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "LGPL-2.1-or-later",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "free-software-foundation",
+        "edition": "gnu-lgpl-2.1",
+        "revision": "sha256:20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "c595af81697d426ebaff3b518a4b84b3",
+  "identity_claim": {
+    "id": "fsf-lgpl-2-1-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "free-software-foundation",
+    "edition": "gnu-lgpl-2.1",
+    "revision": "sha256:20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "GNU Lesser General Public License version 2.1",
+  "relations": [],
+  "state": "active"
+}
