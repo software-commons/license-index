@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "ogl-canada-2-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "government-of-canada",
     "edition": "ogl-canada-2-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:e62c3211e4bdc94fa4b6ca6bf541749c18b468c994ccae55e32603fafe7204cd",
     "taxonomy": "license-index-license"

@@ -3,7 +3,7 @@
     {
       "id": "afl-1-1-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "afl-1-1-spdx-3290-correspondence",
@@ -13,7 +13,7 @@
     {
       "id": "afl-1-2-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "afl-1-2-spdx-3290-correspondence",
@@ -23,7 +23,7 @@
     {
       "id": "afl-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "afl-2-0-spdx-3290-correspondence",
@@ -33,7 +33,7 @@
     {
       "id": "afl-2-1-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "afl-2-1-spdx-3290-correspondence",
@@ -43,7 +43,7 @@
     {
       "id": "afl-3-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "afl-3-0-spdx-3290-correspondence",
@@ -51,9 +51,124 @@
       "revision": 1
     },
     {
-      "id": "cc0-10-canonical-identity-mapping",
+      "id": "apache-2-0-documentary-license-identity",
       "kind": "claim",
       "revision": 3
+    },
+    {
+      "id": "apache-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-2-0-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "autoconf-exception-2-0-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-2-0-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-3-0-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "autoconf-exception-3-0-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-3-0-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-generic-3-0-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "autoconf-exception-generic-3-0-documented-base-license",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "autoconf-exception-generic-3-0-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "autoconf-exception-generic-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "autoconf-exception-generic-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-generic-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-macro-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "autoconf-exception-macro-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "autoconf-exception-macro-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bison-exception-1-24-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "bison-exception-1-24-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bison-exception-1-24-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bison-exception-2-2-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "bison-exception-2-2-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bison-exception-2-2-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc0-10-canonical-identity-mapping",
+      "kind": "claim",
+      "revision": 4
     },
     {
       "id": "cc0-10-spdx-3290-correspondence",
@@ -61,9 +176,54 @@
       "revision": 3
     },
     {
-      "id": "dl-de-by-2-0-reference-identity",
+      "id": "classpath-exception-2-0-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "classpath-exception-2-0-documented-base-license",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "classpath-exception-2-0-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "classpath-exception-2-0-short-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "classpath-exception-2-0-short-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "classpath-exception-2-0-short-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cryptsetup-openssl-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "cryptsetup-openssl-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cryptsetup-openssl-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "dl-de-by-2-0-reference-identity",
+      "kind": "claim",
+      "revision": 2
     },
     {
       "id": "dl-de-by-2-0-spdx-3290-correspondence",
@@ -73,7 +233,7 @@
     {
       "id": "dl-de-zero-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "dl-de-zero-2-0-spdx-3290-correspondence",
@@ -83,7 +243,7 @@
     {
       "id": "etalab-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "etalab-2-0-spdx-3290-correspondence",
@@ -91,9 +251,69 @@
       "revision": 1
     },
     {
+      "id": "fsf-gpl-2-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "fsf-gpl-3-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "fsf-lgpl-2-1-documentary-license-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "gcc-exception-2-0-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "gcc-exception-2-0-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gcc-exception-2-0-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gcc-exception-2-0-note-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "gcc-exception-2-0-note-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gcc-exception-2-0-note-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gnu-compiler-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "gnu-compiler-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gnu-compiler-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "gnu-fdl-v1-1-edition-identity",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "gnu-fdl-v1-1-spdx-3290-invariants-only",
@@ -128,7 +348,7 @@
     {
       "id": "gnu-fdl-v1-2-edition-identity",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "gnu-fdl-v1-2-spdx-3290-invariants-only",
@@ -163,7 +383,7 @@
     {
       "id": "gnu-fdl-v1-3-edition-identity",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "gnu-fdl-v1-3-spdx-3290-invariants-only",
@@ -196,6 +416,126 @@
       "revision": 2
     },
     {
+      "id": "gpl-2-0-only-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gpl-2-0-or-later-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gpl-3-0-only-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gpl-3-0-or-later-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gstreamer-exception-2005-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "gstreamer-exception-2005-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gstreamer-exception-2005-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gstreamer-exception-2008-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "gstreamer-exception-2008-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "gstreamer-exception-2008-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "independent-modules-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "independent-modules-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "independent-modules-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "kvirc-openssl-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "kvirc-openssl-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "kvirc-openssl-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lgpl-2-1-only-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lgpl-2-1-or-later-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "libtool-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "libtool-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "libtool-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "llvm-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "llvm-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "llvm-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "mit-osi-covered-work-redistribution-notice",
       "kind": "claim",
       "revision": 2
@@ -203,7 +543,7 @@
     {
       "id": "mit-osi-reference-form-identity",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
     },
     {
       "id": "mit-osi-reference-grant-scope",
@@ -238,7 +578,7 @@
     {
       "id": "nlod-1-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "nlod-1-0-spdx-3290-correspondence",
@@ -248,7 +588,7 @@
     {
       "id": "nlod-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "nlod-2-0-spdx-3290-correspondence",
@@ -258,7 +598,7 @@
     {
       "id": "nposl-3-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "nposl-3-0-spdx-3290-correspondence",
@@ -266,9 +606,24 @@
       "revision": 1
     },
     {
-      "id": "odbl-1-0-reference-identity",
+      "id": "ocaml-lgpl-linking-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "ocaml-lgpl-linking-exception-documented-base-license",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "ocaml-lgpl-linking-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "odbl-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 2
     },
     {
       "id": "odbl-1-0-spdx-3290-correspondence",
@@ -278,7 +633,7 @@
     {
       "id": "odc-by-1-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "odc-by-1-0-spdx-3290-correspondence",
@@ -313,7 +668,7 @@
     {
       "id": "ogl-canada-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "ogl-canada-2-0-spdx-3290-correspondence",
@@ -323,7 +678,7 @@
     {
       "id": "ogl-uk-1-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "ogl-uk-1-0-spdx-3290-correspondence",
@@ -333,7 +688,7 @@
     {
       "id": "ogl-uk-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "ogl-uk-2-0-spdx-3290-correspondence",
@@ -343,7 +698,7 @@
     {
       "id": "ogl-uk-3-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "ogl-uk-3-0-spdx-3290-correspondence",
@@ -351,9 +706,39 @@
       "revision": 1
     },
     {
-      "id": "osl-1-0-reference-identity",
+      "id": "openjdk-assembly-exception-1-0-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "openjdk-assembly-exception-1-0-documented-base-license",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "openjdk-assembly-exception-1-0-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "openvpn-openssl-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "openvpn-openssl-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "openvpn-openssl-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "osl-1-0-reference-identity",
+      "kind": "claim",
+      "revision": 2
     },
     {
       "id": "osl-1-0-spdx-3290-correspondence",
@@ -363,7 +748,7 @@
     {
       "id": "osl-1-1-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "osl-1-1-spdx-3290-correspondence",
@@ -373,7 +758,7 @@
     {
       "id": "osl-2-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "osl-2-0-spdx-3290-correspondence",
@@ -383,7 +768,7 @@
     {
       "id": "osl-2-1-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "osl-2-1-spdx-3290-correspondence",
@@ -393,7 +778,7 @@
     {
       "id": "osl-3-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "osl-3-0-spdx-3290-correspondence",
@@ -403,7 +788,7 @@
     {
       "id": "pddl-1-0-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 3
     },
     {
       "id": "pddl-1-0-spdx-3290-correspondence",
@@ -413,7 +798,7 @@
     {
       "id": "polyform-perimeter-publisher-identity",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
     },
     {
       "id": "polyform-perimeter-qualified-competition-scope",
@@ -438,7 +823,7 @@
     {
       "id": "polyform-shield-publisher-identity",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
     },
     {
       "id": "polyform-shield-recipient-notice-obligation",
@@ -451,19 +836,94 @@
       "revision": 3
     },
     {
-      "id": "sil-ofl-1-0-documentary-identity",
+      "id": "rsync-linking-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "rsync-linking-exception-documented-base-license",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "rsync-linking-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "sil-ofl-1-0-documentary-identity",
+      "kind": "claim",
+      "revision": 2
     },
     {
       "id": "sil-ofl-1-1-documentary-identity",
       "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "sqlitestudio-openssl-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "sqlitestudio-openssl-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "sqlitestudio-openssl-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "stunnel-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "stunnel-exception-documented-base-license",
+      "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "stunnel-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "swift-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "swift-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "swift-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "texinfo-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "texinfo-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "texinfo-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 2
     },
     {
       "id": "w3c-1998-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "w3c-1998-spdx-3290-correspondence",
@@ -473,7 +933,7 @@
     {
       "id": "w3c-2002-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "w3c-2002-spdx-3290-correspondence",
@@ -483,17 +943,32 @@
     {
       "id": "w3c-2015-reference-identity",
       "kind": "claim",
-      "revision": 1
+      "revision": 2
     },
     {
       "id": "w3c-2015-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "x11vnc-openssl-exception-documentary-exception-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "x11vnc-openssl-exception-documented-base-license",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "x11vnc-openssl-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.7",
-  "evaluated_at": "2026-11-26T02:47:52Z",
+  "dataset_version": "0.2.11",
+  "evaluated_at": "2026-11-26T15:54:05Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -512,15 +987,17 @@
     "Each selected assertion retains its own conditions and limits.",
     "The CC0 identity refers to the exact English publisher edition. Its SPDX crosswalk concerns documentary correspondence for the pinned generated-data release.",
     "Public-data crosswalks identify documentary edition correspondence. Publisher and SPDX representations can differ.",
-    "Edition and identifier correspondence preserves the recorded distinctions among publisher versions and SPDX identifier choices."
+    "Edition and identifier correspondence preserves the recorded distinctions among publisher versions and SPDX identifier choices.",
+    "For the six named MIT, PolyForm and GNU FDL reference editions, active is the Index's classification for continued indexing of the exact references.",
+    "The selected documentary reference lifecycle values reflect the Index's exact editorial decisions about continued or historical lookup."
   ],
   "previous_report": {
-    "path": "sces/releases/mit-polyform-cc0-public-data-reference-0-2-6/qualification.json",
-    "sha256": "1ffe9cd93216d5676221395ee7882c0dca12ebacef1da2481d8b05f8dfa46677"
+    "path": "sces/releases/historical-documentary-reference-0-2-7/qualification.json",
+    "sha256": "38faeae3cb78bec933605faa48c657f75081f436fb773bcea4d749bbbd1b2980"
   },
-  "release": "historical-documentary-reference-0-2-7",
-  "research_cutoff": "2026-11-26T02:47:52Z",
+  "release": "documentary-exception-reference-0-2-11",
+  "research_cutoff": "2026-11-26T15:54:05Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences.",
-  "source_commit": "de77c3aa723db8f198befe5776b96ddbfe8b481c"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims.",
+  "source_commit": "2eaba84a789932bb8075166112270b4a00d227ba"
 }

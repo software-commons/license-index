@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "w3c-2015-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "world-wide-web-consortium",
     "edition": "w3c-2015",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:ba6ea10efa05afc04565c8237ec18585b59bf1eba836ff86a692808a6c55e60b",
     "taxonomy": "license-index-license"

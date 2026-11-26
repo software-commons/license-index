@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "36891dedd88049f78922487fd292ae3d"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "autoconf-exception-generic-3-0-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "Autoconf-exception-generic-3.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-compiler-collection",
+        "edition": "gcc-config-sub-04696df-2021-10-27",
+        "revision": "sha256:71b8d73e46e0c31b1dc91ba5306f5ef0af009273b3bb283f31d8dad69666fa9e",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "bec5e093731442d69095aecaacdc7dc0",
+  "identity_claim": {
+    "id": "autoconf-exception-generic-3-0-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "gnu-compiler-collection",
+    "edition": "gcc-config-sub-04696df-2021-10-27",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:71b8d73e46e0c31b1dc91ba5306f5ef0af009273b3bb283f31d8dad69666fa9e",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Autoconf generic exception for GPL-3.0",
+  "relations": [
+    {
+      "claim": {
+        "id": "autoconf-exception-generic-3-0-documented-base-license",
+        "kind": "claim",
+        "revision": 2
+      },
+      "scope": {
+        "authority": "gnu-compiler-collection",
+        "base-license": "GPL-3.0-or-later",
+        "edition": "gcc-config-sub-04696df-2021-10-27",
+        "revision": "sha256:71b8d73e46e0c31b1dc91ba5306f5ef0af009273b3bb283f31d8dad69666fa9e"
+      },
+      "target": {
+        "id": "f6c5ffa485db43d9ad2d2898bf30b86f"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

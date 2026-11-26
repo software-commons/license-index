@@ -23,13 +23,14 @@
   "identity_claim": {
     "id": "dl-de-zero-2-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "govdata",
     "edition": "dl-de-zero-2-0",
-    "representation": "publisher-bilingual-html",
-    "revision": "sha256:942ff5fea9ce6e3184ff7c6134f259b06f901200211815e6ddd8ab7392254168",
+    "index-lifecycle-decision": "govdata-zero-reference-reaffirmation-2026-11-26",
+    "representation": "publisher-german-documentation-markdown",
+    "revision": "sha256:7d030487c352655939b99fee79ae8a16146ff9eda6fce80b175bdb9f928e19e4",
     "taxonomy": "license-index-license"
   },
   "kind": "license",

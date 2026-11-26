@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "ea2cfcb9010d49c491bdefdb3e580fd2"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "autoconf-exception-generic-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Autoconf-exception-generic",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-autoconf",
+        "edition": "autoconf-2.59-elisp-comp-generic-notice",
+        "revision": "sha256:8fdb65e022704da78d3dc45fb7726f9317729554682f9c94df3ee06096b8742e",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "ebc695b6342d45538ff0325fb9721c8c",
+  "identity_claim": {
+    "id": "autoconf-exception-generic-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "gnu-autoconf",
+    "edition": "autoconf-2.59-elisp-comp-generic-notice",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:8fdb65e022704da78d3dc45fb7726f9317729554682f9c94df3ee06096b8742e",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Autoconf generic exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "autoconf-exception-generic-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-autoconf",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "autoconf-2.59-elisp-comp-generic-notice",
+        "revision": "sha256:8fdb65e022704da78d3dc45fb7726f9317729554682f9c94df3ee06096b8742e"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "historical"
+}

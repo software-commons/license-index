@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "46ab3f1e4f3646a686c74ea618be544e"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "openvpn-openssl-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "openvpn-openssl-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "openvpn-technologies-inc",
+        "edition": "openvpn-2-3-18",
+        "revision": "sha256:901e7fb3bf0d250ba10b84e7b3404a907203daf60a895c2dadf12117e34dae56",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "8c5a8e66c9e347c38e26b68e8c431f65",
+  "identity_claim": {
+    "id": "openvpn-openssl-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "openvpn-technologies-inc",
+    "edition": "openvpn-2-3-18",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:901e7fb3bf0d250ba10b84e7b3404a907203daf60a895c2dadf12117e34dae56",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "OpenVPN OpenSSL Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "openvpn-openssl-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "openvpn-technologies-inc",
+        "base-license": "GPL-2.0",
+        "edition": "openvpn-2-3-18",
+        "revision": "sha256:901e7fb3bf0d250ba10b84e7b3404a907203daf60a895c2dadf12117e34dae56"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "historical"
+}

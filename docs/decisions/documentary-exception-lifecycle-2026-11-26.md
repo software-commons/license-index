@@ -1,0 +1,44 @@
+# Index lifecycle decisions for 33 documentary references
+
+Software Commons License Index assigns the lifecycle values below to the exact documentary references recorded on 2026-11-26. The Index maintains `active` references for current lookup and retains `historical` references for reconciliation of distinct earlier forms. Both remain in scope for documentary lookup after selection.
+
+These classifications are editorial decisions about Index maintenance. Publisher evidence establishes the documentary identity, edition, and base scope. Publisher currency, SPDX deprecation, work-specific grants, and redistribution rights have their own evidence and review.
+
+| Permanent entity | SPDX 3.29.0 identifiers | Reference | Exact scope edition | Exact scope revision | Kind | Index lifecycle |
+| --- | --- | --- | --- | --- | --- | --- |
+| `b9046c15256b4d44bf7c4c7da92b3d7c` | `Autoconf-exception-2.0` | Autoconf exception 2.0 | `autoconf-2.59-configure-output-notice` | `sha256:2d5a6e2d219173514495e2e409fa4343643243cd41483f02ae8d3e8b434822fa` | `exception` | `historical` |
+| `477df76b9e254d92bdbe28f1bde5e830` | `Autoconf-exception-3.0` | Autoconf exception 3.0 | `autoconf-configure-script-exception-3.0` | `sha256:1f1cde9fb68b9b3cff18c420894bec5bd4defacd700b7d13df54a887301e5350` | `exception` | `active` |
+| `ebc695b6342d45538ff0325fb9721c8c` | `Autoconf-exception-generic` | Autoconf generic exception | `autoconf-2.59-elisp-comp-generic-notice` | `sha256:8fdb65e022704da78d3dc45fb7726f9317729554682f9c94df3ee06096b8742e` | `exception` | `historical` |
+| `bec5e093731442d69095aecaacdc7dc0` | `Autoconf-exception-generic-3.0` | Autoconf generic exception for GPL-3.0 | `gcc-config-sub-04696df-2021-10-27` | `sha256:71b8d73e46e0c31b1dc91ba5306f5ef0af009273b3bb283f31d8dad69666fa9e` | `exception` | `active` |
+| `662eab93a33a46569935776999f1139b` | `Autoconf-exception-macro` | Autoconf macro exception | `autoconf-archive-ax-pthread-macro-notice` | `sha256:8bd2248e78260451101fdf107606be932541ccd53c0b70498ba051db685c7c5c` | `exception` | `active` |
+| `b835abd888624b3ea61f254261456afc` | `Bison-exception-1.24` | Bison exception 1.24 | `gnu-bison-exception-1.24-pinned-bison-simple-notice` | `sha256:eacfbda0a6d118a507eb8e34ccb189aaddf87032a2b5d570d8b38f7a19f583f0` | `exception` | `historical` |
+| `37b29027dbe942089e53e797965b8e91` | `Bison-exception-2.2` | Bison exception 2.2 | `gnu-bison-exception-2.2-yacc-skeleton` | `sha256:9c8805f15a1a9977dd7e2d8160bfb8a95384db55c161a2a0e965e92e7dba5347` | `exception` | `historical` |
+| `c838f8f2573e4849a499b7bf246ed229` | `Classpath-exception-2.0` | GNU Classpath linking exception | `gnu-classpath-095-java-lang-package` | `sha256:e7f33a8a79767aa5604d94b12589b75653714c19c54427feb76329a4c3f34fbb` | `exception` | `active` |
+| `061c689ce91b4c88a7fe6f6904549ca3` | `Classpath-exception-2.0-short` | Lazarus modified LGPL linking exception | `lazarus-42-copying-modified-lgpl` | `sha256:0624a5291021279446fbea96cdd33527d09c64c87d5616f789b2521e2a9e3d71` | `exception` | `active` |
+| `dbe8f4af46b5480b88f015bb73d45d12` | `cryptsetup-OpenSSL-exception` | cryptsetup OpenSSL exception | `cryptsetup-2-7-5` | `sha256:45670cce8b6a0ddd66c8016cd8ccef6cd71f35717cbacc7f1e895b3855207b33` | `exception` | `active` |
+| `a399b35c50ec4fa790bc19826f2945ea` | `GCC-exception-2.0` | GCC Runtime Library exception 2.0 | `gcc-runtime-library-exception-2.0-historical-libgcc1` | `sha256:90e7954cc4cf444431eea3a67b2c57bc4687ee58a16d4d2355237e8a9acd7b9c` | `exception` | `historical` |
+| `bed73cd53ee3434cb264ec6942601ca7` | `GCC-exception-2.0-note` | GCC    Runtime Library exception 2.0 - note variant | `glibc-2.42-gcc-runtime-linking-exception-note-variant` | `sha256:b7da99f854538a38e13da5c24cfdd977fcfbd2588606ccf14b03c50b9f457cd4` | `exception` | `active` |
+| `61a84ebb9dd34a2581a2880bd539e008` | `GNU-compiler-exception` | GNU Compiler Exception | `gnu-compiler-exception-gcc-14.2.0-libiberty` | `sha256:89bac0c3c15e3f7db2d320e2f4f63dc249f8e0d415eb85689615bfaa7d6f6728` | `exception` | `active` |
+| `129ad14748f84175a109042fa3455d0d` | `GStreamer-exception-2005` | GStreamer Exception (2005) | `totem-1-0-5-2005-header` | `sha256:99c9c10f0da56255db69ae6bd27dd63882f689ac52f5e66500f70450d96737bf` | `exception` | `historical` |
+| `c5c10dee8ecf4f79a74641f03f23006f` | `GStreamer-exception-2008` | GStreamer Exception (2008) | `totem-43-0-copying` | `sha256:8467c35c94d5ab31cd6556203bd651cfa9a6c293043d1d5a7defd0c046f0a02c` | `exception` | `active` |
+| `0e312f6040f14b4e95c662ddbaa83708` | `Independent-modules-exception` | Free Pascal independent modules linking exception | `free-pascal-322-rtl-copying-fpc` | `sha256:f65c27c43c289a842185f7948820a01b8eda29021cb0ec0dcdd3d646def9cf69` | `exception` | `active` |
+| `12ed480cff064e9ba0d5d2e2c5821a16` | `kvirc-openssl-exception` | kvirc OpenSSL Exception | `kvirc-pinned-about-license` | `sha256:161a73a84b58eed82959bcb9b8e74128e6fe4b18b71ae0688097f17c532c009c` | `exception` | `active` |
+| `3cd1fc621db54bf3833769dc2656e550` | `Libtool-exception` | Libtool Exception | `gnu-libtool-2.4.7-gpl-maintenance-template-exception` | `sha256:139d092a4336557923dcbfb917ec4422feed1c6e24f324aeccf86c662aea17ab` | `exception` | `active` |
+| `18d20dce900d43fca62ccfc71cb7c26f` | `LLVM-exception` | LLVM Exceptions to the Apache 2.0 License | `llvm-project-license-at-87f0227` | `sha256:8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee` | `exception` | `active` |
+| `9e62332aa76a4caca42c09d50b03df90` | `OCaml-LGPL-linking-exception` | OCaml LGPL Linking Exception | `ocaml-commit-8eb41f72ded84df884c3671734c947f612091f84` | `sha256:65f47d3bf5a921011ac7fa30f23d54f9dffbe7683921eeb116d5ce8dc26ff0c1` | `exception` | `active` |
+| `ea04f900c96340dd8326ae971cd9e1cc` | `OpenJDK-assembly-exception-1.0` | OpenJDK Assembly Exception | `openjdk-assembly-exception-publisher-reference` | `sha256:56ea6c7f55997900d0f132d15eb80e549f7d090ebfea7ccdc07a91ae7230dc7a` | `exception` | `active` |
+| `8c5a8e66c9e347c38e26b68e8c431f65` | `openvpn-openssl-exception` | OpenVPN OpenSSL Exception | `openvpn-2-3-18` | `sha256:901e7fb3bf0d250ba10b84e7b3404a907203daf60a895c2dadf12117e34dae56` | `exception` | `historical` |
+| `cd55ac8379d146639eebd6dda11a9487` | `rsync-linking-exception` | rsync Linking Exception | `rsync-pinned-copying` | `sha256:85c19ea50a224c2d0067a69c083584e5717b40b76610ec1218f91385775067dd` | `exception` | `active` |
+| `2e8f8e90f9f94d9abceaabb904ffd81d` | `sqlitestudio-OpenSSL-exception` | sqlitestudio OpenSSL exception | `sqlitestudio-3-4-21` | `sha256:c8d10fd14c31e3094ff244b15fc6414a084373e86a8b2eb296d1e13832f91ed6` | `exception` | `active` |
+| `624a661665e14636a8de3ab73ac0f849` | `stunnel-exception` | stunnel Exception | `stunnel-pinned-copying` | `sha256:716f18b10eac3f1875ea2205418dd1b0084bd210bd17d615df6b180cfc4d65b6` | `exception` | `active` |
+| `d2c7d11a2c4e4b8fb5173ebfab549b54` | `Swift-exception` | Swift Runtime Library Exception to the Apache 2.0 License | `swift-package-manager-runtime-exception-at-7ab2275` | `sha256:186c5f0192a754714a7e542233ddaaad28745626e0ad32e358d3f5af00afb84a` | `exception` | `active` |
+| `e5f44d232077406f8df77526e6b5f042` | `Texinfo-exception` | Texinfo exception | `automake-texinfo-tex-18416d6-2021-04-25-21` | `sha256:1d33f69c72e9bcd880fd02f2153c6475fc887042ae87569256cd8be009ce83b4` | `exception` | `active` |
+| `bdbbfee74fb142b790ebfaca6e5a94e2` | `x11vnc-openssl-exception` | x11vnc OpenSSL Exception | `x11vnc-pinned-8to24` | `sha256:1d0ae455c58c01462e8569d87a5bfe669fc94f6b7bc65518c95dfee4e2627bb3` | `exception` | `active` |
+| `b5637aa8d18240e887bd6455580309b6` | `Apache-2.0` | Apache License 2.0 | `apache-2.0-january-2004` | `sha256:cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30` | `license` | `active` |
+| `c2df69134e8a4f52a44193d8428c00a3` | `GPL-2.0-only`, `GPL-2.0-or-later` | GNU General Public License version 2 | `gnu-gpl-2.0` | `sha256:edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6` | `license` | `active` |
+| `f6c5ffa485db43d9ad2d2898bf30b86f` | `GPL-3.0-only`, `GPL-3.0-or-later` | GNU General Public License version 3 | `gnu-gpl-3.0` | `sha256:3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986` | `license` | `active` |
+| `c595af81697d426ebaff3b518a4b84b3` | `LGPL-2.1-only`, `LGPL-2.1-or-later` | GNU Lesser General Public License version 2.1 | `gnu-lgpl-2.1` | `sha256:20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95` | `license` | `active` |
+| `0a0b44888ce44ebaaf3a3d62de57dc32` | `PDDL-1.0` | Open Data Commons Public Domain Dedication and License v1.0 | `pddl-1-0` | `sha256:09ecade0250eba538cc68145b8f5448eb44cf8340a414665f7f5c12872102faa` | `related-instrument` | `active` |
+
+These rows apply only to the exact identifiers and scopes shown.
+The Index reviews the classifications with their corresponding evidence. A decision to publish a consumer dataset requires separate release authorization.

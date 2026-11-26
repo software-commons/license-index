@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "37fe42d8bdb243879a81792993f22d2b"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "apache-2-0-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Apache-2.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "apache-software-foundation",
+        "edition": "apache-2.0-january-2004",
+        "revision": "sha256:cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b5637aa8d18240e887bd6455580309b6",
+  "identity_claim": {
+    "id": "apache-2-0-documentary-license-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "apache-software-foundation",
+    "edition": "apache-2.0-january-2004",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Apache License 2.0",
+  "relations": [],
+  "state": "active"
+}

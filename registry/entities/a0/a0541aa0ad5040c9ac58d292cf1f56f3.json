@@ -24,11 +24,12 @@
   "identity_claim": {
     "id": "polyform-perimeter-publisher-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "polyform-project",
     "edition": "polyform-perimeter-1.0.1",
+    "index-lifecycle-decision": "documentary-reference-classifications-2026-11-26",
     "revision": "sha256:5c7a5ccd847fcc285dda039e511ba013693fe979dfc5faee47f6fb59c7add337"
   },
   "kind": "license",

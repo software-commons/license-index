@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "a6f32af48eb047e3baddf349c841ff29"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "gnu-compiler-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "GNU-compiler-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnu-gcc-libiberty",
+        "edition": "gnu-compiler-exception-gcc-14.2.0-libiberty",
+        "revision": "sha256:89bac0c3c15e3f7db2d320e2f4f63dc249f8e0d415eb85689615bfaa7d6f6728",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "61a84ebb9dd34a2581a2880bd539e008",
+  "identity_claim": {
+    "id": "gnu-compiler-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "gnu-gcc-libiberty",
+    "edition": "gnu-compiler-exception-gcc-14.2.0-libiberty",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:89bac0c3c15e3f7db2d320e2f4f63dc249f8e0d415eb85689615bfaa7d6f6728",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "GNU Compiler Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "gnu-compiler-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnu-gcc-libiberty",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "gnu-compiler-exception-gcc-14.2.0-libiberty",
+        "revision": "sha256:89bac0c3c15e3f7db2d320e2f4f63dc249f8e0d415eb85689615bfaa7d6f6728"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

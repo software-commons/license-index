@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "efab3eb3714747e48e78cf520679fff2"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "stunnel-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "stunnel-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "stunnel-project",
+        "edition": "stunnel-pinned-copying",
+        "revision": "sha256:716f18b10eac3f1875ea2205418dd1b0084bd210bd17d615df6b180cfc4d65b6",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "624a661665e14636a8de3ab73ac0f849",
+  "identity_claim": {
+    "id": "stunnel-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "stunnel-project",
+    "edition": "stunnel-pinned-copying",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:716f18b10eac3f1875ea2205418dd1b0084bd210bd17d615df6b180cfc4d65b6",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "stunnel Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "stunnel-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "stunnel-project",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "stunnel-pinned-copying",
+        "revision": "sha256:716f18b10eac3f1875ea2205418dd1b0084bd210bd17d615df6b180cfc4d65b6"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "4ad408eadede43369b1811cdcda7c266"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "independent-modules-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Independent-modules-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "free-pascal-development-team",
+        "edition": "free-pascal-322-rtl-copying-fpc",
+        "revision": "sha256:f65c27c43c289a842185f7948820a01b8eda29021cb0ec0dcdd3d646def9cf69",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "0e312f6040f14b4e95c662ddbaa83708",
+  "identity_claim": {
+    "id": "independent-modules-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "free-pascal-development-team",
+    "edition": "free-pascal-322-rtl-copying-fpc",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:f65c27c43c289a842185f7948820a01b8eda29021cb0ec0dcdd3d646def9cf69",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Free Pascal independent modules linking exception",
+  "relations": [],
+  "state": "active"
+}

@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "ogl-uk-1-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "the-national-archives",
     "edition": "ogl-uk-1-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "publisher-english-html",
     "revision": "sha256:a5ddab8cb10dacfd82f9e3f6699191849d62e74180525ec5041572c408a8c2ca",
     "taxonomy": "license-index-license"

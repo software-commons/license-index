@@ -1,0 +1,58 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "2d8be15958154343992129defb09c224",
+    "ce9656b16877451998f0a089fb736dd9"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "gpl-2-0-only-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "GPL-2.0-only",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "free-software-foundation",
+        "edition": "gnu-gpl-2.0",
+        "revision": "sha256:edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "upstream-release": "3.29.0"
+      }
+    },
+    {
+      "claim": {
+        "id": "gpl-2-0-or-later-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "GPL-2.0-or-later",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "free-software-foundation",
+        "edition": "gnu-gpl-2.0",
+        "revision": "sha256:edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "c2df69134e8a4f52a44193d8428c00a3",
+  "identity_claim": {
+    "id": "fsf-gpl-2-0-documentary-license-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "free-software-foundation",
+    "edition": "gnu-gpl-2.0",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "GNU General Public License version 2",
+  "relations": [],
+  "state": "active"
+}

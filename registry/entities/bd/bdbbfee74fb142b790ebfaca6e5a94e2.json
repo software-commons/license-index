@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "7a4a93b8bbf94c8cb0419d552ed4fcee"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "x11vnc-openssl-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "x11vnc-openssl-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "libvnc-x11vnc-project",
+        "edition": "x11vnc-pinned-8to24",
+        "revision": "sha256:1d0ae455c58c01462e8569d87a5bfe669fc94f6b7bc65518c95dfee4e2627bb3",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "bdbbfee74fb142b790ebfaca6e5a94e2",
+  "identity_claim": {
+    "id": "x11vnc-openssl-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "libvnc-x11vnc-project",
+    "edition": "x11vnc-pinned-8to24",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:1d0ae455c58c01462e8569d87a5bfe669fc94f6b7bc65518c95dfee4e2627bb3",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "x11vnc OpenSSL Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "x11vnc-openssl-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "libvnc-x11vnc-project",
+        "base-license": "GPL-2.0-or-later",
+        "edition": "x11vnc-pinned-8to24",
+        "revision": "sha256:1d0ae455c58c01462e8569d87a5bfe669fc94f6b7bc65518c95dfee4e2627bb3"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

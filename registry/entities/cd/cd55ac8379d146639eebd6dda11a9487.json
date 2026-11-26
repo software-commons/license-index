@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "964b7849d7a54b89bd8ac01e93ea46c7"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "rsync-linking-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "rsync-linking-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "rsync-project",
+        "edition": "rsync-pinned-copying",
+        "revision": "sha256:85c19ea50a224c2d0067a69c083584e5717b40b76610ec1218f91385775067dd",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "cd55ac8379d146639eebd6dda11a9487",
+  "identity_claim": {
+    "id": "rsync-linking-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "rsync-project",
+    "edition": "rsync-pinned-copying",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:85c19ea50a224c2d0067a69c083584e5717b40b76610ec1218f91385775067dd",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "rsync Linking Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "rsync-linking-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "rsync-project",
+        "base-license": "GPL-3.0-or-later",
+        "edition": "rsync-pinned-copying",
+        "revision": "sha256:85c19ea50a224c2d0067a69c083584e5717b40b76610ec1218f91385775067dd"
+      },
+      "target": {
+        "id": "f6c5ffa485db43d9ad2d2898bf30b86f"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

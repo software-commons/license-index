@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "eed14b8e85ff43618761e561b9e8dab8"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "openjdk-assembly-exception-1-0-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OpenJDK-assembly-exception-1.0",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "openjdk-project",
+        "edition": "openjdk-assembly-exception-publisher-reference",
+        "revision": "sha256:56ea6c7f55997900d0f132d15eb80e549f7d090ebfea7ccdc07a91ae7230dc7a",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "ea04f900c96340dd8326ae971cd9e1cc",
+  "identity_claim": {
+    "id": "openjdk-assembly-exception-1-0-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "openjdk-project",
+    "edition": "openjdk-assembly-exception-publisher-reference",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:56ea6c7f55997900d0f132d15eb80e549f7d090ebfea7ccdc07a91ae7230dc7a",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "OpenJDK Assembly Exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "openjdk-assembly-exception-1-0-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "openjdk-project",
+        "base-license": "GPL-2.0-only",
+        "edition": "openjdk-assembly-exception-publisher-reference",
+        "revision": "sha256:56ea6c7f55997900d0f132d15eb80e549f7d090ebfea7ccdc07a91ae7230dc7a"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

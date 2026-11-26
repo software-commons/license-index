@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "87279e3d81d34057a256115b5de4701e"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "swift-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Swift-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "swift-project",
+        "edition": "swift-package-manager-runtime-exception-at-7ab2275",
+        "revision": "sha256:186c5f0192a754714a7e542233ddaaad28745626e0ad32e358d3f5af00afb84a",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "d2c7d11a2c4e4b8fb5173ebfab549b54",
+  "identity_claim": {
+    "id": "swift-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "swift-project",
+    "edition": "swift-package-manager-runtime-exception-at-7ab2275",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:186c5f0192a754714a7e542233ddaaad28745626e0ad32e358d3f5af00afb84a",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "Swift Runtime Library Exception to the Apache 2.0 License",
+  "relations": [
+    {
+      "claim": {
+        "id": "swift-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "swift-project",
+        "base-license": "Apache-2.0",
+        "edition": "swift-package-manager-runtime-exception-at-7ab2275",
+        "revision": "sha256:186c5f0192a754714a7e542233ddaaad28745626e0ad32e358d3f5af00afb84a"
+      },
+      "target": {
+        "id": "b5637aa8d18240e887bd6455580309b6"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

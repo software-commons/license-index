@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "4a33c703e196497c8f06ed244442441b"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cryptsetup-openssl-exception-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "cryptsetup-OpenSSL-exception",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "cryptsetup-project",
+        "edition": "cryptsetup-2-7-5",
+        "revision": "sha256:45670cce8b6a0ddd66c8016cd8ccef6cd71f35717cbacc7f1e895b3855207b33",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "dbe8f4af46b5480b88f015bb73d45d12",
+  "identity_claim": {
+    "id": "cryptsetup-openssl-exception-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "cryptsetup-project",
+    "edition": "cryptsetup-2-7-5",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:45670cce8b6a0ddd66c8016cd8ccef6cd71f35717cbacc7f1e895b3855207b33",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "cryptsetup OpenSSL exception",
+  "relations": [
+    {
+      "claim": {
+        "id": "cryptsetup-openssl-exception-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "cryptsetup-project",
+        "base-license": "LGPL-2.1-or-later",
+        "edition": "cryptsetup-2-7-5",
+        "revision": "sha256:45670cce8b6a0ddd66c8016cd8ccef6cd71f35717cbacc7f1e895b3855207b33"
+      },
+      "target": {
+        "id": "c595af81697d426ebaff3b518a4b84b3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

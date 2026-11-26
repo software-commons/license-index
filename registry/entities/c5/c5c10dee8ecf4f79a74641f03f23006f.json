@@ -1,0 +1,59 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "13117cfbab364a4abfaed248e5cdca39"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "gstreamer-exception-2008-exception-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "GStreamer-exception-2008",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "gnome-totem-project",
+        "edition": "totem-43-0-copying",
+        "revision": "sha256:8467c35c94d5ab31cd6556203bd651cfa9a6c293043d1d5a7defd0c046f0a02c",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "c5c10dee8ecf4f79a74641f03f23006f",
+  "identity_claim": {
+    "id": "gstreamer-exception-2008-documentary-exception-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "gnome-totem-project",
+    "edition": "totem-43-0-copying",
+    "index-lifecycle-decision": "documentary-exception-classifications-2026-11-26",
+    "revision": "sha256:8467c35c94d5ab31cd6556203bd651cfa9a6c293043d1d5a7defd0c046f0a02c",
+    "taxonomy": "license-index-exception"
+  },
+  "kind": "exception",
+  "name": "GStreamer Exception (2008)",
+  "relations": [
+    {
+      "claim": {
+        "id": "gstreamer-exception-2008-documented-base-license",
+        "kind": "claim",
+        "revision": 1
+      },
+      "scope": {
+        "authority": "gnome-totem-project",
+        "base-license": "GPL-2.0",
+        "edition": "totem-43-0-copying",
+        "revision": "sha256:8467c35c94d5ab31cd6556203bd651cfa9a6c293043d1d5a7defd0c046f0a02c"
+      },
+      "target": {
+        "id": "c2df69134e8a4f52a44193d8428c00a3"
+      },
+      "type": "exception-for"
+    }
+  ],
+  "state": "active"
+}

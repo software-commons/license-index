@@ -23,11 +23,12 @@
   "identity_claim": {
     "id": "nposl-3-0-reference-identity",
     "kind": "claim",
-    "revision": 1
+    "revision": 2
   },
   "identity_scope": {
     "authority": "open-source-initiative",
     "edition": "nposl-3-0",
+    "index-lifecycle-decision": "inherited-reference-classifications-2026-11-26",
     "representation": "osi-cms-json",
     "revision": "sha256:610e51461fe1a7e26685b407f37c0e67fba8819e5d0daab2eab806c1ba364e4c",
     "taxonomy": "license-index-license"
