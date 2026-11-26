@@ -1,0 +1,10 @@
+# Creative Commons 2.x documentary identities
+
+- stage-cc-generic-20-lifecycle: 6 exact mappings. [Research receipts](../../sces/artifacts/stage-cc-generic-20-lifecycle/research-receipts.jsonl) · [Independent verification](../../sces/artifacts/stage-cc-generic-20-lifecycle/independent-review-receipts.jsonl)
+- stage-cc-generic-25-lifecycle: 6 exact mappings. [Research receipts](../../sces/artifacts/stage-cc-generic-25-lifecycle/research-receipts.jsonl) · [Independent verification](../../sces/artifacts/stage-cc-generic-25-lifecycle/independent-review-receipts.jsonl)
+
+These claims identify named Generic publisher references and SPDX documentary correspondence. The Index lifecycle value is editorial. Ported editions, legal term equivalence, redistribution rights, installation and work-specific applicability remain separate.
+
+The scoped publisher references are the six Attribution, Attribution-ShareAlike, Attribution-NoDerivs, Attribution-NonCommercial, Attribution-NonCommercial-ShareAlike, and Attribution-NonCommercial-NoDerivs Generic licenses, separately for versions 2.0 and 2.5. The identified English HTML pages are live measured publisher representations; the captured digest identifies the bytes inspected, not an immutable publisher version. Their SPDX generated JSON records are separate, commit-pinned representations. The publisher label `NoDerivs` and the SPDX name `No Derivatives` are documentary labels for the identified references; no general equivalence of representations or terms is asserted.
+
+The original research and independent-review executions reopened their cited sources and recorded six checks per dependency. The Index lifecycle decision names each exact entity, edition and measured source revision; `active` is an Index maintenance classification, not a finding about publisher currency or legal effect. Previous evidence and coverage records remain in history. The qualification report applies only to the selected claims; a public dataset requires separate exact-artifact authorization. [Qualification report](../../sces/releases/cc-generic-2x-reference-0-2-12/qualification.json).
