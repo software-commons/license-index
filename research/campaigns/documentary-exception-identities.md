@@ -27,7 +27,7 @@ The mappings cover exact publisher witnesses and scoped SPDX entries. A file-spe
 
 Provisional inquiries track the GPL edition behind the I2P Java template, independent archive-member acquisition for GNU JavaMail and vsftpd, and a successor disposition for the invalidated GCC Runtime Library Exception 3.1 identity claim.
 
-[Qualification report](../../sces/releases/documentary-exception-reference-0-2-10/qualification.json)
+[Qualification report](../../sces/releases/documentary-exception-reference-0-2-11/qualification.json)
 
 The protected review prompted a second exact verification of the identity taxonomy binding and two downstream source witnesses. The original coverage snapshot and evidence revisions are retained, and the original draft selection remains in Git history. Current classification requires the pinned admission taxonomy as supporting evidence. The inherited PDDL related-instrument classification also binds its exact Index rule. Autoconf generic 3.0 is scoped to the named GCC mirror file and Texinfo to the named Automake mirror file. Their earlier authority attribution is superseded. SQLiteStudio's exact project tag and target commit support the recorded release association.
 
@@ -36,3 +36,9 @@ Fresh research and independent verification revisited six inherited documentary 
 GNU FDL [research receipts](../../sces/artifacts/stage-exception-lifecycle-fdl/research-receipts.jsonl) · [independent verification receipts](../../sces/artifacts/stage-exception-lifecycle-fdl/independent-review-receipts.jsonl).
 
 MIT and PolyForm [research receipts](../../sces/artifacts/stage-exception-lifecycle-mit-polyform/research-receipts.jsonl) · [independent verification receipts](../../sces/artifacts/stage-exception-lifecycle-mit-polyform/independent-review-receipts.jsonl).
+
+Fresh paired executions checked the lifecycle classifications against the exact Index decisions and reexamined the documentary publisher and taxonomy evidence. [Index decision for incoming references](../../docs/decisions/documentary-exception-lifecycle-2026-11-26.md) · [Index decision for inherited references](../../docs/decisions/inherited-reference-lifecycle-2026-11-26.md) · [Index decision for GovData Zero](../../docs/decisions/dl-de-zero-2-0-source-reaffirmation-2026-11-26.md). The selection includes qualified documentary identity and lifecycle classifications for the named references.
+
+The first lifecycle research pass left the Libtool release provenance inconclusive. A fresh pair traced the public `v2.4.7` Git reference through its annotated tag to the exact commit containing the cited `HACKING` file. The same provenance check binds the Totem `V_1_0_5` Git reference and annotated tag to the selected 2005 GStreamer witness. The revised selection retains both exact tag chains.
+
+The DL-DE Zero 2.0 successor records GovData's pinned German edition documentation and its publication lineage. Its scope is the documented edition reference. The exact bilingual HTML source and earlier verification remain in the evidence history.
