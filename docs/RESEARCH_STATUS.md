@@ -1,6 +1,8 @@
 # Research status
 
-Cutoff 2026-11-25. The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
+The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-26 at 15:54:05 UTC. The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
+
+The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) gives the exact UTC qualification cutoff for each of four retained documentary exception archives.
 
 | Measure | Development snapshot |
 | --- | --- |
