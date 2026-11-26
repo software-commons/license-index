@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 3,
+      "accepted_entities": 4,
       "beyond_spdx_dispositions": {
         "accepted": 2,
         "excluded": 1,
@@ -17,10 +17,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 3,
+        "accepted": 4,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 835
+        "unresolved": 834
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 195,
+      "recorded_claim_revisions": 197,
       "recorded_independently_reviewed_claims": 140,
-      "recorded_invalidated_claim_revisions": 55,
-      "selected_claims": 16,
+      "recorded_invalidated_claim_revisions": 57,
+      "selected_claims": 18,
       "status": "qualified-selection"
     },
     "research": {
@@ -109,9 +109,9 @@
   "cutoff": "2026-11-25",
   "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments.",
   "predecessor": {
-    "commit": "e72b8755383a12ba148cc6c35f57f9fb0022f2e0",
-    "sha256": "289cdf2b0e14bf95eb5819619ccf7e693a79e79ef6272ffe22f8699337e6916b",
-    "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-identity-aligned-selection.json"
+    "commit": "110c8d544300202b623601f6bf316b62980f0299",
+    "sha256": "9bd96f8acae430dc3bdbeafa9bc4fb3af115429407bbd4bb98d2220272ee58a8",
+    "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-accepted-crosswalk-selection.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -160,10 +160,11 @@
       "Accept the two exact PolyForm publisher bindings and select their eight qualified claims alongside the eight MIT claims.",
       "Record the corrected MIT and PolyForm selection under current source and policy-aware evidence.",
       "Bind the corrected MIT and PolyForm identity scope notes and preserve the prior verification history.",
-      "Revalidate each PolyForm crosswalk using the earlier and accepted discovery snapshots, and preserve the earlier verification history."
+      "Revalidate each PolyForm crosswalk using the earlier and accepted discovery snapshots, and preserve the earlier verification history.",
+      "Admit the exact CC0 1.0 Universal English reference and scoped SPDX documentary correspondence."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-25-mit-polyform-accepted-crosswalk-selection.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-25-cc0-identity-admission.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }

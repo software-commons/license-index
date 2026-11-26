@@ -1,6 +1,6 @@
 # CC0 1.0 Universal qualification
 
-Two separate Codex executions acquired the same nine original sources, assessed all twelve claim bindings, and challenged plausible alternative readings. Four independently verified revision 2 claims are eligible for SCES selection. The first revisions and their original receipts remain in the registry with superseded dispositions. The identity successor records the publisher edition name. The other successors bind the corrected source evidence. The current selection covers the OSI MIT reference form. CC0's canonical admission remains pending a future selection revision.
+Two separate Codex executions acquired the same nine original sources, assessed all twelve claim bindings, and challenged plausible alternative readings. The earlier campaign supported four revision 2 claims. The registry preserves their evidence and records the current disposition of each revision. The first revisions and their original receipts remain in the registry with superseded dispositions. The identity successor records the publisher edition name. The other successors bind the corrected source evidence. This campaign preceded CC0 canonical admission. The current identity and documentary correspondence have their own verification revisions. [Current admission scope](cc0-canonical-identity-mapping.md#canonical-admission).
 
 | Subject | Qualified scope |
 | --- | --- |
