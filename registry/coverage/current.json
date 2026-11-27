@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 121,
+      "accepted_entities": 137,
       "beyond_spdx_dispositions": {
         "accepted": 2,
         "excluded": 1,
@@ -17,10 +17,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 142,
+        "accepted": 158,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 696
+        "unresolved": 680
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 588,
-      "recorded_independently_reviewed_claims": 402,
+      "recorded_claim_revisions": 620,
+      "recorded_independently_reviewed_claims": 434,
       "recorded_invalidated_claim_revisions": 184,
-      "selected_claims": 301,
+      "selected_claims": 333,
       "status": "qualified-selection"
     },
     "research": {
@@ -107,11 +107,11 @@
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-25",
-  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-27T01:59:19Z (UTC). The retained SPDX manifest pins the census population.",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-27T05:43:27Z (UTC). The retained SPDX manifest pins the census population.",
   "predecessor": {
-    "commit": "da0c718b30f2da2c6809b00f376fc45cbe1e74cb",
-    "sha256": "e395ed099969e9028dabed74ef507ba1e73ea6be384019ffd1356c12edd8c7e1",
-    "snapshot": "registry/coverage/snapshots/2026-11-26-eupl-12-identities.json"
+    "commit": "d73d256ffe9b92e82636c8cc9292704964915080",
+    "sha256": "106a9b038420192b57bfd0fcbb5fae83725ca368494525e354ea9a645bfeb2d3",
+    "snapshot": "registry/coverage/snapshots/2026-11-27-oldap-reference-identities.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -177,10 +177,11 @@
       "Admit 6 exact Creative Commons 1.0 Generic references and their scoped SPDX correspondences.",
       "Admit 7 exact German-language Creative Commons references and their scoped SPDX correspondences.",
       "Admit 1 exact EUPL 1.2 reference and its scoped SPDX correspondence.",
-      "Admit 16 exact OpenLDAP references and their scoped SPDX correspondences."
+      "Admit 16 exact OpenLDAP references and their scoped SPDX correspondences.",
+      "Admit 16 exact Creative Commons references and their scoped SPDX correspondences."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-27-oldap-reference-identities.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-27-cc-remaining-identities.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
