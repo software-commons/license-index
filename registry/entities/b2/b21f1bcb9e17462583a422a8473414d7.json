@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "7307eb7618dd409eb55224ef5e7a4f09"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "oldap-2-1-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "OLDAP-2.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "openldap-foundation",
+        "edition": "oldap-2-1-publisher-reference",
+        "revision": "sha256:463975a009cd37374123e230ce7e8b33bca93a7e60d0f277be0ced0519f975d6",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b21f1bcb9e17462583a422a8473414d7",
+  "identity_claim": {
+    "id": "oldap-2-1-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "openldap-foundation",
+    "edition": "oldap-2-1-publisher-reference",
+    "index-lifecycle-decision": "oldap-reference-classifications-2026-11-27",
+    "revision": "sha256:463975a009cd37374123e230ce7e8b33bca93a7e60d0f277be0ced0519f975d6",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "OpenLDAP Public License v2.1",
+  "relations": [],
+  "state": "active"
+}
