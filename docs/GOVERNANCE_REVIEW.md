@@ -21,3 +21,7 @@ Production requires pull requests and both source-pinned Actions checks, **Evide
 ## Release authorization
 
 An authorized operator checks the evidence custody, exact source commit, selected claim revisions, mapped outputs, scope, and artifact digests. Record the approving principal and decision separately from the technical check. Bind that decision to the protected release change and verify the exact published bytes. Follow [publication control](PUBLICATION.md) and [profile qualification](PROFILE_QUALIFICATION.md).
+
+### Pending solid-history corrective proposal
+
+The [v2 history artifact](../research/review/history-v2/README.md) addresses a measured archive-capacity blocker without changing the configured archive or raw-object limits. It is review material, not an activated rule, approval or release authorization. The existing protected process remains in force until independent review, isolated commissioning and a verified runtime cutover.

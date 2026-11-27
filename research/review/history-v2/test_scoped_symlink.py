@@ -1,0 +1,26 @@
+from importlib.util import spec_from_file_location,module_from_spec
+from hashlib import sha256
+from pathlib import Path
+import json,subprocess,sys,tempfile
+sys.path.insert(0,'/mnt/c/Users/timdi/Documents/Codex/2026-11-22/task-design-research-implement-and-publish/work/history-v2-prototype');import solid_history_v2 as v
+s=spec_from_file_location('official','/mnt/c/Users/timdi/Documents/Codex/2026-11-22/task-initialize-the-software-commons-github/work/commission-software-commons/build-license-history-packet.py');m=module_from_spec(s);s.loader.exec_module(m)
+for target in ('registry/coverage/current.json','registry/coverage/snapshots/new.json','research/source.json'):
+ with tempfile.TemporaryDirectory(prefix='solid-history-mode-') as td:
+  p=Path(td)
+  def git(*args):return subprocess.check_output(['git','-C',str(p),*args],stderr=subprocess.DEVNULL).decode().strip()
+  git('init','-q');git('config','user.email','fixture@example.test');git('config','user.name','Fixture')
+  (p/'registry/coverage/snapshots').mkdir(parents=True);(p/'research').mkdir();(p/'research/source.json').write_text('{}\n')
+  old={'snapshot':'registry/coverage/snapshots/old.json','source_manifest':'research/source.json','schema_version':'1'};oldtext=json.dumps(old)+'\n'
+  (p/'registry/coverage/snapshots/old.json').write_text(oldtext);(p/'registry/coverage/current.json').write_text(oldtext);git('add','.');git('commit','-qm','base');base=git('rev-parse','HEAD')
+  new={'snapshot':'registry/coverage/snapshots/new.json','source_manifest':'research/source.json','schema_version':'1'};newtext=json.dumps(new)+'\n'
+  (p/'registry/coverage/snapshots/new.json').write_text(newtext);(p/'registry/coverage/current.json').write_text(newtext);git('add','-A')
+  target_oid=git('rev-parse',':'+target);git('update-index','--cacheinfo',f'120000,{target_oid},{target}');git('commit','-qm','head');head=git('rev-parse','HEAD')
+  g=m.make_git(p/'.git');records=m.reachable_objects(g,head)
+  current_oid=git('rev-parse',head+':registry/coverage/current.json');source_oid=git('rev-parse',head+':research/source.json')
+  association={'commit':head,'blob':current_oid,'schema_version':'1','source_manifest':'research/source.json','source_blob':source_oid}
+  manifest={'format':v.FORMAT,'codec':v.CODEC,'repository':v.REPOSITORY,'object_format':'sha1','base':base,'head':head,'objects':{oid:{'type':kind,'size':len(data),'sha256':sha256(data).hexdigest()} for oid,(kind,data) in records.items()},'snapshots':{'registry/coverage/snapshots/new.json':association}}
+  payload=v.build(manifest,records)
+  try:v.verify(payload,base,head,m)
+  except ValueError as e:
+   assert 'nonregular' in str(e),str(e);print('PASS symlink',target,'rejected')
+  else:raise AssertionError('accepted symlink '+target)
