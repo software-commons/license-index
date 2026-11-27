@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "563f4557871146638b5bf117ab1fd95d"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-sa-2-1-jp-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-SA-2.1-JP",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-sa-2-1-jp-publisher-reference",
+        "revision": "sha256:684600550fef66e7857193c0d88bdcaaceb5a25ace98210320e1348ead9124ad",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "67c3d3633012457bb476a0bcf2eb0c95",
+  "identity_claim": {
+    "id": "cc-by-sa-2-1-jp-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-sa-2-1-jp-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:684600550fef66e7857193c0d88bdcaaceb5a25ace98210320e1348ead9124ad",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "アトリビューション—シェアアライク 2.1（帰属—同一条件許諾）",
+  "relations": [],
+  "state": "active"
+}

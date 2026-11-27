@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "b383c3c0dffa4e31be28bc58b7636b50"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-nc-sa-2-0-fr-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-NC-SA-2.0-FR",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-nc-sa-2-0-fr-publisher-reference",
+        "revision": "sha256:138ce788821e255ad8bafbe1c97ce6d3c430e8daf688879fc51d42163ec41762",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "8acf91eab22941228dc052bcbae47206",
+  "identity_claim": {
+    "id": "cc-by-nc-sa-2-0-fr-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-nc-sa-2-0-fr-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:138ce788821e255ad8bafbe1c97ce6d3c430e8daf688879fc51d42163ec41762",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Paternité - Pas d'Utilisation Commerciale - Partage Des Conditions Initiales A l'Identique 2.0",
+  "relations": [],
+  "state": "active"
+}

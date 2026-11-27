@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "d458bb92826a41798bed18ffb742e52c"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-sa-2-0-uk-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-SA-2.0-UK",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-sa-2-0-uk-publisher-reference",
+        "revision": "sha256:bcb50d427d9b1aa2c9977a63fc09545f705d4ae4ca54d4aab8ace13cf197b952",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "6e69824c25c14c26819830a0a3b525a5",
+  "identity_claim": {
+    "id": "cc-by-sa-2-0-uk-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-sa-2-0-uk-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:bcb50d427d9b1aa2c9977a63fc09545f705d4ae4ca54d4aab8ace13cf197b952",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Attribution - Share-Alike 2.0 England and Wales",
+  "relations": [],
+  "state": "active"
+}

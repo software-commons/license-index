@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "b9276528c48a40a1b0fa59ed482f4e23"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-3-0-at-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-3.0-AT",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-3-0-at-publisher-reference",
+        "revision": "sha256:0579db12b8e44326de5291f2fabe62327f50365298ff956a9b9ac3a104308bbb",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "010c5e0f31424ac8b0431724ba472f09",
+  "identity_claim": {
+    "id": "cc-by-3-0-at-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-3-0-at-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:0579db12b8e44326de5291f2fabe62327f50365298ff956a9b9ac3a104308bbb",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Namensnennung 3.0 Österreich",
+  "relations": [],
+  "state": "active"
+}
