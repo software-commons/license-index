@@ -73,13 +73,13 @@
      decision = {"binding": binding, "execution": execution, "model": args.model,
 --- /dev/null
 +++ b/tools/history_v2_gate.py
-@@ -0,0 +1,55 @@
+@@ -0,0 +1,64 @@
 +"""Scratch-only v2 issuer preflight wiring; never enable without commissioning."""
 +from pathlib import Path
 +from io import BytesIO
-+from zipfile import ZipFile
++from zipfile import ZipFile,ZIP_DEFLATED
 +from hashlib import sha256
-+import json,os,re
++import json,os,re,struct,zlib
 +from .guarded_preflight import root_chain,pinned_file,preflight,LAUNCHER_SHA,PACKAGE_SHA
 +from .review_protocol_v2 import validate_v2_history
 +TOOL_ROOT=Path('/opt/software-commons-review/license-history-v2')
@@ -91,7 +91,16 @@
 +  if names.count('manifest.json')!=1:raise ValueError('invalid history manifest')
 +  info=z.getinfo('manifest.json')
 +  if info.file_size>8*1024*1024:raise ValueError('manifest exceeds limit')
-+  manifest=json.loads(z.read(info))
++  if info.compress_type!=ZIP_DEFLATED or info.flag_bits & 1:raise ValueError('unsupported manifest encoding')
++  off=info.header_offset
++  if off<0 or off+30>len(payload):raise ValueError('invalid local manifest header')
++  fields=struct.unpack_from('<IHHHHHIIIHH',payload,off)
++  if fields[0]!=0x04034b50 or fields[2]!=info.flag_bits or fields[3]!=info.compress_type:raise ValueError('invalid local manifest metadata')
++  start=off+30+fields[9]+fields[10];end=start+info.compress_size
++  if end>len(payload) or payload[off+30:off+30+fields[9]]!=b'manifest.json':raise ValueError('invalid local manifest data')
++  dec=zlib.decompressobj(-15);raw=dec.decompress(payload[start:end],8*1024*1024+1)
++  if len(raw)>8*1024*1024 or not dec.eof or dec.unconsumed_tail or dec.unused_data or len(raw)!=info.file_size or zlib.crc32(raw)!=info.CRC:raise ValueError('invalid or oversized manifest')
++  manifest=json.loads(raw)
 +  if not isinstance(manifest,dict):raise ValueError('invalid history manifest')
 +  result=manifest.get('format')
 +  objects=manifest.get('objects')
@@ -134,7 +143,7 @@
 @@ -0,0 +1,67 @@
 +"""Scratch issuer-side v1/v2 preflight; no production configuration touched."""
 +import os,sys,stat,subprocess,hashlib,json
-+LAUNCHER_SHA='99d27d0d12706c6adb218c7973b18a0196e8e0076aca5850c57141d13f71f2da'
++LAUNCHER_SHA='8f7f050160d491aeea89ca63bd500db34b79a0306aee97b63a4b28860437fc9b'
 +PACKAGE_SHA='b7b5670537878161e2946a480b73160571be7b1e9e0664e6ad4be4b0836188e3'
 +INTERPRETER_SHA='a92f0f95e883390c7256b2e441484aac06b1002dbe1d924141a77c8d82f96223'
 +def root_chain(path):
@@ -201,10 +210,10 @@
 + print(json.dumps(preflight(*sys.argv[1:]),sort_keys=True))
 --- /dev/null
 +++ b/tools/review_protocol_v2.py
-@@ -0,0 +1,53 @@
+@@ -0,0 +1,55 @@
 +"""Scratch v2 trace gate: separate preflight plus exact reviewer command."""
 +import hashlib,json,shlex
-+EXPECTED_LAUNCHER='99d27d0d12706c6adb218c7973b18a0196e8e0076aca5850c57141d13f71f2da'
++EXPECTED_LAUNCHER='8f7f050160d491aeea89ca63bd500db34b79a0306aee97b63a4b28860437fc9b'
 +EXPECTED_PACKAGE='b7b5670537878161e2946a480b73160571be7b1e9e0664e6ad4be4b0836188e3'
 +EXPECTED_INTERPRETER='a92f0f95e883390c7256b2e441484aac06b1002dbe1d924141a77c8d82f96223'
 +def command_for(input_dir):
@@ -227,10 +236,12 @@
 + return 'history-proof 0 '+hashlib.sha256(entry.encode('ascii')).hexdigest()
 +def command_is_exact(command,input_dir):
 + try:
-+  outer=shlex.split(command)
-+  if len(outer)==3 and outer[0] in ('/bin/bash','/bin/sh') and outer[1] in ('-lc','-c'):tokens=shlex.split(outer[2])
-+  else:tokens=outer
-+  return tokens==command_for(input_dir)
++  expected=shlex.join(command_for(input_dir))
++  if command==expected:return True
++  # Accept only exact serializations of a single shell -c argument.
++  # Tokenization alone loses shell command separators such as newlines.
++  double='"'+expected.replace('\\','\\\\').replace('"','\\"').replace('$','\\$').replace('`','\\`')+'"'
++  return command in {prefix+quoted for prefix in ('/bin/bash -lc ','/bin/bash -c ','/bin/sh -lc ','/bin/sh -c ') for quoted in (shlex.quote(expected),double)}
 + except (ValueError,TypeError):return False
 +def validate_receipt(receipt,token,archive,base,head):
 + digest=hashlib.sha256(archive).hexdigest()
@@ -306,10 +317,10 @@
 +if __name__=='__main__':unittest.main(verbosity=2)
 --- /dev/null
 +++ b/tests/test_history_format.py
-@@ -0,0 +1,26 @@
-+import json,unittest
+@@ -0,0 +1,39 @@
++import json,unittest,struct
 +from io import BytesIO
-+from zipfile import ZipFile,ZIP_DEFLATED
++from zipfile import ZipFile,ZIP_DEFLATED,ZIP_STORED
 +from tools.history_v2_gate import history_format
 +OID='a'*40
 +def archive(fmt, names, *, huge=False):
@@ -330,12 +341,25 @@
 +   with self.subTest(fmt=fmt),self.assertRaises(ValueError):history_format(archive(fmt,names))
 + def test_manifest_bound(self):
 +  with self.assertRaisesRegex(ValueError,'manifest exceeds'):history_format(archive('license-index-history-v2',['objects.zlib'],huge=True))
++ def test_rejects_unsupported_method_before_decompression(self):
++  b=BytesIO()
++  with ZipFile(b,'w',compression=ZIP_STORED) as z:
++   z.writestr('manifest.json','{}')
++  with self.assertRaisesRegex(ValueError,'unsupported manifest encoding'):history_format(b.getvalue())
++ def test_forged_manifest_size_rejected_before_large_allocation(self):
++  # Both ZIP headers lie about the inflated size. The deflate stream itself
++  # expands beyond the hard limit; only bounded raw decompression is safe.
++  b=BytesIO()
++  with ZipFile(b,'w',compression=ZIP_DEFLATED) as z:z.writestr('manifest.json',b'x'*(9*1024*1024))
++  raw=bytearray(b.getvalue());local=raw.find(b'PK\x03\x04');central=raw.find(b'PK\x01\x02')
++  struct.pack_into('<I',raw,local+22,1);struct.pack_into('<I',raw,central+24,1)
++  with self.assertRaisesRegex(ValueError,'invalid or oversized'):history_format(bytes(raw))
 + def test_no_history_is_not_a_format(self):
 +  with self.assertRaises(Exception):history_format(b'')
 +if __name__=='__main__':unittest.main(verbosity=2)
 --- /dev/null
 +++ b/tests/test_history_v2_protocol.py
-@@ -0,0 +1,29 @@
+@@ -0,0 +1,34 @@
 +"""Synthetic-only v2 proof contract tests; never constitute review evidence."""
 +import copy,json,shlex,unittest
 +from tools import review_protocol_v2 as p
@@ -347,8 +371,13 @@
 +def validate(t,b=RECEIPT,a=RECEIPT):return p.validate_v2_history(t,TOKEN,ARCHIVE,BASE,HEAD,b,a,INPUT)
 +class ProofTests(unittest.TestCase):
 + def test_exact_pinned_command_and_preflight(self):self.assertEqual(validate(trace(shlex.join(p.command_for(INPUT))))['preflight'],'passed')
++ def test_native_shell_serializations(self):
++  expected=shlex.join(p.command_for(INPUT))
++  for shell in ('/bin/bash -lc ','/bin/bash -c ','/bin/sh -lc ','/bin/sh -c '):
++   self.assertTrue(p.command_is_exact(shell+shlex.quote(expected),INPUT))
++   self.assertTrue(p.command_is_exact(shell+'"'+expected+'"',INPUT))
 + def test_printed_proof_and_path_shadow_fail(self):
-+  for command in (shlex.join(p.command_for('/tmp/wrong-directory')), 'printf fake','python3 -I trusted/isolated_history_launcher.py trusted review-input.json review-history.zip','true; '+shlex.join(p.command_for(INPUT))):
++  for command in (shlex.join(p.command_for(INPUT)).replace(' /bin/bash','\n/bin/bash',1), shlex.join(p.command_for(INPUT)).replace(' /bin/bash','; /bin/bash',1), shlex.join(p.command_for('/tmp/wrong-directory')), 'printf fake','python3 -I trusted/isolated_history_launcher.py trusted review-input.json review-history.zip','true; '+shlex.join(p.command_for(INPUT))):
 +   with self.subTest(command=command),self.assertRaises(ValueError):validate(trace(command))
 + def test_missing_malformed_or_changed_inodes_fail(self):
 +  for key in ('launcher_inode','package_inode','interpreter_inode'):

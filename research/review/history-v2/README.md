@@ -11,7 +11,7 @@ The demonstrated blocker is the exact independently audited Creative Commons can
 The exact issuer-owned assets reviewed for separate staging are:
 
 * `issuer_history_v2_pinned.py`: SHA-256 `b7b5670537878161e2946a480b73160571be7b1e9e0664e6ad4be4b0836188e3`.
-* `isolated_history_launcher.py`: SHA-256 `99d27d0d12706c6adb218c7973b18a0196e8e0076aca5850c57141d13f71f2da`.
+* `isolated_history_launcher.py`: SHA-256 `8f7f050160d491aeea89ca63bd500db34b79a0306aee97b63a4b28860437fc9b`.
 
 The proposed protected interpreter is `/usr/bin/python3.12`, SHA-256 `a92f0f95e883390c7256b2e441484aac06b1002dbe1d924141a77c8d82f96223`. The v2 encoder and decoder fail closed unless their zlib compile and runtime versions are both `1.3`, with compression level 9. An implementation on another codec version must not silently claim byte reproducibility. `solid_history_v2.py` and `graph_projection.py` are the reviewable source from which the self-contained asset was assembled; the v1 graph projection preserves the v1 graph and association logic, with a separately bounded transient in-memory projection and no mutation of the v1 module's global limits. The v2 verifier additionally checks exact snapshot association completeness and inherited snapshot byte and mode continuity.
 
@@ -34,3 +34,7 @@ The portable v56 synthetic tests are included in the patch. Apply the patch only
 The authentic PR #29 admission review returned changes-required. Its exact two findings and original receipt digest are preserved in `pr29-original-review-findings.json`; the full native receipt remains in the protected audit directory. The revised proposal uses issuer-generated absolute input and tool paths in the reviewer command and requires exact trace matching. It also checks each inherited snapshot source manifest against its base and head tree modes and blob IDs.
 
 The separate `correction-issuer-tests.txt`, `correction-mutation-tests.txt` and `correction-candidate-test.txt` record fresh scratch test executions for these changes. They are development validation, not independent approval or a protected review. Older native traces, preflight receipts, and the earlier resource measurement remain historical evidence for the superseded package, not the corrected assets. Fresh non-issuing restricted Codex v1 and v2 compatibility probes for the corrected package are retained as `license-pr29-fix-v1-*` and `license-pr29-fix-v2-*`; their matching before/after root receipts bind the corrected hashes, and the v2 trace passed the exact-command validator. These probes are not protected review approvals. An isolated commissioning trial and protected review remain required before deployment.
+
+The revised draft binds the launcher to the requested repository, requires exact command serialization, and bounds manifest decompression before parsing. Prior validation and traces above apply to earlier bytes; fresh independent review and commissioning are required for the revised artifacts.
+
+The v56 baseline review_gate.py has CRLF bytes. Verify its declared baseline digest first, then normalize that scratch copy to LF before applying this LF patch; verify the resulting declared after digest. The normalization is part of reproducible staging and must not alter the protected baseline. Focused POSIX tests on that procedure passed; they are not a commissioning decision.

@@ -38,7 +38,9 @@ try:
 finally:os.close(parentfd)
 # Compile only the already verified in-memory package bytes, never candidate code.
 module={'__name__':'trusted_history'};exec(compile(package,'<pinned-history-verifier>','exec'),module)
-info=json.loads(read_regular(sys.argv[2],1024*1024));token=info['inspection_token'];base=info['base'];head=info['head'];expected=info['review_history_sha256']
+info=json.loads(read_regular(sys.argv[2],1024*1024))
+if info.get('repository')!='software-commons/license-index':raise ValueError('repository binding')
+token=info['inspection_token'];base=info['base'];head=info['head'];expected=info['review_history_sha256']
 if not isinstance(token,str) or not re.fullmatch('[A-Za-z0-9_-]{16,128}',token):raise ValueError('inspection token')
 if not re.fullmatch('[0-9a-f]{40}',base) or not re.fullmatch('[0-9a-f]{40}',head) or not re.fullmatch('[0-9a-f]{64}',expected):raise ValueError('pins')
 payload=read_regular(sys.argv[3],16*1024*1024)
