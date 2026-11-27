@@ -84,7 +84,7 @@ def verify(payload,base,head,original):
                     and name not in entries and end+21<=len(raw_tree),'invalid tree mode or name')
             entries[name]=(mode,raw_tree[end+1:end+21].hex());offset=end+21
         return entries
-    def tree_at(commit,path):
+    def tree_at_mode(commit,path):
         require(commit in records and records[commit][0]=='commit','commit missing')
         oid,_=original.commit_links(records[commit][1]); kind='tree'
         for part in path.split('/'):
@@ -93,6 +93,9 @@ def verify(payload,base,head,original):
             require(key in entries,'tree entry missing');mode,oid=entries[key]
             require(mode in {b'40000',b'100644',b'100755'},'nonregular scoped path')
             kind='tree' if mode==b'40000' else 'blob'
+        return kind,oid,mode
+    def tree_at(commit,path):
+        kind,oid,_=tree_at_mode(commit,path)
         return kind,oid
     def snapshot_paths(commit):
         root='registry/coverage/snapshots'; kind,root_oid=tree_at(commit,root)
@@ -109,6 +112,15 @@ def verify(payload,base,head,original):
     base_paths=snapshot_paths(base); head_paths=snapshot_paths(head)
     require(all(head_paths.get(path)==oid for path,oid in base_paths.items()),
             'prior snapshot deleted or modified')
+    for path,(_,oid) in base_paths.items():
+        require(oid in records and records[oid][0]=='blob','prior snapshot blob missing')
+        snapshot=json.loads(records[oid][1])
+        require(isinstance(snapshot,dict) and isinstance(snapshot.get('source_manifest'),str),
+                'prior snapshot source missing')
+        source=snapshot['source_manifest']
+        require(tree_at_mode(base,source)==tree_at_mode(head,source),
+                'prior snapshot source deleted or modified')
+        require(tree_at(base,source)[0]=='blob','prior snapshot source not regular')
     pending=set(head_paths)-set(base_paths)
     require(set(manifest['snapshots'])==pending,'snapshot association set incomplete or extra')
     current_kind,current_oid=tree_at(head,'registry/coverage/current.json')

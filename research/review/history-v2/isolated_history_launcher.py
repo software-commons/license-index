@@ -3,7 +3,7 @@ import sys,resource,signal,os,stat,hashlib,json,re
 if not sys.flags.isolated: raise ValueError('python -I required')
 resource.setrlimit(resource.RLIMIT_AS,(512*1024*1024,512*1024*1024))
 resource.setrlimit(resource.RLIMIT_CPU,(120,120));signal.alarm(125)
-PACKAGE_SHA='571c027af5342351ae5f99d5c6eba1e7fb2a06b31aef43878433c77ad590b2f5'
+PACKAGE_SHA='b7b5670537878161e2946a480b73160571be7b1e9e0664e6ad4be4b0836188e3'
 if len(sys.argv)!=4: raise ValueError('usage: launcher package-directory review-input.json review-history.zip')
 def trusted_owner(st):
  if st.st_uid==0:return True
