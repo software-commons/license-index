@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "d4382340228f436c92e96a45ae93b9e8"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "xzoom-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "xzoom",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "xzoom-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "xzoom-captured-reference",
+        "revision": "sha256:9860cd8436b1e2507da7471d13c72b9499b6b44f9db5dc93d2f47c7b34f64f06",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "09a6fc3aaf7b408db9598b73bce4606a",
+  "identity_claim": {
+    "id": "xzoom-documentary-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "xzoom-project",
+    "edition": "xzoom-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:9860cd8436b1e2507da7471d13c72b9499b6b44f9db5dc93d2f47c7b34f64f06",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "xzoom license",
+  "relations": [],
+  "state": "historical"
+}

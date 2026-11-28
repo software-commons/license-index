@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "e1e4082676a540f8a647ea6bc0006ae8"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "kazlib-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "Kazlib",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "kazlib-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "kazlib-captured-reference",
+        "revision": "sha256:aae7a4d87e0b78c7f5ca3951119f7c3562b860b8c7f1dc9296479fa91f0169ae",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "7d8a9fbdfba1472087b753162b7a3d4d",
+  "identity_claim": {
+    "id": "kazlib-documentary-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "kazlib-project",
+    "edition": "kazlib-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:aae7a4d87e0b78c7f5ca3951119f7c3562b860b8c7f1dc9296479fa91f0169ae",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Kazlib license",
+  "relations": [],
+  "state": "historical"
+}

@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "23262d01f2984d4ebfb0a6339d55dc3e"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "fair-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "Fair",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "fair-license-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "fair-captured-reference",
+        "revision": "sha256:e6da1305aa29dd0f2d012570c8f5a53b363dca12ee3f8df724dbaf92494663bd",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "c81baf427cda46f2964ab3ce0c1a4b05",
+  "identity_claim": {
+    "id": "fair-documentary-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "fair-license-project",
+    "edition": "fair-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:e6da1305aa29dd0f2d012570c8f5a53b363dca12ee3f8df724dbaf92494663bd",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Fair License",
+  "relations": [],
+  "state": "historical"
+}

@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "55992df7865b4a2cb26f13401e9dde32"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "xskat-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 2
+      },
+      "key": "XSkat",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "xskat-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "xskat-captured-reference",
+        "revision": "sha256:f09fb2b287bf16a382d519f56e9c5e4c191ef2bd7164d93c5c0712f50f416198",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b36fe6b2d785438fb172a7ab458374ae",
+  "identity_claim": {
+    "id": "xskat-documentary-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "xskat-project",
+    "edition": "xskat-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:f09fb2b287bf16a382d519f56e9c5e4c191ef2bd7164d93c5c0712f50f416198",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "XSkat License",
+  "relations": [],
+  "state": "historical"
+}
