@@ -8,13 +8,14 @@
       "claim": {
         "id": "radvd-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 3
+        "revision": 4
       },
       "key": "radvd",
       "origin": "spdx",
       "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
       "scope": {
         "authority": "radvd-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
         "edition": "radvd-captured-reference",
         "revision": "sha256:40a6db00cf0b97f031eaa6c6e87157788f40ced1b88e3ea6d78779bd2a39dc80",
         "upstream-release": "3.29.0"
@@ -25,7 +26,7 @@
   "identity_claim": {
     "id": "radvd-documentary-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "radvd-project",

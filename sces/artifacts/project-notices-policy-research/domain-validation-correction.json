@@ -1,0 +1,27 @@
+{
+  "intermediate_feature_commit": "1fa152ebd969fb7f6ec781313791dc81ff31ef2c",
+  "retained_git_blobs": [
+    {
+      "git_blob": "132a686b8768f56af7772beb6c858658d11ee80c",
+      "path": "sces/publication.json",
+      "sha256": "55a925b0848ef345acd9d9d881f3ba35bd5c4815746146f3e1c04dbda37ed70e"
+    },
+    {
+      "git_blob": "11a006633f6aec7a831b0047463c891ef12aa869",
+      "path": "registry/coverage/snapshots/2026-11-28-project-notices-policy-reviewed.json",
+      "sha256": "5810668b172345996a7d462c5724d20a1346d6d47bb4eb4ddadd41353a13bde1"
+    },
+    {
+      "git_blob": "866040fb1ebf87b8b5b064f4dbf3122f5fc55af4",
+      "path": "sces/releases/project-documentary-notices-policy-reviewed-0-2-22/claims.json",
+      "sha256": "cfafa8c128b8678c3111e41f925c4a9ef2fb3a90978629a98a1421a9f3841f00"
+    },
+    {
+      "git_blob": "eed9d9e1461555afd9d7e4c3acf78eacca99f324",
+      "path": "sces/releases/project-documentary-notices-policy-reviewed-0-2-22/qualification.json",
+      "sha256": "84f96d507880ab4a2fa5ff0af2d83398095d416c2bf3cf547e60266da0e11ff4"
+    }
+  ],
+  "scope_correction": "Use each new claimâ€™s exact scope for its corresponding canonical entity field. The CryptoSwift and SWL crosswalk revisions bind the Index editorial decision.",
+  "status": "returned in local domain validation"
+}

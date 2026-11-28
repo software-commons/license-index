@@ -1,0 +1,45 @@
+{
+  "decisions": [
+    {
+      "audit": "f9d18f7d-465f-4a91-a85c-6305c75d7e09",
+      "decision": "changes-required",
+      "digest": "ab494e0e383b0b340f4d5bc926056fd087db4ecd25b4772c9fcc9617323a61bc",
+      "execution": "01a22215-83ea-7510-bda0-2fdba617e7b3"
+    },
+    {
+      "audit": "692ed666-9b4a-44c6-80d2-7f2c0f482e7c",
+      "decision": "changes-required",
+      "digest": "3f861117790afec0aacf879816a027bf5b88c8c9f7c209fb82039febd7d00c68",
+      "execution": "01a22222-85e3-7253-9a7f-7dd9f3992860"
+    }
+  ],
+  "first_submission": "3e45c3429c61f90509bca6fcbbeb744c05624abd",
+  "prior_submission": "8bac41e5cabf219d709f21d752fd8b36a670afa8",
+  "retained_git_blobs": [
+    {
+      "git_blob": "489cc6fa79fc7f77cd12bcd742d3e3f034596121",
+      "path": "registry/coverage/snapshots/2026-11-28-project-documentary-notices.json",
+      "sha256": "f365c0bf674034a599a11a9dc9fab6accf53e081962f1062ddcaa7168467002c"
+    },
+    {
+      "git_blob": "96ea4281af9fb28ed3f0ff5d4456af308e51f8d8",
+      "path": "sces/publication.json",
+      "sha256": "4841c61f355066bde0dc0f9be5a91120c45adf7ea28ae5e1e0d345430cce39be"
+    },
+    {
+      "git_blob": "8fb5a8d87c2d4637f22770176aa2e25c7f9a9dc2",
+      "path": "sces/releases/project-documentary-notices-0-2-22/qualification.json",
+      "sha256": "b67bf711c02b4e4017cc0428720d0ff4713dd379c0efd2872a43a280f7d0cd6d"
+    },
+    {
+      "git_blob": "8005a9d11ffd37e1a69005fa85b6cce81c688164",
+      "path": "sces/releases/project-documentary-notices-0-2-22/claims.json",
+      "sha256": "f9bf2dd873a2c15c72b7b979422163528fe81885f84639b301f291b5c4f8d0c9"
+    },
+    {
+      "git_blob": "24a4662da9d03b91d3c633257eecbfc2f0a0a63c",
+      "path": "docs/RESEARCH_STATUS.md",
+      "sha256": "2854a0beddffe8fc98a0ad176f55418537a25e3bf1c120f2c1fff43d2f7728c9"
+    }
+  ]
+}

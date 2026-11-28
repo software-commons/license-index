@@ -8,13 +8,14 @@
       "claim": {
         "id": "ngrep-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 4
+        "revision": 5
       },
       "key": "ngrep",
       "origin": "spdx",
       "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
       "scope": {
         "authority": "ngrep-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
         "edition": "ngrep-captured-reference",
         "revision": "sha256:d46e593e048e0b9fc803561ed4c283f37a2d5447e4dcfa10cad29b394c2b8b9e",
         "upstream-release": "3.29.0"
@@ -25,7 +26,7 @@
   "identity_claim": {
     "id": "ngrep-documentary-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "ngrep-project",
