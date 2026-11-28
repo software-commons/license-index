@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "f3e34172e0fa40ea88110b4b7b271229"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "mpl-1-1-historical-reference-spdx-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "MPL-1.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "mozilla-foundation",
+        "edition": "mpl-1-1-publisher-reference",
+        "revision": "sha256:f849fc26a7a99981611a3a370e83078deb617d12a45776d6c4cada4d338be469",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "1d0e9daaf8944568b6d661c36c7c2c7e",
+  "identity_claim": {
+    "id": "mpl-1-1-historical-reference-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "mozilla-foundation",
+    "edition": "mpl-1-1-publisher-reference",
+    "index-lifecycle-decision": "mozilla-historical-reference-classifications-2026-11-27",
+    "revision": "sha256:f849fc26a7a99981611a3a370e83078deb617d12a45776d6c4cada4d338be469",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Mozilla Public License 1.1",
+  "relations": [],
+  "state": "historical"
+}
