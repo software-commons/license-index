@@ -8,7 +8,7 @@
       "claim": {
         "id": "fair-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 2
+        "revision": 3
       },
       "key": "Fair",
       "origin": "spdx",
@@ -26,7 +26,7 @@
   "identity_claim": {
     "id": "fair-documentary-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "fair-license-project",

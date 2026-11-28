@@ -1,1 +1,41 @@
-{"aliases":[],"candidate_ids":["300bfd75c8884da589c4d9272e031f6c"],"crosswalks":[{"claim":{"id":"cryptoswift-spdx-3290-correspondence","kind":"claim","revision":1},"key":"CryptoSwift","origin":"spdx","revision":"31ba1a50e5397e00a304dbadc76531740e89ee48","scope":{"authority":"cryptoswift-project","edition":"cryptoswift-captured-reference","revision":"sha256:e4ea9188602dd4217309aec044481b0a7d2f9d539b1d1673b9a1809709c804e0","upstream-release":"3.29.0"}}],"id":"778ca0be43834240ae0f8e7e69e4dbc2","identity_claim":{"id":"cryptoswift-documentary-identity","kind":"claim","revision":3},"identity_scope":{"authority":"cryptoswift-project","edition":"cryptoswift-captured-reference","index-lifecycle-decision":"three-project-notices-lifecycle-2026-11-28","revision":"sha256:e4ea9188602dd4217309aec044481b0a7d2f9d539b1d1673b9a1809709c804e0","taxonomy":"license-index-license"},"kind":"license","name":"CryptoSwift License","relations":[],"state":"active"}
+{
+  "aliases": [],
+  "candidate_ids": [
+    "300bfd75c8884da589c4d9272e031f6c"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cryptoswift-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "CryptoSwift",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "cryptoswift-project",
+        "edition": "cryptoswift-captured-reference",
+        "revision": "sha256:e4ea9188602dd4217309aec044481b0a7d2f9d539b1d1673b9a1809709c804e0",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "778ca0be43834240ae0f8e7e69e4dbc2",
+  "identity_claim": {
+    "id": "cryptoswift-documentary-identity",
+    "kind": "claim",
+    "revision": 4
+  },
+  "identity_scope": {
+    "authority": "cryptoswift-project",
+    "edition": "cryptoswift-captured-reference",
+    "index-lifecycle-decision": "three-project-notices-lifecycle-2026-11-28",
+    "revision": "sha256:e4ea9188602dd4217309aec044481b0a7d2f9d539b1d1673b9a1809709c804e0",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "CryptoSwift License",
+  "relations": [],
+  "state": "active"
+}

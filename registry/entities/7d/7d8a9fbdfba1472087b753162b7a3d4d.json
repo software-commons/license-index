@@ -8,7 +8,7 @@
       "claim": {
         "id": "kazlib-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 2
+        "revision": 3
       },
       "key": "Kazlib",
       "origin": "spdx",
@@ -26,7 +26,7 @@
   "identity_claim": {
     "id": "kazlib-documentary-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "kazlib-project",

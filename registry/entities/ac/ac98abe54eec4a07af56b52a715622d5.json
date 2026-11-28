@@ -8,7 +8,7 @@
       "claim": {
         "id": "vixie-cron-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 3
+        "revision": 4
       },
       "key": "Vixie-Cron",
       "origin": "spdx",
@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "vixie-cron-documentary-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "vixie-cron-project",

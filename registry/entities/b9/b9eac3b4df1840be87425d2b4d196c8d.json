@@ -8,7 +8,7 @@
       "claim": {
         "id": "ngrep-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 4
+        "revision": 5
       },
       "key": "ngrep",
       "origin": "spdx",
@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "ngrep-documentary-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "ngrep-project",

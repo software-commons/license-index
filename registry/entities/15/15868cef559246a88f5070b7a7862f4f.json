@@ -1,1 +1,41 @@
-{"aliases":[],"candidate_ids":["716fa3bcc5f8451b8b5ac03f4c1605fc"],"crosswalks":[{"claim":{"id":"swl-spdx-3290-correspondence","kind":"claim","revision":1},"key":"SWL","origin":"spdx","revision":"31ba1a50e5397e00a304dbadc76531740e89ee48","scope":{"authority":"scheme-widget-library","edition":"swl-captured-reference","revision":"sha256:7d7d81f91e37e3070b4e7faacef5c887f4bfe2740df6b88175c403c503d3122a","upstream-release":"3.29.0"}}],"id":"15868cef559246a88f5070b7a7862f4f","identity_claim":{"id":"swl-documentary-identity","kind":"claim","revision":2},"identity_scope":{"authority":"scheme-widget-library","edition":"swl-captured-reference","index-lifecycle-decision":"three-project-notices-lifecycle-2026-11-28","revision":"sha256:7d7d81f91e37e3070b4e7faacef5c887f4bfe2740df6b88175c403c503d3122a","taxonomy":"license-index-license"},"kind":"license","name":"Scheme Widget Library Software License Agreement","relations":[],"state":"historical"}
+{
+  "aliases": [],
+  "candidate_ids": [
+    "716fa3bcc5f8451b8b5ac03f4c1605fc"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "swl-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "SWL",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "scheme-widget-library",
+        "edition": "swl-captured-reference",
+        "revision": "sha256:7d7d81f91e37e3070b4e7faacef5c887f4bfe2740df6b88175c403c503d3122a",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "15868cef559246a88f5070b7a7862f4f",
+  "identity_claim": {
+    "id": "swl-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "scheme-widget-library",
+    "edition": "swl-captured-reference",
+    "index-lifecycle-decision": "three-project-notices-lifecycle-2026-11-28",
+    "revision": "sha256:7d7d81f91e37e3070b4e7faacef5c887f4bfe2740df6b88175c403c503d3122a",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Scheme Widget Library Software License Agreement",
+  "relations": [],
+  "state": "historical"
+}

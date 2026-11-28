@@ -8,7 +8,7 @@
       "claim": {
         "id": "nbpl-1-0-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 3
+        "revision": 4
       },
       "key": "NBPL-1.0",
       "origin": "spdx",
@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "nbpl-1-0-documentary-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "net-boolean",

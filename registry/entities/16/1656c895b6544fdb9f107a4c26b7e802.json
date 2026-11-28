@@ -8,7 +8,7 @@
       "claim": {
         "id": "diffmark-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 2
+        "revision": 3
       },
       "key": "diffmark",
       "origin": "spdx",
@@ -26,7 +26,7 @@
   "identity_claim": {
     "id": "diffmark-documentary-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "diffmark-project",

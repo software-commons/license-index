@@ -8,7 +8,7 @@
       "claim": {
         "id": "radvd-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 3
+        "revision": 4
       },
       "key": "radvd",
       "origin": "spdx",
@@ -25,7 +25,7 @@
   "identity_claim": {
     "id": "radvd-documentary-identity",
     "kind": "claim",
-    "revision": 3
+    "revision": 4
   },
   "identity_scope": {
     "authority": "radvd-project",
