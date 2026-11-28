@@ -1,0 +1,29 @@
+{
+  "audit": "832829fd-25bd-4618-b43f-cb038d62edb3",
+  "decision_sha256": "531c3fcd019e939df514ed9cad43682189c897820945391b89afad642157b7dd",
+  "disposition": "changes-required",
+  "execution": "01a2219b-c4f1-79d3-9d7a-4ed1058686ec",
+  "prior_submission": "895b2bb65e6a71cfeb6a106955eb4d762b604a61",
+  "retained_git_blobs": [
+    {
+      "git_blob": "0718985890d037af4455a4594e2473f42cc8486c",
+      "path": "registry/coverage/snapshots/2026-11-28-five-project-notice-identities.json",
+      "sha256": "b6e75e42509e8c6ac6e02e0169e5a56bd7a3a0c76845754d165b0ffc4af11477"
+    },
+    {
+      "git_blob": "9381e5fdf78f58522c9856e7d99c303d9b4d69c7",
+      "path": "sces/publication.json",
+      "sha256": "0294adf14f8220c952e16d6d0d9c14b4dc1a1a356fad168c8333eab5f9d408f2"
+    },
+    {
+      "git_blob": "e20442a9f8bc5b217819ca4f5240073f6b2a3edc",
+      "path": "sces/releases/five-project-notice-identities-0-2-20/qualification.json",
+      "sha256": "1499b3aca4091df8b6dac7a401e97d63fe02e0ba9f20bfac0a8958436f24437e"
+    },
+    {
+      "git_blob": "ca770b07c4d6b8a7aeb26c5955828b269a85fbc7",
+      "path": "sces/releases/five-project-notice-identities-0-2-20/claims.json",
+      "sha256": "81f52ed5c9f714067f69d00d206fcd6ae7fe93c2bd1286e59c39d591eb16337e"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "7db76a8b9f2f4c509856ce761f79eb16"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "vixie-cron-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "Vixie-Cron",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "vixie-cron-project",
+        "edition": "vixie-cron-captured-reference",
+        "revision": "sha256:b523dccfdbf14c0e2747faf8406f0bb8b953fb7647427c069aa90459369c0ac7",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "ac98abe54eec4a07af56b52a715622d5",
+  "identity_claim": {
+    "id": "vixie-cron-documentary-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "vixie-cron-project",
+    "edition": "vixie-cron-captured-reference",
+    "index-lifecycle-decision": "five-project-notices-lifecycle-2026-11-28",
+    "revision": "sha256:b523dccfdbf14c0e2747faf8406f0bb8b953fb7647427c069aa90459369c0ac7",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Vixie Cron License",
+  "relations": [],
+  "state": "historical"
+}

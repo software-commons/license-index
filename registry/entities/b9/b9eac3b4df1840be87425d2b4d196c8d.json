@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "8d72d60dd13640599dc32c015ae63433"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "ngrep-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 4
+      },
+      "key": "ngrep",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "ngrep-project",
+        "edition": "ngrep-captured-reference",
+        "revision": "sha256:d46e593e048e0b9fc803561ed4c283f37a2d5447e4dcfa10cad29b394c2b8b9e",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "b9eac3b4df1840be87425d2b4d196c8d",
+  "identity_claim": {
+    "id": "ngrep-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "ngrep-project",
+    "edition": "ngrep-captured-reference",
+    "index-lifecycle-decision": "five-project-notices-lifecycle-2026-11-28",
+    "revision": "sha256:d46e593e048e0b9fc803561ed4c283f37a2d5447e4dcfa10cad29b394c2b8b9e",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "ngrep License",
+  "relations": [],
+  "state": "active"
+}
