@@ -15,6 +15,8 @@ The exact issuer-owned assets reviewed for separate staging are:
 
 The proposed protected interpreter is `/usr/bin/python3.12`, SHA-256 `a92f0f95e883390c7256b2e441484aac06b1002dbe1d924141a77c8d82f96223`. The v2 encoder and decoder fail closed unless their zlib compile and runtime versions are both `1.3`, with compression level 9. An implementation on another codec version must not silently claim byte reproducibility. `solid_history_v2.py` and `graph_projection.py` are the reviewable source from which the self-contained asset was assembled; the v1 graph projection preserves the v1 graph and association logic, with a separately bounded transient in-memory projection and no mutation of the v1 module's global limits. The v2 verifier additionally checks exact snapshot association completeness and inherited snapshot byte and mode continuity.
 
+The separate [campaign authorization companion](CAMPAIGN_AUTHORIZATION.md) describes the signed standing grant and bootstrap for PR #29.
+
 ## Protected review and commissioning boundary
 
 The delta stages exact root-owned, hash-pinned assets into a root-owned review directory after the issuer validates its protected ancestor chain. An issuer-side preflight validates the launcher, verifier, pinned interpreter, exact base/head and archive digest, then checks them again after reviewer execution; failed or changed preflight prevents any verdict or App check. The reviewer runs an isolated, environment-cleared command and still must independently inspect snapshot/source bytes and evaluate the recorded counts. The existing nonce-bound `history-proof 0` binds the archive; neither that proof nor preflight alone is scientific or technical approval.

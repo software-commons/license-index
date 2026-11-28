@@ -1,0 +1,14 @@
+{
+  "base_runtime": "direct-v56-license-coverage-bound",
+  "files": {
+    "tests/test_review_authorization.py": {
+      "after": "eda892fc823673b56bda6131d8df809f505b3196b3e565fa4bb289fc9bbfa23c",
+      "before": "fc8d1be5e6a7c8069c4d322c14c6f2913794d1219b7d170ba929d903aad60c9a"
+    },
+    "tools/review_authorization.py": {
+      "after": "11791cad4bbec45c97993793c9ca692f7bb6f68221e20ea21eab7ac4b17464c2",
+      "before": "b42adc3dd6aa2dcff8987fac11baa16ed0282ce6f8e3351f30cb8d762f58016d"
+    }
+  },
+  "patch_sha256": "73f79610218c538dfaa3ffa36cbad8dd6901ef410045887ada312ce5770bde00"
+}
