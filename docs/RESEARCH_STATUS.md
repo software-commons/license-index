@@ -1,6 +1,6 @@
 # Research status
 
-The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-28T12:00:16Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
+The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-28T13:06:50Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
 
 The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) gives the exact UTC qualification cutoff for each of four retained documentary exception archives.
 
@@ -10,7 +10,7 @@ The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) giv
 | Text coverage | Forty-five identifiers map to twenty-three offline publisher texts. The discovery ledger also records 826 pinned generated SPDX text references, 826 distinct matching-template references, and 93 nonblank header references. |
 | Installation support | Forty-two identifiers have ordinary offline unchanged-copy recipes. Two additional LGPLv3 identifiers verify an existing exact GPLv3 companion before writing the supplement offline. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
 | Explanatory research depth | 42 provisional profiles with 207 dimensions and 62 scenarios, covering 37 current license identifiers, four exception identifiers and one deprecated license identifier. Eleven dimensions remain unresolved, and two are assessed as inapplicable. See [educational research](../research/campaigns/educational-research.md) for limitations and disconfirming questions. |
-| Claim qualification | Of the 823 claim revisions, 564 have a supported, independently reviewed disposition. Another 218 have an invalidated disposition, including 216 marked superseded and two marked insufficient. Sixteen are marked superseded and unverified. The remaining 25 have no recorded disposition and are provisional. The active selection includes 463 claims and binds 176 accepted canonical entities. [Qualification report](../sces/releases/project-documentary-notices-0-2-22/qualification.json) |
+| Claim qualification | Of the 861 claim revisions, 564 have a supported, independently reviewed disposition. Another 254 have an invalidated disposition, including 252 marked superseded and two marked insufficient. The count marked superseded and unverified is 18. The remaining 25 have no recorded disposition and are provisional. The active selection includes 463 claims and binds 176 accepted canonical entities. [Qualification report](../sces/releases/project-documentary-notices-policy-bound-0-2-22/qualification.json) |
 
 The LaTeX campaign adds five publisher references and their scoped SPDX correspondences. The LPPL 1.3c crosswalk is an Index documentary discovery association. The SPDX entry cites a different publisher path and an OSI page. [Campaign and receipts](../research/campaigns/lppl-reference-identities.md).
 

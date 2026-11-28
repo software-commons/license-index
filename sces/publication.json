@@ -821,6 +821,16 @@
       "revision": 3
     },
     {
+      "id": "checkmk-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "checkmk-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
       "id": "classpath-exception-2-0-documentary-exception-identity",
       "kind": "claim",
       "revision": 3
@@ -851,6 +861,16 @@
       "revision": 1
     },
     {
+      "id": "cryptoswift-documentary-identity",
+      "kind": "claim",
+      "revision": 4
+    },
+    {
+      "id": "cryptoswift-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
       "id": "cryptsetup-openssl-exception-documentary-exception-identity",
       "kind": "claim",
       "revision": 3
@@ -864,6 +884,16 @@
       "id": "cryptsetup-openssl-exception-exception-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "diffmark-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "diffmark-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
     },
     {
       "id": "dl-de-by-2-0-reference-identity",
@@ -926,6 +956,16 @@
       "revision": 2
     },
     {
+      "id": "fair-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "fair-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
       "id": "fsf-gpl-2-0-documentary-license-identity",
       "kind": "claim",
       "revision": 3
@@ -937,6 +977,16 @@
     },
     {
       "id": "fsf-lgpl-2-1-documentary-license-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "furuseth-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "furuseth-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 3
     },
@@ -1181,12 +1231,32 @@
       "revision": 1
     },
     {
+      "id": "jam-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "jam-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
       "id": "jove-documentary-identity",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "jove-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 4
+    },
+    {
+      "id": "kazlib-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "kazlib-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 3
     },
@@ -1553,22 +1623,32 @@
     {
       "id": "nbpl-1-0-documentary-identity",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "nbpl-1-0-spdx-3290-correspondence",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
+    },
+    {
+      "id": "newsletr-documentary-identity",
+      "kind": "claim",
+      "revision": 4
+    },
+    {
+      "id": "newsletr-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 4
     },
     {
       "id": "ngrep-documentary-identity",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
     },
     {
       "id": "ngrep-spdx-3290-correspondence",
       "kind": "claim",
-      "revision": 4
+      "revision": 5
     },
     {
       "id": "nlod-1-0-reference-identity",
@@ -1589,6 +1669,16 @@
       "id": "nlod-2-0-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "nlpl-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "nlpl-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
     },
     {
       "id": "npl-1-0-historical-reference-identity",
@@ -2038,12 +2128,12 @@
     {
       "id": "radvd-documentary-identity",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
     },
     {
       "id": "radvd-spdx-3290-correspondence",
       "kind": "claim",
-      "revision": 3
+      "revision": 4
     },
     {
       "id": "rsync-linking-exception-documentary-exception-identity",
@@ -2116,6 +2206,16 @@
       "revision": 1
     },
     {
+      "id": "swl-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "swl-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
       "id": "texinfo-exception-documentary-exception-identity",
       "kind": "claim",
       "revision": 3
@@ -2133,10 +2233,20 @@
     {
       "id": "vixie-cron-documentary-identity",
       "kind": "claim",
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "vixie-cron-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 4
+    },
+    {
+      "id": "vostrom-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "vostrom-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 3
     },
@@ -2184,11 +2294,31 @@
       "id": "x11vnc-openssl-exception-exception-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
+    },
+    {
+      "id": "xskat-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "xskat-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "xzoom-documentary-identity",
+      "kind": "claim",
+      "revision": 3
+    },
+    {
+      "id": "xzoom-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 3
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.21",
-  "evaluated_at": "2026-11-28T11:19:22Z",
+  "dataset_version": "0.2.22",
+  "evaluated_at": "2026-11-28T13:06:50Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -2230,15 +2360,16 @@
     "The historical Mozilla and Netscape provisions apply within the actors, editions and conditions identified in each exact claim. Project-specific licensing and legal outcomes remain outside the qualification.",
     "The project README supplies the two reported approval dates. Each man-pages comparison covers the marked historical notice and cited project representation. The adjoining page header supplies the recorded names.",
     "Each comparison is bounded by the project passage and pinned SPDX files identified in its claim. The ngrep comparison covers Jordan RitterÃ¢â‚¬â„¢s notice. Each lifecycle is the Index decision for the exact cited reference. These records do not determine licensing of other works, reuse or installation.",
-    "The LPPL findings concern the identified publisher files and notices only. Any project-specific licensing choice or representation change requires separate assessment. Inclusion in this selection does not install or package an edition."
+    "The LPPL findings concern the identified publisher files and notices only. Any project-specific licensing choice or representation change requires separate assessment. Inclusion in this selection does not install or package an edition.",
+    "The findings are specific to the cited documents, passages and lifecycle decisions. Newsletr concerns the CTAN README. Earlier unselected revisions concern the separate macro file."
   ],
   "previous_report": {
-    "path": "sces/releases/five-project-notice-identities-reviewed-0-2-20/qualification.json",
-    "sha256": "1ce2c373b79d365f004927bcc4eb4ac82a778c444c8bc211ce3b75926db9d7a5"
+    "path": "sces/releases/lppl-edition-texts-and-notices-reviewed-0-2-21/qualification.json",
+    "sha256": "0a6a154bd9d21816b080899db923192c59bc09155678f798e489fae0f0d4b6cd"
   },
-  "release": "lppl-edition-texts-and-notices-reviewed-0-2-21",
-  "research_cutoff": "2026-11-28T11:19:22Z",
+  "release": "project-documentary-notices-policy-bound-0-2-22",
+  "research_cutoff": "2026-11-28T13:06:50Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence. It also covers 16 OpenLDAP publisher reference identities and scoped SPDX documentary correspondences. It also covers 16 additional Creative Commons publisher reference identities and scoped SPDX documentary correspondences. It also covers the three exact Darwin, Flex and OpenWebUI project reference identities and scoped SPDX documentary correspondences. It also covers five LaTeX Project publisher references, the Apache 1.1 example, and their scoped SPDX edition correspondences. It includes source and binary redistribution notices for the three pinned BSD project references and the Open WebUI branding restriction. It includes ten edition-specific LPPL distribution provisions and four Apache 1.1 example provisions. It includes the ASWF Digital Assets 1.0 and 1.1 template identities and their scoped SPDX correspondences. It includes the Commission-rendered English EUPL 1.0 and 1.1 edition identities and their scoped SPDX 3.29.0 correspondences. It includes four pinned Linux man-pages notice identities and their SPDX 3.29.0 licenseText correspondences. It includes historical Mozilla Public License and Netscape Public License references for editions 1.0 and 1.1 and their scoped SPDX 3.29.0 documentary correspondences. It includes eleven edition-specific permission, notice and source-disclosure claims for the historical Mozilla and Netscape references. It includes dated approvals reported by the ASWF project README and revision-specific notice comparisons in three historical Linux man-pages source files. The Index records five project notice identities and their documentary correspondences to the pinned SPDX 3.29.0 entries ngrep, Vixie-Cron, jove, radvd and NBPL-1.0. The Index records five edition-specific LPPL publisher plaintext revisions, their document-copy provisions, and their application notice instructions.",
-  "source_commit": "ee1a09d70506afa93f0d5c80b0044bccf33015fc"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence. It also covers 16 OpenLDAP publisher reference identities and scoped SPDX documentary correspondences. It also covers 16 additional Creative Commons publisher reference identities and scoped SPDX documentary correspondences. It also covers the three exact Darwin, Flex and OpenWebUI project reference identities and scoped SPDX documentary correspondences. It also covers five LaTeX Project publisher references, the Apache 1.1 example, and their scoped SPDX edition correspondences. It includes source and binary redistribution notices for the three pinned BSD project references and the Open WebUI branding restriction. It includes ten edition-specific LPPL distribution provisions and four Apache 1.1 example provisions. It includes the ASWF Digital Assets 1.0 and 1.1 template identities and their scoped SPDX correspondences. It includes the Commission-rendered English EUPL 1.0 and 1.1 edition identities and their scoped SPDX 3.29.0 correspondences. It includes four pinned Linux man-pages notice identities and their SPDX 3.29.0 licenseText correspondences. It includes historical Mozilla Public License and Netscape Public License references for editions 1.0 and 1.1 and their scoped SPDX 3.29.0 documentary correspondences. It includes eleven edition-specific permission, notice and source-disclosure claims for the historical Mozilla and Netscape references. It includes dated approvals reported by the ASWF project README and revision-specific notice comparisons in three historical Linux man-pages source files. The Index records five project notice identities and their documentary correspondences to the pinned SPDX 3.29.0 entries ngrep, Vixie-Cron, jove, radvd and NBPL-1.0. The Index records five edition-specific LPPL publisher plaintext revisions, their document-copy provisions, and their application notice instructions. The Index records the project notices identified under Furuseth, NLPL, diffmark, Kazlib, xzoom, XSkat, Fair, Jam, Newsletr and VOSTROM and their passage-specific correspondences to the pinned SPDX representations. The accompanying producer records document Checkmk, CryptoSwift, SWL within their selected source scopes. The selected ten earlier project-notice findings also have new paired policy-first verifications.",
+  "source_commit": "20794650b229948e5b47c3099406c461632ed982"
 }
