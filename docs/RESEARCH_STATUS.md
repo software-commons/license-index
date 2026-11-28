@@ -1,6 +1,6 @@
 # Research status
 
-The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-28T06:44:58Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
+The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-28T08:32:11Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
 
 The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) gives the exact UTC qualification cutoff for each of four retained documentary exception archives.
 
@@ -10,7 +10,7 @@ The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) giv
 | Text coverage | Forty-five identifiers map to twenty-three offline publisher texts. The discovery ledger also records 826 pinned generated SPDX text references, 826 distinct matching-template references, and 93 nonblank header references. |
 | Installation support | Forty-two identifiers have ordinary offline unchanged-copy recipes. Two additional LGPLv3 identifiers verify an existing exact GPLv3 companion before writing the supplement offline. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
 | Explanatory research depth | 42 provisional profiles with 207 dimensions and 62 scenarios, covering 37 current license identifiers, four exception identifiers and one deprecated license identifier. Eleven dimensions remain unresolved, and two are assessed as inapplicable. See [educational research](../research/campaigns/educational-research.md) for limitations and disconfirming questions. |
-| Claim qualification | Of 711 claim revisions, 508 have a current supported independent review on record, 200 have an invalidated disposition, and two earlier EUPL drafts and one earlier ASWF 1.0 correspondence remain unqualified. These totals reflect recorded dispositions. The active selection includes 407 claims and binds 158 accepted canonical entities. [Qualification report](../sces/releases/historical-reference-provisions-0-2-18/qualification.json) |
+| Claim qualification | Of 721 claim revisions, 513 have a current supported independent review on record, 200 have an invalidated disposition, and two earlier EUPL drafts and one earlier ASWF 1.0 correspondence remain unqualified. These totals reflect recorded dispositions. The active selection includes 412 claims and binds 158 accepted canonical entities. [Qualification report](../sces/releases/aswf-and-man-pages-history-0-2-19/qualification.json) |
 
 The LaTeX campaign adds five publisher references and their scoped SPDX correspondences. The LPPL 1.3c crosswalk is an Index documentary discovery association. The SPDX entry cites a different publisher path and an OSI page. [Campaign and receipts](../research/campaigns/lppl-reference-identities.md).
 
@@ -95,3 +95,5 @@ The EUPL English-edition campaign admits the Commission-rendered references for 
 The Linux man-pages campaign qualifies four project notices and their exact SPDX licenseText correspondences. [Campaign and receipts](../research/campaigns/man-pages-notice-references.md).
 
 The Mozilla and Netscape campaign qualifies four historical references and their scoped SPDX edition correspondences. [Campaign and receipts](../research/campaigns/mozilla-netscape-reference-identities.md).
+
+Five historical observations cover the ASWF project-reported approval dates and the marked notice comparisons in three historical Linux manual pages at their cited revisions. [Campaign and receipts](../research/campaigns/aswf-and-man-pages-history.md).
