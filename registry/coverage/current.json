@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 711,
-      "recorded_independently_reviewed_claims": 508,
-      "recorded_invalidated_claim_revisions": 200,
-      "selected_claims": 407,
+      "recorded_claim_revisions": 721,
+      "recorded_independently_reviewed_claims": 513,
+      "recorded_invalidated_claim_revisions": 205,
+      "selected_claims": 412,
       "status": "qualified-selection"
     },
     "research": {
@@ -107,11 +107,11 @@
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-25",
-  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-28T06:44:58Z (UTC). The retained SPDX manifest pins the census population.",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-28T08:26:55Z (UTC). The retained SPDX manifest pins the census population.",
   "predecessor": {
-    "commit": "5b25c1b8ffa1f321498c314f5012d31cdc24b07e",
-    "sha256": "106a9b038420192b57bfd0fcbb5fae83725ca368494525e354ea9a645bfeb2d3",
-    "snapshot": "registry/coverage/snapshots/2026-11-27-oldap-reference-identities.json"
+    "commit": "ce4c1e261cd97f415526e1f30adce4fd1e3bef95",
+    "sha256": "20e9e121d7fda2c0a884df20b598392d097284d7801474c3ff86bd8343880379",
+    "snapshot": "registry/coverage/snapshots/2026-11-28-historical-reference-provisions.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -188,10 +188,11 @@
       "Admit the two Commission-rendered EUPL English edition references and their SPDX correspondences.",
       "Admit the four Linux man-pages notice references and their exact SPDX licenseText correspondences.",
       "Admit MPL and NPL 1.0 and 1.1 as separate historical references and select their scoped SPDX edition correspondences.",
-      "Select eleven audited provisions for the four historical Mozilla and Netscape publisher references."
+      "Select eleven audited provisions for the four historical Mozilla and Netscape publisher references.",
+      "Record the ASWF project-reported approval dates and three revision-specific man-pages notice comparisons."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-28-historical-reference-provisions.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-28-aswf-man-pages-history.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
