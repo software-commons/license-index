@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "3e6aba4f4a52474496c2e593b830346d"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "linux-man-pages-1-para-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Linux-man-pages-1-para",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "linux-man-pages-project",
+        "edition": "linux-man-pages-1-para-project-notice",
+        "revision": "sha256:f0c23664f8d8f73ed33aaba09b4686d05deb2723fe1cfd8fbc1f697013686cb3",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "97a3bde71b274ff5a5367e9c1059a123",
+  "identity_claim": {
+    "id": "linux-man-pages-1-para-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "linux-man-pages-project",
+    "edition": "linux-man-pages-1-para-project-notice",
+    "index-lifecycle-decision": "man-pages-notice-references",
+    "revision": "sha256:f0c23664f8d8f73ed33aaba09b4686d05deb2723fe1cfd8fbc1f697013686cb3",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Linux-man-pages-1-para",
+  "relations": [],
+  "state": "active"
+}
