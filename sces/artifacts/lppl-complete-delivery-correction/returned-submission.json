@@ -1,0 +1,29 @@
+{
+  "audit": "a784a446-0481-4c43-806c-1a4c0b43097f",
+  "decision_sha256": "2e93325496f4d77874d00baeff8104033efea85059cbd4f0081b6ea3533ddf7e",
+  "disposition": "changes-required",
+  "execution": "01a221d8-f28e-7f11-8adf-7f3765e7f046",
+  "prior_submission": "3db38da57e8db08160b5fe8a8e22b2a094fd3d10",
+  "retained_git_blobs": [
+    {
+      "git_blob": "ef9497f736879f8c6f7e11477e278fc7e31d7d34",
+      "path": "registry/coverage/snapshots/2026-11-28-lppl-edition-texts-and-notices.json",
+      "sha256": "40191b7cf743fa24880b276ce21df424f6bb7b54019c4f9fe06cdf079cb8b7f5"
+    },
+    {
+      "git_blob": "74d12d71ff88e77ba7011bc639541dca02dbe594",
+      "path": "sces/publication.json",
+      "sha256": "9ac5ef1f59889627be23c246226656a43cbbb7190126b878cec0e9124b1efd09"
+    },
+    {
+      "git_blob": "d3db03fbda4aa03632e2967cb52e490ab70c8f56",
+      "path": "sces/releases/lppl-edition-texts-and-notices-0-2-21/qualification.json",
+      "sha256": "c0dc84181c9b8164741bb4e0f91ac5666ed4f17ef827b6c8905c9b352e0abc34"
+    },
+    {
+      "git_blob": "53ef0137aff3ee4ff4d354a0916a6a2fba275383",
+      "path": "sces/releases/lppl-edition-texts-and-notices-0-2-21/claims.json",
+      "sha256": "32adefd3ee928c3abdffdf114f4d9cafd7887082b8dc27aa75a4a48fe3a86b48"
+    }
+  ]
+}

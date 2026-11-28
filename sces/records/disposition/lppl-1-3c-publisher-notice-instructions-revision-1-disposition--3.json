@@ -1,0 +1,25 @@
+{
+  "evidence": "superseded",
+  "finding": "none",
+  "id": "lppl-1-3c-publisher-notice-instructions-revision-1-disposition",
+  "kind": "disposition",
+  "reason": "PR #38 admission found incomplete trace bindings for a partitioned publisher file in revision 1. Revision 2 uses one directly delivered and recorded complete publisher file per phase.",
+  "recorded": "2026-11-28T11:19:22Z",
+  "replaces": {
+    "id": "lppl-1-3c-publisher-notice-instructions-revision-1-disposition",
+    "kind": "disposition",
+    "revision": 2
+  },
+  "revision": 3,
+  "successor": {
+    "id": "lppl-1-3c-publisher-notice-instructions",
+    "kind": "claim",
+    "revision": 2
+  },
+  "target": {
+    "id": "lppl-1-3c-publisher-notice-instructions",
+    "kind": "claim",
+    "revision": 1
+  },
+  "verification": "invalidated"
+}

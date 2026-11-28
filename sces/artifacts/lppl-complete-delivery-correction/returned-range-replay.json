@@ -1,0 +1,234 @@
+[
+  {
+    "campaign": "lppl-representation-rights-bound",
+    "edition": "lppl-1-3a",
+    "execution": "01a2218c-8fdf-7323-bf7e-51c27e2ff1c9",
+    "full_sha256": "06403f8c2fd53f994c4a424a8eaa65175062afc96422671f60374f4baf16091a",
+    "parts": [
+      {
+        "acquisition": "ea9da5d27d0e4e539145d98d57e732bd",
+        "capture": "exec-dcc3108f-44a5-432a-8a9d-872dabdab037",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "4de80f490cc3186a308f0c5eabe635596b5dba3d2e2f43dc953e204aedda27c6",
+        "retrieved_at": "2026-11-28T09:46:39Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      },
+      {
+        "acquisition": "f1d24a499e924cdfbe5c34518b019e10",
+        "capture": "exec-999bf89a-df12-4249-9feb-3d0999c042a7",
+        "end": 18435,
+        "listed_in_initial_trace": false,
+        "range_sha256": "77690235f504aa22877bf501054d05d05285113a8e28fa95f183dc8e526af87d",
+        "retrieved_at": "2026-11-28T09:46:40Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      }
+    ],
+    "phase": "research"
+  },
+  {
+    "campaign": "lppl-representation-rights-bound",
+    "edition": "lppl-1-3c",
+    "execution": "01a2218c-8fdf-7323-bf7e-51c27e2ff1c9",
+    "full_sha256": "c1ae6e179a6d28bbd5c483fbacc744acc75e922d598281dc3390aab26126e163",
+    "parts": [
+      {
+        "acquisition": "62dfc5a013cb41edb2e749e6425efe7e",
+        "capture": "exec-3560bce5-0df6-48b9-b76f-93c12f1b55ae",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "ab6d5805182cba309e087c1659530989c60cdf3b6b144efa215abd5fe71dd48f",
+        "retrieved_at": "2026-11-28T09:46:41Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      },
+      {
+        "acquisition": "ce61c52d52b04e03a5bd2e1ef6ad2bd1",
+        "capture": "exec-b853aa8d-185d-46df-8772-70051912dfbb",
+        "end": 19036,
+        "listed_in_initial_trace": false,
+        "range_sha256": "ea2249b77745ad6189e5138914c5e2c21322dd27f52cac531eef800053d63f2e",
+        "retrieved_at": "2026-11-28T09:46:41Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      }
+    ],
+    "phase": "research"
+  },
+  {
+    "campaign": "lppl-representation-rights-bound",
+    "edition": "lppl-1-3a",
+    "execution": "01a2218d-e6ab-74c1-a6ae-68e4dca76779",
+    "full_sha256": "06403f8c2fd53f994c4a424a8eaa65175062afc96422671f60374f4baf16091a",
+    "parts": [
+      {
+        "acquisition": "9b0e698246dd4076be8d9a105f1fa7f5",
+        "capture": "exec-cd51b0a6-683c-417a-b9d9-bb340a10f3b6",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "4de80f490cc3186a308f0c5eabe635596b5dba3d2e2f43dc953e204aedda27c6",
+        "retrieved_at": "2026-11-28T09:48:07Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      },
+      {
+        "acquisition": "624ad12f25fa48c9a2adcabcf6dc4f52",
+        "capture": "exec-77fcc7c2-bbb7-48f7-aa3d-1178f7b20fcb",
+        "end": 18435,
+        "listed_in_initial_trace": false,
+        "range_sha256": "77690235f504aa22877bf501054d05d05285113a8e28fa95f183dc8e526af87d",
+        "retrieved_at": "2026-11-28T09:48:07Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      }
+    ],
+    "phase": "independent-review"
+  },
+  {
+    "campaign": "lppl-representation-rights-bound",
+    "edition": "lppl-1-3c",
+    "execution": "01a2218d-e6ab-74c1-a6ae-68e4dca76779",
+    "full_sha256": "c1ae6e179a6d28bbd5c483fbacc744acc75e922d598281dc3390aab26126e163",
+    "parts": [
+      {
+        "acquisition": "436a9c306d774cd2906f5f921d417d0e",
+        "capture": "exec-0cbe019d-eb92-4794-8a9c-326ac5b10c71",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "ab6d5805182cba309e087c1659530989c60cdf3b6b144efa215abd5fe71dd48f",
+        "retrieved_at": "2026-11-28T09:48:08Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      },
+      {
+        "acquisition": "0da41bb1d9744ebb887733723f318282",
+        "capture": "exec-9f72aaa4-5288-4383-acf6-97f90091af3f",
+        "end": 19036,
+        "listed_in_initial_trace": false,
+        "range_sha256": "ea2249b77745ad6189e5138914c5e2c21322dd27f52cac531eef800053d63f2e",
+        "retrieved_at": "2026-11-28T09:48:09Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      }
+    ],
+    "phase": "independent-review"
+  },
+  {
+    "campaign": "lppl-application-evidence-bound-direct",
+    "edition": "lppl-1-3a",
+    "execution": "01a2218f-2937-77b3-ab67-7fa440a41f18",
+    "full_sha256": "06403f8c2fd53f994c4a424a8eaa65175062afc96422671f60374f4baf16091a",
+    "parts": [
+      {
+        "acquisition": "26737a25783e487781be4e92aff01d92",
+        "capture": "exec-07012c82-acfd-4b71-84d5-f6f22239fde6",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "4de80f490cc3186a308f0c5eabe635596b5dba3d2e2f43dc953e204aedda27c6",
+        "retrieved_at": "2026-11-28T09:49:47Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      },
+      {
+        "acquisition": "4db76136a2d1483ea4d5a615f3049dd6",
+        "capture": "exec-b0fe01a5-c413-44f5-9f9d-992bbefc1043",
+        "end": 18435,
+        "listed_in_initial_trace": false,
+        "range_sha256": "77690235f504aa22877bf501054d05d05285113a8e28fa95f183dc8e526af87d",
+        "retrieved_at": "2026-11-28T09:49:50Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      }
+    ],
+    "phase": "research"
+  },
+  {
+    "campaign": "lppl-application-evidence-bound-direct",
+    "edition": "lppl-1-3c",
+    "execution": "01a2218f-2937-77b3-ab67-7fa440a41f18",
+    "full_sha256": "c1ae6e179a6d28bbd5c483fbacc744acc75e922d598281dc3390aab26126e163",
+    "parts": [
+      {
+        "acquisition": "82424faffab647c7bcdb7d316990abba",
+        "capture": "exec-1b2c086e-f7df-4d57-b781-cc6c46c24f8d",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "ab6d5805182cba309e087c1659530989c60cdf3b6b144efa215abd5fe71dd48f",
+        "retrieved_at": "2026-11-28T09:49:54Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      },
+      {
+        "acquisition": "1be1526b9de54248b09784f2deee696a",
+        "capture": "exec-b625fc11-5dad-44e5-884e-2a3152a6ad85",
+        "end": 19036,
+        "listed_in_initial_trace": false,
+        "range_sha256": "ea2249b77745ad6189e5138914c5e2c21322dd27f52cac531eef800053d63f2e",
+        "retrieved_at": "2026-11-28T09:49:58Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      }
+    ],
+    "phase": "research"
+  },
+  {
+    "campaign": "lppl-application-evidence-bound-direct",
+    "edition": "lppl-1-3a",
+    "execution": "01a22190-f4c1-7d90-9974-d9f9969924c1",
+    "full_sha256": "06403f8c2fd53f994c4a424a8eaa65175062afc96422671f60374f4baf16091a",
+    "parts": [
+      {
+        "acquisition": "03d5f485d6f7490fb5d1b4dc1be2f628",
+        "capture": "exec-a37fbafb-808b-4ad9-8cfa-d8ea8a0d3c2a",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "4de80f490cc3186a308f0c5eabe635596b5dba3d2e2f43dc953e204aedda27c6",
+        "retrieved_at": "2026-11-28T09:51:40Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      },
+      {
+        "acquisition": "5d796bc21cf449d281ada2a31bd29aa4",
+        "capture": "exec-951b2440-5be8-4333-bc22-be139c057ca5",
+        "end": 18435,
+        "listed_in_initial_trace": false,
+        "range_sha256": "77690235f504aa22877bf501054d05d05285113a8e28fa95f183dc8e526af87d",
+        "retrieved_at": "2026-11-28T09:51:43Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3a.txt"
+      }
+    ],
+    "phase": "independent-review"
+  },
+  {
+    "campaign": "lppl-application-evidence-bound-direct",
+    "edition": "lppl-1-3c",
+    "execution": "01a22190-f4c1-7d90-9974-d9f9969924c1",
+    "full_sha256": "c1ae6e179a6d28bbd5c483fbacc744acc75e922d598281dc3390aab26126e163",
+    "parts": [
+      {
+        "acquisition": "f1ee82babe0f4a51b16a79fbe20be90f",
+        "capture": "exec-6d45e4dd-aaae-4803-903c-67262e636c98",
+        "end": 16384,
+        "listed_in_initial_trace": true,
+        "range_sha256": "ab6d5805182cba309e087c1659530989c60cdf3b6b144efa215abd5fe71dd48f",
+        "retrieved_at": "2026-11-28T09:51:46Z",
+        "start": 0,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      },
+      {
+        "acquisition": "a61c657b823845bd8b792fab7f574b46",
+        "capture": "exec-f1718640-9017-4e34-aa0e-d12185d415ad",
+        "end": 19036,
+        "listed_in_initial_trace": false,
+        "range_sha256": "ea2249b77745ad6189e5138914c5e2c21322dd27f52cac531eef800053d63f2e",
+        "retrieved_at": "2026-11-28T09:51:49Z",
+        "start": 16384,
+        "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt"
+      }
+    ],
+    "phase": "independent-review"
+  }
+]
