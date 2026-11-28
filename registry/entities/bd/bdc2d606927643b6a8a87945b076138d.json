@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "20c80b485e0546808c7c0af89517d9cc"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "aswf-digital-assets-1-1-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "ASWF-Digital-Assets-1.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "academy-software-foundation",
+        "edition": "aswf-digital-assets-1-1-template",
+        "revision": "sha256:189cfdb9bfdb514fcfea7e26234c07e9cbbe5eb6d7a55c892e082e50cf91d694",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "bdc2d606927643b6a8a87945b076138d",
+  "identity_claim": {
+    "id": "aswf-digital-assets-1-1-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "academy-software-foundation",
+    "edition": "aswf-digital-assets-1-1-template",
+    "index-lifecycle-decision": "aswf-digital-assets-references",
+    "revision": "sha256:189cfdb9bfdb514fcfea7e26234c07e9cbbe5eb6d7a55c892e082e50cf91d694",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "ASWF Digital Assets License 1.1",
+  "relations": [],
+  "state": "active"
+}
