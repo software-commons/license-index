@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "0af22cebd5f24d5d8b19bd9d09cf812e"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "eupl-1-1-rendered-edition-spdx-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "EUPL-1.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "european-union",
+        "edition": "eupl-1-1-commission-english-rendering",
+        "revision": "commission-english-labelled-edition-1-1",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "40943fe14c284ecc80c1f163fa75e959",
+  "identity_claim": {
+    "id": "eupl-1-1-rendered-edition-identity",
+    "kind": "claim",
+    "revision": 2
+  },
+  "identity_scope": {
+    "authority": "european-union",
+    "edition": "eupl-1-1-commission-english-rendering",
+    "index-lifecycle-decision": "eupl-rendered-english-editions",
+    "revision": "commission-english-labelled-edition-1-1",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "European Union Public Licence v. 1.1",
+  "relations": [],
+  "state": "active"
+}

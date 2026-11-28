@@ -1,0 +1,24 @@
+# Index lifecycle decisions for selected Creative Commons reference editions
+
+These are editorial classifications for documentary lookup of exact publisher reference representations after qualification, not assertions about legal effect, publisher currency, SPDX deprecation, applicability, document reuse, or publication. Publisher names retain their original language and spelling. Jurisdiction labels in SPDX identifiers and URLs are not inferred from a publisher title that omits them. CC-SA-1.0 contains a draft-license notice; its significance and legal effect remain unresolved. No text or legal equivalence between representations is asserted.
+
+| Permanent entity | SPDX 3.29.0 identifier | Reference | Exact scope edition | Exact scope revision | Kind | Index lifecycle |
+| --- | --- | --- | --- | --- | --- | --- |
+| `50d594825dd04a5b80b56a5cb11a3abb` | `CC-BY-2.5-AU` | Attribution 2.5 Australia | `cc-by-2-5-au-publisher-reference` | `sha256:4a2148abbfd63ed9bc97ab27f3e413fee7783a5aa74f0d8ebde28d48bcebad62` | `license` | `active` |
+| `010c5e0f31424ac8b0431724ba472f09` | `CC-BY-3.0-AT` | Namensnennung 3.0 Österreich | `cc-by-3-0-at-publisher-reference` | `sha256:0579db12b8e44326de5291f2fabe62327f50365298ff956a9b9ac3a104308bbb` | `license` | `active` |
+| `da1d8c9a248342a6bbfeadf2dc379175` | `CC-BY-3.0-AU` | Attribution 3.0 Australia | `cc-by-3-0-au-publisher-reference` | `sha256:4d843eb65cbd3701b8d22c6d9b46726f439c636547aec60f5233af15ffc563e3` | `license` | `active` |
+| `3fb407be39934308b4a7314d9f4f0a28` | `CC-BY-3.0-IGO` | Attribution 3.0 IGO | `cc-by-3-0-igo-publisher-reference` | `sha256:2013ded9092fb98ce2e16252a73909ff462609458896238ac578f427eaef1923` | `license` | `active` |
+| `b9926ebd65f64576896f04c6f5fc53b7` | `CC-BY-3.0-NL` | Naamsvermelding 3.0 | `cc-by-3-0-nl-publisher-reference` | `sha256:0cb36af2cc080a60b0a20146bd3c98d809bcc1f126e0751f30793756366523b8` | `license` | `active` |
+| `0d4e1a48eb1d4744aefee550c3215aa7` | `CC-BY-3.0-US` | Attribution 3.0 United States | `cc-by-3-0-us-publisher-reference` | `sha256:a5285930c404a709b131b1ef371143dd160596102e6c139764920ba0fc48d37f` | `license` | `active` |
+| `7e18c3959a9046e990af6bbdb074ffb5` | `CC-BY-NC-3.0-IGO` | Attribution-NonCommercial 3.0 IGO | `cc-by-nc-3-0-igo-publisher-reference` | `sha256:1c6cb22ab19aeaee9287d45446bd8686f9e8a927a24d1d610043fd741a89f783` | `license` | `active` |
+| `b3148ba0f87b46dd9254350c704bb08f` | `CC-BY-NC-ND-3.0-IGO` | Attribution-NonCommercial-NoDerivs 3.0 IGO | `cc-by-nc-nd-3-0-igo-publisher-reference` | `sha256:c33445cf6dd32d044616e2668094dd71ae3c8eb798ad641bf679f8ef1b826104` | `license` | `active` |
+| `8acf91eab22941228dc052bcbae47206` | `CC-BY-NC-SA-2.0-FR` | Paternité - Pas d'Utilisation Commerciale - Partage Des Conditions Initiales A l'Identique 2.0 | `cc-by-nc-sa-2-0-fr-publisher-reference` | `sha256:138ce788821e255ad8bafbe1c97ce6d3c430e8daf688879fc51d42163ec41762` | `license` | `active` |
+| `b6cc736f4995409891f56a735da8b2a1` | `CC-BY-NC-SA-2.0-UK` | Attribution - Non-Commercial - Share-Alike 2.0 England and Wales | `cc-by-nc-sa-2-0-uk-publisher-reference` | `sha256:f67468801b14ff5311d68b47ce683a2ccb76ddfc3e6be838e874e278809d564c` | `license` | `active` |
+| `d3763fa78a044abfb255dc32fb628a18` | `CC-BY-NC-SA-3.0-IGO` | Attribution-NonCommercial-ShareAlike 3.0 IGO | `cc-by-nc-sa-3-0-igo-publisher-reference` | `sha256:8682096a73876da83df79b8a4293d8fd0ee1d14c179f3e757546d07d8eef896f` | `license` | `active` |
+| `6e69824c25c14c26819830a0a3b525a5` | `CC-BY-SA-2.0-UK` | Attribution - Share-Alike 2.0 England and Wales | `cc-by-sa-2-0-uk-publisher-reference` | `sha256:bcb50d427d9b1aa2c9977a63fc09545f705d4ae4ca54d4aab8ace13cf197b952` | `license` | `active` |
+| `67c3d3633012457bb476a0bcf2eb0c95` | `CC-BY-SA-2.1-JP` | アトリビューション—シェアアライク 2.1（帰属—同一条件許諾） | `cc-by-sa-2-1-jp-publisher-reference` | `sha256:684600550fef66e7857193c0d88bdcaaceb5a25ace98210320e1348ead9124ad` | `license` | `active` |
+| `590e3b4b55284ed9a2357c8e5ef90616` | `CC-BY-SA-3.0-AT` | Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Österreich | `cc-by-sa-3-0-at-publisher-reference` | `sha256:e0ca05276c7282991d2212049f4d434f045a9a004ae235fb627bce5802ea6b59` | `license` | `active` |
+| `32d90accea2744ab83519229c8e900cb` | `CC-BY-SA-3.0-IGO` | Attribution-ShareAlike 3.0 IGO | `cc-by-sa-3-0-igo-publisher-reference` | `sha256:584d8f6ae7ccc578a21f6eb28441edda04f22ca676607ccabbee4c355342c0a2` | `license` | `active` |
+| `653306440b134f37ab3fc963f9f67546` | `CC-SA-1.0` | ShareAlike 1.0 Generic | `cc-sa-1-0-publisher-reference` | `sha256:a089c01e5be68638031be8a1796196577502405d87fc2486b315412382886865` | `license` | `active` |
+
+Each digest identifies only the exact captured publisher HTML. Research and independent verification must reopen original sources; publication requires separate authorization.
