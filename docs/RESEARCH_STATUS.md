@@ -1,16 +1,26 @@
 # Research status
 
-The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-27T01:59:19Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
+The discovery census cutoff is 2026-11-25. The SCES qualification cutoff is 2026-11-28T05:29:05Z (UTC). The [SPDX source manifest](../research/sources/spdx-3.29.0.json) pins the generated data, XML source, archive digest and summary manifests. The [coverage snapshot](../registry/coverage/current.json) separates the catalog, text, installation, research and qualification measures.
 
 The [coverage cutoff correction](DOCUMENTARY_EXCEPTION_CUTOFF_CORRECTION.md) gives the exact UTC qualification cutoff for each of four retained documentary exception archives.
 
 | Measure | Development snapshot |
 | --- | --- |
-| Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license identifiers and one deprecated exception identifier. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside SPDX. The 840 discovery records include 696 unresolved, 142 accepted, one excluded, and one non-license. |
+| Catalog completeness | 740 SPDX license entries and 86 exception entries. Includes 32 deprecated license identifiers and one deprecated exception identifier. SPDX supplies replacement guidance for 30 deprecated entries. There are 14 publisher leads outside SPDX. The 840 discovery records include 671 unresolved, 167 accepted, one excluded, and one non-license. |
 | Text coverage | Forty-five identifiers map to twenty-three offline publisher texts. The discovery ledger also records 826 pinned generated SPDX text references, 826 distinct matching-template references, and 93 nonblank header references. |
 | Installation support | Forty-two identifiers have ordinary offline unchanged-copy recipes. Two additional LGPLv3 identifiers verify an existing exact GPLv3 companion before writing the supplement offline. MIT has a hash-verified input and narrowly scoped notice substitution recipe. |
 | Explanatory research depth | 42 provisional profiles with 207 dimensions and 62 scenarios, covering 37 current license identifiers, four exception identifiers and one deprecated license identifier. Eleven dimensions remain unresolved, and two are assessed as inapplicable. See [educational research](../research/campaigns/educational-research.md) for limitations and disconfirming questions. |
-| Claim qualification | Of 588 claim revisions, 402 have a current supported independent review on record, 184 have an invalidated disposition, and two earlier EUPL drafts remain unqualified. These totals reflect recorded dispositions. The active selection includes 301 claims and binds 121 accepted canonical entities. [Qualification report](../sces/releases/oldap-reference-0-2-17/qualification.json) |
+| Claim qualification | Of 645 claim revisions, 459 have a current supported independent review on record, 184 have an invalidated disposition, and two earlier EUPL drafts remain unqualified. These totals reflect recorded dispositions. The active selection includes 358 claims and binds 146 accepted canonical entities. [Qualification report](../sces/releases/cc-bsd-lppl-apache-project-profiles-0-2-18/qualification.json) |
+
+The LaTeX campaign adds five publisher references and their scoped SPDX correspondences. The LPPL 1.3c crosswalk is an Index documentary discovery association. The SPDX entry cites a different publisher path and an OSI page. [Campaign and receipts](../research/campaigns/lppl-reference-identities.md).
+
+The Apache campaign adds the ASF 1.1 example and a scoped SPDX correspondence based on the pinned license body. [Campaign and receipts](../research/campaigns/apache-1-1-reference.md).
+
+The qualified dataset includes seven notice and branding provisions for the three exact BSD project references. [Campaign and receipts](../research/campaigns/bsd-project-notice-provisions.md).
+
+The BSD project-reference campaign adds three independently verified identities and scoped SPDX correspondences for Darwin, Flex and OpenWebUI. The comparisons cover the exact pinned files and preserve the OpenWebUI branding provision. [Campaign and receipts](../research/campaigns/bsd-project-reference-identities.md).
+
+The selected Creative Commons campaign adds 16 independently reviewed publisher reference identities and their exact SPDX documentary correspondences. NL, FR and JP publisher titles do not themselves name the jurisdictions in their SPDX identifiers and URLs. The CC-SA-1.0 page refers to a draft license; the notice significance, finality and legal effect remain unresolved. Text equivalence, applicability and reuse rights are separate. [Campaign and receipts](../research/campaigns/cc-remaining-identities.md).
 
 The OpenLDAP campaign adds 16 independently reviewed publisher reference identities and their scoped SPDX documentary correspondences. Historical SPDX gitweb and captured modern raw URLs are distinct even where their commit labels match; the 2.8 SPDX HTTP and publisher HTTPS URLs are also distinct. Other representations and their byte relationships remain unresolved. License obligations, applicability and text reuse rights are separate. [Campaign and receipts](../research/campaigns/oldap-reference-identities.md).
 
