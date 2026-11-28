@@ -1,7 +1,0 @@
-PASS delete prior snapshot rejected
-PASS modify prior snapshot rejected
-PASS mode prior snapshot rejected
-PASS source_modify prior snapshot rejected
-PASS source_delete prior snapshot rejected
-PASS source_mode prior snapshot rejected
-PASS source_shared prior snapshot rejected

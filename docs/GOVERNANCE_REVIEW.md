@@ -4,6 +4,8 @@
 
 The Software Commons owner authorized a Codex-only review process conditional on a compliant enforced replacement. The owner excluded adding collaborators or creating a second GitHub account. Software Commons will retain mandatory pull requests, the pinned SCES check, the registry check and its three-platform test jobs. Default-branch deletion, force-push and unauthorized bypass stay prohibited. Publication requires a separate exact-artifact authorization.
 
+The [native integration transition](decisions/native-integration-transition.md) authorizes a staged replacement after the existing protected adoption procedure and a verified isolated App trial. Record the effective cutover before using the replacement on main.
+
 ## Enforced replacement
 
 Use an organization-controlled required workflow or a dedicated, authenticated GitHub App whose issuer posts the designated verification check. Its verifier and credentials must be outside the target pull request's trust boundary. A shared App may serve owner-authorized Index repositories with separate repository-scoped tokens. The License Index issuer must verify its token has access only to this repository. The App would have no bypass access or merge authority and be the expected source of the new ruleset check. Give it the GitHub check and commit-status permissions required for that role, with no repository code or administration write access. Its issuer must verify the repository, pull request, exact head and base commits, review execution, retained audit evidence and disposition. A changed head or target requires a fresh determination. Code in the pull request must have no access to the issuer's key or to a way to generate the same check.
@@ -21,7 +23,3 @@ Production requires pull requests and both source-pinned Actions checks, **Evide
 ## Release authorization
 
 An authorized operator checks the evidence custody, exact source commit, selected claim revisions, mapped outputs, scope, and artifact digests. Record the approving principal and decision separately from the technical check. Bind that decision to the protected release change and verify the exact published bytes. Follow [publication control](PUBLICATION.md) and [profile qualification](PROFILE_QUALIFICATION.md).
-
-### Pending solid-history corrective proposal
-
-The [v2 history artifact](../research/review/history-v2/README.md) addresses a measured archive-capacity blocker without changing the configured archive or raw-object limits. It is review material, not an activated rule, approval or release authorization. The existing protected process remains in force until independent review, isolated commissioning and a verified runtime cutover.

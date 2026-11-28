@@ -1,0 +1,29 @@
+# Native integration transition
+
+This proposal applies to License Index. The production rules documented in GOVERNANCE_REVIEW.md continue to govern until the migration PR lands, the administrator activates the tested replacement and the resulting rules are checked from GitHub.
+
+## Binding requirements
+
+SCIRS-1.0 requires protected default-branch PRs and the pinned SCES check reported by GitHub Actions. The check must run for all PRs and default-branch pushes, and for merge-group entries when a queue is used. Changes to evidence pins, caller workflows, source selection and publication paths require authorized review or organization-enforced protection. Document administrative gaps and withhold canonical publication while a mandatory control is unavailable. [Adopted repository standard](https://github.com/software-commons/.github/blob/f23ffb93c5ad8d6b96d8652186ba20befee3bca8/docs/standards/INDEX_REPOSITORY_STANDARD.md)
+
+SCES requires genuine research and subsequent independent review of selected claims, exact source bindings and retained verification evidence. Its adoption procedure requires strict enforcement, restricted bypass, protection of the gate itself, and authorized publication from protected revisions and release refs. Preserve historical reports, correction records and exact scientific inputs. [Evidence standard](https://github.com/software-commons/.github/blob/ab26f278422772f2d9e5d4dd016407d14372a710/docs/standards/EVIDENCE_STANDARD.md) · [Adoption procedure](https://github.com/software-commons/.github/blob/ab26f278422772f2d9e5d4dd016407d14372a710/docs/standards/SCES_ADOPTION.md)
+
+The repository selected App 5893334, a singleton queue, separate admission and merge-group decisions, signed candidate authorizations, and a custom archive format as its implementation. A reviewed repository decision can replace these mechanisms while retaining the scientific and publication controls.
+
+## Replacement workflow
+
+Retain GitHub App 5893334 solely to report a fresh, independent Codex technical decision. Use a distinct required context named `Software Commons / Independent Codex review`. The App installation stays restricted to this repository and carries no merge, contents-write or administration authority. Run the reviewer outside the PR trust boundary with read-only access to the exact source, diff and scientific evidence. Only the protected reporting service may use the existing credential provider. Candidate scripts, PR comments and operator-supplied verdicts cannot authorize a passing check.
+
+The reviewer records the repository, PR, base, head, reviewed tree, execution identity, findings and retained trace. It verifies scientific evidence and governing paths according to the proposed change. Use incremental Git comparison and the ordinary reachable Git objects. Keep prior evidence and release records in Git. The reporter authenticates the genuine review result, rechecks the live target, checks eligibility and required CI, and reports the decision on the exact head. A changed review target requires fresh review. An inconclusive or unsuccessful review blocks integration. Scope the change authorization to this adopted policy, with separate owner decisions for public release and governance changes outside its remit.
+
+Require native pull requests, strict up-to-date SCES and Registry checks from GitHub Actions, and the App-bound technical decision. Require conversation resolution. Preserve deletion and force-push protection, zero bypass actors and merge-commit ancestry. An authorized operator uses GitHub's regular merge endpoint with the expected head. Protect evidence pins, source selection, policy, workflows, validation code and publication mappings through the same independent review. Preserve the independent research and review executions for each selected scientific claim.
+
+## Trial and cutover
+
+The native CODEOWNER trial on PR #30 tested a 358-claim research batch. The PR author is the sole eligible code owner. GitHub requires another eligible principal for that form of approval. The independent technical review inspected the original 301 selections, all 57 additions and 114 associated verification records. An independently authenticated App decision supplies the enforceable technical review for this repository.
+
+Commission the replacement reporting path on a distinct isolated trial ref and context. Verify the real candidate, required CI and App decision. Confirm strict up-to-date enforcement, stale decision rejection and retained evidence on the landed test merge. Record the exact external runtime and configuration. If the trial fails, preserve the existing production rules and report the failure.
+
+The existing protected PR and queue procedure governs adoption of this transition. After adoption and a successful App trial, the administrator adds the verified new required context, confirms its App identity and all existing controls, and explicitly removes the old context and queue. Keep the native CI checks strict throughout. Use a single ruleset replacement where queue removal and strict native PR merging must change together. Record before/after rules and verify a qualified batch on protected main. Preserve authorization and audit evidence before retiring superseded License Index branches or configuration. Other repositories retain their own App installations and governance decisions.
+
+[Native CODEOWNER trial](https://github.com/software-commons/license-index/pull/30)
