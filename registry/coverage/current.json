@@ -8,7 +8,7 @@
       "spdx_text_references": 826
     },
     "catalog": {
-      "accepted_entities": 163,
+      "accepted_entities": 176,
       "beyond_spdx_dispositions": {
         "accepted": 2,
         "excluded": 1,
@@ -17,10 +17,10 @@
       },
       "beyond_spdx_leads": 14,
       "candidate_dispositions": {
-        "accepted": 184,
+        "accepted": 197,
         "excluded": 1,
         "non-license": 1,
-        "unresolved": 654
+        "unresolved": 641
       },
       "spdx_deprecated_exceptions": 1,
       "spdx_deprecated_licenses": 32,
@@ -83,10 +83,10 @@
       ]
     },
     "qualification": {
-      "recorded_claim_revisions": 770,
-      "recorded_independently_reviewed_claims": 538,
-      "recorded_invalidated_claim_revisions": 217,
-      "selected_claims": 437,
+      "recorded_claim_revisions": 823,
+      "recorded_independently_reviewed_claims": 564,
+      "recorded_invalidated_claim_revisions": 218,
+      "selected_claims": 463,
       "status": "qualified-selection"
     },
     "research": {
@@ -107,11 +107,11 @@
     "scope": "SPDX discovery and publisher leads"
   },
   "cutoff": "2026-11-25",
-  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-28T11:19:22Z (UTC). The retained SPDX manifest pins the census population.",
+  "method": "Reconcile the exact upstream inventory and artifacts. Count discovery dispositions, text, installation, recorded reviews, and selection separately. Record provisional dimension states, scenarios, and an exact digest of the dimension assessments. The discovery census cutoff is 2026-11-25. The separate SCES qualification research cutoff is 2026-11-28T12:00:16Z (UTC). The retained SPDX manifest pins the census population.",
   "predecessor": {
-    "commit": "e48c3b60c1e99742fca57e9edd770b94a2d83d7e",
-    "sha256": "867e5fca96532475183db6f19f80226bfe072e4dd40e083f8dfb01ab478e7ab5",
-    "snapshot": "registry/coverage/snapshots/2026-11-28-five-project-notice-identities-reviewed.json"
+    "commit": "c131b43d6fe7a4e3d40e108fcce8e2c502236a6f",
+    "sha256": "5c769bc3a6a616883c13d36a99745e0cd0882d7b106985a691a815e72b4ed9af",
+    "snapshot": "registry/coverage/snapshots/2026-11-28-lppl-edition-texts-and-notices-reviewed.json"
   },
   "research_scope": {
     "discovery_paths": [
@@ -191,10 +191,11 @@
       "Select eleven audited provisions for the four historical Mozilla and Netscape publisher references.",
       "Record the ASWF project-reported approval dates and three revision-specific man-pages notice comparisons.",
       "Admit five project notice references after independent verification of their scoped identity, editorial lifecycle and correspondence with the protected SPDX 3.29.0 census.",
-      "Record 15 LPPL representation, verbatim document-copy, and application notice observations across five editions."
+      "Record 15 LPPL representation, verbatim document-copy, and application notice observations across five editions.",
+      "Admit the selected documentary license identities and their scoped SPDX correspondences."
     ]
   },
   "schema_version": "4.0.0",
-  "snapshot": "registry/coverage/snapshots/2026-11-28-lppl-edition-texts-and-notices-reviewed.json",
+  "snapshot": "registry/coverage/snapshots/2026-11-28-project-documentary-notices.json",
   "source_manifest": "research/sources/spdx-3.29.0.json"
 }
