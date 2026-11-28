@@ -37,6 +37,6 @@ The separate `correction-issuer-tests.txt`, `correction-mutation-tests.txt` and 
 
 The revised draft binds the launcher to the requested repository, requires exact command serialization, and bounds manifest decompression before parsing. Prior validation and traces above apply to earlier bytes; fresh independent review and commissioning are required for the revised artifacts.
 
-The v56 baseline review_gate.py has CRLF bytes. Verify its declared baseline digest first, then normalize that scratch copy to LF before applying this LF patch; verify the resulting declared after digest. The normalization is part of reproducible staging and must not alter the protected baseline. Focused POSIX tests on that procedure passed; they are not a commissioning decision.
+The v56 baseline `tools/review_gate.py` has CRLF bytes. Verify its declared `before` digest on the original bytes, then normalize the scratch copy to LF. Apply the LF patch from the runtime root with `git -c core.autocrlf=false apply /absolute/path/to/v56-history-v2.patch`. Verify every resulting file against its declared `after` digest. The focused POSIX tests were development validation. Commissioning requires a separate isolated trial.
 
 Non-issuing restricted Codex v1 and v2 compatibility probes for the revised launcher are retained as security-fix-v1-* and security-fix-v2-*. Both before and after preflight receipts matched; the v2 trace passed the revised exact-command gate. These observations do not constitute independent review or commissioning.

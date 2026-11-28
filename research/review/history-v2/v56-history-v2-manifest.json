@@ -6,7 +6,7 @@
       "before": null
     },
     "tests/test_history_v2_integration.py": {
-      "after": "60b8681016551881b0be006756f08fdc65a899eb2d7948ffa7aa01b7bfc4eab3",
+      "after": "8874e837683b237cc793492483205419036e86e62d4c69232a920ee303b4fcb9",
       "before": null
     },
     "tests/test_history_v2_protocol.py": {
