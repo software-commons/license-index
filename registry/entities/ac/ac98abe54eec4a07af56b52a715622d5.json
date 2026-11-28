@@ -8,13 +8,14 @@
       "claim": {
         "id": "vixie-cron-spdx-3290-correspondence",
         "kind": "claim",
-        "revision": 3
+        "revision": 4
       },
       "key": "Vixie-Cron",
       "origin": "spdx",
       "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
       "scope": {
         "authority": "vixie-cron-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
         "edition": "vixie-cron-captured-reference",
         "revision": "sha256:b523dccfdbf14c0e2747faf8406f0bb8b953fb7647427c069aa90459369c0ac7",
         "upstream-release": "3.29.0"
@@ -25,7 +26,7 @@
   "identity_claim": {
     "id": "vixie-cron-documentary-identity",
     "kind": "claim",
-    "revision": 2
+    "revision": 3
   },
   "identity_scope": {
     "authority": "vixie-cron-project",

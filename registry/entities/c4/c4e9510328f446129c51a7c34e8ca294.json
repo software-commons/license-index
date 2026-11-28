@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "925236ff4acb4f8988ad004657341b8e"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "furuseth-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "Furuseth",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "openldap-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "furuseth-captured-reference",
+        "revision": "sha256:5b4dfc20608c4d5d75573e899569b8ee0e06658ebcf14fa14566e309bcbab14c",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "c4e9510328f446129c51a7c34e8ca294",
+  "identity_claim": {
+    "id": "furuseth-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "openldap-project",
+    "edition": "furuseth-captured-reference",
+    "index-lifecycle-decision": "openldap-imapsync-notices-classification",
+    "revision": "sha256:5b4dfc20608c4d5d75573e899569b8ee0e06658ebcf14fa14566e309bcbab14c",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "OpenLDAP contributor notice associated with Furuseth",
+  "relations": [],
+  "state": "active"
+}

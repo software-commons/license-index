@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "5c844f93b43748d5a0f66ea3de115cb8"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "vostrom-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "VOSTROM",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "vostrom-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "vostrom-captured-reference",
+        "revision": "sha256:e3b7634630e6800eccca6ecafb5d40153d4f8f7a20e2b2399bf3c0ea92f44614",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "dfb8f927737e42a6a0d8b49651e2c458",
+  "identity_claim": {
+    "id": "vostrom-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "vostrom-project",
+    "edition": "vostrom-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:e3b7634630e6800eccca6ecafb5d40153d4f8f7a20e2b2399bf3c0ea92f44614",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "VOSTROM Public License for Open Source",
+  "relations": [],
+  "state": "historical"
+}

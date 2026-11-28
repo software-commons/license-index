@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "a51348c09347444eb8c6a4ea0133cff0"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "jam-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "Jam",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "perforce-software",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "jam-captured-reference",
+        "revision": "sha256:dd700eae5f1c3587cd1ef1fc820663255ce517018844c93c9950d1acc82f1427",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "08d651054e734025ab53e7bc70d0e9b8",
+  "identity_claim": {
+    "id": "jam-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "perforce-software",
+    "edition": "jam-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:dd700eae5f1c3587cd1ef1fc820663255ce517018844c93c9950d1acc82f1427",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Jam License",
+  "relations": [],
+  "state": "historical"
+}

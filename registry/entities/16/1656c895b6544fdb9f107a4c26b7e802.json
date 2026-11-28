@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "5b8f85b8d930453eb3d1991fca660771"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "diffmark-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "diffmark",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "diffmark-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "diffmark-captured-reference",
+        "revision": "sha256:44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "1656c895b6544fdb9f107a4c26b7e802",
+  "identity_claim": {
+    "id": "diffmark-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "diffmark-project",
+    "edition": "diffmark-captured-reference",
+    "index-lifecycle-decision": "eight-archived-notices-classification",
+    "revision": "sha256:44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "diffmark license",
+  "relations": [],
+  "state": "historical"
+}

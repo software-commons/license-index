@@ -1,0 +1,19 @@
+{
+  "candidate": {
+    "bundle_sha256": "b3452638c6e4fe84d59893e2cb4f47f5b2d27d833b4c2be41c51e345b4f4c3b5",
+    "commit": "1fa152ebd969fb7f6ec781313791dc81ff31ef2c",
+    "error": "15868cef559246a88f5070b7a7862f4f: exact SCES claim does not bind the canonical field: ('swl-spdx-3290-correspondence', 3)",
+    "production_validator": "tools/qualification.py::_bind_payload",
+    "source": "efa272f0e8742dd667d78129a72aeda16f0adee9",
+    "tree": "c9f7b960dfce70b37f70552469193c2a57448995"
+  },
+  "cause": "The first feature commit records the SWL revision 3 claim with its previous entity scope. The local fast-forward correction binds the current entity correctly, but replay reconstructs the invalid immutable historical snapshot at its original commit. Removing that snapshot would violate the incoming coverage history rules. The new branch starts before that failing recorded snapshot.",
+  "domain-candidate": {
+    "bundle_sha256": "a79e996fa646db240e85db91db5aa8d4b30471e17a505f3c7bfa01e0f67e5d4e",
+    "commit": "69f485f1ca2026ccf352828aee900c0fd477d3ed",
+    "error": "15868cef559246a88f5070b7a7862f4f: exact SCES claim does not bind the canonical field: ('swl-spdx-3290-correspondence', 3)",
+    "production_validator": "tools/qualification.py::_bind_payload",
+    "source": "6806e5fb734d45d9ed55e9ea0cac9cad18305e04",
+    "tree": "9cbb2abb7ab673fb07d924be3ba72b448fd2c97f"
+  }
+}

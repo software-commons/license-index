@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "f08931a058c6483c88dda31245f1dbe1"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "newsletr-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 4
+      },
+      "key": "Newsletr",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "newsletr-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "newsletr-captured-reference",
+        "revision": "sha256:a68c9e5610bbc3c09d9e5de75738fdbd5cb485452469c8b77d5fd5446f45a16c",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "52aab978d1ae472aa3f6f6eaef3bb205",
+  "identity_claim": {
+    "id": "newsletr-documentary-identity",
+    "kind": "claim",
+    "revision": 4
+  },
+  "identity_scope": {
+    "authority": "newsletr-project",
+    "edition": "newsletr-captured-reference",
+    "index-lifecycle-decision": "newsletr-readme-classification",
+    "revision": "sha256:a68c9e5610bbc3c09d9e5de75738fdbd5cb485452469c8b77d5fd5446f45a16c",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Newsletr License",
+  "relations": [],
+  "state": "historical"
+}

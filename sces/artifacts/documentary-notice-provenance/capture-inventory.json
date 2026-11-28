@@ -1,0 +1,3283 @@
+{
+  "executions": [
+    {
+      "events_sha256": "0ac5cb1fcf5b9b8b18b4765699f906cceb8c8b02fa7b69a1836c47a3d8fa40ca",
+      "execution": "01a221b1-6e59-7f32-a795-5b0e3898370b",
+      "group": "openldap-imapsync-notices/.",
+      "phase": "research",
+      "recorded": [
+        {
+          "acquisition_id": "d0be317a41f74e44afefa04fc93f87a2",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-2e6c7688-474a-458e-8782-008f369cc040",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "09cbfe58fc3c4838abe7d5abbb438118",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "nlpl-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 1496,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/d4f01348ddb8d64db53ffdea82f5706d5e73af24/docs/decisions/openldap-imapsync-notices-classification.md",
+          "native": "exec-ea796d4d-27d3-4350-a467-01f88eff718b",
+          "range": [
+            0,
+            1496
+          ],
+          "sha256": "a3736b94c76fa33d3d44c4f79baadaeb2091bfc9a14aa6bb674a4046624364e9",
+          "source": {
+            "id": "openldap-imapsync-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "5ab6bb156c3341b2be7e44cccad6589a",
+          "alias": "furuseth-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-documentary-identity-r2-furuseth-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-furuseth-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2345,
+          "cli": "item_3",
+          "locator": "https://raw.githubusercontent.com/openldap/openldap/b9c1d8f93d7a532b6b17a32b52dfc14530e139f7/COPYRIGHT",
+          "native": "exec-d7defd7c-403c-46a6-83c0-8dff988ba15d",
+          "range": [
+            0,
+            2345
+          ],
+          "sha256": "5b4dfc20608c4d5d75573e899569b8ee0e06658ebcf14fa14566e309bcbab14c",
+          "source": {
+            "id": "post34-furuseth-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "cb3d11d954074c889d7907c4c0d3ce2e",
+          "alias": "furuseth-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-furuseth-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3117,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Furuseth.json",
+          "native": "exec-7ae86f5f-804f-413c-a93f-d5c0b48e1cfb",
+          "range": [
+            0,
+            3117
+          ],
+          "sha256": "f12b04b8dfe0385479ab6f8ecf11059d43c2ba99e1087005840e6e6022c7a41a",
+          "source": {
+            "id": "post34-spdx-details-furuseth",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "74c3b71e0b964fd5b0840d3fd189ed61",
+          "alias": "furuseth-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-furuseth-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 626,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Furuseth.txt",
+          "native": "exec-2e42e7ec-8daa-44d2-8e36-d753e6cbc283",
+          "range": [
+            0,
+            626
+          ],
+          "sha256": "66514ca238436e5566b8caa40426fe5f939e00f306a30d4a0ea4f1ea92087d65",
+          "source": {
+            "id": "post34-spdx-text-furuseth",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "709f9a924ac840cda89f4d0a66492832",
+          "alias": "nlpl-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "nlpl-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-documentary-identity-r2-nlpl-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-nlpl-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 317,
+          "cli": "item_6",
+          "locator": "https://raw.githubusercontent.com/imapsync/imapsync/32a552f56eb0e0674584861b13e164b03703d2b3/LICENSE",
+          "native": "exec-4f33a282-2d94-443d-8e09-02ec40129da0",
+          "range": [
+            0,
+            317
+          ],
+          "sha256": "54356b1c490c5dbdd031f6a156d7a8e2c9f608e061c8bcf9e743e53ac8ce6045",
+          "source": {
+            "id": "post34-nlpl-original-reference",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "3896536ecd6b447580b20d69337cb00c",
+          "alias": "nlpl-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-nlpl-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2532,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/NLPL.json",
+          "native": "exec-071b5ba7-7853-4ba5-a07a-845a73a79dc6",
+          "range": [
+            0,
+            2532
+          ],
+          "sha256": "8dd7b4ddd725fe48badc7ac40a104b55256294ebf134faa4fec15af3a7d4a4d2",
+          "source": {
+            "id": "post34-spdx-details-nlpl",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "98985340a76442a380fef0feb3811c4b",
+          "alias": "nlpl-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-nlpl-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 268,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/NLPL.txt",
+          "native": "exec-ef912b74-747e-418c-8ffa-3eb050654edd",
+          "range": [
+            0,
+            268
+          ],
+          "sha256": "bd220cd4ce2e9d09093135fdf4d3eacc4d44c9866426c56c96eba86dcc2d925d",
+          "source": {
+            "id": "post34-spdx-text-nlpl",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "0fe77f1a38949525013d64d90c9ef15975de00a8edb877bc6c6889a56c8cd043",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "2b16582e82220dbb16bad9854aa1a47ce2cd3c9ff6bb95b2e3c982020cb26914",
+      "execution": "01a221b3-5c97-7d50-be37-edede7dff26f",
+      "group": "openldap-imapsync-notices/.",
+      "phase": "independent",
+      "recorded": [
+        {
+          "acquisition_id": "9ea26889b9cd46e39f1cb5860b7b7c5a",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-fa01def8-4ff3-4f1e-91bd-5f86cff5fd7e",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "8bc10d27e0a442ae9d07d0f8094b2a00",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "nlpl-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 1496,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/d4f01348ddb8d64db53ffdea82f5706d5e73af24/docs/decisions/openldap-imapsync-notices-classification.md",
+          "native": "exec-8a14c897-3e43-48a2-8b2e-aaf2da289f27",
+          "range": [
+            0,
+            1496
+          ],
+          "sha256": "a3736b94c76fa33d3d44c4f79baadaeb2091bfc9a14aa6bb674a4046624364e9",
+          "source": {
+            "id": "openldap-imapsync-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "36760cea14664aa0a3960f70ccc61a91",
+          "alias": "furuseth-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-documentary-identity-r2-furuseth-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-furuseth-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2345,
+          "cli": "item_3",
+          "locator": "https://raw.githubusercontent.com/openldap/openldap/b9c1d8f93d7a532b6b17a32b52dfc14530e139f7/COPYRIGHT",
+          "native": "exec-cb88b755-584f-4ccb-bcb6-5f17268edaa1",
+          "range": [
+            0,
+            2345
+          ],
+          "sha256": "5b4dfc20608c4d5d75573e899569b8ee0e06658ebcf14fa14566e309bcbab14c",
+          "source": {
+            "id": "post34-furuseth-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "ea7cb41f71624bf09ee9e180e6d94611",
+          "alias": "furuseth-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-furuseth-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3117,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Furuseth.json",
+          "native": "exec-a58b97bd-7069-48f7-9797-4db64fdfb716",
+          "range": [
+            0,
+            3117
+          ],
+          "sha256": "f12b04b8dfe0385479ab6f8ecf11059d43c2ba99e1087005840e6e6022c7a41a",
+          "source": {
+            "id": "post34-spdx-details-furuseth",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "330982b1b7d24e289aaa3322419e26cb",
+          "alias": "furuseth-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "furuseth-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "furuseth-spdx-3290-correspondence-r2-furuseth-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 626,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Furuseth.txt",
+          "native": "exec-01214d2c-7431-4696-ae51-863c254cd01a",
+          "range": [
+            0,
+            626
+          ],
+          "sha256": "66514ca238436e5566b8caa40426fe5f939e00f306a30d4a0ea4f1ea92087d65",
+          "source": {
+            "id": "post34-spdx-text-furuseth",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "4e5bf9264af04da5840ecdba221b5ace",
+          "alias": "nlpl-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "nlpl-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-documentary-identity-r2-nlpl-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-nlpl-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 317,
+          "cli": "item_6",
+          "locator": "https://raw.githubusercontent.com/imapsync/imapsync/32a552f56eb0e0674584861b13e164b03703d2b3/LICENSE",
+          "native": "exec-b85d179f-96b4-44ef-9a9b-2f9fdc66d33a",
+          "range": [
+            0,
+            317
+          ],
+          "sha256": "54356b1c490c5dbdd031f6a156d7a8e2c9f608e061c8bcf9e743e53ac8ce6045",
+          "source": {
+            "id": "post34-nlpl-original-reference",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "a172a759655740bdac83039a08cad7dc",
+          "alias": "nlpl-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-nlpl-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2532,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/NLPL.json",
+          "native": "exec-51db6d6c-1f2a-45a8-9f6b-76762d05e631",
+          "range": [
+            0,
+            2532
+          ],
+          "sha256": "8dd7b4ddd725fe48badc7ac40a104b55256294ebf134faa4fec15af3a7d4a4d2",
+          "source": {
+            "id": "post34-spdx-details-nlpl",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "731dba8347cb4744b8a8fc500183e7ec",
+          "alias": "nlpl-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "nlpl-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "nlpl-spdx-3290-correspondence-r2-nlpl-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 268,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/NLPL.txt",
+          "native": "exec-a3d43ceb-2fef-4c87-9b0f-2e14c7e48d32",
+          "range": [
+            0,
+            268
+          ],
+          "sha256": "bd220cd4ce2e9d09093135fdf4d3eacc4d44c9866426c56c96eba86dcc2d925d",
+          "source": {
+            "id": "post34-spdx-text-nlpl",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "c5c1d54e3f7cd67e1d20adbca4c1aa25c5acd6bbf13677a02a3853c83b023559",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "d04fdba91d583d84019dd0b6a28ad859740294d1faa2012facd48386afaabf79",
+      "execution": "01a221c1-e7e2-7910-93c6-238c0b739135",
+      "group": "eight-archive-notices/archives-a",
+      "phase": "research",
+      "recorded": [
+        {
+          "acquisition_id": "d1d514d8160b40dea581de2d18d6e374",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-f9584888-fadb-4003-8836-8b55a29b1488",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "6693f8bf27174d5192deedfe1826a392",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "kazlib-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-bffef6de-6571-402b-b0b4-76d63cad3bc1",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "fb071670a2b24bac8cc54d10ea7a83bb",
+          "alias": "diffmark-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-documentary-identity-r2-diffmark-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-diffmark-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 88,
+          "cli": "item_3",
+          "locator": "https://raw.githubusercontent.com/vbar/diffmark/5289d245b1a2f277fe23485902f6f3526f3c7a03/COPYING",
+          "native": "exec-60389170-3a5c-4cf8-813d-51c185b17f1b",
+          "range": [
+            0,
+            88
+          ],
+          "sha256": "44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3",
+          "source": {
+            "id": "post34-diffmark-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "86137c1c8e6647d59b27a8c8d333b7da",
+          "alias": "diffmark-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-diffmark-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 88,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/diffmark.txt",
+          "native": "exec-ed1ed56f-6152-451d-84ad-47831bde55c9",
+          "range": [
+            0,
+            88
+          ],
+          "sha256": "44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3",
+          "source": {
+            "id": "post34-spdx-text-diffmark",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "5c9e590559b24eec847946af65997f5c",
+          "alias": "diffmark-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-diffmark-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 1543,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/diffmark.json",
+          "native": "exec-f5f78270-da87-4a61-881b-794065934ac9",
+          "range": [
+            0,
+            1543
+          ],
+          "sha256": "09e7a80bba3fe6bf176c647d604b43645e84c98a631ab343d7fa807ec719a776",
+          "source": {
+            "id": "post34-spdx-details-diffmark",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "bec54ec6981d4070b027c830afef1e92",
+          "alias": "kazlib-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "kazlib-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-documentary-identity-r2-kazlib-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-kazlib-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 9977,
+          "cli": "item_6",
+          "locator": "https://raw.githubusercontent.com/GitMirroring/kazlib/0062df360c2d17d57f6af19b0e444c51feb99036/except.c",
+          "native": "exec-dc814dff-c985-4a46-8a1e-f99f2e750505",
+          "range": [
+            0,
+            9977
+          ],
+          "sha256": "aae7a4d87e0b78c7f5ca3951119f7c3562b860b8c7f1dc9296479fa91f0169ae",
+          "source": {
+            "id": "post34-kazlib-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "3735df57bf894afaa49f5a02f5a5351b",
+          "alias": "kazlib-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-kazlib-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 683,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Kazlib.txt",
+          "native": "exec-8f8353fb-b07a-42c3-89ec-0141888e43a5",
+          "range": [
+            0,
+            683
+          ],
+          "sha256": "31e4a00336d15d148a53bc173852f06b8b2063126fd09966106de11351fbadc2",
+          "source": {
+            "id": "post34-spdx-text-kazlib",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "012214b1f85d4f63aad15908c57e9d38",
+          "alias": "kazlib-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-kazlib-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3319,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Kazlib.json",
+          "native": "exec-b63914dd-abda-4bdc-8cea-1a06190285a4",
+          "range": [
+            0,
+            3319
+          ],
+          "sha256": "4cd323902e39ee7785e2bbc257b43ddb713835467c9ab64b7e8ff4102861f704",
+          "source": {
+            "id": "post34-spdx-details-kazlib",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "3ea616a0272fa2ebc921dfad69972139db90e33f38c12b3fa10b76351d424f48",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "586181fb781e8aa30dd97be5e436eb288ed85d16064e5bb9d329247592d13401",
+      "execution": "01a221c3-7db0-77e0-9373-594cc50f2703",
+      "group": "eight-archive-notices/archives-a",
+      "phase": "independent",
+      "recorded": [
+        {
+          "acquisition_id": "2aab1428f00942f28d5f9336892e70e9",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-5f586dd7-27c2-40f7-a68a-b10a8ce398db",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "40f37c3a1a524c63afd690cbf992b9be",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "kazlib-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-f338d6fd-0c2c-47ae-91f0-178bf5703136",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "e0f3585f8f604c9daf7e26b96ace0ba1",
+          "alias": "diffmark-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-documentary-identity-r2-diffmark-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-diffmark-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 88,
+          "cli": "item_3",
+          "locator": "https://raw.githubusercontent.com/vbar/diffmark/5289d245b1a2f277fe23485902f6f3526f3c7a03/COPYING",
+          "native": "exec-90476a35-0011-4a77-aca2-9851bd88d538",
+          "range": [
+            0,
+            88
+          ],
+          "sha256": "44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3",
+          "source": {
+            "id": "post34-diffmark-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "7c78d7634ada45a48201c8a782d57c32",
+          "alias": "diffmark-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-diffmark-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 88,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/diffmark.txt",
+          "native": "exec-72611128-d672-4dad-a3e9-39afbd34ecbc",
+          "range": [
+            0,
+            88
+          ],
+          "sha256": "44c1eae63a550696742e0896b6122bd65bdbeace0d9ad64d24a3fb05100563e3",
+          "source": {
+            "id": "post34-spdx-text-diffmark",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "87a3422f57b14a31b2926c0a1e391074",
+          "alias": "diffmark-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "diffmark-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "diffmark-spdx-3290-correspondence-r2-diffmark-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 1543,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/diffmark.json",
+          "native": "exec-0afc0083-c2a8-4591-b983-921aacc4a338",
+          "range": [
+            0,
+            1543
+          ],
+          "sha256": "09e7a80bba3fe6bf176c647d604b43645e84c98a631ab343d7fa807ec719a776",
+          "source": {
+            "id": "post34-spdx-details-diffmark",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "7aa962b8c317485d8c808f5755a0ca4c",
+          "alias": "kazlib-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "kazlib-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-documentary-identity-r2-kazlib-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-kazlib-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 9977,
+          "cli": "item_6",
+          "locator": "https://raw.githubusercontent.com/GitMirroring/kazlib/0062df360c2d17d57f6af19b0e444c51feb99036/except.c",
+          "native": "exec-527ebd8f-67be-4f87-ae1a-2af3cc2ea9cc",
+          "range": [
+            0,
+            9977
+          ],
+          "sha256": "aae7a4d87e0b78c7f5ca3951119f7c3562b860b8c7f1dc9296479fa91f0169ae",
+          "source": {
+            "id": "post34-kazlib-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "ef9cc301b5d04cc48afdcb8e89a1d6b6",
+          "alias": "kazlib-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-kazlib-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 683,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Kazlib.txt",
+          "native": "exec-52239db3-f856-499c-8871-8d8fe463f5af",
+          "range": [
+            0,
+            683
+          ],
+          "sha256": "31e4a00336d15d148a53bc173852f06b8b2063126fd09966106de11351fbadc2",
+          "source": {
+            "id": "post34-spdx-text-kazlib",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "efe1319dac1f49acbfcc41bb757cda06",
+          "alias": "kazlib-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "kazlib-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "kazlib-spdx-3290-correspondence-r2-kazlib-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3319,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Kazlib.json",
+          "native": "exec-72292a7a-e425-4045-8481-dc246f81a530",
+          "range": [
+            0,
+            3319
+          ],
+          "sha256": "4cd323902e39ee7785e2bbc257b43ddb713835467c9ab64b7e8ff4102861f704",
+          "source": {
+            "id": "post34-spdx-details-kazlib",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "555c0552ab8ce7790ac69dfaec207c2b5db57ad1253fc2ae9f805771c69bd54c",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "8423d590b84bd14aeb653ce899efcd37e753226361a22487195a5022743120cb",
+      "execution": "01a221c1-e807-7e12-a96c-fc78f4333847",
+      "group": "eight-archive-notices/archives-b",
+      "phase": "research",
+      "recorded": [
+        {
+          "acquisition_id": "a9eef2ff1958405ca9093bea6c2095f1",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-7dbc7173-b248-4767-a41e-a1a45e28c890",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "3f9b4549ac214154a77a89f65ee892e1",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xzoom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-90bc501f-cd6b-4815-9650-bcbc0354e8d8",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "3ea502bdc6eb4e1ca19758cfaf846bf2",
+          "alias": "xzoom-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xzoom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-documentary-identity-r2-xzoom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-xzoom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 19311,
+          "cli": "item_3",
+          "locator": "https://sources.debian.org/data/main/x/xzoom/0.3-24/xzoom.c",
+          "native": "exec-e3c7e7a8-50b9-4d30-abf9-c461aca6e4db",
+          "range": [
+            0,
+            19311
+          ],
+          "sha256": "9860cd8436b1e2507da7471d13c72b9499b6b44f9db5dc93d2f47c7b34f64f06",
+          "source": {
+            "id": "post34-xzoom-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "d85f991bb5734a5e82d176772381182a",
+          "alias": "xzoom-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-xzoom-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 538,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/xzoom.txt",
+          "native": "exec-28d42cd3-a7ef-44f5-b03f-4869461414b8",
+          "range": [
+            0,
+            538
+          ],
+          "sha256": "ee33b2ab24a56434a9ed78020f48359ea2916afe44d2b21c88ad435e5263701f",
+          "source": {
+            "id": "post34-spdx-text-xzoom",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "124bac7fbd7a4a6fa76ad8311c83a3fe",
+          "alias": "xzoom-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-xzoom-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3972,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/xzoom.json",
+          "native": "exec-b69dc591-c225-495b-abff-09400bb32166",
+          "range": [
+            0,
+            3972
+          ],
+          "sha256": "bee7fa324acd9a791039c40f770560ddc44d7fbb2529e7f746a32d47cfb7f7ac",
+          "source": {
+            "id": "post34-spdx-details-xzoom",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "dd20bca9b2e34e7aab950168df5bc99c",
+          "alias": "xskat-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-documentary-identity-r2-xskat-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-xskat-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 720,
+          "cli": "item_6",
+          "locator": "https://sources.debian.org/data/main/x/xskat/4.0-9/README",
+          "native": "exec-32fdc54c-5372-4a1e-a577-2e72d0854326",
+          "range": [
+            0,
+            720
+          ],
+          "sha256": "f09fb2b287bf16a382d519f56e9c5e4c191ef2bd7164d93c5c0712f50f416198",
+          "source": {
+            "id": "post34-xskat-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "dc90a89070b740bdaf550dc4020355e1",
+          "alias": "xskat-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-xskat-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 535,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/XSkat.txt",
+          "native": "exec-04853e36-827e-4875-b088-6646dc702e67",
+          "range": [
+            0,
+            535
+          ],
+          "sha256": "ed84c6b9d91007c072aa95bc50768cd2fe3451eaeba31f824f95698cd006341b",
+          "source": {
+            "id": "post34-spdx-text-xskat",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "8fb47fc746fd43468a7a188fea78c129",
+          "alias": "xskat-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-xskat-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3385,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/XSkat.json",
+          "native": "exec-560e769f-cd1a-433f-80e2-8b83c471aacd",
+          "range": [
+            0,
+            3385
+          ],
+          "sha256": "a141dcec1a4422bd76ce9f4ed33f85c4d59ef6c7337a19a40d2fb51f8a856979",
+          "source": {
+            "id": "post34-spdx-details-xskat",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "2da7d574c548fbee8e7837c432c58ae9b2bd6d62c2cd59ed3149740e480ca473",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "e8a9428e98a677444aa92f04467beb5964b43908ba23111c14d75924792460ed",
+      "execution": "01a221c3-6459-71e2-b0a1-f0eb9329e892",
+      "group": "eight-archive-notices/archives-b",
+      "phase": "independent",
+      "recorded": [
+        {
+          "acquisition_id": "323fdd9bb53e4134a29cfd3c2ee3f6bd",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-0bf83889-ddce-4d6c-862e-d55077da8fed",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "e4173a15cb204853954fda4e1f07340c",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xzoom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-9252da3f-f3c2-46d6-8ead-20c528de7291",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "889eb7fa3e444caeb8d72dd20951686e",
+          "alias": "xzoom-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xzoom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-documentary-identity-r2-xzoom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-xzoom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 19311,
+          "cli": "item_3",
+          "locator": "https://sources.debian.org/data/main/x/xzoom/0.3-24/xzoom.c",
+          "native": "exec-5a13b629-7421-44b9-80db-3892ae8a4d4f",
+          "range": [
+            0,
+            19311
+          ],
+          "sha256": "9860cd8436b1e2507da7471d13c72b9499b6b44f9db5dc93d2f47c7b34f64f06",
+          "source": {
+            "id": "post34-xzoom-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "b8a589a181744664b3d6eb74908aa897",
+          "alias": "xzoom-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-xzoom-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 538,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/xzoom.txt",
+          "native": "exec-9bd40053-279a-45b5-ab81-4927b2830be9",
+          "range": [
+            0,
+            538
+          ],
+          "sha256": "ee33b2ab24a56434a9ed78020f48359ea2916afe44d2b21c88ad435e5263701f",
+          "source": {
+            "id": "post34-spdx-text-xzoom",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "8a0c156c729048baa3236567e014d331",
+          "alias": "xzoom-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xzoom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xzoom-spdx-3290-correspondence-r2-xzoom-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3972,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/xzoom.json",
+          "native": "exec-9118add9-c14f-4287-98ca-92f6154d0fca",
+          "range": [
+            0,
+            3972
+          ],
+          "sha256": "bee7fa324acd9a791039c40f770560ddc44d7fbb2529e7f746a32d47cfb7f7ac",
+          "source": {
+            "id": "post34-spdx-details-xzoom",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "5e2889577a2a44d5bbcc099a58aecc9f",
+          "alias": "xskat-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-documentary-identity-r2-xskat-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-xskat-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 720,
+          "cli": "item_6",
+          "locator": "https://sources.debian.org/data/main/x/xskat/4.0-9/README",
+          "native": "exec-629dffd2-6256-43a7-a26c-76608e2101e3",
+          "range": [
+            0,
+            720
+          ],
+          "sha256": "f09fb2b287bf16a382d519f56e9c5e4c191ef2bd7164d93c5c0712f50f416198",
+          "source": {
+            "id": "post34-xskat-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "5274f96086094012aa813371f51af5d5",
+          "alias": "xskat-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-xskat-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 535,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/XSkat.txt",
+          "native": "exec-c3341b18-3919-4087-b4ef-f8e18da33476",
+          "range": [
+            0,
+            535
+          ],
+          "sha256": "ed84c6b9d91007c072aa95bc50768cd2fe3451eaeba31f824f95698cd006341b",
+          "source": {
+            "id": "post34-spdx-text-xskat",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "70b05da989c14a99ba8ad77680a0345d",
+          "alias": "xskat-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "xskat-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "xskat-spdx-3290-correspondence-r2-xskat-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3385,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/XSkat.json",
+          "native": "exec-32ef04bd-7681-41d1-9a78-3ab9c4b1c212",
+          "range": [
+            0,
+            3385
+          ],
+          "sha256": "a141dcec1a4422bd76ce9f4ed33f85c4d59ef6c7337a19a40d2fb51f8a856979",
+          "source": {
+            "id": "post34-spdx-details-xskat",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "d732e24bed745cf4fc6125a936135ab998d740c11d6b118485fbc848d3693560",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "b01951f277305899f58ea5b742eab137e3dd1064777129ce252b2815b7772233",
+      "execution": "01a221c1-e7e1-7da2-915c-e2933ebd71ed",
+      "group": "eight-archive-notices/archived-text",
+      "phase": "research",
+      "recorded": [
+        {
+          "acquisition_id": "257c17d181d04c908c0dc372046282d0",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-2646fb7a-f417-45a2-8d9a-ffe03a17ac27",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "2ef4ebfd3a8b4965aa01b927db2af67d",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "vostrom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-6f55232e-aa04-4e98-9c64-2916a67b69b9",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "ed04c6f76dcf43579cfdbe1ee56d805a",
+          "alias": "fair-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-documentary-identity-r2-fair-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-fair-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 12365,
+          "cli": "item_3",
+          "locator": "https://web.archive.org/web/20150926120323id_/http://fairlicense.org/",
+          "native": "exec-2eb184ca-05ee-4c4a-8746-cddd220a77fe",
+          "range": [
+            0,
+            12365
+          ],
+          "sha256": "e6da1305aa29dd0f2d012570c8f5a53b363dca12ee3f8df724dbaf92494663bd",
+          "source": {
+            "id": "post34-fair-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "c46c2d17fb29460a9faa365b36e19c24",
+          "alias": "fair-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-fair-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 245,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Fair.txt",
+          "native": "exec-cc2c8295-6465-4332-970d-a4a29c4064e0",
+          "range": [
+            0,
+            245
+          ],
+          "sha256": "59954017f5a14cb3589a7123d56f96905ccb3d6ad58019432fdd0d91b3c2b541",
+          "source": {
+            "id": "post34-spdx-text-fair",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "7bbee55adead4191b012b02b55a12b22",
+          "alias": "fair-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-fair-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2206,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Fair.json",
+          "native": "exec-3375fe20-2e3a-4edc-b811-73d27e635f78",
+          "range": [
+            0,
+            2206
+          ],
+          "sha256": "d66da63b11a91741c5805c376e3c0a5e73d1601c455cc1386fe3154860c59269",
+          "source": {
+            "id": "post34-spdx-details-fair",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "1f37d92040a94326b2eb0c3552ce9e6a",
+          "alias": "vostrom-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "vostrom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-documentary-identity-r2-vostrom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-vostrom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3177,
+          "cli": "item_6",
+          "locator": "https://sources.debian.org/data/main/l/lft/3.91-2/COPYING",
+          "native": "exec-77fdf3b2-1153-41af-93d9-86bb91837062",
+          "range": [
+            0,
+            3177
+          ],
+          "sha256": "e3b7634630e6800eccca6ecafb5d40153d4f8f7a20e2b2399bf3c0ea92f44614",
+          "source": {
+            "id": "post34-vostrom-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "3d0e201a6b3141cbae882b7bad5d584f",
+          "alias": "vostrom-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-vostrom-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3058,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/VOSTROM.txt",
+          "native": "exec-ea4c400a-687c-4209-a9f9-1457c991358e",
+          "range": [
+            0,
+            3058
+          ],
+          "sha256": "1c7762c7e3ccc74bd0e4359b05ad33e95d5838099c41e8ce49842f8558546ec6",
+          "source": {
+            "id": "post34-spdx-text-vostrom",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "0666801ecc6e49b8822e3ec864464ca0",
+          "alias": "vostrom-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-vostrom-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 13469,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/VOSTROM.json",
+          "native": "exec-1c076d37-4880-40b1-a6cd-7152cb73aa64",
+          "range": [
+            0,
+            13469
+          ],
+          "sha256": "d3fc2a2d3a3db793b66303bd15879f06c0b158366663f5cadcb7fb99f7b8076d",
+          "source": {
+            "id": "post34-spdx-details-vostrom",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "e33037df19a50cddbd400d597ded848bbfbf981f749bd785af8120db91d27522",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "8635256df920260d2d6ffd91a9fd9c7a65504f680dbbad4b5acc787a7fd94cc6",
+      "execution": "01a221c3-9a88-7100-96d4-6cc817ff111d",
+      "group": "eight-archive-notices/archived-text",
+      "phase": "independent",
+      "recorded": [
+        {
+          "acquisition_id": "dbff213a055849d788f352e24940f34e",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-e70bdc22-3521-485f-829e-cad09ad0688e",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "6d525966e1a644f1bebd3a7665cea3c5",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "vostrom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-32ace0ce-38ee-475d-8990-65c2141eac95",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "d0bbed64eae249bc9749a53312bcca5e",
+          "alias": "fair-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-documentary-identity-r2-fair-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-fair-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 12365,
+          "cli": "item_3",
+          "locator": "https://web.archive.org/web/20150926120323id_/http://fairlicense.org/",
+          "native": "exec-09e67dd9-78bb-4345-b8cf-009e92eb2673",
+          "range": [
+            0,
+            12365
+          ],
+          "sha256": "e6da1305aa29dd0f2d012570c8f5a53b363dca12ee3f8df724dbaf92494663bd",
+          "source": {
+            "id": "post34-fair-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "8f5360c40855464a8107a22e1a4d25f4",
+          "alias": "fair-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-fair-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 245,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Fair.txt",
+          "native": "exec-4c0add7b-26bb-42ae-86d1-8a1bdeacfd63",
+          "range": [
+            0,
+            245
+          ],
+          "sha256": "59954017f5a14cb3589a7123d56f96905ccb3d6ad58019432fdd0d91b3c2b541",
+          "source": {
+            "id": "post34-spdx-text-fair",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "5563a1ecfb764babbe1c7048310b8069",
+          "alias": "fair-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "fair-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "fair-spdx-3290-correspondence-r2-fair-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2206,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Fair.json",
+          "native": "exec-0369544d-da9b-4f29-b746-06abb5ca8cfe",
+          "range": [
+            0,
+            2206
+          ],
+          "sha256": "d66da63b11a91741c5805c376e3c0a5e73d1601c455cc1386fe3154860c59269",
+          "source": {
+            "id": "post34-spdx-details-fair",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "1ce00efbf90c41e7b911ef8398d6d63a",
+          "alias": "vostrom-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "vostrom-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-documentary-identity-r2-vostrom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-vostrom-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3177,
+          "cli": "item_6",
+          "locator": "https://sources.debian.org/data/main/l/lft/3.91-2/COPYING",
+          "native": "exec-faab3372-6466-4fd2-baef-c688c735499b",
+          "range": [
+            0,
+            3177
+          ],
+          "sha256": "e3b7634630e6800eccca6ecafb5d40153d4f8f7a20e2b2399bf3c0ea92f44614",
+          "source": {
+            "id": "post34-vostrom-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "5811933dea6246c2aa22d58c96430100",
+          "alias": "vostrom-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-vostrom-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3058,
+          "cli": "item_7",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/VOSTROM.txt",
+          "native": "exec-1ae46664-d082-431d-b540-d771dcf471d4",
+          "range": [
+            0,
+            3058
+          ],
+          "sha256": "1c7762c7e3ccc74bd0e4359b05ad33e95d5838099c41e8ce49842f8558546ec6",
+          "source": {
+            "id": "post34-spdx-text-vostrom",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "6fdc3f76a114482dafa7ac2c89c6b1d6",
+          "alias": "vostrom-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "vostrom-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "vostrom-spdx-3290-correspondence-r2-vostrom-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 13469,
+          "cli": "item_8",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/VOSTROM.json",
+          "native": "exec-e7430f60-37f8-4237-ab41-01ca8c687053",
+          "range": [
+            0,
+            13469
+          ],
+          "sha256": "d3fc2a2d3a3db793b66303bd15879f06c0b158366663f5cadcb7fb99f7b8076d",
+          "source": {
+            "id": "post34-spdx-details-vostrom",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "fdb83b5e0d2a68daa946a06f19b795047599b002fbe1393e5e0a29600a418486",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "56d6b43cecef872f32242d91218f10ad6e743a51ebc2478d1a84f46113ec437d",
+      "execution": "01a221c1-e7d7-7fd2-ad43-932e1bbbec6f",
+      "group": "eight-archive-notices/project-text",
+      "phase": "research",
+      "recorded": [
+        {
+          "acquisition_id": "7ae8bc34c18847cba393e214a93f9ffe",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-30aa1c98-d1bb-4cd4-b466-01575fe88123",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "8d4a444a43d24d39a230f7e95d4124ff",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-8992227b-f920-48e0-b4d5-381a543c3eac",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "2f0563b24caf42b9bfa86a4d831a1abc",
+          "alias": "jam-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-documentary-identity-r2-jam-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-jam-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 4133,
+          "cli": "item_3",
+          "locator": "https://swarm.workshop.perforce.com/download/guest/perforce_software/jam/src/README",
+          "native": "exec-6d24bfab-8283-4b5d-9faa-aa44f9df097c",
+          "range": [
+            0,
+            4133
+          ],
+          "sha256": "dd700eae5f1c3587cd1ef1fc820663255ce517018844c93c9950d1acc82f1427",
+          "source": {
+            "id": "post34-jam-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "97c161f3240a48ea91f32f00b9e10a2a",
+          "alias": "jam-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-jam-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 195,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Jam.txt",
+          "native": "exec-744a7c8f-52db-427c-a412-9dade8c8561b",
+          "range": [
+            0,
+            195
+          ],
+          "sha256": "5239625d8bf548b9c3cc0934b7f60ca781780db7165596f8b28e38e2701dddc6",
+          "source": {
+            "id": "post34-spdx-text-jam",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "0cad925286a34aefb2c92b1d9ce3cdbf",
+          "alias": "jam-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-jam-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2156,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Jam.json",
+          "native": "exec-b0c9e266-dfbc-4493-b5e9-a71317af4f78",
+          "range": [
+            0,
+            2156
+          ],
+          "sha256": "8b90888576c2c4d7246482d807070b3d89ea89aa8fb205dbffabda16d4de8492",
+          "source": {
+            "id": "post34-spdx-details-jam",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "cc947227f90fd8e951631321204c376174e68630df5f99e3a2edb1e2ecf99032",
+      "unselected_observations": [
+        {
+          "alias": "newsletr-publisher",
+          "cli": "item_6",
+          "native": "exec-0ec75db8-0005-4d95-85d2-aac9c721b35c"
+        },
+        {
+          "alias": "newsletr-text",
+          "cli": "item_7",
+          "native": "exec-23af8e85-6b7a-4a87-976d-07d65bbc9476"
+        },
+        {
+          "alias": "newsletr-detail",
+          "cli": "item_8",
+          "native": "exec-75eba804-42f1-46e9-99ae-8119af233b63"
+        }
+      ]
+    },
+    {
+      "events_sha256": "af842cf164e2ca727e48ab8b813662d9ecfad402e8760e196b399691a6740ad5",
+      "execution": "01a221c3-65da-78a2-ba2c-88da414cb369",
+      "group": "eight-archive-notices/project-text",
+      "phase": "independent",
+      "recorded": [
+        {
+          "acquisition_id": "9c74f013ea224fb2929f07f3ac1ccc93",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-eb0bae98-36e1-4265-a934-d1d7d3a0f3a3",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "c67cd0a6ae6c4e769d19e13a74523cc1",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-documentary-identity-r2-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2569,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/22a085fb36b27a74258acc41436fa82277c70d50/docs/decisions/eight-archived-notices-classification.md",
+          "native": "exec-61251549-d8c2-4dc4-8a7a-32006900a996",
+          "range": [
+            0,
+            2569
+          ],
+          "sha256": "f5a6939ca37cc55c8ec6f92e09447ed41102c2019521290b2be0cca276408052",
+          "source": {
+            "id": "eight-archived-notices-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "fba8be645ba84b2fb6ace79a3576f6b0",
+          "alias": "jam-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-documentary-identity",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-documentary-identity-r2-jam-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-jam-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 4133,
+          "cli": "item_3",
+          "locator": "https://swarm.workshop.perforce.com/download/guest/perforce_software/jam/src/README",
+          "native": "exec-1e554dfc-4fbb-4bc0-bd72-bbfac154e667",
+          "range": [
+            0,
+            4133
+          ],
+          "sha256": "dd700eae5f1c3587cd1ef1fc820663255ce517018844c93c9950d1acc82f1427",
+          "source": {
+            "id": "post34-jam-original-reference",
+            "kind": "source",
+            "revision": 2
+          }
+        },
+        {
+          "acquisition_id": "0ea074ca395b40a39f3f54f66b62244b",
+          "alias": "jam-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-jam-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 195,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Jam.txt",
+          "native": "exec-724e91e8-09f3-40ea-8b7a-bb0baec68dd7",
+          "range": [
+            0,
+            195
+          ],
+          "sha256": "5239625d8bf548b9c3cc0934b7f60ca781780db7165596f8b28e38e2701dddc6",
+          "source": {
+            "id": "post34-spdx-text-jam",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "edc41e2463f84de1a9b34b84be582ae4",
+          "alias": "jam-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "jam-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 2
+              },
+              "dependency": {
+                "id": "jam-spdx-3290-correspondence-r2-jam-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 2156,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Jam.json",
+          "native": "exec-ad9aa2e0-ff52-4609-8317-d34a6a9a897c",
+          "range": [
+            0,
+            2156
+          ],
+          "sha256": "8b90888576c2c4d7246482d807070b3d89ea89aa8fb205dbffabda16d4de8492",
+          "source": {
+            "id": "post34-spdx-details-jam",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "c300f96d184f68940ad0bcd63bf584d3551e120804480a5944431b2816f173ff",
+      "unselected_observations": [
+        {
+          "alias": "newsletr-publisher",
+          "cli": "item_6",
+          "native": "exec-ffb12033-690e-4289-8ee2-f8a9e2bb0462"
+        },
+        {
+          "alias": "newsletr-text",
+          "cli": "item_7",
+          "native": "exec-321b3388-a32d-416c-867d-e559eccc5913"
+        },
+        {
+          "alias": "newsletr-detail",
+          "cli": "item_8",
+          "native": "exec-9afe0b04-55ea-4c4c-b32d-24fc620a6cde"
+        }
+      ]
+    },
+    {
+      "events_sha256": "ef2108f3f8fa0c0817cab5fcf511c0b4e0d49511d44ab35d08253590f682dbee",
+      "execution": "01a221d0-920c-7481-89fc-71a44c0d3d75",
+      "group": "eight-archive-notices/newsletr-readme",
+      "phase": "research",
+      "recorded": [
+        {
+          "acquisition_id": "7a0e03f140ad476684edb54d0e219b8b",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-5d29e017-404c-47dc-b98f-8146ae751241",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "f372f74f004f4aceb71f84bd17fe8f52",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-documentary-identity",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-documentary-identity-r3-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 941,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/d4c55c4cf36e476488743875c7e120594e6f173c/docs/decisions/newsletr-readme-classification.md",
+          "native": "exec-77a3c4f1-7fdf-4c3a-8387-67025c31c828",
+          "range": [
+            0,
+            941
+          ],
+          "sha256": "b1217570087357fbb55d96955a7ee9bd8a81c586495ac7d057674127902a5453",
+          "source": {
+            "id": "newsletr-readme-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "c7a6e8da1a484bc096a34d7ece8dbbc2",
+          "alias": "newsletr-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-documentary-identity",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-documentary-identity-r3-newsletr-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-newsletr-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 4143,
+          "cli": "item_3",
+          "locator": "https://ctan.math.illinois.edu/macros/plain/contrib/newsletr/README",
+          "native": "exec-7f3de7bc-2ce1-4bb4-bda7-cad345a73a3c",
+          "range": [
+            0,
+            4143
+          ],
+          "sha256": "a68c9e5610bbc3c09d9e5de75738fdbd5cb485452469c8b77d5fd5446f45a16c",
+          "source": {
+            "id": "post34-newsletr-original-reference",
+            "kind": "source",
+            "revision": 3
+          }
+        },
+        {
+          "acquisition_id": "1895263c89be4c0599532be9f7d17f33",
+          "alias": "newsletr-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-newsletr-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 510,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Newsletr.txt",
+          "native": "exec-e708a188-6299-4c20-83af-a3e45440e3b4",
+          "range": [
+            0,
+            510
+          ],
+          "sha256": "89c9cbe8677d8bd9a748747a6b412a1b03cc242eca241641d9a0f7969b4201c2",
+          "source": {
+            "id": "post34-spdx-text-newsletr",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "df3ac1a634514943b2601600db7614d8",
+          "alias": "newsletr-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-newsletr-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3184,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Newsletr.json",
+          "native": "exec-5440b9ab-ab05-4fe5-84d9-39100b173c4b",
+          "range": [
+            0,
+            3184
+          ],
+          "sha256": "98971bb25148c6668de6df27b041726a41a889dbf1315a49b27a27a656a55860",
+          "source": {
+            "id": "post34-spdx-details-newsletr",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "e86dac33cf214a1bd204346cc773efc18d7308d6067fec91e1305f5305ea94f6",
+      "unselected_observations": []
+    },
+    {
+      "events_sha256": "cd2d18911c9cc9bedac9ab0cf54a2f37c884e829d6aefdb76788a79b9a0545e2",
+      "execution": "01a221d1-cdc4-7901-bcd7-22956278945b",
+      "group": "eight-archive-notices/newsletr-readme",
+      "phase": "independent",
+      "recorded": [
+        {
+          "acquisition_id": "fe3336b123414e2ba32cf4f33a185108",
+          "alias": "spdx-release-tag",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-spdx-release-tag",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 700,
+          "cli": "item_1",
+          "locator": "https://api.github.com/repos/spdx/license-list-data/git/tags/76c9a79bb7d2bf851143b76b3935a4d7cbaa644b",
+          "native": "exec-03dcd2a4-c523-4246-a981-c2ce1f5b4aa9",
+          "range": [
+            0,
+            700
+          ],
+          "sha256": "9695bf0c0fae8f1db7f1bee44d2176c06a045a3fb62f1ab9aa4b4cef283ebd13",
+          "source": {
+            "id": "spdx-3290-data-release-tag",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "3636dc4d8ee645e1885f0aa2a934fdd3",
+          "alias": "editorial",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-documentary-identity",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-documentary-identity-r3-editorial",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 941,
+          "cli": "item_2",
+          "locator": "https://raw.githubusercontent.com/software-commons/license-index/d4c55c4cf36e476488743875c7e120594e6f173c/docs/decisions/newsletr-readme-classification.md",
+          "native": "exec-7b43baa6-68f9-4526-a305-9b0188aa1ba6",
+          "range": [
+            0,
+            941
+          ],
+          "sha256": "b1217570087357fbb55d96955a7ee9bd8a81c586495ac7d057674127902a5453",
+          "source": {
+            "id": "newsletr-readme-classification",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "672f8a78b7b14bdc9ecd4f4cdc05f721",
+          "alias": "newsletr-publisher",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-documentary-identity",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-documentary-identity-r3-newsletr-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            },
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-newsletr-publisher",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 4143,
+          "cli": "item_3",
+          "locator": "https://ctan.math.illinois.edu/macros/plain/contrib/newsletr/README",
+          "native": "exec-79a6136e-078b-48ee-8f73-e538cf891a6c",
+          "range": [
+            0,
+            4143
+          ],
+          "sha256": "a68c9e5610bbc3c09d9e5de75738fdbd5cb485452469c8b77d5fd5446f45a16c",
+          "source": {
+            "id": "post34-newsletr-original-reference",
+            "kind": "source",
+            "revision": 3
+          }
+        },
+        {
+          "acquisition_id": "31e8f8bd48754aeca33e36d6687d47c8",
+          "alias": "newsletr-text",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-newsletr-text",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 510,
+          "cli": "item_4",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/Newsletr.txt",
+          "native": "exec-7e1e752d-a2d4-451a-930a-2977b3e9b9ac",
+          "range": [
+            0,
+            510
+          ],
+          "sha256": "89c9cbe8677d8bd9a748747a6b412a1b03cc242eca241641d9a0f7969b4201c2",
+          "source": {
+            "id": "post34-spdx-text-newsletr",
+            "kind": "source",
+            "revision": 1
+          }
+        },
+        {
+          "acquisition_id": "0105fc2563e9448696b50defa8789140",
+          "alias": "newsletr-detail",
+          "bindings": [
+            {
+              "claim": {
+                "id": "newsletr-spdx-3290-correspondence",
+                "kind": "claim",
+                "revision": 3
+              },
+              "dependency": {
+                "id": "newsletr-spdx-3290-correspondence-r3-newsletr-detail",
+                "kind": "dependency",
+                "revision": 1
+              }
+            }
+          ],
+          "bytes": 3184,
+          "cli": "item_5",
+          "locator": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/json/details/Newsletr.json",
+          "native": "exec-63750f12-658a-44a7-9d7c-789ccbf10c6c",
+          "range": [
+            0,
+            3184
+          ],
+          "sha256": "98971bb25148c6668de6df27b041726a41a889dbf1315a49b27a27a656a55860",
+          "source": {
+            "id": "post34-spdx-details-newsletr",
+            "kind": "source",
+            "revision": 1
+          }
+        }
+      ],
+      "session_sha256": "9458aaf37b37637fba69f271f98fdd166224557cc8456f6c50636a0556d95661",
+      "unselected_observations": []
+    }
+  ],
+  "official_auditor_sha256": "bea315e39549fd8ffd40f56833e286c63b713d8249a584cb7beae837d8fa1a09",
+  "scientific_auditor": "2d5dcdfdc8288579781b97971ab7f1c9fe464520",
+  "summary": {
+    "claims": 20,
+    "dependency_phase_bindings": 120,
+    "native_full_source_completions": 84
+  }
+}

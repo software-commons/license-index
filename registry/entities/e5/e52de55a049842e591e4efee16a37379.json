@@ -1,0 +1,42 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "0d9a7638819d4f37938d99ef4c4ba508"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "nlpl-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "NLPL",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "imapsync-project",
+        "data-revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+        "edition": "nlpl-captured-reference",
+        "revision": "sha256:54356b1c490c5dbdd031f6a156d7a8e2c9f608e061c8bcf9e743e53ac8ce6045",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "e52de55a049842e591e4efee16a37379",
+  "identity_claim": {
+    "id": "nlpl-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "imapsync-project",
+    "edition": "nlpl-captured-reference",
+    "index-lifecycle-decision": "openldap-imapsync-notices-classification",
+    "revision": "sha256:54356b1c490c5dbdd031f6a156d7a8e2c9f608e061c8bcf9e743e53ac8ce6045",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "No Limit Public License",
+  "relations": [],
+  "state": "historical"
+}
