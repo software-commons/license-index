@@ -4,6 +4,14 @@
 
 The Software Commons owner authorized a Codex-only review process conditional on a compliant enforced replacement. The owner excluded adding collaborators or creating a second GitHub account. Software Commons will retain mandatory pull requests, the pinned SCES check, the registry check and its three-platform test jobs. Default-branch deletion, force-push and unauthorized bypass stay prohibited. Publication requires a separate exact-artifact authorization.
 
+## Authorized native integration transition
+
+The existing protected PR and queue procedure governs adoption. The administrator may activate the [native integration transition](decisions/native-integration-transition.md) only as recorded in Git blob `c344fac719be6902d664d3321fe69631edabdcff`. Any change to those terms requires a separate authorized amendment to this protected file.
+
+Before removing the production queue or its required context, commission the isolated trial with App 5893334. Demonstrate a real qualified candidate passing strict Actions CI and a genuine independent Codex review bound solely to its live test-merge commit. Use the ordinary merge endpoint to verify that changing the head and retargeting the same head to a changed base each require fresh review. Record the runtime, configuration and receipts. A failed or inconclusive trial leaves the existing controls in effect.
+
+After a successful trial, the administrator may replace the queue and its old context with the App-bound `Software Commons / Independent Codex review` check. Preserve strict source-bound SCES and Registry checks, independent scientific verification, control-path review, resolved conversations, merge-commit ancestry, deletion and force-push protections, and zero bypass actors. Verify effective rules and the first qualified research merge on protected main. Publication requires separate exact-artifact authorization.
+
 ## Enforced replacement
 
 Use an organization-controlled required workflow or a dedicated, authenticated GitHub App whose issuer posts the designated verification check. Its verifier and credentials must be outside the target pull request's trust boundary. A shared App may serve owner-authorized Index repositories with separate repository-scoped tokens. The License Index issuer must verify its token has access only to this repository. The App would have no bypass access or merge authority and be the expected source of the new ruleset check. Give it the GitHub check and commit-status permissions required for that role, with no repository code or administration write access. Its issuer must verify the repository, pull request, exact head and base commits, review execution, retained audit evidence and disposition. A changed head or target requires a fresh determination. Code in the pull request must have no access to the issuer's key or to a way to generate the same check.
