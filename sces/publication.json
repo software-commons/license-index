@@ -1141,31 +1141,6 @@
       "revision": 1
     },
     {
-      "id": "identity-observation-aswf10-approval-statement",
-      "kind": "claim",
-      "revision": 1
-    },
-    {
-      "id": "identity-observation-aswf11-approval-statement",
-      "kind": "claim",
-      "revision": 1
-    },
-    {
-      "id": "identity-observation-mp1-historical-attribution",
-      "kind": "claim",
-      "revision": 1
-    },
-    {
-      "id": "identity-observation-mp2-historical-attribution",
-      "kind": "claim",
-      "revision": 1
-    },
-    {
-      "id": "identity-observation-mpvar-historical-attribution",
-      "kind": "claim",
-      "revision": 1
-    },
-    {
       "id": "independent-modules-exception-documentary-exception-identity",
       "kind": "claim",
       "revision": 3
@@ -2062,8 +2037,8 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.19",
-  "evaluated_at": "2026-11-28T07:58:22Z",
+  "dataset_version": "0.2.18",
+  "evaluated_at": "2026-11-28T06:44:58Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -2102,16 +2077,15 @@
     "The 1.0 and 1.1 claims identify the English edition references visible at the named Commission URLs. File-byte equivalence, adoption dates and work-specific applicability require separate evidence.",
     "Linux man-pages identities apply to the four exact project notice files. A license identification for any individual manual page requires page-specific evidence.",
     "The archived NPL 1.1 plaintext names NPL in section 13. The SPDX 3.29.0 NPL 1.1 detail names MPL there. Documentary edition identification leaves governing wording and work-specific application unresolved.",
-    "The historical Mozilla and Netscape provisions apply within the actors, editions and conditions identified in each exact claim. Project-specific licensing and legal outcomes remain outside the qualification.",
-    "The project README supplies the two reported approval dates. Each man-pages attribution applies only to its named historical file and revision."
+    "The historical Mozilla and Netscape provisions apply within the actors, editions and conditions identified in each exact claim. Project-specific licensing and legal outcomes remain outside the qualification."
   ],
   "previous_report": {
-    "path": "sces/releases/historical-reference-provisions-0-2-18/qualification.json",
-    "sha256": "ea5d8506c3ac734c5a170433d6ec8f0faab877c67c89264d5bf4dc92041070f8"
+    "path": "sces/releases/oldap-reference-0-2-17/qualification.json",
+    "sha256": "32c5951c14df070db1de57534298ed7647b337712891800141d343b5f0e3f0e8"
   },
-  "release": "aswf-and-man-pages-history-0-2-19",
-  "research_cutoff": "2026-11-28T07:58:22Z",
+  "release": "historical-reference-provisions-0-2-18",
+  "research_cutoff": "2026-11-28T06:44:58Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence. It also covers 16 OpenLDAP publisher reference identities and scoped SPDX documentary correspondences. It also covers 16 additional Creative Commons publisher reference identities and scoped SPDX documentary correspondences. It also covers the three exact Darwin, Flex and OpenWebUI project reference identities and scoped SPDX documentary correspondences. It also covers five LaTeX Project publisher references, the Apache 1.1 example, and their scoped SPDX edition correspondences. It includes source and binary redistribution notices for the three pinned BSD project references and the Open WebUI branding restriction. It includes ten edition-specific LPPL distribution provisions and four Apache 1.1 example provisions. It includes the ASWF Digital Assets 1.0 and 1.1 template identities and their scoped SPDX correspondences. It includes the Commission-rendered English EUPL 1.0 and 1.1 edition identities and their scoped SPDX 3.29.0 correspondences. It includes four pinned Linux man-pages notice identities and their SPDX 3.29.0 licenseText correspondences. It includes historical Mozilla Public License and Netscape Public License references for editions 1.0 and 1.1 and their scoped SPDX 3.29.0 documentary correspondences. It includes eleven edition-specific permission, notice and source-disclosure claims for the historical Mozilla and Netscape references. It includes dated approvals reported by the ASWF project README and notice attributions in three historical Linux man-pages source files.",
-  "source_commit": "905ab46e3e7e44d2f1edab085b2dd47698849543"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence. It also covers 16 OpenLDAP publisher reference identities and scoped SPDX documentary correspondences. It also covers 16 additional Creative Commons publisher reference identities and scoped SPDX documentary correspondences. It also covers the three exact Darwin, Flex and OpenWebUI project reference identities and scoped SPDX documentary correspondences. It also covers five LaTeX Project publisher references, the Apache 1.1 example, and their scoped SPDX edition correspondences. It includes source and binary redistribution notices for the three pinned BSD project references and the Open WebUI branding restriction. It includes ten edition-specific LPPL distribution provisions and four Apache 1.1 example provisions. It includes the ASWF Digital Assets 1.0 and 1.1 template identities and their scoped SPDX correspondences. It includes the Commission-rendered English EUPL 1.0 and 1.1 edition identities and their scoped SPDX 3.29.0 correspondences. It includes four pinned Linux man-pages notice identities and their SPDX 3.29.0 licenseText correspondences. It includes historical Mozilla Public License and Netscape Public License references for editions 1.0 and 1.1 and their scoped SPDX 3.29.0 documentary correspondences. It includes eleven edition-specific permission, notice and source-disclosure claims for the historical Mozilla and Netscape references.",
+  "source_commit": "b7fe3273b8a575ef6ef7e7af54ff58f79c161683"
 }

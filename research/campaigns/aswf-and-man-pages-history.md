@@ -1,15 +1,16 @@
-# ASWF edition history and Linux man-pages notice examples
+# ASWF approval history and Linux man-pages notice comparisons
 
-The Academy Software Foundation project README reports that its Governing Board approved the v1.0 template for use on 2021-07-29 and v1.1 on 2022-02-22. Each history entry links the corresponding template in the same repository revision. The observation records the Foundation's account of the approval.
+## ASWF Board approvals reported by the project
 
-Three Linux man-pages source files at commit `ae6b221882ce71ba82fcdbe02419a225111502f0` document historical examples of distinct notice forms.
+- The Academy Software Foundation project README reports that the Foundation Governing Board approved version 1.0 of the ASWF Digital Assets License for use on 2021-07-29.
+- The Academy Software Foundation project README reports that the Foundation Governing Board approved version 1.1 of the ASWF Digital Assets License for use on 2022-02-22.
 
-| Historical file | Attribution in the captured header | Project notice form |
-| --- | --- | --- |
-| `getcpu.2` | Andi Kleen | Linux-man-pages-1-para |
-| `move_pages.2` | Silicon Graphics, Inc. and Christoph Lameter | Linux-man-pages-copyleft-2-para |
-| `set_mempolicy.2` | Andi Kleen, SuSE Labs, Lee Schermerhorn and Hewlett Packard | Linux-man-pages-copyleft-var |
+[Research receipts](../../sces/artifacts/aswf-board-status-documentation/research-receipts.jsonl) · [Independent review receipts](../../sces/artifacts/aswf-board-status-documentation/independent-review-receipts.jsonl)
 
-The marked notice passages match the corresponding project notice texts after removal of roff comment prefixes and normalization of whitespace. Each attribution concerns the named header at the cited revision. Later licensing, ownership and rights in a particular work require separate evidence.
+## Notices in historical Linux manual pages
 
-[Research receipts](../../sces/artifacts/identity-observation-cohort-v3/research-receipts.jsonl) · [Independent review receipts](../../sces/artifacts/identity-observation-cohort-v3/independent-review-receipts.jsonl)
+- In man2/getcpu.2 at man-pages revision ae6b221882ce71ba82fcdbe02419a225111502f0, the marked notice has the same words, case and punctuation in the same order as LICENSES/Linux-man-pages-1-para.txt at project revision 446bd6edbc4d71d8bac4e9fb7e0bae3e59c8f9fe after stripping the roff comment prefixes and splitting on whitespace. The preceding page header names Andi Kleen (2006).
+- In man2/move_pages.2 at man-pages revision ae6b221882ce71ba82fcdbe02419a225111502f0, the marked notice has the same words, case and punctuation in the same order as LICENSES/Linux-man-pages-copyleft-2-para.txt at project revision 446bd6edbc4d71d8bac4e9fb7e0bae3e59c8f9fe after stripping the roff comment prefixes and splitting on whitespace. The preceding page header names Silicon Graphics, Inc. and Christoph Lameter (2006 header).
+- In man2/set_mempolicy.2 at man-pages revision ae6b221882ce71ba82fcdbe02419a225111502f0, the marked notice has the same words, case and punctuation in the same order as LICENSES/Linux-man-pages-copyleft-var.txt at project revision 446bd6edbc4d71d8bac4e9fb7e0bae3e59c8f9fe after stripping the roff comment prefixes and splitting on whitespace. The preceding page header names Andi Kleen and SuSE Labs (2003, 2004), and Lee Schermerhorn and Hewlett Packard (2007).
+
+[Research receipts](../../sces/artifacts/manpages-historical-notices/research-receipts.jsonl) · [Independent review receipts](../../sces/artifacts/manpages-historical-notices/independent-review-receipts.jsonl)

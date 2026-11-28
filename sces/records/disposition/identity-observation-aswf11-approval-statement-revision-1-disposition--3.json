@@ -1,0 +1,25 @@
+{
+  "evidence": "superseded",
+  "finding": "none",
+  "id": "identity-observation-aswf11-approval-statement-revision-1-disposition",
+  "kind": "disposition",
+  "reason": "Protected admission review 85b7bff4-89c4-4c0d-b466-e2b0ab9b34de identified a predicate and source-revision mismatch. The independently reviewed successor records the proposition at its original publisher revision.",
+  "recorded": "2026-11-28T08:26:55Z",
+  "replaces": {
+    "id": "identity-observation-aswf11-approval-statement-revision-1-disposition",
+    "kind": "disposition",
+    "revision": 2
+  },
+  "revision": 3,
+  "successor": {
+    "id": "identity-observation-aswf11-approval-statement",
+    "kind": "claim",
+    "revision": 2
+  },
+  "target": {
+    "id": "identity-observation-aswf11-approval-statement",
+    "kind": "claim",
+    "revision": 1
+  },
+  "verification": "invalidated"
+}
