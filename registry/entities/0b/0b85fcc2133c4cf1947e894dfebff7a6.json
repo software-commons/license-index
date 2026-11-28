@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "7f0bce9ede98411ea960a926ad32ef9f"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "bsd-darwin-spdx-3290-canonical-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "BSD-2-Clause-Darwin",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "file-project",
+        "edition": "bsd-darwin-captured-reference",
+        "revision": "sha256:0bfa856a9930bddadbef95d1be1cf4e163c0be618e76ea3275caaf255283e274",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "0b85fcc2133c4cf1947e894dfebff7a6",
+  "identity_claim": {
+    "id": "bsd-darwin-documentary-canonical-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "file-project",
+    "edition": "bsd-darwin-captured-reference",
+    "index-lifecycle-decision": "bsd-project-references-lifecycle-2026-11-27",
+    "revision": "sha256:0bfa856a9930bddadbef95d1be1cf4e163c0be618e76ea3275caaf255283e274",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "BSD 2-Clause - Ian Darwin variant",
+  "relations": [],
+  "state": "active"
+}

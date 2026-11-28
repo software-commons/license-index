@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "1b221a8006694c4a97257c31d887872f"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-3-0-us-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-3.0-US",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-3-0-us-publisher-reference",
+        "revision": "sha256:a5285930c404a709b131b1ef371143dd160596102e6c139764920ba0fc48d37f",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "0d4e1a48eb1d4744aefee550c3215aa7",
+  "identity_claim": {
+    "id": "cc-by-3-0-us-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-3-0-us-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:a5285930c404a709b131b1ef371143dd160596102e6c139764920ba0fc48d37f",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Attribution 3.0 United States",
+  "relations": [],
+  "state": "active"
+}

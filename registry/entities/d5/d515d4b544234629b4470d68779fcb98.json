@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "d426b06d3f3249ebabcefc3103a93ae3"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "bsd-flex-spdx-3290-canonical-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "BSD-3-Clause-flex",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "flex-project",
+        "edition": "bsd-flex-captured-reference",
+        "revision": "sha256:97fd685958d93be7f8dab939bb8161dbd6afb0718c63bfc337c24321aea44273",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "d515d4b544234629b4470d68779fcb98",
+  "identity_claim": {
+    "id": "bsd-flex-documentary-canonical-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "flex-project",
+    "edition": "bsd-flex-captured-reference",
+    "index-lifecycle-decision": "bsd-project-references-lifecycle-2026-11-27",
+    "revision": "sha256:97fd685958d93be7f8dab939bb8161dbd6afb0718c63bfc337c24321aea44273",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "BSD 3-Clause Flex variant",
+  "relations": [],
+  "state": "active"
+}
