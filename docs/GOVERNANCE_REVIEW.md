@@ -4,7 +4,13 @@
 
 The Software Commons owner authorized a Codex-only review process conditional on a compliant enforced replacement. The owner excluded adding collaborators or creating a second GitHub account. Software Commons will retain mandatory pull requests, the pinned SCES check, the registry check and its three-platform test jobs. Default-branch deletion, force-push and unauthorized bypass stay prohibited. Publication requires a separate exact-artifact authorization.
 
-The [native integration transition](decisions/native-integration-transition.md) authorizes a staged replacement after the existing protected adoption procedure and a verified isolated App trial. Record the effective cutover before using the replacement on main.
+## Authorized native integration transition
+
+The existing protected PR and queue procedure governs adoption. The administrator may activate the [native integration transition](decisions/native-integration-transition.md) only as recorded in Git blob `c344fac719be6902d664d3321fe69631edabdcff`. Any change to those terms requires a separate authorized amendment to this protected file.
+
+Before removing the production queue or its required context, commission the isolated trial with App 5893334. Demonstrate a real qualified candidate passing strict Actions CI and a genuine independent Codex review bound solely to its live test-merge commit. Use the ordinary merge endpoint to verify that changing the head and retargeting the same head to a changed base each require fresh review. Record the runtime, configuration and receipts. A failed or inconclusive trial leaves the existing controls in effect.
+
+After a successful trial, the administrator may replace the queue and its old context with the App-bound `Software Commons / Independent Codex review` check. Preserve strict source-bound SCES and Registry checks, independent scientific verification, control-path review, resolved conversations, merge-commit ancestry, deletion and force-push protections, and zero bypass actors. Verify effective rules and the first qualified research merge on protected main. Publication requires separate exact-artifact authorization.
 
 ## Enforced replacement
 
