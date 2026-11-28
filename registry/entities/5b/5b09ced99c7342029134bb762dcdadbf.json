@@ -1,1 +1,41 @@
-{"aliases":[],"candidate_ids":["5648e3df7d6e4759951a591f064f0e77"],"crosswalks":[{"claim":{"id":"radvd-spdx-3290-correspondence","kind":"claim","revision":2},"key":"radvd","origin":"spdx","revision":"31ba1a50e5397e00a304dbadc76531740e89ee48","scope":{"authority":"radvd-project","edition":"radvd-captured-reference","revision":"sha256:40a6db00cf0b97f031eaa6c6e87157788f40ced1b88e3ea6d78779bd2a39dc80","upstream-release":"3.29.0"}}],"id":"5b09ced99c7342029134bb762dcdadbf","identity_claim":{"id":"radvd-documentary-identity","kind":"claim","revision":3},"identity_scope":{"authority":"radvd-project","edition":"radvd-captured-reference","index-lifecycle-decision":"five-project-notices-lifecycle-2026-11-28","revision":"sha256:40a6db00cf0b97f031eaa6c6e87157788f40ced1b88e3ea6d78779bd2a39dc80","taxonomy":"license-index-license"},"kind":"license","name":"radvd License","relations":[],"state":"active"}
+{
+  "aliases": [],
+  "candidate_ids": [
+    "5648e3df7d6e4759951a591f064f0e77"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "radvd-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 3
+      },
+      "key": "radvd",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "radvd-project",
+        "edition": "radvd-captured-reference",
+        "revision": "sha256:40a6db00cf0b97f031eaa6c6e87157788f40ced1b88e3ea6d78779bd2a39dc80",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "5b09ced99c7342029134bb762dcdadbf",
+  "identity_claim": {
+    "id": "radvd-documentary-identity",
+    "kind": "claim",
+    "revision": 3
+  },
+  "identity_scope": {
+    "authority": "radvd-project",
+    "edition": "radvd-captured-reference",
+    "index-lifecycle-decision": "five-project-notices-lifecycle-2026-11-28",
+    "revision": "sha256:40a6db00cf0b97f031eaa6c6e87157788f40ced1b88e3ea6d78779bd2a39dc80",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "radvd License",
+  "relations": [],
+  "state": "active"
+}
