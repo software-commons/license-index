@@ -1,6 +1,11 @@
 {
-  "disposition": "unresolved",
-  "history": [],
+  "disposition": "accepted",
+  "history": [
+    {
+      "disposition": "unresolved",
+      "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+    }
+  ],
   "id": "ae40897bb725452a8d608cb97e5a01b2",
   "origin": {
     "artifacts": {
@@ -55,5 +60,5 @@
     "release": "3.29.0",
     "source": "31ba1a50e5397e00a304dbadc76531740e89ee48"
   },
-  "reason": "SPDX list entry awaiting Software Commons identity and source qualification."
+  "reason": "Independent review supports the pinned historical publisher plaintext and edition-level documentary correspondence to SPDX 3.29.0."
 }
