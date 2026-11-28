@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "9b7f2ac7a919405e9b961cef66b11bbb"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "linux-man-pages-copyleft-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Linux-man-pages-copyleft",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "linux-man-pages-project",
+        "edition": "linux-man-pages-copyleft-project-notice",
+        "revision": "sha256:e7241c6405f8ad70943bcdb0fd83cb79fb25eec601ecf311acc9c72f19794d5a",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "2a06382e10a64e91966655d207f14c6e",
+  "identity_claim": {
+    "id": "linux-man-pages-copyleft-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "linux-man-pages-project",
+    "edition": "linux-man-pages-copyleft-project-notice",
+    "index-lifecycle-decision": "man-pages-notice-references",
+    "revision": "sha256:e7241c6405f8ad70943bcdb0fd83cb79fb25eec601ecf311acc9c72f19794d5a",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Linux-man-pages-copyleft",
+  "relations": [],
+  "state": "active"
+}

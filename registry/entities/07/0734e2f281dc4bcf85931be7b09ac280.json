@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "e86aa45f7d7841729344a6f3d7dac1d3"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "lppl-1-2-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "LPPL-1.2",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "latex3-project",
+        "edition": "lppl-1-2-publisher-reference",
+        "revision": "sha256:62046a75f3ff47f8917e1cf690090b1ea020714937dce4247e715ed83a7f0aa8",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "0734e2f281dc4bcf85931be7b09ac280",
+  "identity_claim": {
+    "id": "lppl-1-2-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "latex3-project",
+    "edition": "lppl-1-2-publisher-reference",
+    "index-lifecycle-decision": "lppl-reference-classifications-2026-11-27",
+    "revision": "sha256:62046a75f3ff47f8917e1cf690090b1ea020714937dce4247e715ed83a7f0aa8",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "LaTeX Project Public License 1.2",
+  "relations": [],
+  "state": "active"
+}

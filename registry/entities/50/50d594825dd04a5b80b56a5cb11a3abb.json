@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "7432c8f0fe264e73ac016024eb0f1373"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-2-5-au-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-2.5-AU",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-2-5-au-publisher-reference",
+        "revision": "sha256:4a2148abbfd63ed9bc97ab27f3e413fee7783a5aa74f0d8ebde28d48bcebad62",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "50d594825dd04a5b80b56a5cb11a3abb",
+  "identity_claim": {
+    "id": "cc-by-2-5-au-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-2-5-au-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:4a2148abbfd63ed9bc97ab27f3e413fee7783a5aa74f0d8ebde28d48bcebad62",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Attribution 2.5 Australia",
+  "relations": [],
+  "state": "active"
+}

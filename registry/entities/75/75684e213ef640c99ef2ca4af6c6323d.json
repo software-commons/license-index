@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "e2e45c619d494054b78141c87c85dc56"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "apache-1-1-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "Apache-1.1",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "apache-software-foundation",
+        "edition": "apache-1-1-publisher-reference",
+        "revision": "sha256:efaafbc1cbe97852157319bfb98bf1b43c70223251d388507c168697afd832c6",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "75684e213ef640c99ef2ca4af6c6323d",
+  "identity_claim": {
+    "id": "apache-1-1-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "apache-software-foundation",
+    "edition": "apache-1-1-publisher-reference",
+    "index-lifecycle-decision": "apache-1-1-reference-classification",
+    "revision": "sha256:efaafbc1cbe97852157319bfb98bf1b43c70223251d388507c168697afd832c6",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Apache License 1.1",
+  "relations": [],
+  "state": "active"
+}

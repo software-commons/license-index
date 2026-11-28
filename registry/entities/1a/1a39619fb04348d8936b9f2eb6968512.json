@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "d19c5d46d42340cbb79fbdae45c67158"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "bsd-openwebui-spdx-3290-canonical-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "BSD-3-Clause-OpenWebUI",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "open-webui-project",
+        "edition": "bsd-openwebui-captured-reference",
+        "revision": "sha256:5f1bd74c48bf13ab0f82e177ad9e637313b92533d20ead2593d49347a47fc232",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "1a39619fb04348d8936b9f2eb6968512",
+  "identity_claim": {
+    "id": "bsd-openwebui-documentary-canonical-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "open-webui-project",
+    "edition": "bsd-openwebui-captured-reference",
+    "index-lifecycle-decision": "bsd-project-references-lifecycle-2026-11-27",
+    "revision": "sha256:5f1bd74c48bf13ab0f82e177ad9e637313b92533d20ead2593d49347a47fc232",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "BSD 3-Clause - OpenWebUI variant",
+  "relations": [],
+  "state": "active"
+}

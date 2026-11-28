@@ -1,0 +1,41 @@
+{
+  "aliases": [],
+  "candidate_ids": [
+    "162f651ecefe487fa896506a329777da"
+  ],
+  "crosswalks": [
+    {
+      "claim": {
+        "id": "cc-by-sa-3-0-igo-license-spdx-3290-correspondence",
+        "kind": "claim",
+        "revision": 1
+      },
+      "key": "CC-BY-SA-3.0-IGO",
+      "origin": "spdx",
+      "revision": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+      "scope": {
+        "authority": "creative-commons",
+        "edition": "cc-by-sa-3-0-igo-publisher-reference",
+        "revision": "sha256:584d8f6ae7ccc578a21f6eb28441edda04f22ca676607ccabbee4c355342c0a2",
+        "upstream-release": "3.29.0"
+      }
+    }
+  ],
+  "id": "32d90accea2744ab83519229c8e900cb",
+  "identity_claim": {
+    "id": "cc-by-sa-3-0-igo-documentary-license-identity",
+    "kind": "claim",
+    "revision": 1
+  },
+  "identity_scope": {
+    "authority": "creative-commons",
+    "edition": "cc-by-sa-3-0-igo-publisher-reference",
+    "index-lifecycle-decision": "cc-remaining-classifications-2026-11-27",
+    "revision": "sha256:584d8f6ae7ccc578a21f6eb28441edda04f22ca676607ccabbee4c355342c0a2",
+    "taxonomy": "license-index-license"
+  },
+  "kind": "license",
+  "name": "Attribution-ShareAlike 3.0 IGO",
+  "relations": [],
+  "state": "active"
+}
