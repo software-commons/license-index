@@ -51,12 +51,62 @@
       "revision": 1
     },
     {
+      "id": "apache-1-1-acknowledgment-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "apache-1-1-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "apache-1-1-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "apache-1-1-names-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "apache-1-1-notices-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "apache-1-1-permission-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
       "id": "apache-2-0-documentary-license-identity",
       "kind": "claim",
       "revision": 3
     },
     {
       "id": "apache-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "aswf-digital-assets-1-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "aswf-digital-assets-1-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "aswf-digital-assets-1-1-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "aswf-digital-assets-1-1-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -166,6 +216,71 @@
       "revision": 1
     },
     {
+      "id": "bsd-darwin-binary-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-darwin-documentary-canonical-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-darwin-source-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-darwin-spdx-3290-canonical-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-flex-binary-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-flex-documentary-canonical-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-flex-source-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-flex-spdx-3290-canonical-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-openwebui-binary-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-openwebui-branding-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-openwebui-documentary-canonical-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-openwebui-source-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "bsd-openwebui-spdx-3290-canonical-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-1-0-documentary-license-identity",
       "kind": "claim",
       "revision": 1
@@ -186,12 +301,42 @@
       "revision": 1
     },
     {
+      "id": "cc-by-2-5-au-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-2-5-au-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-2-5-documentary-license-identity",
       "kind": "claim",
       "revision": 1
     },
     {
       "id": "cc-by-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-at-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-at-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-au-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-au-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -211,7 +356,37 @@
       "revision": 1
     },
     {
+      "id": "cc-by-3-0-igo-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-igo-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-3-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-nl-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-nl-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-us-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-3-0-us-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -267,6 +442,16 @@
     },
     {
       "id": "cc-by-nc-3-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-3-0-igo-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-3-0-igo-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -331,6 +516,16 @@
       "revision": 1
     },
     {
+      "id": "cc-by-nc-nd-3-0-igo-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-nd-3-0-igo-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-nc-nd-3-0-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
@@ -371,7 +566,27 @@
       "revision": 1
     },
     {
+      "id": "cc-by-nc-sa-2-0-fr-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-0-fr-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-nc-sa-2-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-0-uk-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-2-0-uk-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -397,6 +612,16 @@
     },
     {
       "id": "cc-by-nc-sa-3-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-3-0-igo-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-nc-sa-3-0-igo-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -496,12 +721,42 @@
       "revision": 1
     },
     {
+      "id": "cc-by-sa-2-0-uk-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-0-uk-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-1-jp-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-2-1-jp-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-sa-2-5-documentary-license-identity",
       "kind": "claim",
       "revision": 1
     },
     {
       "id": "cc-by-sa-2-5-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-3-0-at-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-3-0-at-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -521,6 +776,16 @@
       "revision": 1
     },
     {
+      "id": "cc-by-sa-3-0-igo-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-by-sa-3-0-igo-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "cc-by-sa-3-0-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
@@ -532,6 +797,16 @@
     },
     {
       "id": "cc-by-sa-4-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-sa-1-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "cc-sa-1-0-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -617,6 +892,26 @@
     },
     {
       "id": "etalab-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "eupl-1-0-rendered-edition-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "eupl-1-0-rendered-edition-spdx-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "eupl-1-1-rendered-edition-identity",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "eupl-1-1-rendered-edition-spdx-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -901,6 +1196,46 @@
       "revision": 1
     },
     {
+      "id": "linux-man-pages-1-para-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-1-para-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-copyleft-2-para-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-copyleft-2-para-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-copyleft-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-copyleft-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-copyleft-var-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "linux-man-pages-copyleft-var-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "llvm-exception-documentary-exception-identity",
       "kind": "claim",
       "revision": 3
@@ -912,6 +1247,106 @@
     },
     {
       "id": "llvm-exception-exception-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-0-distribution-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-0-document-copy-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-0-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-0-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-1-distribution-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-1-document-copy-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-1-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-1-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-2-distribution-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-2-document-copy-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-2-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-2-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-3a-distribution-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-3a-document-copy-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-3a-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-3a-license-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-3c-distribution-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-3c-document-copy-provisional",
+      "kind": "claim",
+      "revision": 2
+    },
+    {
+      "id": "lppl-1-3c-documentary-license-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "lppl-1-3c-license-spdx-3290-correspondence",
       "kind": "claim",
       "revision": 1
     },
@@ -956,6 +1391,56 @@
       "revision": 3
     },
     {
+      "id": "mpl-1-0-historical-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-0-historical-reference-spdx-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-0-initial-grant-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-0-notices-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-0-source-availability-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-1-historical-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-1-historical-reference-spdx-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-1-initial-grant-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-1-notices-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "mpl-1-1-source-availability-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
       "id": "nlod-1-0-reference-identity",
       "kind": "claim",
       "revision": 2
@@ -972,6 +1457,51 @@
     },
     {
       "id": "nlod-2-0-spdx-3290-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-0-historical-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-0-historical-reference-spdx-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-0-other-products-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-0-third-party-exception-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-1-alternative-licensing-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-1-historical-reference-identity",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-1-historical-reference-spdx-correspondence",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-1-other-products-provisional",
+      "kind": "claim",
+      "revision": 1
+    },
+    {
+      "id": "npl-1-1-third-party-exception-provisional",
       "kind": "claim",
       "revision": 1
     },
@@ -1507,8 +2037,8 @@
     }
   ],
   "dataset": "license-index",
-  "dataset_version": "0.2.17",
-  "evaluated_at": "2026-11-27T01:59:19Z",
+  "dataset_version": "0.2.18",
+  "evaluated_at": "2026-11-28T06:44:58Z",
   "exclusions": [
     "Historical authorship, original publication date, variant equivalence, implied patent grants, and the status of an individual excerpt as a substantial portion.",
     "A particular work’s actual license grant, compliance or compatibility, jurisdiction-specific outcomes, and standalone redistribution of the generated SPDX representation.",
@@ -1535,16 +2065,27 @@
     "The captured publisher /legalcode pages declare canonical /legalcode.en URLs, but their byte equality is not established. Publisher NoDerivs or NoDerivatives and SPDX No Derivatives are documentary labels; publisher HTML and SPDX records are distinct representations.",
     "The captured pages refer to a draft license; the notice significance, document finality and legal effect remain unresolved. Captured /legalcode and declared /legalcode.en are separate URLs with no established byte equality. The publisher NoDerivs-NonCommercial naming order and SPDX NC-ND identifier are distinct documentary labels.",
     "The 2.0 German-language title does not itself name Deutschland; its German governing-law sentence is separately cited as context. The effect of that sentence and work-specific jurisdiction are not adjudicated. Publisher /legalcode and declared /legalcode.de are distinct URLs whose byte equality is not established by these claims.",
-    "The directly cited Commission UTF-8 text is not asserted byte- or legally equivalent to the EUR-Lex annex or other representations. EUPL 1.0 and 1.1 documentary mappings remain provisional. No license terms, work-specific applicability, text reuse or publication rights are adjudicated.",
-    "Historical SPDX gitweb and modern raw publisher URLs are distinct even where they carry the same commit identifier; the OLDAP 2.8 SPDX HTTP and publisher HTTPS URLs are distinct. No byte or legal equivalence, license terms, applicability, reuse rights or publication rights are adjudicated."
+    "The directly cited Commission UTF-8 text is not asserted byte- or legally equivalent to the EUR-Lex annex or other representations. No license terms, work-specific applicability, text reuse or publication rights are adjudicated.",
+    "Historical SPDX gitweb and modern raw publisher URLs are distinct even where they carry the same commit identifier; the OLDAP 2.8 SPDX HTTP and publisher HTTPS URLs are distinct. No byte or legal equivalence, license terms, applicability, reuse rights or publication rights are adjudicated.",
+    "The NL, FR and JP publisher titles do not themselves name the jurisdictions in the SPDX identifiers and URLs. The CC-SA-1.0 page includes a draft-license notice; its significance, finality and legal effect remain unresolved. No representation equivalence, license terms, applicability, reuse or publication rights are adjudicated.",
+    "The BSD project comparisons bind only the three exact pinned representations. SPDX references use moving branches. The OpenWebUI reference retains its additional branding provision. Work-specific applicability and text reuse require separate evidence.",
+    "The LPPL 1.3c crosswalk is an Index documentary discovery association. The SPDX entry cites a different publisher path and an OSI page. The other four LPPL crosswalks identify editions across distinct HTTP and HTTPS locators.",
+    "The Apache 1.1 comparison covers the case-folded alphanumeric tokens in the identified license body and the SPDX licenseText field. Work-specific licensing requires separate evidence.",
+    "Each notice provision applies only to material covered by its exact project grant and conditions. The Open WebUI branding restriction retains its stated exceptions. Work-specific applicability and installable texts require separate evidence.",
+    "The LPPL findings address the specified distribution conditions and verbatim license-document headers. The Apache 1.1 findings describe the pinned publisher example. Work-specific applicability, complete publisher package rights and installation need separate assessment.",
+    "The two ASWF template identities apply to their pinned foundation texts. An individual asset requires its own license notice.",
+    "The 1.0 and 1.1 claims identify the English edition references visible at the named Commission URLs. File-byte equivalence, adoption dates and work-specific applicability require separate evidence.",
+    "Linux man-pages identities apply to the four exact project notice files. A license identification for any individual manual page requires page-specific evidence.",
+    "The archived NPL 1.1 plaintext names NPL in section 13. The SPDX 3.29.0 NPL 1.1 detail names MPL there. Documentary edition identification leaves governing wording and work-specific application unresolved.",
+    "The historical Mozilla and Netscape provisions apply within the actors, editions and conditions identified in each exact claim. Project-specific licensing and legal outcomes remain outside the qualification."
   ],
   "previous_report": {
-    "path": "sces/releases/eupl-12-reference-0-2-16/qualification.json",
-    "sha256": "71d9d5c6995ad55baf0b9f45a21bcbd56a9175a48f874f917e167b0f480f9069"
+    "path": "sces/releases/oldap-reference-0-2-17/qualification.json",
+    "sha256": "32c5951c14df070db1de57534298ed7647b337712891800141d343b5f0e3f0e8"
   },
-  "release": "oldap-reference-0-2-17",
-  "research_cutoff": "2026-11-27T01:59:19Z",
+  "release": "historical-reference-provisions-0-2-18",
+  "research_cutoff": "2026-11-28T06:44:58Z",
   "schema_version": "1.0.0",
-  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence. It also covers 16 OpenLDAP publisher reference identities and scoped SPDX documentary correspondences.",
-  "source_commit": "baf25ffb1de985dbbfa1d36e9945b1d0d5d44616"
+  "scope": "The named OSI MIT reference form, PolyForm Perimeter 1.0.1, and PolyForm Shield 1.0.0. The scope covers the existing MIT documentary and representation claims, plus scoped publisher identity, crosswalk, competing-product and notice claims for the two named PolyForm editions. It also covers the exact Creative Commons CC0 1.0 Universal publisher identity and pinned SPDX correspondence. It also covers 12 exact public-data publisher references and their corresponding identifiers in SPDX 3.29.0. This selection adds 19 documentary publisher identities and their 37 scoped SPDX 3.29.0 correspondences. This selection adds 32 documentary publisher identities and their 35 scoped SPDX 3.29.0 correspondences. It records 28 exact base-scope claims. It also covers 12 Creative Commons 2.0 and 2.5 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 12 Creative Commons 3.0 Unported and 4.0 International publisher reference identities and exact SPDX documentary crosswalks. It also covers 6 Creative Commons 1.0 Generic publisher reference identities and exact SPDX documentary crosswalks. It also covers 7 German-language Creative Commons publisher reference identities and exact SPDX documentary crosswalks. It also covers 1 EUPL 1.2 publisher reference identity and SPDX documentary correspondence. It also covers 16 OpenLDAP publisher reference identities and scoped SPDX documentary correspondences. It also covers 16 additional Creative Commons publisher reference identities and scoped SPDX documentary correspondences. It also covers the three exact Darwin, Flex and OpenWebUI project reference identities and scoped SPDX documentary correspondences. It also covers five LaTeX Project publisher references, the Apache 1.1 example, and their scoped SPDX edition correspondences. It includes source and binary redistribution notices for the three pinned BSD project references and the Open WebUI branding restriction. It includes ten edition-specific LPPL distribution provisions and four Apache 1.1 example provisions. It includes the ASWF Digital Assets 1.0 and 1.1 template identities and their scoped SPDX correspondences. It includes the Commission-rendered English EUPL 1.0 and 1.1 edition identities and their scoped SPDX 3.29.0 correspondences. It includes four pinned Linux man-pages notice identities and their SPDX 3.29.0 licenseText correspondences. It includes historical Mozilla Public License and Netscape Public License references for editions 1.0 and 1.1 and their scoped SPDX 3.29.0 documentary correspondences. It includes eleven edition-specific permission, notice and source-disclosure claims for the historical Mozilla and Netscape references.",
+  "source_commit": "b7fe3273b8a575ef6ef7e7af54ff58f79c161683"
 }
